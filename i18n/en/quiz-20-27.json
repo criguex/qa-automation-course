@@ -658,15 +658,15 @@
    "why": "Moving the goalposts after seeing the data is tuning to the result. A threshold change is decided and recorded before the next run."
   },
   {
-   "q": "You calibrated the judge with 10 human labels: agreement 8/10, kappa 0.58. Your bar is 0.6. Conclusion?",
+   "q": "A README shows “agreement 8/10, κ 0.58” under “Real results”. git log says the human and judge columns were typed by hand in one commit, no script produces the judge column and 5 of the 10 cases don't exist in the dataset. What is that figure?",
    "o": [
-    "80 % is enough: it works",
-    "Recalibrate the rubric: kappa is below the bar",
-    "The human was wrong",
-    "Kappa doesn't matter"
+    "A valid measurement, just with few cases",
+    "A documentation false green: the arithmetic of an example presented as a measurement",
+    "Proof that the rubric must be recalibrated, because 0.58 < 0.6",
+    "A scikit-learn calculation error"
    ],
    "a": 1,
-   "why": "Kappa corrects agreement for chance; 0.58 < 0.6 means recalibrate, as the script itself says."
+   "why": "With no judge that produced its labels and no cases that exist, nothing was measured: the arithmetic is right, but it says nothing about the judge. That was qa-eval-lab until 26 Oct 2026; the honest move is to label it illustrative and measure for real."
   },
   {
    "q": "What is a not-contains in Promptfoo for?",

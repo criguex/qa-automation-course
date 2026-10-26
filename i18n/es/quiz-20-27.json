@@ -658,15 +658,15 @@
    "why": "Mover la meta después de ver el dato es afinar al resultado. Un cambio de umbral se decide y se registra antes de la siguiente corrida."
   },
   {
-   "q": "Calibraste el juez con 10 etiquetas humanas: acuerdo 8/10, kappa 0.58. Tu barra es 0.6. ¿Conclusión?",
+   "q": "Un README muestra “acuerdo 8/10, κ 0.58” bajo “Resultados reales”. git log dice que las columnas humano y juez se escribieron a mano en un commit, ningún script genera la del juez y 5 de los 10 casos no existen en el dataset. ¿Qué es esa cifra?",
    "o": [
-    "80 % es suficiente: funciona",
-    "Recalibrar la rúbrica: el kappa está bajo la barra",
-    "El humano se equivocó",
-    "El kappa no importa"
+    "Una medición válida, solo que con pocos casos",
+    "Un falso verde de documentación: la aritmética de un ejemplo presentada como medición",
+    "Prueba de que hay que recalibrar la rúbrica, porque 0.58 < 0.6",
+    "Un error de cálculo de scikit-learn"
    ],
    "a": 1,
-   "why": "El kappa corrige el acuerdo por azar; 0.58 < 0.6 significa recalibrar, como dice el propio script."
+   "why": "Sin un juez que haya producido sus etiquetas ni casos que existan, no hay nada medido: la cuenta es correcta, pero no dice nada del juez. Es el caso de qa-eval-lab hasta el 26-oct-2026; lo honesto es rotularlo como ilustrativo y medir de verdad."
   },
   {
    "q": "¿Para qué sirve un not-contains en Promptfoo?",
