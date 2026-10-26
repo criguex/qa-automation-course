@@ -118,7 +118,15 @@ node scripts/check-course.mjs      # valida cada módulo y cada pregunta
 
 `check-course.mjs` (Node 18+, sin dependencias) comprueba que cada módulo tenga objetivos, prerrequisitos, explicación para niños, laboratorio, criterios, rúbrica y mutación de la semana, que cada banco de quiz tenga al menos 8 preguntas y que cada respuesta apunte a una opción que existe. Hoy imprime `35 modules · 4 levels + final project` y `429 quiz questions · 0 problems`.
 
-Tu avance, tu mejor puntaje en cada quiz y el del examen viven solo en tu navegador (`localStorage`). No hay cuentas y no se envía nada a ningún lado.
+Puedes entrar con Google o como invitado. Como invitado, tu avance, tu mejor puntaje en cada quiz y el del examen viven solo en tu navegador (`localStorage`). Con tu cuenta se guardan en Firestore bajo tu id de usuario y sigues desde cualquier dispositivo; al iniciar sesión, lo que hiciste como invitado se suma a tu cuenta (un módulo queda marcado si está marcado en cualquiera de los dos lados, y ganan los mejores puntajes de quiz y de examen).
+
+## Entrar con Google (Firebase)
+
+El login y el avance en la nube usan la config web de Firebase del proyecto `curso-qa`, que está en `index.html` (la apiKey web de Firebase es pública por diseño; el acceso lo controlan las reglas de abajo). Para que funcione en el sitio publicado, en la consola de Firebase hace falta:
+
+1. **Authentication → Sign-in method → Google** activado.
+2. **Authentication → Settings → Authorized domains:** agregar `criguex.github.io` (y `localhost` para probar en local). Mientras el dominio no esté, el botón muestra un aviso que lo explica, y el modo invitado sigue funcionando.
+3. **Reglas de Firestore:** las de [`firestore.rules`](firestore.rules), para que cada persona solo pueda leer y escribir su propio documento `progress/{uid}`.
 
 ## Publicarlo con GitHub Pages
 
@@ -134,7 +142,7 @@ Tu avance, tu mejor puntaje en cada quiz y el del examen viven solo en tu navega
 ## Límites
 
 - El contenido del curso está solo en español.
-- La evaluación es autoevaluación. El sitio no tiene servidor: nadie revisa tu reto sino tú, y tu avance vive en un solo navegador.
+- La evaluación es autoevaluación. Nadie revisa tu reto sino tú; lo único que se guarda fuera de tu navegador es tu avance, y solo si entras con tu cuenta.
 - Casi todos los laboratorios son repos públicos míos. Parte de su evidencia no es independiente y lo dicen (por ejemplo, las tres máquinas de predictor-debugger son mías, y un recálculo completo lo corrió un asistente de IA bajo mi dirección); los módulos lo aclaran donde aplica.
 - Las versiones y los enlaces se revisaron el 26 de octubre de 2026 y van a envejecer.
 

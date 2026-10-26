@@ -122,7 +122,15 @@ node scripts/check-course.mjs      # validates every module and quiz question
 
 `check-course.mjs` (Node 18+, no dependencies) checks that every module has goals, prerequisites, kid line, lab, criteria, rubric and mutation of the week, that every quiz bank has at least 8 questions, and that every answer index points to a real option. Today it prints `35 modules · 4 levels + final project` and `429 quiz questions · 0 problems`.
 
-Your progress, your best quiz score per module and your exam score live only in your browser (`localStorage`). There are no accounts and nothing is sent anywhere.
+You can sign in with Google or enter as a guest. As a guest, your progress, your best quiz score per module and your exam score live only in your browser (`localStorage`). Signed in, they are saved in Firestore under your user id, so you continue on any device; when you sign in, what you did as a guest is merged with your account (a module counts as done if it is done in either place, and the best quiz and exam scores win).
+
+## Sign in with Google (Firebase)
+
+The login and the cloud progress use the Firebase web config of the `curso-qa` project, which is in `index.html` (a Firebase web API key is public by design; access is controlled by the rules below). For the published site to work, the Firebase console needs:
+
+1. **Authentication → Sign-in method → Google** enabled.
+2. **Authentication → Settings → Authorized domains:** add `criguex.github.io` (and `localhost` for local tests). Until the domain is there, the button shows a message that explains it, and guests can still use the course.
+3. **Firestore rules:** the ones in [`firestore.rules`](firestore.rules), so each person can only read and write their own document `progress/{uid}`.
 
 ## Publish it with GitHub Pages
 
@@ -138,7 +146,7 @@ Your progress, your best quiz score per module and your exam score live only in 
 ## Limits
 
 - The course content is in Spanish only.
-- Grading is self-assessment. The site has no server; nobody checks your challenge but you, and your progress lives in one browser.
+- Grading is self-assessment. Nobody checks your challenge but you; the only thing stored outside your browser is your progress, and only if you sign in.
 - Most labs are my own public repos. Some of their evidence is explicitly not independent (for example, the three machines in predictor-debugger are mine, and one full recompute was run by an AI assistant under my direction); the modules say so where it applies.
 - Versions and links were checked on 26 Oct 2026 and will age.
 

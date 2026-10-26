@@ -15,6 +15,7 @@ mkdirSync(dir, { recursive: true });
 
 const browser = await chromium.launch();
 const ctx = await browser.newContext({ viewport: { width: 960, height: 540 }, recordVideo: { dir, size: { width: 960, height: 540 } } });
+await ctx.addInitScript(() => { try { localStorage.setItem('qacurso_guest', '1'); } catch (e) {} });
 const p = await ctx.newPage();
 const pause = (ms) => p.waitForTimeout(ms);
 await p.goto(base + '/index.html');

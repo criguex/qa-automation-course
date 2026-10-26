@@ -12,7 +12,7 @@
   </g>
   <g font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" fill="#F4F7F5">
     <text x="48" y="56" font-size="28" font-weight="700">How one module works</text>
-    <text x="48" y="84" font-size="15" fill="#ABC0C8">Same structure in all 35 modules. Everything is checked in your browser; nothing is sent anywhere.</text>
+    <text x="48" y="84" font-size="15" fill="#ABC0C8">Same structure in all 35 modules. Everything is graded in your browser; sign in with Google to keep your progress across devices.</text>
 
     <g font-size="14">
       <rect x="48" y="124" width="170" height="104" rx="12" fill="#0D2638" stroke="#214456" stroke-width="1.5"/>
@@ -67,7 +67,7 @@
       <path d="M742 380 H600" stroke="#55DFBD" stroke-width="2.5" marker-end="url(#a)"/>
       <rect x="336" y="344" width="260" height="72" rx="12" fill="#123448" stroke="#55DFBD" stroke-width="2"/>
       <text x="352" y="372" font-weight="700">✓ Module passed</text>
-      <text x="352" y="396" fill="#ABC0C8">saved in your browser</text>
+      <text x="352" y="396" fill="#ABC0C8">saved in your account or browser</text>
     </g>
 
     <g font-size="14">

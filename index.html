@@ -179,10 +179,53 @@
   .rub th,.rub td{border:1px solid var(--line);padding:8px 10px;vertical-align:top;text-align:left}
   .rub th{background:var(--panel2);font-size:11.5px;letter-spacing:.04em}
   .qverdict{font-weight:800;margin-right:4px}.qverdict.okv{color:#10b981}.qverdict.nov{color:#f43f5e}
+  .notice{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:50;max-width:min(680px,calc(100% - 32px));padding:12px 16px;border-radius:12px;background:#0f1621;border:1px solid var(--line);color:var(--txt);font-size:14px;box-shadow:0 10px 30px -10px rgba(0,0,0,.6)}
+  .notice.error{border-color:#f43f5e}.notice.ok{border-color:#10b981}
   .hands pre{font-family:var(--mono);font-size:12.5px;background:#0b111a;border:1px solid var(--line);border-radius:10px;padding:10px 12px;overflow-x:auto;white-space:pre;margin:8px 0}
 </style>
 </head>
-<body>
+<body class="gated">
+
+<div id="notice" class="notice" role="status" hidden></div>
+
+<section id="gate">
+  <div class="wrap">
+    <div class="gav"></div>
+    <div class="eyebrow">Cristian Guerra · Ruta QA Automation</div>
+    <h1>Cómo ser <span class="g">QA Automation Engineer</span><br/>guiado por Cristian Guerra</h1>
+    <p class="sub">Un programa práctico basado en mi método real de trabajo: contract testing, Playwright + TypeScript, BDD, CI/CD, <b>QA asistida por IA</b>, evaluación de IA y agentes, y <b>mutation testing</b> con el WAR Paradigm. <b>Para cualquiera que quiera ser QA</b>: vengas de desarrollo, de QA manual, de otra carrera o desde cero.</p>
+    <div class="gstats">
+      <div class="gstat"><b>35</b><span>módulos en 4 niveles</span></div>
+      <div class="gstat"><b>~10–12 h</b><span>por semana, a tu ritmo</span></div>
+      <div class="gstat"><b>+150</b><span>recursos, casi todos gratis</span></div>
+      <div class="gstat"><b>1</b><span>auditoría WAR al final</span></div>
+    </div>
+    <div class="two">
+      <div class="card">
+        <h4>Qué vas a lograr</h4>
+        <ul class="tight">
+          <li>Dominar el stack: <b>Playwright + TS, contratos, pipelines, mutantes y evaluación de IA</b>.</li>
+          <li>Un <b>portafolio con proyectos reales</b>: cada módulo cierra con un entregable en un repo.</li>
+          <li><b>Probar al que prueba</b>: saber que tus pruebas habrían fallado si algo estaba mal.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>Cómo funciona</h4>
+        <ul class="tight">
+          <li><b>1 · Aprende:</b> objetivos, teoría corta y un laboratorio en cada módulo.</li>
+          <li><b>2 · Practica:</b> quiz de 8 preguntas que se corrige solo; apruebas con 6.</li>
+          <li><b>3 · Entrega:</b> un reto con criterios que se comprueban con un comando.</li>
+          <li><b>4 · Certifícate:</b> examen final de 26 preguntas (80 %) y la auditoría WAR.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="gcta">
+      <button class="gbtn" onclick="doAuth()">🔓 Entrar con Google y comenzar</button>
+      <p class="gnote">Tu progreso queda ligado a tu cuenta: retomas donde ibas, desde cualquier dispositivo. Si ya avanzaste sin cuenta, ese avance se suma al de tu cuenta.<br/>
+      <a href="#" onclick="enterGuest();return false">Ver el curso sin cuenta →</a> <span style="color:var(--dim)">(el avance se guarda solo en este navegador)</span></p>
+    </div>
+  </div>
+</section>
 
 
 <header class="hero homeonly">
@@ -192,9 +235,9 @@
     <p class="sub">Un curso interactivo, visual y práctico basado en mi método real de trabajo (contract testing, Playwright+TS, BDD, CI/CD, cloud, <b>QA asistida por IA</b>, evaluación de IA y agentes, y <b>mutation testing</b> con el WAR Paradigm). <b>Para cualquiera que quiera ser QA</b> — vengas de desarrollo, de QA manual, de otra carrera o desde cero. Cada quien avanza a su ritmo; en cada módulo hay pistas según tu punto de partida.</p>
     <div class="meta">
       <span class="chip">🗺️ <b>35 módulos</b> en 4 niveles + proyecto final</span>
-      <span class="chip">🎓 <b>+70 recursos</b> (casi todos gratis)</span><span class="chip">🧬 Hilo WAR: <b>prueba al que prueba</b></span>
+      <span class="chip">🎓 <b>+150 recursos</b> (casi todos gratis)</span><span class="chip">🧬 Hilo WAR: <b>prueba al que prueba</b></span>
       <span class="chip">🧩 Teoría → docs → repos → práctica</span>
-      <span class="chip">✅ Progreso guardado en tu navegador</span>
+      <span class="chip">✅ Progreso en tu cuenta de Google o en tu navegador</span>
     </div>
     <div class="mentorbox">
       <div class="avatar">CG</div>
@@ -208,6 +251,8 @@
     <span style="font-size:12px;color:var(--muted)">Tu avance</span>
     <div class="bar"><i id="barfill"></i></div>
     <span class="pct" id="pcttxt">0%</span>
+    <span id="authWho" style="font-size:12px;color:var(--muted)"></span>
+    <button id="authBtn" class="btn" onclick="doAuth()" style="display:none">🔓 Entrar con Google</button>
     <button class="btn" onclick="window.print()">🖨️ PDF</button>
     <button class="btn" onclick="resetProg()">↺ Reset</button>
   </div>
@@ -265,10 +310,13 @@
 
   <div class="foot">
     Ruta QA Automation · <b>guiada por Cristian Guerra Gómez</b> — Senior QA Automation / SDET · AI-Augmented Testing.<br/>
-    Basada en mi Metodología QA-IA y mi stack real. Ajústala a tu ritmo y al proyecto. Tu progreso, tus quizzes y tu examen se guardan solo en este navegador (localStorage).
+    Basada en mi Metodología QA-IA y mi stack real. Ajústala a tu ritmo y al proyecto. Tu progreso, tus quizzes y tu examen se guardan en tu cuenta de Google si entras con ella, o en este navegador (localStorage) si entras sin cuenta.
   </div>
 </div>
 
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script src="quiz-data.js"></script>
 <script>
 const T = {
@@ -1223,11 +1271,66 @@ function renderQuizBest(id){ const el=document.getElementById('qbest-'+id), b=qu
 function examDone(pct){ if(examBest==null||pct>examBest){ examBest=pct; saveP(); } renderExamBadge(); }
 function renderExamBadge(){ const el=document.getElementById('exambadge'); if(!el) return; el.textContent = examBest==null?'':(examBest>=80?`🎓 Aprobado — mejor puntaje: ${examBest}%`:`Mejor puntaje: ${examBest}% (meta: 80%)`); }
 function loadP(){ let s={}; try{s=JSON.parse(localStorage.getItem(KEY))||{}}catch(e){} chks().forEach(c=>{const id=c.id.replace('chk-',''); if(s[id]){c.checked=true; mark(id,true);} }); if(typeof s._exam==='number') examBest=s._exam; if(s._quiz&&typeof s._quiz==='object') quizBest=s._quiz; Object.keys(quizBest).forEach(renderQuizBest); renderExamBadge(); upd(); }
-function saveP(){ const s={}; chks().forEach(c=>{ if(c.checked) s[c.id.replace('chk-','')]=1; }); if(examBest!=null) s._exam=examBest; s._quiz=quizBest; try{ localStorage.setItem(KEY,JSON.stringify(s)); }catch(e){} }
+function saveP(){ const s={}; chks().forEach(c=>{ if(c.checked) s[c.id.replace('chk-','')]=1; }); if(examBest!=null) s._exam=examBest; s._quiz=quizBest; try{ localStorage.setItem(KEY,JSON.stringify(s)); }catch(e){} cloudSave(s); }
 function mark(id,done){ document.getElementById(id)?.classList.toggle('done',done); document.getElementById('node-'+id)?.classList.toggle('done',done); }
 function upd(){ const total=COURSE.length; const done=chks().filter(c=>c.checked).length; const pct=Math.round(done/total*100); document.getElementById('barfill').style.width=pct+'%'; document.getElementById('pcttxt').textContent=pct+'%'; }
 document.addEventListener('change',e=>{ if(e.target.matches('input[type=checkbox]')){ const id=e.target.id.replace('chk-',''); mark(id,e.target.checked); saveP(); upd(); }});
-function resetProg(){ quizBest={}; examBest=null; try{ localStorage.removeItem(KEY); }catch(e){} renderExamBadge(); document.querySelectorAll('.qbest').forEach(e=>e.textContent=''); chks().forEach(c=>c.checked=false); COURSE.forEach(m=>mark(m.id,false)); upd(); }
+function resetProg(){ quizBest={}; examBest=null; try{ localStorage.removeItem(KEY); }catch(e){} renderExamBadge(); document.querySelectorAll('.qbest').forEach(e=>e.textContent=''); chks().forEach(c=>c.checked=false); COURSE.forEach(m=>mark(m.id,false)); upd(); cloudSave({_quiz:{}}); }
+
+// ---- Login con Google (Firebase) + progreso por usuario ----
+const firebaseConfig = { apiKey:"AIzaSyDM_lCq_wl7kJVmtJxHcgXP8yrvwDuvGi8", authDomain:"curso-qa.firebaseapp.com", projectId:"curso-qa", appId:"1:53424252272:web:c44521947443a21f111bb5" };
+let fbDb=null, fbUser=null;
+const FB_ON = typeof firebase!=='undefined';
+function notify(msg,kind){ const n=document.getElementById('notice'); if(!n) return; n.textContent=msg; n.className='notice'+(kind?' '+kind:''); n.hidden=false; clearTimeout(notify.t); notify.t=setTimeout(()=>{n.hidden=true}, kind==='error'?15000:6000); }
+function readLocal(){ try{ return JSON.parse(localStorage.getItem(KEY))||{}; }catch(e){ return {}; } }
+function mergeProgress(a,b){
+  const out={}, q={}, ex=[];
+  for(const s of [a||{},b||{}]){
+    for(const [k,v] of Object.entries(s)) if(!k.startsWith('_')&&v) out[k]=1;
+    if(typeof s._exam==='number') ex.push(s._exam);
+    for(const [k,v] of Object.entries(s._quiz||{})) if(Array.isArray(v)&&v[1]>0&&(!q[k]||v[0]/v[1]>q[k][0]/q[k][1])) q[k]=v;
+  }
+  if(ex.length) out._exam=Math.max(...ex);
+  out._quiz=q;
+  return out;
+}
+function applyProgress(s){
+  chks().forEach(c=>{ const id=c.id.replace('chk-',''); const on=!!s[id]; c.checked=on; mark(id,on); });
+  examBest=typeof s._exam==='number'?s._exam:null; quizBest=s._quiz||{};
+  document.querySelectorAll('.qbest').forEach(e=>e.textContent=''); Object.keys(quizBest).forEach(renderQuizBest); renderExamBadge(); upd();
+}
+function cloudSave(s){ if(fbDb&&fbUser){ fbDb.collection('progress').doc(fbUser.uid).set({data:s,updated:Date.now()}).catch(e=>notify('No se pudo guardar tu avance en la nube ('+(e.code||e.message)+'). Sigue guardado en este navegador.','error')); } }
+async function cloudLoad(uid){
+  try{
+    const d=await fbDb.collection('progress').doc(uid).get();
+    const cloud=(d.exists&&d.data().data)||{};
+    applyProgress(mergeProgress(readLocal(),cloud)); saveP();
+    notify('Sesión iniciada. Tu avance de este navegador y el de tu cuenta quedaron unidos.','ok');
+  }catch(e){ notify('No se pudo leer tu avance de la nube ('+(e.code||e.message)+'). Sigue el de este navegador.','error'); }
+}
+function authError(e){
+  const c=e&&e.code;
+  if(c==='auth/unauthorized-domain') notify('Este sitio ('+location.hostname+') todavía no está autorizado para entrar con Google. Quien administra el curso debe agregarlo en Firebase → Authentication → Settings → Authorized domains. Mientras tanto puedes ver el curso sin cuenta y tu avance se guarda en este navegador.','error');
+  else if(c==='auth/popup-closed-by-user'||c==='auth/cancelled-popup-request') notify('Cerraste la ventana de Google antes de terminar. Puedes intentarlo otra vez.');
+  else if(c==='auth/popup-blocked') notify('El navegador bloqueó la ventana de Google. Permite las ventanas emergentes para este sitio e inténtalo otra vez.','error');
+  else notify('No se pudo iniciar sesión ('+(c||(e&&e.message)||'error')+'). Tu avance sigue guardado en este navegador.','error');
+}
+function authUI(){ const w=document.getElementById('authWho'), b=document.getElementById('authBtn'); if(!b) return; b.style.display='inline-block'; if(fbUser){ w.textContent='👤 '+(fbUser.displayName||fbUser.email||'usuario'); b.textContent='Salir'; } else { w.textContent=''; b.textContent='🔓 Entrar con Google'; } }
+function doAuth(){
+  if(!FB_ON){ notify('El inicio de sesión no está disponible porque no cargó Firebase. Tu avance se guarda en este navegador.','error'); return; }
+  if(fbUser){ firebase.auth().signOut(); return; }
+  firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider()).catch(authError);
+}
+const GUEST='qacurso_guest';
+const isGuest=()=>{ try{ return localStorage.getItem(GUEST)==='1'; }catch(e){ return false; } };
+function enterCourse(){ document.body.classList.remove('gated'); }
+function enterGuest(){ try{ localStorage.setItem(GUEST,'1'); }catch(e){} enterCourse(); }
+if(isGuest()||!FB_ON) enterCourse();
+if(FB_ON){
+  firebase.initializeApp(firebaseConfig); fbDb=firebase.firestore();
+  firebase.auth().onAuthStateChanged(u=>{ fbUser=u; authUI(); if(u){ try{ localStorage.removeItem(GUEST); }catch(e){} enterCourse(); cloudLoad(u.uid); } else if(!isGuest()){ document.body.classList.add('gated'); } });
+}
+authUI();
 loadP();
 
 // ---- router: cada módulo es su propia página (#/m1 … #/m13) ----
