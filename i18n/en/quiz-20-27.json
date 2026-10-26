@@ -902,15 +902,15 @@
    "why": "Fewer knobs tuned on the data = less overfitting."
   },
   {
-   "q": "In agent-eval-jev, an AI assistant drafted the 60 labels against the rubric and a person reviewed and approved them. What does the composite's 93.1 % agreement mean?",
+   "q": "In agent-eval-jev, an AI assistant drafted the 60 labels against the rubric and a person reviewed them, with no case-by-case log. What does the composite's 93.1 % agreement mean?",
    "o": [
     "That the judge agrees with human judgment on 93.1 % of cases",
-    "That it agrees with AI-drafted, human-reviewed labels; it is not agreement with independent human judgment",
+    "That it measures the evaluator against AI-drafted labels; it is not agreement with independent human judgment",
     "That the judge is right 93.1 % of the time in production",
     "Nothing: without human labels no agreement can be measured"
    ],
    "a": 1,
-   "why": "An agreement figure is worth what its reference is worth. agent-eval-jev declares it under Limits: one reviewer, no independent human annotator. The next honest step is to label a sample blind by hand and measure the agreement."
+   "why": "An agreement figure is worth what its reference is worth. agent-eval-jev declares it under Limits: the review has no case-by-case log and there is no independent human annotator. The next honest step is to re-label a blind sample by hand, log each decision, and measure agreement."
   }
  ],
  "m22": [
