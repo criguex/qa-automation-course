@@ -532,7 +532,7 @@
    "Reordering must not break determinism: it changes the order, not each mutant's verdict.",
    "Mutants that measure the auditor: on top of a hardened baseline, one security defect is seeded per mutant (PII, headers, cookies, Android permissions). In civica's POC 3 the kill rate is 6/6.",
    "If a new mutant survives, that's a finding about the auditor: it gets reported, and the mutant isn't tweaked until it dies.",
-   "Next step on civica's roadmap: metamorphic relations, for example “the results for X contain the results for a prefix of X.”"
+   "Next step on civica's roadmap: metamorphic relations, for example “the results for a prefix of X contain the results for X.”"
   ],
   "res": [
    {
@@ -569,7 +569,7 @@
   ],
   "deliver": "Ledger from two runs + evidence of the prioritization + a new security mutant with its verdict.",
   "mut": "Force a mutant to fail and check that the next run puts it first.",
-  "top": "You implement a metamorphic relation from civica's roadmap (“the results for X contain the results for a prefix of X”)."
+  "top": "You implement a metamorphic relation from civica's roadmap (“the results for a prefix of X contain the results for X”)."
  },
  "m18": {
   "title": "CI failure triage and impact-based test selection",

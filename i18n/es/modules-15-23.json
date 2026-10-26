@@ -532,7 +532,7 @@
    "Reordenar no puede romper el determinismo: cambia el orden, no el veredicto de cada mutante.",
    "Mutantes que miden al auditor: sobre una línea base endurecida se siembra un defecto de seguridad por mutante (PII, headers, cookies, permisos Android). En el POC 3 de civica el kill rate es 6/6.",
    "Si un mutante nuevo sobrevive, es un hallazgo del auditor: se reporta, y el mutante no se ajusta para que muera.",
-   "Siguiente paso de la hoja de ruta de civica: relaciones metamórficas, por ejemplo “los resultados de X contienen los de un prefijo de X”."
+   "Siguiente paso de la hoja de ruta de civica: relaciones metamórficas, por ejemplo “los resultados de un prefijo de X contienen los de X”."
   ],
   "res": [
    {
@@ -569,7 +569,7 @@
   ],
   "deliver": "Ledger de dos corridas + evidencia de la priorización + mutante de seguridad nuevo con su veredicto.",
   "mut": "Fuerza el fallo de un mutante y comprueba que la siguiente corrida lo pone primero.",
-  "top": "Implementas una relación metamórfica de la hoja de ruta de civica (“los resultados de X contienen los de un prefijo de X”)."
+  "top": "Implementas una relación metamórfica de la hoja de ruta de civica (“los resultados de un prefijo de X contienen los de X”)."
  },
  "m18": {
   "title": "Triaje de fallos de CI y selección de pruebas por impacto",

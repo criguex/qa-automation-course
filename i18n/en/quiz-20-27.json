@@ -294,7 +294,7 @@
    "q": "What is a metamorphic relation?",
    "o": [
     "A mock",
-    "A rule between related inputs and their outputs, such as “the results for X contain those for a prefix of X”",
+    "A rule between related inputs and their outputs, such as “the results for a prefix of X contain those for X”",
     "A type of Docker",
     "A threshold"
    ],

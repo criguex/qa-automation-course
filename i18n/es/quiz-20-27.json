@@ -294,7 +294,7 @@
    "q": "¿Qué es una relación metamórfica?",
    "o": [
     "Un mock",
-    "Una regla entre entradas relacionadas y sus salidas, como “los resultados de X contienen los de un prefijo de X”",
+    "Una regla entre entradas relacionadas y sus salidas, como “los resultados de un prefijo de X contienen los de X”",
     "Un tipo de Docker",
     "Un umbral"
    ],
