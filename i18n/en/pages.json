@@ -1,0 +1,64 @@
+{
+ "home": {
+  "gate": {
+   "eyebrow": "",
+   "title": "",
+   "sub": "",
+   "stat1": "",
+   "stat2": "",
+   "stat3": "",
+   "stat4": "",
+   "goalsTitle": "",
+   "goals": "",
+   "howTitle": "",
+   "how": "",
+   "cta": "",
+   "note": "",
+   "guest": "",
+   "guestHint": ""
+  },
+  "hero": {
+   "eyebrow": "",
+   "title": "",
+   "sub": "",
+   "chips": "",
+   "mentor": ""
+  },
+  "use": {
+   "title": "",
+   "pactTitle": "",
+   "pact": "",
+   "rulesTitle": "",
+   "rules": ""
+  },
+  "map": {
+   "title": "",
+   "evalLead": "",
+   "lead": ""
+  },
+  "exam": {
+   "title": "",
+   "lead": ""
+  },
+  "glos": {
+   "title": "",
+   "lead": "",
+   "placeholder": ""
+  },
+  "footer": ""
+ },
+ "eval": {
+  "title": "",
+  "intro": "",
+  "s01": "",
+  "s02": "",
+  "s03": "",
+  "s04": "",
+  "s05": "",
+  "s06": "",
+  "s07": "",
+  "s08": "",
+  "foot": ""
+ },
+ "title": ""
+}

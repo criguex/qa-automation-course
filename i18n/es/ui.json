@@ -1,0 +1,97 @@
+{
+ "progress": {
+  "label": "Tu avance",
+  "pdf": "🖨️ PDF",
+  "reset": "↺ Reset"
+ },
+ "nav": {
+  "map": "🗺️ Mapa del curso",
+  "position": "Módulo {i} de {n}"
+ },
+ "week": {
+  "one": "Semana {a}",
+  "range": "Semanas {a}–{b}",
+  "closing": "Cierre"
+ },
+ "node": {
+  "module": "MÓDULO {n}"
+ },
+ "module": {
+  "level": "nivel",
+  "mentor": "Nota de Cristian",
+  "kid": "🧒 <b>Explicado para un niño de 8 años:</b>",
+  "goals": "🎯 Al terminar puedes…",
+  "pre": "🧩 Prerrequisitos",
+  "theory": "📓 Teoría",
+  "resources": "🔗 Recursos — cursos gratis · docs · repos",
+  "lab": "🧪 Laboratorio y reto práctico",
+  "criteria": "✅ Criterios de aprobación (verificables)",
+  "deliver": "<b>Entregable:</b>",
+  "mutation": "🧬 Mutación de la semana (WAR)",
+  "evalTitle": "📏 Cómo te evalúas",
+  "evalNote": "Apruebas el módulo con dos cosas: el <b>quiz</b> ({qn} preguntas al azar del banco de {bank}; mínimo {min} bien) y el <b>reto</b> en el nivel 3 de la rúbrica."
+ },
+ "rubric": {
+  "axis": "Eje",
+  "levels": [
+   "1 · No cumple",
+   "2 · En camino",
+   "3 · Aprobado",
+   "4 · Sobresaliente"
+  ],
+  "generic": [
+   "Falta el entregable o no corre.",
+   "Corre, pero falla al menos un criterio de aprobación.",
+   "Cumple todos los criterios de aprobación.",
+   "Cumple todo y además: {top}"
+  ],
+  "allRows": "Aprobado = las cuatro filas al menos en el nivel 3."
+ },
+ "quiz": {
+  "exam": "🎓 Examen final",
+  "module": "🧠 Reto del módulo",
+  "oneAnswer": "una respuesta por pregunta",
+  "examPass": "🎓 APROBADO",
+  "examFail": "📚 Aún no — necesitas 80%",
+  "examPassSub": "Cruzaste todo el método. Este puntaje queda guardado.",
+  "examFailSub": "Repasa los módulos donde fallaste y vuelve — las opciones se barajan en cada intento.",
+  "modPass": "✅ Quiz aprobado",
+  "modFail": "📚 Aún no",
+  "modPassSub": "Te falta el reto práctico en el nivel 3 de la rúbrica para aprobar el módulo.",
+  "modFailSub": "Necesitas {min} de {n}. Repasa la teoría y reinténtalo: salen otras preguntas del banco.",
+  "retry": "↺ Reintentar",
+  "why": "💡 <b>Por qué:</b>",
+  "next": "Siguiente →",
+  "result": "Ver resultado →",
+  "correct": "✓ Correcto. ",
+  "wrong": "✗ Incorrecto. ",
+  "best": "Tu mejor quiz: {ok}/{n} ",
+  "bestPass": "✓ aprobado",
+  "bestFail": "(aún no)",
+  "examBadgePass": "🎓 Aprobado — mejor puntaje: {x}%",
+  "examBadge": "Mejor puntaje: {x}% (meta: 80%)"
+ },
+ "glossary": {
+  "empty": "Sin resultados."
+ },
+ "auth": {
+  "signIn": "🔓 Entrar con Google",
+  "signOut": "Salir",
+  "user": "usuario",
+  "noFirebase": "El inicio de sesión no está disponible porque no cargó Firebase. Tu avance se guarda en este navegador.",
+  "merged": "Sesión iniciada. Tu avance de este navegador y el de tu cuenta quedaron unidos.",
+  "loadFail": "No se pudo leer tu avance de la nube ({code}). Sigue el de este navegador.",
+  "saveFail": "No se pudo guardar tu avance en la nube ({code}). Sigue guardado en este navegador.",
+  "unauthorizedDomain": "Este sitio ({host}) todavía no está autorizado para entrar con Google. Quien administra el curso debe agregarlo en Firebase → Authentication → Settings → Authorized domains. Mientras tanto puedes ver el curso sin cuenta y tu avance se guarda en este navegador.",
+  "popupClosed": "Cerraste la ventana de Google antes de terminar. Puedes intentarlo otra vez.",
+  "popupBlocked": "El navegador bloqueó la ventana de Google. Permite las ventanas emergentes para este sitio e inténtalo otra vez.",
+  "other": "No se pudo iniciar sesión ({code}). Tu avance sigue guardado en este navegador."
+ },
+ "levels": {
+  "n1": "Nivel 1 · Fundamentos",
+  "n2": "Nivel 2 · Intermedio",
+  "n3": "Nivel 3 · AI-QA avanzado",
+  "n4": "Nivel 4 · QA científico",
+  "cap": "Cierre · proyecto final"
+ }
+}

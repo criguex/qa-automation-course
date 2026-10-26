@@ -1,0 +1,531 @@
+{
+ "m16": {
+  "title": "Evaluar IA con un LLM como juez — DeepEval, Promptfoo, umbrales y falsos verdes",
+  "hours": "~12 h",
+  "mentor": "Una respuesta de IA puede venir bien escrita y estar mal. Si tu prueba solo mira la forma, la deja pasar y te da un falso verde. Aquí pones un juez con un umbral escrito antes de ver los números, le siembras trampas para saber si está despierto y aprendes a leer un check verde: a veces solo quiere decir que nadie evaluó nada.",
+  "kid": "Un robot escribe “La capital de Colombia es Medellín”. La frase es bonita, pero está mal. El juez es el profe que la compara con la respuesta correcta, Bogotá, y le pone nota de 0 a 1. La trampa la pusimos a propósito: si el profe se duerme y la deja pasar, la luz se pone roja.",
+  "obj": [
+   "Correr las partes de qa-eval-lab que no necesitan clave (UI, calibración y módulo 3) y decir, con el exit code de cada comando, qué se evaluó y qué no.",
+   "Escribir 2 casos de falso verde de tu dominio que pasen una aserción <code>contains</code> y que el juez repruebe por debajo de 0.7.",
+   "Fijar en un commit propio el umbral de una métrica nueva, con su justificación, antes de la primera corrida del juez.",
+   "Distinguir en un reporte de CI un verde evaluado de un verde por omisión."
+  ],
+  "pre": "Módulo de API y contratos, módulo de QA aumentado con IA y Python básico (pytest). Para el juez real necesitas una <code>OPENAI_API_KEY</code>; sin ella haces todo menos los módulos 1 y 2 de qa-eval-lab, y lo dices en el reporte.",
+  "theory": [
+   "Dos oráculos: el determinista responde “¿corre como se especificó?” (esquema, códigos, roles) y el juez responde “¿lo que produjo es bueno?” con un puntaje contra criterios. qa-eval-lab usa el primero donde la especificación lo permite y el segundo donde no.",
+   "LLM como juez en DeepEval: <code>GEval</code> (Correctness) y <code>AnswerRelevancy</code> con umbral 0.7; en RAG, <code>Faithfulness</code> 0.7 y <code>ContextualRelevancy</code> 0.6; en agentes, <code>ToolCorrectness</code> con el umbral por defecto de DeepEval (0.5 en 4.3.1).",
+   "Falso verde: un ✓ que debió ser ✗. <code>evals/dataset.jsonl</code> trae dos respuestas bien formadas y falsas a propósito: <code>dispute-window</code> (“cualquier cobro, sin límite de tiempo”, que ignora la ventana de ~60 días) y <code>card-blocked</code> (“cancelada para siempre”). Una aserción ingenua las deja pasar; el juez debe reprobarlas.",
+   "Prueba al juez (hilo WAR): <code>test_false_green_detectado</code> le pasa “La capital de Colombia es Medellin.” contra la referencia “Bogota” y solo pasa si el puntaje queda por debajo de 0.7. Con un juez simulado, el README documenta tres salidas: 0.1 → pasa, 0.9 → falla, error del juez → error, nunca verde.",
+   "Promptfoo: aserciones <code>contains</code>, <code>not-contains</code> y <code>llm-rubric</code> contra <code>openai:gpt-4o-mini</code>, y red-team con los plugins <code>pii</code> y <code>harmful:misinformation</code> y las estrategias <code>prompt-injection</code> y <code>jailbreak</code>.",
+   "El umbral se fija antes de ver el puntaje. En el módulo 3, <code>skips-balance-check</code> (transfiere sin revisar el saldo) saca 0.67 contra el 0.5 por defecto y pasa. El README deja el umbral como está: “subirlo después de ver el puntaje sería ajustar al resultado”.",
+   "<b>El CI de qa-eval-lab sin el secreto no evalúa el LLM.</b> Sin <code>OPENAI_API_KEY</code>, los pasos de DeepEval y Promptfoo se saltan con un <code>::notice::</code> y el check en verde solo dice que pasaron las pruebas de UI. Además, un check rojo solo bloquea si es obligatorio, y <code>main</code> todavía no tiene protección de rama."
+  ],
+  "res": [
+   {
+    "label": "Laboratorio: criguex/qa-eval-lab",
+    "type": "Repo · público"
+   },
+   {
+    "label": "eval-gate.yml — el CI que salta el juez sin clave",
+    "type": "Repo · público"
+   },
+   {
+    "label": "DeepEval — primeros pasos",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "DeepEval — métricas con LLM (G-Eval)",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "Promptfoo — aserciones",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "Promptfoo — red-team",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "OWASP Top 10 para aplicaciones LLM",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "Husain — Your AI Product Needs Evals",
+    "type": "Artículo · gratis"
+   }
+  ],
+  "hands": [
+   "<b>Laboratorio sin clave.</b> <code>git clone https://github.com/criguex/qa-eval-lab.git</code>, entra a la carpeta y corre <code>npm install</code>, <code>npx playwright install chromium</code>, <code>npm run test:ui</code> y <code>python evals/calibration/calibrate_judge.py</code>. Anota el exit code de cada uno. Con Node 26, <code>npm install</code> falla compilando <code>better-sqlite3</code> (dependencia de Promptfoo); para la parte de Playwright basta <code>npm install --ignore-scripts</code>.",
+   "<b>Módulo 3 sin llamadas a la API.</b> <code>pip install -r evals/requirements.txt</code> y <code>deepeval test run evals/agent/test_agent_eval.py</code> con <code>OPENAI_API_KEY</code> definida con cualquier valor (DeepEval 4.3.1 no construye la métrica sin ella). Busca <code>skips-balance-check</code> y su 0.67.",
+   "<b>Con clave.</b> <code>export OPENAI_API_KEY=...</code>, <code>deepeval test run evals/test_support_eval.py</code>, <code>npm run eval:promptfoo</code> y, aparte, <code>npx promptfoo@latest redteam run</code>. Si no tienes clave, tu reporte dice “no corrido” en vez de suponer el resultado.",
+   "Lee <code>.github/workflows/eval-gate.yml</code> y marca qué pasos llevan la condición sobre <code>OPENAI_API_KEY</code> y cuáles corren siempre.",
+   "<b>Ejercicio.</b> En un fork: (1) un commit con <code>THRESHOLDS.md</code> que fije el umbral de una métrica nueva de tu dominio y su porqué; (2) un commit posterior con dos filas de falso verde en <code>evals/dataset.jsonl</code>; (3) una prueba ingenua (<code>contains</code>) y la del juez sobre esas filas, con las dos salidas lado a lado; (4) un <code>REPORTE.md</code> con “qué corrió / qué se saltó” y el comando y exit code de cada paso."
+  ],
+  "crit": [
+   "<code>git log --oneline</code> muestra el commit de <code>THRESHOLDS.md</code> antes del commit de las filas nuevas, y ningún commit posterior cambia el umbral.",
+   "Cada falso verde nuevo pasa la aserción ingenua (exit 0) y el juez lo reprueba con puntaje menor a 0.7. Sin clave, el reporte marca ese paso como no corrido y el criterio queda pendiente, no aprobado.",
+   "<code>REPORTE.md</code> separa lo evaluado de lo saltado, y cada línea trae su comando y su exit code.",
+   "La mutación de la semana está documentada con la predicción escrita antes de correr y el resultado observado."
+  ],
+  "deliver": "Fork de qa-eval-lab con <code>THRESHOLDS.md</code> commiteado primero, 2 falsos verdes nuevos, la comparación ingenua contra juez y <code>REPORTE.md</code> con comandos y exit codes.",
+  "mut": "Duerme al juez a propósito. Con <code>OPENAI_API_KEY</code> de relleno, reemplaza en una copia la medición de <code>test_false_green_detectado</code> por un juez simulado que siempre devuelve 0.9. Escribe antes qué esperas y corre <code>pytest evals/test_llm_eval.py</code>. Si la prueba sigue en verde, el guardia no estaba probando nada, y eso se publica.",
+  "rubm": [
+   {
+    "row": "Umbral",
+    "levels": [
+     "Se fijó o se cambió después de ver los puntajes.",
+     "Está escrito, pero sin justificación o en el mismo commit que los resultados.",
+     "Commit propio, anterior a la primera corrida, con su porqué, y no se movió.",
+     "Además, escribes qué dato te haría cambiarlo en la próxima versión, no en esta."
+    ]
+   },
+   {
+    "row": "Falsos verdes",
+    "levels": [
+     "No hay casos sembrados.",
+     "Hay casos, pero no muestras que una aserción ingenua los deja pasar.",
+     "Dos casos que pasan <code>contains</code> y el juez reprueba, lado a lado.",
+     "Además, un caso de RAG o de agentes (módulo 2 o 3 de qa-eval-lab)."
+    ]
+   },
+   {
+    "row": "Juez bajo prueba (WAR)",
+    "levels": [
+     "Confías en el juez sin probarlo.",
+     "Corriste la trampa de Medellín, pero no la del juez dormido.",
+     "El juez dormido (0.9 fijo) pone roja la prueba, con la predicción escrita antes.",
+     "Además, cubres el tercer caso: un error del juez termina en error, nunca en verde."
+    ]
+   },
+   {
+    "row": "Reporte",
+    "levels": [
+     "Dice “todo verde” y nada más.",
+     "Separa lo corrido de lo saltado, pero sin comandos ni exit codes.",
+     "Cada línea con comando y exit code, y lo saltado marcado como no evaluado.",
+     "Además, explicas por qué el check no bloquea nada mientras <code>main</code> no tenga protección de rama."
+    ]
+   }
+  ]
+ },
+ "m17": {
+  "title": "Calibrar un juez y evaluar agentes de IA — chequeos de código, kappa de Cohen y revisión humana en la zona gris",
+  "hours": "~14 h",
+  "mentor": "Un juez que nadie comparó con una persona es una opinión con decimales. Lo calibro como calibraría una balanza: contra etiquetas humanas escritas antes, con un grupo de casos para ajustar y otro que el ajuste nunca vio. Y con un agente no me basta la respuesta final: miro qué herramientas llamó, de dónde salió cada número y si obedeció algo que alguien plantó en una página.",
+  "kid": "Para calificar a un robot que planea viajes, una calculadora revisa los números, un juez rápido responde sí o no y dice qué tan seguro está, y cuando duda, decide una persona. Antes de creerle al juez, comparamos sus notas con las de un profe de verdad.",
+  "obj": [
+   "Calcular a mano el acuerdo y el kappa de Cohen de <code>labeled_sample.csv</code> y obtener el mismo 0.58 que <code>calibrate_judge.py</code>.",
+   "Correr el replay offline de agent-eval-jev y explicar con <code>reports/report.md</code> por qué el gate deja pasar a v2 (94 %) y bloquea a v1 (18 %).",
+   "Etiquetar 20 trazas con una rúbrica de 4 criterios antes de correr cualquier juez, ajustar en 10 y reportar en las otras 10 exactitud con IC de Wilson, kappa y % enviado a revisión humana.",
+   "Predecir por escrito, y luego medir, qué paso del CI de agent-eval-jev nota un chequeo de código apagado."
+  ],
+  "pre": "Módulo anterior (LLM como juez), Python 3 y estadística descriptiva (proporciones). No necesitas claves: el laboratorio corre offline con respuestas grabadas.",
+  "theory": [
+   "Kappa de Cohen: κ = (p<sub>o</sub> − p<sub>e</sub>) / (1 − p<sub>e</sub>), donde p<sub>o</sub> es el acuerdo observado y p<sub>e</sub> el acuerdo que darían dos calificadores al azar con las mismas proporciones. En qa-eval-lab, 8 de 10 de acuerdo dan κ = 0.58, debajo del 0.6 que el script marca como “recalibrar rúbrica”. Los desacuerdos son <code>intl-wire</code> (humano fail, juez pass) y <code>refund-policy</code> (humano pass, juez fail).",
+   "Golden set con rúbrica: agent-eval-jev tiene 60 casos (34 corridas en vivo de v2, 11 de v1 y 15 defectos sembrados) y cuatro criterios: <code>tool_use</code>, <code>grounded</code>, <code>complete</code> y <code>policy</code>. Un caso pasa solo si cumple los cuatro, y las etiquetas se escribieron antes de correr cualquier juez.",
+   "Juicio en capas: (1) chequeos de código en <code>agenteval/checks.py</code>: esquemas, herramientas esperadas, cada número presente en un resultado de herramienta y un canario de inyección ausente; (2) Jev, con preguntas tipadas <code>noul</code>, <code>score</code> y <code>choice</code> que devuelven probabilidades; (3) un juez LLM (Claude Sonnet) que solo sirve para comparar y no entra al veredicto.",
+   "El compuesto (<code>agenteval/composite.py</code>): pesos fijos antes de ajustar nada (grounded 0.30, tool_use 0.20, complete 0.20, policy 0.20, quality 0.10); gates duros que reprueban digan lo que digan los jueces (sin respuesta, esquema roto, herramienta esperada no llamada, canario presente); y una zona gris: si un criterio cae entre 0.35 y 0.65, el caso va a una persona.",
+   "Ajustar en un grupo, reportar en otro: <code>fit_threshold</code> maximiza la balanced accuracy y <code>fit_margin</code> busca el margen de revisión, solo con el split de calibración. Los números honestos son los del held-out (29 casos): código solo 79.3 % (κ 0.55), Jev solo 79.3 % (κ 0.60, con 11 falsos FAIL), <b>compuesto 93.1 % (IC 78-98 %, κ 0.86)</b> y juez LLM 86.2 % (κ 0.72). Los intervalos se traslapan: es una tendencia, no una diferencia probada.",
+   "La confianza es autorreporte: sirve para enrutar, no como prueba. Con el umbral ajustado (0.67) y la banda, 23 de 29 casos held-out se decidieron solos (22 bien) y 6 fueron a revisión humana. Y el proveedor importa: a la misma pregunta, <code>typesafe-ai</code> respondió 0.84-0.87 y <code>digitalocean</code> 0.52-0.62.",
+   "CI reproducible: el job reconstruye el reporte desde los fixtures, falla con <code>git diff --exit-code -- results reports</code> si algo cambió y corre <code>python -m agenteval gate --min-agreement 0.85</code>. El gate exige además que v2 apruebe al menos el 85 % y no tenga fallas de policy."
+  ],
+  "res": [
+   {
+    "label": "Laboratorio: criguex/agent-eval-jev",
+    "type": "Repo · público"
+   },
+   {
+    "label": "RUBRIC.md — los cuatro criterios",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "Laboratorio: calibración del juez en qa-eval-lab",
+    "type": "Repo · público"
+   },
+   {
+    "label": "Cohen (1960) — A Coefficient of Agreement for Nominal Scales",
+    "type": "Paper"
+   },
+   {
+    "label": "scikit-learn — cohen_kappa_score",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "Intervalo de Wilson (concepto)",
+    "type": "Artículo · gratis"
+   },
+   {
+    "label": "Zheng et al. — Judging LLM-as-a-Judge",
+    "type": "Paper · gratis"
+   },
+   {
+    "label": "Jev (TypeSafe AI) — documentación",
+    "type": "Docs"
+   }
+  ],
+  "hands": [
+   "<b>Laboratorio A · calibración.</b> En qa-eval-lab, <code>python evals/calibration/calibrate_judge.py</code>. Después calcula κ a mano desde <code>evals/calibration/labeled_sample.csv</code> (tabla 2×2, p<sub>o</sub> y p<sub>e</sub>) y revisa los dos desacuerdos: ¿falla la rúbrica o la etiqueta humana?",
+   "<b>Laboratorio B · agentes.</b> <code>git clone https://github.com/criguex/agent-eval-jev</code>, entra a la carpeta y corre <code>pip install pytest ruff</code>, <code>pytest -q</code>, <code>python -m agenteval evaluate</code>, <code>git diff --exit-code -- results reports</code> y <code>python -m agenteval gate</code>. Lee <code>reports/report.md</code>, <code>data/mutations.json</code> (15 defectos sembrados, del número alterado €219.24 → €231.50 a una paráfrasis inofensiva que debe seguir pasando) y <code>agenteval/metrics.py</code> (<code>cohen_kappa</code>, <code>wilson_interval</code>, <code>flip_rate</code>).",
+   "<b>Laboratorio C · el gate es un contrato.</b> Corre <code>python -m agenteval gate --min-agreement 0.95</code> y anota el exit code y la línea <code>GATE FAILED</code>. Explica por qué subir la barra no mejora al juez.",
+   "<b>Ejercicio.</b> Toma 20 trazas de un agente o chatbot con herramientas (si no tienes uno, 20 casos de <code>data/golden.jsonl</code>). Escribe la rúbrica de 4 criterios y etiqueta los 20 en un commit antes de correr ningún juez. Implementa 2 chequeos de código: números presentes en los resultados de herramientas y canario ausente. Separa 10 de calibración y 10 held-out, ajusta umbral y margen solo con los 10 primeros y reporta en los otros 10: exactitud con IC de Wilson, κ y % enviado a revisión humana."
+  ],
+  "crit": [
+   "Tu κ a mano de <code>labeled_sample.csv</code> da 0.58 con dos decimales, y muestras p<sub>o</sub>, p<sub>e</sub> y la tabla 2×2.",
+   "<code>git log --oneline</code> muestra el commit de etiquetas antes del primer commit con salidas de un juez.",
+   "Umbral y margen salen solo del split de calibración. El reporte trae el held-out con n, IC de Wilson y κ, y tu κ coincide con <code>cohen_kappa</code> de <code>agenteval/metrics.py</code> o con <code>sklearn.metrics.cohen_kappa_score</code>.",
+   "Ningún caso se aprueba solo por la confianza del juez: los de la zona gris aparecen en una lista de revisión humana, contados.",
+   "Tus 2 chequeos de código atrapan al menos un defecto que sembraste tú, marcado como sembrado."
+  ],
+  "deliver": "κ calculado a mano + golden set de 20 casos con rúbrica y etiquetas previas + 2 chequeos de código + reporte held-out (exactitud con IC, κ y % a revisión).",
+  "mut": "Apaga un guardia de código. En una copia de agent-eval-jev, cambia en <code>agenteval/checks.py</code> la línea <code>\"numbers_grounded\": not unsupported,</code> por <code>\"numbers_grounded\": True,</code>. Antes de correr, escribe qué esperas de <code>pytest -q</code>, de <code>python -m agenteval gate</code> y de <code>git diff --exit-code -- results reports</code> después de <code>python -m agenteval evaluate</code>. Corre los tres y reporta cuál grita y cuál no. El que no grita es un hallazgo.",
+  "rubm": [
+   {
+    "row": "Calibración",
+    "levels": [
+     "No hay etiquetas humanas, o se escribieron después del juez.",
+     "Hay etiquetas previas, pero reportas en el mismo grupo en que ajustaste.",
+     "Ajuste en calibración y reporte en held-out con n, IC y κ.",
+     "Además, mides el flip rate del juez con repeticiones y lo reportas."
+    ]
+   },
+   {
+    "row": "Kappa",
+    "levels": [
+     "Solo reportas el % de acuerdo.",
+     "Reportas κ, pero no coincide con una implementación de referencia.",
+     "Tu κ a mano coincide con <code>metrics.py</code> o con scikit-learn en 3 casos.",
+     "Además, explicas con tus datos por qué un 80 % de acuerdo puede ser un κ mediocre."
+    ]
+   },
+   {
+    "row": "Agente",
+    "levels": [
+     "Solo miras la respuesta final.",
+     "Hay chequeos de código, pero ningún defecto sembrado los pone a prueba.",
+     "Dos chequeos de código y defectos sembrados que atrapan, marcados como sembrados.",
+     "Además, un caso de inyección indirecta con canario."
+    ]
+   },
+   {
+    "row": "Zona gris",
+    "levels": [
+     "El juez decide todo.",
+     "Hay umbral, pero los casos dudosos se deciden igual.",
+     "Los dudosos van a una lista de revisión humana y se cuentan.",
+     "Además, reportas cuántos de los decididos solos acertaron, como el 22 de 23 del repo."
+    ]
+   }
+  ]
+ },
+ "m22": {
+  "title": "Jueces con probabilidad — modos de falla, estabilidad y cascadas",
+  "hours": "~12 h",
+  "mentor": "Un juez que devuelve probabilidades no te dice que acertó: te dice qué tan seguro dice estar. Eso sirve para enrutar, no para aprobar. Aquí decides qué pasa cuando el juez se cae, mides si su veredicto cambia entre corridas idénticas y pones un juez barato delante de uno caro sin dejarlo bloquear nada hasta medirlo.",
+  "kid": "Si el árbitro no está seguro, no inventa: pide la repetición. Y al árbitro nuevo lo pones a mirar unos partidos antes de dejarlo pitar.",
+  "obj": [
+   "Elegir fail-closed, fail-open o fail-safe según el uso del juez.",
+   "Medir el flip rate de un juez y declararlo STABLE o UNSTABLE.",
+   "Diseñar una cascada de jueces en modo sombra."
+  ],
+  "pre": "Módulos de agentes y de determinismo.",
+  "theory": [
+   "Tres políticas de falla para el mismo tipo de juez: <b>fail-closed</b> en aserciones (playwright-jev: unverified nunca pasa), <b>fail-open</b> en triaje (jev-ci-triage: <code>unknown · unverified</code>, sin adivinar) y <b>fail-safe</b> en selección (jev-test-impact: suite completa).",
+   "La confianza es autorreporte: en jev-ci-triage la misma entrada volvió con 0.69, 0.71, 0.78 y 0.84 contra un umbral de 0.75. Un caso cerca del umbral puede caer a cualquier lado.",
+   "<b>Flip rate</b>: la proporción de decisiones que cambian entre corridas idénticas. Fija modelo, temperatura y versión del prompt.",
+   "war-paradigm 01 corre la misma entrada 3 veces: con pins el veredicto queda STABLE; sin pins queda UNSTABLE y pasa de aprobado a rechazado.",
+   "Redacta antes de enviar: tokens, JWT, correos, tarjetas y rutas personales salen del texto (<code>jev-ci-triage/src/redact.ts</code>).",
+   "Cascada (laya-server): un juez local en CPU va primero; un estado de más de 1500 caracteres va a la nube, una confianza menor a 0.8 sube a Jev y un error de la nube vuelve con <code>escalate: true</code> para una persona.",
+   "Modo sombra: las respuestas se anotan pero no bloquean nada. El README de laya-server lo dice: nadie ha medido todavía la calidad de Laya en español, y esa medición va antes de confiar en ella. Ese repo no tiene CI: solo <code>npm test</code> corre los 7 casos de la política."
+  ],
+  "res": [
+   {
+    "label": "Laboratorio: war-paradigm · 01 (veredicto estable)",
+    "type": "Repo · público"
+   },
+   {
+    "label": "Laboratorio: criguex/laya-server (cascada)",
+    "type": "Repo · público"
+   },
+   {
+    "label": "ADR 0001 — veredictos de tres valores, fail-closed",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "Laboratorio: criguex/jev-ci-triage (redacción, fail-open)",
+    "type": "Repo · público"
+   },
+   {
+    "label": "Jev (TypeSafe AI) — documentación",
+    "type": "Docs"
+   }
+  ],
+  "hands": [
+   "Escribe la tabla “si el juez cae, qué pasa” para tres usos tuyos (una aserción, un triaje, una selección), con la política y su porqué.",
+   "Corre <code>npm run demo:01</code> en war-paradigm y explica por qué sin pins el veredicto es UNSTABLE.",
+   "En laya-server corre <code>npm test</code> y agrega casos para un estado de exactamente 1500 caracteres y para un <code>CASCADE_URL</code> caído. Propón el workflow de CI que hoy no tiene.",
+   "Mide el flip rate de un juez con 5 repeticiones sobre 20 casos.",
+   "Escribe un redactor (o reutiliza el de jev-ci-triage) y pruébalo con un log que tenga un token, un correo y un número de tarjeta."
+  ],
+  "crit": [
+   "Cada uso de la tabla tiene política (closed, open o safe) y justificación.",
+   "El flip rate va con el número de casos y de repeticiones.",
+   "Los dos casos nuevos de laya-server pasan con <code>npm test</code>.",
+   "El redactor elimina el token, el correo y la tarjeta del log de prueba, y lo muestras."
+  ],
+  "deliver": "Tabla de modos de falla + flip rate medido + casos nuevos de la cascada + redactor probado.",
+  "mut": "Quita un pin (modelo, temperatura o versión del prompt) y comprueba si el veredicto se vuelve UNSTABLE.",
+  "top": "Propones el experimento que falta según el README de laya-server (un set etiquetado en español), con el umbral escrito antes, y no activas el bloqueo hasta tener ese número."
+ },
+ "m23": {
+  "title": "QA asistida por IA II — el asistente diseña, ejecuta y audita; una persona firma",
+  "hours": "~12 h",
+  "mentor": "Uso asistentes para diseñar, correr y auditar pruebas más rápido, y la firma es mía. Eso funciona solo con tres cosas: reglas duras en hooks y CI, no en prompts, porque un prompt se puede pasar por alto; evidencia que otra persona puede volver a correr (comando, hash y exit code); y una revisión que no dependa de un solo par de ojos. Lo que no se ejecutó se dice, y los errores propios se publican.",
+  "kid": "Pedirle al robot “por favor no toques eso” es una petición; ponerle una reja es una regla. Y si un amigo hace el experimento por ti, anotas cada paso para que otro lo repita y le dé lo mismo, y dices lo que no alcanzaste a hacer. La firma la pones tú.",
+  "obj": [
+   "Explicar con el caso de scientific-qa-evidence qué hizo el asistente y qué decidió la persona, citando <code>AUTHORSHIP.md</code> y la sección “Cómo se usó la IA”.",
+   "Correr <code>npm test</code> del experimento 03 de war-paradigm y explicar por qué el hook sale con 2 en un push a <code>main</code> y con 0 en un push a una rama.",
+   "Reproducir en <code>1b01c66~1</code> el agujero que encontró una mutación WAR en el hook, escribir la prueba que lo atrapa y compararla con la corrección de <code>1b01c66</code>.",
+   "Entregar una auditoría operada por un asistente que otra persona repite con los mismos exit codes y hashes, con revisión doble a ciegas y una sección “Qué no se ejecutó”."
+  ],
+  "pre": "Módulo de QA asistida por IA I (hooks), módulo de pipelines, bash y git. Node 20 o más reciente y Python 3.9 o más reciente.",
+  "theory": [
+   "El reparto: el asistente diseña, ejecuta y audita; la persona elige las preguntas, decide qué cuenta como evidencia y firma. En scientific-qa-evidence, Codex fue al principio el agente principal y Claude Code hizo los cambios posteriores; cada commit nombra al agente en un trailer <code>Co-Authored-By</code>, y “Cristian Guerra eligió las preguntas, congeló los contratos, decidió qué cuenta como evidencia y responde por cada afirmación” (README, “Cómo se usó la IA”).",
+   "Reglas en código, no en prompts: «Las reglas duras viven en el código, no en los prompts. Hooks, gates de CI y revisiones que no se pueden olvidar» (perfil de criguex, “Cómo trabajo”). En war-paradigm/03, un hook <code>PreToolUse</code> de Claude Code registrado en <code>.claude/settings.json</code> lee la llamada como JSON y sale con <code>exit 2</code> (bloquea y le muestra el motivo al asistente) cuando el destino es <code>main</code> o <code>master</code>.",
+   "El hook también es un guardia y se prueba (hilo WAR): <code>tests/hook.test.mjs</code> ataca el hook con casos contra repos git temporales reales, en <code>main</code> y en una rama, con tres parsers del JSON (<code>jq</code>, <code>node</code>, <code>sed</code>): refspecs como <code>HEAD:main</code>, flags de force, comandos encadenados, <code>git -C</code> y el <code>git push</code> a secas estando en <code>main</code>. Caso real: una mutación WAR encontró que <code>git -c core.x=y push origin main</code> y <code>git --no-pager push origin main</code> pasaban con exit 0; el commit <code>1b01c66</code> arregló el hook y agregó pruebas que fallan con el hook anterior.",
+   "Contexto antes que prompt: el vault del experimento 03 trae <code>00 - READ FIRST</code>, <code>Golden rules</code>, roles, datos de prueba y defectos conocidos, y <code>tests/vault-links.test.mjs</code> rompe el build si un enlace apunta a una nota que no existe, si falta el frontmatter o si una nota queda aislada.",
+   "Evidencia = comando + hash + exit code. scientific-qa-evidence publica «un registro público de cada comando, versión, hash y código de salida, incluidos los errores encontrados y corregidos». <code>shasum -a 256 -c evidence/SHA256SUMS.txt</code> comprueba que cada archivo curado es el publicado, y <code>python verificar.py</code> muestra OK o FALLA en seis comprobaciones y una huella para comparar con otra persona.",
+   "Agentes trazados y revisión doble: el 20-oct-2026 Codex corrió 19 sesiones, una principal y 18 subagentes con rol propio. <code>docs/CODEX_WORK_LOG.md</code> trae llamadas a herramientas, commits y el SHA-256 de cada archivo de sesión; dos jueces ciegos (<code>jd_tts_a</code>, <code>jd_tts_b</code>) y un corrector acotado (<code>tts_safety_fix</code>) que aplicó sus notas; y una sección “What was not executed”: las ilustraciones de “auto-fix” nunca se corrieron, y el log lo dice.",
+   "Declara lo que no es independiente y publica tus errores. La recompilación en la nube del 23-oct la operó un asistente bajo dirección humana, y su README lo pone en Límites: «No es independiente». De los 8 hallazgos de <code>FINDINGS.md</code>, el 1, el 3 y el 8 fueron defectos del propio estudio."
+  ],
+  "res": [
+   {
+    "label": "Laboratorio: war-paradigm · experimento 03 (hook + vault)",
+    "type": "Repo · público"
+   },
+   {
+    "label": "Laboratorio: criguex/scientific-qa-evidence (verificar.py)",
+    "type": "Repo · público"
+   },
+   {
+    "label": "CODEX_WORK_LOG.md — 19 sesiones de Codex, paso a paso",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "AUTHORSHIP.md — quién responde por qué",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "FINDINGS.md — defectos del propio estudio",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "Perfil criguex — Cómo trabajo",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "Claude Code — hooks",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "openai/codex — Codex CLI",
+    "type": "Repo · gratis"
+   },
+   {
+    "label": "Anthropic — Building effective agents",
+    "type": "Artículo · gratis"
+   }
+  ],
+  "hands": [
+   "<b>Una mutación encontró un bug en el guardia.</b> En war-paradigm, <code>git checkout 1b01c66~1</code> y reproduce el agujero: pásale al hook <code>git -c core.x=y push origin main</code> y <code>git --no-pager push origin main</code> y comprueba que sale con 0. Escribe en <code>tests/hook.test.mjs</code> la prueba que lo atrapa (debe fallar con ese hook), y después compara tu prueba y tu idea de arreglo con la corrección del commit <code>1b01c66</code>.",
+   "<b>Laboratorio A · reglas en hooks.</b> <code>git clone https://github.com/criguex/war-paradigm</code>, entra a <code>experiments/03-second-brain</code> y corre <code>npm test</code> (el hook y el vault) y <code>npm run demo</code> (el hook contra seis comandos). Lee <code>hooks/block-push-to-main.sh</code> y <code>.claude/settings.json</code>.",
+   "<b>Laboratorio B · evidencia que otro repite.</b> <code>git clone https://github.com/criguex/scientific-qa-evidence.git</code>, entra a la carpeta y corre <code>python3 verificar.py</code> y <code>shasum -a 256 -c evidence/SHA256SUMS.txt</code>. Anota la huella y el exit code. Después lee <code>docs/CODEX_WORK_LOG.md</code> (“How this log was built” y “What was not executed”) y <code>AUTHORSHIP.md</code>.",
+   "<b>Rompe la evidencia en una copia.</b> Agrega un espacio al final de un archivo listado en <code>evidence/SHA256SUMS.txt</code> y vuelve a correr las dos comprobaciones. Anota cuál falla, con qué exit code, y si la huella cambió.",
+   "<b>Ejercicio.</b> Dirige a un asistente (Claude Code o Codex) en una auditoría acotada: por ejemplo, reproducir el reporte de agent-eval-jev o el benchmark de jev-test-impact. El asistente diseña y ejecuta; tú decides y firmas. Entrega: (1) <code>EVIDENCIA.md</code> con cada comando, versión, commit, exit code y SHA-256 de entradas y salidas; (2) dos revisiones a ciegas en sesiones separadas que no ven a la otra, más tu síntesis; (3) una sección “Qué no se ejecutó”; (4) un hook propio que bloquee una acción peligrosa en tu repo, con su suite de ataques; (5) la autoría declarada con trailers <code>Co-Authored-By</code>."
+  ],
+  "crit": [
+   "Otra persona repite la tarea solo con tu paquete y obtiene los mismos exit codes y hashes, o documenta dónde difieren.",
+   "Cada afirmación del informe enlaza a un comando de <code>EVIDENCIA.md</code> con su exit code.",
+   "Las dos revisiones están en sesiones distintas, ninguna cita a la otra, y tu síntesis dice qué aceptaste y qué descartaste.",
+   "Tu hook sale con un código distinto de 0 en todos tus ataques documentados y con 0 en los comandos legítimos; ninguna regla crítica vive solo en un prompt.",
+   "El informe trae “Qué no se ejecutó” y al menos un error propio encontrado y corregido."
+  ],
+  "deliver": "Paquete de auditoría operada por IA (EVIDENCIA.md, dos revisiones ciegas con síntesis, “Qué no se ejecutó”, autoría declarada) + hook propio con su suite de ataques.",
+  "mut": "Una mutación ya encontró un bug en este guardia: <code>git -c core.x=y push origin main</code> y <code>git --no-pager push origin main</code> pasaban con exit 0 hasta el commit <code>1b01c66</code>. Reprodúcelo con <code>git checkout 1b01c66~1</code>, escribe la prueba que lo atrapa y compárala con la corrección. Después inventa tus propios intentos (alias, variables, otras opciones globales de git), escribe antes cuáles crees que pasan y reporta cada uno como bloqueado (exit 2) o como agujero. Un agujero encontrado se publica, no se esconde.",
+  "rubm": [
+   {
+    "row": "Reglas en código",
+    "levels": [
+     "La regla vive solo en el prompt.",
+     "Hay hook, pero sin suite de ataques.",
+     "Hook con suite de ataques que bloquea todo lo documentado y deja pasar lo legítimo.",
+     "Además, encuentras y reportas un agujero en un hook ajeno, por ejemplo el de war-paradigm."
+    ]
+   },
+   {
+    "row": "Evidencia",
+    "levels": [
+     "Afirmaciones sin comando.",
+     "Comandos sin exit codes o sin hashes.",
+     "Comando, versión, exit code y SHA-256 de entradas y salidas en cada paso.",
+     "Además, un tercero repitió el paquete sin ayuda y su resultado está en el informe."
+    ]
+   },
+   {
+    "row": "Revisión",
+    "levels": [
+     "Sin revisión.",
+     "Una sola revisión, o dos que se vieron entre sí.",
+     "Dos revisiones ciegas y síntesis humana con lo aceptado y lo descartado.",
+     "Además, un corrector acotado que aplica solo lo que los dos revisores confirmaron."
+    ]
+   },
+   {
+    "row": "Honestidad",
+    "levels": [
+     "Lo ilustrado se presenta como ejecutado.",
+     "Hay límites, pero falta “Qué no se ejecutó”.",
+     "“Qué no se ejecutó”, autoría declarada y lo no independiente marcado como tal.",
+     "Además, publicas un error propio con su corrección, como en FINDINGS.md."
+    ]
+   }
+  ]
+ },
+ "m19": {
+  "title": "Prerregistro y reproducibilidad — umbrales antes de los datos y la misma huella en otra máquina",
+  "hours": "~16 h",
+  "mentor": "Antes de generar los datos de prueba, dejo las hipótesis y los umbrales en un commit. Incluyo comparadores que deberían fallar, para comprobar si las pruebas distinguen los casos previstos. Corro la verificación en varias máquinas, comparo los veredictos y la huella de cada ronda, y llevo ledgers de discrepancias y de falsos positivos. Cuando una hipótesis falla, la publico igual: H14 falló, no toqué nada para arreglarla, y de ese fallo salió la ronda 4.",
+  "kid": "Antes del partido escribes en un papel quién va a ganar, lo metes en un sobre cerrado y, si te equivocas, igual lo cuentas; si tu primo hace la misma cuenta en su casa y le da el mismo número, sabes que no fue suerte.",
+  "obj": [
+   "Escribir un prerregistro con hipótesis numeradas, criterios numéricos, controles positivos y negativos, un comparador que debe fallar y límites, en un commit anterior a los datos.",
+   "Correr <code>verify.py --saved</code> de predictor-debugger en cuatro entornos guardados (mac, war, guerra, linux) y obtener <code>EEC9-09E0-F77D</code> con <code>verdicts equal ...: True</code>.",
+   "Demostrar que cambiar un byte de <code>thresholds.json</code> cambia la huella y hace salir al verificador con código 1.",
+   "Explicar con los números del repo por qué H14 falló, por qué no se movió su umbral y qué abrió en la ronda 4.",
+   "Calcular un intervalo por bootstrap de clusters y explicar por qué remuestrear pasos lo estrecha de más."
+  ],
+  "pre": "Módulos de evaluar IA con juez y de calibración (umbrales fijados antes, held-out, kappa), y de pipelines (CI con matriz). Git, Python básico y uv instalado.",
+  "theory": [
+   "<b>Prerregistro.</b> El <code>DESIGN.md</code> de predictor-debugger empieza así: «Written before any dataset, model or prediction exists». Todo cambio posterior es una <b>enmienda</b> al final, con fecha, razón y commit, y ninguna se puede hacer después de evaluar el split de test. Ejemplo real: la enmienda 1 (24-oct, antes de los datos) agregó el control <code>P0f32</code> y la hipótesis H1b porque la red se entrenaba en float32 y D1 la habría marcado por redondeo, no por física.",
+   "<b>Lo que se prueba es el chequeo, no el producto.</b> «A poor network is an acceptable result; a debugger that cannot tell the controls apart is a failure» (<code>DESIGN.md §Question</code>).",
+   "<b>Controles positivos y negativos.</b> P0 es el solver exacto y debe aceptarse (H1). P3a suma un gradiente del 5 % de ‖u‖ y rompe la incompresibilidad: D1 lo debe atrapar (H2). P3b multiplica por 1,05 e inyecta energía: D2 lo debe atrapar (H3). P1 repite el estado y no tiene dinámica: D3 lo debe atrapar (H4). Cada hipótesis empareja un control con el chequeo que debe gritar.",
+   "<b>Umbral fijado antes.</b> τ = 10 × el máximo de P0 (y P0f32) en validación, con piso de 1e-12, escrito una sola vez en <code>thresholds.json</code> con su hash. Un paso con NaN o infinito siempre queda marcado: un NaN nunca pasa.",
+   "<b>Comparadores que deben fallar.</b> H14 exigía que su comparador barato (ΣD3) <i>no</i> cumpliera el mismo criterio. Por eso tiene tres salidas: PASS (el criterio cumple y el comparador no), NON-DISCRIMINATIVE (cumplen los dos) y FAIL (el criterio no cumple). En la ronda 2, H8 pasó pero no distinguió a G de D3: D3 también ordenó ese conjunto.",
+   "<b>Una hipótesis fallida, publicada.</b> H14 pedía una media de ρ ≥ 0,7 con IC inferior ≥ 0,5 en las cuatro redes. P2gbest sacó 0,635 [0,413; 0,795] y ΣD3 cumplió en tres de cuatro. Resultado: <b>FALLA</b>, «No se cambió nada para arreglarlo». La ronda 4 prerregistró una idea nueva, H17 (llevar la dirección del defecto en vez de sumar tamaños), que pasó en las cuatro redes con medias de 0,987 a 0,997.",
+   "<b>Huella.</b> <code>verify.py</code> arma un JSON ordenado con la versión de numpy, el hash del solver, el hash de cada <code>pd/*.py</code>, el hash de <code>thresholds.json</code>, los hashes de las entradas y un resumen de los veredictos, le saca SHA-256 y se queda con 12 caracteres: <code>EEC9-09E0-F77D</code>. Si cambia un byte de cualquiera de esas cosas, cambia la huella.",
+   "<b>Varias máquinas, sin elegir la que conviene.</b> Mac, WAR y GUERRA, más Linux en el CI de GitHub y en WSL2, dieron las mismas huellas. Ledger de discrepancias de la ronda 1: 0 entradas. Ledger de falsos positivos: 126 entradas, todas D2 sobre P0/P0f32 en el split fuera de distribución, y todas siguen <code>open</code>. Y el límite escrito: «Las tres máquinas son mías, así que esto no es una reproducción independiente».",
+   "<b>Bit-idéntico no es veredicto-idéntico.</b> Ningún archivo regenerado en WAR, GUERRA o Linux salió igual bit a bit al del Mac; la mayor diferencia fue 8,9e-16. Por eso los archivos del Mac son los canónicos y lo que se compara son veredictos y huellas.",
+   "<b>Bootstrap por clusters.</b> En <code>round2/evaluate.py</code>, <code>cluster_bootstrap</code> remuestrea <i>trayectorias</i> completas (cada una trae todos sus pasos), 2.000 réplicas con la semilla fija <code>20261024</code>, y reporta los percentiles 2,5 y 97,5. Los pasos de una misma trayectoria no son independientes: remuestrearlos uno por uno daría un intervalo más estrecho de lo que los datos permiten."
+  ],
+  "res": [
+   {
+    "label": "Laboratorio: criguex/predictor-debugger",
+    "type": "Repo · público"
+   },
+   {
+    "label": "DESIGN.md — prerregistro y enmiendas 1 a 5",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "Nosek et al. — The preregistration revolution (PNAS 2018)",
+    "type": "Artículo"
+   },
+   {
+    "label": "Prerregistro — Center for Open Science",
+    "type": "Guía · gratis"
+   },
+   {
+    "label": "uv — entornos Python con lockfile",
+    "type": "Herramienta · gratis"
+   },
+   {
+    "label": "numpy.finfo — épsilon de máquina",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "SciPy — bootstrap",
+    "type": "Docs · gratis"
+   }
+  ],
+  "hands": [
+   "<b>Paso 1 · Nivel (a), veredictos guardados: minutos, sin datos.</b> Necesitas git y <a href=\"https://docs.astral.sh/uv/\">uv</a>; <code>uv run --locked</code> usa Python 3.9 y numpy 1.26.4 del <code>uv.lock</code>.<pre><code>git clone https://github.com/criguex/predictor-debugger.git\ncd predictor-debugger\nuv run --locked verify.py --saved mac; echo \"exit=$?\"</code></pre>Salida esperada:<pre><code>  H1   P0     any     0/400  share &lt;= 0.05   PASS\n  H1b  P0f32  any     0/400  share &lt;= 0.05   PASS\n  H2   P3a    D1    400/400  share &gt;= 0.95   PASS\n  H3   P3b    D2    400/400  share &gt;= 0.95   PASS\n  H4   P1     D3    400/400  share &gt;= 0.95   PASS\n  verdicts equal to saved results/mac/verdicts.json: True\n  fingerprint: EEC9-09E0-F77D\nexit=0</code></pre>",
+   "<b>Paso 2 · Las otras máquinas y rondas.</b> Cambia <code>mac</code> por <code>war</code>, <code>guerra</code> y <code>linux</code>: la huella debe ser la misma. Luego corre <code>round2/verify.py</code>, <code>round3/verify.py</code> y <code>round4/verify.py</code> con <code>--saved mac</code> y compara con la tabla del README: <code>D506-F58F-3838</code>, <code>6319-537B-7167</code> y <code>681D-143B-64A3</code>. Las cuatro rondas tardaron 242 s en el Mac del autor.",
+   "<b>Paso 3 · Un FAIL que se reproduce.</b> En la salida de <code>uv run --locked round3/verify.py --saved mac</code> busca la línea de H14: termina en <code>FAIL</code>, y aun así el comando imprime <code>verdicts equal ...: True</code>, la huella <code>6319-537B-7167</code> y sale con 0. Escribe en dos líneas por qué eso es correcto.",
+   "<b>Paso 4 · Lee el diseño y los ledgers.</b> <code>DESIGN.md</code> (Question, Predictors, Debugger checks y las enmiendas 1 a 5), <code>round3/RESULTS.md</code> (la fila de H14) y <code>wc -l ledgers/*.jsonl</code>: 0 discrepancias y 126 falsos positivos. Abre una entrada de <code>ledgers/false_positives.jsonl</code> y ubica máquina, check, valor, umbral, semilla y paso.",
+   "<b>Paso 5 · El bootstrap por clusters.</b> Lee <code>cluster_bootstrap</code> en <code>round2/evaluate.py</code>. Después escribe un ejemplo sintético (10 trayectorias de 10 pasos muy correlacionados) y compara el IC remuestreando pasos contra el IC remuestreando trayectorias, con la misma semilla.",
+   "<b>Ejercicio verificable · Prerregistra tu propio experimento de QA.</b> Por ejemplo: «mi juez atrapa al menos el 90 % de los falsos verdes sembrados» o «mi suite mata al menos 5 de 6 mutantes». En un repo tuyo: (1) <code>PREREGISTRO.md</code> con pregunta, al menos 3 hipótesis numeradas con criterio numérico, un control que debe pasar, uno que debe fallar, un comparador que debe fallar y límites; (2) los umbrales en <code>thresholds.json</code>; (3) commit; (4) solo después, generar datos y correr; (5) un <code>huella.py</code> que imprima una huella sobre código, umbrales, entradas y veredictos; (6) un workflow con matriz de dos sistemas operativos que haga <code>grep -q \"fingerprint: XXXX-XXXX-XXXX\"</code>, como <code>.github/workflows/verify.yml</code> de predictor-debugger; (7) un IC por bootstrap de clusters con semilla y número de réplicas escritos."
+  ],
+  "crit": [
+   "<code>git log --reverse --format=\"%h %ad %s\" --date=iso</code> muestra el commit de <code>PREREGISTRO.md</code> y <code>thresholds.json</code> antes del primer archivo de datos o resultados.",
+   "<code>git log -p -- thresholds.json</code> no muestra cambios posteriores a la primera corrida; si hubo enmiendas, cada una tiene fecha, razón y commit y es anterior a evaluar el test.",
+   "Cada hipótesis tiene su veredicto PASS o FAIL publicado con el número que lo decide; las que fallan siguen en el reporte.",
+   "En la corrida, el control positivo pasa y el control negativo queda marcado; el comparador se reporta aunque cumpla.",
+   "El job de CI imprime la misma huella en los dos sistemas operativos y falla si cambias un byte de <code>thresholds.json</code> (lo muestras con un commit de prueba y su job en rojo).",
+   "El IC remuestrea clusters, no filas, y el reporte dice semilla y réplicas.",
+   "El README tiene «Límites» y «Qué me contradiría»."
+  ],
+  "deliver": "PREREGISTRO.md y thresholds.json anteriores a los datos + reporte con hipótesis que pasan y que fallan + huella igual en 2 SO por CI + IC por clusters + límites.",
+  "mut": "En una copia del repo cambia un byte de <code>thresholds.json</code> que no sea un número (por ejemplo una letra del <code>hostname</code>) y corre <code>uv run --locked verify.py --saved mac; echo \"exit=$?\"</code>. Los cinco veredictos siguen en PASS y <code>verdicts equal</code> sigue en <code>True</code>, pero aparece <code>changed thresholds.json</code>, la huella deja de ser <code>EEC9-09E0-F77D</code> y sale <code>exit=1</code>. Después restaura el archivo y sube el umbral <code>D1</code> a <code>1.0</code>: H2 pasa a <code>0/400 ... FAIL</code> y <code>verdicts equal</code> a <code>False</code>. Si tu propio verificador no grita en alguno de los dos casos, está dormido: publícalo.",
+  "top": "Llevas los dos ledgers (discrepancias entre entornos y falsos positivos de los controles), y cada entrada sin explicar queda <code>open</code> y visible en el reporte."
+ },
+ "m32": {
+  "title": "QA de requisitos — revisar la spec antes de construir",
+  "hours": "~8 h",
+  "mentor": "El dueño de un producto trajo una especificación para una herramienta semanal de vigilancia de competidores. Antes de escribir una línea de código la revisé: leí cada página, sumé cada número y anoté todo lo que no cuadraba o faltaba. Salieron 19 problemas, 7 preguntas para el dueño y un plan por fases en vez de una construcción. Cada problema se arregló con una pregunta en papel, antes de que alguien pasara semanas construyendo lo que no era. Un prerregistro también es una spec: revísalo con esta misma lista.",
+  "kid": "Antes de hacer una torta lees toda la receta, y si una página dice 3 huevos y otra dice 2, preguntas antes de prender el horno.",
+  "obj": [
+   "Aplicar la checklist de 26 puntos a una spec y registrar cada hallazgo con sus cinco campos.",
+   "Recalcular las cifras de una spec con un script que salga con código distinto de 0 mientras quede una contradicción.",
+   "Calificar la severidad (Bloqueante, Alta, Media) con la escala del caso y decir que es criterio, no medición.",
+   "Convertir los bloqueantes en preguntas numeradas y la construcción en fases con puerta.",
+   "Probar al revisor: medir cuántos errores sembrados detecta tu propio script."
+  ],
+  "pre": "Módulos de diseño de pruebas (valores límite, tablas de decisión) y de evaluar IA con juez y calibración, para entender F13. Python básico.",
+  "theory": [
+   "<b>Primero, de dónde salió la spec.</b> Si se armó con la captura o la demo de otra empresa, sus números son ejemplos, no requisitos. En el caso de estudio esa sola observación explica buena parte de los hallazgos F01 a F10.",
+   "<b>El proceso en seis pasos</b> (<code>README.es.md §Cómo funciona</code>): leer una vez para entender la intención; recalcular cada número; cuestionar los «hechos» (costos y latencias); seguir cada definición hasta su origen; calificar la severidad; decidir con preguntas numeradas y un plan por fases.",
+   "<b>Tres familias de problemas.</b> 7 números que no cuadran, 3 costos o latencias presentados como hechos y 9 cosas que nadie definió: 19 hallazgos, 4 de ellos bloqueantes.",
+   "<b>Números que no cuadran.</b> F06: la ventana «semanal» (20 ago – 27 sep) dura 38 días. F05: se anuncian 14 competidores, se listan 12 (suman 1.517 de 2.070 señales) y el grafo dibuja 7. F04: los escalados a una persona son 31, 2 y 2 en la misma pantalla, y el resumen promete 3 acciones y muestra 2.",
+   "<b>Pruebas de aceptación que no prueban nada</b> (F10): exigir un gasto semanal de $0,2087 ± $0,01, un ruido del 67 % y una P50 entre 200 y 250 ms copia una semana de datos ajenos. Con datos reales esas pruebas fallan aunque el sistema funcione, o pasan aunque no funcione. La propuesta: 10 señales fijas que revisen el contrato JSON y las reglas de escalado.",
+   "<b>Umbrales sobre probabilidades sin calibrar</b> (F13): un 0,85 sobre la salida del modelo no significa nada sin un conjunto etiquetado. La propuesta fue una fase de calibración en la que el dueño marca unas 100 señales. Es el mismo problema del módulo de calibración de jueces.",
+   "<b>Severidad.</b> Bloqueante: no se puede construir ni probar esa parte hasta que alguien responda. Alta: si se construye así, muestra un número malo, hace lo que no es, cuesta más o trae riesgo legal. Media: confunde, pero no frena. Es criterio de quien revisa, no una medición, y el repo lo dice en sus Límites.",
+   "<b>Las cuentas, en código.</b> <code>check_numbers.py</code> recalcula F01 a F08 con las cifras de la propia spec, sin dependencias. <code>✗</code> es una contradicción, <code>!</code> un número que puede ser cierto pero no está explicado, y el script sale con código 1 mientras quede alguno.",
+   "<b>La checklist.</b> <code>docs/checklist.es.md</code>: 26 puntos en los bloques 0 a 6, cada uno marcado con el hallazgo que lo hizo necesario. Se pega en el ticket antes de que alguien escriba código.",
+   "<b>Decidir.</b> La revisión terminó en un plan por fases con puerta: P0 sin código y con 7 preguntas al dueño; P1 un MVP de 1–2 días cuya puerta es la prueba de 10 señales fijas; P2 calibrar («precisión medida, no supuesta»); P3 interfaz solo si P2 demuestra valor; P4 escalar."
+  ],
+  "res": [
+   {
+    "label": "Laboratorio: criguex/spec-review-case-study",
+    "type": "Repo · público"
+   },
+   {
+    "label": "Checklist de 26 puntos (español)",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "Los 19 hallazgos, uno por uno",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "ISTQB Foundation Level — pruebas estáticas y revisiones",
+    "type": "Docs · gratis"
+   }
+  ],
+  "hands": [
+   "<b>Paso 1 · Reproduce las cuentas.</b> Solo Python 3, sin dependencias:<pre><code>git clone https://github.com/criguex/spec-review-case-study.git\ncd spec-review-case-study\npython3 check_numbers.py; echo \"exit=$?\"</code></pre>Salida esperada:<pre><code>! F01  1334 + 1158 = 2492 raw, 2070 unique: 422 duplicates (16.9%), all of them web (36.4% of web), none social\n✗ F02  1753 threats = 84.7% of signals, but 67% noise leaves at most 683 non-noise\n✗ F03  noise KPI 67% vs 'ignore' label 4% in the taxonomy\n✗ F04  escalated: 31 (KPI) / 2 (bar) / 2 (panel); brief promises 3 actions, shows 2\n✗ F05  12 of 14 competitors listed, sum 1517: 553 signals (27%) unaccounted; graph draws 7\n✗ F06  'weekly' window 20 Aug - 27 Sep = 38 days\n✗ F07  'tokens processed' 24,849 counts output only; input ~2,070,000 is 99% of all tokens\n! F08  week spend $0.2087 ~ 2.07M input tokens x $0.1/M = $0.2070: classifier input only\n6 contradictions, 2 unexplained, 0 ok\nexit=1</code></pre>",
+   "<b>Paso 2 · Lee el script.</b> Abre <code>check_numbers.py</code> y anota qué constante alimenta cada chequeo (por ejemplo, <code>WINDOW</code> → F06, <code>PER_COMPETITOR</code> y <code>GRAPH_NODES</code> → F05). Cada constante es una cifra copiada de la spec.",
+   "<b>Paso 3 · De la checklist al hallazgo.</b> Con <code>docs/checklist.es.md</code> y <code>docs/findings.es.md</code> abiertos, para cada uno de los 26 puntos ubica el hallazgo entre corchetes y lee su «Cómo se detectó». Los cuatro puntos que no traen hallazgo (el primero del bloque 0 y los tres del bloque 6) cierran la revisión: escribe qué evitaría cada uno.",
+   "<b>Paso 4 · Del hallazgo a la pregunta.</b> Toma los 4 bloqueantes (F11, F12, F16, F18) y reescribe cada uno como una pregunta que el dueño responda en minutos. Compáralas con las 7 preguntas de la fase P0.",
+   "<b>Ejercicio verificable · Revisa una spec real antes de que alguien la construya.</b> Puede ser una historia de usuario con criterios de aceptación de tu trabajo (anonimizada), la documentación de una API pública o el prerregistro de tu módulo anterior. Entrega: (1) <code>findings.md</code> con al menos 8 hallazgos, cada uno con qué decía, por qué es un problema, cómo se detectó, severidad y decisión o pregunta, y la línea de la checklist que lo cubre; (2) tu propio <code>check_numbers.py</code> con al menos 4 chequeos que recalculen cifras de esa spec y salgan con 1 si queda una contradicción; (3) una copia corregida de las cifras que haga salir al script con 0 (control positivo) y al menos 3 mutantes, cada uno con un solo error sembrado en un chequeo distinto (controles negativos); (4) las preguntas numeradas para el dueño y un plan por fases con su puerta."
+  ],
+  "crit": [
+   "Tu <code>check_numbers.py</code> sale con 1 sobre las cifras originales y con 0 sobre la copia corregida.",
+   "Cada mutante sembrado hace salir al script con 1; reportas el kill rate de tu script y, si alguno sobrevive, lo dejas a la vista.",
+   "Cada hallazgo tiene los cinco campos y apunta a una línea de la checklist.",
+   "Cada bloqueante quedó como una pregunta numerada que se responde en minutos.",
+   "El plan tiene fases con puerta, la primera fase tiene cero código, y <code>git log</code> muestra que no hay código del producto antes de cerrar la revisión.",
+   "Los nombres de empresas, personas y productos están anonimizados, como en el caso de estudio."
+  ],
+  "deliver": "findings.md + check_numbers.py propio con control positivo y 3 mutantes + preguntas numeradas + plan por fases con puerta.",
+  "mut": "Prueba al revisor en una copia de <code>check_numbers.py</code>. Mutante de control: cambia <code>WINDOW</code> a <code>(date(2026, 8, 20), date(2026, 8, 27))</code>; F06 debe pasar a <code>✓ ... = 7 days</code> y el resumen a <code>5 contradictions, 2 unexplained, 1 ok</code>. Ahora el mutante peligroso: restaura y cambia <code>WEEK_SPEND</code> a <code>0.40</code>. F08 sale <code>✓</code> aunque un gasto de $0,40 sigue sin explicación: el chequeo solo marca cuando el gasto coincide con «solo la entrada del clasificador». Ese mutante sobrevive. Escribe el chequeo que lo mataría y publícalo como hallazgo del revisor.",
+  "top": "Encuentras un mutante que sobrevive a tu propio script, lo publicas con la cifra que lo produce y agregas el chequeo que lo mata."
+ }
+}

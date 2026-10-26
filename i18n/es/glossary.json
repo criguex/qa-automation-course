@@ -1,0 +1,190 @@
+[
+ {
+  "term": "HU",
+  "def": "Historia de Usuario: unidad de trabajo/requisito en gestores ágiles (Jira, Azure DevOps, GitLab…)."
+ },
+ {
+  "term": "Certificar",
+  "def": "Demostrar con evidencia y trazabilidad que una HU quedó probada. La firma es humana."
+ },
+ {
+  "term": "Defecto",
+  "def": "Incumplimiento del producto vs lo esperado o el contrato. Se reporta; no se tapa."
+ },
+ {
+  "term": "Regresión",
+  "def": "Volver a probar lo existente para asegurar que nada se rompió."
+ },
+ {
+  "term": "Flakiness",
+  "def": "Test que a veces pasa y a veces no sin cambiar el código (selector/timing)."
+ },
+ {
+  "term": "Forma canónica",
+  "def": "La única manera acordada de escribir features/steps en el equipo."
+ },
+ {
+  "term": "Gherkin",
+  "def": "Lenguaje Given/When/Then para describir comportamiento."
+ },
+ {
+  "term": "Cucumber",
+  "def": "Framework que conecta el Gherkin con el código (steps)."
+ },
+ {
+  "term": "Step definition",
+  "def": "Código que implementa cada paso Given/When/Then."
+ },
+ {
+  "term": "Contract testing",
+  "def": "Validar que un servicio cumple su contrato (esquema de API)."
+ },
+ {
+  "term": "POM",
+  "def": "Page Object Model: encapsula selectores/acciones de una pantalla en una clase."
+ },
+ {
+  "term": "Gestor de pruebas (TMS)",
+  "def": "Test management: conecta requisitos, casos y ejecuciones. Ejemplos: Xray, Zephyr, TestRail, qTest. Cada empresa usa el suyo; el concepto es el mismo."
+ },
+ {
+  "term": "Allure",
+  "def": "Reportes con evidencia navegable; single-file = adjuntable."
+ },
+ {
+  "term": "Trazabilidad",
+  "def": "Cadena de links HU ↔ Test ↔ Ejecución ↔ código."
+ },
+ {
+  "term": "Claude Code",
+  "def": "La IA “directora”: razona con contexto, planea, mantiene el método."
+ },
+ {
+  "term": "Copilot",
+  "def": "La IA “ejecutora”: escribe código pegada al repo, en el IDE."
+ },
+ {
+  "term": "CLAUDE.md",
+  "def": "Instrucciones que la IA carga siempre en un proyecto."
+ },
+ {
+  "term": "Prompt pack",
+  "def": "Plantilla de prompt reutilizable para una tarea repetida."
+ },
+ {
+  "term": "Subagente",
+  "def": "Agente de IA lanzado para una subtarea (búsqueda amplia, perspectiva independiente)."
+ },
+ {
+  "term": "MCP",
+  "def": "Model Context Protocol: permite a la IA hablar con herramientas externas (Jira, correo)."
+ },
+ {
+  "term": "Hook",
+  "def": "Acción automática disparada por un evento. En asistentes de IA, un hook que sale con código 2 bloquea la acción: ahí viven las reglas que no se negocian."
+ },
+ {
+  "term": "@IGNORE",
+  "def": "Tag que excluye un known issue de la corrida sin enmascarar el contrato."
+ },
+ {
+  "term": "Trazabilidad de escenario",
+  "def": "Enlace entre un escenario automatizado y su caso en el gestor de pruebas. El mecanismo (tag, ID, anotación) depende de la herramienta."
+ },
+ {
+  "term": "Known issue",
+  "def": "Gap pendiente de un tercero/dependencia; el ticket queda Abierto y no cierra la HU."
+ },
+ {
+  "term": "Shift-left",
+  "def": "Meterse en el diseño y la calidad temprano, no al final."
+ },
+ {
+  "term": "Risk-based testing",
+  "def": "Priorizar pruebas por riesgo = probabilidad × impacto."
+ },
+ {
+  "term": "Mutante",
+  "def": "Copia del sistema con exactamente una cosa rota a propósito, para ver si las pruebas lo notan."
+ },
+ {
+  "term": "KILLED / SURVIVED",
+  "def": "KILLED: las pruebas atraparon el mutante. SURVIVED: no lo vieron (bug real o punto ciego)."
+ },
+ {
+  "term": "Línea base (baseline)",
+  "def": "La corrida sin mutar. Tiene que pasar primero y no cuenta en el puntaje."
+ },
+ {
+  "term": "Kill rate",
+  "def": "KILLED / (KILLED + SURVIVED). Mide qué tan afilada está la suite, no qué tan bueno es el software."
+ },
+ {
+  "term": "Ledger",
+  "def": "Registro de sobrevivientes, discrepancias y falsos positivos, con causa, dueño y siguiente paso."
+ },
+ {
+  "term": "WAR Paradigm",
+  "def": "“Test the tester, mutate reality”: romper el mundo a propósito para medir si el guardián (suite, oráculo, juez, hook) lo nota."
+ },
+ {
+  "term": "Falso verde",
+  "def": "Un ✓ que debía ser ✗: la respuesta se ve bien pero está mal."
+ },
+ {
+  "term": "LLM como juez",
+  "def": "Un modelo que califica respuestas contra una rúbrica o una referencia, con un umbral escrito antes."
+ },
+ {
+  "term": "Golden set",
+  "def": "Casos de referencia etiquetados por personas con una rúbrica; contra ellos se mide al juez."
+ },
+ {
+  "term": "Kappa de Cohen",
+  "def": "Acuerdo entre dos evaluadores corregido por el azar: 1 es acuerdo total, 0 es el que daría el azar."
+ },
+ {
+  "term": "Held-out",
+  "def": "Casos que el ajuste nunca vio; el número honesto se reporta ahí."
+ },
+ {
+  "term": "Prerregistro",
+  "def": "Hipótesis y umbrales en un commit antes de generar los datos."
+ },
+ {
+  "term": "Huella",
+  "def": "Código corto que resume los veredictos de una corrida; si coincide en otra máquina, coinciden los veredictos."
+ },
+ {
+  "term": "Exit code",
+  "def": "Número con el que termina un comando: 0 es éxito y cualquier otro es falla. Es la evidencia mínima que entiende un CI."
+ },
+ {
+  "term": "Selección por impacto",
+  "def": "Correr solo las pruebas que un cambio puede afectar, con la suite completa como red de seguridad."
+ },
+ {
+  "term": "Required status check",
+  "def": "Un check que la rama protegida exige en verde antes de dejar hacer merge. Sin él, un check rojo no bloquea nada."
+ },
+ {
+  "term": "Artefacto",
+  "def": "Archivo que el pipeline sube para que sobreviva al runner: reportes, logs, hashes. La caché, en cambio, puede desaparecer."
+ },
+ {
+  "term": "Contenedor efímero",
+  "def": "Entorno que nace para una tarea y muere al terminar: lo que no sacaste como artefacto o recibo, se pierde."
+ },
+ {
+  "term": "Checkpoint idempotente",
+  "def": "Punto de control desde el que se retoma sin repetir ni duplicar trabajo, verificado por hash."
+ },
+ {
+  "term": "Digest",
+  "def": "Identificador de contenido de una imagen (@sha256:…). A diferencia de un tag, siempre apunta a la misma imagen."
+ },
+ {
+  "term": "Fail-safe",
+  "def": "Ante la duda o la falla de una herramienta, hacer lo conservador: correr todo o marcar unknown."
+ }
+]

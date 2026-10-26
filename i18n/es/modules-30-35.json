@@ -1,0 +1,408 @@
+{
+ "m24": {
+  "title": "Controles, arnés y mutación numérica — contrato congelado y oráculo independiente",
+  "hours": "~12 h",
+  "mentor": "Antes de confiar en un experimento, pruebo el experimento: un control que debe pasar, controles que deben fallar y pruebas del arnés mismo. ¿Qué hace el runner si el oráculo lanza una excepción o devuelve NaN? No es teoría: el runner de un estudio real llegó a reportar <code>oracle_valid: true</code> con el oráculo fallado.",
+  "kid": "Antes de usar una balanza pesas algo que ya sabes cuánto pesa. Si la balanza dice otra cosa, el problema es la balanza.",
+  "obj": [
+   "Incluir controles positivos y negativos en un experimento.",
+   "Probar el arnés: baseline inválida, NaN y excepciones del oráculo.",
+   "Mutar un modelo numérico con tolerancia congelada y oráculo independiente."
+  ],
+  "pre": "Módulos de mutation testing y de prerregistro; Python.",
+  "theory": [
+   "Control positivo: lo que debe pasar (el solver exacto, el caso limpio). Controles negativos: un saboteado de cada tipo, que debe fallar.",
+   "Prueba el arnés: “baseline inválida bloquea a sus mutantes”, “NaN nunca es PASS” y “excepción del oráculo no es un mutante muerto”.",
+   "Hallazgo real: en scientific-qa-evidence el runner reportaba <code>oracle_valid: true</code> cuando el oráculo había fallado (FINDINGS, hallazgo 8).",
+   "Contrato congelado: la tolerancia (10⁻⁶) se fija antes de correr, y el oráculo no comparte solver con la implementación.",
+   "La campaña: 84 variantes pareadas en 9 modelos físicos, con 27 PASS, 54 KILLED y 3 SURVIVED, igual en macOS y en Linux. La mutación diminuta del circuito RC sobrevive y se deja visible a propósito.",
+   "Separa casos de comportamientos: los 54 KILLED corresponden a 51 comportamientos distintos."
+  ],
+  "res": [
+   {
+    "label": "Laboratorio: criguex/scientific-qa-evidence",
+    "type": "Repo · público"
+   },
+   {
+    "label": "CONTRACT.md — tolerancia y clasificación",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "FINDINGS.md — hallazgo 8 (el arnés)",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "war-paradigm — pista 1, simulaciones físicas",
+    "type": "Repo · público"
+   }
+  ],
+  "hands": [
+   "En <code>scientific-qa-evidence/evidence/numerical/source</code> corre <code>python3 -m unittest -v test_runner</code>.",
+   "Inyecta un oráculo que devuelva <code>float(\"nan\")</code> y comprueba que nunca da PASS ni KILLED.",
+   "Agrega un décimo modelo sencillo (caída libre con arrastre lineal) con su oráculo analítico, dos mutantes conocidos y uno cerca del umbral."
+  ],
+  "crit": [
+   "Tu arnés tiene las tres pruebas (baseline inválida, NaN, excepción del oráculo) y las tres pasan.",
+   "El NaN inyectado nunca sale PASS ni KILLED.",
+   "La tabla separa casos de comportamientos distintos.",
+   "Si el mutante cerca del umbral sobrevive, se reporta SURVIVED sin bajar la tolerancia."
+  ],
+  "deliver": "Arnés con 3 pruebas de sí mismo + décimo modelo con oráculo y mutantes + tabla de veredictos.",
+  "mut": "Inyecta un oráculo que devuelve NaN y comprueba que nunca da PASS ni KILLED.",
+  "top": "Tu tabla separa casos de comportamientos distintos y explica cuáles mutantes son equivalentes."
+ },
+ "m25": {
+  "title": "Física de fluidos y estadística para el depurador",
+  "hours": "~14 h",
+  "mentor": "No necesitas ser físico para probar un modelo de fluidos, pero sí entender qué ley vigila cada chequeo. Y no necesitas ser estadístico para decir si un chequeo ordena bien el error, pero sí saber cuándo una diferencia es ruido.",
+  "kid": "El agua no se deja apretar y la energía no aparece de la nada. El revisor mira si la red neuronal respeta esas reglas, como un árbitro que conoce el reglamento.",
+  "obj": [
+   "Explicar qué ley física vigila cada check (D1, D2, D3) y por qué D4 no es un check.",
+   "Predecir qué check marca cada saboteado antes de correr.",
+   "Usar Spearman, bootstrap por clusters y Wilson para decidir si una diferencia es ruido."
+  ],
+  "pre": "Módulo de controles y arnés; cálculo vectorial básico y numpy.",
+  "theory": [
+   "Tres leyes que vigila el depurador de predictor-debugger: incompresibilidad (div u = 0, check D1), balance de energía (la energía cinética solo decae por viscosidad, a ritmo ν·enstrofía, D2) y ecuación de momento (residuo de Navier–Stokes, D3).",
+   "D4 es el error contra la referencia: sirve para juzgar al depurador, no es un check del depurador.",
+   "Controles del diseño: P0 es el solver exacto (positivo), P0f32 el mismo redondeado a float32, P1 la persistencia, P2 la FNO, P3a rompe la incompresibilidad y P3b inyecta energía.",
+   "Lo que se prueba es el depurador, no la red: una red mala es un resultado aceptable; un depurador que no distingue los controles es un fracaso.",
+   "One-step frente a rollout: en el rollout la red usa sus propias respuestas 20 pasos seguidos y los errores se arrastran.",
+   "Spearman mide si un chequeo ordena bien el error (rangos, no valores). Bootstrap por clusters: se remuestrean trayectorias, no pasos; remuestrear pasos da intervalos más estrechos y engañosos.",
+   "Intervalo de Wilson: 27 de 29 casos no es “93 %” a secas, es 93.1 % con intervalo de 78–98 %."
+  ],
+  "res": [
+   {
+    "label": "Laboratorio: criguex/predictor-debugger",
+    "type": "Repo · público"
+   },
+   {
+    "label": "NASA Glenn — ecuaciones de Navier–Stokes",
+    "type": "Artículo · gratis"
+   },
+   {
+    "label": "SciPy — spearmanr",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "SciPy — bootstrap",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "Li et al. — Fourier Neural Operator",
+    "type": "Artículo · gratis"
+   }
+  ],
+  "hands": [
+   "Lee <code>DESIGN.md</code> (System y Debugger checks) y <code>pd/checks.py</code> de predictor-debugger. Explica con tus palabras por qué D1 atrapa a P3a y D2 a P3b.",
+   "Con el kit de <code>round5/KIT.md</code> (paso 1) genera un par exacto y tres saboteados (energía ×1.05, gradiente agregado, fase corrida) y predice qué check debería marcar cada uno ANTES de correr. Usa el modo saved o pocos pares: el recálculo completo tarda horas.",
+   "Muestra con un ejemplo sintético que el bootstrap por pasos da un intervalo más estrecho que el bootstrap por clusters.",
+   "Recalcula el intervalo de Wilson para 27/29 y compáralo con el 93.1 % (78–98 %) de agent-eval-jev."
+  ],
+  "crit": [
+   "Tus predicciones sobre los tres saboteados están escritas antes de correr, y coinciden con el depurador o explicas por qué no.",
+   "Explicas por qué D4 no es un check del depurador.",
+   "Tu Wilson para 27/29 da aproximadamente 78–98 %.",
+   "Tu conclusión “A es mejor que B” se apoya en intervalos, no en el punto."
+  ],
+  "deliver": "Predicciones D1/D2/D3 con su verificación + demo de bootstrap por clusters + Wilson recalculado.",
+  "mut": "Sabotea un par (energía ×1.05) y predice qué check lo marca antes de correr.",
+  "top": "Concluyes en tu propio proyecto si “A es mejor que B” con intervalos por clusters."
+ },
+ "m26": {
+  "title": "Verificar una prueba formal sin ser matemático — recompilar, checkers independientes y enunciados mutados",
+  "hours": "~6 h (más 1–2 h de cómputo si recompilas Lean)",
+  "mentor": "No soy matemático y no reviso la matemática de OpenAI. Reviso sus pruebas en Lean como revisaría cualquier entrega importante: las recompilo desde la fuente, las vuelvo a verificar con herramientas independientes, intento que la verificación falle a propósito y dejo cada paso con su comando, su hash y su código de salida. Un verificador formal también es un guardia, y también se prueba.",
+  "kid": "El profe revisa que cada cuenta de la tarea esté bien hecha; tú revisas otra cosa: que la tarea sea la que pidieron, que nadie la trajo copiada y que el profe sí pone mala nota cuando le cambias la pregunta.",
+  "obj": [
+   "Nombrar las cuatro cosas que Lean no comprueba y qué paso del protocolo cubre cada una.",
+   "Correr <code>python3 verificar.py</code> y las seis comprobaciones por separado, y explicar qué recalcula cada una y qué solo verifica por hash.",
+   "Leer un recibo (comando, hashes de entradas y salidas, exit code) y detectar con un script un log ausente, uno sustituido y un recibo sin exit code.",
+   "Explicar con el caso <code>primes/defeq</code> por qué un rechazo de Comparator significa «el enunciado cambió», no «es falso».",
+   "Explicar cómo se detectaron 7 dependencias precompiladas en una compilación que parecía limpia."
+  ],
+  "pre": "Módulos de pipelines (exit codes, artefactos) y de prerregistro y reproducibilidad (hashes, recibos, huellas). Lógica básica: ∀, ∃, ⇒. Para la pista A no necesitas saber Lean.",
+  "theory": [
+   "<b>Qué comprueba Lean y qué no.</b> Lean comprueba que cada paso de la demostración es válido. No comprueba cómo se compiló la prueba, si el enunciado verificado es el que se pretendía, si coincide con el problema tal como lo escribió Clay, ni si la evidencia publicada es la que de verdad se produjo (<code>README.es.md §El método</code>). Esos cuatro huecos son trabajo de QA.",
+   "<b>Recompilar desde la fuente.</b> scientific-qa-evidence hizo cinco compilaciones de las pruebas de OpenAI; las dos últimas, B4 y B5, con <code>lake --no-cache build</code>: exit 0, 11.424 jobs, 1 h 29 min y 1 h 16 min, todas las dependencias compiladas en local.",
+   "<b>Cadena de suministro.</b> La compilación B3 parecía limpia y había recibido en silencio 7 dependencias precompiladas de Reservoir. El log no lo mostraba; lo destapó comparar las fechas de los <code>.olean</code> con el inicio de la compilación (<code>FINDINGS.md</code>, hallazgo 1). Por eso existe B4.",
+   "<b>Checkers independientes.</b> Comparator comprueba que la solución prueba exactamente el teorema del archivo de desafío y que solo usa los axiomas permitidos (<code>propext</code>, <code>Quot.sound</code>, <code>Classical.choice</code>), con dos kernels: el de Lean y nanoda. <code>leanchecker --fresh</code> revisó desde un entorno vacío, pero usa el kernel de Lean, así que no es una tercera implementación; <code>lean4lean</code> no compiló para Lean 4.34.",
+   "<b>El acuerdo entre dos kernels tiene un límite.</b> En julio de 2026 un bug de Lean y otro distinto de nanoda dejaron pasar la misma prueba falsa. Dos kernels que aceptan no dicen nada sobre bugs que nadie conoce todavía (<code>README.es.md §Limitaciones conocidas</code>).",
+   "<b>Mutar el enunciado, nunca la prueba.</b> Seis cambios de un símbolo al desafío fueron rechazados con <code>Challenge and solution theorem statement do not match</code>, y un control de solo comentario fue aceptado. El control es lo que muestra que el verificador no rechaza todo por defecto.",
+   "<b>Rechazado no quiere decir falso.</b> Con tres teoremas que Mathlib ya prueba, Comparator rechazó los 8 enunciados cambiados, incluidos 4 equivalentes. Hasta <code>n + 1 ≤ p</code>, que para Lean es por definición lo mismo que <code>n &lt; p</code>, se rechazó. Una <b>segunda vía</b> en Lean clasificó cada caso: equivalente, más débil o falso.",
+   "<b>La guarda.</b> Dos enunciados verdaderos cualesquiera son «equivalentes», así que una equivalencia solo cuenta si su prueba no usa el teorema bajo prueba. La guarda recorrió 1.485 constantes y rechazó a propósito una prueba tramposa que dependía de <code>Nat.exists_infinite_primes</code>.",
+   "<b>Recibos frente a hashes.</b> Un recibo que nombra un log ausente lo detecta P6; un log viejo de otra corrida con el nombre correcto pasa P6. Solo atar cada recibo al hash registrado al correr el paso detecta los dos. Es práctica de in-toto y SLSA, no una técnica nueva, y tiene su límite: no autentica el origen si alguien puede cambiar el archivo y también el hash registrado.",
+   "<b>Alcance honesto.</b> El repo no demuestra nada nuevo, no reclama ningún resultado del Premio del Milenio y no es una revisión matemática. Dice «no se encontró un defecto en este alcance», no «está certificado»."
+  ],
+  "res": [
+   {
+    "label": "Laboratorio: criguex/scientific-qa-evidence",
+    "type": "Repo · público"
+   },
+   {
+    "label": "REPRODUCE.md — qué se recalcula y qué se verifica por hash",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "mathlib-controls/DESIGN.md — controles prerregistrados",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "Guía de reproducción independiente (Linux, más de 1 h)",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "leanprover/comparator",
+    "type": "Repo · gratis"
+   },
+   {
+    "label": "nanoda — segundo kernel",
+    "type": "Repo · gratis"
+   },
+   {
+    "label": "Theorem Proving in Lean 4",
+    "type": "Libro · gratis"
+   },
+   {
+    "label": "in-toto — cadena de custodia de cada paso",
+    "type": "Docs · gratis"
+   }
+  ],
+  "hands": [
+   "<b>Paso 1 · La comprobación de un comando.</b> Solo Python 3.9 o más reciente, sin dependencias, en menos de un minuto:<pre><code>git clone https://github.com/criguex/scientific-qa-evidence.git\ncd scientific-qa-evidence\npython3 verificar.py; echo \"exit=$?\"</code></pre>Debe mostrar las seis comprobaciones en <code>[OK]</code>, «Resultado: las 6 comprobaciones salieron OK en tu computador.», una línea <code>Tu huella: XXXX-XXXX-XXXX</code> y <code>exit=0</code>. Compara tu huella con la de un compañero que tenga el mismo commit.",
+   "<b>Paso 2 · Las mismas comprobaciones, una por una</b> (están en el README):<pre><code>shasum -a 256 -c evidence/SHA256SUMS.txt\npython3 evidence/verify_numerical.py\n(cd evidence/numerical/source &amp;&amp; python3 -m unittest test_runner)\npython3 evidence/test_consistency.py\npython3 experiments/mathlib-controls/verify.py\n(cd experiments/receipt-check &amp;&amp; python3 -m unittest test_results)</code></pre>",
+   "<b>Paso 3 · Lee un recibo.</b> <code>head -n 1 experiments/mathlib-controls/results/receipts.jsonl</code>. Ubica <code>command</code> (<code>lake env comparator QAControls/configs/PrimesOrig.json</code>), los SHA-256 de las tres entradas, <code>stdout_sha256</code>, <code>stderr_sha256</code>, <code>exit_code</code>, <code>started</code> y <code>finished</code>.",
+   "<b>Paso 4 · Lee el rechazo real de un mutante.</b> <code>cat experiments/mathlib-controls/results/comparator/PrimesSwap.stdout.log</code> termina en <code>uncaught exception: Challenge and solution theorem statement do not match: 'QAControls.primes_infinite'</code>. Es el caso de los cuantificadores invertidos (<code>∃ p, ∀ n, n &lt; p ∧ p.Prime</code>), que además se refutó por la segunda vía.",
+   "<b>Paso 5 · Recalcula las 11 clases.</b> <code>python3 experiments/mathlib-controls/verify.py</code> imprime una fila por caso (por ejemplo <code>primes/defeq  REJECTED_STATEMENT  CHANGED_EQUIVALENT  OK</code>) y cierra con <code>PASS: 11 cases match the pre-registered classes; controls as registered.</code> Fíjate en la última frase: comprueba los registros contra sus recibos, no vuelve a ejecutar Lean.",
+   "<b>Paso 6 (opcional) · Recompilar.</b> Si tienes una máquina Linux potente y tiempo, sigue <code>docs/INDEPENDENT_REPRODUCTION.md</code>: la compilación sin caché pasa de una hora. El informe que pide trae commit de la fuente, <code>lean --version</code>, <code>lake --version</code>, hashes de los binarios y una tabla de pasos con comando, inicio, fin y exit code. Un resultado distinto también se publica.",
+   "<b>Ejercicio verificable · Pista A (sin Lean, obligatoria).</b> Para tres pasos de un CI tuyo escribe un <code>recibos.jsonl</code> con comando, SHA-256 de entradas, SHA-256 de stdout y stderr, exit code, inicio y fin (el mismo formato del paso 3). Escribe <code>verificar_recibos.py</code>, que sale con 1 si un log falta, si un log no coincide con su hash o si un recibo no trae exit code; son las mismas aserciones de <code>experiments/mathlib-controls/verify.py</code>. Pruébalo con una copia limpia y tres mutantes sembrados: log borrado, log viejo con el nombre correcto y recibo sin exit code. Agrega una tabla de los 11 casos Mathlib con el veredicto de Comparator, la clase y una frase de por qué ese rechazo no prueba que el enunciado sea falso.",
+   "<b>Pista B (con Lean, para el nivel 4 de la rúbrica).</b> Instala Lean con elan y, con un enunciado sencillo de Lean core, escribe 4 mutantes: al menos uno equivalente, uno más débil y uno falso. Clasifica cada uno por una segunda vía (prueba de equivalencia, implicación en un sentido con un contraejemplo del otro, refutación). Corre <code>#print axioms</code> sobre cada prueba y guarda un recibo por corrida."
+  ],
+  "crit": [
+   "<code>python3 verificar.py</code> da seis <code>[OK]</code> y exit 0; anotas la huella con el commit y el sistema operativo.",
+   "Tu <code>verificar_recibos.py</code> sale con 0 en la copia limpia y con 1 en cada uno de los tres mutantes sembrados; las cuatro corridas tienen su propio recibo con exit code.",
+   "El log viejo con el nombre correcto también sale en 1: tu chequeo compara hashes, no solo que el archivo exista.",
+   "La tabla de los 11 casos coincide con <code>verify.py</code> y explica por qué <code>primes/defeq</code> se rechaza aunque es lo mismo por definición.",
+   "Ninguna frase de tu reporte dice «el teorema es falso» o «está probado» a partir de un rechazo o una aceptación de Comparator."
+  ],
+  "deliver": "recibos.jsonl + verificar_recibos.py con 1 control y 3 mutantes + tabla de los 11 casos Mathlib + (pista B) 4 mutantes de enunciado clasificados.",
+  "mut": "Prueba al verificador de evidencia en una copia del repo. Mutante 1: <code>cp experiments/mathlib-controls/results/comparator/PrimesOrig.stdout.log experiments/mathlib-controls/results/comparator/PrimesSwap.stdout.log</code> y corre <code>python3 experiments/mathlib-controls/verify.py; echo \"exit=$?\"</code>: debe caerse con <code>AssertionError: stdout hash mismatch: PrimesSwap</code> y un exit distinto de 0. Mutante 2: restaura con <code>git checkout .</code> y cambia en <code>results/receipts.jsonl</code> el <code>exit_code</code> del recibo de Comparator de <code>PrimesSwap</code> de 1 a 0: <code>verify.py</code> sale con 1 y <code>verificar.py</code> marca <code>[FALLA]</code> en «Archivos intactos» y en «Recibos de los controles Mathlib», con otra huella. Si alguno pasara en verde, el guardia de la evidencia estaría dormido.",
+  "top": "Completas la pista B: 4 mutantes de un enunciado en Lean con su clase demostrada por una segunda vía, <code>#print axioms</code> sin <code>sorryAx</code> y un recibo por corrida; y en una compilación propia muestras, comparando las fechas de los <code>.olean</code> con el inicio, si hubo artefactos precompilados."
+ },
+ "m31": {
+  "title": "Prueba a ciegas con compromiso por hash — que quien prueba no conozca las trampas",
+  "hours": "~6 h",
+  "mentor": "En las rondas 1 a 4 del depurador inventé yo mismo las trampas y el detective. Eso tiene un techo: sin querer, uno diseña trampas que su propio chequeo sabe atrapar. La ronda 5 pregunta otra cosa: ¿el depurador atrapa trampas que no diseñé, sin marcar como malas las predicciones correctas? Para que esa respuesta valga, quien prepara las trampas compromete el hash de sus etiquetas antes de entregarme nada.",
+  "kid": "Antes de que tu amigo revise las cajas, escribes en un papel cuáles tienen trampa y lo guardas en un sobre sellado; al final abres el sobre y todos ven que no cambiaste nada.",
+  "obj": [
+   "Diseñar una prueba a ciegas con ids aleatorios, proporción secreta y etiquetas con sal.",
+   "Comprometer el SHA-256 de las etiquetas (o de una semilla) antes de entregar nada, y verificarlo al revelar.",
+   "Congelar la regla de decisión y los umbrales antes de abrir las trampas.",
+   "Reportar falsas alarmas, trampas detectadas y trampas escapadas por tipo y magnitud, incluidas las que quedan bajo el piso de detección.",
+   "Reproducir un compromiso real: la semilla de blind-faults y la asignación byte a byte."
+  ],
+  "pre": "Módulo de prerregistro y reproducibilidad (hashes y huellas) y módulo de ejecución de mutantes o WAR Paradigm (mutantes como datos). Python básico y <code>shasum</code>.",
+  "theory": [
+   "<b>El problema.</b> Si quien construye el chequeo conoce las trampas, puede afinarlo a ellas sin darse cuenta. En la ronda 5 de predictor-debugger otra persona prepara los pares, y «se vale leer el código del depurador y apuntar justo debajo de sus umbrales» (<code>round5/KIT.md</code>).",
+   "<b>Compromiso por hash.</b> Quien prepara las trampas calcula <code>shasum -a 256 etiquetas.json</code> y manda <b>solo ese hash</b> antes de entregar nada más. Al final revela el archivo y cualquiera comprueba que el hash coincide. Si cambió una sola letra, no coincide.",
+   "<b>La sal.</b> <code>etiquetas.json</code> lleva un campo <code>sal</code> de 32 caracteres hexadecimales aleatorios. Sin ella, quien conoce el formato podría probar etiquetados posibles hasta dar con el hash; con ella, el hash no deja adivinar el contenido.",
+   "<b>Hora pública.</b> El hash se sube al repo en <code>round5/compromisos/&lt;usuario&gt;.txt</code>, y GitHub le pone la hora antes de que lleguen los pares; el mensaje original sirve de respaldo, y se puede publicar además en un issue.",
+   "<b>Nada filtra la etiqueta.</b> Al menos 100 pares, cada uno como <code>pares/&lt;id&gt;.npz</code>, con ids aleatorios (<code>secrets.token_hex(4)</code>) sin relación con la etiqueta ni con el orden. La proporción de correctos y trampas es libre y secreta. La entrega va con su lista de hashes: <code>shasum -a 256 pares/*.npz &gt; pares.sha256</code>.",
+   "<b>El que prueba también se compromete.</b> Antes de abrir los pares, prerregistra y sube con hora la regla de decisión y los umbrales congelados (paso 6 del kit). Después corre y publica los veredictos. Solo entonces llega <code>etiquetas.json</code>.",
+   "<b>Qué se reporta.</b> Falsas alarmas sobre los pares correctos (lo esperado es 0) y trampas detectadas por tipo y por tamaño, incluidas las que no vio: «lo que quede por debajo se reporta como no detectado, no se esconde». El depurador tiene un piso de detección medido en la ronda 3.",
+   "<b>Comprometer una semilla en vez de etiquetas.</b> En el benchmark de fallos a ciegas de scientific-qa-evidence, el autor generó la semilla con <code>openssl rand -hex 16</code> fuera de la sesión del asistente y publicó solo su SHA-256. Regla 2: quien corre los chequeos no lee la semilla ni la clave hasta registrar todos los resultados; el repo admite que el asistente tenía acceso al disco, así que esa regla descansa en el compromiso. Regla 4: si la semilla se pierde o se edita, el experimento se anula.",
+   "<b>Ciego no quiere decir perfecto.</b> En ese benchmark, la línea base marcó 3 de 21 casos y el protocolo 15 de 21; después, cuatro rondas de revisión encontraron 17 problemas en el propio experimento, la v1 se conservó con fe de erratas y el resultado se presenta como un benchmark de regresión, no como una tasa de detección real."
+  ],
+  "res": [
+   {
+    "label": "Laboratorio: predictor-debugger · round5/KIT.md",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "scientific-qa-evidence · SEED_COMMITMENT.md",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "blind-faults · RESULTS.md (reproducir la asignación)",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "Commitment scheme (concepto)",
+    "type": "Artículo · gratis"
+   },
+   {
+    "label": "Python — hashlib",
+    "type": "Docs · gratis"
+   }
+  ],
+  "hands": [
+   "<b>Paso 1 · Verifica un compromiso real.</b><pre><code>git clone https://github.com/criguex/scientific-qa-evidence.git\ncd scientific-qa-evidence/experiments/blind-faults\nshasum -a 256 semilla-experimento.txt</code></pre>Debe imprimir <code>6ab9f825a6e0102f06589795a3f3afb81b954ec054362e7e0352018547614d5e</code>, el mismo hash publicado en <code>SEED_COMMITMENT.md</code> antes de asignar ningún fallo.",
+   "<b>Paso 2 · Reproduce la asignación desde la semilla revelada</b> (receta de <code>RESULTS.md</code>):<pre><code>mkdir /tmp/repro &amp;&amp; cp protocol_lib.py assign.py /tmp/repro/\n(cd /tmp/repro &amp;&amp; python3 assign.py --seed-file \"$OLDPWD/semilla-experimento.txt\" --out cases)\ndiff /tmp/repro/key.json key.json &amp;&amp; diff -r /tmp/repro/cases cases &amp;&amp; echo identical</code></pre>Debe terminar en <code>identical</code>: la clave y los 21 casos salen byte a byte desde la semilla.",
+   "<b>Paso 3 · Arma una ronda 5 en miniatura.</b> En la raíz de predictor-debugger (necesitas uv), guarda estos tres scripts. <code>preparar.py</code> usa el código del paso 1 del kit y arma 20 pares: correctos en float64 y en float32, y trampas de energía ×1,05, de energía ×1,0001 y de ruido. Persona A:<pre><code>import json, secrets, sys\nfrom pathlib import Path\nimport numpy as np\nfrom pd import flow\nfrom pd.initial import random_field\nfrom pd.data import advance\n\ns = flow()\nout = Path(sys.argv[1]); (out / \"pares\").mkdir(parents=True, exist_ok=True)\ntrampas = {\n    \"correcto\": lambda u: u,\n    \"float32\": lambda u: u.astype(np.float32).astype(np.float64),\n    \"energia x1.05\": lambda u: 1.05 * u,\n    \"energia x1.0001\": lambda u: 1.0001 * u,\n    \"ruido 1e-3\": lambda u: u + 1e-3 * np.random.default_rng(secrets.randbits(32)).standard_normal(u.shape),\n}\netiquetas = {\"sal\": secrets.token_hex(16), \"pares\": {}}\nfor tipo, f in trampas.items():\n    for _ in range(4):\n        seed = 10001 + secrets.randbelow(10**6)\n        u0 = advance(s, random_field(s, seed, 3))\n        exacto = advance(s, u0)\n        u1 = f(exacto)\n        pid = secrets.token_hex(4)\n        np.savez(out / \"pares\" / f\"{pid}.npz\", u0=u0, u1=u1)\n        mag = float(np.linalg.norm(u1 - exacto) / np.linalg.norm(exacto))\n        etiqueta = \"correcto\" if tipo in (\"correcto\", \"float32\") else \"trampa\"\n        etiquetas[\"pares\"][pid] = {\"etiqueta\": etiqueta, \"tipo\": tipo, \"magnitud\": mag}\n(out / \"etiquetas.json\").write_text(json.dumps(etiquetas, indent=1))</code></pre><pre><code>uv run --locked python preparar.py ronda\nshasum -a 256 ronda/etiquetas.json &gt; compromiso.txt</code></pre>A commitea y publica solo <code>compromiso.txt</code> y entrega la carpeta <code>ronda/pares/</code>; <code>etiquetas.json</code> se queda en su máquina.",
+   "<b>Paso 4 · Persona B revisa a ciegas</b> con los chequeos D1, D2 y D3 de la ronda 1 (<code>pd/checks.py</code>) y los umbrales congelados de <code>thresholds.json</code>. Antes de correr, commitea <code>shasum -a 256 revisar.py thresholds.json</code> como su regla congelada.<pre><code>import json, sys\nfrom pathlib import Path\nimport numpy as np\nfrom pd import flow, ROOT\nfrom pd.checks import statistics, flags\nfrom pd.data import advance\n\ns = flow()\ntau = json.loads((ROOT / \"thresholds.json\").read_text())[\"thresholds\"]\nveredictos = {}\nfor f in sorted(Path(sys.argv[1]).glob(\"*.npz\")):\n    d = np.load(f)\n    st = statistics(s, d[\"u0\"], d[\"u1\"], advance(s, d[\"u0\"]))\n    fl = flags(st, tau)\n    veredictos[f.stem] = {\"marcado\": fl[\"any\"], \"por\": [c for c in (\"D1\", \"D2\", \"D3\") if fl[c]]}\nprint(json.dumps(veredictos, indent=1))</code></pre><pre><code>uv run --locked python revisar.py pares &gt; veredictos.json</code></pre>B commitea <code>veredictos.json</code> antes de recibir nada más. Es el depurador de la ronda 1, no el de la ronda 5.",
+   "<b>Paso 5 · Revelación.</b> A entrega <code>etiquetas.json</code> y B corre:<pre><code>import hashlib, json, sys\nfrom collections import Counter\nfrom pathlib import Path\n\netiquetas, compromiso, veredictos = (Path(p) for p in sys.argv[1:4])\nh = hashlib.sha256(etiquetas.read_bytes()).hexdigest()\nesperado = compromiso.read_text().split()[0]\nif h != esperado:\n    print(f\"el hash no coincide: {h} != {esperado}\")\n    sys.exit(1)\ne = json.loads(etiquetas.read_text())[\"pares\"]\nv = json.loads(veredictos.read_text())\ntabla = Counter()\nfor pid, x in e.items():\n    marcado = v[pid][\"marcado\"]\n    if x[\"etiqueta\"] == \"correcto\":\n        tabla[(x[\"tipo\"], \"falsa alarma\" if marcado else \"aceptado bien\")] += 1\n    else:\n        tabla[(x[\"tipo\"], \"detectada\" if marcado else \"escapó\")] += 1\nfor (tipo, res), n in sorted(tabla.items()):\n    print(f\"{tipo:&lt;18} {res:&lt;14} {n}\")</code></pre><pre><code>uv run --locked python revelar.py etiquetas.json compromiso.txt veredictos.json; echo \"exit=$?\"</code></pre>En una corrida de prueba de este laboratorio, los 8 pares correctos (float64 y float32) quedaron aceptados, ×1,05 y el ruido quedaron detectados, y los 4 pares de ×1,0001 escaparon: es una trampa por debajo del piso, y se reporta como escapada, no se borra. Si preparas pares con k₀ distinto de 3 o sin pasos previos, espera falsas alarmas de D2 en pares correctos: es el mismo patrón que dejó el ledger de falsos positivos de la ronda 1 (paso 0 de las trayectorias con k₀ = 5).",
+   "<b>Ejercicio verificable · Prueba a ciegas en parejas.</b> Elige una de dos opciones: los pares del paso 3, o 20 mutantes del golden flow de <code>war-paradigm/experiments/02-mutants</code> declarados como datos en <code>tests/scenarios.ts</code>. La persona A prepara las trampas con ids aleatorios y proporción secreta, escribe <code>etiquetas.json</code> con sal y publica solo el hash. La persona B congela su regla, corre y publica los veredictos. A revela, B verifica con <code>shasum -a 256</code> y publica la tabla de falsas alarmas, detectadas y escapadas por tipo y magnitud."
+  ],
+  "crit": [
+   "<code>git log</code> muestra este orden: compromiso de A → regla congelada de B → veredictos de B → revelación.",
+   "<code>shasum -a 256 etiquetas.json</code> coincide con el hash comprometido.",
+   "Tu <code>revelar.py</code> sale con 1 con un <code>etiquetas.json</code> al que le cambiaste una sola palabra (lo muestras con su exit code).",
+   "Los ids son aleatorios y su orden no se relaciona con la etiqueta.",
+   "La tabla final tiene falsas alarmas, detectadas y escapadas por tipo; ninguna fila se quitó.",
+   "El reporte dice qué no prueba: por ejemplo, que A y B se conocen o que los umbrales son los de la ronda 1."
+  ],
+  "deliver": "compromiso.txt + regla congelada + veredictos.json + etiquetas.json revelado + tabla de resultados por tipo, todo con su orden en git log.",
+  "mut": "Ataca el compromiso. Después de publicar el hash, cambia una sola etiqueta de <code>\"trampa\"</code> a <code>\"correcto\"</code> en <code>etiquetas.json</code> y corre <code>revelar.py</code>: debe imprimir <code>el hash no coincide: …</code> y salir con 1. Restaura el archivo y cambia solo la sal: también debe fallar. Si tu verificación de la revelación pasa en cualquiera de los dos casos, el sobre no estaba sellado.",
+  "top": "Incluyes a propósito al menos una trampa pensada para quedar justo debajo de un umbral del chequeo, y el reporte la muestra como escapada si así fue."
+ },
+ "m12": {
+  "title": "Capstone «Auditoría WAR» — una auditoría que otra persona reproduce en un entorno limpio",
+  "hours": "~20 h + defensa",
+  "mentor": "Aquí juntas todo. Eliges un sistema, prerregistras qué vas a afirmar, rompes a propósito sus guardias, dejas que un asistente de IA ejecute bajo reglas que viven en el código y firmas tú. La prueba de fuego no es que te dé verde a ti: es que otra persona, en una máquina limpia y solo con tu paquete, corra un comando y obtenga la misma huella. Si no lo logra, la auditoría no está aprobada, aunque todo te funcione en tu computador.",
+  "kid": "Eres el inspector de los guardias: rompes cosas a propósito para ver si gritan, un robot te ayuda pero tú firmas, y al final un amigo repite todo en una caja nueva y le da el mismo resultado.",
+  "obj": [
+   "Integrar los tres ejes (QA asistida por IA, ejecución de mutantes y WAR Paradigm) en una auditoría de un sistema elegido.",
+   "Entregar un paquete que otra persona reproduce en un entorno limpio con un solo comando y la misma huella.",
+   "Probar al menos dos guardias distintos rompiendo algo a propósito, con un control que debe pasar y otro que debe fallar.",
+   "Separar en el reporte lo medido, lo que no se ejecutó, los límites y lo que te contradiría."
+  ],
+  "pre": "Pipelines, contenedores efímeros, ejecución de mutantes, WAR Paradigm, QA asistida por IA I y II, y los módulos de prerregistro y de prueba a ciegas. Si el sistema tiene IA: evaluar IA con juez y calibración y agentes.",
+  "theory": [
+   "<b>Los tres ejes en un solo entregable.</b> Eje A, QA asistida por IA: el asistente diseña y ejecuta, y una persona firma. Eje B, ejecución de mutantes: generar, correr, clasificar y medir el kill rate. Eje C, WAR Paradigm: toda suite, juez, hook o verificador es un guardia, y la única forma de saber si está despierto es romper algo a propósito y ver si grita.",
+   "<b>Eje A · reglas en código, no en prompts.</b> En war-paradigm 03, un hook <code>PreToolUse</code> de Claude Code bloquea con exit 2 cualquier <code>git push</code> a <code>main</code> o <code>master</code>, y la barrera se prueba al estilo WAR: 28 casos, incluidos comandos encadenados, intentan colarse.",
+   "<b>Eje A · registro de lo que hizo el asistente.</b> <code>scientific-qa-evidence/docs/CODEX_WORK_LOG.md</code> lista 19 sesiones con sus llamadas a herramientas, commits y el SHA-256 de cada archivo de sesión, y tiene una sección «What was not executed». Cada commit nombra al agente con un trailer <code>Co-Authored-By</code>, y la persona responde por cada afirmación. En el mismo registro hay una revisión doble a ciegas: dos jueces (<code>jd_tts_a</code>, <code>jd_tts_b</code>) y un corrector acotado (<code>tts_safety_fix</code>).",
+   "<b>Eje B · mutantes como datos.</b> En war-paradigm 02, <code>tests/scenarios.ts</code> declara un contrato por mutante, con un solo cambio cada uno, y el runner valida reset, login y la línea base antes de mutar. Solo <code>KILLED</code> y <code>SURVIVED</code> puntúan; <code>INCONCLUSIVE</code>, <code>INVALID_BASELINE</code> e <code>INFRA_ERROR</code> se ven pero quedan fuera del puntaje. Resultado publicado: 5/6 killed y 1 sobreviviente (self-grant), que es un bug real de autorización. <code>MUTANT_LAB_STRICT=1</code> hace fallar la corrida si sobrevive.",
+   "<b>Eje C · también se prueba la evidencia.</b> En receipt-check, un recibo que nombra un log ausente y un log viejo con el nombre correcto dejaron el resultado del procedimiento publicado sin cambios; solo la comprobación por hash detectó los dos. Tu paquete tiene que aguantar el mismo ataque.",
+   "<b>Reproducible en limpio.</b> El workflow <code>verify</code> de predictor-debugger corre en un runner nuevo de GitHub (<code>ubuntu-24.04</code>), instala con <code>uv run --locked</code> y exige la huella con <code>grep -q \"fingerprint: …\"</code> para cada máquina guardada. El workflow <code>reproduce</code> recalcula desde los datos publicados: la ronda 1 tardó 6 min 33 s con la descarga incluida.",
+   "<b>«Reproducido» no es «reproducido por un tercero».</b> La recompilación en la nube de scientific-qa-evidence la operó un asistente bajo dirección humana y su README lo declara: «No es independiente». Las tres máquinas de predictor-debugger son del autor. En este capstone, quien reproduce tiene que ser otra persona.",
+   "<b>Reporte honesto.</b> «Medido», «Lo que esto dice y lo que no», «Límites», «Qué me contradiría» y «Qué no se ejecutó». Cada número del README sale de un comando que se puede correr, con su exit code."
+  ],
+  "res": [
+   {
+    "label": "Modelo: war-paradigm (mutantes y hook)",
+    "type": "Repo · público"
+   },
+   {
+    "label": "Modelo: predictor-debugger (prerregistro, huellas, CI)",
+    "type": "Repo · público"
+   },
+   {
+    "label": "Modelo: scientific-qa-evidence (recibos, registro de IA)",
+    "type": "Repo · público"
+   },
+   {
+    "label": "CODEX_WORK_LOG.md — qué hizo el agente y qué no",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "Plantilla de reproducción independiente",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "in-toto — recibos por paso",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "Reproducible Builds",
+    "type": "Guía · gratis"
+   }
+  ],
+  "hands": [
+   "<b>Paso 1 · Corre las dos piezas modelo.</b> Mutantes y hook de war-paradigm (Node 20+ y git):<pre><code>git clone https://github.com/criguex/war-paradigm.git &amp;&amp; cd war-paradigm\nnpm ci &amp;&amp; npx playwright install --with-deps chromium\nnpm run demo:02\nnpm run test:strict -w experiments/02-mutants; echo \"exit=$?\"\nnpm run test:03 &amp;&amp; npm run demo:03</code></pre>La primera corrida debe cerrar con <code>5/6 scored mutants killed · 1 survived · 0 excluded from score</code>; la segunda, con <code>exit=1</code>, porque en modo estricto (<code>MUTANT_LAB_STRICT=1</code>) el sobreviviente conocido hace fallar la corrida. <code>npm run demo:03</code> muestra el hook bloqueando <code>git push origin main</code> con exit 2.",
+   "<b>Paso 2 · Ensaya la reproducción en limpio.</b> Toma un repo modelo y corre su verificación dentro de un contenedor que nace y muere con el comando:<pre><code>git clone https://github.com/criguex/scientific-qa-evidence.git sqe\ndocker run --rm -v \"$PWD/sqe\":/w -w /w python:3.12-slim python3 verificar.py; echo \"exit=$?\"</code></pre>En una corrida de este laboratorio, el mismo commit dio la misma huella en macOS con Python 3.9 y en el contenedor <code>python:3.12-slim</code>. Esa es la propiedad que tu paquete necesita.",
+   "<b>Paso 3 · Arma el paquete.</b> Estructura mínima: <code>PREREGISTRO.md</code> · <code>thresholds.json</code> · los mutantes como datos (<code>scenarios.*</code>) · <code>ledger.jsonl</code> · <code>receipts.jsonl</code> · un <code>verify</code> que recalcula veredictos e imprime una huella · lockfile (<code>package-lock.json</code> o <code>uv.lock</code>) · <code>.github/workflows/verify.yml</code> con <code>grep -q</code> de la huella · <code>REPRODUCE.md</code> con un solo comando · <code>LOG-IA.md</code> con las sesiones del asistente, sus comandos, exit codes, hashes y la sección «Qué no se ejecutó» · <code>README.md</code> con el reporte honesto.",
+   "<b>Paso 4 · El asistente ejecuta, tú firmas.</b> Instala un hook propio (puedes partir de <code>hooks/block-push-to-main.sh</code> y su <code>.claude/settings.json</code>) con su suite de ataques. Deja que el asistente corra la auditoría y anote cada paso en <code>receipts.jsonl</code>. Revisa el diff antes de cada merge y deja el trailer <code>Co-Authored-By</code> en sus commits.",
+   "<b>Paso 5 · La reproducción de otra persona.</b> Entrégale a alguien que no escribió el código solo la URL del repo. Esa persona sigue <code>REPRODUCE.md</code> en un entorno limpio (un contenedor efímero o un runner nuevo de CI) y publica un <code>REPRODUCCION-&lt;nombre&gt;.md</code> con el formato de <code>docs/INDEPENDENT_REPRODUCTION.md</code>: quién, fecha UTC, máquina, commit, versiones, una tabla de pasos con comando, inicio, fin y exit code, la huella y las diferencias. Lo publica tal cual, aunque le salga distinto.",
+   "<b>Paso 6 · Defensa.</b> 30–45 minutos ante alguien que no escribió el código: cada afirmación del README se defiende corriendo su comando en vivo."
+  ],
+  "crit": [
+   "<code>git log --reverse</code> muestra <code>PREREGISTRO.md</code> y <code>thresholds.json</code> antes del primer resultado.",
+   "Otra persona corrió <code>REPRODUCE.md</code> en un entorno limpio, con exit 0 y la misma huella, y su <code>REPRODUCCION-&lt;nombre&gt;.md</code> está en el repo sin editar.",
+   "Desde el JSON de mutantes se puede recalcular el kill rate como KILLED / (KILLED + SURVIVED); <code>INFRA_ERROR</code>, <code>INVALID_BASELINE</code> e <code>INCONCLUSIVE</code> quedan fuera del puntaje y cada <code>SURVIVED</code> está en el ledger con su causa.",
+   "El hook (o gate) tiene una suite de ataques que corre en CI y bloquea con exit distinto de 0 al menos un comando disfrazado.",
+   "Dos corridas registradas muestran que la verificación falla si cambias un byte de <code>thresholds.json</code> y si sustituyes un log por uno viejo con el mismo nombre.",
+   "El README tiene «Medido», «Lo que esto dice y lo que no», «Límites», «Qué me contradiría» y «Qué no se ejecutó», más la declaración del uso de IA.",
+   "Las cuatro filas de la rúbrica integrada están al menos en el nivel 3."
+  ],
+  "deliver": "Repo público con el paquete de auditoría WAR + REPRODUCCION-<nombre>.md de otra persona + defensa de 30–45 min.",
+  "mut": "Antes de entregar, ataca tu propio paquete como lo hizo receipt-check: (1) borra un log que nombra un recibo; (2) reemplaza otro log por uno viejo con el mismo nombre; (3) cambia un byte de <code>thresholds.json</code>. Tu <code>verify</code> debe salir con un código distinto de 0 en los tres casos y con 0 en el paquete limpio. Si solo detecta el log ausente, tu chequeo se comporta como P6, y eso se publica como hallazgo.",
+  "rubm": [
+   {
+    "row": "QA asistida por IA",
+    "levels": [
+     "El asistente ejecutó sin registro, o las reglas viven solo en el prompt.",
+     "Hay registro de sesiones, pero faltan comandos, exit codes o hashes, o el hook no tiene suite de ataques.",
+     "Hook o gate con suite de ataques en CI (exit 0); <code>receipts.jsonl</code> con cada comando, exit code y SHA-256; diff revisado por una persona y trailer <code>Co-Authored-By</code> en los commits del asistente.",
+     "Además, revisión doble a ciegas (dos revisores que no ven el trabajo del otro y un corrector acotado) y sección «Qué no se ejecutó»."
+    ]
+   },
+   {
+    "row": "Ejecución de mutantes",
+    "levels": [
+     "No hay mutantes o no hay línea base.",
+     "Hay mutantes, pero el kill rate cuenta fallos de infraestructura o de línea base, o falta el ledger.",
+     "Al menos 6 mutantes como datos, con un cambio cada uno; línea base válida; kill rate recalculable desde el JSON; cada SURVIVED en el ledger con causa; modo estricto que hace fallar al sobreviviente.",
+     "Además, el ledger prioriza la siguiente corrida y hay una ronda a ciegas con compromiso por hash verificada con <code>shasum -a 256</code>."
+    ]
+   },
+   {
+    "row": "WAR Paradigm",
+    "levels": [
+     "Solo se prueba el producto, nunca los guardias.",
+     "Se prueba un solo guardia (la suite o el juez).",
+     "Se prueban al menos dos guardias distintos (suite, juez, hook, gate o verificador de evidencia), cada uno con un control que debe pasar y otro que debe fallar, con su comando y exit code.",
+     "Además, se publica un guardia que falló (un sobreviviente o un falso verde) y qué cambió después, sin mover umbrales."
+    ]
+   },
+   {
+    "row": "Evidencia y reproducción",
+    "levels": [
+     "Afirmaciones sin un comando que las produzca.",
+     "Evidencia parcial, prerregistro posterior a los datos o huella distinta entre entornos.",
+     "Prerregistro anterior a los datos; lockfile y <code>--locked</code> o <code>npm ci</code>; misma huella en CI y en tu máquina; otra persona reproduce en un entorno limpio con exit 0 y la misma huella; README con Límites y Qué me contradiría.",
+     "Además, quien reproduce no tiene relación con el proyecto, usa otro sistema operativo y su reporte queda publicado tal cual, con las diferencias que encontró."
+    ]
+   }
+  ]
+ },
+ "m13": {
+  "title": "Tu carrera QA+IA — posicionamiento",
+  "hours": "~4 h",
+  "mentor": "El cierre. El rol sube de altitud: de escribir tests a diseñar estrategia y supervisar pruebas generadas por IA. Cuenta tu diferencial — tu proyecto de portafolio es la prueba.",
+  "kid": "Contar lo que sabes hacer es como mostrar tu mejor dibujo: no dices “dibujo bien”, lo enseñas.",
+  "obj": [
+   "Contar en 2 minutos qué te diferencia, con un proyecto que lo demuestre.",
+   "Escalar un contract mismatch con evidencia.",
+   "Mostrar tus números (kill rate, kappa, huella) junto al comando que los produce."
+  ],
+  "pre": "Proyecto final.",
+  "theory": [
+   "El nuevo perfil: de QA manual → Quality Engineering → “AI QA Engineer”.",
+   "Agentic testing: asistentes (Claude Code, Codex) que diseñan, corren y auditan pruebas; MCP para conectarlos a tus herramientas. La firma sigue siendo humana.",
+   "Comunicar hallazgos a stakeholders: “la automatización es el detector, no la razón; el beneficiario es el consumidor”.",
+   "Cómo escalar un contract mismatch con evidencia (cURL + response), sin “cambien el servicio para que pase mi test”."
+  ],
+  "res": [
+   {
+    "label": "Model Context Protocol (MCP)",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "Test Automation University (mantente al día)",
+    "type": "Curso · gratis"
+   }
+  ],
+  "hands": [
+   "Arma tu pitch de 2 min: qué te hace un QA aumentado y qué proyecto lo demuestra.",
+   "Redacta cómo reportarías un contract mismatch a un stakeholder con evidencia."
+  ],
+  "crit": [
+   "El pitch dura 2 minutos o menos y cita un proyecto tuyo con enlace.",
+   "El reporte del hallazgo trae curl + response e impacto en el consumidor.",
+   "Cada número del pitch sale de un comando que se puede correr."
+  ],
+  "deliver": "Pitch de posicionamiento + un ejemplo de reporte de hallazgo a stakeholder.",
+  "mut": "Tu diferencial medible: kill rate de tu suite, acuerdo de tu juez con etiquetas humanas, huellas reproducibles. Números que salen de un comando, no de un adjetivo.",
+  "top": "Tu repo de portafolio tiene README bilingüe con límites y una animación generada desde un log real."
+ }
+}

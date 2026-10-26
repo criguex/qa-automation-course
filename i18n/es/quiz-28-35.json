@@ -1,0 +1,1074 @@
+{
+ "m19": [
+  {
+   "q": "El DESIGN.md de predictor-debugger dice «Written before any dataset, model or prediction exists». Ya con datos, descubres que un umbral quedó mal escrito. ¿Qué cambio es legítimo?",
+   "o": [
+    "Corregir el umbral en el mismo archivo y volver a correr",
+    "Una enmienda al final del diseño con fecha, razón y commit, y solo si todavía no se evaluó el split de test",
+    "Ajustarlo hasta que los controles pasen",
+    "Ninguno: un prerregistro nunca se toca"
+   ],
+   "a": 1,
+   "why": "El diseño admite enmiendas fechadas, razonadas y con commit, pero ninguna después de evaluar el test. Así cualquiera ve qué cambió y cuándo, y nadie ajusta un umbral al resultado."
+  },
+  {
+   "q": "H14 pedía una media de ρ ≥ 0,7 con IC inferior ≥ 0,5 en las cuatro redes, y P2gbest sacó 0,635 [0,413; 0,795]. ¿Qué se hizo?",
+   "o": [
+    "Bajar el criterio a 0,6 porque estaba cerca",
+    "Quitar P2gbest por ser la peor red",
+    "Publicar H14 como FALLA sin tocar nada y prerregistrar una idea nueva (H17) para la ronda 4",
+    "Repetir la corrida con otra semilla hasta que pasara"
+   ],
+   "a": 2,
+   "why": "«No se cambió nada para arreglarlo.» El fallo quedó publicado y motivó H17, que se prerregistró aparte y pasó en las cuatro redes."
+  },
+  {
+   "q": "¿Para qué exigía H14 que su comparador barato, ΣD3, NO cumpliera el mismo criterio?",
+   "o": [
+    "Para que el resultado discrimine: si un comparador sencillo también cumple, la hipótesis no demuestra que el chequeo nuevo aporte algo",
+    "Para tener más hipótesis en la tabla",
+    "Porque ΣD3 es un control positivo",
+    "Para acelerar el cálculo"
+   ],
+   "a": 0,
+   "why": "Por eso hay tres salidas: PASS, NON-DISCRIMINATIVE (cumplen los dos) y FAIL. Un comparador que debe fallar es un control negativo de la propia hipótesis."
+  },
+  {
+   "q": "Cambias una letra del hostname dentro de thresholds.json, sin tocar ningún umbral, y corres verify.py --saved mac. ¿Qué pasa?",
+   "o": [
+    "Nada: los umbrales son los mismos",
+    "Los veredictos siguen iguales, pero aparece «changed thresholds.json», la huella cambia y el comando sale con 1",
+    "El script se cae con una excepción",
+    "Cambian los veredictos de H1 a H4"
+   ],
+   "a": 1,
+   "why": "La huella incluye el hash de thresholds.json y check_files compara contra MANIFEST.sha256. Cualquier byte cambiado se nota, aunque no afecte ningún número."
+  },
+  {
+   "q": "round3/verify.py --saved mac imprime H14 … FAIL y aun así sale con código 0. ¿Por qué está bien?",
+   "o": [
+    "Es un bug del script",
+    "El verificador comprueba que reproduces lo publicado (mismos veredictos y misma huella), no que todas las hipótesis pasen",
+    "Porque H14 era exploratoria",
+    "Porque el FAIL solo cuenta en el Mac"
+   ],
+   "a": 1,
+   "why": "Reproducir un fallo publicado también es reproducir. El código de salida dice si tu resultado coincide con el guardado, no si el experimento salió bien."
+  },
+  {
+   "q": "Al regenerar los datos, ningún archivo de WAR, GUERRA o Linux salió igual bit a bit al del Mac (máximo 8,9e-16). ¿Qué conclusión es la correcta?",
+   "o": [
+    "La reproducción falló",
+    "Hay que exigir bits idénticos y repetir",
+    "Los archivos del Mac quedan como canónicos, la diferencia se reporta y lo que se compara entre máquinas son veredictos y huellas, que coinciden",
+    "Hay que quedarse con la máquina que dio menos diferencia"
+   ],
+   "a": 2,
+   "why": "Bit-idéntico no es lo mismo que veredicto-idéntico. Una diferencia del orden del épsilon de float64 se reporta, no se esconde, y no cambia ningún veredicto."
+  },
+  {
+   "q": "cluster_bootstrap remuestrea trayectorias completas y no pasos sueltos. ¿Por qué?",
+   "o": [
+    "Porque es más rápido",
+    "Porque los pasos de una misma trayectoria dependen entre sí; remuestrearlos uno por uno trata datos correlacionados como independientes y da un intervalo engañosamente estrecho",
+    "Porque scipy no permite remuestrear pasos",
+    "Porque así el IC sale más alto"
+   ],
+   "a": 1,
+   "why": "La unidad independiente es la trayectoria. Con 2.000 réplicas y semilla fija (20261024), el intervalo refleja cuánto cambiaría el resultado con otras trayectorias."
+  },
+  {
+   "q": "Tus tres máquinas dan la misma huella. ¿Qué puedes escribir en el README?",
+   "o": [
+    "Que el resultado está verificado independientemente",
+    "Que el resultado se reproduce en esos entornos, y que como son tuyos no es una reproducción independiente",
+    "Que ya no hacen falta más pruebas",
+    "Que el resultado es correcto"
+   ],
+   "a": 1,
+   "why": "Es lo que dice predictor-debugger en sus Límites. «Reproducido» y «reproducido por un tercero» son afirmaciones distintas, y el reporte honesto las separa."
+  },
+  {
+   "q": "¿Qué es prerregistrar?",
+   "o": [
+    "Inscribirse en una plataforma",
+    "Dejar hipótesis y umbrales en un commit antes de generar los datos",
+    "Guardar los resultados al final",
+    "Publicar un paper"
+   ],
+   "a": 1,
+   "why": "Así no puedes mover la meta después de ver el resultado."
+  },
+  {
+   "q": "H14 pedía ≥ 0.7 en las 4 redes y una sacó 0.635. ¿Qué haces?",
+   "o": [
+    "Bajo el umbral a 0.6",
+    "Reporto que H14 falló, sin cambiar nada, y estudio por qué",
+    "Quito esa red",
+    "No lo publico"
+   ],
+   "a": 1,
+   "why": "El fallo se publica; en predictor-debugger fue la semilla de H17."
+  },
+  {
+   "q": "¿Para qué sirve una huella como EEC9-09E0-F77D?",
+   "o": [
+    "Decoración",
+    "Resume los veredictos: si coincide en otra máquina, los veredictos coinciden; si algo cambia, cambia",
+    "Es una contraseña",
+    "Es la versión del código"
+   ],
+   "a": 1,
+   "why": "Comparar una huella corta es más fácil y más estricto que comparar tablas a ojo."
+  },
+  {
+   "q": "Regeneras los datos en Windows y difieren de los del Mac en 8.9e-16. ¿Conclusión?",
+   "o": [
+    "La prueba no es reproducible",
+    "No es bit-idéntico, pero los veredictos y la huella coinciden; por eso hay archivos canónicos",
+    "El Mac está mal",
+    "Hay un bug grave"
+   ],
+   "a": 1,
+   "why": "Bit-idéntico no es veredicto-idéntico. Se declara y se compara lo que importa."
+  },
+  {
+   "q": "Corriste todo en tres máquinas tuyas. ¿Cómo lo describes?",
+   "o": [
+    "Reproducción independiente",
+    "Reproducible en mis máquinas; no es independiente",
+    "Validado por la comunidad",
+    "Certificado"
+   ],
+   "a": 1,
+   "why": "Las palabras importan: “independiente” requiere a otra persona."
+  },
+  {
+   "q": "¿Por qué incluir comparadores que deberían fallar?",
+   "o": [
+    "Para rellenar",
+    "Para comprobar que la prueba distingue los casos previstos: probar al que prueba",
+    "Para bajar el promedio",
+    "Por costumbre"
+   ],
+   "a": 1,
+   "why": "Si el comparador malo también “pasa”, la prueba no discrimina."
+  },
+  {
+   "q": "uv run --locked sirve para…",
+   "o": [
+    "Bloquear el repo",
+    "Correr con las versiones exactas del lockfile",
+    "Cifrar",
+    "Acelerar Python"
+   ],
+   "a": 1,
+   "why": "Entorno fijado: las mismas versiones de Python y librerías en cada máquina."
+  },
+  {
+   "q": "Descargas un tar de datos. ¿Qué verificas antes de extraerlo?",
+   "o": [
+    "Nada",
+    "Su hash contra SHA256SUMS y que no traiga rutas absolutas, “..” ni enlaces",
+    "Solo el tamaño",
+    "El nombre"
+   ],
+   "a": 1,
+   "why": "Integridad y seguridad antes de tocar el disco."
+  },
+  {
+   "q": "¿Qué es “escribir qué te contradiría”?",
+   "o": [
+    "Una sección de agradecimientos",
+    "Listar los resultados que tumbarían tu conclusión: prueba a ciegas, otro régimen, otra persona con otra huella",
+    "Un FAQ",
+    "Disculparse"
+   ],
+   "a": 1,
+   "why": "Una afirmación que no puede fallar no dice nada."
+  },
+  {
+   "q": "Un compañero sugiere ajustar el umbral “solo un poquito” después de ver que una hipótesis falló por 0.065. ¿Respuesta?",
+   "o": [
+    "Vale, es poco",
+    "No: se reporta el fallo; si hay un umbral mejor, va prerregistrado para la siguiente ronda",
+    "Lo hago sin decirlo",
+    "Repito hasta que pase"
+   ],
+   "a": 1,
+   "why": "El tamaño del ajuste no importa: mover la meta después anula el prerregistro."
+  }
+ ],
+ "m32": [
+  {
+   "q": "La spec dice «ventana semanal (ej. 20 ago – 27 sep)». ¿Qué haces antes de construir?",
+   "o": [
+    "Programar el conteo cada 7 días y seguir",
+    "Contar los días del ejemplo (son 38) y preguntar qué es «una semana» para este sistema",
+    "Usar el rango tal cual, porque lo escribió el dueño",
+    "Esperar a que lo detecten las pruebas de aceptación"
+   ],
+   "a": 1,
+   "why": "Es F06. Todo conteo semanal depende de qué es una semana. Se detectó contando los días del ejemplo, sin una línea de código."
+  },
+  {
+   "q": "Tres pruebas de aceptación exigen un gasto de $0,2087 ± $0,01, un ruido del 67 % y una P50 entre 200 y 250 ms. ¿Cuál es el problema?",
+   "o": [
+    "Que los rangos son muy estrechos",
+    "Que copian los números de una semana de la demo: con datos reales fallan aunque el sistema funcione, o pasan aunque no funcione",
+    "Que faltan pruebas de interfaz",
+    "Ninguno: son verificables"
+   ],
+   "a": 1,
+   "why": "F10. Una prueba tiene que comprobar comportamiento. La propuesta fue una prueba con 10 señales fijas que revise el contrato JSON y las reglas de escalado."
+  },
+  {
+   "q": "El tablero muestra 85 % de señales «amenaza» y 67 % de «ruido», y las dos clases se excluyen. ¿Qué concluyes?",
+   "o": [
+    "Que hay mucho ruido",
+    "Que los dos números no pueden ser ciertos a la vez: con 67 % de ruido quedan como mucho 683 señales que no son ruido, y se reportan 1.753 amenazas",
+    "Que hay que subir el umbral",
+    "Que el modelo está mal entrenado"
+   ],
+   "a": 1,
+   "why": "F02. Porcentajes del mismo total que se excluyen no pueden pasar del 100 %. check_numbers.py lo marca con ✗."
+  },
+  {
+   "q": "check_numbers.py imprime «!» en F01 y F08. ¿Qué quiere decir?",
+   "o": [
+    "Que el chequeo no se pudo correr",
+    "Un número que puede ser cierto pero no está explicado; el script sale con 1 mientras quede alguno",
+    "Una contradicción grave",
+    "Un aviso que se puede ignorar"
+   ],
+   "a": 1,
+   "why": "✗ es contradicción y ! es «sin explicar». Los dos dejan el exit code en 1, porque los dos piden una respuesta del dueño antes de construir."
+  },
+  {
+   "q": "¿Qué significa que un hallazgo sea Bloqueante en este caso de estudio?",
+   "o": [
+    "Que es el más caro de arreglar",
+    "Que no se puede construir ni probar esa parte hasta que alguien responda",
+    "Que rompe la producción",
+    "Que lo encontró una herramienta automática"
+   ],
+   "a": 1,
+   "why": "Es la escala del caso. Y el repo aclara en sus Límites que la severidad es criterio de quien revisó, no una medición."
+  },
+  {
+   "q": "La spec pone un umbral de 0,85 sobre las probabilidades del clasificador LLM. ¿Qué pides?",
+   "o": [
+    "Subirlo a 0,9 por seguridad",
+    "Un plan de calibración con un conjunto etiquetado: en el caso, el dueño marca unas 100 señales y con eso se mide la precisión",
+    "Nada: 0,85 es un estándar",
+    "Cambiar de modelo"
+   ],
+   "a": 1,
+   "why": "F13. Un umbral sobre probabilidades sin calibrar no dice nada. La fase P2 tiene como puerta «precisión medida, no supuesta»."
+  },
+  {
+   "q": "En una copia de check_numbers.py cambias WEEK_SPEND a 0.40 y F08 sale ✓. ¿Qué aprendiste?",
+   "o": [
+    "Que el gasto de 0,40 quedó explicado",
+    "Que el chequeo de F08 tiene un punto ciego: solo marca cuando el gasto coincide con la entrada del clasificador; ese mutante sobrevive y hay que publicarlo",
+    "Que el script está roto y no sirve",
+    "Que hay que bajar la tolerancia de 0,002"
+   ],
+   "a": 1,
+   "why": "Es la idea WAR: el revisor también es un guardia. Un sobreviviente en tu propio chequeo es un hallazgo, no una vergüenza."
+  },
+  {
+   "q": "Notas que la spec se armó a partir de la demo de otra empresa. ¿Qué cambia?",
+   "o": [
+    "Nada",
+    "Que sus números son ejemplos, no requisitos, y cada cifra copiada se vuelve una pregunta para el dueño",
+    "Que hay que construir igual a la demo",
+    "Que se puede saltar la revisión"
+   ],
+   "a": 1,
+   "why": "Es el primer paso del proceso: saber de dónde salió la spec. En el caso, esa observación explica buena parte de los hallazgos F01 a F10."
+  },
+  {
+   "q": "La spec anuncia 14 competidores, lista 12 y el grafo dibuja 7. ¿En qué familia de problemas cae?",
+   "o": [
+    "Costos presentados como hechos",
+    "Números que no cuadran",
+    "Cosas que nadie definió",
+    "No es un problema"
+   ],
+   "a": 1,
+   "why": "Es F05: tres cifras distintas para lo mismo dentro de la misma spec."
+  },
+  {
+   "q": "¿Cuál es la puerta de la fase P1 del plan del caso de estudio?",
+   "o": [
+    "Ninguna",
+    "La prueba de 10 señales fijas que revisa el contrato JSON y las reglas de escalado",
+    "Una demo al cliente",
+    "Llegar a 85 % de precisión"
+   ],
+   "a": 1,
+   "why": "Una puerta verificable reemplaza a las pruebas que copiaban una semana de datos ajenos."
+  }
+ ],
+ "m24": [
+  {
+   "q": "¿Qué es un control positivo?",
+   "o": [
+    "Un test que siempre falla",
+    "Un caso que debe pasar (el solver exacto, el caso limpio), para comprobar que el chequeo no grita en falso",
+    "Un mock",
+    "Un umbral"
+   ],
+   "a": 1,
+   "why": "Si el control positivo falla, el problema es el chequeo."
+  },
+  {
+   "q": "¿Y un control negativo?",
+   "o": [
+    "Un test opcional",
+    "Un caso saboteado que debe fallar, para comprobar que el chequeo detecta",
+    "Un test lento",
+    "Un log"
+   ],
+   "a": 1,
+   "why": "Si el control negativo pasa, el chequeo está dormido."
+  },
+  {
+   "q": "El oráculo devuelve NaN. ¿Veredicto correcto?",
+   "o": [
+    "PASS",
+    "KILLED",
+    "Ni PASS ni KILLED: el oráculo es inválido",
+    "SURVIVED"
+   ],
+   "a": 2,
+   "why": "NaN nunca es PASS, y tampoco prueba que el mutante murió."
+  },
+  {
+   "q": "El oráculo lanza una excepción en un mutante. ¿Cuenta como KILLED?",
+   "o": [
+    "Sí",
+    "No: una excepción del oráculo no es un mutante muerto",
+    "Solo los lunes",
+    "Depende del umbral"
+   ],
+   "a": 1,
+   "why": "El mutante murió por la falla del arnés, no porque el chequeo lo detectara."
+  },
+  {
+   "q": "El runner decía oracle_valid: true con el oráculo fallado (hallazgo 8). ¿Lección?",
+   "o": [
+    "Confiar en el runner",
+    "Probar el arnés mismo, no solo lo que mide",
+    "Cambiar de lenguaje",
+    "Ninguna"
+   ],
+   "a": 1,
+   "why": "El arnés también es un guardia, y también se prueba."
+  },
+  {
+   "q": "¿Por qué el oráculo no debe compartir solver con la implementación?",
+   "o": [
+    "Por licencia",
+    "Porque compartiría sus errores y no los detectaría",
+    "Por velocidad",
+    "No importa"
+   ],
+   "a": 1,
+   "why": "Un oráculo independiente puede discrepar; uno que comparte código no."
+  },
+  {
+   "q": "La mutación diminuta del circuito RC sobrevive con tolerancia 10⁻⁶. ¿Qué haces?",
+   "o": [
+    "Bajo la tolerancia hasta que muera",
+    "La reporto SURVIVED: la tolerancia estaba congelada antes y el sobreviviente queda visible",
+    "La borro",
+    "La marco KILLED"
+   ],
+   "a": 1,
+   "why": "Bajar la tolerancia después de ver el resultado es mover la meta."
+  },
+  {
+   "q": "84 variantes: 27 PASS, 54 KILLED y 3 SURVIVED. ¿Kill rate?",
+   "o": [
+    "54/84",
+    "54/57 ≈ 95 %",
+    "27/84",
+    "100 %"
+   ],
+   "a": 1,
+   "why": "Los 27 PASS son líneas base y no cuentan: 54 / (54 + 3)."
+  }
+ ],
+ "m25": [
+  {
+   "q": "¿Qué ley vigila D1?",
+   "o": [
+    "La energía",
+    "La incompresibilidad: div u = 0",
+    "El momento",
+    "Ninguna"
+   ],
+   "a": 1,
+   "why": "Lo que entra a un pedacito de fluido tiene que salir."
+  },
+  {
+   "q": "P3b inyecta energía. ¿Qué check debería marcarla?",
+   "o": [
+    "D1",
+    "D2, el balance de energía",
+    "D4",
+    "Ninguno"
+   ],
+   "a": 1,
+   "why": "La energía cinética solo puede decaer por viscosidad."
+  },
+  {
+   "q": "¿Por qué D4 no es un check del depurador?",
+   "o": [
+    "Porque es lento",
+    "Porque compara contra la referencia exacta, que en uso real no existe; solo sirve para juzgar al depurador",
+    "Porque falla siempre",
+    "Sí lo es"
+   ],
+   "a": 1,
+   "why": "DESIGN.md lo separa: D4 mide al depurador, no lo reemplaza."
+  },
+  {
+   "q": "¿Qué se está probando en predictor-debugger?",
+   "o": [
+    "Que la red sea buena",
+    "Que el depurador distinga los controles: una red mala es un resultado aceptable",
+    "Que Python sea rápido",
+    "La GPU"
+   ],
+   "a": 1,
+   "why": "Es WAR puro: se prueba al que prueba."
+  },
+  {
+   "q": "Rollout de 20 pasos frente a one-step:",
+   "o": [
+    "Son iguales",
+    "En el rollout la red usa sus propias respuestas y los errores se arrastran",
+    "El rollout es más preciso",
+    "One-step es más largo"
+   ],
+   "a": 1,
+   "why": "Por eso H14 falló: sumar tamaños de error no capturaba hacia dónde se arrastraban."
+  },
+  {
+   "q": "Spearman mide…",
+   "o": [
+    "La media",
+    "Si dos variables se ordenan igual (correlación de rangos)",
+    "La varianza",
+    "El p95"
+   ],
+   "a": 1,
+   "why": "Sirve para saber si un chequeo ordena bien qué predicciones son peores."
+  },
+  {
+   "q": "¿Por qué bootstrap por trayectorias y no por pasos?",
+   "o": [
+    "Es más rápido",
+    "Porque los pasos de una trayectoria dependen entre sí; remuestrear pasos da intervalos más estrechos y engañosos",
+    "Por moda",
+    "No hay diferencia"
+   ],
+   "a": 1,
+   "why": "Se remuestrea la unidad independiente, no sus pedazos."
+  },
+  {
+   "q": "27 aciertos de 29. ¿Cómo lo reportas?",
+   "o": [
+    "93 %",
+    "93.1 % con intervalo de Wilson de 78–98 %",
+    "100 %",
+    "Casi todo"
+   ],
+   "a": 1,
+   "why": "Con 29 casos el intervalo es ancho, y hay que decirlo."
+  }
+ ],
+ "m26": [
+  {
+   "q": "Una prueba en Lean compila sin errores. ¿Cuál de estas cosas NO te garantiza Lean?",
+   "o": [
+    "Que cada paso de la demostración es válido",
+    "Que el enunciado verificado es el que se pretendía y que la evidencia publicada es la que se produjo",
+    "Que el kernel revisó la prueba",
+    "Que no hay errores de tipos"
+   ],
+   "a": 1,
+   "why": "Lean comprueba los pasos. Cómo se compiló, si el enunciado es el pretendido, si coincide con el texto de Clay y si la evidencia es la real quedan por fuera: eso es lo que cubre el protocolo de QA."
+  },
+  {
+   "q": "Comparator rechazó el enunciado con «n + 1 ≤ p» en lugar de «n < p». ¿Qué significa?",
+   "o": [
+    "Que el teorema nuevo es falso",
+    "Que el enunciado cambió de forma; para Lean los dos son lo mismo por definición, y saber si es equivalente, más débil o falso pide una segunda vía",
+    "Que Comparator tiene un bug",
+    "Que la prueba original está mal"
+   ],
+   "a": 1,
+   "why": "Comparator compara la forma exacta del enunciado. En los controles Mathlib rechazó los 8 cambios, incluidos 4 equivalentes. Rechazado quiere decir «cambió», no «falso»."
+  },
+  {
+   "q": "¿Para qué sirve el control de solo comentario junto a los seis mutantes del enunciado?",
+   "o": [
+    "Para tener siete casos",
+    "Para mostrar que el verificador no rechaza todo: un cambio que no altera el enunciado debe aceptarse",
+    "Para probar que los comentarios no compilan",
+    "Para medir la velocidad de Comparator"
+   ],
+   "a": 1,
+   "why": "Un resultado positivo solo no distingue un chequeo exacto de uno que rechaza cualquier cosa. El control que debe pasar es la otra mitad del experimento."
+  },
+  {
+   "q": "El kernel de Lean y nanoda aceptan la misma prueba. ¿Qué NO puedes concluir?",
+   "o": [
+    "Que dos implementaciones distintas la revisaron",
+    "Que la prueba usa solo los axiomas permitidos",
+    "Que no hay ningún bug de kernel sin descubrir que afecte a los dos",
+    "Que pasó Comparator"
+   ],
+   "a": 2,
+   "why": "En julio de 2026 un bug de Lean y otro de nanoda dejaron pasar la misma prueba falsa. El acuerdo entre dos kernels no dice nada sobre bugs desconocidos."
+  },
+  {
+   "q": "La compilación B3 parecía limpia y tenía 7 dependencias precompiladas. ¿Cómo se descubrió?",
+   "o": [
+    "Leyendo el log de lake",
+    "Comparando las fechas de los .olean con la hora de inicio de la compilación",
+    "Porque Comparator falló",
+    "Porque tardó menos de lo normal"
+   ],
+   "a": 1,
+   "why": "El log no lo mostraba. Un artefacto más viejo que el inicio de la compilación no se compiló ahí. Por eso existe B4, con lake --no-cache build."
+  },
+  {
+   "q": "Un recibo nombra un log que existe, pero ese log es de otra corrida. ¿Qué chequeo lo detecta?",
+   "o": [
+    "P6, que comprueba que el log exista",
+    "Volver a correr el procedimiento publicado de OpenAI",
+    "Comparar el log con el hash registrado al momento de correr el paso",
+    "Ninguno"
+   ],
+   "a": 2,
+   "why": "Es el caso 2 de receipt-check: el log viejo pasa P6 y el procedimiento publicado sale con 0 y la misma salida. Solo la comprobación por hash detecta el log ausente y el sustituido."
+  },
+  {
+   "q": "¿Por qué una equivalencia de la segunda vía solo cuenta si pasa la guarda de dependencias?",
+   "o": [
+    "Porque la guarda acelera Lean",
+    "Porque dos enunciados verdaderos son trivialmente equivalentes; si la prueba de equivalencia usa el teorema bajo prueba, no demuestra nada",
+    "Porque Mathlib lo exige",
+    "Porque así Comparator acepta el caso"
+   ],
+   "a": 1,
+   "why": "La guarda revisa las dependencias transitivas (1.485 constantes en el caso de los primos) y rechazó a propósito una prueba tramposa que usaba Nat.exists_infinite_primes."
+  },
+  {
+   "q": "experiments/mathlib-controls/verify.py imprime «PASS: 11 cases match the pre-registered classes». ¿Qué acabas de comprobar?",
+   "o": [
+    "Que Lean volvió a compilar los 11 casos en tu máquina",
+    "Que los registros publicados coinciden con sus recibos y que las clases recalculadas son las prerregistradas",
+    "Que los 11 teoremas son verdaderos",
+    "Que Comparator no tiene bugs"
+   ],
+   "a": 1,
+   "why": "El propio script lo dice: comprueba los registros contra sus recibos, no vuelve a ejecutar Lean. Decir exactamente qué se recalculó y qué solo se verificó por hash es parte del reporte honesto."
+  },
+  {
+   "q": "Comparator rechaza un enunciado mutado. ¿Qué significa?",
+   "o": [
+    "Que el teorema es falso",
+    "Que el enunciado cambió respecto al del desafío",
+    "Que Lean falló",
+    "Que Comparator tiene un bug"
+   ],
+   "a": 1,
+   "why": "Rechazado no es falso: hasta los mutantes equivalentes se rechazaron."
+  },
+  {
+   "q": "¿Para qué sirve el control de solo comentario?",
+   "o": [
+    "Decoración",
+    "Para comprobar que un cambio que no altera el enunciado sí se acepta: el guardia no grita en falso",
+    "Para documentar",
+    "Para acelerar"
+   ],
+   "a": 1,
+   "why": "Es el control positivo del verificador."
+  },
+  {
+   "q": "¿Qué revisas con #print axioms?",
+   "o": [
+    "El estilo",
+    "Qué axiomas usa la prueba; un sorryAx delataría una prueba incompleta",
+    "La velocidad",
+    "Las dependencias de npm"
+   ],
+   "a": 1,
+   "why": "Solo propext, Quot.sound y Classical.choice estaban permitidos."
+  },
+  {
+   "q": "Una compilación “limpia” recibió 7 dependencias precompiladas. ¿Cómo se destapó?",
+   "o": [
+    "Por el tamaño",
+    "Comparando las fechas de los .olean con el inicio de la compilación",
+    "Por un error de compilación",
+    "Por suerte"
+   ],
+   "a": 1,
+   "why": "Una compilación limpia no puede tener artefactos más viejos que su propio inicio."
+  },
+  {
+   "q": "¿Qué afirma scientific-qa-evidence sobre Navier–Stokes?",
+   "o": [
+    "Que lo resolvió",
+    "Que es una reproducción de QA de pruebas publicadas y no demuestra nada nuevo",
+    "Que el problema es falso",
+    "Que ganó el premio"
+   ],
+   "a": 1,
+   "why": "Sus límites lo dicen explícitamente."
+  }
+ ],
+ "m31": [
+  {
+   "q": "En la ronda 5 de predictor-debugger, ¿qué manda quien prepara las trampas ANTES de entregar los pares?",
+   "o": [
+    "Los pares y las etiquetas juntos",
+    "Solo el SHA-256 de su etiquetas.json",
+    "Una lista con la proporción de trampas",
+    "Nada: todo se entrega al final"
+   ],
+   "a": 1,
+   "why": "Paso 4 del kit: solo el hash, antes de entregar nada más. Así las etiquetas no se pueden cambiar después sin que se note."
+  },
+  {
+   "q": "¿Para qué lleva etiquetas.json un campo «sal» de 32 caracteres hexadecimales aleatorios?",
+   "o": [
+    "Para que el archivo pese más",
+    "Para que nadie pueda adivinar las etiquetas probando etiquetados posibles hasta dar con el hash publicado",
+    "Para firmar el archivo",
+    "Para ordenar los pares"
+   ],
+   "a": 1,
+   "why": "Un hash sin sal de un contenido predecible se puede adivinar probando. Con sal aleatoria, el hash compromete sin revelar."
+  },
+  {
+   "q": "Los ids de los pares son 0001, 0002, 0003… y las trampas van primero. ¿Qué problema hay?",
+   "o": [
+    "Ninguno",
+    "El orden filtra la etiqueta: el kit pide ids aleatorios (secrets.token_hex(4)) sin relación con la etiqueta ni con el orden",
+    "Que los ids son muy cortos",
+    "Que faltan ceros"
+   ],
+   "a": 1,
+   "why": "Si el revisor puede inferir la etiqueta por el nombre o el orden, la prueba ya no es ciega."
+  },
+  {
+   "q": "¿Qué congela y sube con hora quien corre el depurador antes de abrir los pares?",
+   "o": [
+    "Nada, solo corre",
+    "La regla de decisión y los umbrales",
+    "Las etiquetas",
+    "Su opinión sobre cada par"
+   ],
+   "a": 1,
+   "why": "Paso 6 del kit. El compromiso es de los dos lados: las trampas no pueden cambiar, y la regla que las juzga tampoco."
+  },
+  {
+   "q": "Una trampa de energía ×1,0001 queda por debajo del piso de detección y el depurador no la marca. ¿Qué se reporta?",
+   "o": [
+    "Se quita del conjunto porque era demasiado pequeña",
+    "Se reporta como no detectada, con su tipo y magnitud",
+    "Se bajan los umbrales y se vuelve a correr",
+    "Se cuenta como acierto"
+   ],
+   "a": 1,
+   "why": "El kit lo dice: lo que quede por debajo del piso se reporta como no detectado, no se esconde. Bajar el umbral después de ver las etiquetas rompería el ciego."
+  },
+  {
+   "q": "En blind-faults, ¿por qué la semilla se generó con openssl rand -hex 16 fuera de la sesión del asistente y solo se publicó su hash?",
+   "o": [
+    "Para ahorrar tiempo",
+    "Para que nadie, tampoco el asistente que corría los chequeos, conociera la asignación de fallos antes de registrar los resultados, y para que cualquier cambio de semilla se notara",
+    "Porque Python no genera números aleatorios",
+    "Para que la semilla fuera más corta"
+   ],
+   "a": 1,
+   "why": "Regla 2 de SEED_COMMITMENT.md. El repo admite que el asistente tenía acceso al disco, así que la regla descansa en el compromiso, y el hash publicado hace detectable cualquier cambio."
+  },
+  {
+   "q": "Revelas la semilla y quieres demostrar que la asignación fue la comprometida. ¿Qué haces?",
+   "o": [
+    "Lo afirmas en el README",
+    "Corres shasum -a 256 sobre la semilla, regeneras con assign.py en una carpeta aparte y comparas con diff contra key.json y los casos publicados",
+    "Vuelves a correr los chequeos",
+    "Pides a otra persona que confíe"
+   ],
+   "a": 1,
+   "why": "Es la receta de RESULTS.md: si el hash coincide y la regeneración sale idéntica byte a byte, la asignación fue la comprometida."
+  },
+  {
+   "q": "Un benchmark a ciegas salió bien y después una revisión encontró 17 problemas en su evaluador. ¿Qué hizo scientific-qa-evidence?",
+   "o": [
+    "Borró la primera versión",
+    "Conservó la v1 con fe de erratas, corrigió el evaluador en una v2 y lo presentó como benchmark de regresión, no como tasa real de detección",
+    "Ignoró la revisión",
+    "Repitió el experimento hasta que no hubiera problemas"
+   ],
+   "a": 1,
+   "why": "Una prueba ciega también puede tener defectos. Lo honesto es dejarlos visibles y acotar lo que se afirma."
+  },
+  {
+   "q": "En una prueba a ciegas, ¿cuándo se compromete el hash de las etiquetas?",
+   "o": [
+    "Después de ver el veredicto",
+    "Antes de entregar los casos",
+    "Nunca",
+    "Cuando falla"
+   ],
+   "a": 1,
+   "why": "Después ya no prueba nada."
+  },
+  {
+   "q": "¿Para qué la sal en el compromiso por hash?",
+   "o": [
+    "Sabor",
+    "Para que nadie adivine las etiquetas probando combinaciones contra el hash",
+    "Para comprimir",
+    "Para el log"
+   ],
+   "a": 1,
+   "why": "Sin sal, unas pocas etiquetas posibles se pueden descubrir por fuerza bruta."
+  },
+  {
+   "q": "Se revela el archivo y su SHA-256 no coincide con el comprometido. ¿Conclusión?",
+   "o": [
+    "No importa",
+    "La prueba a ciegas no vale: las etiquetas cambiaron después del compromiso",
+    "Hay que repetir el hash hasta que coincida",
+    "El veredicto sube"
+   ],
+   "a": 1,
+   "why": "El compromiso existe justo para detectar eso."
+  }
+ ],
+ "m12": [
+  {
+   "q": "Tu auditoría corre en verde en tu laptop y en tu CI, pero la persona que intentó reproducirla no logró la misma huella. ¿Está aprobada?",
+   "o": [
+    "Sí, porque a ti te funciona",
+    "No: el criterio es que otra persona la reproduzca en un entorno limpio con la misma huella; su reporte se publica tal cual y la diferencia se investiga",
+    "Sí, si el CI está verde",
+    "Sí, si la diferencia es pequeña"
+   ],
+   "a": 1,
+   "why": "La prueba del capstone es la reproducción por otra persona. Un resultado distinto también es útil, pero hasta que coincida o quede explicado, el paquete no aprueba."
+  },
+  {
+   "q": "Quieres que el asistente de IA nunca haga push a main. ¿Dónde pones la regla?",
+   "o": [
+    "En el prompt del sistema",
+    "En un hook PreToolUse que sale con exit 2, con una suite de ataques que intenta colarse (como los 28 casos de war-paradigm 03)",
+    "En una nota del vault",
+    "En el README"
+   ],
+   "a": 1,
+   "why": "Las reglas duras viven en el código. El hook también es un guardia y también se prueba: comandos encadenados, refspecs y push a secas."
+  },
+  {
+   "q": "Tu corrida de mutantes da 4 KILLED, 1 SURVIVED y 2 INFRA_ERROR. ¿Cuál es el kill rate?",
+   "o": [
+    "4/7",
+    "4/5",
+    "6/7",
+    "5/7"
+   ],
+   "a": 1,
+   "why": "Solo KILLED y SURVIVED puntúan: 4 / (4 + 1). Los INFRA_ERROR se ven en el reporte, pero no cuentan ni a favor ni en contra."
+  },
+  {
+   "q": "Un mutante sobrevive y es un bug real del producto (como self-grant en war-paradigm 02). ¿Qué haces con él?",
+   "o": [
+    "Lo quitas para que la suite quede verde",
+    "Lo dejas visible en el ledger y en rojo en el reporte, y un modo estricto (MUTANT_LAB_STRICT=1) hace fallar la corrida",
+    "Lo marcas como INFRA_ERROR",
+    "Bajas la exigencia del mutante"
+   ],
+   "a": 1,
+   "why": "El sobreviviente es el hallazgo. Esconderlo convierte la auditoría en un falso verde."
+  },
+  {
+   "q": "La reproducción la hizo un asistente de IA en una máquina en la nube, dirigido por ti. ¿Cómo la reportas?",
+   "o": [
+    "Como reproducción independiente",
+    "Como reproducción operada por IA bajo tu dirección, no independiente; eso queda escrito en Límites",
+    "No la reportas",
+    "Como revisión externa"
+   ],
+   "a": 1,
+   "why": "Es lo que hacen scientific-qa-evidence («No es independiente») y predictor-debugger. Quién reprodujo es parte de la evidencia."
+  },
+  {
+   "q": "Tu verify detecta un log borrado pero deja pasar un log viejo con el mismo nombre. ¿Qué tienes?",
+   "o": [
+    "Un verificador completo",
+    "Un chequeo que se comporta como P6: comprueba que el archivo exista, no que sea el que se produjo; hay que atar cada recibo al hash registrado al correr el paso",
+    "Un problema del sistema de archivos",
+    "Nada grave"
+   ],
+   "a": 1,
+   "why": "Es el caso 2 de receipt-check. El mutante «log sustituido» sobrevive a tu guardia, y eso se publica y se corrige."
+  },
+  {
+   "q": "¿Qué debe traer la sección «Qué no se ejecutó» del registro de IA?",
+   "o": [
+    "Nada, si todo salió bien",
+    "Lo que se discutió, se planeó o se ilustró pero no se corrió, para que nadie lo confunda con evidencia",
+    "Los errores de tipeo",
+    "La lista de herramientas instaladas"
+   ],
+   "a": 1,
+   "why": "CODEX_WORK_LOG.md separa lo ejecutado de lo que solo se ilustró. Sin esa separación, un lector puede tomar un plan por un resultado."
+  },
+  {
+   "q": "¿Cuál de estas entregas cumple el eje WAR en el nivel 3 de la rúbrica?",
+   "o": [
+    "Una suite de 300 pruebas en verde",
+    "Dos guardias distintos (por ejemplo, la suite con mutantes y el hook con comandos disfrazados), cada uno con un control que debe pasar y otro que debe fallar, con comando y exit code",
+    "Un juez LLM sin casos sembrados",
+    "Un reporte de cobertura del 90 %"
+   ],
+   "a": 1,
+   "why": "Prueba al que prueba: un guardia solo es confiable si lo viste gritar ante algo roto a propósito y callar ante algo correcto."
+  },
+  {
+   "q": "¿Qué pregunta responde el README de arquitectura de tu capstone?",
+   "o": [
+    "Cuántos tests tiene el repo",
+    "Qué automatizaste, qué NO, y por qué (riesgo)",
+    "Qué framework está de moda",
+    "Cuánto tiempo te tomó"
+   ],
+   "a": 1,
+   "why": "La defensa es de criterio, no de volumen: decidir qué NO automatizar es la mitad del diseño."
+  },
+  {
+   "q": "En la defensa te preguntan: “¿por qué contract tests aquí y E2E allá?” ¿Qué respuesta aprueba?",
+   "o": [
+    "“Porque así me quedó”",
+    "Criterio de riesgo: contrato para integraciones que rompen silencioso; E2E para los flujos críticos del usuario",
+    "“La IA lo sugirió así”",
+    "“E2E cubre todo, lo demás sobra”"
+   ],
+   "a": 1,
+   "why": "Cada capa ataca un riesgo distinto. Poder explicarlo es lo que separa “sé herramientas” de “diseño calidad”."
+  },
+  {
+   "q": "¿Qué parte del capstone puede generar la IA?",
+   "o": [
+    "Todo el proyecto, revisando al final",
+    "El código mecánico (steps, POM) con diff revisado; la estrategia y el análisis de riesgo son tuyos",
+    "Nada: en el capstone está prohibida",
+    "Solo el README"
+   ],
+   "a": 1,
+   "why": "El capstone demuestra tu criterio aumentado por IA: ella teclea lo mecánico, tú decides y revisas todo."
+  },
+  {
+   "q": "¿Qué demuestra un capstone que 5 repos de ejercicios sueltos no demuestran?",
+   "o": [
+    "Que sabes más herramientas",
+    "INTEGRACIÓN: estrategia por riesgo, capas conectadas (contrato→E2E→BDD→CI→perf) y decisiones justificadas en un sistema coherente",
+    "Que tienes más commits",
+    "Que terminaste el curso"
+   ],
+   "a": 1,
+   "why": "Las vacantes no piden “sabe Playwright”: piden diseñar calidad. Los ejercicios prueban herramientas; el capstone prueba criterio."
+  },
+  {
+   "q": "¿Qué contiene un buen README de arquitectura?",
+   "o": [
+    "La lista de dependencias",
+    "Diagrama de capas + el PORQUÉ de cada decisión + cómo correr todo con un comando",
+    "El historial de commits",
+    "Los badges de todas las herramientas"
+   ],
+   "a": 1,
+   "why": "El lector (evaluador, entrevistador) necesita entender el diseño en 5 minutos y poder ejecutarlo. Todo lo demás es decoración."
+  },
+  {
+   "q": "¿Qué métrica de cobertura defiende mejor tu capstone?",
+   "o": [
+    "% de líneas cubiertas",
+    "Cobertura de RIESGO: qué riesgos identificaste y qué capa cubre cada uno — con los huecos declarados",
+    "Cantidad de tests totales",
+    "Tests por hora de trabajo"
+   ],
+   "a": 1,
+   "why": "100% de líneas con aserciones vacías = 0 protección. “Estos 8 riesgos, cubiertos así; estos 2, aceptados” es un argumento de ingeniería."
+  },
+  {
+   "q": "No te dio tiempo de hacer la capa de performance. ¿Qué haces en la entrega?",
+   "o": [
+    "No mencionarla y esperar que no pregunten",
+    "Declararla como deuda consciente: por qué se pospuso, qué riesgo queda abierto y cuál sería el plan — igual que un known issue",
+    "Copiar un script k6 de internet la noche anterior",
+    "Pedir prórroga indefinida"
+   ],
+   "a": 1,
+   "why": "El método completo aplica a tu propio proyecto: los huecos se declaran con plan, no se esconden. Eso TAMBIÉN se evalúa — y suma."
+  },
+  {
+   "q": "¿Qué debe poder hacer el evaluador con tu repo sin hablar contigo?",
+   "o": [
+    "Leer el código y confiar",
+    "Clonarlo y correr la suite con los comandos del README, y ver el pipeline verde en el propio repo",
+    "Nada: la defensa es oral",
+    "Pedir acceso a tu máquina"
+   ],
+   "a": 1,
+   "why": "“Corre en mi máquina” no existe en el capstone: la reproducibilidad (módulo CI/CD) se demuestra en tu propio proyecto."
+  },
+  {
+   "q": "En la defensa: “tu suite E2E tarda 12 minutos, ¿está bien?” ¿Qué respuesta muestra criterio?",
+   "o": [
+    "“Sí, es lo normal”",
+    "Depender del contexto y demostrarlo: qué corre en el gate del PR vs nightly, qué se paraleliza y cuál fue el trade-off elegido",
+    "“Se puede bajar con más máquinas”",
+    "“El tiempo no importa si pasa”"
+   ],
+   "a": 1,
+   "why": "No hay número mágico: hay presupuestos por contexto y decisiones argumentadas. La respuesta con trade-offs explícitos es la de un ingeniero."
+  },
+  {
+   "q": "¿Qué pesa MÁS en la evaluación del capstone?",
+   "o": [
+    "La cantidad de features cubiertas",
+    "La calidad de las DECISIONES: riesgo bien analizado, trade-offs explícitos, y poder defender cada verde de tu reporte",
+    "El diseño visual del reporte",
+    "Usar las herramientas más nuevas"
+   ],
+   "a": 1,
+   "why": "Herramientas se aprenden en semanas; criterio es lo que contratan. El capstone es tu prueba tangible de criterio."
+  }
+ ],
+ "m13": [
+  {
+   "q": "¿Cuál pitch posiciona el perfil QA+IA?",
+   "o": [
+    "“Sé Playwright y Selenium”",
+    "“Diseño estrategia de calidad y superviso pruebas generadas por IA — este repo lo demuestra”",
+    "“Tengo la certificación ISTQB”",
+    "“Aprendo rápido cualquier herramienta”"
+   ],
+   "a": 1,
+   "why": "Herramientas y certificados son commodity; criterio + supervisión de IA + prueba tangible es el diferencial."
+  },
+  {
+   "q": "¿Cómo escalas un contract mismatch a un stakeholder?",
+   "o": [
+    "“Cambien el servicio para que pase mi test”",
+    "Evidencia (cURL + response) + impacto en el consumidor + opciones de resolución",
+    "Un pantallazo del test en rojo",
+    "Esperar al daily para comentarlo"
+   ],
+   "a": 1,
+   "why": "Evidencia + impacto + opciones. El test es el detector; el argumento es el consumidor afectado."
+  },
+  {
+   "q": "“La automatización es el detector, no la razón; el beneficiario es el consumidor.” Al comunicar un hallazgo:",
+   "o": [
+    "Hablas de tus tests y su cobertura",
+    "Hablas del riesgo e impacto para quien consume el servicio; la suite es solo cómo lo detectaste",
+    "Señalas al dev que introdujo el bug",
+    "Pides presupuesto para más tests"
+   ],
+   "a": 1,
+   "why": "A los stakeholders les importa el impacto en el negocio/usuario, no tu framework. Traduce siempre."
+  },
+  {
+   "q": "¿Qué portafolio abre más puertas para este perfil?",
+   "o": [
+    "Una lista de certificaciones",
+    "2-3 repos con READMEs que expliquen DECISIONES (por qué esta capa, este trade-off) + pipeline verde visible",
+    "50 repos de ejercicios de cursos",
+    "Un CV de 4 páginas"
+   ],
+   "a": 1,
+   "why": "El entrevistador técnico abre el repo: si el README muestra criterio, ya pasaste el primer filtro. Los certificados solo acompañan."
+  },
+  {
+   "q": "Entrevista: “cuéntame el bug más difícil que encontraste”. ¿Qué estructura luce tu criterio?",
+   "o": [
+    "Contar el bug más raro que recuerdes",
+    "Contexto → cómo lo detectaste (evidencia) → análisis de causa → impacto de negocio → qué cambiaste para que no vuelva",
+    "Culpar al dev que lo introdujo",
+    "Decir que tus suites nunca dejan pasar bugs"
+   ],
+   "a": 1,
+   "why": "La historia completa (detección→causa→impacto→prevención) demuestra el ciclo completo del método en 2 minutos. Es tu mejor demo oral."
+  },
+  {
+   "q": "Entrevista trampa: “¿buscas el 100% de cobertura?” ¿Respuesta del método?",
+   "o": [
+    "“Sí, siempre”",
+    "“No: la cobertura de líneas no es la meta — priorizo cobertura de RIESGO y puedo mostrar cómo la decido”",
+    "“Depende del presupuesto”",
+    "“El 100% no existe” (sin más)"
+   ],
+   "a": 1,
+   "why": "Responder “sí” delata scripter; explicar cobertura de riesgo con ejemplo delata ingeniero. La pregunta existe para separarlos."
+  },
+  {
+   "q": "¿Qué titular de LinkedIn trabaja para ti mientras duermes?",
+   "o": [
+    "“QA Engineer”",
+    "“QA Automation | busco oportunidades”",
+    "Especialidad + prueba: “QA Automation / SDET · Contract Testing & AI-Augmented QA · [tu proyecto]”",
+    "“Apasionado de la calidad del software”"
+   ],
+   "a": 2,
+   "why": "Los reclutadores buscan por keywords y los técnicos hacen clic al repo. Especialidad concreta + evidencia visible = ambos filtros pasados."
+  },
+  {
+   "q": "Dos ofertas: “QA Automation” y “SDET”. ¿Cómo decides qué es cada una EN ESA empresa?",
+   "o": [
+    "SDET siempre paga más, esa",
+    "Por el título del cargo",
+    "Preguntando por el trabajo real: ¿quién diseña la estrategia? ¿se hace framework o solo casos? ¿hay code review de tests?",
+    "Por el logo de la empresa"
+   ],
+   "a": 2,
+   "why": "Los títulos varían por empresa: hay “SDET” de clicks y “QA” que arquitectan. Las preguntas correctas en la entrevista revelan el rol real."
+  },
+  {
+   "q": "Primeros 90 días en un rol QA nuevo. ¿Qué haces ANTES de proponer cambios grandes?",
+   "o": [
+    "Reescribir la suite al estándar del curso",
+    "Aprender el contexto: contratos, riesgos del dominio, por qué las cosas son como son — y ganar credibilidad con mejoras pequeñas",
+    "Instalar tus herramientas favoritas",
+    "Señalar todo lo que está mal en la retro"
+   ],
+   "a": 1,
+   "why": "El método pide contexto antes que acción (igual que con la IA). Las suites “malas” suelen tener razones; entenderlas primero evita romper lo que funcionaba."
+  },
+  {
+   "q": "¿Cómo te mantienes vigente en la ola QA+IA?",
+   "o": [
+    "Con lo aprendido basta por 10 años",
+    "Práctica continua + comunidad (TAU, MoT) + seguir la ola agentic/MCP con proyectos propios pequeños",
+    "Leyendo titulares de LinkedIn",
+    "Cambiando de framework cada mes"
+   ],
+   "a": 1,
+   "why": "El diferencial de hoy es el estándar de mañana. La comunidad te avisa qué viene; los proyectos pequeños te lo meten a las manos."
+  }
+ ]
+}

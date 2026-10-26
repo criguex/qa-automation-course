@@ -1,0 +1,1379 @@
+{
+ "qn": 8,
+ "qpass": 0.75,
+ "colors": {
+  "n1": "#22d3ee",
+  "n2": "#10b981",
+  "n3": "#facc15",
+  "n4": "#a78bfa",
+  "cap": "#fb7185"
+ },
+ "modules": [
+  {
+   "id": "m1",
+   "track": "n1",
+   "icon": "🧠",
+   "level": "★☆☆☆☆",
+   "weeks": [
+    1
+   ],
+   "res": [
+    {
+     "ic": "🎓",
+     "url": "https://testautomationu.applitools.com/",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://istqb.org/certifications/certified-tester-foundation-level-ctfl-v4-0/",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://martinfowler.com/articles/practical-test-pyramid.html",
+     "free": true
+    },
+    {
+     "ic": "🎥",
+     "url": "https://www.ministryoftesting.com/",
+     "free": true
+    },
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/war-paradigm/tree/main/experiments/01-ai-verdict",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://en.wikipedia.org/wiki/Test_oracle",
+     "free": true
+    }
+   ]
+  },
+  {
+   "id": "m30",
+   "track": "n1",
+   "icon": "⚔️",
+   "level": "★★☆☆☆",
+   "weeks": [
+    2
+   ],
+   "res": [
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/war-paradigm",
+     "free": true
+    },
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/war-paradigm/tree/main/experiments/01-ai-verdict",
+     "free": true
+    },
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/war-paradigm/tree/main/experiments/03-second-brain",
+     "free": true
+    },
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/scientific-qa-evidence",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://code.claude.com/docs/en/hooks",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://en.wikipedia.org/wiki/Test_oracle",
+     "free": true
+    }
+   ]
+  },
+  {
+   "id": "m2",
+   "track": "n1",
+   "icon": "🎯",
+   "level": "★★☆☆☆",
+   "weeks": [
+    3
+   ],
+   "res": [
+    {
+     "ic": "📖",
+     "url": "https://istqb.org/certifications/certified-tester-foundation-level-ctfl-v4-0/",
+     "free": true
+    },
+    {
+     "ic": "🛠️",
+     "url": "https://github.com/microsoft/pict",
+     "free": true
+    },
+    {
+     "ic": "🎓",
+     "url": "https://testautomationu.applitools.com/",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://www.ministryoftesting.com/",
+     "free": true
+    }
+   ]
+  },
+  {
+   "id": "m3",
+   "track": "n1",
+   "icon": "🛠️",
+   "level": "★★☆☆☆",
+   "weeks": [
+    4
+   ],
+   "res": [
+    {
+     "ic": "📖",
+     "url": "https://nodejs.org/en/download",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://git-scm.com/book/es/v2",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://code.visualstudio.com/docs",
+     "free": true
+    },
+    {
+     "ic": "💻",
+     "url": "https://github.com/microsoft/playwright",
+     "free": false
+    }
+   ]
+  },
+  {
+   "id": "m3b",
+   "track": "n1",
+   "icon": "🧠",
+   "level": "★★☆☆☆",
+   "weeks": [
+    5
+   ],
+   "res": [
+    {
+     "ic": "📖",
+     "url": "https://obsidian.md",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://modelcontextprotocol.io/",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://code.claude.com/docs",
+     "free": false
+    }
+   ]
+  },
+  {
+   "id": "m4",
+   "track": "n1",
+   "icon": "🔷",
+   "level": "★★★☆☆",
+   "weeks": [
+    6
+   ],
+   "res": [
+    {
+     "ic": "📖",
+     "url": "https://www.typescriptlang.org/docs/",
+     "free": true
+    },
+    {
+     "ic": "🎓",
+     "url": "https://www.freecodecamp.org/news/learn-typescript-beginners-guide/",
+     "free": true
+    },
+    {
+     "ic": "🛠️",
+     "url": "https://www.typescriptlang.org/play",
+     "free": true
+    },
+    {
+     "ic": "🎥",
+     "url": "https://www.youtube.com/@freecodecamp",
+     "free": true
+    }
+   ]
+  },
+  {
+   "id": "m5",
+   "track": "n1",
+   "icon": "🎭",
+   "level": "★★★★☆",
+   "weeks": [
+    7,
+    8
+   ],
+   "res": [
+    {
+     "ic": "📖",
+     "url": "https://playwright.dev/",
+     "free": true
+    },
+    {
+     "ic": "🎓",
+     "url": "https://testautomationu.applitools.com/",
+     "free": true
+    },
+    {
+     "ic": "🎥",
+     "url": "https://www.youtube.com/@Playwrightdev",
+     "free": true
+    },
+    {
+     "ic": "💻",
+     "url": "https://github.com/microsoft/playwright",
+     "free": false
+    }
+   ]
+  },
+  {
+   "id": "m6",
+   "track": "n1",
+   "icon": "🔌",
+   "level": "★★★★☆",
+   "weeks": [
+    9,
+    10
+   ],
+   "res": [
+    {
+     "ic": "📖",
+     "url": "https://github.com/karatelabs/karate",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://docs.karatelabs.io/getting-started/whats-new-v2",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://rest-assured.io/",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://learning.postman.com/",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://zod.dev/",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://docs.pact.io/",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://swagger.io/docs/specification/v3_0/about/",
+     "free": true
+    },
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/restful-booker-quality-suite",
+     "free": true
+    },
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/civica-playwright-challenge",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://playwright.dev/docs/api-testing",
+     "free": true
+    }
+   ]
+  },
+  {
+   "id": "m7",
+   "track": "n1",
+   "icon": "🥒",
+   "level": "★★★☆☆",
+   "weeks": [
+    11
+   ],
+   "res": [
+    {
+     "ic": "📖",
+     "url": "https://cucumber.io/docs/",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://cucumber.io/docs/gherkin/reference/",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://serenity-bdd.github.io/",
+     "free": true
+    },
+    {
+     "ic": "🎓",
+     "url": "https://testautomationu.applitools.com/",
+     "free": true
+    }
+   ]
+  },
+  {
+   "id": "m7b",
+   "track": "n1",
+   "icon": "🔁",
+   "level": "★★★☆☆",
+   "weeks": [
+    12
+   ],
+   "res": [
+    {
+     "ic": "📖",
+     "url": "https://cucumber.io/docs/cucumber/api/",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://playwright.dev/docs/test-fixtures",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://playwright.dev/docs/test-annotations",
+     "free": true
+    }
+   ]
+  },
+  {
+   "id": "m8",
+   "track": "n2",
+   "icon": "📊",
+   "level": "★★★☆☆",
+   "weeks": [
+    13
+   ],
+   "res": [
+    {
+     "ic": "📖",
+     "url": "https://allurereport.org/docs/",
+     "free": true
+    },
+    {
+     "ic": "💻",
+     "url": "https://github.com/allure-framework",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://docs.getxray.app/",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://www.testrail.com/",
+     "free": true
+    },
+    {
+     "ic": "🧭",
+     "url": "https://www.testrail.com/blog/popular-test-management-tools/",
+     "free": true
+    }
+   ]
+  },
+  {
+   "id": "m8b",
+   "track": "n2",
+   "icon": "✅",
+   "level": "★★★★☆",
+   "weeks": [
+    14
+   ],
+   "res": [
+    {
+     "ic": "📖",
+     "url": "https://www.atlassian.com/agile/project-management/definition-of-done",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://allurereport.org/docs/",
+     "free": true
+    }
+   ]
+  },
+  {
+   "id": "m9",
+   "track": "n2",
+   "icon": "⚙️",
+   "level": "★★★★☆",
+   "weeks": [
+    15
+   ],
+   "res": [
+    {
+     "ic": "📖",
+     "url": "https://docs.github.com/en/actions",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://docs.gitlab.com/ci/",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://docs.docker.com/get-started/",
+     "free": true
+    },
+    {
+     "ic": "🎥",
+     "url": "https://www.youtube.com/@freecodecamp",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://docs.npmjs.com/cli/v10/commands/npm-ci",
+     "free": true
+    }
+   ]
+  },
+  {
+   "id": "m28",
+   "track": "n2",
+   "icon": "🛤️",
+   "level": "★★★★☆",
+   "weeks": [
+    16
+   ],
+   "res": [
+    {
+     "ic": "📖",
+     "url": "https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://docs.github.com/en/actions/reference/workflows-and-actions/dependency-caching",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://docs.github.com/en/actions/concepts/security/secrets",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://playwright.dev/docs/test-retries",
+     "free": true
+    },
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/civica-playwright-challenge/blob/main/.github/workflows/ci.yml",
+     "free": true
+    },
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/qa-eval-lab/blob/main/.github/workflows/eval-gate.yml",
+     "free": true
+    },
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/restful-booker-quality-suite/blob/main/.github/workflows/tests.yml",
+     "free": true
+    },
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/predictor-debugger/tree/main/.github/workflows",
+     "free": true
+    }
+   ]
+  },
+  {
+   "id": "m27",
+   "track": "n2",
+   "icon": "📦",
+   "level": "★★★★☆",
+   "weeks": [
+    17
+   ],
+   "res": [
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/predictor-debugger/releases/tag/repro-ia-20261026",
+     "free": true
+    },
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/predictor-debugger/blob/main/.github/workflows/reproduce.yml",
+     "free": true
+    },
+    {
+     "ic": "🛠️",
+     "url": "https://github.com/actions/upload-artifact",
+     "free": true
+    },
+    {
+     "ic": "🛠️",
+     "url": "https://github.com/actions/download-artifact",
+     "free": true
+    },
+    {
+     "ic": "🛠️",
+     "url": "https://testcontainers.com/",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://containers.dev/",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://docs.docker.com/reference/cli/docker/image/pull/",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://man7.org/linux/man-pages/man1/flock.1.html",
+     "free": true
+    }
+   ]
+  },
+  {
+   "id": "m10",
+   "track": "n2",
+   "icon": "🚀",
+   "level": "★★★★☆",
+   "weeks": [
+    18
+   ],
+   "res": [
+    {
+     "ic": "📖",
+     "url": "https://grafana.com/docs/k6/latest/",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://jmeter.apache.org/usermanual/index.html",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://docs.aws.amazon.com/lambda/",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://aws.amazon.com/architecture/well-architected/",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://grafana.com/docs/",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://playwright.dev/docs/accessibility-testing",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://playwright.dev/docs/test-snapshots",
+     "free": true
+    }
+   ]
+  },
+  {
+   "id": "m20",
+   "track": "n2",
+   "icon": "🎞️",
+   "level": "★★★☆☆",
+   "weeks": [
+    19
+   ],
+   "res": [
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/playwright-jev",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://github.com/criguex/playwright-jev/blob/main/docs/adr/0002-record-replay-per-question.md",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://github.com/criguex/civica-playwright-challenge/blob/main/docs/adr/0002-mock-fallback.md",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "http://xunitpatterns.com/",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://docs.python.org/3/library/hashlib.html",
+     "free": true
+    }
+   ]
+  },
+  {
+   "id": "m11",
+   "track": "n2",
+   "icon": "🤖",
+   "level": "★★★★★",
+   "weeks": [
+    20
+   ],
+   "res": [
+    {
+     "ic": "📖",
+     "url": "https://code.claude.com/docs",
+     "free": false
+    },
+    {
+     "ic": "📖",
+     "url": "https://docs.github.com/en/copilot",
+     "free": false
+    },
+    {
+     "ic": "📖",
+     "url": "https://modelcontextprotocol.io/",
+     "free": true
+    },
+    {
+     "ic": "🛠️",
+     "url": "https://cursor.com/",
+     "free": false
+    },
+    {
+     "ic": "🛠️",
+     "url": "https://github.com/microsoft/playwright-mcp",
+     "free": true
+    }
+   ]
+  },
+  {
+   "id": "m14",
+   "track": "n2",
+   "icon": "🛡️",
+   "level": "★★★★☆",
+   "weeks": [
+    21
+   ],
+   "res": [
+    {
+     "ic": "📖",
+     "url": "https://code.claude.com/docs/en/hooks",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://code.claude.com/docs/en/github-actions",
+     "free": true
+    },
+    {
+     "ic": "💻",
+     "url": "https://github.com/openai/codex",
+     "free": true
+    },
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/war-paradigm/tree/main/experiments/03-second-brain",
+     "free": true
+    }
+   ]
+  },
+  {
+   "id": "m15",
+   "track": "n2",
+   "icon": "🧬",
+   "level": "★★★★☆",
+   "weeks": [
+    22
+   ],
+   "res": [
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/war-paradigm",
+     "free": true
+    },
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/war-paradigm/tree/main/experiments/02-mutants",
+     "free": true
+    },
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/scientific-qa-evidence",
+     "free": true
+    },
+    {
+     "ic": "🛠️",
+     "url": "https://stryker-mutator.io/",
+     "free": true
+    },
+    {
+     "ic": "🛠️",
+     "url": "https://pitest.org/",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://en.wikipedia.org/wiki/Mutation_testing",
+     "free": true
+    }
+   ]
+  },
+  {
+   "id": "m29",
+   "track": "n2",
+   "icon": "⚗️",
+   "level": "★★★★☆",
+   "weeks": [
+    23
+   ],
+   "res": [
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/war-paradigm/tree/main/experiments/02-mutants",
+     "free": true
+    },
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/war-paradigm/blob/main/experiments/02-mutants/tests/scenario-evidence.ts",
+     "free": true
+    },
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/civica-playwright-challenge",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://github.com/criguex/civica-playwright-challenge/blob/main/docs/MUTATION-TESTING.md",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://stryker-mutator.io/docs/mutation-testing-elements/mutant-states-and-metrics/",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://research.google/pubs/state-of-mutation-testing-at-google/",
+     "free": true
+    }
+   ]
+  },
+  {
+   "id": "m21",
+   "track": "n2",
+   "icon": "🔁",
+   "level": "★★★★☆",
+   "weeks": [
+    24
+   ],
+   "res": [
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/civica-playwright-challenge",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://github.com/criguex/civica-playwright-challenge/blob/main/docs/MUTATION-TESTING.md",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://github.com/criguex/civica-playwright-challenge/blob/main/docs/AUDIT-POC.md",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://playwright.dev/docs/test-reporters",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://doi.org/10.1145/3143561",
+     "free": false
+    }
+   ]
+  },
+  {
+   "id": "m18",
+   "track": "n2",
+   "icon": "🚦",
+   "level": "★★★★☆",
+   "weeks": [
+    25
+   ],
+   "res": [
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/jev-ci-triage",
+     "free": true
+    },
+    {
+     "ic": "📊",
+     "url": "https://criguex.github.io/jev-ci-triage/",
+     "free": true
+    },
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/jev-test-impact",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://github.com/criguex/jev-test-impact/blob/main/bench/RESULTS.md",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://doi.org/10.1145/2635868.2635920",
+     "free": false
+    },
+    {
+     "ic": "📖",
+     "url": "https://testing.googleblog.com/2016/05/flaky-tests-at-google-and-how-we.html",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://playwright.dev/docs/test-retries",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://martinfowler.com/articles/rise-test-impact-analysis.html",
+     "free": true
+    }
+   ]
+  },
+  {
+   "id": "m16",
+   "track": "n3",
+   "icon": "⚖️",
+   "level": "★★★★☆",
+   "weeks": [
+    26
+   ],
+   "res": [
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/qa-eval-lab",
+     "free": true
+    },
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/qa-eval-lab/blob/main/.github/workflows/eval-gate.yml",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://deepeval.com/docs/getting-started",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://deepeval.com/docs/metrics-llm-evals",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://www.promptfoo.dev/docs/configuration/expected-outputs/",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://www.promptfoo.dev/docs/red-team/",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://genai.owasp.org/llm-top-10/",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://hamel.dev/blog/posts/evals/",
+     "free": true
+    }
+   ]
+  },
+  {
+   "id": "m17",
+   "track": "n3",
+   "icon": "🧭",
+   "level": "★★★★★",
+   "weeks": [
+    27
+   ],
+   "res": [
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/agent-eval-jev",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://github.com/criguex/agent-eval-jev/blob/main/RUBRIC.md",
+     "free": true
+    },
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/qa-eval-lab/tree/main/evals/calibration",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://doi.org/10.1177/001316446002000104",
+     "free": false
+    },
+    {
+     "ic": "📖",
+     "url": "https://scikit-learn.org/stable/modules/generated/sklearn.metrics.cohen_kappa_score.html",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://en.wikipedia.org/wiki/Binomial_proportion_confidence_interval",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://arxiv.org/abs/2306.05685",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://docs.typesafe.ai",
+     "free": false
+    }
+   ]
+  },
+  {
+   "id": "m22",
+   "track": "n3",
+   "icon": "🎚️",
+   "level": "★★★★☆",
+   "weeks": [
+    28
+   ],
+   "res": [
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/war-paradigm/tree/main/experiments/01-ai-verdict",
+     "free": true
+    },
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/laya-server",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://github.com/criguex/playwright-jev/blob/main/docs/adr/0001-three-valued-verdicts-fail-closed.md",
+     "free": true
+    },
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/jev-ci-triage",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://docs.typesafe.ai",
+     "free": false
+    }
+   ]
+  },
+  {
+   "id": "m23",
+   "track": "n3",
+   "icon": "📜",
+   "level": "★★★★★",
+   "weeks": [
+    29
+   ],
+   "res": [
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/war-paradigm/tree/main/experiments/03-second-brain",
+     "free": true
+    },
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/scientific-qa-evidence",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://github.com/criguex/scientific-qa-evidence/blob/main/docs/CODEX_WORK_LOG.md",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://github.com/criguex/scientific-qa-evidence/blob/main/AUTHORSHIP.md",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://github.com/criguex/scientific-qa-evidence/blob/main/FINDINGS.md",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://github.com/criguex",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://code.claude.com/docs/en/hooks",
+     "free": true
+    },
+    {
+     "ic": "💻",
+     "url": "https://github.com/openai/codex",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://www.anthropic.com/engineering/building-effective-agents",
+     "free": true
+    }
+   ]
+  },
+  {
+   "id": "m19",
+   "track": "n4",
+   "icon": "🔏",
+   "level": "★★★★★",
+   "weeks": [
+    30
+   ],
+   "res": [
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/predictor-debugger",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://github.com/criguex/predictor-debugger/blob/main/DESIGN.md",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://doi.org/10.1073/pnas.1708274114",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://www.cos.io/initiatives/prereg",
+     "free": true
+    },
+    {
+     "ic": "🛠️",
+     "url": "https://docs.astral.sh/uv/",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://numpy.org/doc/stable/reference/generated/numpy.finfo.html",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.bootstrap.html",
+     "free": true
+    }
+   ]
+  },
+  {
+   "id": "m32",
+   "track": "n4",
+   "icon": "📐",
+   "level": "★★★★☆",
+   "weeks": [
+    31
+   ],
+   "res": [
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/spec-review-case-study",
+     "free": true
+    },
+    {
+     "ic": "📋",
+     "url": "https://github.com/criguex/spec-review-case-study/blob/main/docs/checklist.es.md",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://github.com/criguex/spec-review-case-study/blob/main/docs/findings.es.md",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://www.istqb.org/certifications/certified-tester-foundation-level-ctfl-v4-0/",
+     "free": true
+    }
+   ]
+  },
+  {
+   "id": "m24",
+   "track": "n4",
+   "icon": "🧪",
+   "level": "★★★★★",
+   "weeks": [
+    32
+   ],
+   "res": [
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/scientific-qa-evidence",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://github.com/criguex/scientific-qa-evidence/blob/main/evidence/numerical/source/CONTRACT.md",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://github.com/criguex/scientific-qa-evidence/blob/main/FINDINGS.md",
+     "free": true
+    },
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/war-paradigm",
+     "free": true
+    }
+   ]
+  },
+  {
+   "id": "m25",
+   "track": "n4",
+   "icon": "🌊",
+   "level": "★★★★★",
+   "weeks": [
+    33
+   ],
+   "res": [
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/predictor-debugger",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://www.grc.nasa.gov/www/k-12/airplane/nseqs.html",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.spearmanr.html",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.bootstrap.html",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://arxiv.org/abs/2010.08895",
+     "free": true
+    }
+   ]
+  },
+  {
+   "id": "m26",
+   "track": "n4",
+   "icon": "🔐",
+   "level": "★★★★★",
+   "weeks": [
+    34
+   ],
+   "res": [
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/scientific-qa-evidence",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://github.com/criguex/scientific-qa-evidence/blob/main/REPRODUCE.md",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://github.com/criguex/scientific-qa-evidence/blob/main/experiments/mathlib-controls/DESIGN.md",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://github.com/criguex/scientific-qa-evidence/blob/main/docs/INDEPENDENT_REPRODUCTION.md",
+     "free": true
+    },
+    {
+     "ic": "🛠️",
+     "url": "https://github.com/leanprover/comparator",
+     "free": true
+    },
+    {
+     "ic": "🛠️",
+     "url": "https://github.com/ammkrn/nanoda_lib",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://lean-lang.org/theorem_proving_in_lean4/",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://in-toto.io/",
+     "free": true
+    }
+   ]
+  },
+  {
+   "id": "m31",
+   "track": "n4",
+   "icon": "🙈",
+   "level": "★★★★★",
+   "weeks": [
+    35
+   ],
+   "res": [
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/predictor-debugger/blob/main/round5/KIT.md",
+     "free": true
+    },
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/scientific-qa-evidence/blob/main/experiments/blind-faults/SEED_COMMITMENT.md",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://github.com/criguex/scientific-qa-evidence/blob/main/experiments/blind-faults/RESULTS.md",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://en.wikipedia.org/wiki/Commitment_scheme",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://docs.python.org/3/library/hashlib.html",
+     "free": true
+    }
+   ]
+  },
+  {
+   "id": "m12",
+   "track": "cap",
+   "icon": "🏆",
+   "level": "★★★★★",
+   "weeks": [
+    36,
+    37
+   ],
+   "res": [
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/war-paradigm",
+     "free": true
+    },
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/predictor-debugger",
+     "free": true
+    },
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/scientific-qa-evidence",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://github.com/criguex/scientific-qa-evidence/blob/main/docs/CODEX_WORK_LOG.md",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://github.com/criguex/scientific-qa-evidence/blob/main/docs/INDEPENDENT_REPRODUCTION.md",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://in-toto.io/",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://reproducible-builds.org/",
+     "free": true
+    }
+   ]
+  },
+  {
+   "id": "m13",
+   "track": "cap",
+   "icon": "🧭",
+   "level": "★★★☆☆",
+   "weeks": [],
+   "res": [
+    {
+     "ic": "📖",
+     "url": "https://modelcontextprotocol.io/",
+     "free": true
+    },
+    {
+     "ic": "🎓",
+     "url": "https://testautomationu.applitools.com/",
+     "free": true
+    }
+   ]
+  }
+ ]
+}

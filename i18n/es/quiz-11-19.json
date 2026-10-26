@@ -1,0 +1,1131 @@
+{
+ "m8": [
+  {
+   "q": "“Un test que pasa y nadie ve, no existe.” ¿Qué lo resuelve?",
+   "o": [
+    "Correr la suite más seguido",
+    "Reporte con evidencia publicado + trazabilidad requisito→prueba→ejecución en el gestor",
+    "Avisar por Slack cuando pasa",
+    "Dejar los logs en la consola de CI"
+   ],
+   "a": 1,
+   "why": "Visibilidad = reporte publicado con evidencia + cadena de trazabilidad que cualquiera puede auditar."
+  },
+  {
+   "q": "Cambias de empresa: usan TestRail en vez de Xray. ¿Qué cambia en tu método?",
+   "o": [
+    "Todo: hay que reaprender",
+    "Nada de fondo: la cadena requisito→caso→ejecución→evidencia es la misma; cambia la herramienta",
+    "Ya no aplica la trazabilidad",
+    "El sign-off pasa a ser automático"
+   ],
+   "a": 1,
+   "why": "El estándar es el concepto, no la marca. Por eso el método es agnóstico a la herramienta."
+  },
+  {
+   "q": "¿Qué hace defendible un verde en el reporte?",
+   "o": [
+    "Que esté en verde",
+    "Evidencia adjunta (pasos, screenshot/response) que puedes explicar si te auditan",
+    "Que haya corrido en CI",
+    "Que nadie haya preguntado"
+   ],
+   "a": 1,
+   "why": "“El reporte es lo que firmas”: cada verde sin evidencia explicable es un cheque sin fondos."
+  },
+  {
+   "q": "¿Cuándo capturas screenshots/adjuntos en la suite?",
+   "o": [
+    "Nunca: pesan mucho",
+    "Siempre, en cada paso de cada test",
+    "En cada FALLO automáticamente + en los pasos clave de evidencia — balance entre peso y valor probatorio",
+    "Solo cuando alguien lo pida"
+   ],
+   "a": 2,
+   "why": "El fallo sin evidencia obliga a re-correr para “ver qué pasó”; capturar todo siempre vuelve el reporte inmanejable. El criterio es probatorio."
+  },
+  {
+   "q": "El reporte dice “512 passed, 3 failed” y nada más. ¿Qué le falta para ser un reporte del método?",
+   "o": [
+    "Colores",
+    "Detalle por caso: pasos, evidencia, categoría del fallo y a qué requisito responde cada test",
+    "Un gráfico de torta",
+    "El logo de la empresa"
+   ],
+   "a": 1,
+   "why": "Un contador no es evidencia. Sin detalle por caso no puedes auditar, clasificar ni certificar nada de esos 512 verdes."
+  },
+  {
+   "q": "¿Qué significa trazabilidad BIDIRECCIONAL?",
+   "o": [
+    "Que el reporte tiene dos formatos",
+    "Del requisito llego a sus pruebas y su estado; de cualquier prueba llego al requisito que cubre",
+    "Que dos personas la revisan",
+    "Que se sincroniza dos veces al día"
+   ],
+   "a": 1,
+   "why": "Las dos direcciones responden preguntas distintas: “¿qué cubre esta HU?” y “¿por qué existe este test?”. Ambas deben tener respuesta."
+  },
+  {
+   "q": "Un fallo puede ser: bug del producto, test roto, o problema de ambiente/data. ¿Por qué clasificarlos en el reporte?",
+   "o": [
+    "Por estética",
+    "Porque cada categoría dispara una acción distinta (reportar / arreglar suite / arreglar ambiente) y las métricas mezcladas mienten",
+    "Para culpar al responsable",
+    "No hace falta: rojo es rojo"
+   ],
+   "a": 1,
+   "why": "Si el 40% de tus rojos son ambiente, tu suite no está “mal”: tu ambiente sí. Sin clasificar, esa señal no existe y se pierde confianza."
+  },
+  {
+   "q": "¿Qué te da el HISTORIAL de ejecuciones que una corrida individual no te da?",
+   "o": [
+    "Más verde en el dashboard",
+    "Tendencias: tests que se volvieron flaky, módulos que se degradan, duración creciendo — la película, no la foto",
+    "Nada, solo ocupa disco",
+    "Cumplir con la auditoría"
+   ],
+   "a": 1,
+   "why": "Un test que falló 1 vez es ruido; uno que falla el 20% de las corridas es un patrón. Solo el historial distingue uno del otro."
+  },
+  {
+   "q": "¿Qué adjuntas a un fallo de API para que el dev lo tome sin pedirte nada más?",
+   "o": [
+    "El nombre del test",
+    "El cURL exacto del request + response completo + esperado vs recibido",
+    "Un screenshot del código del test",
+    "El link al feature file"
+   ],
+   "a": 1,
+   "why": "Con cURL + response el dev reproduce en 30 segundos. Sin eso, el ticket rebota con “no lo puedo reproducir”."
+  },
+  {
+   "q": "¿Quiénes consumen el reporte y qué necesita cada uno?",
+   "o": [
+    "Solo QA lo lee",
+    "Dev: detalle del fallo con evidencia · Lead/PO: estado por requisito · Manager: tendencia y riesgo — un reporte navegable sirve a los tres",
+    "Solo el manager",
+    "El cliente final"
+   ],
+   "a": 1,
+   "why": "Un reporte de un solo nivel falla a alguien: o ahoga al manager en stack traces o deja al dev sin datos. La navegabilidad resuelve ambos."
+  }
+ ],
+ "m8b": [
+  {
+   "q": "¿Cuál de estos INVALIDA un sign-off?",
+   "o": [
+    "Un rojo honesto documentado como known issue",
+    "Un enlace de trazabilidad “por resolver”",
+    "Un @IGNORE con ticket abierto y condición de salida",
+    "Evidencia en un reporte single-file"
+   ],
+   "a": 1,
+   "why": "Placeholders sin resolver rompen la cadena de auditoría. Un rojo honesto documentado NO invalida — la mentira sí."
+  },
+  {
+   "q": "¿Por qué la certificación la firma un humano?",
+   "o": [
+    "Por regulación de la industria",
+    "Porque implica juicio de riesgo y responsabilidad profesional que no se automatiza",
+    "Porque la IA no tiene cuenta en el gestor",
+    "Por costumbre heredada"
+   ],
+   "a": 1,
+   "why": "Firmar es asumir responsabilidad. Automatizar la firma es automatizar la rendición de cuentas — prohibido."
+  },
+  {
+   "q": "¿Qué contiene una Definition of Done de certificación útil?",
+   "o": [
+    "“Todo verde en CI”",
+    "Condiciones verificables: escenarios enlazados, ejecución registrada, evidencia adjunta, known issues declarados",
+    "La lista de features del sprint",
+    "El nombre de quien aprueba"
+   ],
+   "a": 1,
+   "why": "Una DoD útil es una checklist auditable, no un sentimiento. Si no se puede verificar, no es DoD."
+  },
+  {
+   "q": "Una HU tiene 2 escenarios excluidos con @IGNORE (bug del proveedor, ticket abierto). ¿Se puede certificar la HU?",
+   "o": [
+    "Sí: el resto está verde",
+    "No: con known issues abiertos la HU queda abierta — se comunica el estado, no se firma completitud que no existe",
+    "Sí, si el @IGNORE está bien documentado",
+    "Sí, con permiso del dev"
+   ],
+   "a": 1,
+   "why": "El @IGNORE bien hecho gestiona la CORRIDA; el cierre de la HU exige que lo excluido se resuelva. Firmar con huecos es firmar mentiras educadas."
+  },
+  {
+   "q": "“La evidencia la tengo en mi máquina, si alguien la pide se la paso.” ¿Es válido para el sign-off?",
+   "o": [
+    "Sí, mientras exista",
+    "No: la evidencia debe estar ADJUNTA/publicada en la cadena (ticket/gestor/reporte) — lo que no está registrado no existe para la auditoría",
+    "Sí, si haces backup",
+    "Depende del tamaño del archivo"
+   ],
+   "a": 1,
+   "why": "El sign-off debe sobrevivirte: si te vas de vacaciones (o de la empresa), la cadena completa tiene que poder reconstruirse sin ti."
+  },
+  {
+   "q": "¿Por qué el método pide reporte single-file como evidencia?",
+   "o": [
+    "Porque pesa menos",
+    "Autocontenido: se adjunta al ticket y se abre en cualquier lado dentro de años, sin depender de que el server de reportes siga vivo",
+    "Porque es más bonito",
+    "Porque lo exige Allure"
+   ],
+   "a": 1,
+   "why": "Los servers de CI rotan y borran artefactos. El archivo autocontenido adjunto al ticket es evidencia que no caduca."
+  },
+  {
+   "q": "¿Quién define la Definition of Done de certificación?",
+   "o": [
+    "Cada QA la suya",
+    "El equipo la acuerda UNA vez y aplica igual para todos — tu checklist personal es tu implementación de ese acuerdo",
+    "El manager por decreto",
+    "La herramienta de gestión"
+   ],
+   "a": 1,
+   "why": "Una DoD por persona = estándares aleatorios por historia. El acuerdo de equipo es lo que la vuelve auditable y justa."
+  },
+  {
+   "q": "Auditoría 6 meses después: preguntan por la HU-482. ¿Qué debe poder pasar?",
+   "o": [
+    "Que el QA que la probó lo explique de memoria",
+    "Reconstruir la cadena completa (requisito→casos→ejecución→evidencia→cierre) desde los registros, SIN depender de nadie",
+    "Que se vuelva a probar",
+    "Que el ticket diga “done”"
+   ],
+   "a": 1,
+   "why": "Certificar es dejar un rastro auto-explicativo. Si la respuesta a la auditoría es la memoria de una persona, no había certificación."
+  },
+  {
+   "q": "¿Qué diferencia el “done” del dev del “certificada” del método?",
+   "o": [
+    "Son lo mismo en ágil",
+    "Done dev = código integrado y funcionando; certificada = probada contra sus criterios CON evidencia y trazabilidad registradas",
+    "Certificada = deploy a producción",
+    "Done incluye la certificación siempre"
+   ],
+   "a": 1,
+   "why": "Entre “funciona en la demo” y “puedo demostrar qué se probó y qué no” hay un abismo: ese abismo es tu trabajo."
+  },
+  {
+   "q": "Deadline encima y te presionan a firmar con 30% de la suite sin correr. ¿Respuesta del método?",
+   "o": [
+    "Firmar: el negocio manda",
+    "No firmas completitud falsa: presentas el estado real (qué se probó, qué no, riesgo de lo pendiente) y quien decide asume el riesgo POR ESCRITO",
+    "Firmar y correr lo pendiente después",
+    "Renunciar en el acto"
+   ],
+   "a": 1,
+   "why": "Tu firma dice “esto se probó”. El negocio puede aceptar riesgo — es su derecho — pero documentado y con nombre propio, no dentro de tu firma."
+  }
+ ],
+ "m9": [
+  {
+   "q": "¿Cuál es un quality gate bien puesto?",
+   "o": [
+    "El pipeline reintenta hasta que pase",
+    "El PR no se mergea si la suite crítica falla",
+    "Un badge de cobertura en el README",
+    "Correr los tests después del deploy"
+   ],
+   "a": 1,
+   "why": "El gate bloquea ANTES del merge. Después del deploy ya no es gate, es autopsia."
+  },
+  {
+   "q": "Un test falla 1 de cada 10 corridas sin cambios de código. ¿Qué haces?",
+   "o": [
+    "Retry automático infinito",
+    "Cuarentena: sale del gate, ticket para arreglar la causa raíz, y NO se borra",
+    "Borrarlo: molesta más de lo que aporta",
+    "Ignorar esa corrida"
+   ],
+   "a": 1,
+   "why": "Un flaky en el gate entrena al equipo a ignorar rojos. Cuarentena + fix de causa raíz; borrar pierde cobertura."
+  },
+  {
+   "q": "¿Por qué contenerizar la suite de pruebas?",
+   "o": [
+    "Porque lo pide DevOps",
+    "Ambiente reproducible: mismas versiones de browser/Node en local y CI — mata el “en mi máquina pasa”",
+    "Porque siempre es más rápido",
+    "Para poder usar Kubernetes"
+   ],
+   "a": 1,
+   "why": "La reproducibilidad es el punto: si local y CI difieren, cada rojo abre un debate en vez de un fix."
+  },
+  {
+   "q": "¿Qué es sharding y cuál es su requisito?",
+   "o": [
+    "Cifrar los tests",
+    "Partir la suite entre N máquinas en paralelo — requiere tests INDEPENDIENTES (sin orden ni estado compartido)",
+    "Correr la suite N veces",
+    "Un tipo de retry distribuido"
+   ],
+   "a": 1,
+   "why": "--shard=1/4 solo funciona si cualquier subconjunto puede correr solo. El aislamiento del módulo 5 es lo que hace posible el sharding."
+  },
+  {
+   "q": "La corrida de CI terminó. ¿Dónde quedó el reporte y el trace para debuggear?",
+   "o": [
+    "Se perdieron con el runner",
+    "En los ARTEFACTOS del pipeline: el job los sube (upload-artifact) y se descargan desde la corrida",
+    "En el commit",
+    "Hay que re-correr para verlos"
+   ],
+   "a": 1,
+   "why": "Los runners son efímeros. Si el job no publica reporte/trace como artefacto, cada fallo de CI es irreproducible por diseño."
+  },
+  {
+   "q": "Tu suite necesita el API_KEY de staging. ¿Dónde vive?",
+   "o": [
+    "En el playwright.config.ts",
+    "En los SECRETS del proveedor de CI (encriptados, enmascarados en logs) — jamás en el repo",
+    "En un .env commiteado",
+    "En el nombre del job"
+   ],
+   "a": 1,
+   "why": "Un secreto en el repo está comprometido desde el primer push (el historial no olvida). Los secrets de CI existen exactamente para esto."
+  },
+  {
+   "q": "“npm ci” tarda 4 minutos en cada corrida. ¿Cuál es la optimización correcta?",
+   "o": [
+    "Quitar dependencias",
+    "Cache de dependencias con clave ligada al lockfile: se invalida solo cuando cambian las dependencias",
+    "Instalar global en el runner",
+    "Correr los tests sin instalar"
+   ],
+   "a": 1,
+   "why": "El cache por hash del lockfile da lo mejor de ambos mundos: instalación instantánea cuando nada cambió, limpia cuando sí."
+  },
+  {
+   "q": "¿Qué corre en el PR, qué en main y qué en el nightly?",
+   "o": [
+    "Todo en todos lados",
+    "PR: smoke + suite crítica (rápido) · main: suite completa · nightly: regresión total + performance — el feedback rápido donde bloquea",
+    "Solo nightly para no molestar",
+    "PR: nada; main: todo"
+   ],
+   "a": 1,
+   "why": "El gate del PR debe ser rápido para ser respetado; lo exhaustivo corre donde no bloquea a nadie. Cada capa con su presupuesto de tiempo."
+  },
+  {
+   "q": "Tu gate tarda 90 minutos y los devs mergean con “admin override”. ¿Cuál es el problema REAL?",
+   "o": [
+    "Los devs indisciplinados",
+    "Un gate tan lento que estorba deja de ser respetado: hay que bajarlo a minutos (sharding, selección por riesgo) o pierde autoridad",
+    "Falta un segundo gate",
+    "El proveedor de CI"
+   ],
+   "a": 1,
+   "why": "La fricción vence a la disciplina siempre. Un control que la gente esquiva no controla nada: la velocidad del gate ES parte de su diseño."
+  },
+  {
+   "q": "¿Por qué usar la imagen Docker oficial de Playwright (mcr.microsoft.com/playwright) con la MISMA versión del paquete npm?",
+   "o": [
+    "Es la única que existe",
+    "Trae los browsers y dependencias del sistema exactos para esa versión — imagen y paquete desalineados = fallos raros de browser",
+    "Por licenciamiento",
+    "Para ahorrar espacio"
+   ],
+   "a": 1,
+   "why": "Playwright fija versiones de browser por release. Imagen 1.44 con paquete 1.46 = crashes crípticos que nadie asocia a la causa real."
+  }
+ ],
+ "m28": [
+  {
+   "q": "Un workflow tiene los jobs lint y e2e, sin needs. lint falla. ¿Qué pasa con e2e?",
+   "o": [
+    "Se salta",
+    "Se cancela",
+    "Espera a que arregles lint",
+    "Corre igual, en paralelo, porque no depende de lint"
+   ],
+   "a": 3,
+   "why": "Sin needs los jobs son independientes. Con needs: [lint], e2e esperaría y se saltaría al fallar lint."
+  },
+  {
+   "q": "Se borra la caché de npm del repo. ¿Qué debería pasar en la corrida siguiente?",
+   "o": [
+    "Falla porque faltan dependencias",
+    "Cambian los resultados de las pruebas",
+    "Tarda más y da el mismo resultado",
+    "Se pierden los reportes anteriores"
+   ],
+   "a": 2,
+   "why": "La caché es una optimización desechable. Si borrarla cambia un resultado, eso es un hallazgo: algo dependía de ella."
+  },
+  {
+   "q": "El check eval-gate de qa-eval-lab sale verde en un repo sin OPENAI_API_KEY. ¿Qué te dice?",
+   "o": [
+    "Que el LLM aprobó todas las respuestas",
+    "Que pasaron las pruebas de UI y que DeepEval y Promptfoo se saltaron, como avisa el ::notice",
+    "Que la clave está mal configurada y el job falló en silencio",
+    "Nada"
+   ],
+   "a": 1,
+   "why": "Verde no es lo mismo que evaluado. Hay que leer qué pasos corrieron; el README lo declara en §Límites."
+  },
+  {
+   "q": "Tu check es verde y obligatorio en tu cabeza, pero main no está protegida. Alguien abre un PR con pruebas rojas. ¿Qué bloquea el merge?",
+   "o": [
+    "Nada: sin protección de rama y check requerido, el merge se puede hacer igual",
+    "El check rojo",
+    "GitHub bloquea todo PR con checks rojos por defecto",
+    "El CODEOWNERS"
+   ],
+   "a": 0,
+   "why": "Un gate son dos cosas: check requerido y rama protegida. El 26-oct-2026 ninguno de los cinco repos de los casos reales tenía main protegida."
+  },
+  {
+   "q": "Un paso dice npm test || true. ¿Qué cambia?",
+   "o": [
+    "Nada",
+    "Reintenta las pruebas",
+    "Corre las pruebas en paralelo",
+    "El paso sale con exit 0 aunque las pruebas fallen: el gate deja de ser gate"
+   ],
+   "a": 3,
+   "why": "Es un fail-open escondido. Solo lo ves si lees el log, por eso es una de las mutaciones de la semana."
+  },
+  {
+   "q": "Sin la clave, eval-gate imprime un aviso y sale verde. ¿Qué tipo de diseño es y cómo lo vuelves fail-closed?",
+   "o": [
+    "Fail-closed; ya bloquea",
+    "Fail-safe; corre la suite completa",
+    "Fail-open; lo vuelves fail-closed haciendo que el job falle (exit 1) cuando falta el secreto en los eventos donde el gate debe calificar",
+    "No se puede cambiar"
+   ],
+   "a": 2,
+   "why": "Fail-open: ante la duda, verde. Es razonable en un repo público sin clave si se avisa, pero no sirve como gate de merge."
+  },
+  {
+   "q": "Con retries: 2, una prueba falla y pasa en el segundo intento. ¿Qué haces?",
+   "o": [
+    "Nada, salió verde",
+    "La tratas como flaky: queda marcada en el reporte, va a cuarentena con un ticket y no se esconde",
+    "Subes retries a 5",
+    "La borras"
+   ],
+   "a": 1,
+   "why": "Playwright la reporta como flaky. En jev-ci-triage, «falló y pasó en un reintento de la misma corrida» es la regla 1 de flaky. En un runner de mutantes se usa retries: 0."
+  },
+  {
+   "q": "¿Qué diferencia a verify.yml de reproduce.yml en predictor-debugger?",
+   "o": [
+    "verify.yml corre en cada push y comprueba la huella sobre veredictos guardados; reproduce.yml se lanza a mano o con un tag v*, baja data-v1 en un runner limpio y recalcula",
+    "Ninguna",
+    "reproduce.yml corre en cada PR",
+    "verify.yml reentrena la red"
+   ],
+   "a": 0,
+   "why": "Un pipeline barato para cada cambio y uno caro para la evidencia. Los dos exigen la huella con grep -q."
+  },
+  {
+   "q": "Tu check está verde, pero la rama no tiene protección y el check no es requerido. ¿Qué bloquea?",
+   "o": [
+    "Todo merge con fallos",
+    "Nada: el merge se puede hacer igual",
+    "Solo los PR de forks",
+    "Los tags"
+   ],
+   "a": 1,
+   "why": "El gate existe cuando el check es requerido en una rama protegida."
+  },
+  {
+   "q": "qa-eval-lab sin OPENAI_API_KEY sale verde. ¿Qué pasó?",
+   "o": [
+    "Se evaluó el LLM y aprobó",
+    "Pasaron las pruebas de UI; los pasos de DeepEval y Promptfoo se saltaron con un ::notice::",
+    "Falló en silencio",
+    "Usó otra llave"
+   ],
+   "a": 1,
+   "why": "Verde no es evaluado: hay que leer qué pasos corrieron."
+  },
+  {
+   "q": "Un paso dice npm test || true. ¿Qué efecto tiene?",
+   "o": [
+    "Ninguno",
+    "El paso sale verde aunque los tests fallen",
+    "Reintenta los tests",
+    "Acelera el job"
+   ],
+   "a": 1,
+   "why": "Es un fallo silencioso: el gate deja de ser gate."
+  },
+  {
+   "q": "¿En qué se diferencian la caché y un artefacto?",
+   "o": [
+    "Son lo mismo",
+    "La caché acelera y puede desaparecer; el artefacto es evidencia para descargar y revisar",
+    "El artefacto es más rápido",
+    "La caché se firma"
+   ],
+   "a": 1,
+   "why": "Nunca guardes evidencia solo en la caché."
+  },
+  {
+   "q": "Dos jobs no tienen needs entre ellos…",
+   "o": [
+    "Corren en orden alfabético",
+    "Corren en paralelo",
+    "No corren",
+    "Comparten disco"
+   ],
+   "a": 1,
+   "why": "needs crea la dependencia; sin él, cada job arranca por su cuenta."
+  },
+  {
+   "q": "¿Qué orden de gates es más sensato?",
+   "o": [
+    "visual → UI → lint",
+    "lint → typecheck → unit → API/contract → UI → performance → visual",
+    "performance primero",
+    "Da igual"
+   ],
+   "a": 1,
+   "why": "Lo barato y rápido primero: si falla, no gastas minutos en lo caro."
+  },
+  {
+   "q": "En el ci.yml de civica, ¿para qué los uploads llevan if: ${{ !cancelled() }}?",
+   "o": [
+    "Para no subir nada si algo falla",
+    "Para subir el reporte y el ledger aunque falle un gate anterior, salvo que la corrida se cancele",
+    "Por estética",
+    "Para correr solo en main"
+   ],
+   "a": 1,
+   "why": "La evidencia más útil es justo la de la corrida que falló."
+  },
+  {
+   "q": "¿Qué hace reproduce.yml de predictor-debugger cuando empujas un tag v*?",
+   "o": [
+    "Publica el release",
+    "Baja data-v1 en un runner limpio, recalcula y exige los veredictos y la huella con grep -q",
+    "Corre solo lint",
+    "Nada"
+   ],
+   "a": 1,
+   "why": "Es un pipeline de evidencia: el tag dispara la reproducción."
+  },
+  {
+   "q": "restful-booker estuvo rojo el 15 y el 16 de octubre. ¿Por qué?",
+   "o": [
+    "Fallaban los tests de API",
+    "npm run format:check (Prettier) encontró archivos sin formato",
+    "Se cayó Docker",
+    "Faltaba un secret"
+   ],
+   "a": 1,
+   "why": "Un gate barato y temprano atrapó el problema antes que las suites."
+  }
+ ],
+ "m27": [
+  {
+   "q": "Termina un job de GitHub Actions en un runner hospedado. ¿Qué queda?",
+   "o": [
+    "Lo que subiste como artefacto, lo que publicaste en un release y lo que commiteaste",
+    "Todo el disco del runner, por 14 días",
+    "La caché de npm con tus reportes",
+    "Los procesos en segundo plano"
+   ],
+   "a": 0,
+   "why": "El runner se descarta. Lo que no salió antes se perdió."
+  },
+  {
+   "q": "Borras la caché y relanzas. La huella del resultado cambia. ¿Qué concluyes?",
+   "o": [
+    "Es normal, la caché cambia todo",
+    "Hay que volver a llenar la caché",
+    "La huella está mal calculada",
+    "Es un hallazgo: el resultado dependía de algo que no estaba fijado"
+   ],
+   "a": 3,
+   "why": "La caché solo debe cambiar el tiempo. Si cambia la huella, una entrada no estaba fijada."
+  },
+  {
+   "q": "¿Por qué fijar una imagen por digest (imagen@sha256:…) y no por tag?",
+   "o": [
+    "Es más corto",
+    "Docker no acepta tags en CI",
+    "Un tag se puede mover a otra imagen; un digest nombra exactamente el mismo contenido",
+    "Para que descargue más rápido"
+   ],
+   "a": 2,
+   "why": "Una entrada fijada es la condición para repetir una corrida en otro entorno y obtener la misma huella."
+  },
+  {
+   "q": "Se cae la sesión y el lock global aparece libre. ¿Puedes relanzar la tarea sin más?",
+   "o": [
+    "Sí, el lock libre prueba que el proceso murió",
+    "No: en repro-ia-20261026 el lock libre se juzgó «not sufficient alone to prove old driver absent» y no se relanzó nada mientras la identidad del proceso viejo fuera incierta",
+    "Sí, si pasaron 5 minutos",
+    "Solo si el disco está lleno"
+   ],
+   "a": 1,
+   "why": "Lo dice receipts/interruption.json. Un proceso que sigue vivo en otro espacio de nombres podría escribir sobre tu checkpoint."
+  },
+  {
+   "q": "Los 81 archivos de la R1 se regeneraron y difieren del publicado en 8,9e-16 como máximo. ¿Qué son?",
+   "o": [
+    "Una corrida nueva, declarada como tal: ninguno es idéntico bit a bit, y la huella y los veredictos sí coinciden",
+    "Los arrays originales recuperados",
+    "Archivos corruptos",
+    "Copias del Mac"
+   ],
+   "a": 0,
+   "why": "Regenerar no es recuperar. Los arrays originales desaparecieron con el ejecutor efímero; results_scope.txt lo dice como NEW RUN."
+  },
+  {
+   "q": "¿Para qué se escribe un checkpoint en un archivo temporal y después se hace mv?",
+   "o": [
+    "Para ahorrar disco",
+    "Porque mv es más rápido",
+    "Para borrar el anterior",
+    "Para que, si el proceso muere a mitad, no quede un checkpoint a medio escribir con el nombre bueno"
+   ],
+   "a": 3,
+   "why": "El rename es atómico en el mismo sistema de archivos: o está el checkpoint completo o no está."
+  },
+  {
+   "q": "Al retomar, ¿cómo sabes que una tarea ya está hecha?",
+   "o": [
+    "Porque existe su archivo",
+    "Porque el log lo dice",
+    "Porque su hash verifica contra el recibo guardado, y lo compruebas con el lock tomado",
+    "Por la fecha del archivo"
+   ],
+   "a": 2,
+   "why": "Existir no basta: el archivo puede estar truncado o ser viejo. En el release, el SHA y las filas de cada tarea se revisan bajo lock."
+  },
+  {
+   "q": "El release dice «No es una revisión independiente». ¿Por qué importa?",
+   "o": [
+    "No importa: las huellas coinciden",
+    "Lo operó un asistente de IA bajo la dirección del autor; reproducido no es lo mismo que reproducido por un tercero",
+    "Porque faltan datos",
+    "Porque usó Python 3.12"
+   ],
+   "a": 1,
+   "why": "La huella igual es evidencia fuerte, pero quien la produjo no es independiente. El siguiente paso es que otra persona corra reproduce.yml o el paquete."
+  },
+  {
+   "q": "Un job de GitHub Actions termina. ¿Qué pasa con los archivos que generó y no subiste?",
+   "o": [
+    "Quedan en el runner para el siguiente job",
+    "Se pierden con el runner",
+    "Se suben solos",
+    "Quedan en la caché"
+   ],
+   "a": 1,
+   "why": "Cada job arranca limpio y su disco muere con él."
+  },
+  {
+   "q": "¿Por qué fijar una imagen por digest y no por tag?",
+   "o": [
+    "Es más corto",
+    "El tag puede apuntar mañana a otra imagen; el digest identifica exactamente la misma",
+    "Por velocidad",
+    "No hay diferencia"
+   ],
+   "a": 1,
+   "why": "Una entrada fijada es la condición para repetir una corrida."
+  },
+  {
+   "q": "Release repro-ia-20261026: ¿qué pasó con los 81 arrays de la corrida previa?",
+   "o": [
+    "Se recuperaron idénticos",
+    "Desaparecieron con el ejecutor efímero; la R1 se regeneró como corrida nueva",
+    "Nunca existieron",
+    "Se subieron a git"
+   ],
+   "a": 1,
+   "why": "results_scope.txt lo dice tal cual."
+  },
+  {
+   "q": "¿Qué sobrevivió a esa pérdida?",
+   "o": [
+    "Nada",
+    "Los hashes y estadísticas durables guardados como recibos",
+    "Los procesos",
+    "La caché"
+   ],
+   "a": 1,
+   "why": "Lo que sale como recibo sobrevive al contenedor."
+  },
+  {
+   "q": "Los 81 archivos regenerados no son idénticos bit a bit (máximo 8,9e-16). ¿Y las huellas?",
+   "o": [
+    "Cambiaron",
+    "Coinciden con las originales, igual que los veredictos",
+    "No se calcularon",
+    "Se ajustaron a mano"
+   ],
+   "a": 1,
+   "why": "Bit-idéntico no es lo mismo que veredicto-idéntico."
+  },
+  {
+   "q": "¿Para qué sirve un flock en una corrida que se puede retomar?",
+   "o": [
+    "Para acelerar",
+    "Para que no haya dos procesos haciendo la misma tarea y retomar sin duplicar trabajo",
+    "Para cifrar",
+    "Para el log"
+   ],
+   "a": 1,
+   "why": "En el paquete, el SHA y las filas de cada tarea se revisan bajo lock."
+  },
+  {
+   "q": "Perdiste la sesión con el proceso que corría la R4 y no sabes si sigue vivo. ¿Qué dice la política del recibo?",
+   "o": [
+    "Relanzar todo ya",
+    "No relanzar mientras la identidad del proceso viejo sea incierta",
+    "Borrar los checkpoints",
+    "Cambiar de máquina sin decirlo"
+   ],
+   "a": 1,
+   "why": "receipts/interruption.json: perder la sesión no prueba que el proceso viejo se detuvo."
+  },
+  {
+   "q": "¿Dónde compruebas que algo es reproducible?",
+   "o": [
+    "En la máquina del autor",
+    "En un entorno limpio, desde cero, como el runner nuevo de reproduce.yml",
+    "En la caché",
+    "En producción"
+   ],
+   "a": 1,
+   "why": "La máquina del autor esconde todo lo que no está fijado."
+  }
+ ],
+ "m10": [
+  {
+   "q": "p95 = 180 ms y promedio = 90 ms. ¿Qué significa?",
+   "o": [
+    "Hay un error de medición",
+    "El 5% de requests tarda MÁS de 180 ms: el promedio esconde la cola",
+    "Todos los requests tardan ~90 ms",
+    "El SLO se cumple siempre"
+   ],
+   "a": 1,
+   "why": "Los percentiles muestran la cola que el promedio esconde — y tus usuarios más molestos viven en la cola."
+  },
+  {
+   "q": "Quieres saber si la app aguanta 6 horas de tráfico normal sin degradarse (fugas de memoria). ¿Qué test?",
+   "o": [
+    "Spike",
+    "Stress",
+    "Soak (resistencia)",
+    "Smoke"
+   ],
+   "a": 2,
+   "why": "Soak = carga sostenida en el tiempo: revela fugas y degradación lenta que un test corto jamás ve."
+  },
+  {
+   "q": "La primera request a una Lambda tarda 3 s; las siguientes, 120 ms. ¿Qué es?",
+   "o": [
+    "Un bug que hay que reportar",
+    "Cold start — inclúyelo en el SLO o mitiga con warmers/provisioned concurrency",
+    "Throttling de AWS",
+    "Mala elección de región"
+   ],
+   "a": 1,
+   "why": "Es física del serverless, no bug. Tu trabajo es decidir si el SLO lo tolera y validar la mitigación."
+  },
+  {
+   "q": "¿Dónde vive el criterio pasa/no-pasa de un test k6 bien hecho?",
+   "o": [
+    "En el ojo del que mira el dashboard",
+    "En los THRESHOLDS del script (p95<300ms, error_rate<1%): el test falla solo, sin interpretación manual",
+    "En el reporte de Grafana",
+    "En el gerente"
+   ],
+   "a": 1,
+   "why": "Sin thresholds, el test de carga es una opinión. Con thresholds es un test de verdad: automatizable, gateable y sin debate."
+  },
+  {
+   "q": "¿Para qué subir la carga GRADUALMENTE (ramp-up) en un stress test?",
+   "o": [
+    "Para no asustar al servidor",
+    "Para encontrar EL PUNTO donde el sistema empieza a degradar — si golpeas con todo de entrada, sabes que muere pero no cuándo",
+    "Para ahorrar VUs",
+    "Es un requisito de k6"
+   ],
+   "a": 1,
+   "why": "El valor del stress es la curva: en qué punto sube la latencia, cuándo aparecen errores. El ramp-up dibuja esa curva."
+  },
+  {
+   "q": "Suben los VUs: el throughput se estanca pero la latencia sigue estable. ¿Qué significa?",
+   "o": [
+    "Todo bien: la latencia es lo único que importa",
+    "El sistema saturó un cuello (pool de conexiones, CPU, workers): procesa lo mismo aunque le pidas más",
+    "k6 está mal configurado",
+    "Necesitas más VUs para medir"
+   ],
+   "a": 1,
+   "why": "Throughput plano con demanda creciente = límite de capacidad encontrado. Latencia y throughput cuentan historias distintas: mira ambos."
+  },
+  {
+   "q": "¿Qué diferencia un SLI de un SLO?",
+   "o": [
+    "Son sinónimos",
+    "SLI = la métrica medida (p95 real) · SLO = el objetivo sobre esa métrica (p95 < 300 ms el 99% del tiempo)",
+    "SLO es la versión legal del SLI",
+    "SLI es de infra y SLO de negocio"
+   ],
+   "a": 1,
+   "why": "Primero defines QUÉ mides (SLI), luego CUÁNTO es aceptable (SLO). Tus thresholds de k6 son SLOs ejecutables."
+  },
+  {
+   "q": "Corres el test de carga en un staging con la mitad de recursos que prod. ¿Qué puedes concluir?",
+   "o": [
+    "Los números absolutos de prod",
+    "Tendencias y REGRESIONES relativas (¿este release es más lento que el anterior?) — los absolutos de prod no, la infra difiere",
+    "Nada: es inútil",
+    "El costo de AWS"
+   ],
+   "a": 1,
+   "why": "Staging chico sirve como detector de regresiones comparando contra sí mismo. Extrapolar absolutos a prod sin la misma infra es ficción."
+  },
+  {
+   "q": "Al subir la carga, el error rate sube pero la latencia de los que SÍ responden se mantiene. ¿Hipótesis más probable?",
+   "o": [
+    "La red del tester",
+    "Un recurso con límite duro rechazando el excedente (rate limit, pool lleno, cola saturada): responde rápido a unos y descarta al resto",
+    "DNS lento",
+    "Los VUs mienten"
+   ],
+   "a": 1,
+   "why": "Rechazo rápido + éxito estable = algo está descartando en la puerta. Es un patrón distinto a la degradación general — y se investiga distinto."
+  },
+  {
+   "q": "¿Para qué conectar k6 con Grafana si k6 ya imprime el resumen?",
+   "o": [
+    "Para que se vea profesional",
+    "Series de tiempo correlacionadas (latencia vs errores vs VUs en el MISMO eje temporal): el resumen final no muestra CUÁNDO pasó cada cosa",
+    "Para exportar PDF",
+    "Grafana es requisito de k6"
+   ],
+   "a": 1,
+   "why": "“p95=800ms” no dice si fue constante o un pico al minuto 12 cuando llegó el GC. La serie temporal es la que explica el porqué."
+  }
+ ],
+ "m20": [
+  {
+   "q": "Cambias una palabra del texto que juzga el modelo y corres en modo replay. ¿Qué debe pasar?",
+   "o": [
+    "Pasa con la grabación anterior",
+    "Falta el fixture y la prueba queda unverified: no pasa",
+    "Se llama al modelo en vivo sin avisar",
+    "Se borra la grabación"
+   ],
+   "a": 1,
+   "why": "La llave es el hash de (modelo, estado redactado, pregunta): una entrada distinta nunca reutiliza una respuesta vieja."
+  },
+  {
+   "q": "¿Por qué la llave de una grabación es un hash de la petición y no el nombre del test?",
+   "o": [
+    "Por estética",
+    "Porque así un cambio en la petición invalida la grabación; con el nombre del test se reutilizaría una respuesta vieja",
+    "Porque es más corto",
+    "No importa"
+   ],
+   "a": 1,
+   "why": "El nombre del test no cambia cuando cambias la pregunta; el hash sí."
+  },
+  {
+   "q": "Un veredicto “ambiguous” en una aserción semántica…",
+   "o": [
+    "Pasa con advertencia",
+    "Nunca pasa: fail-closed",
+    "Se reintenta hasta que diga yes",
+    "Se ignora"
+   ],
+   "a": 1,
+   "why": "playwright-jev, ADR 0001: lo ambiguo o sin verificar nunca pasa."
+  },
+  {
+   "q": "IMDb bloquea bots y tu E2E real no puede correr en CI. ¿Qué hace civica?",
+   "o": [
+    "Borra la E2E",
+    "Capa de mocks determinista, y la E2E real hace skip con un motivo honesto",
+    "Pone retries: 10",
+    "Desactiva el CI"
+   ],
+   "a": 1,
+   "why": "El skip con motivo deja el hueco a la vista; borrar o reintentar lo esconde."
+  },
+  {
+   "q": "¿Qué gana un CI que corre desde grabaciones?",
+   "o": [
+    "Nada",
+    "Es reproducible, no necesita llaves ni red y da la misma respuesta en cada corrida",
+    "Es más difícil de mantener",
+    "Evita escribir asserts"
+   ],
+   "a": 1,
+   "why": "El mismo input da el mismo veredicto: lo que cambia es tu código, no el humor del servicio."
+  },
+  {
+   "q": "¿Qué es un ADR?",
+   "o": [
+    "Un tipo de test",
+    "Un registro corto de una decisión de arquitectura: contexto, decisión y consecuencias",
+    "Un reporte de bugs",
+    "Una librería"
+   ],
+   "a": 1,
+   "why": "Deja escrito por qué se decidió algo, para que nadie lo deshaga sin saberlo."
+  },
+  {
+   "q": "Tu grabación tiene seis meses y el proveedor cambió el modelo. ¿Qué haces?",
+   "o": [
+    "Nada: sigue verde",
+    "Re-grabo a propósito (modo record) y reviso el diff de veredictos antes de aceptarlo",
+    "Borro los tests",
+    "Subo el umbral"
+   ],
+   "a": 1,
+   "why": "Grabar es una decisión: el diff de veredictos se revisa como cualquier otro cambio."
+  },
+  {
+   "q": "¿Qué se redacta antes de enviar un estado a un modelo externo?",
+   "o": [
+    "Nada",
+    "Tokens, correos, JWT, tarjetas y rutas personales",
+    "Solo el nombre del test",
+    "Los números"
+   ],
+   "a": 1,
+   "why": "Lo que sale de tu máquina sale redactado; jev-ci-triage lo hace en src/redact.ts."
+  }
+ ],
+ "m11": [
+  {
+   "q": "¿Por qué separar IA “directora” e IA “ejecutora”?",
+   "o": [
+    "Es marketing de las herramientas",
+    "Planear con contexto amplio y ejecutar pegado al código rinden más que una sola IA haciendo todo",
+    "Porque Copilot no puede planear nada",
+    "Para justificar dos licencias"
+   ],
+   "a": 1,
+   "why": "Planeación y ejecución son cargas distintas: separarlas rinde mejor con cualquier par de herramientas."
+  },
+  {
+   "q": "Según el test mental de delegación, ¿cuál tarea NO delegas a la IA?",
+   "o": [
+    "Generar steps desde un contrato OpenAPI",
+    "Decidir si un mismatch de contrato bloquea el release",
+    "Formatear el reporte de evidencia",
+    "Escribir un POM mecánico sobre convención clara"
+   ],
+   "a": 1,
+   "why": "Criterio de negocio/riesgo + responsabilidad = humano. Lo mecánico sobre convención clara sí se delega."
+  },
+  {
+   "q": "“La IA se equivoca con seguridad” significa:",
+   "o": [
+    "Que la IA es segura de usar",
+    "Que sus errores llegan con tono confiado: revisa SIEMPRE el diff, aunque suene convincente",
+    "Que se equivoca muy poco",
+    "Que solo falla en código complejo"
+   ],
+   "a": 1,
+   "why": "La confianza del tono no correlaciona con la corrección. El diff se revisa siempre — sin excepciones."
+  },
+  {
+   "q": "¿Cuáles son los 5 bloques de un buen prompt según el método?",
+   "o": [
+    "Saludo, pregunta, despedida, firma, PD",
+    "Contexto + Insumo + Instrucción + Restricciones + Salida esperada",
+    "Rol, tono, idioma, formato, emojis",
+    "Objetivo, deadline, presupuesto, equipo, riesgo"
+   ],
+   "a": 1,
+   "why": "Cada bloque elimina una clase de fallo: sin restricciones inventa alcance; sin salida esperada, el formato es lotería."
+  },
+  {
+   "q": "¿Qué es un “prompt pack”?",
+   "o": [
+    "Una suscripción de prompts",
+    "Recetas reutilizables con huecos <...> para las tareas repetidas del oficio — “de 10 minutos a 1”",
+    "Un plugin del IDE",
+    "Prompts encadenados automáticamente"
+   ],
+   "a": 1,
+   "why": "La tarea que haces 20 veces merece plantilla probada con huecos. El prompt artesanal de cada vez reinventa errores ya resueltos."
+  },
+  {
+   "q": "La IA generó un test contra POST /users/validate… y ese endpoint NO existe en el contrato. ¿Qué pasó y qué haces?",
+   "o": [
+    "El contrato está desactualizado",
+    "Alucinación: inventó el endpoint con total confianza — el contrato va DE INSUMO en el prompt y el diff se revisa contra él",
+    "Un error de red",
+    "Se prueba a ver si existe"
+   ],
+   "a": 1,
+   "why": "La IA rellena huecos con plausibilidad, no con verdad. Insumo real (el contrato) + revisión contra el insumo = el antídoto."
+  },
+  {
+   "q": "¿Qué papel juega copilot-instructions.md (o las rules de Cursor)?",
+   "o": [
+    "Documentación para humanos",
+    "Es “el CLAUDE.md del IDE”: conecta el plan de la IA directora con la ejecución — la ejecutora hereda convenciones y restricciones",
+    "Un archivo de licencia",
+    "Configuración de teclas"
+   ],
+   "a": 1,
+   "why": "Sin ese artefacto, la ejecutora improvisa su propio estilo y el plan de la directora se pierde en la traducción."
+  },
+  {
+   "q": "¿Cuándo NO deberías usar IA para una tarea de QA?",
+   "o": [
+    "Cuando la tarea es aburrida",
+    "Cuando aún no puedes EVALUAR su salida (no dominas el tema): no distinguirías lo correcto de lo plausible",
+    "Cuando el código es legacy",
+    "Cuando hay deadline"
+   ],
+   "a": 1,
+   "why": "Por eso el módulo va al final del curso: la IA amplifica al que sabe y confunde al que no. Primero criterio, luego amplificación."
+  },
+  {
+   "q": "¿Qué habilita Playwright + MCP + IA (el cluster que domina vacantes)?",
+   "o": [
+    "Reportes más bonitos",
+    "La IA puede EJECUTAR e inspeccionar el browser real (correr flujos, leer el DOM, verificar) — no solo escribir código a ciegas",
+    "Tests sin código",
+    "Reemplazar al QA"
+   ],
+   "a": 1,
+   "why": "Con MCP la IA pasa de “escribir tests que quizá funcionen” a “probar de verdad y corregirse” — por eso el mercado lo paga."
+  },
+  {
+   "q": "Recibes una suite generada por IA. ¿Qué buscas PRIMERO en la revisión?",
+   "o": [
+    "El formato y los nombres",
+    "Aserciones débiles (expect(true)), esquemas relajados y selectores frágiles: los tres vicios típicos con los que la IA “hace pasar” tests",
+    "La cantidad de tests",
+    "Los comentarios"
+   ],
+   "a": 1,
+   "why": "La IA optimiza a “que pase”, no a “que valide”. Un test verde que no asserta nada es peor que no tener test: da confianza falsa."
+  }
+ ],
+ "m14": [
+  {
+   "q": "Quieres que tu asistente nunca haga push a main. ¿Dónde vive esa regla?",
+   "o": [
+    "En el prompt: “por favor no hagas push a main”",
+    "En un hook que bloquea el comando con exit 2, más protección de rama en el repo",
+    "En un comentario del README",
+    "En la memoria del asistente"
+   ],
+   "a": 1,
+   "why": "Un prompt es una petición que el modelo puede pasar por alto; un hook que sale con código distinto de 0 es un muro que además se puede probar."
+  },
+  {
+   "q": "Escribiste el hook que bloquea el push a main. ¿Cómo sabes que funciona?",
+   "o": [
+    "Lo probé una vez y bloqueó",
+    "Lo ataco con casos que intentan colarse: comandos encadenados, el git push pelado estando en main…",
+    "Le pregunto al asistente si funciona",
+    "Confío porque el código es corto"
+   ],
+   "a": 1,
+   "why": "Hilo WAR: la barrera se prueba como el producto. Y atacarlo sirve: una mutación encontró que git -c y git --no-pager se colaban, y el commit 1b01c66 lo arregló con pruebas nuevas."
+  },
+  {
+   "q": "El asistente te dice “corrí la suite y todo pasó”. ¿Qué firmas?",
+   "o": [
+    "Firmo: el asistente es confiable",
+    "Nada hasta tener comando, commit y exit code que yo pueda re-ejecutar",
+    "Firmo si la respuesta suena segura",
+    "Firmo si adjunta un resumen bonito"
+   ],
+   "a": 1,
+   "why": "La evidencia se puede re-ejecutar: comando + commit/hash + exit code. Una frase no es evidencia."
+  },
+  {
+   "q": "¿Qué va en el AGENTS.md (Codex) o el CLAUDE.md (Claude Code) del repo?",
+   "o": [
+    "La API key del proyecto, para que el asistente no la pida",
+    "Comandos frecuentes, convenciones y lo que está prohibido",
+    "El historial de chats",
+    "Nada: el asistente ya lo sabe todo"
+   ],
+   "a": 1,
+   "why": "Es contexto versionado del proyecto. Los secretos nunca van en archivos que se commitean."
+  },
+  {
+   "q": "El servicio de IA que decide qué tests correr no responde. ¿Qué debe pasar?",
+   "o": [
+    "Saltar los tests dudosos para no demorar",
+    "Correr la suite completa",
+    "Poner el build en verde con una nota",
+    "Reintentar sin límite hasta que responda"
+   ],
+   "a": 1,
+   "why": "Fail-safe: ante la duda, lo conservador. jev-test-impact corre todo cuando el modelo falla."
+  },
+  {
+   "q": "Tu CI reconstruye el reporte desde fixtures y lo compara con el commiteado. Difieren. ¿Qué significa?",
+   "o": [
+    "Ruido normal: se ignora",
+    "Cambió algo (código, fixture o pregunta) y el reporte publicado ya no corresponde: el CI debe fallar",
+    "Que el CI está mal configurado",
+    "Que hay que borrar el reporte commiteado"
+   ],
+   "a": 1,
+   "why": "Así trabaja agent-eval-jev: la evidencia publicada tiene que salir del código actual, o el CI se pone rojo."
+  },
+  {
+   "q": "Las respuestas grabadas del juez se guardan con el hash exacto de la petición. ¿Para qué?",
+   "o": [
+    "Para ahorrar espacio",
+    "Para que un cambio en la pregunta o en la traza nunca reutilice una respuesta vieja",
+    "Para cifrarlas",
+    "Por estética"
+   ],
+   "a": 1,
+   "why": "Si cambias la pregunta, cambia el hash y la grabación vieja deja de aplicar: replay reproducible sin respuestas rancias."
+  },
+  {
+   "q": "Un asistente ejecutó tu reproducción completa bajo tu dirección. ¿Cómo lo reportas?",
+   "o": [
+    "Como revisión independiente",
+    "Digo que la ejecutó un asistente bajo mi dirección y que no es una revisión independiente",
+    "No lo menciono",
+    "Como si la hubiera hecho otra persona"
+   ],
+   "a": 1,
+   "why": "predictor-debugger lo declara así. Lo que el lector necesita para pesar la evidencia se dice."
+  },
+  {
+   "q": "¿Qué parte del ciclo NO le delegas al asistente?",
+   "o": [
+    "Generar casos a partir de un contrato",
+    "Correr la suite",
+    "Auditar el diff",
+    "Firmar el sign-off"
+   ],
+   "a": 3,
+   "why": "El asistente diseña, ejecuta y audita; la persona decide y firma. La certificación es humana."
+  },
+  {
+   "q": "El asistente propone relajar un assert porque “el test falla por un detalle”. ¿Qué haces?",
+   "o": [
+    "Acepto: él vio el error",
+    "Reviso contra el contrato: si el servicio incumple, se reporta y el assert no se toca",
+    "Lo marco @IGNORE sin ticket",
+    "Borro el test"
+   ],
+   "a": 1,
+   "why": "El antipatrón clásico de la IA es adaptar el test a la respuesta. Un verde falso es peor que un rojo honesto."
+  }
+ ]
+}

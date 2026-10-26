@@ -1,0 +1,97 @@
+{
+ "progress": {
+  "label": "",
+  "pdf": "",
+  "reset": ""
+ },
+ "nav": {
+  "map": "",
+  "position": ""
+ },
+ "week": {
+  "one": "",
+  "range": "",
+  "closing": ""
+ },
+ "node": {
+  "module": ""
+ },
+ "module": {
+  "level": "",
+  "mentor": "",
+  "kid": "",
+  "goals": "",
+  "pre": "",
+  "theory": "",
+  "resources": "",
+  "lab": "",
+  "criteria": "",
+  "deliver": "",
+  "mutation": "",
+  "evalTitle": "",
+  "evalNote": ""
+ },
+ "rubric": {
+  "axis": "",
+  "levels": [
+   "",
+   "",
+   "",
+   ""
+  ],
+  "generic": [
+   "",
+   "",
+   "",
+   ""
+  ],
+  "allRows": ""
+ },
+ "quiz": {
+  "exam": "",
+  "module": "",
+  "oneAnswer": "",
+  "examPass": "",
+  "examFail": "",
+  "examPassSub": "",
+  "examFailSub": "",
+  "modPass": "",
+  "modFail": "",
+  "modPassSub": "",
+  "modFailSub": "",
+  "retry": "",
+  "why": "",
+  "next": "",
+  "result": "",
+  "correct": "",
+  "wrong": "",
+  "best": "",
+  "bestPass": "",
+  "bestFail": "",
+  "examBadgePass": "",
+  "examBadge": ""
+ },
+ "glossary": {
+  "empty": ""
+ },
+ "auth": {
+  "signIn": "",
+  "signOut": "",
+  "user": "",
+  "noFirebase": "",
+  "merged": "",
+  "loadFail": "",
+  "saveFail": "",
+  "unauthorizedDomain": "",
+  "popupClosed": "",
+  "popupBlocked": "",
+  "other": ""
+ },
+ "levels": {
+  "n1": "",
+  "n2": "",
+  "n3": "",
+  "n4": "",
+  "cap": ""
+ }
+}

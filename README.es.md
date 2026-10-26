@@ -112,11 +112,19 @@ La de 12 semanas está en la página [Cómo te evalúas](evaluacion.html).
 
 ```bash
 git clone https://github.com/criguex/qa-automation-course.git && cd qa-automation-course
-python3 -m http.server 8080        # abre http://localhost:8080
+python3 -m http.server 8080        # abre http://localhost:8080 (los textos se cargan con fetch, así que doble clic en index.html no basta)
 node scripts/check-course.mjs      # valida cada módulo y cada pregunta
 ```
 
-`check-course.mjs` (Node 18+, sin dependencias) comprueba que cada módulo tenga objetivos, prerrequisitos, explicación para niños, laboratorio, criterios, rúbrica y mutación de la semana, que cada banco de quiz tenga al menos 8 preguntas y que cada respuesta apunte a una opción que existe. Hoy imprime `35 modules · 4 levels + final project` y `429 quiz questions · 0 problems`.
+`check-course.mjs` (Node 18+, sin dependencias) comprueba que cada módulo tenga objetivos, prerrequisitos, explicación para niños, laboratorio, criterios, rúbrica y mutación de la semana, que cada banco de quiz tenga al menos 8 preguntas y que cada respuesta apunte a una opción que existe. También comprueba que `i18n/es` e `i18n/en` tengan las mismas claves y que cada pregunta del quiz en inglés tenga el mismo número de opciones y la misma respuesta correcta. Hoy imprime `35 modules · 4 levels + final project`, `429 quiz questions · 0 problems` y cuánto del inglés está lleno.
+
+## Idiomas
+
+El sitio tiene un selector ES/EN en la cabecera. La primera visita sigue `navigator.language` y la elección se recuerda en `localStorage`. El contenido del curso sigue en español; los archivos en inglés están en proceso, y cualquier texto que falte en inglés se muestra en español, así el sitio siempre funciona.
+
+- `course.json`: lo que no depende del idioma (orden de los módulos, nivel, ícono, semanas, enlaces de los recursos).
+- `i18n/es/` e `i18n/en/`: los textos, en archivos de tamaño parecido (`modules-*.json`, `quiz-*.json`, `exam.json`, `glossary.json`, `ui.json` para la interfaz y `pages.json` para la portada y la página de evaluación). Las dos carpetas tienen las mismas claves; un texto vacío en `en` quiere decir "todavía sin traducir".
+- `i18n.js` carga los archivos y hace el respaldo en español; `app.js` dibuja el curso.
 
 Puedes entrar con Google o como invitado. Como invitado, tu avance, tu mejor puntaje en cada quiz y el del examen viven solo en tu navegador (`localStorage`). Con tu cuenta se guardan en Firestore bajo tu id de usuario y sigues desde cualquier dispositivo; al iniciar sesión, lo que hiciste como invitado se suma a tu cuenta (un módulo queda marcado si está marcado en cualquiera de los dos lados, y ganan los mejores puntajes de quiz y de examen).
 

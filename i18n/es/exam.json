@@ -1,0 +1,290 @@
+{
+ "final": [
+  {
+   "q": "La respuesta de la API trae un campo extra no documentado y tu test pasa porque el esquema permite campos adicionales. ¿Qué haces?",
+   "o": [
+    "Nada: verde es verde",
+    "Endurezco el esquema (estricto), reporto el campo sin documentar con evidencia y pido actualizar el contrato",
+    "Documento el campo yo mismo en mi test",
+    "Agrego el campo al esquema como opcional"
+   ],
+   "a": 1,
+   "why": "Un response sin documentar es un hallazgo. El esquema estricto ES el contract test; permisivo = verde falso."
+  },
+  {
+   "q": "Ciclo 1: fallan 3. Llega el fix, corres esos 3 y quedan verdes. ¿Puedes cerrar el ciclo de pruebas?",
+   "o": [
+    "Sí: lo que falló ya pasó",
+    "No: falta la regresión completa al final — el fix pudo romper otra cosa",
+    "Sí, si el dev confirma que el cambio era chico",
+    "Solo si el PO lo aprueba"
+   ],
+   "a": 1,
+   "why": "“Itera estrecho, confirma amplio”: el retest estrecho itera rápido, pero se cierra con regresión completa."
+  },
+  {
+   "q": "Un bug del proveedor bloquea 2 escenarios. El PO pide cerrar la HU “con el @IGNORE puesto”. ¿Qué respondes?",
+   "o": [
+    "Cierro: para eso es el tag",
+    "El @IGNORE excluye la corrida, pero el ticket queda Abierto y la HU NO cierra hasta resolverse",
+    "Cierro si el PO lo pone por escrito",
+    "Borro los 2 escenarios y cierro"
+   ],
+   "a": 1,
+   "why": "@IGNORE gestiona la corrida, no el compromiso: cerrar la HU con un known issue abierto es enmascarar en el tablero."
+  },
+  {
+   "q": "Pipeline verde, trazabilidad completa, y un bot firma el sign-off automáticamente. ¿Es válida la certificación?",
+   "o": [
+    "Sí: cumple todos los requisitos técnicos",
+    "No: la firma es juicio humano de riesgo; el bot solo puede preparar el paquete de evidencia",
+    "Sí, si el bot usa la cuenta del QA lead",
+    "Depende de la empresa"
+   ],
+   "a": 1,
+   "why": "Todo lo demás es automatizable; la responsabilidad no. “La certificación la firma un humano.”"
+  },
+  {
+   "q": "La regresión lleva meses toda verde y el equipo quiere “aprovechar” recortándola. ¿Qué dice el método?",
+   "o": [
+    "Recortar: verde sostenido = confianza",
+    "Revisarla contra la paradoja del pesticida: variar datos/escenarios y re-priorizar por riesgo antes de tocar tamaño",
+    "Congelarla como está para siempre",
+    "Duplicarla por seguridad"
+   ],
+   "a": 1,
+   "why": "Verde sostenido puede significar tests inmunizados, no software sano. Primero se renueva, luego se decide tamaño."
+  },
+  {
+   "q": "Ves este step: When hago click en \"#submit-btn\" y espero 3 segundos. ¿Cuál es el diagnóstico?",
+   "o": [
+    "Correcto: es explícito",
+    "Gherkin imperativo acoplado a la UI: la intención de negocio se perdió y el feature se rompe con cada cambio de CSS",
+    "Válido si el selector es estable",
+    "Solo le falta el Then"
+   ],
+   "a": 1,
+   "why": "El feature declara QUÉ pasa en el negocio; selectores y esperas viven en los steps. Acoplarlo lo vuelve mantenimiento puro."
+  },
+  {
+   "q": "Presupuesto para automatizar UNA sola cosa este mes. ¿Cuál eliges?",
+   "o": [
+    "El flujo de checkout que usa el 90% de clientes y cambia cada sprint",
+    "Una pantalla legacy estable que nadie toca",
+    "El formulario de contacto",
+    "Los estilos del landing"
+   ],
+   "a": 0,
+   "why": "Frecuencia de cambio × criticidad = máximo retorno de la automatización. Lo estable y trivial no paga su mantenimiento."
+  },
+  {
+   "q": "Tu suite TS compila perfecto con tipos correctos. ¿Ya validaste el contrato de la API?",
+   "o": [
+    "Sí: TypeScript valida los tipos",
+    "No: los tipos se borran en compile-time — el contrato se valida en runtime con Zod/AJV contra el esquema",
+    "Sí, si uso generics en el cliente HTTP",
+    "Solo falta el status 200"
+   ],
+   "a": 1,
+   "why": "El generic es una promesa al compilador, no una verificación del servicio. Runtime schema validation o no hay contract test."
+  },
+  {
+   "q": "Para “estabilizar” la suite, un compañero mete sleep(5000) en 40 tests. ¿Cuál es el problema real?",
+   "o": [
+    "Ninguno, si ahora pasan",
+    "Tapa la causa (locators/espera incorrectos), suma 3+ minutos por corrida y el flakiness volverá con otra latencia",
+    "Que 5 segundos es poco",
+    "Que debió usar sleep(10000)"
+   ],
+   "a": 1,
+   "why": "El sleep es deuda: paga intereses en cada corrida y el bug de sincronización sigue vivo debajo."
+  },
+  {
+   "q": "Debes probar la misma app con 3 roles (admin, editor, viewer). ¿Cómo lo monta Playwright bien?",
+   "o": [
+    "Un test gigante que se loguea 3 veces",
+    "storageState por rol + projects/fixtures: cada test corre autenticado con el rol que declara",
+    "3 copias del repo",
+    "Cambiando la BD entre tests"
+   ],
+   "a": 1,
+   "why": "Sesión por rol persistida y declarada como fixture: RBAC legible, rápido y sin logins repetidos por UI."
+  },
+  {
+   "q": "El p99 se dispara SOLO cuando el tráfico sube de golpe (campañas). ¿Qué test lo reproduce?",
+   "o": [
+    "Soak de 6 horas",
+    "Spike: subidas súbitas de carga para ver si el sistema absorbe y se recupera",
+    "Smoke en cada deploy",
+    "Test unitario del endpoint"
+   ],
+   "a": 1,
+   "why": "Cada tipo ataca un riesgo: el spike modela exactamente el golpe súbito que dispara tu p99."
+  },
+  {
+   "q": "Un test flaky vive en el quality gate del PR. ¿Cuál es el daño mayor si lo dejas?",
+   "o": [
+    "Corridas más lentas",
+    "El equipo aprende a ignorar rojos y re-lanzar el pipeline: el gate pierde toda autoridad",
+    "Gasto de minutos de CI",
+    "Ninguno si pasa al segundo intento"
+   ],
+   "a": 1,
+   "why": "El día que “rojo” significa “dale re-run”, el gate murió. Cuarentena inmediata y fix de causa raíz."
+  },
+  {
+   "q": "En la auditoría preguntan por un verde de hace 2 sprints y no hay evidencia adjunta. ¿Estado del sign-off?",
+   "o": [
+    "Válido: el test pasó",
+    "Comprometido: un verde no defendible invalida la certificación — la evidencia es parte del done",
+    "Válido si el QA lo recuerda bien",
+    "Válido porque CI guarda los logs 7 días"
+   ],
+   "a": 1,
+   "why": "Certificar = poder demostrar qué se probó, cuándo y con qué resultado. Sin evidencia solo queda tu palabra."
+  },
+  {
+   "q": "La IA te entrega la suite y el diff incluye un cambio al esquema para que “el test pase”. ¿Qué haces?",
+   "o": [
+    "Merge: la IA conoce el contexto",
+    "Rechazo esa parte: es el antipatrón de enmascarar — el esquema sale del contrato, no de la respuesta",
+    "Merge con un TODO para revisar luego",
+    "Le pido a otra IA una segunda opinión"
+   ],
+   "a": 1,
+   "why": "Es EL antipatrón que la IA comete con confianza. Tu rol de director existe exactamente para atrapar esto."
+  },
+  {
+   "q": "Prompt impecable de 5 bloques, pero la IA no conoce tu proyecto. Resultado típico:",
+   "o": [
+    "Excelente: el prompt lo es todo",
+    "Genérico y con supuestos inventados: “contexto antes que prompt” — sin CLAUDE.md/notas, el mejor prompt rinde poco",
+    "Perfecto si usas el modelo más nuevo",
+    "Error de la herramienta"
+   ],
+   "a": 1,
+   "why": "Un prompt brillante sobre contexto pobre produce código plausible para OTRO proyecto. Contexto primero."
+  },
+  {
+   "q": "¿Cuál de estas decisiones puedes delegarle completa a la IA?",
+   "o": [
+    "Si el mismatch de contrato bloquea el release",
+    "Qué riesgos priorizar este sprint",
+    "Generar el boilerplate del POM sobre una convención clara y existente",
+    "Firmar la certificación de la HU"
+   ],
+   "a": 2,
+   "why": "Mecánico + convención clara + reversible = delegable. Riesgo, prioridad y firma son tuyos."
+  },
+  {
+   "q": "Automatizas contra un ambiente compartido y un registro clave aparece “dado de baja” (204 vacío). ¿Qué haces?",
+   "o": [
+    "Reporto bug del servicio",
+    "Verifico el caveat en la documentación del dataset; si no está, lo documento — los datos con estado especial son parte del diseño",
+    "Cambio el registro a activo desde la BD",
+    "Hardcodeo otro ID que sí funcione"
+   ],
+   "a": 1,
+   "why": "“Sin data no se ejecuta nada”: el dataset documentado con caveats es un entregable, no un estorbo."
+  },
+  {
+   "q": "Encuentras un mismatch crítico a 2 días del release. ¿Cómo lo comunicas al stakeholder?",
+   "o": [
+    "“Mi test falla, no podemos salir”",
+    "Evidencia (cURL + response) + impacto en el consumidor + opciones con su costo/riesgo",
+    "Lo comento en el daily de mañana",
+    "Se lo escalo al dev y me desentiendo"
+   ],
+   "a": 1,
+   "why": "Detector→impacto→opciones. El stakeholder decide con tu evidencia; tú no eres el bloqueo, eres el radar."
+  },
+  {
+   "q": "Te cambian de Xray a TestRail y de Allure a otro reporter. ¿Qué sobrevive de tu método?",
+   "o": [
+    "Nada: a reaprender desde cero",
+    "Todo lo esencial: la cadena requisito→caso→ejecución→evidencia y el estándar de sign-off son agnósticos a la herramienta",
+    "Solo el Gherkin",
+    "Solo los tests de API"
+   ],
+   "a": 1,
+   "why": "Por eso el método vale más que el stack: las marcas rotan, el estándar de evidencia y trazabilidad no."
+  },
+  {
+   "q": "Sprint cerrado: suite completa verde, cobertura 85%, cero bugs abiertos. ¿Qué afirmas ante el equipo?",
+   "o": [
+    "“El software está bien”",
+    "“Mis pruebas, como están diseñadas, no encontraron problemas — y esto es lo que cubren y esto lo que no”",
+    "“Podemos saltarnos la regresión del próximo sprint”",
+    "“La calidad está garantizada”"
+   ],
+   "a": 1,
+   "why": "La afirmación honesta delimita el alcance. Verde ≠ garantía; es ausencia de hallazgos DENTRO de lo diseñado."
+  },
+  {
+   "q": "¿Qué demuestra un kill rate de 100 % en tu catálogo de mutantes?",
+   "o": [
+    "Que el software no tiene bugs",
+    "Que tu suite atrapó todos los mutantes de TU catálogo; mutantes que no escribiste pueden sobrevivir",
+    "Que la cobertura es 100 %",
+    "Que ya no hace falta regresión"
+   ],
+   "a": 1,
+   "why": "El kill rate mide la suite contra los mutantes que existen. Es evidencia sobre tus checks, no una garantía sobre el software."
+  },
+  {
+   "q": "Un asistente de IA escribió los tests y también sus asserts, y todo sale verde. ¿Qué haces antes de firmar?",
+   "o": [
+    "Firmo",
+    "Muto el producto o el contrato a propósito y compruebo que esos tests se ponen rojos",
+    "Le pido otro resumen",
+    "Agrego retries"
+   ],
+   "a": 1,
+   "why": "Cuando código y tests salen del mismo lugar, un verde prueba menos de lo que parece. Probar al que prueba."
+  },
+  {
+   "q": "¿Dónde pones una regla que nunca debe romperse en un flujo con asistentes de IA?",
+   "o": [
+    "En el prompt",
+    "En un hook o en el CI, con exit code distinto de 0 y casos que intentan saltársela",
+    "En una nota de Obsidian",
+    "En el chat"
+   ],
+   "a": 1,
+   "why": "Un prompt se puede pasar por alto; un hook o un gate de CI no, y además se pueden probar."
+  },
+  {
+   "q": "Tu evaluación con juez dio 93 % sobre los mismos casos con que ajustaste el umbral. ¿Qué número reportas?",
+   "o": [
+    "Ese 93 %",
+    "El de un held-out que el ajuste nunca vio, con su intervalo",
+    "El mejor de varias corridas",
+    "El del proveedor del modelo"
+   ],
+   "a": 1,
+   "why": "El número honesto es el que el ajuste no tocó."
+  },
+  {
+   "q": "Tu pipeline sale verde, pero el paso de las pruebas termina en || true. ¿Qué te dice ese verde?",
+   "o": [
+    "Que las pruebas pasaron",
+    "Nada sobre las pruebas: ese paso no puede fallar",
+    "Que el lint pasó",
+    "Que hay protección de rama"
+   ],
+   "a": 1,
+   "why": "Un gate que no puede fallar no es un gate. Probar al que prueba incluye probar el pipeline."
+  },
+  {
+   "q": "El runner efímero murió a mitad de la corrida. ¿Qué evidencia te queda?",
+   "o": [
+    "Todo lo que había en su disco",
+    "Solo lo que subiste antes como artefacto o recibo (logs, hashes, reportes)",
+    "La caché completa",
+    "Nada nunca"
+   ],
+   "a": 1,
+   "why": "Diseña para que la evidencia salga antes de que el contenedor muera."
+  }
+ ]
+}

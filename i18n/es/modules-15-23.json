@@ -1,0 +1,682 @@
+{
+ "m27": {
+  "title": "Contenedores efímeros y entornos desechables — que la evidencia sobreviva al entorno",
+  "hours": "~10 h",
+  "mentor": "Los runners de CI, los contenedores y los entornos de preview nacen, trabajan y mueren. Lo que no sacaste antes de que mueran se perdió, y lo que no fijaste no lo vas a poder repetir. Hay un caso real que lo muestra: un recálculo científico operado por un asistente de IA en un ejecutor efímero, donde se perdieron los arrays de una corrida y sobrevivieron las huellas y los hashes que se habían guardado afuera.",
+  "kid": "Es como un castillo de arena: la marea se lo lleva. Si antes le tomas una foto y anotas cómo lo hiciste, mañana puedes demostrar que existió y volver a armarlo igual.",
+  "obj": [
+   "Decir qué se pierde cuando muere un runner o un contenedor, y diseñar la corrida para que la evidencia salga antes.",
+   "Fijar las entradas (lockfile, versión de herramienta, commit, digest y SHA256SUMS de los datos) y mostrarlo en el log.",
+   "Retomar una corrida interrumpida desde checkpoints atómicos bajo flock sin repetir trabajo ni correr dos veces.",
+   "Verificar en un runner limpio y obtener la misma huella después de matar y relanzar."
+  ],
+  "pre": "Pipelines (módulo anterior), Docker básico, bash y hashes SHA-256 con sha256sum.",
+  "theory": [
+   "Qué es efímero: un <b>runner</b> hospedado de GitHub Actions (cada job arranca en una máquina limpia que se descarta al terminar), un <b>contenedor Docker</b> (su capa escribible muere con él), un <b>devcontainer</b> (el entorno de desarrollo declarado en <code>.devcontainer/devcontainer.json</code>, que se reconstruye igual), <b>Testcontainers</b> (bases de datos y servicios que nacen y mueren con la prueba) y los <b>previews por PR</b> (un despliegue por PR que se borra al cerrarlo).",
+   "Un SUT efímero real: <code>restful-booker-quality-suite/.github/workflows/tests.yml</code> clona el SUT en el commit <code>0046115</code>, lo levanta con <code>docker compose up --build -d</code>, espera <code>/ping</code> hasta 30 intentos y, si algo falla, vuelca los logs del contenedor con <code>if: failure()</code>. Cuando termina el job, el SUT muere con el runner.",
+   "Qué se pierde cuando muere: el estado en disco, los archivos que no subiste, la caché, los procesos en curso y la identidad de esos procesos (PID, sesión). Qué sobrevive: lo que sacaste (artefactos, assets de un release, commits) y lo que puedes recalcular desde entradas fijadas.",
+   "Diseño 1, <b>artefactos y recibos</b>: sube todo lo que necesitas para decidir con <code>actions/upload-artifact</code> e <code>if: ${{ !cancelled() }}</code>, con su <code>SHA256SUMS</code>. Un recibo es el comando, los hashes de entrada y salida y el exit code.",
+   "Diseño 2, <b>entradas fijadas</b>: lockfiles (<code>npm ci</code>, <code>uv run --locked</code> en predictor-debugger), versión de la herramienta (<code>astral-sh/setup-uv</code> con <code>version: \"0.11.18\"</code>), commit del SUT (<code>0046115</code>), imagen por digest (<code>imagen@sha256:…</code>) y no por tag, y datos verificados contra <code>SHA256SUMS</code> y un manifiesto (<code>tools/fetch_data.py</code>).",
+   "Diseño 3, <b>checkpoints idempotentes con lock</b>: cada tarea escribe su resultado de forma atómica (archivo temporal y después <code>mv</code>) junto con su hash; al retomar, la tarea cuyo hash verifica se salta; y un <code>flock</code> impide que dos procesos hagan la misma tarea a la vez. Ojo: los checkpoints en el disco del runner mueren con el runner; para retomar en otra máquina tienen que salir antes.",
+   "Diseño 4, <b>verificar en un entorno limpio</b>: <code>predictor-debugger/.github/workflows/reproduce.yml</code> corre en un <code>ubuntu-24.04</code> nuevo, baja <code>data-v1</code>, verifica los hashes, recalcula y exige con <code>grep -q</code> los veredictos iguales y la huella. Vive en el repo, no en ninguna máquina, así que sobrevive a cualquier ejecutor. En el clon revisado cubre las rondas 1 y 2.",
+   "El caso real, según las notas del release <code>repro-ia-20261026</code> de predictor-debugger: recálculo de las rondas 1 a 4 desde <code>data-v1</code> sobre el commit <code>b918c62</code>, sin reentrenar ni volver a inferir; «Lo ejecutó un asistente de IA bajo mi dirección. <b>No es una revisión independiente.</b>» Las cuatro huellas (<code>EEC9-09E0-F77D</code>, <code>D506-F58F-3838</code>, <code>6319-537B-7167</code>, <code>681D-143B-64A3</code>) salen iguales al original. Limitaciones que declara: «Los datos de una primera corrida se perdieron. Los 81 archivos de la R1 se regeneraron: ninguno es idéntico bit a bit al publicado; difieren como máximo en 8,9e-16» y «La R4 se interrumpió y se retomó desde puntos de control». El paquete trae 441 archivos y su SHA-256.",
+   "Lo que dice el paquete por dentro: <code>results_scope.txt</code>: «Original previous-run 81 arrays disappeared with ephemeral executor. Prior durable hashes/statistics recovered…» y «New generation explicitly identified as NEW RUN, not previous array recovery». <code>receipts/lock-hardening.json</code>: «Global flock serializes scientific task/summary and per-task SHA/rows checked under lock for idempotent resume.» <code>receipts/interruption.json</code>: al perder la sesión quedaban 6 tareas verificadas y 600 filas; el lock aparecía libre, «not sufficient alone to prove old driver absent», y la política fue no relanzar nada mientras la identidad del proceso viejo fuera incierta.",
+   "Cuatro lecciones: (1) lo que vivía solo en el ejecutor se perdió, y los hashes y estadísticas guardados afuera sirvieron para comparar; (2) regenerar no es recuperar, y se declara como corrida nueva; (3) un lock libre no prueba que el proceso viejo murió; (4) la huella igual es la evidencia que sobrevive a todo lo demás. El release no menciona CI: el recálculo en un runner limpio es otro camino, el de <code>reproduce.yml</code>."
+  ],
+  "res": [
+   {
+    "label": "Caso real: release repro-ia-20261026",
+    "type": "Repo · público"
+   },
+   {
+    "label": "reproduce.yml — recálculo en un runner limpio",
+    "type": "Repo · público"
+   },
+   {
+    "label": "actions/upload-artifact",
+    "type": "Repo · gratis"
+   },
+   {
+    "label": "actions/download-artifact",
+    "type": "Repo · gratis"
+   },
+   {
+    "label": "Testcontainers",
+    "type": "Herramienta · gratis"
+   },
+   {
+    "label": "Dev Containers — especificación",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "docker image pull — imágenes por digest",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "flock(1) — manual",
+    "type": "Docs · gratis"
+   }
+  ],
+  "hands": [
+   "Lee el release: <code>gh release view repro-ia-20261026 -R criguex/predictor-debugger</code>.",
+   "Baja el paquete en una carpeta vacía y verifícalo antes de abrirlo: <code>mkdir repro && cd repro && gh release download repro-ia-20261026 -R criguex/predictor-debugger && shasum -a 256 -c predictor_comparacion_canonica_R1-R4_final_20261026.zip.sha256 && unzip -q predictor_comparacion_canonica_R1-R4_final_20261026.zip -d x</code>.",
+   "Lee <code>x/results_scope.txt</code>, <code>x/receipts/interruption.json</code> y <code>x/receipts/lock-hardening.json</code>, y llena una tabla con tres columnas: qué se perdió, qué se regeneró como corrida nueva y qué sobrevivió, con el archivo que lo dice.",
+   "Comprueba la huella barata en tu máquina: <code>git clone https://github.com/criguex/predictor-debugger.git && cd predictor-debugger && uv run --locked verify.py --saved mac</code>, que debe imprimir <code>fingerprint: EEC9-09E0-F77D</code>.",
+   "Escribe tu corrida con checkpoints (Linux, o el runner de CI; macOS no trae <code>flock</code>): <code>exec 9>.run.lock && flock -n 9 || exit 1</code>; por cada tarea, <code>sha256sum -c out/$t.sha256 2>/dev/null && continue</code>; si no, calcula en <code>out/$t.tmp</code>, haz <code>mv out/$t.tmp out/$t.json</code> y <code>sha256sum out/$t.json > out/$t.sha256</code>. Al final, <code>sha256sum out/*.json > SHA256SUMS</code> y la huella con <code>sha256sum SHA256SUMS | cut -c1-12</code>.",
+   "Escribe el workflow: <code>runs-on: ubuntu-24.04</code>, instalación con lockfile, la corrida, <code>echo \"fingerprint: …\"</code> en el log y en <code>$GITHUB_STEP_SUMMARY</code>, y <code>actions/upload-artifact</code> con <code>out/</code> y <code>SHA256SUMS</code> e <code>if: ${{ !cancelled() }}</code>.",
+   "Corre la mutación de la semana: mata la corrida y relánzala, y borra la caché y relánzala."
+  ],
+  "crit": [
+   "El workflow corre en <code>ubuntu-24.04</code>, instala con lockfile y sube un artefacto con <code>SHA256SUMS</code>; la huella está en el log y en el job summary.",
+   "Matas la corrida (<code>gh run cancel &lt;id&gt;</code>) y la relanzas (<code>gh run rerun &lt;id&gt;</code>): la huella es la misma, con los dos enlaces.",
+   "Con la caché borrada (<code>gh cache delete --all</code>) la huella sigue igual.",
+   "En local, dentro de un contenedor con <code>out/</code> montado como volumen, haces <code>docker kill</code> a mitad de la corrida, la retomas y el log muestra que salta las tareas ya verificadas; un segundo proceso con <code>flock -n</code> sale con error mientras el primero corre.",
+   "Tu tabla del release cita para cada fila el archivo del paquete o la línea de las notas que la respalda."
+  ],
+  "deliver": "Workflow en runner limpio con artefacto, SHA256SUMS y huella + script con checkpoints bajo flock + evidencia de la corrida matada y relanzada con la misma huella + tabla de lo perdido y lo sobreviviente en repro-ia-20261026.",
+  "mut": "Mata el contenedor a mitad de la corrida (<code>docker kill</code>, o <code>gh run cancel</code> en CI) o borra la caché (<code>gh cache delete --all</code>), y relanza. Escribe antes qué se va a perder. Si la huella cambia, si la corrida retomada repite una tarea ya verificada o si dos procesos corren a la vez, es un hallazgo: anótalo con su log.",
+  "rubm": [
+   {
+    "row": "Qué sobrevive",
+    "levels": [
+     "La evidencia vive solo en el runner o el contenedor.",
+     "Sube artefactos, pero sin hashes o solo cuando todo pasa.",
+     "Artefactos con SHA256SUMS y huella en el log y el summary, también en fallo.",
+     "Además, un tercero baja el artefacto y verifica la huella sin tu ayuda."
+    ]
+   },
+   {
+    "row": "Entradas fijadas",
+    "levels": [
+     "Instala sin lockfile o con imágenes por tag.",
+     "Lockfile, pero herramientas o datos sin fijar.",
+     "Lockfile, versión de herramienta, commit o digest y datos con SHA256SUMS.",
+     "Además, el log imprime versiones y hashes de entrada como recibo."
+    ]
+   },
+   {
+    "row": "Retomar sin repetir",
+    "levels": [
+     "Al cortarse, empieza de cero sin saberlo.",
+     "Retoma, pero repite tareas o no verifica el hash.",
+     "Checkpoints atómicos bajo flock; salta lo verificado y lo muestra en el log.",
+     "Además, prueba que un segundo proceso no entra y que un checkpoint corrupto se recalcula."
+    ]
+   },
+   {
+    "row": "Misma huella",
+    "levels": [
+     "No hay huella.",
+     "La huella cambia entre corridas y no se explica.",
+     "Igual tras matar y relanzar y tras borrar la caché.",
+     "Además, igual en un segundo runner limpio."
+    ]
+   }
+  ]
+ },
+ "m10": {
+  "title": "Performance & Cloud (K6 · JMeter · AWS)",
+  "hours": "~14 h",
+  "mentor": "Primero “hace lo correcto”, luego “lo hace bien bajo presión” y “en la nube”. Aprende a leer percentiles (p95/p99), no solo pasó/falló, y a validar servicios serverless con sus rarezas (cold starts).",
+  "kid": "Una cosa es que el ascensor funcione con una persona y otra que funcione con veinte. La prueba de carga mete a los veinte.",
+  "obj": [
+   "Escribir un test de carga en k6 con thresholds y leer p95/p99.",
+   "Agregar accesibilidad y regresión visual sin volver flaky la suite.",
+   "Validar una función serverless de punta a punta con trazas."
+  ],
+  "pre": "Módulos 5 y 9.",
+  "theory": [
+   "Tipos: load, stress, soak, spike; métricas: latencia, throughput, p95/p99, error rate; SLI/SLO.",
+   "Observabilidad con Grafana.",
+   "Serverless: cold start, event-driven, trazas con CloudWatch Logs Insights.",
+   "k6 2.x (2026) limpió lo deprecado: ya no existen <code>k6 pause/resume/scale/status</code> ni el executor <code>externally-controlled</code>; para la nube es <code>k6 cloud run script.js</code>. Si un tutorial viejo usa esos comandos, tradúcelo a <code>ramping-vus</code>/<code>constant-arrival-rate</code>.",
+   "Accesibilidad con axe-core (violaciones serious y critical) y regresión visual con baselines generadas en Linux con Docker: una baseline tomada en macOS no la recoge el CI (civica-playwright-challenge).",
+   "Presupuesto de rendimiento con p95 sobre 20 muestras (restful-booker-quality-suite, <code>tests/performance/api.performance.spec.ts</code>)."
+  ],
+  "res": [
+   {
+    "label": "Grafana k6 — documentación",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "Apache JMeter — user manual",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "AWS Lambda — documentación",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "AWS Well-Architected Framework",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "Grafana — documentación",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "Playwright — accessibility testing",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "Playwright — snapshots visuales",
+    "type": "Docs · gratis"
+   }
+  ],
+  "hands": [
+   "Test de carga en K6 contra un endpoint con thresholds; interpreta p95/p99.",
+   "Valida end-to-end una Lambda y rastrea una transacción en CloudWatch."
+  ],
+  "crit": [
+   "Los thresholds de k6 hacen fallar la corrida cuando se superan.",
+   "El presupuesto de p95 está justificado con datos (por ejemplo, 20 muestras).",
+   "Las baselines visuales se generan en el mismo sistema que usa el CI."
+  ],
+  "deliver": "Script K6 con thresholds + informe de performance + checklist de validación serverless.",
+  "mut": "Muta la realidad del sistema: mete latencia o un 503 a propósito y comprueba que tus thresholds de k6 fallan.",
+  "top": "Inyectas latencia o un 503 a propósito y muestras que tus thresholds fallan."
+ },
+ "m20": {
+  "title": "Determinismo — mocks, record/replay y fixtures indexados por hash",
+  "hours": "~10 h",
+  "mentor": "Una suite que depende de un tercero o de una IA cambia cuando ellos cambian, no cuando cambia tu código. La salida es grabar y reproducir, con una regla: si la entrada cambia, la grabación vieja no sirve y la prueba queda sin verificar, nunca verde.",
+  "kid": "Es como grabar la respuesta del profe para repasar en casa. Pero si cambias la pregunta, la grabación vieja ya no sirve y no puedes usarla como si fuera la nueva.",
+  "obj": [
+   "Grabar y reproducir respuestas de un tercero o de una IA con llave = hash de la petición.",
+   "Demostrar que un cambio en la entrada deja la prueba sin verificar, nunca verde.",
+   "Escribir un ADR con la política de falla."
+  ],
+  "pre": "Módulos 5, 6 y 9; hashing básico.",
+  "theory": [
+   "Dobles de prueba (mock, stub, fake) para aislar terceros: civica-playwright-challenge usa una capa de mocks determinista porque IMDb bloquea bots, y su E2E real hace skip con un motivo honesto (ADR 0002).",
+   "Record/replay: la primera corrida graba la respuesta del servicio o del juez; las siguientes la reproducen sin red ni llaves.",
+   "La llave es un hash: en playwright-jev es <code>sha256(model, estado redactado, pregunta)</code>. Si cambias una palabra, el fixture falta y la prueba queda <i>unverified</i>: no pasa.",
+   "Lo mismo en agent-eval-jev y jev-test-impact: las grabaciones se indexan por el hash de la petición exacta, así una pregunta cambiada nunca reutiliza una respuesta vieja.",
+   "Veredictos de tres valores: yes / no / ambiguous. Lo ambiguo o sin verificar nunca pasa (playwright-jev, ADR 0001: fail-closed).",
+   "Deja la decisión escrita en un ADR: contexto, decisión y consecuencias. playwright-jev documenta cinco en <code>docs/adr/</code>."
+  ],
+  "res": [
+   {
+    "label": "Laboratorio: criguex/playwright-jev",
+    "type": "Repo · público"
+   },
+   {
+    "label": "ADR 0002 — record/replay por pregunta",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "ADR 0002 de civica — mocks como respaldo",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "xUnit Test Patterns — Test Double",
+    "type": "Libro · gratis"
+   },
+   {
+    "label": "Python hashlib",
+    "type": "Docs · gratis"
+   }
+  ],
+  "hands": [
+   "Clona playwright-jev y corre <code>JEV_MODE=replay npm run test:examples</code>. Cambia una palabra de un texto juzgado y muestra que la prueba queda unverified, no verde.",
+   "En tu framework, graba las respuestas de un servicio externo con llave = hash de la petición y reprodúcelas en CI sin red.",
+   "Escribe un ADR de una página con la decisión de record/replay y su política de falla."
+  ],
+  "crit": [
+   "Cambiar una palabra de la entrada deja la prueba sin verificar (nunca verde), y lo muestras con la salida del comando.",
+   "El CI corre sin llaves ni red, solo con grabaciones.",
+   "Cada grabación tiene su llave por hash y no se reutiliza si la petición cambia.",
+   "El ADR dice qué pasa cuando falta una grabación."
+  ],
+  "deliver": "Suite con record/replay por hash + demo de “cambio una palabra → unverified” + ADR.",
+  "mut": "Cambia una palabra del texto juzgado y comprueba que la prueba queda unverified, no verde.",
+  "top": "La prueba de “cambio una palabra → unverified” forma parte del propio CI."
+ },
+ "m11": {
+  "title": "QA Aumentado con IA — mi diferenciador",
+  "hours": "~14 h",
+  "mentor": "Esto es lo que me hace distinto y ahora es tuyo. La IA es <b>arquitecto y generador</b> de pruebas; tú eres el director que revisa cada diff. Solo funciona cuando YA sabes diseñar y arquitectar — por eso va al final. El patrón: una IA “directora” (p. ej. Claude Code) que planea y mantiene contexto, y una IA “ejecutora” en el IDE (Copilot, Cursor…).",
+  "kid": "La IA es un ayudante muy rápido que a veces se equivoca muy seguro. Tú eres quien revisa antes de entregar.",
+  "obj": [
+   "Generar pruebas con una IA directora y una ejecutora, revisando cada diff.",
+   "Escribir un prompt con los 5 bloques (contexto, insumo, instrucción, restricciones, salida).",
+   "Armar un prompt pack con checklist de revisión."
+  ],
+  "pre": "Módulos 3b, 5 y 6.",
+  "theory": [
+   "El modelo central: “<b>la IA directora planea, la IA del IDE ejecuta</b>” — separar planeación de ejecución rinde mejor y funciona con cualquier par de herramientas.",
+   "Los 2 roles + el humano: <b>IA directora</b> = contexto y plan · <b>IA del IDE</b> = ejecutor pegado al código · <b>tú</b> = criterio.",
+   "Un archivo de instrucciones para la IA del IDE (p. ej. <code>copilot-instructions.md</code>, o las <i>rules</i> de Cursor) = “el CLAUDE.md del IDE”: el artefacto que conecta ambas IAs.",
+   "Anatomía de un buen prompt (5 bloques): Contexto + Insumo + Instrucción + Restricciones + Salida esperada.",
+   "“Contexto antes que prompt”: un prompt brillante sobre contexto pobre rinde poco.",
+   "<b>Prompt packs</b>: recetas reutilizables con huecos &lt;...&gt; — “de 10 min a 1”.",
+   "Las 3 capas de contexto: CLAUDE.md (reglas) · Memoria persistente (hechos sobre ti) · Obsidian (conocimiento).",
+   "Human-in-the-loop: “la IA se equivoca con seguridad” → revisa SIEMPRE el diff.",
+   "Test mental para delegar: ¿la responsabilidad es mía? ¿requiere criterio de negocio/riesgo? ¿es irreversible hacia afuera? ¿es mecánico sobre convención clara?",
+   "MCP: conectar herramientas al modelo (p. ej. Playwright MCP para que el asistente maneje un navegador real). La combinación Playwright + MCP + un asistente de código aparece cada vez más en vacantes de QA."
+  ],
+  "res": [
+   {
+    "label": "Claude Code",
+    "type": "Docs"
+   },
+   {
+    "label": "GitHub Copilot — documentación",
+    "type": "Docs"
+   },
+   {
+    "label": "Model Context Protocol (MCP)",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "Cursor — IDE con IA",
+    "type": "Herramienta"
+   },
+   {
+    "label": "Playwright MCP — el asistente maneja el navegador",
+    "type": "Repo · gratis"
+   }
+  ],
+  "hands": [
+   "Genera una suite desde un contrato de API o una HU con Claude + Copilot, <b>revisando el diff</b>.",
+   "Construye un <b>prompt pack</b> + checklist de revisión de salida del LLM."
+  ],
+  "crit": [
+   "Cada test generado se corrió y tiene tu revisión en el diff.",
+   "El prompt pack tiene huecos marcados y un ejemplo de uso.",
+   "El checklist de revisión atrapa al menos un error real del LLM."
+  ],
+  "deliver": "Suite generada con IA (diff revisado) + prompt pack + checklist de revisión.",
+  "mut": "La IA también escribe los checks. Cuando el código y sus tests salen del mismo lugar, un verde prueba menos de lo que parece: mútalo para saber si tiene dientes.",
+  "top": "Mutas el producto y muestras que los tests generados se ponen rojos."
+ },
+ "m14": {
+  "title": "QA asistida por IA I — el asistente prueba, la persona firma",
+  "hours": "~12 h",
+  "mentor": "Hoy un asistente como Claude Code o Codex diseña casos, corre la suite y hasta audita sus propios resultados. Eso no me quita trabajo: me lo cambia. Yo decido qué reglas no se negocian, las pongo donde el asistente no las puede “olvidar” (hooks y CI) y firmo solo lo que tiene evidencia que se puede volver a correr.",
+  "kid": "Pedirle al robot “por favor no toques eso” es una petición. Ponerle una reja es una regla. Aquí aprendes a poner rejas y a comprobar que no tienen huecos.",
+  "obj": [
+   "Poner una regla que no se negocia en un hook o en el CI, no en un prompt.",
+   "Atacar tu propio hook con al menos 10 intentos de saltártelo.",
+   "Dejar evidencia re-ejecutable: comando, hash y exit code."
+  ],
+  "pre": "Módulos 3b, 9 y 11; bash básico.",
+  "theory": [
+   "Reparto de roles: el asistente <b>diseña, ejecuta y audita</b>; la persona <b>decide y firma</b>. Un verde que nadie puede re-ejecutar no se firma.",
+   "Las reglas viven en <b>hooks y CI</b>, no en prompts: un prompt es una petición que el modelo puede pasar por alto; un hook que sale con código 2 es un muro. Ejemplo real: el hook <code>PreToolUse</code> de Claude Code del experimento 03 de war-paradigm bloquea cualquier <code>git push</code> a <code>main</code> con <code>exit 2</code>.",
+   "Prueba la barrera como pruebas el producto (hilo WAR): su suite intenta colarse con comandos encadenados, refspecs y el <code>git push</code> pelado estando en <code>main</code>. Y atacarla sirvió: una mutación encontró dos agujeros reales (<code>git -c</code> y <code>git --no-pager</code>), arreglados en el commit <code>1b01c66</code>; lo trabajas en QA asistida por IA II.",
+   "Contexto del asistente versionado en el repo: <code>CLAUDE.md</code> para Claude Code, <code>AGENTS.md</code> para Codex. Ahí van comandos, convenciones y lo prohibido; nunca secretos.",
+   "Evidencia = <b>comando + hash + exit code</b>. En agent-eval-jev las respuestas del juez se guardan con el hash exacto de la petición, y el CI reconstruye el reporte y falla si difiere del commiteado.",
+   "Fail-safe por diseño: si el asistente o el servicio de IA falla, el sistema hace lo conservador (correr todo, marcar <code>unknown</code>), nunca lo cómodo (saltarse pruebas, poner verde).",
+   "Declara la autoría: en predictor-debugger una reproducción completa la ejecutó un asistente bajo dirección humana, y el README lo dice: no es una revisión independiente."
+  ],
+  "res": [
+   {
+    "label": "Claude Code — hooks",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "Claude Code en GitHub Actions",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "openai/codex — Codex CLI",
+    "type": "Repo · gratis"
+   },
+   {
+    "label": "Laboratorio: war-paradigm · experimento 03 (hook + suite de ataques)",
+    "type": "Repo · público"
+   }
+  ],
+  "hands": [
+   "Pídele a tu asistente (Claude Code o Codex) que diseñe y corra 5 casos nuevos para tu framework. Revisa el diff línea por línea y anota qué aceptaste, qué corregiste y por qué.",
+   "Escribe un hook que bloquee una acción peligrosa (push a <code>main</code>, borrar <code>test-results/</code>, editar un snapshot) y pruébalo con al menos 10 intentos de saltártelo, incluidos comandos encadenados.",
+   "Deja un <code>EVIDENCIA.md</code>: por cada corrida, comando exacto, commit, hash de las entradas (<code>shasum -a 256</code>) y exit code."
+  ],
+  "crit": [
+   "El hook sale con código distinto de 0 en todos los intentos de saltárselo y deja pasar los comandos legítimos.",
+   "Cada afirmación del <code>EVIDENCIA.md</code> se puede re-ejecutar con el comando escrito y da el mismo exit code.",
+   "El diff del asistente tiene tu revisión explícita; ningún test se aceptó sin correrlo.",
+   "Ninguna regla crítica vive solo en un prompt."
+  ],
+  "deliver": "Hook probado + casos generados con asistente (diff revisado) + EVIDENCIA.md con comandos, hashes y exit codes.",
+  "mut": "Inventa 5 formas nuevas de colar un push a main (alias, variable, <code>git -C</code>, refspec raro) y agrégalas a los tests del hook.",
+  "top": "Agregas 5 formas nuevas de colar un push a main a los tests del hook de war-paradigm 03, y cada una queda bloqueada o reportada como agujero."
+ },
+ "m15": {
+  "title": "Mutation testing — kill rate, sobrevivientes y Stryker/PIT",
+  "hours": "~14 h",
+  "mentor": "“Test the tester, mutate reality.” Una suite verde puede ser excelente o puede estar dormida, y desde afuera se ven iguales. La única forma de saberlo es romper algo a propósito y mirar si la suite grita. Este módulo es el hilo de todo el curso: aquí se mide cada técnica que aprendiste.",
+  "kid": "Para saber si el guardia está despierto haces un ruido a propósito. Si grita, está despierto (KILLED). Si no, está dormido (SURVIVED), y eso hay que contarlo.",
+  "obj": [
+   "Clasificar mutantes en PASS de línea base, KILLED y SURVIVED sin contar fallos de infraestructura.",
+   "Calcular el kill rate y llevar un ledger de sobrevivientes.",
+   "Correr Stryker o PIT y resolver cada sobreviviente."
+  ],
+  "pre": "Módulos 5, 6 y 7b.",
+  "theory": [
+   "Los cuatro pasos (Generar → Mutar → Auditar → Validar) y los tres veredictos (PASS, KILLED, SURVIVED) del WAR Paradigm los viste en el módulo 2. Aquí los llevas a una suite real y a las herramientas clásicas de mutación de código.",
+   "La línea base va primero y fuera del puntaje: si la base o el reset fallan, no hay mutantes muertos, hay un experimento inválido.",
+   "<b>Kill rate</b> = KILLED / (KILLED + SURVIVED). En war-paradigm 02: 5 de 6, un 83 %. En el track físico: 54 KILLED y 3 SURVIVED de 57 mutantes, más 27 PASS de línea base (84 variantes).",
+   "Un SURVIVED no se borra ni se salta: se marca como fallo esperado, se imprime en rojo y se sigue en un <b>ledger</b> hasta que alguien lo arregla. En el experimento 02 el sobreviviente es un bug real: un editor se sube a admin y la app responde 200.",
+   "Mutantes como datos: cada uno cambia una sola cosa y deja su registro JSON (revisión del código y hashes de entrada) como evidencia.",
+   "Dos mutantes con la misma salida son equivalentes: cuéntalos aparte. En el track físico, los 54 KILLED corresponden a 51 comportamientos distintos.",
+   "Herramientas para mutar código: Stryker (JS/TS) y PIT (Java). WAR va más allá del código: muta flujos de negocio, leyes físicas o comandos."
+  ],
+  "res": [
+   {
+    "label": "Laboratorio: criguex/war-paradigm",
+    "type": "Repo · público"
+   },
+   {
+    "label": "Experimento 02 — mutantes del flujo dorado",
+    "type": "Repo · público"
+   },
+   {
+    "label": "Track físico: criguex/scientific-qa-evidence",
+    "type": "Repo · público"
+   },
+   {
+    "label": "Stryker Mutator (JS/TS)",
+    "type": "Herramienta · gratis"
+   },
+   {
+    "label": "PIT — mutation testing para Java",
+    "type": "Herramienta · gratis"
+   },
+   {
+    "label": "Mutation testing (concepto)",
+    "type": "Artículo · gratis"
+   }
+  ],
+  "hands": [
+   "Clona war-paradigm, corre <code>npm ci</code>, <code>npx playwright install --with-deps chromium</code> y <code>npm run demo:02</code>, y explica por escrito por qué sobrevive el mutante del auto-ascenso a admin.",
+   "Sobre tu framework del módulo 5: escribe 6 mutantes como datos (un cambio cada uno: rol, estado, campo del contrato, orden del flujo), córrelos y clasifícalos en PASS/KILLED/SURVIVED.",
+   "Corre Stryker (o PIT si vas por Java) sobre un módulo con tests unitarios y compara su kill rate con lo que esperabas."
+  ],
+  "crit": [
+   "Tu suite mata al menos 5 de 6 mutantes, y el que sobrevive está en el ledger con su causa.",
+   "El reporte JSON de cada escenario trae estado esperado y observado, revisión de git y hashes de las entradas.",
+   "La línea base corre primero; un 5xx o un fallo de login sale como INCONCLUSIVE o baseline inválida, nunca como KILLED.",
+   "Ningún sobreviviente se borra, se salta o se oculta."
+  ],
+  "deliver": "Catálogo de mutantes como datos + scoreboard PASS/KILLED/SURVIVED + kill rate + ledger de sobrevivientes.",
+  "mut": "Agrega dos mutantes nuevos al flujo (publicar sin aprobar, aprobar el documento propio) y predice su veredicto antes de correr.",
+  "top": "Haces el ejercicio “Kill it yourself” de war-paradigm 02: arreglas la regla en <code>app/server.js</code> y el sobreviviente pasa a KILLED."
+ },
+ "m29": {
+  "title": "Ejecución de mutantes — generar, correr, clasificar y aprender de cada corrida",
+  "hours": "~12 h",
+  "mentor": "Escribir un mutante es fácil. Lo difícil es correrlo sin mentirte: si la línea base falló, si el servidor respondió 500 o si la prueba ni siquiera llegó a adjuntar evidencia, eso no es un mutante muerto. Aquí aprendes a clasificar con criterio conservador, a calcular un kill rate que puedas defender frente a otra persona y a guardar lo que pasó para que la siguiente corrida empiece por donde duele.",
+  "kid": "Escondes 6 juguetes rotos en la caja y le pides al guardia que los encuentre. Si encuentra 5, su puntaje es 5 de 6. Pero si se fue la luz del cuarto, ese intento no cuenta ni a favor ni en contra: se anota aparte y se repite.",
+  "obj": [
+   "Clasificar el resultado de un mutante en uno de cinco estados y justificarlo con el código observado y la fase.",
+   "Calcular un kill rate que excluye línea base e infraestructura, y reproducirlo a mano desde el JSON de evidencia.",
+   "Agregar mutantes como datos, con un solo cambio y la predicción escrita antes de correr.",
+   "Usar un ledger para reordenar la corrida siguiente sin cambiar ningún veredicto."
+  ],
+  "pre": "Mutation testing (prueba al que prueba), Playwright con TypeScript y pruebas de API. Node 20 o superior.",
+  "theory": [
+   "El ciclo completo: <b>generar</b> (mutantes como datos) → <b>correr</b> (línea base primero, después un solo cambio) → <b>clasificar</b> → <b>puntuar</b> (kill rate) → <b>registrar</b> en un ledger → <b>priorizar</b> la corrida siguiente.",
+   "Generar sin scripts: en <code>war-paradigm/experiments/02-mutants/tests/scenarios.ts</code> cada mutante es un objeto con un solo cambio sobre el flujo dorado (rol, cuerpo, orden de pasos o token vencido) y el rechazo que la app debe dar: <code>role-swap</code> 403, <code>drop-input</code> 422, <code>reorder</code> 409, <code>stale-token</code> 401, <code>boundary</code> 422 y <code>self-grant</code> 403. En civica, <code>generateSearchMutants(title)</code> (<code>src/support/mutations.ts</code>) expande cada título semilla en tres clases: <code>equivalent</code> (el resultado no debe cambiar), <code>boundary</code> (un borde que debe seguir funcionando) y <code>negative</code> (el resultado debe cambiar).",
+   "Cuidado con el nombre: en mutation testing clásico (Stryker, PIT) un mutante <i>equivalente</i> es uno que ninguna prueba puede matar porque no cambia el comportamiento. En civica, <code>equivalent</code> es una variación de la entrada (<code>INCEPTION</code>, <code>inception</code>) que debe dar el mismo resultado; se parece más a una relación metamórfica.",
+   "Correr en orden: <code>tests/scenario-runner.ts</code> hace reset, login y la línea base sin mutar antes de mutar exactamente un paso. Si algo de eso falla, ese mutante no dice nada sobre la suite.",
+   "Clasificar (tipo <code>Outcome</code> en <code>tests/scenario-evidence.ts</code>): <b>KILLED</b> si la mutación recibe el 4xx esperado; <b>SURVIVED</b> si recibe un 2xx; <b>INCONCLUSIVE</b> si recibe un 5xx o un rechazo distinto del esperado; <b>INVALID_BASELINE</b> si falla una precondición; <b>INFRA_ERROR</b> si falla la petición o el runner, o si la prueba terminó sin adjuntar evidencia (<code>noEvidence()</code>).",
+   "<b>Kill rate</b> = KILLED / (KILLED + SURVIVED). Los otros tres estados se ven en el reporte y quedan fuera del puntaje: «5/6 scored mutants killed · 1 survived · 0 excluded from score». Si los metes al denominador, un servidor caído baja tu kill rate; si los cuentas como KILLED, lo sube. Las dos cosas son falsas.",
+   "Sobreviviente conocido: <code>self-grant</code> lleva un campo <code>known</code>. Sale como KNOWN SURVIVOR, impreso en rojo, y la corrida por defecto sigue verde; con <code>MUTANT_LAB_STRICT=1</code> (<code>npm run test:strict</code>) ese sobreviviente hace fallar la corrida. Cuando se arregla el bug, el marcador lo muestra como FIXED.",
+   "Evidencia por escenario en <code>test-results/mutant-evidence.json</code>: estado esperado y observado, fase, motivo, revisión de git y SHA-256 de la app, el flujo, los escenarios, el runner, el clasificador, el spec y el lockfile, con <code>randomSeed: null</code> porque la corrida no usa azar.",
+   "Límite del oráculo: es de nivel HTTP, más una lectura del rol para <code>self-grant</code>. Un estado correcto no prueba equivalencia semántica, y por eso el runner no emite <code>EQUIVALENT</code> (README §Evidence, classification and score gate).",
+   "El ledger que aprende (civica): <code>reporters/mutationInsightsReporter.ts</code> acumula <code>runs</code> y <code>failures</code> por mutante en <code>test-results/mutation-insights.json</code>. <code>prioritize()</code> (<code>src/support/mutationInsights.ts</code>) da peso 0 a los que alguna vez fallaron, 1 a los nunca vistos y 2 a los que siempre pasan, con orden estable dentro de cada semilla: cambia el orden, nunca el veredicto.",
+   "Lo que ese ledger no hace (está en el código): <code>failures</code> es acumulado, así que un mutante que falló una vez queda primero para siempre; el reporter cuenta <code>timedOut</code> e <code>interrupted</code> como fallo, sin separar la infraestructura como hace war-paradigm; y <code>loadInsights()</code> devuelve un ledger vacío si el JSON está corrupto. En CI el ledger se sube como artefacto <code>mutation-insights</code>, pero <code>ci.yml</code> no descarga el de la corrida anterior, así que cada corrida de CI arranca sin memoria.",
+   "Mutantes que miden al auditor (civica, <code>docs/AUDIT-POC.md §POC 3</code>): sobre una línea base endurecida se siembra un defecto por mutante (PII, tres headers, cookie insegura y el permiso <code>READ_SMS</code>). Kill rate 6/6. Su ledger va aparte, en <code>test-results/audit-mutation-insights.json</code>, para que los dos loops no se pisen."
+  ],
+  "res": [
+   {
+    "label": "Laboratorio: war-paradigm · 02-mutants",
+    "type": "Repo · público"
+   },
+   {
+    "label": "scenario-evidence.ts — el clasificador",
+    "type": "Repo · público"
+   },
+   {
+    "label": "Laboratorio: civica-playwright-challenge",
+    "type": "Repo · público"
+   },
+   {
+    "label": "MUTATION-TESTING.md — el loop de aprendizaje",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "Stryker — estados de un mutante y métricas",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "Petrović e Ivanković — State of Mutation Testing at Google",
+    "type": "Artículo · gratis"
+   }
+  ],
+  "hands": [
+   "Prepara war-paradigm: <code>git clone https://github.com/criguex/war-paradigm.git && cd war-paradigm && npm ci && npx playwright install --with-deps chromium</code>.",
+   "Corre <code>npm run demo:02</code> y lee el marcador. Abre <code>experiments/02-mutants/test-results/mutant-evidence.json</code> y anota, por escenario, <code>expectedStatus</code>, <code>observedStatus</code>, <code>outcome</code> y <code>phase</code>. Calcula el kill rate a mano.",
+   "Corre <code>npm run test:strict -w experiments/02-mutants</code>: el sobreviviente conocido hace fallar la corrida. Escribe cuándo usarías el modo estricto y cuándo el de por defecto.",
+   "Corre <code>npm run test:unit -w experiments/02-mutants</code> y lee los cinco casos de <code>tests/unit/scenario-evidence.test.ts</code>. Agrega uno: si se esperaba 403 y llega 404, el resultado tiene que ser <code>INCONCLUSIVE</code>.",
+   "Agrega dos mutantes en <code>tests/scenarios.ts</code> y commitea tu predicción antes de correr. Por ejemplo <code>{ id: \"viewer-publish\", name: \"viewer-publish\", expect: 403, step: \"publish\", as: \"viewer\" }</code> y un título de 2 caracteres en <code>create</code> con <code>expect: 422</code>.",
+   "«Kill it yourself»: cambia <code>editMember</code> en <code>app/server.js</code> por <code>(actor) => actor.role === \"admin\"</code>, corre <code>npm run demo:02</code> y comprueba que <code>self-grant</code> sale FIXED. Después quita el campo <code>known</code>.",
+   "Prepara civica: <code>git clone https://github.com/criguex/civica-playwright-challenge.git && cd civica-playwright-challenge && npm ci && npx playwright install --with-deps chromium</code>. Corre <code>npm run test:mutation</code> dos veces y compara <code>test-results/mutation-insights.json</code> entre corridas.",
+   "Mira el orden sin correr nada: <code>npx playwright test --project=mutation --list</code>. Edita el ledger, pon <code>\"failures\": 1</code> en un mutante que esté al final de su semilla, y lista otra vez: tiene que subir al primer lugar de esa semilla.",
+   "Auditor: <code>npm run test:audit -- securityMutants</code> y <code>cat test-results/audit/security-mutants.json</code>. Agrega un mutante en <code>src/audit/securityMutations.ts</code> (por ejemplo, quitar <code>X-Frame-Options</code>) y anota si muere. Si sobrevive, es un hallazgo del auditor: no toques el mutante para que muera."
+  ],
+  "crit": [
+   "Tu kill rate se calcula solo con KILLED y SURVIVED, y lo reproduces a mano desde <code>mutant-evidence.json</code>.",
+   "Los dos mutantes nuevos tienen su predicción en un commit anterior a la corrida, y su estado observado aparece en el JSON.",
+   "La prueba unitaria nueva (403 esperado, 404 observado → <code>INCONCLUSIVE</code>) pasa con <code>npm run test:unit</code>.",
+   "Después de «Kill it yourself», <code>self-grant</code> sale FIXED y <code>npm run test:strict</code> termina con exit code 0.",
+   "La salida de <code>--list</code> antes y después de editar el ledger muestra el cambio de orden, y el veredicto de cada mutante sigue igual."
+  ],
+  "deliver": "Fork de war-paradigm con 2 mutantes nuevos, la prueba unitaria y el fix + <code>mutant-evidence.json</code> de antes y de después + ledger de civica de dos corridas con la evidencia del reordenamiento + mutante de seguridad nuevo con su veredicto.",
+  "mut": "Haz trampa a propósito y mira si el arnés te atrapa: cambia <code>classifyMutation</code> para que un 5xx cuente como KILLED y corre <code>npm run test:unit -w experiments/02-mutants</code>. Antes de correr, escribe qué prueba debería fallar. Si ninguna falla, tu arnés tiene un punto ciego: escribe la prueba que lo cierra. Al final revierte el cambio.",
+  "rubm": [
+   {
+    "row": "Clasificación",
+    "levels": [
+     "Cuenta como KILLED cualquier fallo, incluidos un 5xx o una línea base rota.",
+     "Separa KILLED y SURVIVED, pero mete INCONCLUSIVE o INFRA_ERROR en el puntaje.",
+     "Los cinco estados bien asignados y el kill rate sin los excluidos.",
+     "Además, una prueba unitaria propia del clasificador atrapa una regla mal escrita."
+    ]
+   },
+   {
+    "row": "Mutantes como datos",
+    "levels": [
+     "Mutantes escritos como scripts sueltos.",
+     "Son datos, pero alguno cambia más de una cosa.",
+     "Un cambio por mutante, rechazo esperado declarado y predicción commiteada antes.",
+     "Además cubre un borde que el catálogo original no tenía."
+    ]
+   },
+   {
+    "row": "Sobrevivientes",
+    "levels": [
+     "El que sobrevive se borra o se salta.",
+     "Queda visible, sin causa ni siguiente paso.",
+     "Visible, con su causa (bug o punto ciego) y el modo estricto probado.",
+     "Arreglado con «Kill it yourself», con evidencia de antes y de después."
+    ]
+   },
+   {
+    "row": "Ledger y orden",
+    "levels": [
+     "No hay ledger.",
+     "El ledger guarda resultados pero no cambia el orden.",
+     "El orden cambia según el ledger y los veredictos siguen iguales.",
+     "Además propone y prueba una mejora: que los fallos viejos pesen menos, o separar infraestructura de fallo real."
+    ]
+   }
+  ]
+ },
+ "m21": {
+  "title": "Mutantes que aprenden — ledger, priorización y mutantes que miden al auditor",
+  "hours": "~10 h",
+  "mentor": "Correr mutantes una vez es una foto. Guardar lo que pasó y usarlo en la siguiente corrida es una película: primero los que fallaron antes, después los nuevos y al final los que siempre pasan. La misma idea sirve para medir a un auditor de seguridad: siembras el defecto y miras si lo encuentra.",
+  "kid": "Si en el último partido el portero falló los tiros por la izquierda, en el entrenamiento le tiras primero por la izquierda.",
+  "obj": [
+   "Guardar el resultado de cada mutante entre corridas y priorizar la siguiente.",
+   "Medir un auditor de seguridad con mutantes sembrados.",
+   "Reportar un mutante sobreviviente como hallazgo sin tocarlo."
+  ],
+  "pre": "Módulo de mutation testing.",
+  "theory": [
+   "En civica-playwright-challenge hay tres clases de mutante (equivalent, boundary, negative) y un <code>prioritize()</code> que ordena: primero los que fallaron antes, luego los nunca vistos y al final los que siempre pasan.",
+   "Un reporter escribe <code>test-results/mutation-insights.json</code>: ese es el ledger. En civica ese archivo está en <code>.gitignore</code> y existe solo como artefacto de CI; para que el loop aprenda entre corridas de CI hay que restaurar ese artefacto.",
+   "Reordenar no puede romper el determinismo: cambia el orden, no el veredicto de cada mutante.",
+   "Mutantes que miden al auditor: sobre una línea base endurecida se siembra un defecto de seguridad por mutante (PII, headers, cookies, permisos Android). En el POC 3 de civica el kill rate es 6/6.",
+   "Si un mutante nuevo sobrevive, es un hallazgo del auditor: se reporta, y el mutante no se ajusta para que muera.",
+   "Siguiente paso de la hoja de ruta de civica: relaciones metamórficas, por ejemplo “los resultados de X contienen los de un prefijo de X”."
+  ],
+  "res": [
+   {
+    "label": "Laboratorio: criguex/civica-playwright-challenge",
+    "type": "Repo · público"
+   },
+   {
+    "label": "MUTATION-TESTING.md — el loop de aprendizaje",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "AUDIT-POC.md — mutantes de seguridad",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "Playwright — reporters",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "Chen et al. — Metamorphic Testing (ACM CSUR 2018)",
+    "type": "Artículo"
+   }
+  ],
+  "hands": [
+   "En civica-playwright-challenge corre <code>npm run test:mutation</code> dos veces y compara <code>test-results/mutation-insights.json</code> entre corridas.",
+   "Fuerza el fallo de un mutante y muestra en el log que la siguiente corrida lo pone primero.",
+   "Corre <code>npm run test:audit -- securityMutants</code> y agrega un mutante nuevo en <code>src/audit/securityMutations.ts</code> (por ejemplo, quitar <code>X-Frame-Options</code> o meter un JWT en el body)."
+  ],
+  "crit": [
+   "El log de la segunda corrida muestra primero al mutante que falló en la primera.",
+   "El ledger guarda la clase, el resultado y la corrida de cada mutante.",
+   "Si tu mutante de seguridad sobrevive, aparece como hallazgo del auditor y el mutante no se tocó.",
+   "El veredicto de cada mutante es el mismo con cualquier orden."
+  ],
+  "deliver": "Ledger de dos corridas + evidencia de la priorización + mutante de seguridad nuevo con su veredicto.",
+  "mut": "Fuerza el fallo de un mutante y comprueba que la siguiente corrida lo pone primero.",
+  "top": "Implementas una relación metamórfica de la hoja de ruta de civica (“los resultados de X contienen los de un prefijo de X”)."
+ },
+ "m18": {
+  "title": "Triaje de fallos de CI y selección de pruebas por impacto",
+  "hours": "~12 h",
+  "mentor": "Un pipeline rojo es una lista de preguntas, y solo algunas son bugs. Mi regla con estas dos herramientas: las reglas deterministas deciden lo que pueden, el modelo solo opina sobre lo ambiguo y, ante la duda, se hace lo seguro. El triaje nunca vuelve verde un rojo, y el selector nunca salta una prueba por incertidumbre.",
+  "kid": "Cuando varias pruebas salen mal a la vez, un buen cartero pone cada carta en su buzón: error de verdad, mala suerte, la red o datos equivocados. Y si cambiaste el espejo del carro no revisas el motor; pero si no sabes bien qué tocó el cambio, revisas todo.",
+  "obj": [
+   "Clasificar 10 fallos en las 5 clases (regression, flaky, environment, test-data, unknown), cada uno con la evidencia que lo respalda.",
+   "Predecir qué regla de <code>src/classifier.ts</code> decide cada fallo de la demo antes de correr la herramienta, y acertar o explicar cada diferencia.",
+   "Reproducir el benchmark de jev-test-impact y explicar con sus números por qué la política “insegura” deja escapar 4 de 15 pruebas rotas.",
+   "Medir una selección por impacto en 10 commits tuyos con “0 escapadas” como criterio, no el ahorro."
+  ],
+  "pre": "Módulo de CI/CD y pipelines, reporters JSON o JUnit de Playwright y Node 22 o más reciente. Sin claves: los dos laboratorios reproducen respuestas grabadas de Jev.",
+  "theory": [
+   "Cinco clases: <b>regression</b> (cambió el producto), <b>flaky</b> (mismo código, otro resultado), <b>environment</b> (red, dependencia, runner), <b>test-data</b> (fixtures o datos semilla) y <b>unknown</b> (no hay evidencia: la mira una persona primero).",
+   "Reglas en orden (<code>src/classifier.ts</code>): (1) falló y pasó en un reintento de la misma corrida → flaky; (2) marcador de infraestructura (<code>ECONNREFUSED</code>, DNS, <code>net::ERR_*</code>, 502/503/504…) sin cambios en el código propio de la prueba → environment, y un 500 a secas no cuenta; (3) con al menos <code>minHistory</code> corridas, el resultado cambió dos o más veces → flaky; (4) siempre pasó, ahora falla en todos los intentos y el diff toca código propio, no la prueba ni sus datos → regression; (5) lo demás va a Jev.",
+   "Test-data nunca lo decide una regla: distinguir “cambió el fixture” de “cambió el producto” es una pregunta de significado. Jev responde con probabilidades; por debajo de 0.75 el fallo queda <code>unknown</code> y va a una persona. Antes de enviar nada se redactan tokens, JWT, correos, números con forma de tarjeta y rutas del home (<code>src/redact.ts</code>).",
+   "La confianza se mueve y el servicio se cae. La misma entrada volvió con 0.69, 0.71, 0.78 y 0.84 contra el umbral 0.75, y una tarde solo 17 de 126 llamadas tuvieron éxito por HTTP 429. Por eso falla abierto: <code>unknown · unverified</code>, sin adivinar. En la Action, <code>fail-on</code> puede hacer fallar el paso, nunca hacerlo pasar.",
+   "Selección por impacto (jev-test-impact): el grafo de imports decide las pruebas unitarias. Las de caja negra no importan el código que ejercitan, así que no confían en un “no” del grafo y van a Jev con umbral 0.2, bajo a propósito. <code>@smoke</code> siempre corre, y un cambio en <code>fullSuiteOn</code> (lockfiles, configuraciones) corre todo.",
+   "Fail-safe: cualquier falla de Jev corre la suite completa, y la suite completa sigue en <code>main</code> y cada noche. En 20 commits con 6 regresiones y 15 pruebas rotas: 69.9 % menos pruebas y 0 de 15 escapadas; la política insegura saltaba 77 % y dejaba escapar 4 de 15. Es una app pequeña: evidencia, no garantía."
+  ],
+  "res": [
+   {
+    "label": "Laboratorio: criguex/jev-ci-triage",
+    "type": "Repo · público"
+   },
+   {
+    "label": "Reporte de ejemplo del triaje (en vivo)",
+    "type": "Demo · gratis"
+   },
+   {
+    "label": "Laboratorio: criguex/jev-test-impact",
+    "type": "Repo · público"
+   },
+   {
+    "label": "bench/RESULTS.md — detalle por commit",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "Luo et al. — An Empirical Analysis of Flaky Tests",
+    "type": "Paper"
+   },
+   {
+    "label": "Google Testing Blog — Flaky Tests at Google",
+    "type": "Artículo · gratis"
+   },
+   {
+    "label": "Playwright — reintentos",
+    "type": "Docs · gratis"
+   },
+   {
+    "label": "Hammant — The Rise of Test Impact Analysis",
+    "type": "Artículo · gratis"
+   }
+  ],
+  "hands": [
+   "<b>Laboratorio A · triaje.</b> Clona <code>criguex/jev-ci-triage</code> y corre <code>npm ci</code>, <code>npm test</code>, <code>npm run demo:triage</code> y <code>npm run demo:eval</code>. Abre <code>report/index.html</code> y compáralo con <code>demo/scenario/ground-truth.json</code>. El README reporta 5 correctos, 1 entregado a una persona y 0 equivocados de 6.",
+   "<b>Predicción.</b> Antes de abrir el reporte, escribe para cada uno de los 6 fallos de la demo qué regla (1 a 5) lo decide. Compara con la columna “Decided by”.",
+   "<b>Laboratorio B · impacto.</b> <code>git clone https://github.com/criguex/jev-test-impact</code>, entra a la carpeta y corre <code>npm ci</code>, <code>npm test</code>, <code>JTI_JEV_MODE=replay npm run bench</code> y <code>JTI_JEV_MODE=replay npm run bench -- --check</code>. Lee <code>bench/RESULTS.md</code> y explica por qué la fila insegura pierde 4 de 15.",
+   "<b>Ejercicio.</b> (1) Toma 10 fallos reales de tu pipeline o de tu framework, etiquétalos a mano en las 5 clases con su evidencia y escribe las reglas que habrían decidido los fáciles. (2) En un repo tuyo con un <code>impact.config.json</code> (parte de <code>demo/impact.config.json</code>), corre <code>npx github:criguex/jev-test-impact select --base origin/main</code> sobre 10 commits y compara, commit por commit, lo seleccionado con lo que de verdad falló en la suite completa."
+  ],
+  "crit": [
+   "Ninguna clasificación, tuya o de la herramienta, convierte un rojo en verde.",
+   "Cada uno de los 10 fallos trae su evidencia (reintento, marcador, historial o archivos cambiados); lo que no tiene evidencia queda como unknown.",
+   "La predicción de reglas de la demo está commiteada antes de correr y coincide con “Decided by”, o explicas cada diferencia.",
+   "El replay de impacto reporta tres números: pruebas saltadas, minutos ahorrados y fallas escapadas, y solo se aprueba con 0 escapadas.",
+   "Tu configuración tiene fail-safe a suite completa, y la suite completa sigue corriendo en <code>main</code> o de noche."
+  ],
+  "deliver": "Triaje de 10 fallos con evidencia y reglas + predicción de la demo + replay de impacto en 10 commits (saltadas, minutos y 0 escapadas).",
+  "mut": "Dos guardias, dos mutantes, cada uno en una copia del repo. (1) En <code>jev-ci-triage/src/classifier.ts</code> quita <code>&amp;&amp; signals.changedAppPaths.length === 0</code> de la regla de environment. (2) En <code>jev-test-impact/src/select.ts</code> cambia <code>probability &gt;= config.jev.threshold</code> por <code>probability &gt;= 0.75</code>. Antes de correr, escribe qué esperas de <code>npm test</code>, de <code>npm run demo:eval</code> (triaje) y de <code>JTI_JEV_MODE=replay npm run bench -- --check</code> (impacto). Corre y reporta quién grita y quién no.",
+  "rubm": [
+   {
+    "row": "Clasificación",
+    "levels": [
+     "Etiquetas sin evidencia.",
+     "Evidencia solo en algunos fallos, o un rojo tratado como verde.",
+     "Las 5 clases con evidencia en cada fallo; lo dudoso queda unknown.",
+     "Además, una matriz de confusión de tus reglas contra tus etiquetas."
+    ]
+   },
+   {
+    "row": "Reglas",
+    "levels": [
+     "No hay reglas escritas.",
+     "Hay reglas, pero sin orden o contradictorias.",
+     "Reglas en orden que deciden los casos fáciles y mandan el resto a una persona.",
+     "Además, tus reglas tienen pruebas unitarias propias."
+    ]
+   },
+   {
+    "row": "Impacto",
+    "levels": [
+     "No se midió.",
+     "Se midió el ahorro, pero no las escapadas.",
+     "Saltadas, minutos y escapadas, con 0 escapadas y fail-safe.",
+     "Además, comparas contra una política insegura y una segura sin modelo, como el benchmark."
+    ]
+   },
+   {
+    "row": "Mutación (WAR)",
+    "levels": [
+     "No se mutó nada.",
+     "Se mutó, pero sin predicción previa.",
+     "Dos mutantes con predicción escrita, y quién gritó y quién no.",
+     "Además, agregas la prueba que habría matado al sobreviviente."
+    ]
+   }
+  ]
+ }
+}

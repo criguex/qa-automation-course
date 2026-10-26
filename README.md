@@ -116,11 +116,19 @@ The 12-week route is on the [How you are graded](evaluacion.html) page.
 
 ```bash
 git clone https://github.com/criguex/qa-automation-course.git && cd qa-automation-course
-python3 -m http.server 8080        # open http://localhost:8080
+python3 -m http.server 8080        # open http://localhost:8080 (the texts load with fetch, so a double click on index.html is not enough)
 node scripts/check-course.mjs      # validates every module and quiz question
 ```
 
-`check-course.mjs` (Node 18+, no dependencies) checks that every module has goals, prerequisites, kid line, lab, criteria, rubric and mutation of the week, that every quiz bank has at least 8 questions, and that every answer index points to a real option. Today it prints `35 modules · 4 levels + final project` and `429 quiz questions · 0 problems`.
+`check-course.mjs` (Node 18+, no dependencies) checks that every module has goals, prerequisites, kid line, lab, criteria, rubric and mutation of the week, that every quiz bank has at least 8 questions, and that every answer index points to a real option. It also checks that `i18n/es` and `i18n/en` have the same keys and that every English quiz question keeps the same number of options and the same correct answer. Today it prints `35 modules · 4 levels + final project`, `429 quiz questions · 0 problems` and how much of the English text is filled in.
+
+## Languages
+
+The site has an ES/EN switch in the header. The first visit follows `navigator.language`, and the choice is remembered in `localStorage`. The course content is still in Spanish; the English files are in progress, and any English text that is missing falls back to Spanish, so the site always works.
+
+- `course.json`: what does not depend on the language (module order, level, icon, weeks, resource links).
+- `i18n/es/` and `i18n/en/`: the texts, split into files of similar size (`modules-*.json`, `quiz-*.json`, `exam.json`, `glossary.json`, `ui.json` for the interface and `pages.json` for the home page and the grading page). Both folders have the same keys; an empty string in `en` means "not translated yet".
+- `i18n.js` loads the files and does the fallback; `app.js` renders the course.
 
 You can sign in with Google or enter as a guest. As a guest, your progress, your best quiz score per module and your exam score live only in your browser (`localStorage`). Signed in, they are saved in Firestore under your user id, so you continue on any device; when you sign in, what you did as a guest is merged with your account (a module counts as done if it is done in either place, and the best quiz and exam scores win).
 
