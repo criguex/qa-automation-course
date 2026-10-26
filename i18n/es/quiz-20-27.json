@@ -190,15 +190,15 @@
    "why": "Mismo nombre, idea distinta. En Stryker o PIT, un mutante equivalente no cambia el comportamiento y no se puede matar. En civica, equivalent es una clase de entrada que no debe cambiar el resultado."
   },
   {
-   "q": "El ci.yml de civica sube el ledger como artefacto pero no descarga el de la corrida anterior. ¿Qué pasa con el loop de aprendizaje en CI?",
+   "q": "Antes del commit b240008, el ledger de civica vivía en test-results/mutation-insights.json. ¿Qué pasaba con el loop de aprendizaje?",
    "o": [
-    "Aprende igual, porque la caché de npm lo guarda",
-    "El CI falla",
-    "Cada corrida de CI arranca con el ledger vacío y los mutantes corren en el orden declarado",
-    "El ledger se commitea solo"
+    "Aprendía igual, porque la caché de npm lo guardaba",
+    "La corrida fallaba",
+    "Playwright vacía test-results/ al empezar cada corrida, así que runs nunca pasaba de 1 y los mutantes corrían siempre en el orden declarado",
+    "El ledger se commiteaba solo"
    ],
    "a": 2,
-   "why": "El ledger está en .gitignore y el runner nace limpio. Para que aprenda entre corridas hay que descargar el artefacto anterior antes de correr."
+   "why": "Por eso el ledger se movió a ledger/, fuera de la carpeta de salida de Playwright, y el CI descarga el artefacto de la última corrida de main antes de correr."
   },
   {
    "q": "¿Qué guarda test-results/mutant-evidence.json por cada escenario?",
@@ -236,15 +236,15 @@
    "why": "Así lo más informativo corre primero."
   },
   {
-   "q": "El ledger de civica está en .gitignore. ¿Qué implica para el CI?",
+   "q": "El ledger de civica está en .gitignore. ¿Cómo aprende entre corridas de CI?",
    "o": [
-    "Que no existe",
-    "Que es un artefacto de CI: para aprender entre corridas hay que restaurar ese artefacto",
-    "Que se commitea solo",
-    "Que el loop se borra"
+    "No aprende: en CI siempre arranca vacío",
+    "El CI descarga el artefacto mutation-insights de la última corrida terminada de main antes de los mutantes y sube el nuevo al final",
+    "Se commitea solo al terminar",
+    "La caché de npm lo guarda"
    ],
    "a": 1,
-   "why": "docs/MUTATION-TESTING.md lo dice: el ledger es un artefacto de build."
+   "why": "Es lo que hace ci.yml desde el commit b240008, con 90 días de retención. Sin una corrida anterior arranca de cero, sin error."
   },
   {
    "q": "¿Reordenar los mutantes puede cambiar el veredicto de uno?",
@@ -258,7 +258,7 @@
    "why": "Si el orden cambia el veredicto, hay estado compartido entre mutantes: eso es un bug del arnés."
   },
   {
-   "q": "Un mutante de seguridad nuevo (quitar X-Frame-Options) sobrevive al auditor. ¿Qué haces?",
+   "q": "Agregas al auditor un mutante nuevo (quitar la directiva frame-ancestors de la CSP) y sobrevive. ¿Qué haces?",
    "o": [
     "Cambio el mutante para que muera",
     "Lo reporto como hallazgo del auditor, sin tocar el mutante",
@@ -266,7 +266,7 @@
     "Lo marco skip"
    ],
    "a": 1,
-   "why": "El sobreviviente es un punto ciego del auditor: es el hallazgo."
+   "why": "Si el mutante sí planta un defecto observable, el sobreviviente es un punto ciego del auditor: es el hallazgo. Solo se excluye como equivalente cuando no cambia nada observable, y eso se comprueba con una prueba."
   },
   {
    "q": "¿Qué mide un mutante sembrado sobre una línea base endurecida?",
@@ -302,15 +302,15 @@
    "why": "Sirve cuando no tienes la respuesta exacta pero sí sabes cómo deben relacionarse dos respuestas."
   },
   {
-   "q": "POC 3 de civica: kill rate 6/6. ¿Qué afirmas?",
+   "q": "POC 3 de civica: «kill rate 6/6 (100%), 1 equivalent excluded». ¿Qué afirmas?",
    "o": [
     "Que el auditor detecta cualquier defecto de seguridad",
-    "Que el auditor detectó los 6 defectos sembrados del catálogo; lo que no está en el catálogo no está medido",
+    "Que el auditor detectó los 6 defectos sembrados que se pueden observar; el equivalente (quitar X-Frame-Options) no planta nada, y lo que no está en el catálogo no está medido",
     "Que no hay vulnerabilidades",
-    "Que el código es seguro"
+    "Que el kill rate real es 6/7"
    ],
    "a": 1,
-   "why": "El kill rate habla del catálogo que existe, no de todos los defectos posibles."
+   "why": "El kill rate habla del catálogo que existe. Contar el equivalente como sobreviviente daría 6/7, un hallazgo sobre el catálogo, no sobre el auditor."
   }
  ],
  "m18": [

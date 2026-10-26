@@ -426,9 +426,9 @@
    "Known survivors: <code>self-grant</code> and <code>viewer-create</code> carry a <code>known</code> field. They come out as KNOWN SURVIVOR, printed in red, and the default run stays green; with <code>MUTANT_LAB_STRICT=1</code> (<code>npm run test:strict</code>) each of them makes the run fail. Once a bug is fixed, the scoreboard shows it as FIXED.",
    "Per-scenario evidence in <code>test-results/mutant-evidence.json</code>: expected and observed state, phase, reason, git revision and SHA-256 of the app, the flow, the scenarios, the runner, the classifier, the spec and the lockfile, with <code>randomSeed: null</code> because the run uses no randomness.",
    "The oracle's limit: it works at the HTTP level, plus a read of the role for <code>self-grant</code>. A correct status doesn't prove semantic equivalence, which is why the runner doesn't emit <code>EQUIVALENT</code> (README §Evidence, classification and score gate).",
-   "The ledger that learns (civica): <code>reporters/mutationInsightsReporter.ts</code> accumulates <code>runs</code> and <code>failures</code> per mutant in <code>test-results/mutation-insights.json</code>. <code>prioritize()</code> (<code>src/support/mutationInsights.ts</code>) gives weight 0 to those that ever failed, 1 to those never seen and 2 to those that always pass, with a stable order within each seed: it changes the order, never the verdict.",
-   "What that ledger doesn't do (it's in the code): <code>failures</code> is cumulative, so a mutant that failed once stays first forever; the reporter counts <code>timedOut</code> and <code>interrupted</code> as failures, without separating infrastructure the way war-paradigm does; and <code>loadInsights()</code> returns an empty ledger if the JSON is corrupt. In CI the ledger is uploaded as the <code>mutation-insights</code> artifact, but <code>ci.yml</code> doesn't download the one from the previous run, so every CI run starts with no memory.",
-   "Mutants that measure the auditor (civica, <code>docs/AUDIT-POC.md §POC 3</code>): on top of a hardened baseline, one defect is seeded per mutant (PII, three headers, an insecure cookie and the <code>READ_SMS</code> permission). Kill rate 6/6. Its ledger is kept separately, in <code>test-results/audit-mutation-insights.json</code>, so the two loops don't step on each other."
+   "The ledger that learns (civica): <code>reporters/mutationInsightsReporter.ts</code> stores per mutant <code>runs</code> (every run), <code>history</code> (the statuses of the last 5), and <code>failures</code> and <code>timeouts</code> counted inside those 5, in <code>ledger/mutation-insights.json</code>. <code>prioritize()</code> (<code>src/support/mutationInsights.ts</code>) gives weight 0 to those that failed in their last 5 runs, 1 to those never seen and 2 to the rest, with a stable order within each seed: it changes the order, never the verdict.",
+   "What that ledger didn't do, and how commit b240008 fixed it: it lived in <code>test-results/</code>, which Playwright empties at the start of every run, so <code>runs</code> never got past 1 and the loop never learned; <code>failures</code> was cumulative; a timeout counted as a failure; a corrupt JSON silently gave an empty ledger; and CI uploaded the artifact without downloading the previous one. Now it lives in <code>ledger/</code>, forgets through a 5-run window (<code>HISTORY_WINDOW</code>), counts timeouts separately without moving the mutant up, warns with a <code>⚠</code> and a <code>ledger-warning</code> annotation if the file is corrupt (keeping it as <code>.corrupt</code>), and CI downloads the <code>mutation-insights</code> artifact from the latest completed run on main and uploads it again, kept for 90 days. The WAR lesson: the big defect didn't show up when reading the code; it showed up when running twice and looking at <code>runs</code>.",
+   "Mutants that measure the auditor (civica, <code>docs/AUDIT-POC.md §POC 3</code>): on top of a hardened baseline, one defect is seeded per mutant (PII, three headers, an insecure cookie and the <code>READ_SMS</code> permission). Kill rate “6/6 (100%), 1 equivalent excluded”: the seventh, removing <code>X-Frame-Options</code>, is a true equivalent in the Stryker and PIT sense, because the baseline never sends that header (its CSP already carries <code>frame-ancestors 'none'</code>); a test checks on every run that it still changes nothing. Its ledger is kept separately, in <code>ledger/audit-mutation-insights.json</code>, so the two loops don't step on each other, and for now it's only recorded: nothing reorders the security mutants yet."
   ],
   "res": [
    {
@@ -444,7 +444,7 @@
     "type": "Repo · public"
    },
    {
-    "label": "MUTATION-TESTING.md — the learning loop",
+    "label": "MUTATION-TESTING.md — the learning loop, forgetting and the corrupt ledger",
     "type": "Docs · free"
    },
    {
@@ -463,18 +463,18 @@
    "Run <code>npm run test:unit -w experiments/02-mutants</code> and read the five cases in <code>tests/unit/scenario-evidence.test.ts</code>. Add one: if 403 was expected and 404 arrives, the result has to be <code>INCONCLUSIVE</code>.",
    "Add two mutants in <code>tests/scenarios.ts</code> and commit your prediction before running. For example <code>{ id: \"viewer-publish\", name: \"viewer-publish\", expect: 403, step: \"publish\", as: \"viewer\" }</code> and a 2-character title in <code>create</code> with <code>expect: 422</code>.",
    "“Kill it yourself”: change <code>editMember</code> in <code>app/server.js</code> to <code>(actor) => actor.role === \"admin\"</code>, run <code>npm run demo:02</code> and check that <code>self-grant</code> comes out FIXED. Then remove the <code>known</code> field.",
-   "Set up civica: <code>git clone https://github.com/criguex/civica-playwright-challenge.git && cd civica-playwright-challenge && npm ci && npx playwright install --with-deps chromium</code>. Run <code>npm run test:mutation</code> twice and compare <code>test-results/mutation-insights.json</code> between runs.",
-   "Look at the order without running anything: <code>npx playwright test --project=mutation --list</code>. Edit the ledger, set <code>\"failures\": 1</code> on a mutant that's last in its seed, and list again: it should move up to first place in that seed.",
-   "Auditor: <code>npm run test:audit -- securityMutants</code> and <code>cat test-results/audit/security-mutants.json</code>. Add a mutant in <code>src/audit/securityMutations.ts</code> (for example, removing <code>X-Frame-Options</code>) and note whether it dies. If it survives, that's a finding about the auditor: don't touch the mutant to make it die."
+   "Set up civica: <code>git clone https://github.com/criguex/civica-playwright-challenge.git && cd civica-playwright-challenge && npm ci && npx playwright install --with-deps chromium</code>. Run <code>npm run test:mutation</code> twice and compare <code>ledger/mutation-insights.json</code> between runs: <code>runs</code> goes from 1 to 2. Then break the ledger on purpose (write <code>{ not json</code> into the file) and run again: you should get a <code>⚠</code>, a run in the declared order, and the broken file left in <code>ledger/mutation-insights.json.corrupt</code>. If it stays quiet, that's the finding.",
+   "Look at the order without running anything: <code>npx playwright test --project=mutation --list</code>. Edit <code>ledger/mutation-insights.json</code>: on a mutant that's last in its seed, change the last status in <code>history</code> to <code>\"failed\"</code> and set <code>\"failures\": 1</code>. List again: it should move up to first place in that seed. Now run <code>npm run test:mutation</code> five times and list after each one: it stays first until that <code>failed</code> slides out of the 5-run window, and in the list after the fifth run it's back in its place.",
+   "Auditor: <code>npm run test:audit -- securityMutants</code> and <code>cat test-results/audit/security-mutants.json</code>. Find the equivalent mutant (<code>Equivalent: missing-header</code>) and its reason. Add a mutant in <code>src/audit/securityMutations.ts</code>, for example removing only the <code>frame-ancestors 'none'</code> directive from the CSP or putting a JWT in the body, and write down beforehand whether you think it dies. If it survives, that's a finding about the auditor: don't touch the mutant to make it die."
   ],
   "crit": [
    "Your kill rate is computed only from KILLED and SURVIVED, and you reproduce it by hand from <code>mutant-evidence.json</code>.",
    "The two new mutants have their prediction in a commit before the run, and their observed state appears in the JSON.",
    "The new unit test (403 expected, 404 observed → <code>INCONCLUSIVE</code>) passes with <code>npm run test:unit</code>.",
    "After “Kill it yourself,” <code>self-grant</code> comes out FIXED and <code>npm run test:strict</code> fails only on <code>viewer-create</code>.",
-   "The <code>--list</code> output before and after editing the ledger shows the change in order, and every mutant's verdict stays the same."
+   "The <code>--list</code> output before and after editing the ledger shows the change in order, the mutant goes back to its place after the fifth run, the broken ledger produces the <code>⚠</code> and the <code>.corrupt</code> file, and every mutant's verdict stays the same."
   ],
-  "deliver": "war-paradigm fork with 2 new mutants, the unit test and the fix + <code>mutant-evidence.json</code> from before and after + civica ledger from two runs with evidence of the reordering + a new security mutant with its verdict.",
+  "deliver": "war-paradigm fork with 2 new mutants, the unit test and the fix + <code>mutant-evidence.json</code> from before and after + civica ledger with <code>runs</code> going from 1 to 2, evidence of the reordering and of the forgetting, and the output of the broken ledger + a new security mutant with its verdict.",
   "mut": "Cheat on purpose and see whether the harness catches you: change <code>classifyMutation</code> so a 5xx counts as KILLED and run <code>npm run test:unit -w experiments/02-mutants</code>. Before running, write down which test should fail. If none fails, your harness has a blind spot: write the test that closes it. At the end, revert the change.",
   "rubm": [
    {
@@ -507,10 +507,10 @@
    {
     "row": "Ledger and order",
     "levels": [
-     "There's no ledger.",
+     "There's no ledger, or it gets wiped between runs (<code>runs</code> always at 1).",
      "The ledger stores results but doesn't change the order.",
      "The order changes according to the ledger and the verdicts stay the same.",
-     "Also proposes and tests an improvement: making old failures weigh less, or separating infrastructure from real failures."
+     "Also tests the ledger's edges: forgetting after 5 runs, a timeout that doesn't move the mutant up, and a broken ledger that warns instead of staying quiet."
     ]
    }
   ]
@@ -528,9 +528,9 @@
   "pre": "The mutation testing module.",
   "theory": [
    "In civica-playwright-challenge there are three mutant classes (equivalent, boundary, negative) and a <code>prioritize()</code> that sorts them: first the ones that failed before, then the never-seen ones, and last the ones that always pass.",
-   "A reporter writes <code>test-results/mutation-insights.json</code>: that's the ledger. In civica that file is in <code>.gitignore</code> and only exists as a CI artifact; for the loop to learn across CI runs you have to restore that artifact.",
+   "A reporter writes <code>ledger/mutation-insights.json</code>: that's the ledger. It lives outside <code>test-results/</code> because Playwright empties that folder at the start of every run; until commit b240008 it lived there, so <code>runs</code> never got past 1 and the loop learned nothing. It's in <code>.gitignore</code>: in CI the <code>mutation-insights</code> artifact from the latest completed run on main is downloaded before the mutants and the new one is uploaded at the end, kept for 90 days. It forgets on purpose: <code>failures</code> counts only failures in the last 5 runs (<code>HISTORY_WINDOW</code>), and timeouts get their own counter.",
    "Reordering must not break determinism: it changes the order, not each mutant's verdict.",
-   "Mutants that measure the auditor: on top of a hardened baseline, one security defect is seeded per mutant (PII, headers, cookies, Android permissions). In civica's POC 3 the kill rate is 6/6.",
+   "Mutants that measure the auditor: on top of a hardened baseline, one security defect is seeded per mutant (PII, headers, cookies, Android permissions). civica's POC 3 catalog has 7, and one is equivalent: removing <code>X-Frame-Options</code> changes nothing observable, because the baseline never sends that header (its CSP already carries <code>frame-ancestors 'none'</code>). It's marked <code>equivalent</code>, left out of the score, and the report says “6/6 (100%), 1 equivalent excluded.” Counting it as a survivor would give 6/7, a finding about the catalog, not about the auditor.",
    "If a new mutant survives, that's a finding about the auditor: it gets reported, and the mutant isn't tweaked until it dies.",
    "Next step on civica's roadmap: metamorphic relations, for example “the results for a prefix of X contain the results for X.”"
   ],
@@ -540,7 +540,7 @@
     "type": "Repo · public"
    },
    {
-    "label": "MUTATION-TESTING.md — the learning loop",
+    "label": "MUTATION-TESTING.md — the learning loop, forgetting and the corrupt ledger",
     "type": "Docs · free"
    },
    {
@@ -557,17 +557,17 @@
    }
   ],
   "hands": [
-   "In civica-playwright-challenge run <code>npm run test:mutation</code> twice and compare <code>test-results/mutation-insights.json</code> between runs.",
+   "In civica-playwright-challenge run <code>npm run test:mutation</code> twice and compare <code>ledger/mutation-insights.json</code> between runs: <code>runs</code> has to go from 1 to 2 and <code>history</code> has to hold both statuses. If <code>runs</code> stays at 1, the ledger isn't remembering: that was the bug commit b240008 fixed.",
    "Force a mutant to fail and show in the log that the next run puts it first.",
-   "Run <code>npm run test:audit -- securityMutants</code> and add a new mutant in <code>src/audit/securityMutations.ts</code> (for example, removing <code>X-Frame-Options</code> or putting a JWT in the body)."
+   "Run <code>npm run test:audit -- securityMutants</code> and read the kill-rate line: “6/6 (100%), 1 equivalent excluded.” Add a new mutant in <code>src/audit/securityMutations.ts</code>, for example removing only the <code>frame-ancestors 'none'</code> directive from the CSP (the equivalent mutant's twin: this time no framing protection is left) or putting a JWT in the body. Write down beforehand whether you think it dies."
   ],
   "crit": [
    "The second run's log shows first the mutant that failed in the first run.",
-   "The ledger stores each mutant's class, result and run.",
+   "<code>ledger/mutation-insights.json</code> shows each mutant's <code>runs</code>, <code>history</code>, <code>failures</code> and <code>timeouts</code>; between your two runs <code>runs</code> goes from 1 to 2, and the mutant you forced has a <code>failed</code> in its <code>history</code>.",
    "If your security mutant survives, it shows up as a finding about the auditor and the mutant wasn't touched.",
    "Each mutant's verdict is the same in any order."
   ],
-  "deliver": "Ledger from two runs + evidence of the prioritization + a new security mutant with its verdict.",
+  "deliver": "Ledger from two runs (<code>runs</code> going from 1 to 2) + evidence of the prioritization + a new security mutant with its prediction and verdict.",
   "mut": "Force a mutant to fail and check that the next run puts it first.",
   "top": "You implement a metamorphic relation from civica's roadmap (“the results for a prefix of X contain the results for X”)."
  },

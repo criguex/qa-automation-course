@@ -190,15 +190,15 @@
    "why": "Same name, different idea. In Stryker or PIT, an equivalent mutant does not change behavior and cannot be killed. In civica, equivalent is a class of input that must not change the result."
   },
   {
-   "q": "civica's ci.yml uploads the ledger as an artifact but does not download the one from the previous run. What happens to the learning loop in CI?",
+   "q": "Before commit b240008, civica's ledger lived in test-results/mutation-insights.json. What happened to the learning loop?",
    "o": [
-    "It learns anyway, because the npm cache keeps it",
-    "CI fails",
-    "Every CI run starts with an empty ledger and the mutants run in the declared order",
-    "The ledger commits itself"
+    "It learned anyway, because the npm cache kept it",
+    "The run failed",
+    "Playwright empties test-results/ at the start of every run, so runs never got past 1 and the mutants always ran in the declared order",
+    "The ledger committed itself"
    ],
    "a": 2,
-   "why": "The ledger is in .gitignore and the runner starts clean. For it to learn across runs, you have to download the previous artifact before running."
+   "why": "That's why the ledger moved to ledger/, outside Playwright's output folder, and CI downloads the artifact from the latest main run before running."
   },
   {
    "q": "What does test-results/mutant-evidence.json store for each scenario?",
@@ -236,15 +236,15 @@
    "why": "That way the most informative ones run first."
   },
   {
-   "q": "civica's ledger is in .gitignore. What does that imply for CI?",
+   "q": "civica's ledger is in .gitignore. How does it learn across CI runs?",
    "o": [
-    "That it does not exist",
-    "That it is a CI artifact: to learn across runs you have to restore that artifact",
-    "That it commits itself",
-    "That the loop gets deleted"
+    "It doesn't: in CI it always starts empty",
+    "CI downloads the mutation-insights artifact from the latest completed run on main before the mutants and uploads the new one at the end",
+    "It commits itself when the run ends",
+    "The npm cache keeps it"
    ],
    "a": 1,
-   "why": "docs/MUTATION-TESTING.md says so: the ledger is a build artifact."
+   "why": "That's what ci.yml does since commit b240008, with 90-day retention. With no previous run it starts fresh, without an error."
   },
   {
    "q": "Can reordering the mutants change the verdict of one of them?",
@@ -258,7 +258,7 @@
    "why": "If the order changes the verdict, there is shared state between mutants: that is a bug in the harness."
   },
   {
-   "q": "A new security mutant (removing X-Frame-Options) survives the auditor. What do you do?",
+   "q": "You add a new mutant to the auditor (removing the frame-ancestors directive from the CSP) and it survives. What do you do?",
    "o": [
     "Change the mutant so it dies",
     "Report it as a finding about the auditor, without touching the mutant",
@@ -266,7 +266,7 @@
     "Mark it skip"
    ],
    "a": 1,
-   "why": "The survivor is a blind spot of the auditor: that is the finding."
+   "why": "If the mutant does plant an observable defect, the survivor is a blind spot of the auditor: that's the finding. It's only excluded as equivalent when it changes nothing observable, and that's checked with a test."
   },
   {
    "q": "What does a mutant planted on a hardened baseline measure?",
@@ -302,15 +302,15 @@
    "why": "It helps when you don't have the exact answer but you do know how two answers should relate."
   },
   {
-   "q": "civica POC 3: kill rate 6/6. What do you claim?",
+   "q": "civica POC 3: “kill rate 6/6 (100%), 1 equivalent excluded.” What do you claim?",
    "o": [
     "That the auditor detects any security defect",
-    "That the auditor detected the 6 planted defects in the catalog; what is not in the catalog is not measured",
+    "That the auditor caught the 6 observable planted defects; the equivalent one (removing X-Frame-Options) plants nothing, and what isn't in the catalog isn't measured",
     "That there are no vulnerabilities",
-    "That the code is secure"
+    "That the real kill rate is 6/7"
    ],
    "a": 1,
-   "why": "The kill rate speaks about the catalog that exists, not about every possible defect."
+   "why": "The kill rate speaks about the catalog that exists. Counting the equivalent as a survivor would give 6/7, a finding about the catalog, not about the auditor."
   }
  ],
  "m18": [
