@@ -1,64 +1,64 @@
 {
  "home": {
   "gate": {
-   "eyebrow": "",
-   "title": "",
-   "sub": "",
-   "stat1": "",
-   "stat2": "",
-   "stat3": "",
-   "stat4": "",
-   "goalsTitle": "",
-   "goals": "",
-   "howTitle": "",
-   "how": "",
-   "cta": "",
-   "note": "",
-   "guest": "",
-   "guestHint": ""
+   "eyebrow": "Cristian Guerra · QA Automation Path",
+   "title": "How to become a <span class=\"g\">QA Automation Engineer</span><br/>guided by Cristian Guerra",
+   "sub": "A hands-on program built on the way I actually work: contract testing, Playwright + TypeScript, BDD, CI/CD, <b>AI-assisted QA</b>, AI and agent evaluation, and <b>mutation testing</b> with the WAR Paradigm. <b>For anyone who wants to become a QA</b>: whether you come from development, manual QA, another career or from scratch.",
+   "stat1": "<b>35</b><span>modules in 4 levels</span>",
+   "stat2": "<b>~10–12 h</b><span>per week, at your own pace</span>",
+   "stat3": "<b>150+</b><span>resources, almost all free</span>",
+   "stat4": "<b>1</b><span>WAR Audit at the end</span>",
+   "goalsTitle": "What you'll achieve",
+   "goals": "<li>Master the stack: <b>Playwright + TS, contracts, pipelines, mutants and AI evaluation</b>.</li>\n          <li>A <b>portfolio of real projects</b>: every module ends with a deliverable in a repo.</li>\n          <li><b>Test the tester</b>: know that your tests would have failed if something was wrong.</li>",
+   "howTitle": "How it works",
+   "how": "<li><b>1 · Learn:</b> objectives, short theory and a lab in every module.</li>\n          <li><b>2 · Practice:</b> an 8-question quiz that grades itself; you pass with 6.</li>\n          <li><b>3 · Deliver:</b> a challenge with criteria you can check with a command.</li>\n          <li><b>4 · Get certified:</b> a 26-question final exam (80 %) and the WAR Audit.</li>",
+   "cta": "🔓 Sign in with Google and get started",
+   "note": "Your progress is tied to your account: you pick up where you left off, from any device. If you already made progress without an account, it gets added to your account's progress.",
+   "guest": "View the course without an account →",
+   "guestHint": "(progress is saved only in this browser)"
   },
   "hero": {
-   "eyebrow": "",
-   "title": "",
-   "sub": "",
-   "chips": "",
-   "mentor": ""
+   "eyebrow": "Cristian Guerra · Your path to QA Automation",
+   "title": "How to become a <span class=\"g\">QA Automation Engineer</span><br/>guided by Cristian Guerra",
+   "sub": "An interactive, visual, hands-on course built on the way I actually work (contract testing, Playwright+TS, BDD, CI/CD, cloud, <b>AI-assisted QA</b>, AI and agent evaluation, and <b>mutation testing</b> with the WAR Paradigm). <b>For anyone who wants to become a QA</b> — whether you come from development, manual QA, another career or from scratch. Everyone moves at their own pace; every module has tips depending on where you're starting from.",
+   "chips": "<span class=\"chip\">🗺️ <b>35 modules</b> in 4 levels + final project</span>\n      <span class=\"chip\">🎓 <b>150+ resources</b> (almost all free)</span><span class=\"chip\">🧬 WAR thread: <b>test the tester</b></span>\n      <span class=\"chip\">🧩 Theory → docs → repos → practice</span>\n      <span class=\"chip\">✅ Progress in your Google account or in your browser</span>",
+   "mentor": "<b>Mentor's note:</b> this isn't textbook theory — it's the workflow I use every day. Follow the order, do every deliverable, and don't move on until you can <i>explain the why</i>, not just the how. And the thread running through it all: <b>test the tester</b> — a green only counts if you know your suite would have turned it red. — <b>Cristian</b>"
   },
   "use": {
-   "title": "",
-   "pactTitle": "",
-   "pact": "",
-   "rulesTitle": "",
-   "rules": ""
+   "title": "🚦 How to use this course",
+   "pactTitle": "The pact",
+   "pact": "<li>One module per week (~10–12 h). Each one ends with a <b>deliverable in a repo</b>.</li>\n        <li>Tick a module's ✅ only when the deliverable <b>works</b> and you can defend it.</li>\n        <li>“I don't know” is fine; “I didn't try” isn't.</li>\n        <li>Everything goes into your <b>portfolio</b> — at the end you have real projects to show.</li>",
+   "rulesTitle": "Golden rules (my method · in my own words)",
+   "rules": "<li>“Shift your time from <b>typing</b> to <b>deciding</b>.”</li>\n        <li>“AI <b>amplifies</b> your judgment; it doesn't replace it.”</li>\n        <li>“<b>Validate against the contract</b>, don't bend the test to fit the response — a false green is worse than an honest red.”</li>\n        <li>“<b>Certification is signed by a human</b>; it's not a checkbox you automate.”</li>\n        <li>“<b>Iterate narrow, confirm wide</b>: fast on the details, rigorous at the close.”</li>\n        <li>“‘All green’ doesn't mean ‘the software is fine’ — it means my tests, as written, didn't find anything.”</li>\n        <li>“<b>Test the tester, mutate reality</b>: break the world on purpose and see if your suite screams.”</li>\n        <li>“Rules live in <b>hooks and CI</b>, not in prompts; evidence is <b>command + hash + exit code</b>.”</li>"
   },
   "map": {
-   "title": "",
-   "evalLead": "",
-   "lead": ""
+   "title": "🗺️ The journey map",
+   "evalLead": "📏 <a href=\"evaluacion.html\"><b>How you're assessed</b></a>: a self-grading quiz, a challenge with verifiable criteria and a 4-level rubric in every module, plus the 12- and 20-week paths and the visual map.",
+   "lead": "Click any station to open its module — each one is its own page with a mentor's note, theory, resources, a hands-on challenge and a quiz. It turns green when you complete it. Four levels: <b>1 · Foundations</b> → <b>2 · Intermediate</b> (pipelines, ephemeral containers, mutants, triage) → <b>3 · Advanced AI-QA</b> → <b>4 · Scientific QA</b> → final project. The thread running through it all: <b>test the tester</b>; every module closes with a mutation of the week. Everyone moves at their own pace."
   },
   "exam": {
-   "title": "",
-   "lead": ""
+   "title": "🎓 Final exam on the method",
+   "lead": "26 scenario questions that cut across the WHOLE method — contracts, cycles, evidence, AI, mutants, risk. You pass with <b>80%</b>. The options are shuffled on every attempt and each question can be answered only once, so think before you click. Take it when you finish the modules."
   },
   "glos": {
-   "title": "",
-   "lead": "",
-   "placeholder": ""
+   "title": "📖 Glossary of the method",
+   "lead": "The terms the way I use them — search to filter. A quick onboarding for anyone who's just arriving.",
+   "placeholder": "Search… (certify, contract, flakiness, POM, MCP, @IGNORE…)"
   },
-  "footer": ""
+  "footer": "QA Automation Path · <b>guided by Cristian Guerra Gómez</b> — Senior QA Automation / SDET · AI-Augmented Testing.<br/>\n    Based on my QA-AI Methodology and my real stack. Adjust it to your pace and to your project. Your progress, your quizzes and your exam are saved in your Google account if you sign in with it, or in this browser (localStorage) if you continue without an account."
  },
  "eval": {
-  "title": "",
-  "intro": "",
-  "s01": "",
-  "s02": "",
-  "s03": "",
-  "s04": "",
-  "s05": "",
-  "s06": "",
-  "s07": "",
-  "s08": "",
-  "foot": ""
+  "title": "How you're assessed · QA Automation Path",
+  "intro": "<header>\n  <div class=\"eyebrow\">QA Automation Path · Cristian Guerra</div>\n  <h1>How you're assessed</h1>\n  <p class=\"lead\">This site has no server and no teacher grading for you. The assessment is yours, and it rests on evidence you can show: commands, hashes, screenshots and your repo. Here's the full rule. <a href=\"index.html\">← Back to the course</a></p>\n</header>\n\n<div class=\"card kid\"><b>🧒 Explained like you're 8:</b> every module has a short test that grades itself, a task with a list of “I did it if…” and a table with four levels, from “not yet” to “excellent”. You pass the module when the test goes well and the task reaches level 3.</div>",
+  "s01": "<h2>What every module includes</h2>\n<div class=\"grid\">\n  <div class=\"card\"><h3>🎯 Objectives and prerequisites</h3><p>What you'll be able to do when you finish, in verbs that can be checked, and what you need before you start.</p></div>\n  <div class=\"card\"><h3>📓 Short theory + 🧪 lab</h3><p>Just enough theory and a hands-on lab. In the newer modules, the lab is a real public repo.</p></div>\n  <div class=\"card\"><h3>🧠 Self-grading quiz</h3><p>8 random questions from the module's bank (between 8 and 18 per module), one answer per question and the explanation for each one. You pass with <b>6 out of 8</b>. Every attempt draws different questions.</p></div>\n  <div class=\"card\"><h3>✅ Challenge with verifiable criteria</h3><p>Criteria you check with a command or a screenshot, not with an opinion. Examples: “your suite kills at least 5 of 6 mutants and the JSON report includes hashes”, “your judge has a kappa ≥ 0.6 against your labels”, “a PR with a failure is blocked from merging”.</p></div>\n  <div class=\"card\"><h3>📏 4-level rubric</h3><p>1 · Not met · 2 · Getting there · 3 · Passed · 4 · Outstanding. Level 4 in each module asks for something specific on top.</p></div>\n  <div class=\"card\"><h3>🧬 Mutation of the week</h3><p>You break something on purpose in your own work and show that your check notices, or you publish that it doesn't. That's the WAR thread: test the tester.</p></div>\n</div>",
+  "s02": "<h2>When you pass</h2>\n<div class=\"card\">\n  <p><b>A module:</b> quiz ≥ 6/8 <b>and</b> challenge at level 3 of the rubric (all criteria met). Then you tick the deliverable's ✅.</p>\n  <p style=\"margin-top:8px\"><b>The final exam:</b> 26 scenario questions that cut across the whole course; you pass with 80 %.</p>\n  <p style=\"margin-top:8px\"><b>The “WAR Audit” capstone:</b> all four rows of the integrated rubric at least at level 3, <b>and</b> someone else reproduces your package in a clean environment with exit 0 and the same fingerprint.</p>\n  <p style=\"margin-top:8px\">Your progress, your best score on each quiz and your exam are saved in your Google account if you sign in with it, or only in this browser (localStorage) if you continue as a guest. When you sign in, whatever you did as a guest is added to your account.</p>\n</div>",
+  "s03": "<h2>What counts as evidence and what doesn't</h2>\n<div class=\"tablewrap\"><table>\n  <tr><th>Counts as evidence</th><th>Doesn't count</th></tr>\n  <tr><td><span class=\"pass\">✓ Yes:</span> the exact command, its output and its exit code, saved as they came out.</td><td><span class=\"fail\">✗ No:</span> “it worked for me”, or a screenshot without the command that produced it.</td></tr>\n  <tr><td><span class=\"pass\">✓ Yes:</span> a SHA-256 or a fingerprint that someone else recomputes and gets the same.</td><td><span class=\"fail\">✗ No:</span> a log that exists but that nobody can tie to the run that produced it.</td></tr>\n  <tr><td><span class=\"pass\">✓ Yes:</span> the order in <code>git log</code>: preregistration, then data, then results.</td><td><span class=\"fail\">✗ No:</span> a threshold that moved after seeing the score, even if the new one “makes more sense”.</td></tr>\n  <tr><td><span class=\"pass\">✓ Yes:</span> a control that must pass and another that must fail, with both results.</td><td><span class=\"fail\">✗ No:</span> a green suite you never saw fail.</td></tr>\n  <tr><td><span class=\"pass\">✓ Yes:</span> a hypothesis that failed, published with its number.</td><td><span class=\"fail\">✗ No:</span> deleting the hypothesis that failed or changing the criterion so it passes.</td></tr>\n  <tr><td><span class=\"pass\">✓ Yes:</span> someone else's reproduction, published as is, even if it comes out different.</td><td><span class=\"warn\">! Careful:</span> your own reproduction on another machine of yours, or one operated by an assistant, counts as “reproduced”, not as “reproduced by a third party”. Say so under Limits.</td></tr>\n</table></div>",
+  "s04": "<h2>How to check your own criteria</h2>\n<div class=\"card\">\n  <ul>\n    <li><b>Order in time:</b> <code>git log --reverse --format=\"%h %ad %s\" --date=iso</code>.</li>\n    <li><b>Thresholds untouched:</b> <code>git log -p -- thresholds.json</code> shows no changes after the first run.</li>\n    <li><b>Exit code:</b> end every command with <code>; echo \"exit=$?\"</code> and save the output.</li>\n    <li><b>Hashes:</b> <code>shasum -a 256 archivo</code>, or <code>shasum -a 256 -c SHA256SUMS</code> for a list.</li>\n    <li><b>Fingerprint in two environments:</b> a CI job with a matrix that runs <code>grep -q \"fingerprint: XXXX-XXXX-XXXX\"</code>, like predictor-debugger's <code>verify.yml</code>.</li>\n    <li><b>Clean environment:</b> a fresh CI runner or a container that's born and dies with the command, for example <code>docker run --rm -v \"$PWD\":/w -w /w python:3.12-slim python3 verificar.py</code>.</li>\n  </ul>\n</div>",
+  "s05": "<h2>Each module's rubric</h2>\n<div class=\"tablewrap\"><table>\n  <tr><th>1 · Not met</th><th>2 · Getting there</th><th>3 · Passed</th><th>4 · Outstanding</th></tr>\n  <tr><td>The deliverable is missing or doesn't run.</td><td>It runs, but fails at least one passing criterion.</td><td>Meets all the passing criteria.</td><td>Meets everything plus the extra that module asks for.</td></tr>\n</table></div>\n<p class=\"lead\">The newest modules come with a rubric by axes: four rows, each one with these four levels. There, passing means having all four rows at least at level 3.</p>",
+  "s06": "<h2>Integrated rubric for the “WAR Audit” capstone</h2>\n<p class=\"lead\">One row per course axis, plus the evidence. Passed = all four rows at least at level 3.</p>\n<div class=\"tablewrap\"><table>\n  <tr><th>Axis</th><th>1 · Not met</th><th>2 · Getting there</th><th>3 · Passed</th><th>4 · Outstanding</th></tr>\n  <tr><th>AI-assisted QA</th><td>The assistant ran without a log, or the rules live only in the prompt.</td><td>There's a session log, but commands, exit codes or hashes are missing, or the hook has no attack suite.</td><td>A hook or gate with an attack suite in CI (exit 0); <code>receipts.jsonl</code> with every command, exit code and SHA-256; the diff reviewed by a person and a <code>Co-Authored-By</code> trailer on the assistant's commits.</td><td>On top of that, a blind double review (two reviewers who can't see each other's work and a scoped fixer) and a “What was not executed” section.</td></tr>\n  <tr><th>Mutant execution</th><td>No mutants or no baseline.</td><td>There are mutants, but the kill rate counts infrastructure or baseline failures, or the ledger is missing.</td><td>At least 6 mutants as data, with one change each; a valid baseline; a kill rate that can be recomputed from the JSON; every SURVIVED in the ledger with its cause; a strict mode that fails on the survivor.</td><td>On top of that, the ledger prioritizes the next run and there's a blind round with a hash commitment verified with <code>shasum -a 256</code>.</td></tr>\n  <tr><th>WAR Paradigm</th><td>Only the product is tested, never the guards.</td><td>A single guard is tested (the suite or the judge).</td><td>At least two different guards are tested (suite, judge, hook, gate or evidence verifier), each with a control that must pass and another that must fail, with its command and exit code.</td><td>On top of that, a guard that failed (a survivor or a false green) is published, along with what changed afterwards, without moving thresholds.</td></tr>\n  <tr><th>Evidence and reproduction</th><td>Claims without a command that produces them.</td><td>Partial evidence, preregistration after the data or a fingerprint that differs between environments.</td><td>Preregistration before the data; a lockfile and <code>--locked</code> or <code>npm ci</code>; the same fingerprint in CI and on your machine; someone else reproduces in a clean environment with exit 0 and the same fingerprint; a README with Limits and What would contradict me.</td><td>On top of that, the person reproducing has no connection to the project, uses another operating system and their report is published as is, with the differences they found.</td></tr>\n</table></div>",
+  "s07": "<h2>The path</h2>\n<p class=\"lead\">The full path has 35 modules. The numbers below are the ones on the course map.</p>\n<img src=\"docs/assets/route-map.svg\" alt=\"Full path: 35 modules in four levels (foundations, intermediate, advanced AI-QA and scientific QA), the capstone and your career\" />\n<div class=\"card\"><p><b>Complete, from scratch:</b> all 35 modules in order, about 37 weeks at 10–12 h per week.</p></div>\n<div class=\"card\"><p><b>20 weeks, if you already automate UI or API tests.</b> Each card says which module to work on that week.</p></div>\n<img src=\"docs/assets/ruta.svg\" alt=\"20-week path in four levels and the WAR Audit capstone in weeks 21 and 22, with the module number for each week\" />\n<div class=\"card\"><p><b>12 weeks:</b> weeks 1 to 5 as in the 20-week path (modules 01, 08, 10, 14 and 15); week 6, modules 21 and 02 together; then 19, 24, 25, 27 and two weeks for 28 (preregistration, controls, fingerprints and reproducibility). Modules 29 to 33 stay as a scientific QA elective, and the capstone, for when you finish.</p></div>",
+  "s08": "<h2>Honesty</h2>\n<div class=\"card\"><p>Nobody checks your answers from a server. If you tick a ✅ without evidence, the only person you're fooling is yourself. The course's rule applies here too: a green only counts if you know it would have come out red when something was wrong.</p></div>",
+  "foot": "QA Automation Path · guided by Cristian Guerra Gómez · content CC BY 4.0, code MIT."
  },
- "title": ""
+ "title": "QA Automation Path · A course guided by Cristian Guerra"
 }

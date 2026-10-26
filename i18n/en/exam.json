@@ -1,290 +1,290 @@
 {
  "final": [
   {
-   "q": "",
+   "q": "The API response includes an extra, undocumented field, and your test passes because the schema allows additional properties. What do you do?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Nothing: green is green",
+    "I tighten the schema (strict), report the undocumented field with evidence and ask for the contract to be updated",
+    "I document the field myself in my test",
+    "I add the field to the schema as optional"
    ],
    "a": 1,
-   "why": ""
+   "why": "An undocumented response is a finding. The strict schema IS the contract test; permissive = false green."
   },
   {
-   "q": "",
+   "q": "Cycle 1: 3 tests fail. The fix arrives, you rerun those 3 and they go green. Can you close the test cycle?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Yes: what failed now passes",
+    "No: the full regression at the end is still missing — the fix may have broken something else",
+    "Yes, if the dev confirms the change was small",
+    "Only if the PO approves it"
    ],
    "a": 1,
-   "why": ""
+   "why": "“Iterate narrow, confirm wide”: the narrow retest iterates fast, but you close with a full regression."
   },
   {
-   "q": "",
+   "q": "A vendor bug blocks 2 scenarios. The PO asks to close the user story “with the @IGNORE in place”. What do you answer?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "I close it: that's what the tag is for",
+    "@IGNORE excludes them from the run, but the ticket stays Open and the story does NOT close until it's resolved",
+    "I close it if the PO puts it in writing",
+    "I delete the 2 scenarios and close it"
    ],
    "a": 1,
-   "why": ""
+   "why": "@IGNORE manages the run, not the commitment: closing the story with an open known issue is masking it on the board."
   },
   {
-   "q": "",
+   "q": "Green pipeline, full traceability, and a bot signs off automatically. Is the certification valid?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Yes: it meets all the technical requirements",
+    "No: the sign-off is a human judgment of risk; the bot can only prepare the evidence package",
+    "Yes, if the bot uses the QA lead's account",
+    "It depends on the company"
    ],
    "a": 1,
-   "why": ""
+   "why": "Everything else can be automated; accountability can't. “Certification is signed by a human.”"
   },
   {
-   "q": "",
+   "q": "The regression suite has been all green for months and the team wants to “take advantage” by trimming it. What does the method say?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Trim it: sustained green = confidence",
+    "Review it against the pesticide paradox: vary data/scenarios and re-prioritize by risk before touching its size",
+    "Freeze it as it is forever",
+    "Duplicate it to be safe"
    ],
    "a": 1,
-   "why": ""
+   "why": "Sustained green can mean immunized tests, not healthy software. First you refresh it, then you decide on size."
   },
   {
-   "q": "",
+   "q": "You see this step: When I click on \"#submit-btn\" and wait 3 seconds. What's the diagnosis?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Correct: it's explicit",
+    "Imperative Gherkin coupled to the UI: the business intent is lost and the feature breaks with every CSS change",
+    "Valid if the selector is stable",
+    "It's just missing the Then"
    ],
    "a": 1,
-   "why": ""
+   "why": "The feature states WHAT happens in the business; selectors and waits live in the steps. Coupling them turns it into pure maintenance."
   },
   {
-   "q": "",
+   "q": "You have budget to automate just ONE thing this month. Which do you pick?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "The checkout flow that 90% of customers use and that changes every sprint",
+    "A stable legacy screen nobody touches",
+    "The contact form",
+    "The landing page styles"
    ],
    "a": 0,
-   "why": ""
+   "why": "Rate of change × criticality = the highest return on automation. Stable, trivial things don't pay for their maintenance."
   },
   {
-   "q": "",
+   "q": "Your TS suite compiles perfectly with correct types. Have you validated the API contract yet?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Yes: TypeScript validates the types",
+    "No: types are erased at compile time — the contract is validated at runtime with Zod/AJV against the schema",
+    "Yes, if I use generics in the HTTP client",
+    "Only the 200 status is left"
    ],
    "a": 1,
-   "why": ""
+   "why": "A generic is a promise to the compiler, not a check on the service. Runtime schema validation, or there's no contract test."
   },
   {
-   "q": "",
+   "q": "To “stabilize” the suite, a teammate adds sleep(5000) to 40 tests. What's the real problem?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "None, if they pass now",
+    "It hides the cause (wrong locators/waits), adds 3+ minutes per run and the flakiness will come back with a different latency",
+    "That 5 seconds is too short",
+    "That they should have used sleep(10000)"
    ],
    "a": 1,
-   "why": ""
+   "why": "A sleep is debt: it charges interest on every run and the synchronization bug is still alive underneath."
   },
   {
-   "q": "",
+   "q": "You need to test the same app with 3 roles (admin, editor, viewer). What's the right way to set it up in Playwright?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "One giant test that logs in 3 times",
+    "storageState per role + projects/fixtures: each test runs authenticated with the role it declares",
+    "3 copies of the repo",
+    "Swapping the DB between tests"
    ],
    "a": 1,
-   "why": ""
+   "why": "A persisted session per role, declared as a fixture: readable RBAC, fast, and no repeated logins through the UI."
   },
   {
-   "q": "",
+   "q": "p99 spikes ONLY when traffic jumps suddenly (campaigns). Which test reproduces it?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "A 6-hour soak",
+    "Spike: sudden load increases to see whether the system absorbs them and recovers",
+    "A smoke test on every deploy",
+    "A unit test of the endpoint"
    ],
    "a": 1,
-   "why": ""
+   "why": "Each type targets a risk: a spike test models exactly the sudden hit that drives up your p99."
   },
   {
-   "q": "",
+   "q": "A flaky test lives in the PR quality gate. What's the biggest damage if you leave it there?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Slower runs",
+    "The team learns to ignore reds and rerun the pipeline: the gate loses all authority",
+    "Wasted CI minutes",
+    "None, if it passes on the second try"
    ],
    "a": 1,
-   "why": ""
+   "why": "The day “red” means “just rerun it”, the gate is dead. Immediate quarantine and a root-cause fix."
   },
   {
-   "q": "",
+   "q": "In an audit, someone asks about a green from 2 sprints ago and there's no evidence attached. What's the state of the sign-off?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Valid: the test passed",
+    "Compromised: a green you can't defend invalidates the certification — evidence is part of done",
+    "Valid if the QA remembers it well",
+    "Valid because CI keeps logs for 7 days"
    ],
    "a": 1,
-   "why": ""
+   "why": "Certifying = being able to show what was tested, when and with what result. Without evidence, all that's left is your word."
   },
   {
-   "q": "",
+   "q": "The AI hands you the suite and the diff includes a schema change so that “the test passes”. What do you do?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Merge: the AI knows the context",
+    "I reject that part: it's the masking anti-pattern — the schema comes from the contract, not from the response",
+    "Merge with a TODO to review later",
+    "I ask another AI for a second opinion"
    ],
    "a": 1,
-   "why": ""
+   "why": "It's THE anti-pattern AI commits with confidence. Your role as director exists precisely to catch this."
   },
   {
-   "q": "",
+   "q": "A flawless 5-block prompt, but the AI doesn't know your project. Typical result:",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Excellent: the prompt is everything",
+    "Generic, with made-up assumptions: “context before prompt” — without CLAUDE.md/notes, even the best prompt delivers little",
+    "Perfect if you use the newest model",
+    "A tool error"
    ],
    "a": 1,
-   "why": ""
+   "why": "A brilliant prompt on poor context produces plausible code for SOME OTHER project. Context first."
   },
   {
-   "q": "",
+   "q": "Which of these decisions can you fully delegate to the AI?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Whether the contract mismatch blocks the release",
+    "Which risks to prioritize this sprint",
+    "Generating the POM boilerplate on top of a clear, existing convention",
+    "Signing the story's certification"
    ],
    "a": 2,
-   "why": ""
+   "why": "Mechanical + clear convention + reversible = delegable. Risk, priority and sign-off are yours."
   },
   {
-   "q": "",
+   "q": "You're automating against a shared environment and a key record shows up as “deactivated” (empty 204). What do you do?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "I report a service bug",
+    "I check for the caveat in the dataset documentation; if it's not there, I document it — data with special states is part of the design",
+    "I set the record back to active from the DB",
+    "I hardcode another ID that works"
    ],
    "a": 1,
-   "why": ""
+   "why": "“Without data, nothing runs”: a dataset documented with its caveats is a deliverable, not a nuisance."
   },
   {
-   "q": "",
+   "q": "You find a critical mismatch 2 days before the release. How do you communicate it to the stakeholder?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "“My test fails, we can't ship”",
+    "Evidence (cURL + response) + impact on the consumer + options with their cost/risk",
+    "I mention it at tomorrow's daily",
+    "I escalate it to the dev and wash my hands of it"
    ],
    "a": 1,
-   "why": ""
+   "why": "Detector→impact→options. The stakeholder decides with your evidence; you're not the blocker, you're the radar."
   },
   {
-   "q": "",
+   "q": "You're moved from Xray to TestRail and from Allure to another reporter. What survives of your method?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Nothing: relearn from scratch",
+    "Everything essential: the requirement→case→execution→evidence chain and the sign-off standard are tool-agnostic",
+    "Only the Gherkin",
+    "Only the API tests"
    ],
    "a": 1,
-   "why": ""
+   "why": "That's why the method is worth more than the stack: brands rotate, the standard of evidence and traceability doesn't."
   },
   {
-   "q": "",
+   "q": "Sprint closed: full suite green, 85% coverage, zero open bugs. What do you tell the team?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "“The software is fine”",
+    "“My tests, as designed, found no problems — and this is what they cover and this is what they don't”",
+    "“We can skip next sprint's regression”",
+    "“Quality is guaranteed”"
    ],
    "a": 1,
-   "why": ""
+   "why": "The honest statement sets the scope. Green ≠ guarantee; it's the absence of findings WITHIN what was designed."
   },
   {
-   "q": "",
+   "q": "What does a 100 % kill rate on your mutant catalog prove?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "That the software has no bugs",
+    "That your suite caught every mutant in YOUR catalog; mutants you didn't write may survive",
+    "That coverage is 100 %",
+    "That regression is no longer needed"
    ],
    "a": 1,
-   "why": ""
+   "why": "The kill rate measures the suite against the mutants that exist. It's evidence about your checks, not a guarantee about the software."
   },
   {
-   "q": "",
+   "q": "An AI assistant wrote the tests and also their asserts, and everything is green. What do you do before signing off?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "I sign off",
+    "I mutate the product or the contract on purpose and check that those tests turn red",
+    "I ask it for another summary",
+    "I add retries"
    ],
    "a": 1,
-   "why": ""
+   "why": "When code and tests come from the same place, a green proves less than it seems. Test the tester."
   },
   {
-   "q": "",
+   "q": "Where do you put a rule that must never be broken in a workflow with AI assistants?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "In the prompt",
+    "In a hook or in CI, with a non-zero exit code and cases that try to get around it",
+    "In an Obsidian note",
+    "In the chat"
    ],
    "a": 1,
-   "why": ""
+   "why": "A prompt can be ignored; a hook or a CI gate can't, and on top of that they can be tested."
   },
   {
-   "q": "",
+   "q": "Your judge-based evaluation scored 93 % on the same cases you used to tune the threshold. Which number do you report?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "That 93 %",
+    "The one from a held-out set the tuning never saw, with its interval",
+    "The best of several runs",
+    "The model provider's number"
    ],
    "a": 1,
-   "why": ""
+   "why": "The honest number is the one the tuning didn't touch."
   },
   {
-   "q": "",
+   "q": "Your pipeline comes out green, but the test step ends in || true. What does that green tell you?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "That the tests passed",
+    "Nothing about the tests: that step can't fail",
+    "That the lint passed",
+    "That there's branch protection"
    ],
    "a": 1,
-   "why": ""
+   "why": "A gate that can't fail isn't a gate. Testing the tester includes testing the pipeline."
   },
   {
-   "q": "",
+   "q": "The ephemeral runner died in the middle of the run. What evidence do you have left?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Everything that was on its disk",
+    "Only what you uploaded beforehand as an artifact or receipt (logs, hashes, reports)",
+    "The full cache",
+    "Never anything"
    ],
    "a": 1,
-   "why": ""
+   "why": "Design it so the evidence gets out before the container dies."
   }
  ]
 }

@@ -572,7 +572,7 @@
    "why": "Un expect sin await puede “pasar” antes de que la acción termine: verde falso, el peor enemigo."
   },
   {
-   "q": "const r = await api.get<User>(\"/user/1\"). ¿Qué te da el generic <User>?",
+   "q": "const r = await api.get&lt;User&gt;(\"/user/1\"). ¿Qué te da el generic &lt;User&gt;?",
    "o": [
     "Valida la respuesta en runtime",
     "Tipado estático (autocompletado y errores al compilar), pero NO valida runtime",

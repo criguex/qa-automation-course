@@ -1,1122 +1,1122 @@
 {
  "m1": [
   {
-   "q": "",
+   "q": "Your suite runs 1,200 tests and it's all green. What can you state with certainty?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "The software is fine",
+    "That your tests, as written, didn't find anything",
+    "You can sign off every user story in the sprint",
+    "The residual risk is zero"
    ],
    "a": 1,
-   "why": ""
+   "why": "“All green” only speaks about your tests, not about the software. Signing off also requires evidence and traceability."
   },
   {
-   "q": "",
+   "q": "Risk = probability × impact. With one afternoon available, what do you test FIRST?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "The payment flow used by 90% of customers",
+    "A misaligned tooltip in the admin panel",
+    "A settings screen that gets used once a year",
+    "The alphabetical order of a list"
    ],
    "a": 0,
-   "why": ""
+   "why": "Risk-based testing: the highest probability×impact product goes first. Everything else waits."
   },
   {
-   "q": "",
+   "q": "Your regression suite hasn't found a single bug in 6 months. What does the pesticide paradox say?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "The app has no bugs left",
+    "You need to run it more often",
+    "The same tests stop finding new bugs: you have to review them and vary data/scenarios",
+    "You can delete the regression suite"
    ],
    "a": 2,
-   "why": ""
+   "why": "Repeated tests “immunize” the same path. You review and vary them; you don't assume health."
   },
   {
-   "q": "",
+   "q": "“Exhaustive testing is impossible” (ISTQB principle). What does it mean in your day-to-day work?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "That testing a lot isn't worth it",
+    "Prioritize by risk and impact: you decide WHAT to test because you can't test everything",
+    "That the happy path is enough",
+    "Hire more QAs until everything is covered"
    ],
    "a": 1,
-   "why": ""
+   "why": "A 10-character field already has more combinations than your sprint has seconds. The prioritization criteria IS the job."
   },
   {
-   "q": "",
+   "q": "“Are we building the RIGHT product?” — is that verification or validation?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Verification",
+    "Validation",
+    "QC",
+    "Smoke testing"
    ],
    "a": 1,
-   "why": ""
+   "why": "Validation = the right product (it serves the user/business). Verification = the product built right (it meets the spec)."
   },
   {
-   "q": "",
+   "q": "Why does “shift-left” actually save money?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Because QAs charge less at the start of the project",
+    "Because a defect caught in requirements/design costs orders of magnitude less than in production",
+    "Because it avoids doing regression",
+    "Because it moves the release date forward"
    ],
    "a": 1,
-   "why": ""
+   "why": "The cost of a defect grows over time: in production it means a hotfix, support and reputation. Catching it in the spec costs a conversation."
   },
   {
-   "q": "",
+   "q": "You find that 80% of historical bugs live in 3 modules (defect clustering). What do you do?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Test only those 3 modules",
+    "Put extra effort there without neglecting the rest (because of the pesticide paradox)",
+    "Rewrite those modules",
+    "Split the effort evenly"
    ],
    "a": 1,
-   "why": ""
+   "why": "Clustering tells you where to bet more; the pesticide paradox reminds you not to abandon the rest of the map."
   },
   {
-   "q": "",
+   "q": "What is a “charter” in session-based exploratory testing?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "A bug report",
+    "The session's mission: what to explore, with what focus and in how much time — plus notes on what was found",
+    "A script of fixed steps",
+    "A list of test cases"
    ],
    "a": 1,
-   "why": ""
+   "why": "Exploratory ≠ random clicking: it's a session with a mission, a timebox and notes. The charter is what makes it auditable."
   },
   {
-   "q": "",
+   "q": "The app has had 0 reported bugs in 3 months, but users abandon it because it doesn't solve their problem. Which principle applies?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Pesticide paradox",
+    "Defect clustering",
+    "The absence-of-errors fallacy",
+    "Early testing"
    ],
    "a": 2,
-   "why": ""
+   "why": "“Absence of errors” doesn't guarantee value: a bug-free product that doesn't serve the business is still a failure. That's why validation exists."
   },
   {
-   "q": "",
+   "q": "What is the difference between QA and QC?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "They're synonyms",
+    "QA improves the PROCESS to prevent defects; QC evaluates the PRODUCT to detect them",
+    "QC is manual and QA is automated",
+    "QA is QC's boss"
    ],
    "a": 1,
-   "why": ""
+   "why": "QC finds the bug; QA asks why the process let it be born and how to prevent the next one. The modern role does both."
   }
  ],
  "m30": [
   {
-   "q": "",
+   "q": "Your suite has been green for months. What question does WAR ask?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "How many tests are there?",
+    "What line coverage does it have?",
+    "Would the suite notice if I broke something on purpose?",
+    "How long does it take?"
    ],
    "a": 2,
-   "why": ""
+   "why": "A guard who never shouts may be excellent or asleep. The only way to know is to break something on purpose and watch."
   },
   {
-   "q": "",
+   "q": "In WAR, what does PASS mean?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "That the mutation went through unseen",
+    "That the unmutated baseline behaves as the specification says, so the guard raises no false alarms",
+    "That the kill rate is 100%",
+    "That CI is green"
    ],
    "a": 1,
-   "why": ""
+   "why": "PASS is about the baseline reality. What the guard catches is KILLED and what slips past it is SURVIVED."
   },
   {
-   "q": "",
+   "q": "In experiment 01, run 3 without pins scores 76 against a gate of 70 and comes out REJECTED. Why?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Must criteria failed (AC-1 and AC-3), and a failing must blocks at any score",
+    "A rounding error",
+    "The gate went up to 80",
+    "The judge got it wrong"
    ],
    "a": 0,
-   "why": ""
+   "why": "Shoulds add to the score; musts block. An editor who approves their own draft isn't offset by points."
   },
   {
-   "q": "",
+   "q": "Same input, three runs: approved, approved, rejected. What do you conclude?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Majority wins: approved",
+    "Keep running until it comes out approved",
+    "Average the scores",
+    "The verdict is UNSTABLE, and that's a finding about the judge or the configuration, not about the story"
    ],
    "a": 3,
-   "why": ""
+   "why": "The score may move; the verdict may not. In 01 the set without pins (temperature 1, latest prompt) is the one that changes."
   },
   {
-   "q": "",
+   "q": "Why does experiment 03 put the “no push to main” rule in a hook and not in the prompt?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Because the hook is faster",
+    "Because prompts don't accept rules",
+    "Because a prompt can be ignored, while a PreToolUse hook that exits with code 2 always blocks the command",
+    "For looks"
    ],
    "a": 2,
-   "why": ""
+   "why": "Hard rules live in hooks and in CI. And like any guard, the hook is tested with attempts to sneak past it; one uncovered two real holes (git -c and git --no-pager), fixed in commit 1b01c66."
   },
   {
-   "q": "",
+   "q": "The self-grant mutant survives in experiment 02. What kind of finding is it?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "A blind spot in the suite: a test is missing",
+    "A real bug in the system: the app lets a user promote themselves to admin",
+    "An infrastructure error",
+    "It isn't a finding"
    ],
    "a": 1,
-   "why": ""
+   "why": "The mutant scenario records that the mutation was accepted with a 200. What's wrong is the app's editMember rule, and the README reports it as a real authorization bug."
   },
   {
-   "q": "",
+   "q": "A very small numeric mutant survives with the tolerance frozen at 10⁻⁶. What do you do?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Report it as SURVIVED and leave it visible, without touching the tolerance",
+    "Lower the tolerance to kill it",
+    "Delete it from the catalog",
+    "Count it as KILLED"
    ],
    "a": 0,
-   "why": ""
+   "why": "In scientific-qa-evidence the tiny RC mutation was deliberately left visible. Moving the tolerance after seeing the result is fitting to the result."
   },
   {
-   "q": "",
+   "q": "Why must each mutant change exactly one thing?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "So it runs faster",
+    "Because Playwright doesn't accept more",
+    "Naming convention",
+    "So you can tell what the guard caught: with two changes you don't know which one made it shout"
    ],
    "a": 3,
-   "why": ""
+   "why": "One change, one attributable verdict. With several changes at once, a KILLED can hide that the guard doesn't see one of them."
   },
   {
-   "q": "",
+   "q": "In the physics track, who judges the Snell mutation with the indices swapped?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "The same solver that generated the data",
+    "An independent oracle with a frozen tolerance of 10⁻⁶",
+    "An LLM",
+    "The researcher's eye"
    ],
    "a": 1,
-   "why": ""
+   "why": "If the oracle shared code or moved the tolerance, it would share the errors it's supposed to catch."
   },
   {
-   "q": "",
+   "q": "What does a high kill rate NOT prove?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "That the guard catches the mutations in the catalog",
+    "That the guard would catch mutations nobody wrote: the catalog carries its author's biases",
+    "That the baseline passed",
+    "Nothing: it proves everything"
    ],
    "a": 1,
-   "why": ""
+   "why": "That's why the best mutants are planted by someone else, as in the blind tests of level 4."
   }
  ],
  "m2": [
   {
-   "q": "",
+   "q": "A field accepts integers from 1 to 100. Which set applies boundary value analysis BEST?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "1, 50, 100",
+    "0, 1, 100, 101",
+    "2, 99",
+    "-5, 500"
    ],
    "a": 1,
-   "why": ""
+   "why": "The boundaries and their immediate neighbors (0/1 and 100/101) are where off-by-one errors live."
   },
   {
-   "q": "",
+   "q": "The discount depends on 3 combined conditions (VIP, coupon, amount>100). Which technique reveals the cases you're missing?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Boundary values",
+    "Error guessing",
+    "State transition",
+    "Decision table"
    ],
    "a": 3,
-   "why": ""
+   "why": "Combined conditions → decision table: 2³ combinations in plain sight and no orphan rule."
   },
   {
-   "q": "",
+   "q": "Which of these defect reports is defensible?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "“The form fails sometimes”",
+    "Steps + expected vs actual + environment + evidence (logs/screenshot)",
+    "A 10-minute video with no steps",
+    "“It's the same as last week's bug”"
    ],
    "a": 1,
-   "why": ""
+   "why": "Without reproducible steps, expected vs actual and evidence, the defect is neither actionable nor defensible."
   },
   {
-   "q": "",
+   "q": "An order goes DRAFT → PAID → SHIPPED. What test does the state transition technique bring that others miss?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "The full happy path",
+    "The INVALID transitions: e.g. trying SHIPPED→DRAFT or paying twice",
+    "The amount boundaries",
+    "The date format"
    ],
    "a": 1,
-   "why": ""
+   "why": "The state diagram exposes the transitions that must NOT exist — that's where business logic bugs live."
   },
   {
-   "q": "",
+   "q": "4 parameters with 3 values each = 81 combinations. What does pairwise give you?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "All 81 in less time",
+    "A small subset that covers every PAIR of values — most interaction bugs involve 2 parameters",
+    "Only the happy path",
+    "It removes the need for other techniques"
    ],
    "a": 1,
-   "why": ""
+   "why": "Empirical evidence: most interaction defects are triggered by pairs, not quadruples. Pairwise gives ~9-12 cases instead of 81."
   },
   {
-   "q": "",
+   "q": "A typo in the home page title: “Welcomme”. Severity and priority?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "High severity, high priority",
+    "Low severity, high priority",
+    "High severity, low priority",
+    "Low severity, low priority"
    ],
    "a": 1,
-   "why": ""
+   "why": "Minimal technical impact (low severity) but visible to every user (high fix priority). They're independent axes."
   },
   {
-   "q": "",
+   "q": "Age field: valid from 18 to 65. What are the equivalence partitions?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "18 and 65",
+    "Valid: 18–65 · Invalid: <18 and >65 (and non-numeric)",
+    "Only positive numbers",
+    "18, 40, 65, 66"
    ],
    "a": 1,
-   "why": ""
+   "why": "Partitions = classes where the system should behave the same: one valid and the invalid ones around it (plus the invalid data type)."
   },
   {
-   "q": "",
+   "q": "What feeds “error guessing” so it isn't pure guesswork?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Gut feeling in the moment",
+    "Past experience, historical bugs and typical failure patterns of the team/domain",
+    "Controlled randomness",
+    "The official documentation"
    ],
    "a": 1,
-   "why": ""
+   "why": "It's an experience-based technique: it complements (doesn't replace) the systematic ones, and gets better the better you know the history."
   },
   {
-   "q": "",
+   "q": "Which of these is a WELL-written test case?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "“Verify that login works”",
+    "Precondition + data + numbered steps + observable expected result",
+    "“Test all user flows”",
+    "A video of the correct flow"
    ],
    "a": 1,
-   "why": ""
+   "why": "If someone else can't run it and decide pass/fail without asking you, it's not a test case: it's an intention."
   },
   {
-   "q": "",
+   "q": "Which of these scenarios is NOT worth automating?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Checkout regression",
+    "A one-off exploratory usability check",
+    "The smoke test for every deploy",
+    "The payments API contract test"
    ],
    "a": 1,
-   "why": ""
+   "why": "Automation costs maintenance: it pays off through repetition. What runs once and needs human judgment is done exploratory."
   }
  ],
  "m3": [
   {
-   "q": "",
+   "q": "Why open PRs with yourself in the course repo?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "To pad the contributions graph",
+    "To rehearse the real flow (branch→PR→review→merge) and leave an auditable history",
+    "Because main is protected by default",
+    "To create merge conflicts on purpose"
    ],
    "a": 1,
-   "why": ""
+   "why": "The PR flow is the daily ritual of the craft; practicing it from day 0 makes it second nature on a team."
   },
   {
-   "q": "",
+   "q": "You added invalid-credential cases to login. What's the correct conventional commit?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "“update”",
+    "“misc fixes”",
+    "“test: add invalid-credential cases to login”",
+    "“FINAL v2 for real”"
    ],
    "a": 2,
-   "why": ""
+   "why": "type(scope): description — the history becomes a readable, automatable changelog."
   },
   {
-   "q": "",
+   "q": "What goes in the README of an automation repo?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Just the project name",
+    "How to install, how to run each suite and how to read the report",
+    "The test code copied over",
+    "Nothing — the code explains itself"
    ],
    "a": 1,
-   "why": ""
+   "why": "The README is onboarding: someone new (or the AI) must be able to run the suite without asking you."
   },
   {
-   "q": "",
+   "q": "What exactly does “git checkout -b feat/login-tests” do?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Switches to an existing branch",
+    "Creates a new branch from where you are AND switches you to it",
+    "Creates the branch on the remote",
+    "Commits whatever is pending"
    ],
    "a": 1,
-   "why": ""
+   "why": "-b = create + switch in one step. The branch only exists locally until you push -u origin."
   },
   {
-   "q": "",
+   "q": "Why is a 200-line PR reviewed better than a 2,000-line one?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Because GitHub loads it faster",
+    "Because the reviewer can sustain real attention: giant diffs get approved out of fatigue and bugs slip through",
+    "Because there are fewer files",
+    "No difference if the code is good"
    ],
    "a": 1,
-   "why": ""
+   "why": "Review quality nosedives with size. Small, frequent PRs = real feedback, not an exhausted “LGTM”."
   },
   {
-   "q": "",
+   "q": "What should be in a Playwright repo's .gitignore?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "The page objects",
+    "node_modules/, test-results/, playwright-report/",
+    "The .feature files",
+    "playwright.config.ts"
    ],
    "a": 1,
-   "why": ""
+   "why": "Dependencies and run artifacts are regenerated; committing them bloats the repo and creates pointless conflicts."
   },
   {
-   "q": "",
+   "q": "What's the difference between “npx playwright test” and having Playwright installed globally?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "None",
+    "npx runs the project's LOCAL binary (the package.json version) — everyone runs the same version",
+    "npx is slower and worse",
+    "npx always downloads the latest version"
    ],
    "a": 1,
-   "why": ""
+   "why": "The version is pinned by the project's lockfile, not by each person's machine. Goodbye “my machine runs a different version”."
   },
   {
-   "q": "",
+   "q": "Merge conflict in a steps file. What do you do?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Always accept “your” version",
+    "Always accept “theirs”",
+    "Understand BOTH changes and combine what belongs — both intentions may need to coexist",
+    "Delete the file and rewrite it"
    ],
    "a": 2,
-   "why": ""
+   "why": "Resolving blindly throws away someone else's work or your own. A conflict is a conversation between two intentions: read it."
   },
   {
-   "q": "",
+   "q": "You bumped the Playwright version in package.json. What type of conventional commit is it?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "feat",
+    "fix",
+    "chore (or build)",
+    "test"
    ],
    "a": 2,
-   "why": ""
+   "why": "It doesn't add functionality or fix a product bug: it's project maintenance → chore/build depending on the team's convention."
   },
   {
-   "q": "",
+   "q": "Why review your OWN diff before asking for review?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "To show off the code",
+    "You catch your own obvious slips (forgotten logs, comments, extra files) and respect the reviewer's time",
+    "GitHub requires it",
+    "To write the PR description"
    ],
    "a": 1,
-   "why": ""
+   "why": "The first review is yours: your own diff read with a reviewer's eyes filters 80% of the noise before bothering anyone else."
   }
  ],
  "m3b": [
   {
-   "q": "",
+   "q": "“Give enough context, not all of it.” In practice it means:",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Pasting the whole vault into every prompt",
+    "Pointing to the relevant vault note",
+    "Giving no context so as not to bias the AI",
+    "Relying only on the chat history"
    ],
    "a": 1,
-   "why": ""
+   "why": "Targeted context: the right note guides; dumping everything dilutes and burns the window."
   },
   {
-   "q": "",
+   "q": "According to the 3 layers of context, where do the PROJECT's rules live?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "In the AI's persistent memory",
+    "In CLAUDE.md",
+    "In a loose Obsidian note",
+    "In each day's prompt"
    ],
    "a": 1,
-   "why": ""
+   "why": "CLAUDE.md = project rules · memory = facts about you · Obsidian = deep knowledge."
   },
   {
-   "q": "",
+   "q": "You want something to happen ALWAYS when X happens (e.g. when saving a file). According to the method, that is:",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "A reminder note in Obsidian",
+    "A hook — “whatever you want to happen every time X”",
+    "Asking the AI each time",
+    "Personal discipline"
    ],
    "a": 1,
-   "why": ""
+   "why": "What must happen on its own gets configured (hook); what depends on human memory fails."
   },
   {
-   "q": "",
+   "q": "You write [[contrato-pagos]] and the note doesn't exist yet. What is that?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "An error to fix right away",
+    "Pending knowledge flagged: the broken link tells you what's left to document",
+    "A duplicate note",
+    "A syntax problem"
    ],
    "a": 1,
-   "why": ""
+   "why": "In a living vault, a link to a future note is a work marker, not a bug. The graph shows you the gaps."
   },
   {
-   "q": "",
+   "q": "You solved a really weird bug after 4 hours. What do you document in the vault?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Nothing: it's solved",
+    "Root cause + solution + context (how it's detected, how it's prevented) — a note you or the AI can reuse",
+    "Just the ticket link",
+    "A Slack message"
    ],
    "a": 1,
-   "why": ""
+   "why": "The 4 hours are paid once if they're distilled into a note. Without a note, the next person (or you in 6 months) pays them again."
   },
   {
-   "q": "",
+   "q": "What is MCP (Model Context Protocol) in one sentence?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "A language model",
+    "A standard protocol for connecting tools and data sources to the AI model",
+    "An Obsidian plugin",
+    "A prompting technique"
    ],
    "a": 1,
-   "why": ""
+   "why": "MCP is the “USB of AI”: it exposes tools (browser, DB, APIs) for the model to use — key in the QA+AI stack."
   },
   {
-   "q": "",
+   "q": "What must NEVER go in the repo's CLAUDE.md?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "The project's frequent commands",
+    "Naming conventions",
+    "Tokens, credentials or secrets",
+    "The test style rules"
    ],
    "a": 2,
-   "why": ""
+   "why": "CLAUDE.md is versioned with the repo and any tool reads it: secrets go in secret managers, never in versioned files."
   },
   {
-   "q": "",
+   "q": "“AI without context is a brilliant intern with amnesia.” Which part does persistent memory solve?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "The brilliance",
+    "The amnesia: facts about you and how you work that survive across sessions",
+    "Response speed",
+    "The tool's cost"
    ],
    "a": 1,
-   "why": ""
+   "why": "Each layer tackles amnesia at one level: memory = who you are; CLAUDE.md = what the project is like; vault = what the team knows."
   },
   {
-   "q": "",
+   "q": "What sets LIVING documentation apart from dead documentation?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "The file format",
+    "It's updated as part of daily work and lives where you work — dead docs were written once for an auditor",
+    "The page count",
+    "Living docs use Markdown"
    ],
    "a": 1,
-   "why": ""
+   "why": "Docs that aren't touched when the system changes start lying within weeks. Living docs are part of the flow: you change something, you update the note."
   },
   {
-   "q": "",
+   "q": "You need the AI to write tests for the payments API. What's the best input?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "“Write tests for the payments API”",
+    "Pasting the vault note with the contract + dataset caveats as prompt context",
+    "Describing the API from memory",
+    "Asking it to infer it from the endpoint names"
    ],
    "a": 1,
-   "why": ""
+   "why": "The distilled note is quality context: the real contract + known traps. From memory = invented assumptions stated with confidence."
   }
  ],
  "m4": [
   {
-   "q": "",
+   "q": "Why is async/await critical in Playwright?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "It makes tests faster",
+    "Almost the whole API returns Promises: without await you get false greens",
+    "It's a TS compiler requirement",
+    "It replaces fixtures"
    ],
    "a": 1,
-   "why": ""
+   "why": "An expect without await can “pass” before the action finishes: a false green, your worst enemy."
   },
   {
-   "q": "",
+   "q": "const r = await api.get&lt;User&gt;(\"/user/1\"). What does the generic &lt;User&gt; give you?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "It validates the response at runtime",
+    "Static typing (autocomplete and compile-time errors), but it does NOT validate at runtime",
+    "It turns the JSON into a User class",
+    "It throws if the service omits a field"
    ],
    "a": 1,
-   "why": ""
+   "why": "Types are erased at compile time. To validate the contract at runtime you need Zod/AJV (module 7)."
   },
   {
-   "q": "",
+   "q": "Why use a typed test data builder/factory?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "So the code looks professional",
+    "Valid data by default + explicit variations per case, without duplicating objects",
+    "To avoid using a database",
+    "So the AI doesn't hallucinate"
    ],
    "a": 1,
-   "why": ""
+   "why": "user().withEmailInvalido() states the case's intent; copy/pasting JSON hides what varies."
   },
   {
-   "q": "",
+   "q": "You receive external JSON. “any” or “unknown” to type it, and why?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "any: it's more flexible",
+    "unknown: it FORCES you to validate/narrow before using it — any turns the type-checker off",
+    "Doesn't matter, they're synonyms",
+    "never, because you don't trust it"
    ],
    "a": 1,
-   "why": ""
+   "why": "any is a hole: everything compiles and nothing gets checked. unknown turns “I don't know what this is” into mandatory checking."
   },
   {
-   "q": "",
+   "q": "You need data from 3 independent endpoints to build the test state. How do you request them?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "await a(); await b(); await c(); — one after another",
+    "const [x,y,z] = await Promise.all([a(),b(),c()]) — in parallel",
+    "With setTimeout between each one",
+    "With nested .then() calls"
    ],
    "a": 1,
-   "why": ""
+   "why": "If they don't depend on each other, running them in series adds up latencies for nothing. Promise.all overlaps them: 3×300ms ≈ 300ms, not 900ms."
   },
   {
-   "q": "",
+   "q": "Why “strict: true” in a test framework's tsconfig?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "So it compiles faster",
+    "It catches nulls/undefined and implicit types AT COMPILE TIME — framework bugs that would be flaky at runtime",
+    "It's mandatory in Playwright",
+    "To disable any"
    ],
    "a": 1,
-   "why": ""
+   "why": "A test framework with strictNullChecks turned off hides exactly the class of errors you later call “flakiness”."
   },
   {
-   "q": "",
+   "q": "“type Role = 'admin' | 'editor' | 'viewer'” — what does that union buy you?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Nothing, it's documentation",
+    "A typo like 'editr' blows up at COMPILE time, not 20 minutes into a suite run",
+    "It validates the roles against the backend",
+    "Better performance"
    ],
    "a": 1,
-   "why": ""
+   "why": "String literals close the universe of values: the compiler is your first test, and it runs in milliseconds."
   },
   {
-   "q": "",
+   "q": "if (typeof x === \"string\") { x.toUpperCase() } — why does it compile without error if x was unknown?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Because toUpperCase exists on everything",
+    "Narrowing: inside the if, TS already knows x is a string",
+    "Because unknown allows everything",
+    "It doesn't compile: it's an error"
    ],
    "a": 1,
-   "why": ""
+   "why": "The type guard narrows the type in that scope. It's the pattern for working with unknown safely."
   },
   {
-   "q": "",
+   "q": "An async test calls saveUser() without await and the test finishes green before the save fails. What is that bug called?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Backend race condition",
+    "Floating promise: the error is lost and the green is false",
+    "Playwright timeout",
+    "Ordinary flaky test"
    ],
    "a": 1,
-   "why": ""
+   "why": "Every Promise must be awaited or handled. The no-floating-promises lint rule exists exactly for this — turn it on."
   },
   {
-   "q": "",
+   "q": "Interface or type for a test's data object?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Only interface works",
+    "Only type works",
+    "Either one: for data objects they're interchangeable; the team picks ONE convention",
+    "Neither: any is better"
    ],
    "a": 2,
-   "why": ""
+   "why": "The differences (declaration merging, unions) rarely matter for test data. What matters is converging on a single canonical form."
   }
  ],
  "m5": [
   {
-   "q": "",
+   "q": "A test fails intermittently: “sometimes the button isn't there”. The method's first move?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "sleep(3000) before the click",
+    "Set retries: 3 and move on",
+    "Correct locator + web-first assertions (auto-waiting) and check the trace",
+    "Mark it @IGNORE"
    ],
    "a": 2,
-   "why": ""
+   "why": "sleep and retries cover it up; auto-waiting with the right locator cures it. The trace tells you what really happened."
   },
   {
-   "q": "",
+   "q": "What is storageState for?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Saving screenshots between runs",
+    "Reusing the authenticated session instead of repeating the UI login in every test",
+    "Caching the app under test",
+    "Sharing variables between tests"
    ],
    "a": 1,
-   "why": ""
+   "why": "Log in once, persist the session, fast and stable tests. The UI login is tested once, separately."
   },
   {
-   "q": "",
+   "q": "You need to validate the “order created” screen. How do you set up the state?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Creating the order through the UI in every test",
+    "Creating it through the API and validating through the UI (hybrid)",
+    "Mocking the whole network",
+    "With a fixture that wipes the database"
    ],
    "a": 1,
-   "why": ""
+   "why": "Setting up through the API is fast and stable; the UI is reserved for what you actually want to validate."
   },
   {
-   "q": "",
+   "q": "Why is getByRole(\"button\", {name:\"Pagar\"}) a better locator than \".btn-pay-2 > span\"?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "It's shorter",
+    "It anchors to accessible semantics (what the user SEES) and survives CSS/structure refactors",
+    "It runs faster",
+    "It works without await"
    ],
    "a": 1,
-   "why": ""
+   "why": "CSS changes every sprint; the role and accessible name only change if the product changes. Plus you validate accessibility for free."
   },
   {
-   "q": "",
+   "q": "What's the difference between “await expect(loc).toBeVisible()” and “expect(await loc.isVisible()).toBe(true)”?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "None, they're equivalent",
+    "The first RETRIES until the timeout (web-first assertion); the second checks ONCE and fails if it hasn't loaded yet",
+    "The second is more modern",
+    "The first doesn't need await"
    ],
    "a": 1,
-   "why": ""
+   "why": "Web-first assertions are the antidote to flakiness: they wait for the condition to hold instead of snapshotting a single instant."
   },
   {
-   "q": "",
+   "q": "What does a Playwright fixture give you compared to a global beforeEach?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Same thing, different name",
+    "Typed, composable, on-demand setup/teardown: each test declares what it needs and doesn't pay for what it doesn't use",
+    "It always runs faster",
+    "It avoids using async"
    ],
    "a": 1,
-   "why": ""
+   "why": "A fixture is dependency injection for tests: “this test needs an admin user” reads in the signature, not in some magic global setup."
   },
   {
-   "q": "",
+   "q": "A test fails only in CI. Which tool shows you what happened step by step, with DOM, network and console?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "console.log",
+    "The trace viewer (trace: \"on-first-retry\" + npx playwright show-trace)",
+    "The final screenshot",
+    "The runner logs"
    ],
    "a": 1,
-   "why": ""
+   "why": "The trace is the flight's black box: DOM snapshots per action, requests and console. Debugging CI without a trace is guessing."
   },
   {
-   "q": "",
+   "q": "Two parallel tests create the user “test@demo.com” and one fails randomly with “already exists”. What's the method's fix?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Run the whole suite serially",
+    "Unique data per test (faker/timestamp) or per-worker isolation: tests must not share mutable state",
+    "A retry for that test",
+    "Wipe the DB before the suite"
    ],
    "a": 1,
-   "why": ""
+   "why": "Parallelism demands isolation. Serializing punishes the whole suite for a bad data design; the retry only hides the collision."
   },
   {
-   "q": "",
+   "q": "You want to test how the UI looks when the backend returns a 500. How do you make it stable?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Take down the staging backend",
+    "page.route() intercepting the endpoint and responding 500 (route.fulfill)",
+    "Wait for it to fail on its own",
+    "Modify the backend code"
    ],
    "a": 1,
-   "why": ""
+   "why": "Network interception simulates the failure on demand, deterministically and without touching shared environments. That's how you test unhappy paths."
   },
   {
-   "q": "",
+   "q": "Why does every Playwright test run in a new browser context?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Technical limitation",
+    "Isolation: clean cookies/storage per test — no test depends on the state another one left behind",
+    "To use more memory",
+    "So the video is kept separate"
    ],
    "a": 1,
-   "why": ""
+   "why": "Isolation is what enables parallelism and makes a red mean “this test found something”, not “the previous test left a mess”."
   }
  ],
  "m6": [
   {
-   "q": "",
+   "q": "The API returns “user_name” but the contract says “username”. The PO pushes you to unblock it. What do you do?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Change my schema to user_name so it passes",
+    "Accept both names with a oneOf",
+    "Revalidate against the LATEST version of the contract and report with evidence (cURL + response)",
+    "@IGNORE it and move on"
    ],
    "a": 2,
-   "why": ""
+   "why": "First revalidate (a new version may settle the question); if it persists, report it. Adapting the test = masking."
   },
   {
-   "q": "",
+   "q": "What's the difference between “aligning to the contract” and “masking”?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Same thing, different name",
+    "Aligning = updating the test because the CONTRACT changed; masking = loosening the test to cover up a violation",
+    "Masking = using mocks",
+    "Aligning = adapting the schema to the observed response"
    ],
    "a": 1,
-   "why": ""
+   "why": "Direction matters: the contract rules over the test; the observed response does NOT rule over the schema."
   },
   {
-   "q": "",
+   "q": "What does Zod/AJV give you that expect(r.status).toBe(200) doesn't?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Execution speed",
+    "Runtime validation of the WHOLE schema (types, required fields, formats): the schema IS the contract",
+    "A prettier report",
+    "Automatic retries"
    ],
    "a": 1,
-   "why": ""
+   "why": "A 200 with a broken body is a false green. Typed schema validation is the real contract test."
   },
   {
-   "q": "",
+   "q": "Your token is valid but you try to delete ANOTHER user's resource. What status code do you expect?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "401 Unauthorized",
+    "403 Forbidden",
+    "Always 404 Not Found",
+    "400 Bad Request"
    ],
    "a": 1,
-   "why": ""
+   "why": "401 = I don't know who you are (authentication); 403 = I know who you are and you can't (authorization). Mixing them up hides RBAC bugs."
   },
   {
-   "q": "",
+   "q": "You resend the same PUT /user/5 three times because of a network retry. What do you expect if the endpoint is correct?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "3 new users",
+    "The same final state: PUT must be idempotent",
+    "A 409 error on the second one",
+    "Depends on the framework"
    ],
    "a": 1,
-   "why": ""
+   "why": "Idempotency: N identical calls = same result. It's a key test case because network retries DO happen in production."
   },
   {
-   "q": "",
+   "q": "When do you use PATCH instead of PUT?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Never, they're the same",
+    "PATCH = PARTIAL update (only the fields sent); PUT = full replacement of the resource",
+    "PATCH is the new version of PUT",
+    "PUT is only for creating"
    ],
    "a": 1,
-   "why": ""
+   "why": "Testing a PATCH as if it were a PUT (or vice versa) produces false reds/greens: the verb's semantics are part of the contract."
   },
   {
-   "q": "",
+   "q": "You're testing a paginated endpoint (?page=N&limit=M). Which set of cases follows the method?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "page=1 and done",
+    "page=1, last page, out-of-range page, limit=0 and limit>max, and stable ordering across pages",
+    "Only a huge limit to stress it",
+    "page=-1 only"
    ],
    "a": 1,
-   "why": ""
+   "why": "Pagination breaks at the edges: empty page, out of range, invalid limits and items repeated/lost between pages."
   },
   {
-   "q": "",
+   "q": "Your test sends an expired JWT and gets a 401. What is it?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "A bug to report",
+    "The correct behavior: it's an expected NEGATIVE case of the auth contract",
+    "An environment problem",
+    "Token flakiness"
    ],
    "a": 1,
-   "why": ""
+   "why": "Negative cases validate that the system rejects properly. A 401 for an expired token is a green for the negative case, not a failure."
   },
   {
-   "q": "",
+   "q": "Do errors (4xx/5xx) have a contract too?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "No, errors are free-form",
+    "Yes: the structure of the error body (code, message, details) — and it's validated with a schema just like the 200s",
+    "Only the status code matters",
+    "Only in GraphQL"
    ],
    "a": 1,
-   "why": ""
+   "why": "Consumers parse errors. A malformed error breaks integrations just like a broken 200 — validate them with Zod/AJV too."
   },
   {
-   "q": "",
+   "q": "Where does the Zod schema that validates the response come from: the OpenAPI spec or a real response you captured?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "From the real response: it's what there is",
+    "From the OpenAPI/contract: the spec is the source of truth — deriving the schema from the observed response institutionalizes masking",
+    "The origin doesn't matter",
+    "From the marketing documentation"
    ],
    "a": 1,
-   "why": ""
+   "why": "If the schema is born from the response, it will always pass: you just turned the bug into the reference. The contract is the bible."
   }
  ],
  "m7": [
   {
-   "q": "",
+   "q": "Which of these steps is declarative Gherkin (the correct one)?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "When I click \"#btn-submit\" and wait 2 seconds",
+    "When I submit the sign-up form with valid data",
+    "When I run window.submit() in the console",
+    "When the QA runs the sign-up test"
    ],
    "a": 1,
-   "why": ""
+   "why": "Declarative = business intent. Selectors, waits and technicalities live in the steps, not in the feature."
   },
   {
-   "q": "",
+   "q": "When does BDD get in the way instead of helping?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "When the business takes part in the examples",
+    "When the feature generates living documentation",
+    "When you use it as a technical wrapper with no business language: an extra layer with no value",
+    "When it runs on RestAssured"
    ],
    "a": 2,
-   "why": ""
+   "why": "BDD without a business conversation is bureaucracy: you maintain two layers to read the same thing."
   },
   {
-   "q": "",
+   "q": "Two devs wrote different families of steps that do the same thing. What does the method do?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Keep both: more options",
+    "Converge on ONE canonical form and refactor the features toward it",
+    "Create a third one better than both",
+    "Ban BDD on the team"
    ],
    "a": 1,
-   "why": ""
+   "why": "“A single canonical form”: duplicated steps break reuse — the core value of BDD."
   },
   {
-   "q": "",
+   "q": "You have to test login with 5 credential combinations. Which Gherkin construct do you use?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "5 copy-pasted scenarios",
+    "Scenario Outline + Examples table",
+    "A single scenario with 5 Whens",
+    "A Background with all 5"
    ],
    "a": 1,
-   "why": ""
+   "why": "The Outline parametrizes the SAME behavior with different data: one template, N rows, zero duplication."
   },
   {
-   "q": "",
+   "q": "Every scenario in the feature needs “Given I am logged in as admin”. Where does it go?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Repeated in each scenario",
+    "In a Background at the start of the feature",
+    "In a tag",
+    "In the feature title"
    ],
    "a": 1,
-   "why": ""
+   "why": "Background = the feature's common preconditions, written once. Repeating them is noise; hiding them in hooks is invisible magic."
   },
   {
-   "q": "",
+   "q": "What are tags (@smoke, @regression, @pagos) for?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Decoration for readability",
+    "Selecting subsets at run time: smoke on every PR, regression nightly, one module on demand",
+    "Sorting features alphabetically",
+    "Documenting who wrote the scenario"
    ],
    "a": 1,
-   "why": ""
+   "why": "Tags are the selective execution system: without them, you either run everything every time or edit code to filter."
   },
   {
-   "q": "",
+   "q": "You see “Then the response contains $.data.items[0].status == ACTIVE” in a feature. Diagnosis?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Correct: it's precise",
+    "Technical detail in the business layer: the JSONPath goes INSIDE the step; the feature says “the order shows as active”",
+    "A tag is missing",
+    "The problem is the English"
    ],
    "a": 1,
-   "why": ""
+   "why": "The business reads the feature. The verification mechanics (JSONPath, schemas) are the step's implementation, not ubiquitous language."
   },
   {
-   "q": "",
+   "q": "Who are “the 3 amigos” and when do they meet?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "QA, senior dev and junior dev, at the retro",
+    "Business/PO, dev and QA — BEFORE building, to agree on concrete examples of the behavior",
+    "The Cucumber/Serenity/Gherkin tool trio",
+    "PO, scrum master and manager, at refinement"
    ],
    "a": 1,
-   "why": ""
+   "why": "BDD is born from that early conversation: the agreed examples become scenarios. Without it, BDD is just syntax."
   },
   {
-   "q": "",
+   "q": "What is “living documentation” in a BDD pipeline?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "A wiki someone updates on Fridays",
+    "The report generated on every run: the scenarios in business language + their real current status",
+    "The code comments",
+    "The Jira backlog"
    ],
    "a": 1,
-   "why": ""
+   "why": "Since the scenarios ARE executable, the report says what the system does TODAY — documentation that can't lie."
   },
   {
-   "q": "",
+   "q": "How do you organize .feature files?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "One per code class",
+    "By business behavior/capability (checkout.feature, returns.feature), not by screen or technical class",
+    "One giant file with everything",
+    "By the sprint they were written in"
    ],
    "a": 1,
-   "why": ""
+   "why": "The feature mirrors the domain, not the architecture. If a technical refactor forces you to move features, they were badly organized."
   }
  ],
  "m7b": [
   {
-   "q": "",
+   "q": "7 out of 120 failed in cycle 1. The fix arrives. What do you run in cycle 2?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "All 120 again",
+    "Only the 7 that failed; the full regression ONCE at the end",
+    "The 7 + a full daily smoke",
+    "Nothing until they confirm the fix in QA"
    ],
    "a": 1,
-   "why": ""
+   "why": "“Iterate narrow, confirm wide”: retest what failed, and one full regression at the close — not on every round."
   },
   {
-   "q": "",
+   "q": "A deactivated record returns 204 with an empty body and your test marks it as a failure. What is it?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "A service bug: 204 doesn't apply",
+    "A special dataset state that should be documented — the test must account for it",
+    "A flaky test",
+    "An environment problem"
    ],
    "a": 1,
-   "why": ""
+   "why": "Data in a special state isn't a bug. The dataset is documented with its caveats — “no data, nothing runs”."
   },
   {
-   "q": "",
+   "q": "What ALWAYS comes with a valid @IGNORE?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Nothing: the tag is enough",
+    "A comment with the ticket (which stays Open), an explicit condition for removing it, and the user story does NOT close",
+    "A backup retry",
+    "The PO's verbal approval"
    ],
    "a": 1,
-   "why": ""
+   "why": "An @IGNORE with no ticket and no exit condition is a buried bug with a nice tombstone."
   },
   {
-   "q": "",
+   "q": "Put the method's cycle protocol in order:",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Regression → new → fix → retest",
+    "New → fix → retest ONLY what failed → full regression at the end (once)",
+    "Retest → new → regression → fix",
+    "Everything together in each cycle"
    ],
    "a": 1,
-   "why": ""
+   "why": "The order exists so you don't pay for the full regression on every round: narrow to iterate, wide to close."
   },
   {
-   "q": "",
+   "q": "“No data, nothing runs.” What does it imply BEFORE starting a cycle?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Nothing, data gets improvised",
+    "Prepared and documented datasets (with an owner and caveats) as a precondition of the cycle — not as a mid-run surprise",
+    "Asking the dev for data when something fails",
+    "Using production directly"
    ],
    "a": 1,
-   "why": ""
+   "why": "Half the “failures” of a poorly prepared cycle are missing data or data in an unexpected state. Data is a prior deliverable."
   },
   {
-   "q": "",
+   "q": "An entity has a 1→N relationship with its documents. What cases does the cardinality demand?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "One with documents and done",
+    "With 0 documents, with 1, and with MANY — each of the three states breaks differently",
+    "Only the maximum allowed",
+    "Doesn't matter: the relationship belongs to the backend"
    ],
    "a": 1,
-   "why": ""
+   "why": "0 breaks renders and validations, 1 is the happy path, N breaks pagination/performance/aggregations. Cardinality is test data design."
   },
   {
-   "q": "",
+   "q": "When do you remove an @IGNORE?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "At the next regression, just in case",
+    "When the documented condition is met (e.g. the vendor's fix deployed and verified) — then the scenario goes back into the run",
+    "When the ticket is a month old",
+    "When someone remembers"
    ],
    "a": 1,
-   "why": ""
+   "why": "The tag carries its exit condition in writing. Without a verifiable condition, the @IGNORE becomes permanent and the coverage lied."
   },
   {
-   "q": "",
+   "q": "The retest of the 7 failures passed, but the final regression broke 2 tests in ANOTHER module. What does it mean?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Flakiness, rerun and done",
+    "The fix had side effects: this is exactly what the final regression is for — report it as a new defect linked to the fix",
+    "The regression was badly written",
+    "Nothing, if the retest passed it's closed"
    ],
    "a": 1,
-   "why": ""
+   "why": "“Confirm wide” exists because fixes break things far from where they touch. That finding is the regression paying for itself."
   },
   {
-   "q": "",
+   "q": "In a shared environment, your test assumes the demo user has 3 orders and today it has 7. What's the lesson?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Ask that nobody else use the environment",
+    "Don't assume state: create the data you need (or reserve your own datasets) and clean up on the way out",
+    "Change the assert to >=3",
+    "Run only in the early morning"
    ],
    "a": 1,
-   "why": ""
+   "why": "Shared environments are hostile by definition. A test that assumes someone else's state is flaky by design, not by bad luck."
   },
   {
-   "q": "",
+   "q": "What's the difference between retest and regression?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "None",
+    "Retest = confirming THE specific failure was fixed; regression = confirming nothing else broke with the change",
+    "Regression is automated retest",
+    "Retest is last sprint's regression"
    ],
    "a": 1,
-   "why": ""
+   "why": "They answer different questions: “is it fixed?” vs “what did the fix break?”. Confusing them leaves holes in the cycle's close."
   }
  ]
 }

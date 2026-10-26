@@ -324,7 +324,7 @@
    "El README tiene «Medido», «Lo que esto dice y lo que no», «Límites», «Qué me contradiría» y «Qué no se ejecutó», más la declaración del uso de IA.",
    "Las cuatro filas de la rúbrica integrada están al menos en el nivel 3."
   ],
-  "deliver": "Repo público con el paquete de auditoría WAR + REPRODUCCION-<nombre>.md de otra persona + defensa de 30–45 min.",
+  "deliver": "Repo público con el paquete de auditoría WAR + REPRODUCCION-&lt;nombre&gt;.md de otra persona + defensa de 30–45 min.",
   "mut": "Antes de entregar, ataca tu propio paquete como lo hizo receipt-check: (1) borra un log que nombra un recibo; (2) reemplaza otro log por uno viejo con el mismo nombre; (3) cambia un byte de <code>thresholds.json</code>. Tu <code>verify</code> debe salir con un código distinto de 0 en los tres casos y con 0 en el paquete limpio. Si solo detecta el log ausente, tu chequeo se comporta como P6, y eso se publica como hallazgo.",
   "rubm": [
    {

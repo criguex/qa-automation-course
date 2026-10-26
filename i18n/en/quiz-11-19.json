@@ -1,1131 +1,1131 @@
 {
  "m8": [
   {
-   "q": "",
+   "q": "“A test that passes and nobody sees doesn't exist.” What fixes that?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Running the suite more often",
+    "A published report with evidence + requirement→test→execution traceability in the test management tool",
+    "A Slack notification when it passes",
+    "Leaving the logs in the CI console"
    ],
    "a": 1,
-   "why": ""
+   "why": "Visibility = a published report with evidence + a traceability chain anyone can audit."
   },
   {
-   "q": "",
+   "q": "You change companies: they use TestRail instead of Xray. What changes in your method?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Everything: you have to relearn it",
+    "Nothing fundamental: the requirement→case→execution→evidence chain is the same; only the tool changes",
+    "Traceability no longer applies",
+    "Sign-off becomes automatic"
    ],
    "a": 1,
-   "why": ""
+   "why": "The standard is the concept, not the brand. That's why the method is tool-agnostic."
   },
   {
-   "q": "",
+   "q": "What makes a green in the report defensible?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "That it's green",
+    "Attached evidence (steps, screenshot/response) you can explain if you're audited",
+    "That it ran in CI",
+    "That nobody asked"
    ],
    "a": 1,
-   "why": ""
+   "why": "“The report is what you sign”: every green without explainable evidence is a bounced check."
   },
   {
-   "q": "",
+   "q": "When do you capture screenshots/attachments in the suite?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Never: they're too heavy",
+    "Always, on every step of every test",
+    "Automatically on every FAILURE + at the key evidence steps — a balance between size and probative value",
+    "Only when someone asks"
    ],
    "a": 2,
-   "why": ""
+   "why": "A failure without evidence forces a re-run to “see what happened”; capturing everything all the time makes the report unmanageable. The criterion is probative value."
   },
   {
-   "q": "",
+   "q": "The report says “512 passed, 3 failed” and nothing else. What does it need to be a report of the method?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Colors",
+    "Per-case detail: steps, evidence, failure category and which requirement each test covers",
+    "A pie chart",
+    "The company logo"
    ],
    "a": 1,
-   "why": ""
+   "why": "A counter is not evidence. Without per-case detail you can't audit, classify or certify anything about those 512 greens."
   },
   {
-   "q": "",
+   "q": "What does BIDIRECTIONAL traceability mean?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "That the report comes in two formats",
+    "From a requirement I reach its tests and their status; from any test I reach the requirement it covers",
+    "That two people review it",
+    "That it syncs twice a day"
    ],
    "a": 1,
-   "why": ""
+   "why": "The two directions answer different questions: “what covers this user story?” and “why does this test exist?”. Both must have an answer."
   },
   {
-   "q": "",
+   "q": "A failure can be: a product bug, a broken test, or an environment/data problem. Why classify them in the report?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "For looks",
+    "Because each category triggers a different action (report / fix the suite / fix the environment) and mixed metrics lie",
+    "To blame whoever is responsible",
+    "No need: red is red"
    ],
    "a": 1,
-   "why": ""
+   "why": "If 40% of your reds are environment, your suite isn't “bad”: your environment is. Without classification that signal doesn't exist and trust is lost."
   },
   {
-   "q": "",
+   "q": "What does the execution HISTORY give you that a single run doesn't?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "More green on the dashboard",
+    "Trends: tests that became flaky, modules that degrade, growing duration — the movie, not the snapshot",
+    "Nothing, it just takes up disk",
+    "Passing the audit"
    ],
    "a": 1,
-   "why": ""
+   "why": "A test that failed once is noise; one that fails in 20% of runs is a pattern. Only the history tells them apart."
   },
   {
-   "q": "",
+   "q": "What do you attach to an API failure so the dev can pick it up without asking you anything else?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "The test name",
+    "The exact cURL of the request + full response + expected vs actual",
+    "A screenshot of the test code",
+    "The link to the feature file"
    ],
    "a": 1,
-   "why": ""
+   "why": "With cURL + response the dev reproduces it in 30 seconds. Without it, the ticket bounces back with “can't reproduce”."
   },
   {
-   "q": "",
+   "q": "Who consumes the report and what does each one need?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Only QA reads it",
+    "Dev: failure detail with evidence · Lead/PO: status per requirement · Manager: trend and risk — a navigable report serves all three",
+    "Only the manager",
+    "The end customer"
    ],
    "a": 1,
-   "why": ""
+   "why": "A single-level report fails someone: it either drowns the manager in stack traces or leaves the dev without data. Navigability solves both."
   }
  ],
  "m8b": [
   {
-   "q": "",
+   "q": "Which of these INVALIDATES a sign-off?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "An honest red documented as a known issue",
+    "A traceability link “to be resolved”",
+    "An @IGNORE with an open ticket and an exit condition",
+    "Evidence in a single-file report"
    ],
    "a": 1,
-   "why": ""
+   "why": "Unresolved placeholders break the audit chain. An honest, documented red does NOT invalidate — a lie does."
   },
   {
-   "q": "",
+   "q": "Why is the certification signed by a human?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Because of industry regulation",
+    "Because it involves risk judgment and professional accountability that can't be automated",
+    "Because the AI has no account in the test management tool",
+    "Out of inherited habit"
    ],
    "a": 1,
-   "why": ""
+   "why": "Signing means taking responsibility. Automating the signature is automating accountability — forbidden."
   },
   {
-   "q": "",
+   "q": "What does a useful certification Definition of Done contain?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "“All green in CI”",
+    "Verifiable conditions: linked scenarios, recorded execution, attached evidence, declared known issues",
+    "The list of sprint features",
+    "The name of the approver"
    ],
    "a": 1,
-   "why": ""
+   "why": "A useful DoD is an auditable checklist, not a feeling. If it can't be verified, it isn't a DoD."
   },
   {
-   "q": "",
+   "q": "A user story has 2 scenarios excluded with @IGNORE (vendor bug, open ticket). Can the story be certified?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Yes: the rest is green",
+    "No: with open known issues the story stays open — you communicate the status, you don't sign a completeness that doesn't exist",
+    "Yes, if the @IGNORE is well documented",
+    "Yes, with the dev's permission"
    ],
    "a": 1,
-   "why": ""
+   "why": "A well-done @IGNORE manages the RUN; closing the story requires what was excluded to be resolved. Signing with gaps is signing polite lies."
   },
   {
-   "q": "",
+   "q": "“I have the evidence on my machine; if someone asks I'll send it.” Is that valid for the sign-off?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Yes, as long as it exists",
+    "No: the evidence must be ATTACHED/published in the chain (ticket/test management tool/report) — what isn't recorded doesn't exist for the audit",
+    "Yes, if you back it up",
+    "It depends on the file size"
    ],
    "a": 1,
-   "why": ""
+   "why": "The sign-off must outlive you: if you go on vacation (or leave the company), the full chain must be reconstructable without you."
   },
   {
-   "q": "",
+   "q": "Why does the method ask for a single-file report as evidence?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Because it's smaller",
+    "Self-contained: it gets attached to the ticket and opens anywhere years later, without depending on the report server still being alive",
+    "Because it looks nicer",
+    "Because Allure requires it"
    ],
    "a": 1,
-   "why": ""
+   "why": "CI servers rotate and delete artifacts. A self-contained file attached to the ticket is evidence that doesn't expire."
   },
   {
-   "q": "",
+   "q": "Who defines the certification Definition of Done?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Each QA defines their own",
+    "The team agrees on it ONCE and it applies equally to everyone — your personal checklist is your implementation of that agreement",
+    "The manager, by decree",
+    "The test management tool"
    ],
    "a": 1,
-   "why": ""
+   "why": "One DoD per person = random standards per story. The team agreement is what makes it auditable and fair."
   },
   {
-   "q": "",
+   "q": "An audit 6 months later asks about story HU-482. What must be possible?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "The QA who tested it explains it from memory",
+    "Rebuilding the full chain (requirement→cases→execution→evidence→closure) from the records, WITHOUT depending on anyone",
+    "Testing it again",
+    "The ticket saying “done”"
    ],
    "a": 1,
-   "why": ""
+   "why": "Certifying means leaving a self-explanatory trail. If the answer to the audit is one person's memory, there was no certification."
   },
   {
-   "q": "",
+   "q": "What separates the dev's “done” from the method's “certified”?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "They're the same in agile",
+    "Dev done = code integrated and working; certified = tested against its criteria WITH recorded evidence and traceability",
+    "Certified = deployed to production",
+    "Done always includes certification"
    ],
    "a": 1,
-   "why": ""
+   "why": "Between “it works in the demo” and “I can prove what was tested and what wasn't” there's a chasm: that chasm is your job."
   },
   {
-   "q": "",
+   "q": "The deadline is looming and you're pressured to sign with 30% of the suite not run. The method's answer?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Sign: the business rules",
+    "You don't sign false completeness: you present the real status (what was tested, what wasn't, risk of what's pending) and whoever decides takes the risk IN WRITING",
+    "Sign and run the rest later",
+    "Quit on the spot"
    ],
    "a": 1,
-   "why": ""
+   "why": "Your signature says “this was tested”. The business can accept risk — it's their right — but documented and under their own name, not inside your signature."
   }
  ],
  "m9": [
   {
-   "q": "",
+   "q": "Which one is a well-placed quality gate?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "The pipeline retries until it passes",
+    "The PR can't be merged if the critical suite fails",
+    "A coverage badge in the README",
+    "Running the tests after the deploy"
    ],
    "a": 1,
-   "why": ""
+   "why": "The gate blocks BEFORE the merge. After the deploy it's no longer a gate, it's an autopsy."
   },
   {
-   "q": "",
+   "q": "A test fails 1 out of 10 runs with no code changes. What do you do?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Infinite automatic retry",
+    "Quarantine: it leaves the gate, a ticket to fix the root cause, and it is NOT deleted",
+    "Delete it: it's more trouble than it's worth",
+    "Ignore that run"
    ],
    "a": 1,
-   "why": ""
+   "why": "A flaky test in the gate trains the team to ignore reds. Quarantine + root-cause fix; deleting it loses coverage."
   },
   {
-   "q": "",
+   "q": "Why containerize the test suite?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Because DevOps asks for it",
+    "Reproducible environment: same browser/Node versions locally and in CI — kills “it passes on my machine”",
+    "Because it's always faster",
+    "So you can use Kubernetes"
    ],
    "a": 1,
-   "why": ""
+   "why": "Reproducibility is the point: if local and CI differ, every red opens a debate instead of a fix."
   },
   {
-   "q": "",
+   "q": "What is sharding and what does it require?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Encrypting the tests",
+    "Splitting the suite across N machines in parallel — it requires INDEPENDENT tests (no order or shared state)",
+    "Running the suite N times",
+    "A kind of distributed retry"
    ],
    "a": 1,
-   "why": ""
+   "why": "--shard=1/4 only works if any subset can run on its own. The isolation from module 5 is what makes sharding possible."
   },
   {
-   "q": "",
+   "q": "The CI run finished. Where are the report and the trace for debugging?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "They were lost with the runner",
+    "In the pipeline ARTIFACTS: the job uploads them (upload-artifact) and you download them from the run",
+    "In the commit",
+    "You have to re-run to see them"
    ],
    "a": 1,
-   "why": ""
+   "why": "Runners are ephemeral. If the job doesn't publish the report/trace as an artifact, every CI failure is irreproducible by design."
   },
   {
-   "q": "",
+   "q": "Your suite needs the staging API_KEY. Where does it live?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "In playwright.config.ts",
+    "In the CI provider's SECRETS (encrypted, masked in logs) — never in the repo",
+    "In a committed .env",
+    "In the job name"
    ],
    "a": 1,
-   "why": ""
+   "why": "A secret in the repo is compromised from the first push (history never forgets). CI secrets exist exactly for this."
   },
   {
-   "q": "",
+   "q": "“npm ci” takes 4 minutes on every run. What's the right optimization?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Remove dependencies",
+    "Dependency cache keyed to the lockfile: it's invalidated only when dependencies change",
+    "Install globally on the runner",
+    "Run the tests without installing"
    ],
    "a": 1,
-   "why": ""
+   "why": "A cache keyed by the lockfile hash gives you the best of both worlds: instant install when nothing changed, a clean one when something did."
   },
   {
-   "q": "",
+   "q": "What runs on the PR, what on main and what in the nightly?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Everything everywhere",
+    "PR: smoke + critical suite (fast) · main: full suite · nightly: full regression + performance — fast feedback where it blocks",
+    "Only nightly, so as not to bother anyone",
+    "PR: nothing; main: everything"
    ],
    "a": 1,
-   "why": ""
+   "why": "The PR gate must be fast to be respected; the exhaustive stuff runs where it blocks no one. Each layer with its own time budget."
   },
   {
-   "q": "",
+   "q": "Your gate takes 90 minutes and devs merge with “admin override”. What's the REAL problem?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Undisciplined devs",
+    "A gate so slow it gets in the way stops being respected: it has to come down to minutes (sharding, risk-based selection) or it loses authority",
+    "A second gate is missing",
+    "The CI provider"
    ],
    "a": 1,
-   "why": ""
+   "why": "Friction always beats discipline. A control people route around controls nothing: the gate's speed IS part of its design."
   },
   {
-   "q": "",
+   "q": "Why use the official Playwright Docker image (mcr.microsoft.com/playwright) with the SAME version as the npm package?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "It's the only one that exists",
+    "It ships the exact browsers and system dependencies for that version — a mismatched image and package = weird browser failures",
+    "For licensing",
+    "To save space"
    ],
    "a": 1,
-   "why": ""
+   "why": "Playwright pins browser versions per release. Image 1.44 with package 1.46 = cryptic crashes nobody links to the real cause."
   }
  ],
  "m28": [
   {
-   "q": "",
+   "q": "A workflow has the jobs lint and e2e, with no needs. lint fails. What happens to e2e?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "It's skipped",
+    "It's cancelled",
+    "It waits until you fix lint",
+    "It runs anyway, in parallel, because it doesn't depend on lint"
    ],
    "a": 3,
-   "why": ""
+   "why": "Without needs the jobs are independent. With needs: [lint], e2e would wait and be skipped when lint fails."
   },
   {
-   "q": "",
+   "q": "The repo's npm cache is deleted. What should happen on the next run?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "It fails because dependencies are missing",
+    "The test results change",
+    "It takes longer and gives the same result",
+    "Previous reports are lost"
    ],
    "a": 2,
-   "why": ""
+   "why": "The cache is a disposable optimization. If deleting it changes a result, that's a finding: something depended on it."
   },
   {
-   "q": "",
+   "q": "The eval-gate check in qa-eval-lab comes out green in a repo without OPENAI_API_KEY. What does it tell you?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "That the LLM approved every answer",
+    "That the UI tests passed and DeepEval and Promptfoo were skipped, as the ::notice says",
+    "That the key is misconfigured and the job failed silently",
+    "Nothing"
    ],
    "a": 1,
-   "why": ""
+   "why": "Green is not the same as evaluated. You have to read which steps ran; the README states it under §Limits."
   },
   {
-   "q": "",
+   "q": "Your check is green and required in your head, but main isn't protected. Someone opens a PR with red tests. What blocks the merge?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Nothing: without branch protection and a required check, the merge can still happen",
+    "The red check",
+    "GitHub blocks every PR with red checks by default",
+    "CODEOWNERS"
    ],
    "a": 0,
-   "why": ""
+   "why": "A gate is two things: a required check and a protected branch. On 26-Oct-2026 none of the five repos in the real cases had main protected."
   },
   {
-   "q": "",
+   "q": "A step says npm test || true. What changes?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Nothing",
+    "It retries the tests",
+    "It runs the tests in parallel",
+    "The step exits 0 even if the tests fail: the gate stops being a gate"
    ],
    "a": 3,
-   "why": ""
+   "why": "It's a hidden fail-open. You only see it if you read the log, which is why it's one of the week's mutations."
   },
   {
-   "q": "",
+   "q": "Without the key, eval-gate prints a notice and comes out green. What kind of design is it and how do you make it fail-closed?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Fail-closed; it already blocks",
+    "Fail-safe; it runs the full suite",
+    "Fail-open; you make it fail-closed by making the job fail (exit 1) when the secret is missing on the events where the gate must grade",
+    "It can't be changed"
    ],
    "a": 2,
-   "why": ""
+   "why": "Fail-open: when in doubt, green. It's reasonable in a public repo without a key if it warns you, but it doesn't work as a merge gate."
   },
   {
-   "q": "",
+   "q": "With retries: 2, a test fails and passes on the second attempt. What do you do?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Nothing, it came out green",
+    "You treat it as flaky: it stays flagged in the report, goes to quarantine with a ticket and isn't hidden",
+    "You raise retries to 5",
+    "You delete it"
    ],
    "a": 1,
-   "why": ""
+   "why": "Playwright reports it as flaky. In jev-ci-triage, “failed and passed on a retry in the same run” is flaky rule 1. A mutant runner uses retries: 0."
   },
   {
-   "q": "",
+   "q": "What sets verify.yml apart from reproduce.yml in predictor-debugger?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "verify.yml runs on every push and checks the fingerprint against stored verdicts; reproduce.yml is triggered by hand or by a v* tag, downloads data-v1 on a clean runner and recomputes",
+    "Nothing",
+    "reproduce.yml runs on every PR",
+    "verify.yml retrains the network"
    ],
    "a": 0,
-   "why": ""
+   "why": "A cheap pipeline for every change and an expensive one for the evidence. Both require the fingerprint with grep -q."
   },
   {
-   "q": "",
+   "q": "Your check is green, but the branch has no protection and the check isn't required. What does it block?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Every merge with failures",
+    "Nothing: the merge can still happen",
+    "Only PRs from forks",
+    "Tags"
    ],
    "a": 1,
-   "why": ""
+   "why": "The gate exists when the check is required on a protected branch."
   },
   {
-   "q": "",
+   "q": "qa-eval-lab without OPENAI_API_KEY comes out green. What happened?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "The LLM was evaluated and passed",
+    "The UI tests passed; the DeepEval and Promptfoo steps were skipped with a ::notice::",
+    "It failed silently",
+    "It used another key"
    ],
    "a": 1,
-   "why": ""
+   "why": "Green is not evaluated: you have to read which steps ran."
   },
   {
-   "q": "",
+   "q": "A step says npm test || true. What effect does it have?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "None",
+    "The step goes green even if the tests fail",
+    "It retries the tests",
+    "It speeds up the job"
    ],
    "a": 1,
-   "why": ""
+   "why": "It's a silent failure: the gate stops being a gate."
   },
   {
-   "q": "",
+   "q": "How do a cache and an artifact differ?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "They're the same",
+    "The cache speeds things up and can disappear; the artifact is evidence to download and review",
+    "The artifact is faster",
+    "The cache is signed"
    ],
    "a": 1,
-   "why": ""
+   "why": "Never store evidence only in the cache."
   },
   {
-   "q": "",
+   "q": "Two jobs have no needs between them…",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "They run in alphabetical order",
+    "They run in parallel",
+    "They don't run",
+    "They share a disk"
    ],
    "a": 1,
-   "why": ""
+   "why": "needs creates the dependency; without it, each job starts on its own."
   },
   {
-   "q": "",
+   "q": "Which gate order makes the most sense?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "visual → UI → lint",
+    "lint → typecheck → unit → API/contract → UI → performance → visual",
+    "performance first",
+    "It doesn't matter"
    ],
    "a": 1,
-   "why": ""
+   "why": "Cheap and fast first: if it fails, you don't spend minutes on the expensive stuff."
   },
   {
-   "q": "",
+   "q": "In civica's ci.yml, why do the uploads have if: ${{ !cancelled() }}?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "So nothing is uploaded if something fails",
+    "To upload the report and the ledger even if an earlier gate fails, unless the run is cancelled",
+    "For looks",
+    "To run only on main"
    ],
    "a": 1,
-   "why": ""
+   "why": "The most useful evidence is precisely the one from the run that failed."
   },
   {
-   "q": "",
+   "q": "What does predictor-debugger's reproduce.yml do when you push a v* tag?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "It publishes the release",
+    "It downloads data-v1 on a clean runner, recomputes and requires the verdicts and the fingerprint with grep -q",
+    "It runs only lint",
+    "Nothing"
    ],
    "a": 1,
-   "why": ""
+   "why": "It's an evidence pipeline: the tag triggers the reproduction."
   },
   {
-   "q": "",
+   "q": "restful-booker was red on October 15 and 16. Why?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "The API tests were failing",
+    "npm run format:check (Prettier) found unformatted files",
+    "Docker went down",
+    "A secret was missing"
    ],
    "a": 1,
-   "why": ""
+   "why": "A cheap, early gate caught the problem before the suites."
   }
  ],
  "m27": [
   {
-   "q": "",
+   "q": "A GitHub Actions job finishes on a hosted runner. What's left?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "What you uploaded as an artifact, what you published in a release and what you committed",
+    "The whole runner disk, for 14 days",
+    "The npm cache with your reports",
+    "The background processes"
    ],
    "a": 0,
-   "why": ""
+   "why": "The runner is discarded. Whatever didn't get out before is lost."
   },
   {
-   "q": "",
+   "q": "You delete the cache and re-run. The result's fingerprint changes. What do you conclude?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "It's normal, the cache changes everything",
+    "The cache needs to be refilled",
+    "The fingerprint is computed wrong",
+    "It's a finding: the result depended on something that wasn't pinned"
    ],
    "a": 3,
-   "why": ""
+   "why": "The cache should only change the time. If the fingerprint changes, an input wasn't pinned."
   },
   {
-   "q": "",
+   "q": "Why pin an image by digest (image@sha256:…) rather than by tag?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "It's shorter",
+    "Docker doesn't accept tags in CI",
+    "A tag can be moved to another image; a digest names exactly the same content",
+    "So it downloads faster"
    ],
    "a": 2,
-   "why": ""
+   "why": "A pinned input is the precondition for repeating a run in another environment and getting the same fingerprint."
   },
   {
-   "q": "",
+   "q": "The session drops and the global lock shows as free. Can you just relaunch the task?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Yes, a free lock proves the process died",
+    "No: in repro-ia-20261026 the free lock was judged «not sufficient alone to prove old driver absent» and nothing was relaunched while the old process's identity was uncertain",
+    "Yes, if 5 minutes have passed",
+    "Only if the disk is full"
    ],
    "a": 1,
-   "why": ""
+   "why": "receipts/interruption.json says so. A process still alive in another namespace could write over your checkpoint."
   },
   {
-   "q": "",
+   "q": "The 81 R1 files were regenerated and differ from the published ones by at most 8.9e-16. What are they?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "A new run, declared as such: none is bit-for-bit identical, and the fingerprint and verdicts do match",
+    "The original arrays, recovered",
+    "Corrupted files",
+    "Copies from the Mac"
    ],
    "a": 0,
-   "why": ""
+   "why": "Regenerating is not recovering. The original arrays disappeared with the ephemeral executor; results_scope.txt states it as NEW RUN."
   },
   {
-   "q": "",
+   "q": "Why write a checkpoint to a temporary file and then mv it?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "To save disk",
+    "Because mv is faster",
+    "To delete the previous one",
+    "So that, if the process dies halfway, there's no half-written checkpoint under the real name"
    ],
    "a": 3,
-   "why": ""
+   "why": "A rename is atomic on the same file system: either the full checkpoint is there or it isn't."
   },
   {
-   "q": "",
+   "q": "When resuming, how do you know a task is already done?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Because its file exists",
+    "Because the log says so",
+    "Because its hash verifies against the stored receipt, and you check it with the lock held",
+    "By the file's date"
    ],
    "a": 2,
-   "why": ""
+   "why": "Existing isn't enough: the file may be truncated or stale. In the release, each task's SHA and rows are checked under lock."
   },
   {
-   "q": "",
+   "q": "The release says «This is not an independent review». Why does it matter?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "It doesn't: the fingerprints match",
+    "An AI assistant operated it under the author's direction; reproduced is not the same as reproduced by a third party",
+    "Because data is missing",
+    "Because it used Python 3.12"
    ],
    "a": 1,
-   "why": ""
+   "why": "A matching fingerprint is still strong evidence, but whoever produced it isn't independent. The next step is for another person to run reproduce.yml or the package."
   },
   {
-   "q": "",
+   "q": "A GitHub Actions job finishes. What happens to the files it generated that you didn't upload?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "They stay on the runner for the next job",
+    "They're lost with the runner",
+    "They upload themselves",
+    "They stay in the cache"
    ],
    "a": 1,
-   "why": ""
+   "why": "Every job starts clean and its disk dies with it."
   },
   {
-   "q": "",
+   "q": "Why pin an image by digest and not by tag?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "It's shorter",
+    "Tomorrow the tag may point to another image; the digest identifies exactly the same one",
+    "For speed",
+    "There's no difference"
    ],
    "a": 1,
-   "why": ""
+   "why": "A pinned input is the precondition for repeating a run."
   },
   {
-   "q": "",
+   "q": "Release repro-ia-20261026: what happened to the 81 arrays from the previous run?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "They were recovered identical",
+    "They disappeared with the ephemeral executor; R1 was regenerated as a new run",
+    "They never existed",
+    "They were pushed to git"
    ],
    "a": 1,
-   "why": ""
+   "why": "results_scope.txt says exactly that."
   },
   {
-   "q": "",
+   "q": "What survived that loss?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Nothing",
+    "The durable hashes and statistics stored as receipts",
+    "The processes",
+    "The cache"
    ],
    "a": 1,
-   "why": ""
+   "why": "What leaves as a receipt outlives the container."
   },
   {
-   "q": "",
+   "q": "The 81 regenerated files aren't bit-for-bit identical (max 8.9e-16). What about the fingerprints?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "They changed",
+    "They match the originals, as do the verdicts",
+    "They weren't computed",
+    "They were adjusted by hand"
    ],
    "a": 1,
-   "why": ""
+   "why": "Bit-identical is not the same as verdict-identical."
   },
   {
-   "q": "",
+   "q": "What is a flock for in a resumable run?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "To speed it up",
+    "So no two processes do the same task and you resume without duplicating work",
+    "To encrypt",
+    "For the log"
    ],
    "a": 1,
-   "why": ""
+   "why": "In the package, each task's SHA and rows are checked under lock."
   },
   {
-   "q": "",
+   "q": "You lost the session with the process running R4 and don't know if it's still alive. What does the receipt's policy say?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Relaunch everything now",
+    "Don't relaunch while the old process's identity is uncertain",
+    "Delete the checkpoints",
+    "Switch machines without saying so"
    ],
    "a": 1,
-   "why": ""
+   "why": "receipts/interruption.json: losing the session doesn't prove the old process stopped."
   },
   {
-   "q": "",
+   "q": "Where do you check that something is reproducible?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "On the author's machine",
+    "In a clean environment, from scratch, like reproduce.yml's fresh runner",
+    "In the cache",
+    "In production"
    ],
    "a": 1,
-   "why": ""
+   "why": "The author's machine hides everything that isn't pinned."
   }
  ],
  "m10": [
   {
-   "q": "",
+   "q": "p95 = 180 ms and average = 90 ms. What does it mean?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "There's a measurement error",
+    "5% of requests take MORE than 180 ms: the average hides the tail",
+    "All requests take ~90 ms",
+    "The SLO is always met"
    ],
    "a": 1,
-   "why": ""
+   "why": "Percentiles show the tail the average hides — and your most annoyed users live in the tail."
   },
   {
-   "q": "",
+   "q": "You want to know if the app can handle 6 hours of normal traffic without degrading (memory leaks). Which test?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Spike",
+    "Stress",
+    "Soak (endurance)",
+    "Smoke"
    ],
    "a": 2,
-   "why": ""
+   "why": "Soak = load sustained over time: it reveals leaks and slow degradation that a short test never sees."
   },
   {
-   "q": "",
+   "q": "The first request to a Lambda takes 3 s; the following ones, 120 ms. What is it?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "A bug to report",
+    "Cold start — include it in the SLO or mitigate with warmers/provisioned concurrency",
+    "AWS throttling",
+    "A poor region choice"
    ],
    "a": 1,
-   "why": ""
+   "why": "It's serverless physics, not a bug. Your job is to decide whether the SLO tolerates it and to validate the mitigation."
   },
   {
-   "q": "",
+   "q": "Where does the pass/fail criterion of a well-built k6 test live?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "In the eye of whoever watches the dashboard",
+    "In the script's THRESHOLDS (p95<300ms, error_rate<1%): the test fails on its own, with no manual interpretation",
+    "In the Grafana report",
+    "With the manager"
    ],
    "a": 1,
-   "why": ""
+   "why": "Without thresholds, a load test is an opinion. With thresholds it's a real test: automatable, gateable and beyond debate."
   },
   {
-   "q": "",
+   "q": "Why ramp up the load GRADUALLY in a stress test?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "So you don't scare the server",
+    "To find THE POINT where the system starts to degrade — if you hit it with everything at once, you know it dies but not when",
+    "To save VUs",
+    "It's a k6 requirement"
    ],
    "a": 1,
-   "why": ""
+   "why": "The value of stress testing is the curve: at what point latency rises, when errors appear. The ramp-up draws that curve."
   },
   {
-   "q": "",
+   "q": "VUs go up: throughput plateaus but latency stays stable. What does it mean?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "All good: latency is the only thing that matters",
+    "The system saturated a bottleneck (connection pool, CPU, workers): it processes the same amount even if you ask for more",
+    "k6 is misconfigured",
+    "You need more VUs to measure"
    ],
    "a": 1,
-   "why": ""
+   "why": "Flat throughput with growing demand = capacity limit found. Latency and throughput tell different stories: look at both."
   },
   {
-   "q": "",
+   "q": "What's the difference between an SLI and an SLO?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "They're synonyms",
+    "SLI = the measured metric (actual p95) · SLO = the target on that metric (p95 < 300 ms 99% of the time)",
+    "The SLO is the legal version of the SLI",
+    "The SLI is for infra and the SLO for business"
    ],
    "a": 1,
-   "why": ""
+   "why": "First you define WHAT you measure (SLI), then HOW MUCH is acceptable (SLO). Your k6 thresholds are executable SLOs."
   },
   {
-   "q": "",
+   "q": "You run the load test on a staging with half of prod's resources. What can you conclude?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Prod's absolute numbers",
+    "Trends and relative REGRESSIONS (is this release slower than the previous one?) — not prod's absolute numbers, the infra differs",
+    "Nothing: it's useless",
+    "The AWS cost"
    ],
    "a": 1,
-   "why": ""
+   "why": "A small staging works as a regression detector by comparing against itself. Extrapolating absolutes to prod without the same infra is fiction."
   },
   {
-   "q": "",
+   "q": "As load rises, the error rate goes up but latency for the requests that DO respond holds steady. Most likely hypothesis?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "The tester's network",
+    "A resource with a hard limit rejecting the excess (rate limit, full pool, saturated queue): it answers some quickly and drops the rest",
+    "Slow DNS",
+    "The VUs are lying"
    ],
    "a": 1,
-   "why": ""
+   "why": "Fast rejection + stable success = something is dropping requests at the door. It's a different pattern from general degradation — and it's investigated differently."
   },
   {
-   "q": "",
+   "q": "Why connect k6 to Grafana if k6 already prints the summary?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "So it looks professional",
+    "Correlated time series (latency vs errors vs VUs on the SAME time axis): the final summary doesn't show WHEN each thing happened",
+    "To export a PDF",
+    "Grafana is a k6 requirement"
    ],
    "a": 1,
-   "why": ""
+   "why": "“p95=800ms” doesn't say whether it was constant or a spike at minute 12 when the GC kicked in. The time series is what explains why."
   }
  ],
  "m20": [
   {
-   "q": "",
+   "q": "You change one word of the text the model judges and run in replay mode. What should happen?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "It passes with the previous recording",
+    "The fixture is missing and the test is left unverified: it doesn't pass",
+    "The model is called live without warning",
+    "The recording is deleted"
    ],
    "a": 1,
-   "why": ""
+   "why": "The key is the hash of (model, redacted state, question): a different input never reuses an old response."
   },
   {
-   "q": "",
+   "q": "Why is a recording's key a hash of the request and not the test name?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "For looks",
+    "Because that way a change in the request invalidates the recording; with the test name an old response would be reused",
+    "Because it's shorter",
+    "It doesn't matter"
    ],
    "a": 1,
-   "why": ""
+   "why": "The test name doesn't change when you change the question; the hash does."
   },
   {
-   "q": "",
+   "q": "An “ambiguous” verdict on a semantic assertion…",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Passes with a warning",
+    "Never passes: fail-closed",
+    "Is retried until it says yes",
+    "Is ignored"
    ],
    "a": 1,
-   "why": ""
+   "why": "playwright-jev, ADR 0001: anything ambiguous or unverified never passes."
   },
   {
-   "q": "",
+   "q": "IMDb blocks bots and your real E2E can't run in CI. What does civica do?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Deletes the E2E",
+    "A deterministic mock layer, and the real E2E skips with an honest reason",
+    "Sets retries: 10",
+    "Disables CI"
    ],
    "a": 1,
-   "why": ""
+   "why": "A skip with a reason keeps the gap visible; deleting or retrying hides it."
   },
   {
-   "q": "",
+   "q": "What does a CI that runs from recordings gain?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Nothing",
+    "It's reproducible, needs no keys or network and gives the same answer on every run",
+    "It's harder to maintain",
+    "It avoids writing asserts"
    ],
    "a": 1,
-   "why": ""
+   "why": "The same input gives the same verdict: what changes is your code, not the service's mood."
   },
   {
-   "q": "",
+   "q": "What is an ADR?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "A type of test",
+    "A short record of an architecture decision: context, decision and consequences",
+    "A bug report",
+    "A library"
    ],
    "a": 1,
-   "why": ""
+   "why": "It writes down why something was decided, so nobody undoes it without knowing."
   },
   {
-   "q": "",
+   "q": "Your recording is six months old and the provider changed the model. What do you do?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Nothing: it's still green",
+    "I re-record on purpose (record mode) and review the verdict diff before accepting it",
+    "I delete the tests",
+    "I raise the threshold"
    ],
    "a": 1,
-   "why": ""
+   "why": "Recording is a decision: the verdict diff is reviewed like any other change."
   },
   {
-   "q": "",
+   "q": "What gets redacted before sending a state to an external model?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Nothing",
+    "Tokens, emails, JWTs, cards and personal paths",
+    "Only the test name",
+    "The numbers"
    ],
    "a": 1,
-   "why": ""
+   "why": "Whatever leaves your machine leaves redacted; jev-ci-triage does it in src/redact.ts."
   }
  ],
  "m11": [
   {
-   "q": "",
+   "q": "Why separate a “director” AI from an “executor” AI?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "It's tool marketing",
+    "Planning with broad context and executing close to the code perform better than a single AI doing everything",
+    "Because Copilot can't plan anything",
+    "To justify two licenses"
    ],
    "a": 1,
-   "why": ""
+   "why": "Planning and execution are different workloads: separating them performs better with any pair of tools."
   },
   {
-   "q": "",
+   "q": "According to the delegation mental test, which task do you NOT delegate to the AI?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Generating steps from an OpenAPI contract",
+    "Deciding whether a contract mismatch blocks the release",
+    "Formatting the evidence report",
+    "Writing a mechanical POM on a clear convention"
    ],
    "a": 1,
-   "why": ""
+   "why": "Business/risk judgment + accountability = human. Mechanical work on a clear convention can be delegated."
   },
   {
-   "q": "",
+   "q": "“The AI is confidently wrong” means:",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "That the AI is safe to use",
+    "That its mistakes arrive in a confident tone: ALWAYS review the diff, even if it sounds convincing",
+    "That it's rarely wrong",
+    "That it only fails on complex code"
    ],
    "a": 1,
-   "why": ""
+   "why": "Tone confidence doesn't correlate with correctness. The diff is always reviewed — no exceptions."
   },
   {
-   "q": "",
+   "q": "What are the 5 blocks of a good prompt according to the method?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Greeting, question, sign-off, signature, PS",
+    "Context + Input + Instruction + Constraints + Expected output",
+    "Role, tone, language, format, emojis",
+    "Goal, deadline, budget, team, risk"
    ],
    "a": 1,
-   "why": ""
+   "why": "Each block removes a class of failure: without constraints it invents scope; without expected output, the format is a lottery."
   },
   {
-   "q": "",
+   "q": "What is a “prompt pack”?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "A prompt subscription",
+    "Reusable recipes with <...> placeholders for the craft's repeated tasks — “from 10 minutes to 1”",
+    "An IDE plugin",
+    "Automatically chained prompts"
    ],
    "a": 1,
-   "why": ""
+   "why": "The task you do 20 times deserves a tested template with placeholders. A handcrafted prompt every time reinvents mistakes already solved."
   },
   {
-   "q": "",
+   "q": "The AI generated a test against POST /users/validate… and that endpoint does NOT exist in the contract. What happened and what do you do?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "The contract is out of date",
+    "Hallucination: it invented the endpoint with total confidence — the contract goes AS INPUT in the prompt and the diff is reviewed against it",
+    "A network error",
+    "You test it to see if it exists"
    ],
    "a": 1,
-   "why": ""
+   "why": "The AI fills gaps with plausibility, not truth. Real input (the contract) + review against the input = the antidote."
   },
   {
-   "q": "",
+   "q": "What role does copilot-instructions.md (or Cursor's rules) play?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Documentation for humans",
+    "It's “the IDE's CLAUDE.md”: it connects the director AI's plan with the execution — the executor inherits conventions and constraints",
+    "A license file",
+    "Key bindings configuration"
    ],
    "a": 1,
-   "why": ""
+   "why": "Without that artifact, the executor improvises its own style and the director's plan gets lost in translation."
   },
   {
-   "q": "",
+   "q": "When should you NOT use AI for a QA task?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "When the task is boring",
+    "When you can't yet EVALUATE its output (you don't master the topic): you wouldn't tell the correct from the plausible",
+    "When the code is legacy",
+    "When there's a deadline"
    ],
    "a": 1,
-   "why": ""
+   "why": "That's why the module comes at the end of the course: AI amplifies those who know and confuses those who don't. Judgment first, then amplification."
   },
   {
-   "q": "",
+   "q": "What does Playwright + MCP + AI (the cluster that dominates job openings) enable?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Prettier reports",
+    "The AI can EXECUTE and inspect the real browser (run flows, read the DOM, verify) — not just write code blindly",
+    "Codeless tests",
+    "Replacing QA"
    ],
    "a": 1,
-   "why": ""
+   "why": "With MCP the AI goes from “writing tests that might work” to “actually testing and correcting itself” — that's why the market pays for it."
   },
   {
-   "q": "",
+   "q": "You receive an AI-generated suite. What do you look for FIRST in the review?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Formatting and names",
+    "Weak assertions (expect(true)), loose schemas and brittle selectors: the three typical vices the AI uses to “make tests pass”",
+    "The number of tests",
+    "The comments"
    ],
    "a": 1,
-   "why": ""
+   "why": "AI optimizes for “make it pass”, not “make it validate”. A green test that asserts nothing is worse than no test: it gives false confidence."
   }
  ],
  "m14": [
   {
-   "q": "",
+   "q": "You want your assistant to never push to main. Where does that rule live?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "In the prompt: “please don't push to main”",
+    "In a hook that blocks the command with exit 2, plus branch protection on the repo",
+    "In a README comment",
+    "In the assistant's memory"
    ],
    "a": 1,
-   "why": ""
+   "why": "A prompt is a request the model can overlook; a hook that exits with a non-zero code is a wall that can also be tested."
   },
   {
-   "q": "",
+   "q": "You wrote the hook that blocks pushing to main. How do you know it works?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "I tried it once and it blocked",
+    "I attack it with cases that try to slip through: chained commands, a bare git push while on main…",
+    "I ask the assistant whether it works",
+    "I trust it because the code is short"
    ],
    "a": 1,
-   "why": ""
+   "why": "WAR thread: the barrier is tested like the product. And attacking it pays off: a mutation found that git -c and git --no-pager slipped through, and commit 1b01c66 fixed it with new tests."
   },
   {
-   "q": "",
+   "q": "The assistant tells you “I ran the suite and everything passed”. What do you sign?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "I sign: the assistant is reliable",
+    "Nothing until I have a command, commit and exit code I can re-run",
+    "I sign if the answer sounds confident",
+    "I sign if it attaches a nice summary"
    ],
    "a": 1,
-   "why": ""
+   "why": "Evidence can be re-run: command + commit/hash + exit code. A sentence is not evidence."
   },
   {
-   "q": "",
+   "q": "What goes in the repo's AGENTS.md (Codex) or CLAUDE.md (Claude Code)?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "The project's API key, so the assistant doesn't ask for it",
+    "Frequent commands, conventions and what's forbidden",
+    "The chat history",
+    "Nothing: the assistant already knows everything"
    ],
    "a": 1,
-   "why": ""
+   "why": "It's versioned project context. Secrets never go in committed files."
   },
   {
-   "q": "",
+   "q": "The AI service that decides which tests to run isn't responding. What should happen?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Skip the doubtful tests to avoid delays",
+    "Run the full suite",
+    "Mark the build green with a note",
+    "Retry with no limit until it responds"
    ],
    "a": 1,
-   "why": ""
+   "why": "Fail-safe: when in doubt, go conservative. jev-test-impact runs everything when the model fails."
   },
   {
-   "q": "",
+   "q": "Your CI rebuilds the report from fixtures and compares it with the committed one. They differ. What does it mean?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Normal noise: ignore it",
+    "Something changed (code, fixture or question) and the published report no longer matches: CI must fail",
+    "That CI is misconfigured",
+    "That the committed report must be deleted"
    ],
    "a": 1,
-   "why": ""
+   "why": "That's how agent-eval-jev works: the published evidence has to come from the current code, or CI turns red."
   },
   {
-   "q": "",
+   "q": "The judge's recorded responses are stored with the exact hash of the request. What for?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "To save space",
+    "So that a change in the question or the trace never reuses an old response",
+    "To encrypt them",
+    "For looks"
    ],
    "a": 1,
-   "why": ""
+   "why": "If you change the question, the hash changes and the old recording no longer applies: reproducible replay with no stale responses."
   },
   {
-   "q": "",
+   "q": "An assistant ran your full reproduction under your direction. How do you report it?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "As an independent review",
+    "I say an assistant ran it under my direction and that it isn't an independent review",
+    "I don't mention it",
+    "As if another person had done it"
    ],
    "a": 1,
-   "why": ""
+   "why": "predictor-debugger states it that way. What the reader needs to weigh the evidence gets said."
   },
   {
-   "q": "",
+   "q": "Which part of the cycle do you NOT delegate to the assistant?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "Generating cases from a contract",
+    "Running the suite",
+    "Auditing the diff",
+    "Signing the sign-off"
    ],
    "a": 3,
-   "why": ""
+   "why": "The assistant designs, executes and audits; the person decides and signs. Certification is human."
   },
   {
-   "q": "",
+   "q": "The assistant proposes loosening an assert because “the test fails over a detail”. What do you do?",
    "o": [
-    "",
-    "",
-    "",
-    ""
+    "I accept: it saw the error",
+    "I check against the contract: if the service breaks it, it gets reported and the assert stays",
+    "I mark it @IGNORE without a ticket",
+    "I delete the test"
    ],
    "a": 1,
-   "why": ""
+   "why": "The classic AI anti-pattern is adapting the test to the response. A false green is worse than an honest red."
   }
  ]
 }

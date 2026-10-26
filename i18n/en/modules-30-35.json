@@ -1,408 +1,408 @@
 {
  "m24": {
-  "title": "",
-  "hours": "",
-  "mentor": "",
-  "kid": "",
+  "title": "Controls, harness and numerical mutation — frozen contract and independent oracle",
+  "hours": "~12 h",
+  "mentor": "Before I trust an experiment, I test the experiment: a control that must pass, controls that must fail and tests of the harness itself. What does the runner do if the oracle throws an exception or returns NaN? This isn't theory: the runner in a real study ended up reporting <code>oracle_valid: true</code> with the oracle failed.",
+  "kid": "Before using a scale, you weigh something you already know the weight of. If the scale says something else, the problem is the scale.",
   "obj": [
-   "",
-   "",
-   ""
+   "Include positive and negative controls in an experiment.",
+   "Test the harness: invalid baseline, NaN and oracle exceptions.",
+   "Mutate a numerical model with a frozen tolerance and an independent oracle."
   ],
-  "pre": "",
+  "pre": "The mutation testing and preregistration modules; Python.",
   "theory": [
-   "",
-   "",
-   "",
-   "",
-   "",
-   ""
+   "Positive control: what must pass (the exact solver, the clean case). Negative controls: one sabotaged variant of each kind, which must fail.",
+   "Test the harness: “an invalid baseline blocks its mutants”, “NaN is never PASS” and “an oracle exception is not a killed mutant”.",
+   "A real finding: in scientific-qa-evidence the runner reported <code>oracle_valid: true</code> when the oracle had failed (FINDINGS, finding 8).",
+   "Frozen contract: the tolerance (10⁻⁶) is set before running, and the oracle doesn't share a solver with the implementation.",
+   "The campaign: 84 paired variants across 9 physical models, with 27 PASS, 54 KILLED and 3 SURVIVED, the same on macOS and on Linux. The tiny mutation in the RC circuit survives and is left visible on purpose.",
+   "Separate cases from behaviors: the 54 KILLED correspond to 51 distinct behaviors."
   ],
   "res": [
    {
-    "label": "",
-    "type": ""
+    "label": "Lab: criguex/scientific-qa-evidence",
+    "type": "Repo · public"
    },
    {
-    "label": "",
-    "type": ""
+    "label": "CONTRACT.md — tolerance and classification",
+    "type": "Docs · free"
    },
    {
-    "label": "",
-    "type": ""
+    "label": "FINDINGS.md — finding 8 (the harness)",
+    "type": "Docs · free"
    },
    {
-    "label": "",
-    "type": ""
+    "label": "war-paradigm — track 1, physics simulations",
+    "type": "Repo · public"
    }
   ],
   "hands": [
-   "",
-   "",
-   ""
+   "In <code>scientific-qa-evidence/evidence/numerical/source</code>, run <code>python3 -m unittest -v test_runner</code>.",
+   "Inject an oracle that returns <code>float(\"nan\")</code> and check that it never yields PASS or KILLED.",
+   "Add a simple tenth model (free fall with linear drag) with its analytical oracle, two known mutants and one close to the threshold."
   ],
   "crit": [
-   "",
-   "",
-   "",
-   ""
+   "Your harness has all three tests (invalid baseline, NaN, oracle exception) and all three pass.",
+   "The injected NaN never comes out PASS or KILLED.",
+   "The table separates cases from distinct behaviors.",
+   "If the mutant close to the threshold survives, it's reported as SURVIVED without lowering the tolerance."
   ],
-  "deliver": "",
-  "mut": "",
-  "top": ""
+  "deliver": "A harness with 3 tests of itself + a tenth model with an oracle and mutants + a verdict table.",
+  "mut": "Inject an oracle that returns NaN and check that it never yields PASS or KILLED.",
+  "top": "Your table separates cases from distinct behaviors and explains which mutants are equivalent."
  },
  "m25": {
-  "title": "",
-  "hours": "",
-  "mentor": "",
-  "kid": "",
+  "title": "Fluid physics and statistics for the debugger",
+  "hours": "~14 h",
+  "mentor": "You don't need to be a physicist to test a fluid model, but you do need to understand which law each check is watching. And you don't need to be a statistician to say whether a check ranks the error well, but you do need to know when a difference is noise.",
+  "kid": "Water won't let itself be squeezed and energy doesn't appear out of nowhere. The checker looks at whether the neural network follows those rules, like a referee who knows the rulebook.",
   "obj": [
-   "",
-   "",
-   ""
+   "Explain which physical law each check (D1, D2, D3) watches and why D4 isn't a check.",
+   "Predict which check flags each sabotaged variant before running.",
+   "Use Spearman, cluster bootstrap and Wilson to decide whether a difference is noise."
   ],
-  "pre": "",
+  "pre": "The controls and harness module; basic vector calculus and numpy.",
   "theory": [
-   "",
-   "",
-   "",
-   "",
-   "",
-   "",
-   ""
+   "Three laws watched by predictor-debugger's debugger: incompressibility (div u = 0, check D1), energy balance (kinetic energy only decays through viscosity, at a rate of ν·enstrophy, D2) and the momentum equation (Navier–Stokes residual, D3).",
+   "D4 is the error against the reference: it's used to judge the debugger, it's not one of the debugger's checks.",
+   "The design's controls: P0 is the exact solver (positive), P0f32 the same thing rounded to float32, P1 persistence, P2 the FNO, P3a breaks incompressibility and P3b injects energy.",
+   "What's being tested is the debugger, not the network: a poor network is an acceptable result; a debugger that can't tell the controls apart is a failure.",
+   "One-step versus rollout: in a rollout the network feeds on its own answers for 20 steps in a row and the errors pile up.",
+   "Spearman measures whether a check ranks the error well (ranks, not values). Cluster bootstrap: you resample trajectories, not steps; resampling steps gives narrower, misleading intervals.",
+   "Wilson interval: 27 out of 29 cases isn't just “93 %”, it's 93.1 % with an interval of 78–98 %."
   ],
   "res": [
    {
-    "label": "",
-    "type": ""
+    "label": "Lab: criguex/predictor-debugger",
+    "type": "Repo · public"
    },
    {
-    "label": "",
-    "type": ""
+    "label": "NASA Glenn — Navier–Stokes equations",
+    "type": "Article · free"
    },
    {
-    "label": "",
-    "type": ""
+    "label": "SciPy — spearmanr",
+    "type": "Docs · free"
    },
    {
-    "label": "",
-    "type": ""
+    "label": "SciPy — bootstrap",
+    "type": "Docs · free"
    },
    {
-    "label": "",
-    "type": ""
+    "label": "Li et al. — Fourier Neural Operator",
+    "type": "Article · free"
    }
   ],
   "hands": [
-   "",
-   "",
-   "",
-   ""
+   "Read predictor-debugger's <code>DESIGN.md</code> (System and Debugger checks) and <code>pd/checks.py</code>. Explain in your own words why D1 catches P3a and D2 catches P3b.",
+   "With the kit in <code>round5/KIT.md</code> (step 1), generate an exact pair and three sabotaged ones (energy ×1.05, added gradient, shifted phase) and predict which check should flag each one BEFORE running. Use saved mode or a few pairs: the full recomputation takes hours.",
+   "Show with a synthetic example that a bootstrap over steps gives a narrower interval than a cluster bootstrap.",
+   "Recompute the Wilson interval for 27/29 and compare it with agent-eval-jev's 93.1 % (78–98 %)."
   ],
   "crit": [
-   "",
-   "",
-   "",
-   ""
+   "Your predictions for the three sabotaged variants are written before running, and they match the debugger or you explain why not.",
+   "You explain why D4 isn't one of the debugger's checks.",
+   "Your Wilson interval for 27/29 comes out to roughly 78–98 %.",
+   "Your conclusion “A is better than B” rests on intervals, not on the point estimate."
   ],
-  "deliver": "",
-  "mut": "",
-  "top": ""
+  "deliver": "D1/D2/D3 predictions with their verification + a cluster bootstrap demo + the recomputed Wilson interval.",
+  "mut": "Sabotage a pair (energy ×1.05) and predict which check flags it before running.",
+  "top": "You conclude in your own project whether “A is better than B” using cluster intervals."
  },
  "m26": {
-  "title": "",
-  "hours": "",
-  "mentor": "",
-  "kid": "",
+  "title": "Verifying a formal proof without being a mathematician — rebuilding, independent checkers and mutated statements",
+  "hours": "~6 h (plus 1–2 h of compute if you rebuild Lean)",
+  "mentor": "I'm not a mathematician and I don't review OpenAI's math. I review their Lean proofs the way I'd review any important deliverable: I rebuild them from source, re-verify them with independent tools, try to make the verification fail on purpose and leave every step with its command, its hash and its exit code. A formal verifier is a guard too, and it gets tested too.",
+  "kid": "The teacher checks that every sum in the homework is done right; you check something else: that the homework is the one that was assigned, that nobody brought it copied, and that the teacher really does give a bad grade when you change the question.",
   "obj": [
-   "",
-   "",
-   "",
-   "",
-   ""
+   "Name the four things Lean doesn't check and which step of the protocol covers each one.",
+   "Run <code>python3 verificar.py</code> and the six checks separately, and explain what each one recomputes and what it only verifies by hash.",
+   "Read a receipt (command, input and output hashes, exit code) and detect with a script a missing log, a swapped log and a receipt without an exit code.",
+   "Explain, using the <code>primes/defeq</code> case, why a Comparator rejection means “the statement changed”, not “it's false”.",
+   "Explain how 7 prebuilt dependencies were detected in a build that looked clean."
   ],
-  "pre": "",
+  "pre": "The pipelines module (exit codes, artifacts) and the preregistration and reproducibility module (hashes, receipts, fingerprints). Basic logic: ∀, ∃, ⇒. You don't need to know Lean for track A.",
   "theory": [
-   "",
-   "",
-   "",
-   "",
-   "",
-   "",
-   "",
-   "",
-   "",
-   ""
+   "<b>What Lean checks and what it doesn't.</b> Lean checks that every step of the proof is valid. It doesn't check how the proof was built, whether the verified statement is the intended one, whether it matches the problem as Clay wrote it, or whether the published evidence is what was actually produced (<code>README.es.md §El método</code>). Those four gaps are QA work.",
+   "<b>Rebuilding from source.</b> scientific-qa-evidence did five builds of OpenAI's proofs; the last two, B4 and B5, with <code>lake --no-cache build</code>: exit 0, 11,424 jobs, 1 h 29 min and 1 h 16 min, with every dependency built locally.",
+   "<b>Supply chain.</b> Build B3 looked clean and had silently received 7 prebuilt dependencies from Reservoir. The log didn't show it; what uncovered it was comparing the timestamps of the <code>.olean</code> files with the start of the build (<code>FINDINGS.md</code>, finding 1). That's why B4 exists.",
+   "<b>Independent checkers.</b> Comparator checks that the solution proves exactly the theorem in the challenge file and only uses the allowed axioms (<code>propext</code>, <code>Quot.sound</code>, <code>Classical.choice</code>), with two kernels: Lean's and nanoda. <code>leanchecker --fresh</code> checked from an empty environment, but it uses Lean's kernel, so it isn't a third implementation; <code>lean4lean</code> didn't build for Lean 4.34.",
+   "<b>Agreement between two kernels has a limit.</b> In July 2026, a bug in Lean and a different bug in nanoda let the same false proof through. Two kernels that accept say nothing about bugs nobody knows about yet (<code>README.es.md §Limitaciones conocidas</code>).",
+   "<b>Mutate the statement, never the proof.</b> Six one-symbol changes to the challenge were rejected with <code>Challenge and solution theorem statement do not match</code>, and a comment-only control was accepted. The control is what shows the verifier doesn't reject everything by default.",
+   "<b>Rejected doesn't mean false.</b> With three theorems Mathlib already proves, Comparator rejected all 8 changed statements, including 4 equivalent ones. Even <code>n + 1 ≤ p</code>, which for Lean is by definition the same as <code>n &lt; p</code>, was rejected. A <b>second route</b> in Lean classified each case: equivalent, weaker or false.",
+   "<b>The guard.</b> Any two true statements are “equivalent”, so an equivalence only counts if its proof doesn't use the theorem under test. The guard walked 1,485 constants and, on purpose, rejected a cheating proof that depended on <code>Nat.exists_infinite_primes</code>.",
+   "<b>Receipts versus hashes.</b> A receipt that names a missing log is caught by P6; an old log from another run with the right name passes P6. Only tying each receipt to the hash recorded when the step ran catches both. This is in-toto and SLSA practice, not a new technique, and it has its limit: it doesn't authenticate the origin if someone can change both the file and the recorded hash.",
+   "<b>Honest scope.</b> The repo doesn't prove anything new, doesn't claim any Millennium Prize result and isn't a mathematical review. It says “no defect was found within this scope”, not “it's certified”."
   ],
   "res": [
    {
-    "label": "",
-    "type": ""
+    "label": "Lab: criguex/scientific-qa-evidence",
+    "type": "Repo · public"
    },
    {
-    "label": "",
-    "type": ""
+    "label": "REPRODUCE.md — what gets recomputed and what gets verified by hash",
+    "type": "Docs · free"
    },
    {
-    "label": "",
-    "type": ""
+    "label": "mathlib-controls/DESIGN.md — preregistered controls",
+    "type": "Docs · free"
    },
    {
-    "label": "",
-    "type": ""
+    "label": "Independent reproduction guide (Linux, over 1 h)",
+    "type": "Docs · free"
    },
    {
-    "label": "",
-    "type": ""
+    "label": "leanprover/comparator",
+    "type": "Repo · free"
    },
    {
-    "label": "",
-    "type": ""
+    "label": "nanoda — second kernel",
+    "type": "Repo · free"
    },
    {
-    "label": "",
-    "type": ""
+    "label": "Theorem Proving in Lean 4",
+    "type": "Book · free"
    },
    {
-    "label": "",
-    "type": ""
+    "label": "in-toto — chain of custody for every step",
+    "type": "Docs · free"
    }
   ],
   "hands": [
-   "",
-   "",
-   "",
-   "",
-   "",
-   "",
-   "",
-   ""
+   "<b>Step 1 · The one-command check.</b> Just Python 3.9 or newer, no dependencies, in under a minute:<pre><code>git clone https://github.com/criguex/scientific-qa-evidence.git\ncd scientific-qa-evidence\npython3 verificar.py; echo \"exit=$?\"</code></pre>It must show all six checks as <code>[OK]</code>, “Resultado: las 6 comprobaciones salieron OK en tu computador.” (the script prints in Spanish: all 6 checks passed on your computer), a <code>Tu huella: XXXX-XXXX-XXXX</code> line with your fingerprint and <code>exit=0</code>. Compare your fingerprint with a classmate's on the same commit.",
+   "<b>Step 2 · The same checks, one by one</b> (they're in the README):<pre><code>shasum -a 256 -c evidence/SHA256SUMS.txt\npython3 evidence/verify_numerical.py\n(cd evidence/numerical/source &amp;&amp; python3 -m unittest test_runner)\npython3 evidence/test_consistency.py\npython3 experiments/mathlib-controls/verify.py\n(cd experiments/receipt-check &amp;&amp; python3 -m unittest test_results)</code></pre>",
+   "<b>Step 3 · Read a receipt.</b> <code>head -n 1 experiments/mathlib-controls/results/receipts.jsonl</code>. Find <code>command</code> (<code>lake env comparator QAControls/configs/PrimesOrig.json</code>), the SHA-256 of the three inputs, <code>stdout_sha256</code>, <code>stderr_sha256</code>, <code>exit_code</code>, <code>started</code> and <code>finished</code>.",
+   "<b>Step 4 · Read a mutant's real rejection.</b> <code>cat experiments/mathlib-controls/results/comparator/PrimesSwap.stdout.log</code> ends in <code>uncaught exception: Challenge and solution theorem statement do not match: 'QAControls.primes_infinite'</code>. It's the case with swapped quantifiers (<code>∃ p, ∀ n, n &lt; p ∧ p.Prime</code>), which was also refuted by the second route.",
+   "<b>Step 5 · Recompute the 11 classes.</b> <code>python3 experiments/mathlib-controls/verify.py</code> prints one row per case (for example <code>primes/defeq  REJECTED_STATEMENT  CHANGED_EQUIVALENT  OK</code>) and finishes with <code>PASS: 11 cases match the pre-registered classes; controls as registered.</code> Notice the last sentence: it checks the records against their receipts, it doesn't run Lean again.",
+   "<b>Step 6 (optional) · Rebuild.</b> If you have a powerful Linux machine and time, follow <code>docs/INDEPENDENT_REPRODUCTION.md</code>: the no-cache build takes over an hour. The report it asks for includes the source commit, <code>lean --version</code>, <code>lake --version</code>, the binaries' hashes and a table of steps with command, start, end and exit code. A different result gets published too.",
+   "<b>Verifiable exercise · Track A (no Lean, required).</b> For three steps of one of your CI pipelines, write a <code>recibos.jsonl</code> with command, SHA-256 of inputs, SHA-256 of stdout and stderr, exit code, start and end (the same format as step 3). Write <code>verificar_recibos.py</code>, which exits with 1 if a log is missing, if a log doesn't match its hash or if a receipt has no exit code; these are the same assertions as in <code>experiments/mathlib-controls/verify.py</code>. Test it with a clean copy and three seeded mutants: deleted log, old log with the right name and receipt without an exit code. Add a table of the 11 Mathlib cases with Comparator's verdict, the class and one sentence on why that rejection doesn't prove the statement is false.",
+   "<b>Track B (with Lean, for level 4 of the rubric).</b> Install Lean with elan and, using a simple statement from Lean core, write 4 mutants: at least one equivalent, one weaker and one false. Classify each one by a second route (equivalence proof, implication in one direction with a counterexample for the other, refutation). Run <code>#print axioms</code> on each proof and keep one receipt per run."
   ],
   "crit": [
-   "",
-   "",
-   "",
-   "",
-   ""
+   "<code>python3 verificar.py</code> gives six <code>[OK]</code> and exit 0; you write down the fingerprint with the commit and the operating system.",
+   "Your <code>verificar_recibos.py</code> exits with 0 on the clean copy and with 1 on each of the three seeded mutants; all four runs have their own receipt with an exit code.",
+   "The old log with the right name also comes out at 1: your check compares hashes, not just whether the file exists.",
+   "The table of the 11 cases matches <code>verify.py</code> and explains why <code>primes/defeq</code> is rejected even though it's the same thing by definition.",
+   "No sentence in your report says “the theorem is false” or “it's proven” based on a Comparator rejection or acceptance."
   ],
-  "deliver": "",
-  "mut": "",
-  "top": ""
+  "deliver": "recibos.jsonl + verificar_recibos.py with 1 control and 3 mutants + the table of the 11 Mathlib cases + (track B) 4 classified statement mutants.",
+  "mut": "Test the evidence verifier in a copy of the repo. Mutant 1: <code>cp experiments/mathlib-controls/results/comparator/PrimesOrig.stdout.log experiments/mathlib-controls/results/comparator/PrimesSwap.stdout.log</code> and run <code>python3 experiments/mathlib-controls/verify.py; echo \"exit=$?\"</code>: it must crash with <code>AssertionError: stdout hash mismatch: PrimesSwap</code> and a non-zero exit. Mutant 2: restore with <code>git checkout .</code> and, in <code>results/receipts.jsonl</code>, change the <code>exit_code</code> of the Comparator receipt for <code>PrimesSwap</code> from 1 to 0: <code>verify.py</code> exits with 1 and <code>verificar.py</code> flags <code>[FALLA]</code> on “Archivos intactos” (intact files) and on “Recibos de los controles Mathlib” (Mathlib control receipts), with a different fingerprint. If either one went green, the evidence guard would be asleep.",
+  "top": "You complete track B: 4 mutants of a Lean statement with their class proven by a second route, <code>#print axioms</code> without <code>sorryAx</code> and one receipt per run; and in a build of your own you show, by comparing the <code>.olean</code> timestamps with the start, whether there were prebuilt artifacts."
  },
  "m31": {
-  "title": "",
-  "hours": "",
-  "mentor": "",
-  "kid": "",
+  "title": "Blind testing with hash commitment — the tester must not know the traps",
+  "hours": "~6 h",
+  "mentor": "In rounds 1 to 4 of the debugger, I invented both the traps and the detective myself. That has a ceiling: without meaning to, you design traps your own check knows how to catch. Round 5 asks something else: does the debugger catch traps I didn't design, without flagging the correct predictions as bad? For that answer to count, whoever prepares the traps commits to the hash of their labels before handing me anything.",
+  "kid": "Before your friend checks the boxes, you write on a piece of paper which ones have a trap and keep it in a sealed envelope; at the end you open the envelope and everyone sees you didn't change anything.",
   "obj": [
-   "",
-   "",
-   "",
-   "",
-   ""
+   "Design a blind test with random ids, a secret proportion and salted labels.",
+   "Commit to the SHA-256 of the labels (or of a seed) before handing anything over, and verify it on reveal.",
+   "Freeze the decision rule and the thresholds before opening the traps.",
+   "Report false alarms, detected traps and escaped traps by type and size, including the ones below the detection floor.",
+   "Reproduce a real commitment: the blind-faults seed and the byte-for-byte assignment."
   ],
-  "pre": "",
+  "pre": "The preregistration and reproducibility module (hashes and fingerprints) and the mutant execution or WAR Paradigm module (mutants as data). Basic Python and <code>shasum</code>.",
   "theory": [
-   "",
-   "",
-   "",
-   "",
-   "",
-   "",
-   "",
-   "",
-   ""
+   "<b>The problem.</b> If whoever builds the check knows the traps, they can tune it to them without noticing. In round 5 of predictor-debugger someone else prepares the pairs, and “it's fair to read the debugger's code and aim just below its thresholds” (<code>round5/KIT.md</code>).",
+   "<b>Hash commitment.</b> Whoever prepares the traps computes <code>shasum -a 256 etiquetas.json</code> and sends <b>only that hash</b> before handing over anything else. At the end they reveal the file and anyone can check that the hash matches. If a single letter changed, it doesn't match.",
+   "<b>The salt.</b> <code>etiquetas.json</code> carries a <code>sal</code> field with 32 random hexadecimal characters. Without it, someone who knows the format could try possible labelings until they hit the hash; with it, the hash gives away nothing about the content.",
+   "<b>Public timestamp.</b> The hash is pushed to the repo in <code>round5/compromisos/&lt;usuario&gt;.txt</code>, and GitHub timestamps it before the pairs arrive; the original message serves as a backup, and it can also be posted in an issue.",
+   "<b>Nothing leaks the label.</b> At least 100 pairs, each as <code>pares/&lt;id&gt;.npz</code>, with random ids (<code>secrets.token_hex(4)</code>) unrelated to the label or the order. The proportion of correct pairs to traps is free and secret. The delivery comes with its list of hashes: <code>shasum -a 256 pares/*.npz &gt; pares.sha256</code>.",
+   "<b>The tester commits too.</b> Before opening the pairs, they preregister and push, with a timestamp, the decision rule and the frozen thresholds (step 6 of the kit). Then they run and publish the verdicts. Only then does <code>etiquetas.json</code> arrive.",
+   "<b>What gets reported.</b> False alarms on the correct pairs (0 is what's expected) and detected traps by type and size, including the ones it missed: “whatever falls below is reported as not detected, not hidden.” The debugger has a detection floor measured in round 3.",
+   "<b>Committing to a seed instead of labels.</b> In scientific-qa-evidence's blind-faults benchmark, the author generated the seed with <code>openssl rand -hex 16</code> outside the assistant's session and published only its SHA-256. Rule 2: whoever runs the checks doesn't read the seed or the key until all results are recorded; the repo admits the assistant had access to the disk, so that rule rests on the commitment. Rule 4: if the seed is lost or edited, the experiment is void.",
+   "<b>Blind doesn't mean perfect.</b> In that benchmark, the baseline flagged 3 of 21 cases and the protocol 15 of 21; afterwards, four rounds of review found 17 problems in the experiment itself, v1 was kept with an errata note and the result is presented as a regression benchmark, not as a real detection rate."
   ],
   "res": [
    {
-    "label": "",
-    "type": ""
+    "label": "Lab: predictor-debugger · round5/KIT.md",
+    "type": "Docs · free"
    },
    {
-    "label": "",
-    "type": ""
+    "label": "scientific-qa-evidence · SEED_COMMITMENT.md",
+    "type": "Docs · free"
    },
    {
-    "label": "",
-    "type": ""
+    "label": "blind-faults · RESULTS.md (reproducing the assignment)",
+    "type": "Docs · free"
    },
    {
-    "label": "",
-    "type": ""
+    "label": "Commitment scheme (concept)",
+    "type": "Article · free"
    },
    {
-    "label": "",
-    "type": ""
+    "label": "Python — hashlib",
+    "type": "Docs · free"
    }
   ],
   "hands": [
-   "",
-   "",
-   "",
-   "",
-   "",
-   ""
+   "<b>Step 1 · Verify a real commitment.</b><pre><code>git clone https://github.com/criguex/scientific-qa-evidence.git\ncd scientific-qa-evidence/experiments/blind-faults\nshasum -a 256 semilla-experimento.txt</code></pre>It must print <code>6ab9f825a6e0102f06589795a3f3afb81b954ec054362e7e0352018547614d5e</code>, the same hash published in <code>SEED_COMMITMENT.md</code> before any fault was assigned.",
+   "<b>Step 2 · Reproduce the assignment from the revealed seed</b> (recipe from <code>RESULTS.md</code>):<pre><code>mkdir /tmp/repro &amp;&amp; cp protocol_lib.py assign.py /tmp/repro/\n(cd /tmp/repro &amp;&amp; python3 assign.py --seed-file \"$OLDPWD/semilla-experimento.txt\" --out cases)\ndiff /tmp/repro/key.json key.json &amp;&amp; diff -r /tmp/repro/cases cases &amp;&amp; echo identical</code></pre>It must end in <code>identical</code>: the key and the 21 cases come out byte for byte from the seed.",
+   "<b>Step 3 · Set up a miniature round 5.</b> At the root of predictor-debugger (you need uv), save these three scripts. <code>preparar.py</code> uses the code from step 1 of the kit and builds 20 pairs: correct ones in float64 and in float32, and traps with energy ×1.05, energy ×1.0001 and noise. Person A:<pre><code>import json, secrets, sys\nfrom pathlib import Path\nimport numpy as np\nfrom pd import flow\nfrom pd.initial import random_field\nfrom pd.data import advance\n\ns = flow()\nout = Path(sys.argv[1]); (out / \"pares\").mkdir(parents=True, exist_ok=True)\ntrampas = {\n    \"correcto\": lambda u: u,\n    \"float32\": lambda u: u.astype(np.float32).astype(np.float64),\n    \"energia x1.05\": lambda u: 1.05 * u,\n    \"energia x1.0001\": lambda u: 1.0001 * u,\n    \"ruido 1e-3\": lambda u: u + 1e-3 * np.random.default_rng(secrets.randbits(32)).standard_normal(u.shape),\n}\netiquetas = {\"sal\": secrets.token_hex(16), \"pares\": {}}\nfor tipo, f in trampas.items():\n    for _ in range(4):\n        seed = 10001 + secrets.randbelow(10**6)\n        u0 = advance(s, random_field(s, seed, 3))\n        exacto = advance(s, u0)\n        u1 = f(exacto)\n        pid = secrets.token_hex(4)\n        np.savez(out / \"pares\" / f\"{pid}.npz\", u0=u0, u1=u1)\n        mag = float(np.linalg.norm(u1 - exacto) / np.linalg.norm(exacto))\n        etiqueta = \"correcto\" if tipo in (\"correcto\", \"float32\") else \"trampa\"\n        etiquetas[\"pares\"][pid] = {\"etiqueta\": etiqueta, \"tipo\": tipo, \"magnitud\": mag}\n(out / \"etiquetas.json\").write_text(json.dumps(etiquetas, indent=1))</code></pre><pre><code>uv run --locked python preparar.py ronda\nshasum -a 256 ronda/etiquetas.json &gt; compromiso.txt</code></pre>A commits and publishes only <code>compromiso.txt</code> and hands over the <code>ronda/pares/</code> folder; <code>etiquetas.json</code> stays on their machine.",
+   "<b>Step 4 · Person B reviews blind</b> with round 1's D1, D2 and D3 checks (<code>pd/checks.py</code>) and the frozen thresholds in <code>thresholds.json</code>. Before running, they commit <code>shasum -a 256 revisar.py thresholds.json</code> as their frozen rule.<pre><code>import json, sys\nfrom pathlib import Path\nimport numpy as np\nfrom pd import flow, ROOT\nfrom pd.checks import statistics, flags\nfrom pd.data import advance\n\ns = flow()\ntau = json.loads((ROOT / \"thresholds.json\").read_text())[\"thresholds\"]\nveredictos = {}\nfor f in sorted(Path(sys.argv[1]).glob(\"*.npz\")):\n    d = np.load(f)\n    st = statistics(s, d[\"u0\"], d[\"u1\"], advance(s, d[\"u0\"]))\n    fl = flags(st, tau)\n    veredictos[f.stem] = {\"marcado\": fl[\"any\"], \"por\": [c for c in (\"D1\", \"D2\", \"D3\") if fl[c]]}\nprint(json.dumps(veredictos, indent=1))</code></pre><pre><code>uv run --locked python revisar.py pares &gt; veredictos.json</code></pre>B commits <code>veredictos.json</code> before receiving anything else. This is round 1's debugger, not round 5's.",
+   "<b>Step 5 · Reveal.</b> A hands over <code>etiquetas.json</code> and B runs:<pre><code>import hashlib, json, sys\nfrom collections import Counter\nfrom pathlib import Path\n\netiquetas, compromiso, veredictos = (Path(p) for p in sys.argv[1:4])\nh = hashlib.sha256(etiquetas.read_bytes()).hexdigest()\nesperado = compromiso.read_text().split()[0]\nif h != esperado:\n    print(f\"el hash no coincide: {h} != {esperado}\")\n    sys.exit(1)\ne = json.loads(etiquetas.read_text())[\"pares\"]\nv = json.loads(veredictos.read_text())\ntabla = Counter()\nfor pid, x in e.items():\n    marcado = v[pid][\"marcado\"]\n    if x[\"etiqueta\"] == \"correcto\":\n        tabla[(x[\"tipo\"], \"falsa alarma\" if marcado else \"aceptado bien\")] += 1\n    else:\n        tabla[(x[\"tipo\"], \"detectada\" if marcado else \"escapó\")] += 1\nfor (tipo, res), n in sorted(tabla.items()):\n    print(f\"{tipo:&lt;18} {res:&lt;14} {n}\")</code></pre><pre><code>uv run --locked python revelar.py etiquetas.json compromiso.txt veredictos.json; echo \"exit=$?\"</code></pre>In a test run of this lab, the 8 correct pairs (float64 and float32) were accepted, ×1.05 and the noise were detected, and the 4 ×1.0001 pairs escaped: that's a trap below the floor, and it gets reported as escaped, not deleted. If you prepare pairs with a k₀ other than 3 or without prior steps, expect D2 false alarms on correct pairs: it's the same pattern that round 1's false-positive ledger left behind (step 0 of the trajectories with k₀ = 5).",
+   "<b>Verifiable exercise · Blind test in pairs.</b> Pick one of two options: the pairs from step 3, or 20 mutants of the golden flow in <code>war-paradigm/experiments/02-mutants</code> declared as data in <code>tests/scenarios.ts</code>. Person A prepares the traps with random ids and a secret proportion, writes <code>etiquetas.json</code> with a salt and publishes only the hash. Person B freezes their rule, runs and publishes the verdicts. A reveals, B verifies with <code>shasum -a 256</code> and publishes the table of false alarms, detected and escaped traps by type and size."
   ],
   "crit": [
-   "",
-   "",
-   "",
-   "",
-   "",
-   ""
+   "<code>git log</code> shows this order: A's commitment → B's frozen rule → B's verdicts → reveal.",
+   "<code>shasum -a 256 etiquetas.json</code> matches the committed hash.",
+   "Your <code>revelar.py</code> exits with 1 on an <code>etiquetas.json</code> where you changed a single word (you show it with its exit code).",
+   "The ids are random and their order is unrelated to the label.",
+   "The final table has false alarms, detected and escaped traps by type; no row was removed.",
+   "The report says what it doesn't prove: for example, that A and B know each other or that the thresholds are round 1's."
   ],
-  "deliver": "",
-  "mut": "",
-  "top": ""
+  "deliver": "compromiso.txt + frozen rule + veredictos.json + revealed etiquetas.json + a results table by type, all in their order in git log.",
+  "mut": "Attack the commitment. After publishing the hash, change a single label from <code>\"trampa\"</code> to <code>\"correcto\"</code> in <code>etiquetas.json</code> and run <code>revelar.py</code>: it must print <code>el hash no coincide: …</code> (the hash doesn't match) and exit with 1. Restore the file and change only the salt: it must fail too. If your reveal check passes in either case, the envelope wasn't sealed.",
+  "top": "You deliberately include at least one trap designed to land just below one of the check's thresholds, and the report shows it as escaped if that's what happened."
  },
  "m12": {
-  "title": "",
-  "hours": "",
-  "mentor": "",
-  "kid": "",
+  "title": "Capstone “WAR Audit” — an audit someone else reproduces in a clean environment",
+  "hours": "~20 h + defense",
+  "mentor": "This is where you bring it all together. You pick a system, preregister what you're going to claim, break its guards on purpose, let an AI assistant run things under rules that live in code, and you sign off. The real test isn't that it goes green for you: it's that someone else, on a clean machine and with only your package, runs one command and gets the same fingerprint. If they can't, the audit doesn't pass, even if everything works on your computer.",
+  "kid": "You're the inspector of the guards: you break things on purpose to see if they scream, a robot helps you but you sign, and at the end a friend repeats everything in a brand-new box and gets the same result.",
   "obj": [
-   "",
-   "",
-   "",
-   ""
+   "Integrate the three axes (AI-assisted QA, mutant execution and the WAR Paradigm) into an audit of a system you choose.",
+   "Deliver a package that someone else reproduces in a clean environment with a single command and the same fingerprint.",
+   "Test at least two different guards by breaking something on purpose, with a control that must pass and another that must fail.",
+   "Separate in the report what was measured, what wasn't executed, the limits and what would contradict you."
   ],
-  "pre": "",
+  "pre": "Pipelines, ephemeral containers, mutant execution, WAR Paradigm, AI-assisted QA I and II, and the preregistration and blind testing modules. If the system has AI: evaluating AI with a judge, calibration and agents.",
   "theory": [
-   "",
-   "",
-   "",
-   "",
-   "",
-   "",
-   "",
-   ""
+   "<b>The three axes in a single deliverable.</b> Axis A, AI-assisted QA: the assistant designs and runs, and a person signs off. Axis B, mutant execution: generate, run, classify and measure the kill rate. Axis C, WAR Paradigm: every suite, judge, hook or verifier is a guard, and the only way to know whether it's awake is to break something on purpose and see if it screams.",
+   "<b>Axis A · rules in code, not in prompts.</b> In war-paradigm 03, a Claude Code <code>PreToolUse</code> hook blocks with exit 2 any <code>git push</code> to <code>main</code> or <code>master</code>, and the barrier is tested WAR-style: 28 cases, chained commands included, try to sneak through.",
+   "<b>Axis A · a record of what the assistant did.</b> <code>scientific-qa-evidence/docs/CODEX_WORK_LOG.md</code> lists 19 sessions with their tool calls, commits and the SHA-256 of every session file, and it has a “What was not executed” section. Every commit names the agent with a <code>Co-Authored-By</code> trailer, and the person answers for every claim. The same log includes a blind double review: two judges (<code>jd_tts_a</code>, <code>jd_tts_b</code>) and a scoped fixer (<code>tts_safety_fix</code>).",
+   "<b>Axis B · mutants as data.</b> In war-paradigm 02, <code>tests/scenarios.ts</code> declares one contract per mutant, with a single change each, and the runner validates reset, login and the baseline before mutating. Only <code>KILLED</code> and <code>SURVIVED</code> count toward the score; <code>INCONCLUSIVE</code>, <code>INVALID_BASELINE</code> and <code>INFRA_ERROR</code> are shown but left out of the score. Published result: 5/6 killed and 1 survivor (self-grant), which is a real authorization bug. <code>MUTANT_LAB_STRICT=1</code> makes the run fail if anything survives.",
+   "<b>Axis C · the evidence gets tested too.</b> In receipt-check, a receipt naming a missing log and an old log with the right name left the published procedure's result unchanged; only the hash check caught both. Your package has to withstand the same attack.",
+   "<b>Reproducible from clean.</b> predictor-debugger's <code>verify</code> workflow runs on a fresh GitHub runner (<code>ubuntu-24.04</code>), installs with <code>uv run --locked</code> and requires the fingerprint with <code>grep -q \"fingerprint: …\"</code> for each saved machine. The <code>reproduce</code> workflow recomputes from the published data: round 1 took 6 min 33 s, download included.",
+   "<b>“Reproduced” is not “reproduced by a third party”.</b> scientific-qa-evidence's cloud rebuild was operated by an assistant under human direction, and its README states it: “It is not independent.” predictor-debugger's three machines belong to the author. In this capstone, the person who reproduces has to be someone else.",
+   "<b>Honest report.</b> “Measured”, “What this says and what it doesn't”, “Limits”, “What would contradict me” and “What was not executed”. Every number in the README comes from a command that can be run, with its exit code."
   ],
   "res": [
    {
-    "label": "",
-    "type": ""
+    "label": "Model: war-paradigm (mutants and hook)",
+    "type": "Repo · public"
    },
    {
-    "label": "",
-    "type": ""
+    "label": "Model: predictor-debugger (preregistration, fingerprints, CI)",
+    "type": "Repo · public"
    },
    {
-    "label": "",
-    "type": ""
+    "label": "Model: scientific-qa-evidence (receipts, AI log)",
+    "type": "Repo · public"
    },
    {
-    "label": "",
-    "type": ""
+    "label": "CODEX_WORK_LOG.md — what the agent did and didn't do",
+    "type": "Docs · free"
    },
    {
-    "label": "",
-    "type": ""
+    "label": "Independent reproduction template",
+    "type": "Docs · free"
    },
    {
-    "label": "",
-    "type": ""
+    "label": "in-toto — per-step receipts",
+    "type": "Docs · free"
    },
    {
-    "label": "",
-    "type": ""
+    "label": "Reproducible Builds",
+    "type": "Guide · free"
    }
   ],
   "hands": [
-   "",
-   "",
-   "",
-   "",
-   "",
-   ""
+   "<b>Step 1 · Run the two model pieces.</b> war-paradigm's mutants and hook (Node 20+ and git):<pre><code>git clone https://github.com/criguex/war-paradigm.git &amp;&amp; cd war-paradigm\nnpm ci &amp;&amp; npx playwright install --with-deps chromium\nnpm run demo:02\nnpm run test:strict -w experiments/02-mutants; echo \"exit=$?\"\nnpm run test:03 &amp;&amp; npm run demo:03</code></pre>The first run must end with <code>5/6 scored mutants killed · 1 survived · 0 excluded from score</code>; the second, with <code>exit=1</code>, because in strict mode (<code>MUTANT_LAB_STRICT=1</code>) the known survivor makes the run fail. <code>npm run demo:03</code> shows the hook blocking <code>git push origin main</code> with exit 2.",
+   "<b>Step 2 · Rehearse the clean reproduction.</b> Take a model repo and run its verification inside a container that's born and dies with the command:<pre><code>git clone https://github.com/criguex/scientific-qa-evidence.git sqe\ndocker run --rm -v \"$PWD/sqe\":/w -w /w python:3.12-slim python3 verificar.py; echo \"exit=$?\"</code></pre>In a run of this lab, the same commit gave the same fingerprint on macOS with Python 3.9 and in the <code>python:3.12-slim</code> container. That's the property your package needs.",
+   "<b>Step 3 · Build the package.</b> Minimum structure: <code>PREREGISTRO.md</code> · <code>thresholds.json</code> · the mutants as data (<code>scenarios.*</code>) · <code>ledger.jsonl</code> · <code>receipts.jsonl</code> · a <code>verify</code> that recomputes verdicts and prints a fingerprint · lockfile (<code>package-lock.json</code> or <code>uv.lock</code>) · <code>.github/workflows/verify.yml</code> with a <code>grep -q</code> on the fingerprint · <code>REPRODUCE.md</code> with a single command · <code>LOG-IA.md</code> with the assistant's sessions, their commands, exit codes, hashes and the “What was not executed” section · <code>README.md</code> with the honest report.",
+   "<b>Step 4 · The assistant runs, you sign.</b> Install your own hook (you can start from <code>hooks/block-push-to-main.sh</code> and its <code>.claude/settings.json</code>) with its attack suite. Let the assistant run the audit and log every step in <code>receipts.jsonl</code>. Review the diff before every merge and keep the <code>Co-Authored-By</code> trailer on its commits.",
+   "<b>Step 5 · Someone else's reproduction.</b> Give someone who didn't write the code only the repo URL. That person follows <code>REPRODUCE.md</code> in a clean environment (an ephemeral container or a fresh CI runner) and publishes a <code>REPRODUCCION-&lt;nombre&gt;.md</code> in the format of <code>docs/INDEPENDENT_REPRODUCTION.md</code>: who, UTC date, machine, commit, versions, a table of steps with command, start, end and exit code, the fingerprint and the differences. They publish it as is, even if it comes out different.",
+   "<b>Step 6 · Defense.</b> 30–45 minutes in front of someone who didn't write the code: every claim in the README is defended by running its command live."
   ],
   "crit": [
-   "",
-   "",
-   "",
-   "",
-   "",
-   "",
-   ""
+   "<code>git log --reverse</code> shows <code>PREREGISTRO.md</code> and <code>thresholds.json</code> before the first result.",
+   "Someone else ran <code>REPRODUCE.md</code> in a clean environment, with exit 0 and the same fingerprint, and their <code>REPRODUCCION-&lt;nombre&gt;.md</code> is in the repo unedited.",
+   "From the mutants JSON the kill rate can be recomputed as KILLED / (KILLED + SURVIVED); <code>INFRA_ERROR</code>, <code>INVALID_BASELINE</code> and <code>INCONCLUSIVE</code> stay out of the score and every <code>SURVIVED</code> is in the ledger with its cause.",
+   "The hook (or gate) has an attack suite that runs in CI and blocks at least one disguised command with a non-zero exit.",
+   "Two recorded runs show that verification fails if you change one byte of <code>thresholds.json</code> and if you replace a log with an old one of the same name.",
+   "The README has “Measured”, “What this says and what it doesn't”, “Limits”, “What would contradict me” and “What was not executed”, plus the statement on AI use.",
+   "All four rows of the integrated rubric are at least at level 3."
   ],
-  "deliver": "",
-  "mut": "",
+  "deliver": "A public repo with the WAR audit package + someone else's REPRODUCCION-&lt;nombre&gt;.md + a 30–45 min defense.",
+  "mut": "Before delivering, attack your own package the way receipt-check did: (1) delete a log that a receipt names; (2) replace another log with an old one of the same name; (3) change one byte of <code>thresholds.json</code>. Your <code>verify</code> must exit with a non-zero code in all three cases and with 0 on the clean package. If it only catches the missing log, your check behaves like P6, and that gets published as a finding.",
   "rubm": [
    {
-    "row": "",
+    "row": "AI-assisted QA",
     "levels": [
-     "",
-     "",
-     "",
-     ""
+     "The assistant ran without a log, or the rules live only in the prompt.",
+     "There's a session log, but commands, exit codes or hashes are missing, or the hook has no attack suite.",
+     "A hook or gate with an attack suite in CI (exit 0); <code>receipts.jsonl</code> with every command, exit code and SHA-256; the diff reviewed by a person and a <code>Co-Authored-By</code> trailer on the assistant's commits.",
+     "On top of that, a blind double review (two reviewers who can't see each other's work and a scoped fixer) and a “What was not executed” section."
     ]
    },
    {
-    "row": "",
+    "row": "Mutant execution",
     "levels": [
-     "",
-     "",
-     "",
-     ""
+     "No mutants or no baseline.",
+     "There are mutants, but the kill rate counts infrastructure or baseline failures, or the ledger is missing.",
+     "At least 6 mutants as data, with one change each; a valid baseline; a kill rate that can be recomputed from the JSON; every SURVIVED in the ledger with its cause; a strict mode that fails on the survivor.",
+     "On top of that, the ledger prioritizes the next run and there's a blind round with a hash commitment verified with <code>shasum -a 256</code>."
     ]
    },
    {
-    "row": "",
+    "row": "WAR Paradigm",
     "levels": [
-     "",
-     "",
-     "",
-     ""
+     "Only the product is tested, never the guards.",
+     "A single guard is tested (the suite or the judge).",
+     "At least two different guards are tested (suite, judge, hook, gate or evidence verifier), each with a control that must pass and another that must fail, with its command and exit code.",
+     "On top of that, a guard that failed (a survivor or a false green) is published, along with what changed afterwards, without moving thresholds."
     ]
    },
    {
-    "row": "",
+    "row": "Evidence and reproduction",
     "levels": [
-     "",
-     "",
-     "",
-     ""
+     "Claims without a command that produces them.",
+     "Partial evidence, preregistration after the data or a fingerprint that differs between environments.",
+     "Preregistration before the data; a lockfile and <code>--locked</code> or <code>npm ci</code>; the same fingerprint in CI and on your machine; someone else reproduces in a clean environment with exit 0 and the same fingerprint; a README with Limits and What would contradict me.",
+     "On top of that, the person reproducing has no connection to the project, uses another operating system and their report is published as is, with the differences they found."
     ]
    }
   ]
  },
  "m13": {
-  "title": "",
-  "hours": "",
-  "mentor": "",
-  "kid": "",
+  "title": "Your QA+AI career — positioning",
+  "hours": "~4 h",
+  "mentor": "The wrap-up. The role moves up in altitude: from writing tests to designing strategy and supervising AI-generated tests. Tell people what sets you apart — your portfolio project is the proof.",
+  "kid": "Telling people what you can do is like showing your best drawing: you don't say “I draw well”, you show it.",
   "obj": [
-   "",
-   "",
-   ""
+   "Explain in 2 minutes what sets you apart, with a project that proves it.",
+   "Escalate a contract mismatch with evidence.",
+   "Show your numbers (kill rate, kappa, fingerprint) next to the command that produces them."
   ],
-  "pre": "",
+  "pre": "Final project.",
   "theory": [
-   "",
-   "",
-   "",
-   ""
+   "The new profile: from manual QA → Quality Engineering → “AI QA Engineer”.",
+   "Agentic testing: assistants (Claude Code, Codex) that design, run and audit tests; MCP to connect them to your tools. The sign-off is still human.",
+   "Communicating findings to stakeholders: “automation is the detector, not the reason; the beneficiary is the consumer.”",
+   "How to escalate a contract mismatch with evidence (cURL + response), without “change the service so my test passes.”"
   ],
   "res": [
    {
-    "label": "",
-    "type": ""
+    "label": "Model Context Protocol (MCP)",
+    "type": "Docs · free"
    },
    {
-    "label": "",
-    "type": ""
+    "label": "Test Automation University (stay up to date)",
+    "type": "Course · free"
    }
   ],
   "hands": [
-   "",
-   ""
+   "Put together your 2-minute pitch: what makes you an augmented QA and which project proves it.",
+   "Write up how you'd report a contract mismatch to a stakeholder, with evidence."
   ],
   "crit": [
-   "",
-   "",
-   ""
+   "The pitch lasts 2 minutes or less and cites one of your projects with a link.",
+   "The finding report includes curl + response and the impact on the consumer.",
+   "Every number in the pitch comes from a command that can be run."
   ],
-  "deliver": "",
-  "mut": "",
-  "top": ""
+  "deliver": "A positioning pitch + an example of a finding report to a stakeholder.",
+  "mut": "Your measurable edge: your suite's kill rate, your judge's agreement with human labels, reproducible fingerprints. Numbers that come out of a command, not out of an adjective.",
+  "top": "Your portfolio repo has a bilingual README with limits and an animation generated from a real log."
  }
 }

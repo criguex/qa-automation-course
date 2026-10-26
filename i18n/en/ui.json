@@ -1,97 +1,97 @@
 {
  "progress": {
-  "label": "",
-  "pdf": "",
-  "reset": ""
+  "label": "Your progress",
+  "pdf": "🖨️ PDF",
+  "reset": "↺ Reset"
  },
  "nav": {
-  "map": "",
-  "position": ""
+  "map": "🗺️ Course map",
+  "position": "Module {i} of {n}"
  },
  "week": {
-  "one": "",
-  "range": "",
-  "closing": ""
+  "one": "Week {a}",
+  "range": "Weeks {a}–{b}",
+  "closing": "Wrap-up"
  },
  "node": {
-  "module": ""
+  "module": "MODULE {n}"
  },
  "module": {
-  "level": "",
-  "mentor": "",
-  "kid": "",
-  "goals": "",
-  "pre": "",
-  "theory": "",
-  "resources": "",
-  "lab": "",
-  "criteria": "",
-  "deliver": "",
-  "mutation": "",
-  "evalTitle": "",
-  "evalNote": ""
+  "level": "level",
+  "mentor": "Note from Cristian",
+  "kid": "🧒 <b>Explained like you're 8:</b>",
+  "goals": "🎯 By the end you can…",
+  "pre": "🧩 Prerequisites",
+  "theory": "📓 Theory",
+  "resources": "🔗 Resources — free courses · docs · repos",
+  "lab": "🧪 Lab and hands-on challenge",
+  "criteria": "✅ Pass criteria (verifiable)",
+  "deliver": "<b>Deliverable:</b>",
+  "mutation": "🧬 Mutation of the week (WAR)",
+  "evalTitle": "📏 How you're assessed",
+  "evalNote": "You pass the module with two things: the <b>quiz</b> ({qn} random questions from a bank of {bank}; at least {min} correct) and the <b>challenge</b> at level 3 of the rubric."
  },
  "rubric": {
-  "axis": "",
+  "axis": "Axis",
   "levels": [
-   "",
-   "",
-   "",
-   ""
+   "1 · Not met",
+   "2 · Getting there",
+   "3 · Pass",
+   "4 · Outstanding"
   ],
   "generic": [
-   "",
-   "",
-   "",
-   ""
+   "The deliverable is missing or doesn't run.",
+   "It runs, but fails at least one pass criterion.",
+   "Meets every pass criterion.",
+   "Meets everything, plus: {top}"
   ],
-  "allRows": ""
+  "allRows": "Pass = all four rows at level 3 or higher."
  },
  "quiz": {
-  "exam": "",
-  "module": "",
-  "oneAnswer": "",
-  "examPass": "",
-  "examFail": "",
-  "examPassSub": "",
-  "examFailSub": "",
-  "modPass": "",
-  "modFail": "",
-  "modPassSub": "",
-  "modFailSub": "",
-  "retry": "",
-  "why": "",
-  "next": "",
-  "result": "",
-  "correct": "",
-  "wrong": "",
-  "best": "",
-  "bestPass": "",
-  "bestFail": "",
-  "examBadgePass": "",
-  "examBadge": ""
+  "exam": "🎓 Final exam",
+  "module": "🧠 Module challenge",
+  "oneAnswer": "one answer per question",
+  "examPass": "🎓 PASSED",
+  "examFail": "📚 Not yet — you need 80%",
+  "examPassSub": "You made it through the whole method. This score is saved.",
+  "examFailSub": "Review the modules where you missed and come back — the options are shuffled on every attempt.",
+  "modPass": "✅ Quiz passed",
+  "modFail": "📚 Not yet",
+  "modPassSub": "To pass the module you still need the hands-on challenge at level 3 of the rubric.",
+  "modFailSub": "You need {min} of {n}. Review the theory and try again: you'll get different questions from the bank.",
+  "retry": "↺ Try again",
+  "why": "💡 <b>Why:</b>",
+  "next": "Next →",
+  "result": "See result →",
+  "correct": "✓ Correct. ",
+  "wrong": "✗ Incorrect. ",
+  "best": "Your best quiz: {ok}/{n} ",
+  "bestPass": "✓ passed",
+  "bestFail": "(not yet)",
+  "examBadgePass": "🎓 Passed — best score: {x}%",
+  "examBadge": "Best score: {x}% (target: 80%)"
  },
  "glossary": {
-  "empty": ""
+  "empty": "No results."
  },
  "auth": {
-  "signIn": "",
-  "signOut": "",
-  "user": "",
-  "noFirebase": "",
-  "merged": "",
-  "loadFail": "",
-  "saveFail": "",
-  "unauthorizedDomain": "",
-  "popupClosed": "",
-  "popupBlocked": "",
-  "other": ""
+  "signIn": "🔓 Sign in with Google",
+  "signOut": "Sign out",
+  "user": "user",
+  "noFirebase": "Sign-in isn't available because Firebase didn't load. Your progress is saved in this browser.",
+  "merged": "Signed in. Your progress from this browser and from your account have been merged.",
+  "loadFail": "Couldn't read your progress from the cloud ({code}). Using the one in this browser.",
+  "saveFail": "Couldn't save your progress to the cloud ({code}). It's still saved in this browser.",
+  "unauthorizedDomain": "This site ({host}) isn't authorized for Google sign-in yet. The course admin needs to add it in Firebase → Authentication → Settings → Authorized domains. Meanwhile you can browse the course without an account and your progress is saved in this browser.",
+  "popupClosed": "You closed the Google window before finishing. You can try again.",
+  "popupBlocked": "The browser blocked the Google window. Allow pop-ups for this site and try again.",
+  "other": "Couldn't sign in ({code}). Your progress is still saved in this browser."
  },
  "levels": {
-  "n1": "",
-  "n2": "",
-  "n3": "",
-  "n4": "",
-  "cap": ""
+  "n1": "Level 1 · Foundations",
+  "n2": "Level 2 · Intermediate",
+  "n3": "Level 3 · Advanced AI-QA",
+  "n4": "Level 4 · Scientific QA",
+  "cap": "Wrap-up · final project"
  }
 }

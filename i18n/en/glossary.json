@@ -1,190 +1,190 @@
 [
  {
-  "term": "",
-  "def": ""
+  "term": "HU (user story)",
+  "def": "User story: the unit of work or requirement in agile trackers (Jira, Azure DevOps, GitLab…). The course keeps the Spanish abbreviation HU."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "Certify",
+  "def": "Show, with evidence and traceability, that a user story has been tested. The sign-off is human."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "Defect",
+  "def": "A gap between the product and what was expected or contracted. You report it; you don't hide it."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "Regression",
+  "def": "Re-testing what already exists to make sure nothing broke."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "Flakiness",
+  "def": "A test that sometimes passes and sometimes fails without any code change (selector/timing)."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "Canonical form",
+  "def": "The one agreed way the team writes features and steps."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "Gherkin",
+  "def": "Given/When/Then language for describing behavior."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "Cucumber",
+  "def": "Framework that wires Gherkin to code (steps)."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "Step definition",
+  "def": "Code that implements each Given/When/Then step."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "Contract testing",
+  "def": "Checking that a service honors its contract (API schema)."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "POM",
+  "def": "Page Object Model: wraps one screen's selectors and actions in a class."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "Test management system (TMS)",
+  "def": "Test management: links requirements, cases and runs. Examples: Xray, Zephyr, TestRail, qTest. Every company uses its own; the concept is the same."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "Allure",
+  "def": "Reports with browsable evidence; single-file = easy to attach."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "Traceability",
+  "def": "The chain of links user story ↔ test ↔ run ↔ code."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "Claude Code",
+  "def": "The “director” AI: reasons with context, plans, keeps the method on track."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "Copilot",
+  "def": "The “executor” AI: writes code right next to the repo, in the IDE."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "CLAUDE.md",
+  "def": "Instructions the AI always loads in a project."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "Prompt pack",
+  "def": "A reusable prompt template for a recurring task."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "Subagent",
+  "def": "An AI agent launched for a subtask (broad search, independent perspective)."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "MCP",
+  "def": "Model Context Protocol: lets the AI talk to external tools (Jira, email)."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "Hook",
+  "def": "An automatic action fired by an event. In AI assistants, a hook that exits with code 2 blocks the action: that's where the non-negotiable rules live."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "@IGNORE",
+  "def": "Tag that excludes a known issue from the run without masking the contract."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "Scenario traceability",
+  "def": "The link between an automated scenario and its case in the test management system. The mechanism (tag, ID, annotation) depends on the tool."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "Known issue",
+  "def": "A pending gap owned by a third party or dependency; the ticket stays Open and doesn't close the user story."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "Shift-left",
+  "def": "Getting involved in design and quality early, not at the end."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "Risk-based testing",
+  "def": "Prioritizing tests by risk = likelihood × impact."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "Mutant",
+  "def": "A copy of the system with exactly one thing broken on purpose, to see whether the tests notice."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "KILLED / SURVIVED",
+  "def": "KILLED: the tests caught the mutant. SURVIVED: they missed it (a real bug or a blind spot)."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "Baseline",
+  "def": "The unmutated run. It must pass first and doesn't count toward the score."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "Kill rate",
+  "def": "KILLED / (KILLED + SURVIVED). Measures how sharp the suite is, not how good the software is."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "Ledger",
+  "def": "A log of survivors, discrepancies and false positives, with cause, owner and next step."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "WAR Paradigm",
+  "def": "“Test the tester, mutate reality”: break the world on purpose to measure whether the guardian (suite, oracle, judge, hook) notices."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "False green",
+  "def": "A ✓ that should have been a ✗: the answer looks right but is wrong."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "LLM as a judge",
+  "def": "A model that grades answers against a rubric or a reference, with a threshold written down beforehand."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "Golden set",
+  "def": "Reference cases labeled by people using a rubric; the judge is measured against them."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "Cohen's kappa",
+  "def": "Agreement between two raters corrected for chance: 1 is perfect agreement, 0 is what chance alone would give."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "Held-out",
+  "def": "Cases the tuning never saw; that's where you report the honest number."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "Pre-registration",
+  "def": "Hypotheses and thresholds committed before the data is generated."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "Fingerprint",
+  "def": "A short code that summarizes a run's verdicts; if it matches on another machine, the verdicts match."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "Exit code",
+  "def": "The number a command ends with: 0 is success and anything else is failure. It's the minimum evidence a CI understands."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "Impact-based selection",
+  "def": "Running only the tests a change can affect, with the full suite as a safety net."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "Required status check",
+  "def": "A check the protected branch requires to be green before allowing a merge. Without it, a red check blocks nothing."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "Artifact",
+  "def": "A file the pipeline uploads so it outlives the runner: reports, logs, hashes. The cache, by contrast, can disappear."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "Ephemeral container",
+  "def": "An environment born for one task that dies when it ends: whatever you didn't export as an artifact or receipt is lost."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "Idempotent checkpoint",
+  "def": "A checkpoint you can resume from without repeating or duplicating work, verified by hash."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "Digest",
+  "def": "Content identifier of an image (@sha256:…). Unlike a tag, it always points to the same image."
  },
  {
-  "term": "",
-  "def": ""
+  "term": "Fail-safe",
+  "def": "When in doubt, or when a tool fails, do the conservative thing: run everything or mark unknown."
  }
 ]
