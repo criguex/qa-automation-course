@@ -12,7 +12,7 @@
   </g>
   <g font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" fill="#F4F7F5">
     <text x="48" y="56" font-size="28" font-weight="700">How one module works</text>
-    <text x="48" y="84" font-size="15" fill="#ABC0C8">Same structure in all 31 modules. Everything is checked in your browser; nothing is sent anywhere.</text>
+    <text x="48" y="84" font-size="15" fill="#ABC0C8">Same structure in all 35 modules. Everything is checked in your browser; nothing is sent anywhere.</text>
 
     <g font-size="14">
       <rect x="48" y="124" width="170" height="104" rx="12" fill="#0D2638" stroke="#214456" stroke-width="1.5"/>
@@ -72,7 +72,7 @@
 
     <g font-size="14">
       <rect x="48" y="450" width="1184" height="56" rx="12" fill="#0D2638" stroke="#214456" stroke-width="1.5"/>
-      <text x="68" y="484"><tspan font-weight="700">31 modules · 4 levels</tspan><tspan fill="#ABC0C8">  →  final exam: 26 questions, pass at 80 %  →  final project: integrated rubric (AI-assisted QA · mutant execution · WAR Paradigm)</tspan></text>
+      <text x="68" y="484"><tspan font-weight="700">35 modules · 4 levels</tspan><tspan fill="#ABC0C8">  →  final exam: 26 questions, pass at 80 %  →  final project: integrated rubric (AI-assisted QA · mutant execution · WAR Paradigm)</tspan></text>
     </g>
     <text x="1232" y="84" font-size="13" font-weight="600" fill="#55DFBD" text-anchor="end">Cristian Guerra · QA · Medellín</text>
   </g>

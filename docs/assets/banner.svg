@@ -21,8 +21,8 @@
   <circle cx="760" cy="88" r="5" fill="#214456"/><circle cx="778" cy="88" r="5" fill="#214456"/><circle cx="796" cy="88" r="5" fill="#214456"/>
   <g font-family="Menlo,Consolas,monospace" font-size="15">
     <text x="760" y="132" fill="#F4F7F5">$ node scripts/check-course.mjs</text>
-    <text x="760" y="164" fill="#ABC0C8">31 modules · 4 levels + final project</text>
-    <text x="760" y="192" fill="#55DFBD">319 quiz questions · 0 problems</text>
+    <text x="760" y="164" fill="#ABC0C8">35 modules · 4 levels + final project</text>
+    <text x="760" y="192" fill="#55DFBD">429 quiz questions · 0 problems</text>
     <text x="760" y="228" fill="#8FA6B0"># exit 0 · pages.yml runs it before deploy</text>
   </g>
 </svg>

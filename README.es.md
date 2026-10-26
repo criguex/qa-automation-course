@@ -8,7 +8,7 @@ Este es un curso que enseña a revisar que los programas de computador funcionen
 
 **Un ejemplo real de este repo**
 
-- **Imagina** que el curso tiene 319 preguntas de quiz y cada una dice cuál es la respuesta buena.
+- **Imagina** que el curso tiene 429 preguntas de quiz y cada una dice cuál es la respuesta buena.
 - **Qué pasa:** dañamos una pregunta a propósito. Tiene 4 respuestas y dijimos que la buena era la número 9, que no existe.
 - **Qué hace el proyecto:** un robot revisor, `scripts/check-course.mjs`, lee todas las preguntas. Encontró la dañada, dijo “1 problema” y terminó con código de salida 1. El workflow de Pages corre ese robot antes de publicar, así que un quiz dañado no sale.
 - **Qué ganamos:** sabemos que el robot está despierto, porque lo vimos atrapar un error que pusimos nosotros.
@@ -28,7 +28,7 @@ Este es un curso que enseña a revisar que los programas de computador funcionen
 
 <p>
   <img src="https://img.shields.io/badge/curso-en_español-55DFBD?style=flat-square&labelColor=071B2B" alt="Curso en español"/>
-  <img src="https://img.shields.io/badge/módulos-31_·_4_niveles-55DFBD?style=flat-square&labelColor=071B2B" alt="31 módulos en 4 niveles"/>
+  <img src="https://img.shields.io/badge/módulos-35_·_4_niveles-55DFBD?style=flat-square&labelColor=071B2B" alt="35 módulos en 4 niveles"/>
   <img src="https://img.shields.io/badge/HTML-sitio_estático-E34F26?style=flat-square&logo=html5&logoColor=white" alt="HTML estático"/>
   <img src="https://img.shields.io/badge/Playwright-2EAD33?style=flat-square&logo=playwright&logoColor=white" alt="Playwright"/>
   <img src="https://img.shields.io/badge/código-MIT-55DFBD?style=flat-square&labelColor=071B2B" alt="Código: MIT"/>
@@ -37,7 +37,7 @@ Este es un curso que enseña a revisar que los programas de computador funcionen
 
 ## Qué es
 
-Un curso gratis e interactivo que te lleva de lo básico de QA al trabajo que hago hoy: QA asistida por IA con una persona que firma, ejecución de mutantes, evaluación de LLM y agentes, pipelines y contenedores efímeros, y QA científico (prerregistro, huellas, reproducibilidad). Es una sola página estática, sin build ni servidor. El hilo de todo es el WAR Paradigm: **prueba al que prueba, muta la realidad**. Cada módulo termina con una “mutación de la semana”, en la que dañas a propósito tu propio chequeo y muestras que lo nota.
+Un curso gratis e interactivo que te lleva de lo básico de QA al trabajo que hago hoy: QA asistida por IA con una persona que firma, ejecución de mutantes, evaluación de LLM y agentes, pipelines y contenedores efímeros, y QA científico (prerregistro, huellas, reproducibilidad). Es una sola página estática, sin build ni servidor. Tiene 35 módulos en cuatro niveles (fundamentos, intermedio, AI-QA avanzado y QA científico) y un proyecto final. El hilo de todo es el WAR Paradigm: **prueba al que prueba, muta la realidad**. Cada módulo termina con una “mutación de la semana”, en la que dañas a propósito tu propio chequeo y muestras que lo nota.
 
 ## Cómo funciona
 
@@ -49,10 +49,10 @@ Todos los módulos tienen las mismas partes:
 - **Teoría corta y un laboratorio.** En los módulos nuevos, el laboratorio es uno de mis repos públicos.
 - **Un quiz autocorregible:** 8 preguntas al azar del banco del módulo, una respuesta por pregunta y la explicación después de cada respuesta. Apruebas con 6 de 8. Cada intento saca otras preguntas.
 - **Un reto con criterios de aprobación verificables** con un comando o una captura, por ejemplo “tu suite mata al menos 5 de 6 mutantes y el reporte JSON trae hashes” o “tu juez tiene un kappa ≥ 0,6 contra tus etiquetas”.
-- **Una rúbrica de 4 niveles** (no cumple · en camino · aprobado · sobresaliente).
+- **Una rúbrica de 4 niveles** (no cumple · en camino · aprobado · sobresaliente). Los módulos más nuevos usan una rúbrica de cuatro filas, una por habilidad, y aprobar es tener todas las filas en el nivel 3.
 - **Una línea “explicado para un niño de 8 años”** y la **mutación de la semana**.
 
-Un módulo queda aprobado con el quiz en 6/8 o más y el reto en el nivel 3 de la rúbrica. El examen final tiene 26 preguntas y pide 80 %. El proyecto final, una auditoría WAR de un sistema real, tiene una rúbrica integrada de los tres ejes. Las reglas completas están en la página [Cómo te evalúas](evaluacion.html).
+Un módulo queda aprobado con el quiz en 6/8 o más y el reto en el nivel 3 de la rúbrica. El examen final tiene 26 preguntas y pide 80 %. El capstone, una auditoría WAR de un sistema real, tiene una rúbrica integrada de los tres ejes, y solo se aprueba cuando otra persona reproduce tu paquete en un entorno limpio y obtiene la misma huella. Las reglas completas están en la página [Cómo te evalúas](evaluacion.html).
 
 Una corrida real del sitio, grabada con Playwright: abrir un módulo, responder una pregunta bien y otra mal, terminar el quiz, marcar el entregable y ver el nodo en verde en el mapa.
 
@@ -62,43 +62,51 @@ Una corrida real del sitio, grabada con Playwright: abrir un módulo, responder 
 
 ## La ruta
 
-![Mapa de la ruta: 31 módulos en cuatro niveles (fundamentos, intermedio, AI-QA avanzado y QA científico), luego el proyecto final y la carrera](docs/assets/route-map.svg)
+![Ruta completa: 35 módulos en cuatro niveles (fundamentos, intermedio, AI-QA avanzado y QA científico), luego el capstone y la carrera](docs/assets/route-map.svg)
 
 | # | Nivel | Módulo | Repos de laboratorio |
 |---|---|---|---|
-| 1 | Nivel 1 · Fundamentos | Mentalidad QA — de Dev a Tester | [war-paradigm](https://github.com/criguex/war-paradigm) |
-| 2 |  | Diseño de pruebas & técnicas | — |
-| 3 |  | Setup día 0 — el entorno | — |
-| 4 |  | Obsidian — tu segundo cerebro (Fase 0 del método) | — |
-| 5 |  | TypeScript para QA | — |
-| 6 |  | Playwright + TypeScript E2E — framework desde cero | — |
-| 7 |  | API & Contract Testing — tu especialidad futura | [restful-booker-quality-suite](https://github.com/criguex/restful-booker-quality-suite), [civica-playwright-challenge](https://github.com/criguex/civica-playwright-challenge) |
-| 8 |  | BDD — Gherkin, Cucumber & Serenity | — |
-| 9 |  | Ejecución disciplinada — ciclos, test data & known issues | — |
-| 10 | Nivel 2 · Intermedio | Reportes & Trazabilidad — evidencia que se puede firmar | — |
-| 11 |  | Sign-off / Certificación de una historia — el cierre del método | — |
-| 12 |  | CI/CD & Docker | — |
-| 13 |  | Pipelines — anatomía, gates de calidad y pipelines de evidencia | [civica-playwright-challenge](https://github.com/criguex/civica-playwright-challenge), [qa-eval-lab](https://github.com/criguex/qa-eval-lab), [restful-booker-quality-suite](https://github.com/criguex/restful-booker-quality-suite), [predictor-debugger](https://github.com/criguex/predictor-debugger) |
-| 14 |  | Contenedores efímeros — que la evidencia sobreviva al entorno | [predictor-debugger](https://github.com/criguex/predictor-debugger) |
-| 15 |  | Performance & Cloud (K6 · JMeter · AWS) | — |
-| 16 |  | Determinismo — mocks, record/replay y fixtures indexados por hash | [playwright-jev](https://github.com/criguex/playwright-jev), [civica-playwright-challenge](https://github.com/criguex/civica-playwright-challenge) |
-| 17 |  | QA Aumentado con IA — mi diferenciador | — |
-| 18 |  | QA asistida por IA I — el asistente prueba, la persona firma | [war-paradigm](https://github.com/criguex/war-paradigm) |
-| 19 |  | Mutation testing — prueba al que prueba (WAR Paradigm) | [war-paradigm](https://github.com/criguex/war-paradigm), [scientific-qa-evidence](https://github.com/criguex/scientific-qa-evidence) |
-| 20 |  | Mutantes que aprenden — ledger, priorización y mutantes que miden al auditor | [civica-playwright-challenge](https://github.com/criguex/civica-playwright-challenge) |
-| 21 |  | Triaje de fallos en CI y selección de pruebas por impacto | [jev-ci-triage](https://github.com/criguex/jev-ci-triage), [jev-test-impact](https://github.com/criguex/jev-test-impact) |
-| 22 | Nivel 3 · AI-QA avanzado | Evaluar IA con un LLM como juez — atrapar el falso verde | [qa-eval-lab](https://github.com/criguex/qa-eval-lab) |
-| 23 |  | Evaluar agentes de IA — chequeos de código + juez calibrado | [agent-eval-jev](https://github.com/criguex/agent-eval-jev) |
-| 24 |  | Jueces con probabilidad — modos de falla, estabilidad y cascadas | [war-paradigm](https://github.com/criguex/war-paradigm), [laya-server](https://github.com/criguex/laya-server), [playwright-jev](https://github.com/criguex/playwright-jev), [jev-ci-triage](https://github.com/criguex/jev-ci-triage) |
-| 25 |  | QA asistida por IA II — agentes que ejecutan, una persona que firma y un reporte honesto | [scientific-qa-evidence](https://github.com/criguex/scientific-qa-evidence) |
-| 26 | Nivel 4 · QA científico | Reproducibilidad y prerregistro — umbrales antes de los datos | [predictor-debugger](https://github.com/criguex/predictor-debugger) |
-| 27 |  | Controles, arnés y mutación numérica — contrato congelado y oráculo independiente | [scientific-qa-evidence](https://github.com/criguex/scientific-qa-evidence), [war-paradigm](https://github.com/criguex/war-paradigm) |
-| 28 |  | Física de fluidos y estadística para el depurador | [predictor-debugger](https://github.com/criguex/predictor-debugger) |
-| 29 |  | Verificación formal con Lean y pruebas a ciegas con compromiso por hash | [scientific-qa-evidence](https://github.com/criguex/scientific-qa-evidence), [predictor-debugger](https://github.com/criguex/predictor-debugger) |
-| 30 | Cierre · proyecto final | Proyecto final — auditoría WAR de un sistema real | [war-paradigm](https://github.com/criguex/war-paradigm), [predictor-debugger](https://github.com/criguex/predictor-debugger), [agent-eval-jev](https://github.com/criguex/agent-eval-jev) |
-| 31 |  | Tu carrera QA+IA — posicionamiento | — |
+| 01 | Nivel 1 · Fundamentos | Mentalidad QA — de Dev a Tester | [war-paradigm](https://github.com/criguex/war-paradigm) |
+| 02 |  | WAR Paradigm — probar al que prueba, mutar la realidad | [war-paradigm](https://github.com/criguex/war-paradigm), [scientific-qa-evidence](https://github.com/criguex/scientific-qa-evidence) |
+| 03 |  | Diseño de pruebas & técnicas | — |
+| 04 |  | Setup día 0 — el entorno | — |
+| 05 |  | Obsidian — tu segundo cerebro (Fase 0 del método) | — |
+| 06 |  | TypeScript para QA | — |
+| 07 |  | Playwright + TypeScript E2E — framework desde cero | — |
+| 08 |  | API & Contract Testing — tu especialidad futura | [restful-booker-quality-suite](https://github.com/criguex/restful-booker-quality-suite), [civica-playwright-challenge](https://github.com/criguex/civica-playwright-challenge) |
+| 09 |  | BDD — Gherkin, Cucumber & Serenity | — |
+| 10 |  | Ejecución disciplinada — ciclos, test data & known issues | — |
+| 11 | Nivel 2 · Intermedio | Reportes & Trazabilidad — evidencia que se puede firmar | — |
+| 12 |  | Sign-off / Certificación de una historia — el cierre del método | — |
+| 13 |  | CI/CD & Docker | — |
+| 14 |  | Pipelines — anatomía, gates, qué significa un verde y pipelines de evidencia | [civica-playwright-challenge](https://github.com/criguex/civica-playwright-challenge), [qa-eval-lab](https://github.com/criguex/qa-eval-lab), [restful-booker-quality-suite](https://github.com/criguex/restful-booker-quality-suite), [predictor-debugger](https://github.com/criguex/predictor-debugger) |
+| 15 |  | Contenedores efímeros y entornos desechables — que la evidencia sobreviva al entorno | [predictor-debugger](https://github.com/criguex/predictor-debugger) |
+| 16 |  | Performance & Cloud (K6 · JMeter · AWS) | — |
+| 17 |  | Determinismo — mocks, record/replay y fixtures indexados por hash | [playwright-jev](https://github.com/criguex/playwright-jev), [civica-playwright-challenge](https://github.com/criguex/civica-playwright-challenge) |
+| 18 |  | QA Aumentado con IA — mi diferenciador | — |
+| 19 |  | QA asistida por IA I — el asistente prueba, la persona firma | [war-paradigm](https://github.com/criguex/war-paradigm) |
+| 20 |  | Mutation testing — kill rate, sobrevivientes y Stryker/PIT | [war-paradigm](https://github.com/criguex/war-paradigm), [scientific-qa-evidence](https://github.com/criguex/scientific-qa-evidence) |
+| 21 |  | Ejecución de mutantes — generar, correr, clasificar y aprender de cada corrida | [war-paradigm](https://github.com/criguex/war-paradigm), [civica-playwright-challenge](https://github.com/criguex/civica-playwright-challenge) |
+| 22 |  | Mutantes que aprenden — ledger, priorización y mutantes que miden al auditor | [civica-playwright-challenge](https://github.com/criguex/civica-playwright-challenge) |
+| 23 |  | Triaje de fallos de CI y selección de pruebas por impacto | [jev-ci-triage](https://github.com/criguex/jev-ci-triage), [jev-test-impact](https://github.com/criguex/jev-test-impact) |
+| 24 | Nivel 3 · AI-QA avanzado | Evaluar IA con un LLM como juez — DeepEval, Promptfoo, umbrales y falsos verdes | [qa-eval-lab](https://github.com/criguex/qa-eval-lab) |
+| 25 |  | Calibrar un juez y evaluar agentes de IA — chequeos de código, kappa de Cohen y revisión humana en la zona gris | [agent-eval-jev](https://github.com/criguex/agent-eval-jev), [qa-eval-lab](https://github.com/criguex/qa-eval-lab) |
+| 26 |  | Jueces con probabilidad — modos de falla, estabilidad y cascadas | [war-paradigm](https://github.com/criguex/war-paradigm), [laya-server](https://github.com/criguex/laya-server), [playwright-jev](https://github.com/criguex/playwright-jev), [jev-ci-triage](https://github.com/criguex/jev-ci-triage) |
+| 27 |  | QA asistida por IA II — el asistente diseña, ejecuta y audita; una persona firma | [war-paradigm](https://github.com/criguex/war-paradigm), [scientific-qa-evidence](https://github.com/criguex/scientific-qa-evidence) |
+| 28 | Nivel 4 · QA científico | Prerregistro y reproducibilidad — umbrales antes de los datos y la misma huella en otra máquina | [predictor-debugger](https://github.com/criguex/predictor-debugger) |
+| 29 |  | QA de requisitos — revisar la spec antes de construir | [spec-review-case-study](https://github.com/criguex/spec-review-case-study) |
+| 30 |  | Controles, arnés y mutación numérica — contrato congelado y oráculo independiente | [scientific-qa-evidence](https://github.com/criguex/scientific-qa-evidence), [war-paradigm](https://github.com/criguex/war-paradigm) |
+| 31 |  | Física de fluidos y estadística para el depurador | [predictor-debugger](https://github.com/criguex/predictor-debugger) |
+| 32 |  | Verificar una prueba formal sin ser matemático — recompilar, checkers independientes y enunciados mutados | [scientific-qa-evidence](https://github.com/criguex/scientific-qa-evidence) |
+| 33 |  | Prueba a ciegas con compromiso por hash — que quien prueba no conozca las trampas | [predictor-debugger](https://github.com/criguex/predictor-debugger), [scientific-qa-evidence](https://github.com/criguex/scientific-qa-evidence) |
+| 34 | Cierre · proyecto final | Capstone «Auditoría WAR» — una auditoría que otra persona reproduce en un entorno limpio | [war-paradigm](https://github.com/criguex/war-paradigm), [predictor-debugger](https://github.com/criguex/predictor-debugger), [scientific-qa-evidence](https://github.com/criguex/scientific-qa-evidence) |
+| 35 |  | Tu carrera QA+IA — posicionamiento | — |
 
-Tres formas de recorrerla: la ruta completa desde cero (unas 33 semanas a 10–12 h por semana), una de 20 semanas si ya automatizas pruebas de UI o API, y una de 12 semanas. Las dos cortas están en la página [Cómo te evalúas](evaluacion.html).
+Tres formas de recorrerla: la ruta completa desde cero (unas 37 semanas a 10–12 h por semana), una de 20 semanas si ya automatizas pruebas de UI o API, y una de 12 semanas. La de 20 semanas, con el número de módulo de cada semana:
+
+![Ruta de 20 semanas: cuatro niveles y el capstone Auditoría WAR en las semanas 21 y 22, cada tarjeta con el módulo del curso que toca esa semana](docs/assets/ruta.svg)
+
+La de 12 semanas está en la página [Cómo te evalúas](evaluacion.html).
 
 ## Cómo correrlo
 
@@ -108,7 +116,7 @@ python3 -m http.server 8080        # abre http://localhost:8080
 node scripts/check-course.mjs      # valida cada módulo y cada pregunta
 ```
 
-`check-course.mjs` (Node 18+, sin dependencias) comprueba que cada módulo tenga objetivos, prerrequisitos, explicación para niños, laboratorio, criterios, rúbrica y mutación de la semana, que cada banco de quiz tenga al menos 8 preguntas y que cada respuesta apunte a una opción que existe. Hoy imprime `31 modules · 4 levels + final project` y `319 quiz questions · 0 problems`.
+`check-course.mjs` (Node 18+, sin dependencias) comprueba que cada módulo tenga objetivos, prerrequisitos, explicación para niños, laboratorio, criterios, rúbrica y mutación de la semana, que cada banco de quiz tenga al menos 8 preguntas y que cada respuesta apunte a una opción que existe. Hoy imprime `35 modules · 4 levels + final project` y `429 quiz questions · 0 problems`.
 
 Tu avance, tu mejor puntaje en cada quiz y el del examen viven solo en tu navegador (`localStorage`). No hay cuentas y no se envía nada a ningún lado.
 
@@ -119,8 +127,9 @@ Tu avance, tu mejor puntaje en cada quiz y el del examen viven solo en tu navega
 ## Qué se actualizó (26 de octubre de 2026)
 
 - **Versiones revisadas** con `npm view`, el índice de versiones de Node, Maven Central y los releases de GitHub: Playwright 1.64, TypeScript 7.0, Node 24 LTS, Java 25 LTS, Karate 2.1 y k6 2.3. Los módulos cubren lo que cambió: los defaults y las opciones eliminadas de TypeScript 7, Karate 2 (Java 21+, CLI nueva), k6 2.x (ya no existen `pause/resume/scale/status` ni el executor `externally-controlled`; ahora es `k6 cloud run`) y que `brew install node` instala la versión Current y no la LTS.
-- **Enlaces:** los 115 enlaces de recursos respondieron 200 con `curl -L`, menos un DOI que bloquea bots (`doi.org/10.1145/3143561`, abre en el navegador). Los que redirigían quedaron con su dirección nueva.
-- **Módulos nuevos:** pipelines, contenedores efímeros, determinismo y record/replay, QA asistida por IA I y II, mutation testing, mutantes que aprenden, triaje de CI e impacto, LLM como juez, evaluación de agentes, jueces con probabilidad, prerregistro y huellas, controles y mutación numérica, fluidos y estadística, y verificación formal con Lean y pruebas a ciegas.
+- **Enlaces:** se revisaron 158 con `curl -L`; todos respondieron 200 menos cuatro de `doi.org` cuyas editoriales bloquean bots (403 a curl; abren en el navegador). Los que redirigían quedaron con su dirección nueva.
+- **Módulos nuevos:** WAR Paradigm, pipelines, contenedores efímeros, determinismo y record/replay, QA asistida por IA I y II, mutation testing, ejecución de mutantes, mutantes que aprenden, triaje de CI e impacto, LLM como juez, calibración del juez y agentes, jueces con probabilidad, prerregistro y reproducibilidad, QA de requisitos, controles y mutación numérica, fluidos y estadística, verificación formal y pruebas a ciegas con compromiso por hash.
+- **Un caso WAR real dentro del curso:** una mutación encontró dos agujeros en el hook de war-paradigm que bloquea el push a main (`git -c` y `git --no-pager` se colaban). Se arreglaron en el commit `1b01c66`, y el laboratorio de QA asistida por IA II te pide reproducir el bug en `1b01c66~1`, escribir la prueba que lo atrapa y compararla con la corrección.
 
 ## Límites
 
