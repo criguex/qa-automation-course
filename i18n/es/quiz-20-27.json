@@ -902,15 +902,15 @@
    "why": "Menos perillas ajustadas sobre los datos = menos sobreajuste."
   },
   {
-   "q": "Una sola persona escribió todas las etiquetas. ¿Qué limitación declaras?",
+   "q": "En agent-eval-jev, un asistente de IA redactó las 60 etiquetas siguiendo la rúbrica y una persona las revisó y aprobó. ¿Qué significa el 93.1 % de acuerdo del compuesto?",
    "o": [
-    "Ninguna",
-    "Que no se midió el acuerdo entre anotadores: el “humano” es una persona",
-    "Que el juez es malo",
-    "Que el agente es malo"
+    "Que el juez coincide con el juicio humano en el 93.1 % de los casos",
+    "Que coincide con etiquetas redactadas por IA y revisadas por una persona; no es acuerdo con un juicio humano independiente",
+    "Que el juez acierta el 93.1 % en producción",
+    "Nada: sin etiquetas humanas no se puede medir ningún acuerdo"
    ],
    "a": 1,
-   "why": "agent-eval-jev lo declara: un anotador, con tres casos marcados como ambiguos."
+   "why": "Una cifra de acuerdo vale según quién escribió la referencia. agent-eval-jev lo declara en Límites: un solo revisor, sin anotador humano independiente. El siguiente paso honesto es etiquetar a ciegas una muestra a mano y medir el acuerdo."
   }
  ],
  "m22": [

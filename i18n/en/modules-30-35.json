@@ -402,7 +402,7 @@
    "Every number in the pitch comes from a command that can be run."
   ],
   "deliver": "A positioning pitch + an example of a finding report to a stakeholder.",
-  "mut": "Your measurable edge: your suite's kill rate, your judge's agreement with human labels, reproducible fingerprints. Numbers that come out of a command, not out of an adjective.",
+  "mut": "Your measurable edge: your suite's kill rate, your judge's agreement with reference labels (stating who wrote them), reproducible fingerprints. Numbers that come out of a command, not out of an adjective.",
   "top": "Your portfolio repo has a bilingual README with limits and an animation generated from a real log."
  }
 }

@@ -402,7 +402,7 @@
    "Cada número del pitch sale de un comando que se puede correr."
   ],
   "deliver": "Pitch de posicionamiento + un ejemplo de reporte de hallazgo a stakeholder.",
-  "mut": "Tu diferencial medible: kill rate de tu suite, acuerdo de tu juez con etiquetas humanas, huellas reproducibles. Números que salen de un comando, no de un adjetivo.",
+  "mut": "Tu diferencial medible: kill rate de tu suite, acuerdo de tu juez con etiquetas de referencia (diciendo quién las escribió), huellas reproducibles. Números que salen de un comando, no de un adjetivo.",
   "top": "Tu repo de portafolio tiene README bilingüe con límites y una animación generada desde un log real."
  }
 }
