@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="540" viewBox="0 0 1280 540" role="img" aria-label="How a student moves through a module: goals, theory and lab, a self-graded quiz that needs 6 of 8, a challenge with verifiable criteria at rubric level 3, the mutation of the week, and the module is saved as passed; then the final exam and the final project">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#55DFBD" stroke-opacity="0.06" stroke-width="1"/></pattern>
+    <clipPath id="r"><rect width="1280" height="540" rx="20"/></clipPath>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#55DFBD"/></marker>
+    <marker id="c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#FB8176"/></marker>
+  </defs>
+  <g clip-path="url(#r)">
+    <rect width="1280" height="540" fill="#071B2B"/>
+    <rect width="1280" height="540" fill="url(#grid)"/>
+    <rect x="0" y="532" width="1280" height="8" fill="#55DFBD"/>
+  </g>
+  <g font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" fill="#F4F7F5">
+    <text x="48" y="56" font-size="28" font-weight="700">How one module works</text>
+    <text x="48" y="84" font-size="15" fill="#ABC0C8">Same structure in all 31 modules. Everything is checked in your browser; nothing is sent anywhere.</text>
+
+    <g font-size="14">
+      <rect x="48" y="124" width="170" height="104" rx="12" fill="#0D2638" stroke="#214456" stroke-width="1.5"/>
+      <text x="64" y="152" font-weight="700">1 · Goals</text>
+      <text x="64" y="176" fill="#ABC0C8">“when you finish,</text>
+      <text x="64" y="196" fill="#ABC0C8">you can…” and the</text>
+      <text x="64" y="216" fill="#ABC0C8">prerequisites</text>
+
+      <rect x="250" y="124" width="190" height="104" rx="12" fill="#0D2638" stroke="#214456" stroke-width="1.5"/>
+      <text x="266" y="152" font-weight="700">2 · Theory + lab</text>
+      <text x="266" y="176" fill="#ABC0C8">short theory; in new</text>
+      <text x="266" y="196" fill="#ABC0C8">modules the lab is a</text>
+      <text x="266" y="216" fill="#ABC0C8">real public repo</text>
+
+      <rect x="472" y="124" width="200" height="104" rx="12" fill="#0D2638" stroke="#214456" stroke-width="1.5"/>
+      <text x="488" y="152" font-weight="700">3 · Self-graded quiz</text>
+      <text x="488" y="176" fill="#ABC0C8">8 random questions,</text>
+      <text x="488" y="196" fill="#ABC0C8">✓/✗ and the “why”</text>
+      <text x="488" y="216" fill="#ABC0C8">after each answer</text>
+
+      <path d="M672 176 H700" stroke="#55DFBD" stroke-width="2.5" marker-end="url(#a)"/>
+      <rect x="716" y="140" width="94" height="72" rx="10" fill="#123448" stroke="#55DFBD" stroke-width="1.5"/>
+      <text x="763" y="172" text-anchor="middle" font-weight="700">≥ 6 / 8 ?</text>
+      <text x="763" y="194" text-anchor="middle" font-size="12" fill="#ABC0C8">quiz gate</text>
+
+      <rect x="842" y="124" width="200" height="104" rx="12" fill="#0D2638" stroke="#214456" stroke-width="1.5"/>
+      <text x="858" y="152" font-weight="700">4 · Challenge</text>
+      <text x="858" y="176" fill="#ABC0C8">pass criteria you can</text>
+      <text x="858" y="196" fill="#ABC0C8">verify with a command</text>
+      <text x="858" y="216" fill="#ABC0C8">or a screenshot</text>
+
+      <path d="M1042 176 H1070" stroke="#55DFBD" stroke-width="2.5" marker-end="url(#a)"/>
+      <rect x="1086" y="140" width="146" height="72" rx="10" fill="#123448" stroke="#55DFBD" stroke-width="1.5"/>
+      <text x="1159" y="170" text-anchor="middle" font-weight="700">rubric ≥ 3 ?</text>
+      <text x="1159" y="192" text-anchor="middle" font-size="12" fill="#ABC0C8">4 levels</text>
+
+      <path d="M218 176 H246" stroke="#55DFBD" stroke-width="2.5" marker-end="url(#a)"/>
+      <path d="M440 176 H468" stroke="#55DFBD" stroke-width="2.5" marker-end="url(#a)"/>
+      <path d="M810 176 H838" stroke="#55DFBD" stroke-width="2.5" marker-end="url(#a)"/>
+      <text x="814" y="166" font-size="12" fill="#55DFBD">✓ yes</text>
+
+      <path d="M763 212 V262 H572 V232" stroke="#FB8176" stroke-width="2.5" fill="none" marker-end="url(#c)"/>
+      <text x="584" y="280" font-size="13" fill="#FB8176">✗ no → retry: other questions from the bank</text>
+      <path d="M1159 212 V318 H345 V232" stroke="#FB8176" stroke-width="2.5" fill="none" marker-end="url(#c)"/>
+      <text x="820" y="310" font-size="13" fill="#FB8176">✗ level 1–2 → back to the lab</text>
+
+      <path d="M1232 176 H1250 V372 H1046" stroke="#55DFBD" stroke-width="2.5" fill="none" marker-end="url(#a)"/>
+      <text x="1176" y="364" font-size="12" fill="#55DFBD">✓ yes</text>
+      <rect x="742" y="344" width="300" height="72" rx="12" fill="#0D2638" stroke="#FFC56E" stroke-width="1.5"/>
+      <text x="758" y="372" font-weight="700">5 · Mutation of the week</text>
+      <text x="758" y="396" fill="#ABC0C8">break your own check on purpose</text>
+      <path d="M742 380 H600" stroke="#55DFBD" stroke-width="2.5" marker-end="url(#a)"/>
+      <rect x="336" y="344" width="260" height="72" rx="12" fill="#123448" stroke="#55DFBD" stroke-width="2"/>
+      <text x="352" y="372" font-weight="700">✓ Module passed</text>
+      <text x="352" y="396" fill="#ABC0C8">saved in your browser</text>
+    </g>
+
+    <g font-size="14">
+      <rect x="48" y="450" width="1184" height="56" rx="12" fill="#0D2638" stroke="#214456" stroke-width="1.5"/>
+      <text x="68" y="484"><tspan font-weight="700">31 modules · 4 levels</tspan><tspan fill="#ABC0C8">  →  final exam: 26 questions, pass at 80 %  →  final project: integrated rubric (AI-assisted QA · mutant execution · WAR Paradigm)</tspan></text>
+    </g>
+    <text x="1232" y="84" font-size="13" font-weight="600" fill="#55DFBD" text-anchor="end">Cristian Guerra · QA · Medellín</text>
+  </g>
+</svg>

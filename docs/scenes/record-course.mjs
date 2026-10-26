@@ -1,0 +1,62 @@
+import { chromium } from '@playwright/test';
+import { execFileSync } from 'node:child_process';
+import { mkdirSync, readdirSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const here = path.dirname(fileURLToPath(import.meta.url));
+const assets = path.join(here, '..', 'assets');
+const base = process.argv[2] || 'http://127.0.0.1:8080';
+const mod = process.argv[3] || 'm15';
+const dir = path.join(process.env.VIDEO_DIR || tmpdir(), 'course-recording');
+rmSync(dir, { recursive: true, force: true });
+mkdirSync(dir, { recursive: true });
+
+const browser = await chromium.launch();
+const ctx = await browser.newContext({ viewport: { width: 960, height: 540 }, recordVideo: { dir, size: { width: 960, height: 540 } } });
+const p = await ctx.newPage();
+const pause = (ms) => p.waitForTimeout(ms);
+await p.goto(base + '/index.html');
+await p.waitForSelector('#map .node');
+await pause(1200);
+await p.locator('#map').scrollIntoViewIfNeeded();
+await pause(1500);
+await p.locator(`#node-${mod}`).click();
+await p.waitForSelector(`#${mod}.active`);
+await pause(1500);
+await p.locator(`#${mod} .kid`).scrollIntoViewIfNeeded();
+await pause(1500);
+await p.locator(`#${mod} .mutw`).scrollIntoViewIfNeeded();
+await pause(1500);
+const quiz = p.locator(`.qmount[data-mid="${mod}"]`);
+await quiz.scrollIntoViewIfNeeded();
+await pause(800);
+await quiz.locator('.qo[data-ok="1"]').first().click();
+await pause(1800);
+await p.locator(`#qnext-${mod}`).click();
+await pause(600);
+await quiz.locator('.qo[data-ok="0"]').first().click();
+await pause(1800);
+for (let i = 2; i < 8; i++) {
+  await p.locator(`#qnext-${mod}`).click();
+  await quiz.locator('.qo[data-ok="1"]').first().click();
+  await pause(250);
+}
+await p.locator(`#qnext-${mod}`).click();
+await pause(1800);
+await p.locator(`#chk-${mod}`).check();
+await pause(600);
+await p.goto(base + '/index.html#/');
+await p.locator(`#node-${mod}`).scrollIntoViewIfNeeded();
+await pause(1800);
+await ctx.close();
+await browser.close();
+
+const webm = path.join(dir, readdirSync(dir).find((f) => f.endsWith('.webm')));
+const ff = (...args) => execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-i', webm, ...args]);
+const gif = path.join(assets, 'course-run.gif');
+ff('-vf', 'fps=6,split[a][b];[a]palettegen=max_colors=64:stats_mode=diff[p];[b][p]paletteuse=dither=none:diff_mode=rectangle', '-loop', '0', gif);
+execFileSync('gifsicle', ['-O3', '--lossy=60', '-b', gif]);
+ff('-pix_fmt', 'yuv420p', '-vf', 'scale=960:-2', '-c:v', 'libx264', '-crf', '28', path.join(assets, 'course-run.mp4'));
+console.log('recorded', webm);
