@@ -42,7 +42,7 @@
     "Change the mutant so it dies"
    ],
    "a": 1,
-   "why": "Findings are never hidden. In war-paradigm 02 the survivor is still printed in red."
+   "why": "Findings are never hidden. In war-paradigm 02 the two survivors are still printed in red."
   },
   {
    "q": "In experiment 02 an editor changes their own role to admin and the app responds 200. Why was the whole golden flow green?",

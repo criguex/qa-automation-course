@@ -357,8 +357,8 @@
   "theory": [
    "You saw the WAR Paradigm's four steps (Generate → Mutate → Audit → Validate) and three verdicts (PASS, KILLED, SURVIVED) in module 2. Here you take them to a real suite and to the classic code mutation tools.",
    "The baseline goes first and stays out of the score: if the baseline or the reset fails, you don't have dead mutants, you have an invalid experiment.",
-   "<b>Kill rate</b> = KILLED / (KILLED + SURVIVED). In war-paradigm 02: 5 out of 6, 83%. In the physics track: 54 KILLED and 3 SURVIVED out of 57 mutants, plus 27 baseline PASS (84 variants).",
-   "A SURVIVED doesn't get deleted or skipped: it's marked as an expected failure, printed in red and tracked in a <b>ledger</b> until someone fixes it. In experiment 02 the survivor is a real bug: an editor promotes themselves to admin and the app responds 200.",
+   "<b>Kill rate</b> = KILLED / (KILLED + SURVIVED). In war-paradigm 02: 5 out of 7, 71%. In the physics track: 54 KILLED and 3 SURVIVED out of 57 mutants, plus 27 baseline PASS (84 variants).",
+   "A SURVIVED doesn't get deleted or skipped: it's marked as an expected failure, printed in red and tracked in a <b>ledger</b> until someone fixes it. In experiment 02 both survivors are real bugs: an editor promotes themselves to admin (200), and a viewer creates a draft (201), a hole found while preparing this course.",
    "Mutants as data: each one changes a single thing and leaves its JSON record (code revision and input hashes) as evidence.",
    "Two mutants with the same output are equivalent: count them separately. In the physics track, the 54 KILLED correspond to 51 distinct behaviors.",
    "Tools for mutating code: Stryker (JS/TS) and PIT (Java). WAR goes beyond code: it mutates business flows, physical laws or commands."
@@ -402,7 +402,7 @@
   ],
   "deliver": "Catalog of mutants as data + PASS/KILLED/SURVIVED scoreboard + kill rate + survivor ledger.",
   "mut": "Add two new mutants to the flow (publish without approval, approve your own document) and predict their verdict before running.",
-  "top": "You do war-paradigm 02's “Kill it yourself” exercise: you fix the rule in <code>app/server.js</code> and the survivor turns into KILLED."
+  "top": "You do war-paradigm 02's “Kill it yourself” exercise: you fix the rule in <code>app/server.js</code> and the <code>self-grant</code> survivor turns into KILLED."
  },
  "m29": {
   "title": "Running mutants — generate, run, classify and learn from every run",
@@ -418,12 +418,12 @@
   "pre": "Mutation testing (test the tester), Playwright with TypeScript and API testing. Node 20 or later.",
   "theory": [
    "The full cycle: <b>generate</b> (mutants as data) → <b>run</b> (baseline first, then a single change) → <b>classify</b> → <b>score</b> (kill rate) → <b>record</b> in a ledger → <b>prioritize</b> the next run.",
-   "Generating without scripts: in <code>war-paradigm/experiments/02-mutants/tests/scenarios.ts</code> each mutant is an object with a single change over the golden flow (role, body, step order or expired token) and the rejection the app must give: <code>role-swap</code> 403, <code>drop-input</code> 422, <code>reorder</code> 409, <code>stale-token</code> 401, <code>boundary</code> 422 and <code>self-grant</code> 403. In civica, <code>generateSearchMutants(title)</code> (<code>src/support/mutations.ts</code>) expands each seed title into three classes: <code>equivalent</code> (the result must not change), <code>boundary</code> (an edge that must keep working) and <code>negative</code> (the result must change).",
+   "Generating without scripts: in <code>war-paradigm/experiments/02-mutants/tests/scenarios.ts</code> each mutant is an object with a single change over the golden flow (role, body, step order or expired token) and the rejection the app must give: <code>role-swap</code> 403, <code>drop-input</code> 422, <code>reorder</code> 409, <code>stale-token</code> 401, <code>boundary</code> 422, <code>self-grant</code> 403 and <code>viewer-create</code> 403. In civica, <code>generateSearchMutants(title)</code> (<code>src/support/mutations.ts</code>) expands each seed title into three classes: <code>equivalent</code> (the result must not change), <code>boundary</code> (an edge that must keep working) and <code>negative</code> (the result must change).",
    "Watch the name: in classic mutation testing (Stryker, PIT) an <i>equivalent</i> mutant is one no test can kill because it doesn't change behavior. In civica, <code>equivalent</code> is an input variation (<code>INCEPTION</code>, <code>inception</code>) that must give the same result; it's closer to a metamorphic relation.",
    "Running in order: <code>tests/scenario-runner.ts</code> does the reset, the login and the unmutated baseline before mutating exactly one step. If any of that fails, that mutant tells you nothing about the suite.",
    "Classifying (the <code>Outcome</code> type in <code>tests/scenario-evidence.ts</code>): <b>KILLED</b> if the mutation gets the expected 4xx; <b>SURVIVED</b> if it gets a 2xx; <b>INCONCLUSIVE</b> if it gets a 5xx or a rejection other than the expected one; <b>INVALID_BASELINE</b> if a precondition fails; <b>INFRA_ERROR</b> if the request or the runner fails, or if the test ended without attaching evidence (<code>noEvidence()</code>).",
-   "<b>Kill rate</b> = KILLED / (KILLED + SURVIVED). The other three states show up in the report and stay out of the score: “5/6 scored mutants killed · 1 survived · 0 excluded from score”. If you put them in the denominator, a server that's down lowers your kill rate; if you count them as KILLED, it raises it. Both are false.",
-   "Known survivor: <code>self-grant</code> carries a <code>known</code> field. It comes out as KNOWN SURVIVOR, printed in red, and the default run stays green; with <code>MUTANT_LAB_STRICT=1</code> (<code>npm run test:strict</code>) that survivor makes the run fail. Once the bug is fixed, the scoreboard shows it as FIXED.",
+   "<b>Kill rate</b> = KILLED / (KILLED + SURVIVED). The other three states show up in the report and stay out of the score: “5/7 scored mutants killed · 2 survived · 0 excluded from score”. If you put them in the denominator, a server that's down lowers your kill rate; if you count them as KILLED, it raises it. Both are false.",
+   "Known survivors: <code>self-grant</code> and <code>viewer-create</code> carry a <code>known</code> field. They come out as KNOWN SURVIVOR, printed in red, and the default run stays green; with <code>MUTANT_LAB_STRICT=1</code> (<code>npm run test:strict</code>) each of them makes the run fail. Once a bug is fixed, the scoreboard shows it as FIXED.",
    "Per-scenario evidence in <code>test-results/mutant-evidence.json</code>: expected and observed state, phase, reason, git revision and SHA-256 of the app, the flow, the scenarios, the runner, the classifier, the spec and the lockfile, with <code>randomSeed: null</code> because the run uses no randomness.",
    "The oracle's limit: it works at the HTTP level, plus a read of the role for <code>self-grant</code>. A correct status doesn't prove semantic equivalence, which is why the runner doesn't emit <code>EQUIVALENT</code> (README §Evidence, classification and score gate).",
    "The ledger that learns (civica): <code>reporters/mutationInsightsReporter.ts</code> accumulates <code>runs</code> and <code>failures</code> per mutant in <code>test-results/mutation-insights.json</code>. <code>prioritize()</code> (<code>src/support/mutationInsights.ts</code>) gives weight 0 to those that ever failed, 1 to those never seen and 2 to those that always pass, with a stable order within each seed: it changes the order, never the verdict.",
@@ -459,7 +459,7 @@
   "hands": [
    "Set up war-paradigm: <code>git clone https://github.com/criguex/war-paradigm.git && cd war-paradigm && npm ci && npx playwright install --with-deps chromium</code>.",
    "Run <code>npm run demo:02</code> and read the scoreboard. Open <code>experiments/02-mutants/test-results/mutant-evidence.json</code> and note, per scenario, <code>expectedStatus</code>, <code>observedStatus</code>, <code>outcome</code> and <code>phase</code>. Compute the kill rate by hand.",
-   "Run <code>npm run test:strict -w experiments/02-mutants</code>: the known survivor makes the run fail. Write down when you'd use strict mode and when the default.",
+   "Run <code>npm run test:strict -w experiments/02-mutants</code>: the two known survivors make the run fail. Write down when you'd use strict mode and when the default.",
    "Run <code>npm run test:unit -w experiments/02-mutants</code> and read the five cases in <code>tests/unit/scenario-evidence.test.ts</code>. Add one: if 403 was expected and 404 arrives, the result has to be <code>INCONCLUSIVE</code>.",
    "Add two mutants in <code>tests/scenarios.ts</code> and commit your prediction before running. For example <code>{ id: \"viewer-publish\", name: \"viewer-publish\", expect: 403, step: \"publish\", as: \"viewer\" }</code> and a 2-character title in <code>create</code> with <code>expect: 422</code>.",
    "“Kill it yourself”: change <code>editMember</code> in <code>app/server.js</code> to <code>(actor) => actor.role === \"admin\"</code>, run <code>npm run demo:02</code> and check that <code>self-grant</code> comes out FIXED. Then remove the <code>known</code> field.",
@@ -471,7 +471,7 @@
    "Your kill rate is computed only from KILLED and SURVIVED, and you reproduce it by hand from <code>mutant-evidence.json</code>.",
    "The two new mutants have their prediction in a commit before the run, and their observed state appears in the JSON.",
    "The new unit test (403 expected, 404 observed → <code>INCONCLUSIVE</code>) passes with <code>npm run test:unit</code>.",
-   "After “Kill it yourself,” <code>self-grant</code> comes out FIXED and <code>npm run test:strict</code> ends with exit code 0.",
+   "After “Kill it yourself,” <code>self-grant</code> comes out FIXED and <code>npm run test:strict</code> fails only on <code>viewer-create</code>.",
    "The <code>--list</code> output before and after editing the ledger shows the change in order, and every mutant's verdict stays the same."
   ],
   "deliver": "war-paradigm fork with 2 new mutants, the unit test and the fix + <code>mutant-evidence.json</code> from before and after + civica ledger from two runs with evidence of the reordering + a new security mutant with its verdict.",

@@ -42,7 +42,7 @@
     "Cambio el mutante para que muera"
    ],
    "a": 1,
-   "why": "Los hallazgos nunca se ocultan. En war-paradigm 02 el sobreviviente sigue impreso en rojo."
+   "why": "Los hallazgos nunca se ocultan. En war-paradigm 02 los dos sobrevivientes siguen impresos en rojo."
   },
   {
    "q": "En el experimento 02 un editor se cambia el rol a admin y la app responde 200. ¿Por qué todo el flujo dorado estaba verde?",
