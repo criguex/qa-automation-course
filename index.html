@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ruta QA Automation · Curso guiado por Cristian Guerra</title>
+<style>
+  :root{
+    --bg:#0a0e14; --panel:#0f1621; --panel2:#141d29; --line:#1e2a36;
+    --txt:#f3f4f6; --muted:#9ca3af; --dim:#6b7280;
+    --fund:#22d3ee; --setup:#a78bfa; --auto:#10b981; --eng:#f97316; --ia:#facc15; --cap:#f3f4f6;
+    --radius:16px; --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;font-size:15px;-webkit-font-smoothing:antialiased}
+  a{color:var(--fund);text-decoration:none} a:hover{text-decoration:underline}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 22px}
+
+  header.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line);padding:46px 0 34px;
+    background:radial-gradient(1200px 420px at 12% -20%,rgba(34,211,238,.22),transparent),
+               radial-gradient(1000px 420px at 92% -30%,rgba(249,115,22,.16),transparent),
+               radial-gradient(800px 500px at 60% 120%,rgba(167,139,250,.12),transparent),var(--panel)}
+  .eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--fund);font-weight:800}
+  h1{font-size:33px;line-height:1.12;margin:10px 0 8px;letter-spacing:-.02em}
+  h1 .g{background:linear-gradient(90deg,#22d3ee,#a78bfa,#f97316);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{color:var(--muted);max-width:800px;font-size:15.5px}
+  .meta{display:flex;gap:9px;flex-wrap:wrap;margin-top:20px}
+  .chip{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:12.5px;color:var(--muted)}
+  .chip b{color:var(--txt)}
+  .mentorbox{display:flex;gap:14px;align-items:center;margin-top:22px;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:14px;padding:14px 16px;max-width:720px}
+  .avatar{width:46px;height:46px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;color:#06121a;background:linear-gradient(135deg,#22d3ee,#f97316)}
+  .mentorbox p{margin:0;font-size:13.5px;color:#cbd2e0}
+  .mentorbox b{color:var(--txt)}
+
+  .progwrap{position:sticky;top:0;z-index:30;background:rgba(11,13,19,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .progwrap .inner{max-width:1140px;margin:0 auto;padding:9px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .bar{flex:1;min-width:120px;height:8px;background:var(--panel2);border-radius:6px;overflow:hidden}
+  .bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,#22d3ee,#10b981);transition:width .35s}
+  .pct{font-family:var(--mono);font-size:13px;color:var(--muted);min-width:42px;text-align:right}
+  .btn{background:var(--panel2);border:1px solid var(--line);color:var(--muted);border-radius:9px;padding:6px 12px;font-size:12px;cursor:pointer;font-family:inherit}
+  .btn:hover{color:var(--txt);border-color:var(--fund)}
+
+  h2{font-size:22px;margin:46px 0 6px;letter-spacing:-.01em;display:flex;align-items:center;gap:10px}
+  .lead{color:var(--muted);margin:0 0 18px;max-width:820px}
+
+  /* how-to + rules */
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:800px){.two{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+  .card h4{margin:0 0 10px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--fund)}
+  ul.tight{margin:0;padding-left:18px} ul.tight li{margin:6px 0;font-size:13.5px;color:#cbd2e0} ul.tight li b{color:var(--txt)}
+
+  /* MAP */
+  .maplegend{display:flex;gap:14px;flex-wrap:wrap;margin:4px 0 16px}
+  .maplegend span{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:7px}
+  .ldot{width:11px;height:11px;border-radius:50%}
+  #map{display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:12px}
+  .node{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:transform .16s,border-color .16s,box-shadow .16s;overflow:hidden}
+  .node:hover{transform:translateY(-3px);box-shadow:0 12px 30px -14px rgba(0,0,0,.6)}
+  .node::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--tc)}
+  .node .nn{font-family:var(--mono);font-size:11px;color:var(--dim)}
+  .node .nicon{font-size:20px;margin:2px 0 6px}
+  .node .ntitle{font-size:13px;font-weight:700;line-height:1.25}
+  .node .ntrack{font-size:10px;color:var(--tc);text-transform:uppercase;letter-spacing:.05em;margin-top:8px;font-weight:700}
+  .node .ring{position:absolute;top:12px;right:12px;width:18px;height:18px;border-radius:50%;border:2px solid var(--line)}
+  .node.done{border-color:var(--auto)}
+  .node.done .ring{background:var(--auto);border-color:var(--auto)}
+  .node.done .ring::after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:11px;color:#0b0d13;font-weight:900}
+
+  /* MODULES */
+  .mod{scroll-margin-top:70px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);margin:16px 0;overflow:hidden;position:relative}
+  .mod::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--tc)}
+  .mod.done{border-color:rgba(16,185,129,.45)}
+  .mhead{display:flex;align-items:center;gap:16px;padding:20px 22px;cursor:pointer}
+  .mnum{width:48px;height:48px;border-radius:13px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:22px;background:color-mix(in srgb,var(--tc) 18%,transparent);border:1px solid color-mix(in srgb,var(--tc) 40%,transparent)}
+  .mhcol{flex:1;min-width:0}
+  .mttl{font-size:17px;font-weight:800;letter-spacing:-.01em}
+  .mmeta{font-size:12px;color:var(--dim);margin-top:3px;display:flex;gap:12px;flex-wrap:wrap}
+  .mmeta b{color:var(--tc)}
+  .caret{color:var(--dim);transition:transform .2s;font-size:14px}
+  .mod.open .caret{transform:rotate(90deg)}
+  .mbody{display:none;padding:0 22px 22px;border-top:1px solid var(--line)}
+  .mod.open .mbody{display:block}
+  .mentor{display:flex;gap:12px;margin:18px 0;background:linear-gradient(90deg,rgba(34,211,238,.10),transparent);border:1px solid rgba(34,211,238,.22);border-radius:12px;padding:13px 15px}
+  .mentor .mav{width:34px;height:34px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,#22d3ee,#f97316);display:flex;align-items:center;justify-content:center;font-weight:800;color:#06121a;font-size:13px}
+  .mentor .mtext{font-size:13.5px;color:#dfe4ee}
+  .mentor .mtext .who{font-size:11px;color:#22d3ee;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px}
+  .seclbl{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:18px 0 10px;display:flex;align-items:center;gap:8px}
+  .seclbl::after{content:'';flex:1;height:1px;background:var(--line)}
+  .reslist{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+  .res{display:flex;gap:10px;align-items:flex-start;background:var(--panel2);border:1px solid var(--line);border-radius:11px;padding:11px 12px;transition:border-color .15s,transform .15s}
+  .res:hover{border-color:var(--tc);transform:translateY(-2px);text-decoration:none}
+  .res .ric{font-size:16px;flex-shrink:0;margin-top:1px}
+  .res .rmain{min-width:0}
+  .res .rlabel{font-size:13px;font-weight:600;color:var(--txt);line-height:1.25}
+  .res .rtype{font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-top:2px}
+  .res .rtype.free{color:var(--auto)}
+  .hands{background:linear-gradient(90deg,rgba(16,185,129,.10),transparent);border:1px solid rgba(16,185,129,.28);border-radius:12px;padding:14px 16px;margin-top:16px}
+  .hands .hl{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--auto);font-weight:800;margin-bottom:8px}
+  .deliver{display:flex;align-items:flex-start;gap:10px;margin-top:12px;padding-top:12px;border-top:1px dashed var(--line)}
+  .deliver input{margin-top:3px;width:17px;height:17px;accent-color:var(--auto);cursor:pointer}
+  .deliver label{font-size:13.5px;color:#dfe4ee;cursor:pointer}
+  .deliver label b{color:var(--txt)}
+
+  .foot{color:var(--dim);font-size:12.5px;text-align:center;margin:50px 0 70px;border-top:1px solid var(--line);padding-top:22px}
+  code{font-family:var(--mono);font-size:12px;background:var(--panel2);padding:1px 6px;border-radius:5px;color:var(--fund)}
+  .glos-input{width:100%;max-width:480px;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:11px 14px;color:var(--txt);font-size:14px;font-family:inherit;margin-bottom:14px}
+  .glos-input:focus{outline:none;border-color:var(--fund)}
+  .glos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+  .glos-item{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:12px 14px}
+  .glos-item .gt{font-weight:700;font-size:13.5px;color:var(--fund)}
+  .glos-item .gd{font-size:12.5px;color:#cbd2e0;margin-top:3px}
+  .quiz{margin-top:16px;background:linear-gradient(90deg,rgba(34,211,238,.07),transparent);border:1px solid rgba(34,211,238,.22);border-radius:12px;padding:14px 16px}
+  .quiz .ql{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--fund);font-weight:800;margin-bottom:4px}
+  .quiz .qq{font-size:13.5px;font-weight:600;color:var(--txt);margin:12px 0 6px}
+  .quiz .qo{display:block;width:100%;text-align:left;background:var(--panel2);border:1px solid var(--line);border-radius:9px;padding:9px 12px;margin:5px 0;color:#cbd2e0;font-size:13px;cursor:pointer;font-family:inherit;transition:border-color .15s}
+  .quiz .qo:hover{border-color:var(--fund)}
+  .quiz .qo.ok{border-color:var(--auto);background:rgba(16,185,129,.14);color:#eafff5}
+  .quiz .qo.no{border-color:#f43f5e;background:rgba(244,63,94,.12)}
+  .quiz .qwhy{font-size:12px;color:var(--muted);margin-top:8px;padding-left:10px;border-left:2px solid var(--auto);display:none}
+  .quiz .qwhy.show{display:block}
+  .quiz .qo:disabled{cursor:default}
+  .qprog{display:flex;align-items:center;gap:10px;margin:12px 0 4px}
+  .qbar{flex:1;height:6px;background:var(--panel2);border-radius:4px;overflow:hidden}
+  .qbar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,#22d3ee,#10b981);transition:width .3s}
+  .qcount{font-family:var(--mono);font-size:12px;color:var(--muted);min-width:52px;text-align:right}
+  .qcard{animation:qin .25s ease}
+  @keyframes qin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .qnext{margin-top:14px;background:linear-gradient(90deg,#22d3ee,#10b981);color:#06121a;font-weight:800;border:none;border-radius:10px;padding:10px 20px;cursor:pointer;font-family:inherit;font-size:13px}
+  .qnext:hover{filter:brightness(1.08)}
+  .qend{text-align:center;padding:14px 0 6px;animation:qin .25s ease}
+  .qbig{font-size:20px;font-weight:800}
+  .qbig2{font-family:var(--mono);font-size:26px;font-weight:800;color:var(--fund);margin:8px 0}
+  .qbig2 span{font-size:15px;color:var(--muted)}
+  .qsub{font-size:13px;color:var(--muted);max-width:480px;margin:0 auto 4px}
+  .exambadge{font-family:var(--mono);font-size:12.5px;color:var(--auto);font-weight:700}
+  /* Router: home = mapa como índice; cada módulo es su propia página (#/m1) */
+  #modules{display:none}
+  body.modview #modules{display:block}
+  body.modview .homeonly{display:none!important}
+  body.modview .mod{display:none}
+  body.modview .mod.active{display:block;margin-top:16px}
+  body.modview .mod.active .mbody{display:block}
+  body.modview .mod.active .mhead{cursor:default}
+  body.modview .mod.active .caret{display:none}
+  .modnav{display:none;align-items:center;justify-content:space-between;gap:10px;margin:24px 0 0;font-size:13px;flex-wrap:wrap}
+  body.modview .modnav{display:flex}
+  .modnav a{color:var(--muted);border:1px solid var(--line);border-radius:9px;padding:7px 12px;background:var(--panel2)}
+  .modnav a:hover{color:var(--txt);border-color:var(--fund);text-decoration:none}
+  .modnav .mpos{font-family:var(--mono);font-size:12px;color:var(--dim)}
+
+  @media print{.progwrap,.btn,#map,.modnav{display:none}#modules,.mod,.mbody{display:block!important}}
+
+  /* GATE (dashboard de entrada + login) */
+  #gate{display:none;min-height:100vh;padding:56px 0 40px;
+    background:radial-gradient(1200px 420px at 12% -20%,rgba(34,211,238,.22),transparent),
+               radial-gradient(1000px 420px at 92% -30%,rgba(249,115,22,.16),transparent),
+               radial-gradient(800px 500px at 60% 120%,rgba(167,139,250,.12),transparent),var(--bg)}
+  body.gated #gate{display:block}
+  body.gated>:not(#gate){display:none}
+  .gstats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:26px 0 20px}
+  .gstat{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 12px;text-align:center}
+  .gstat b{display:block;font-size:24px;color:var(--fund);letter-spacing:-.01em}
+  .gstat span{font-size:12px;color:var(--muted)}
+  .gcta{text-align:center;margin-top:32px}
+  .gbtn{background:linear-gradient(90deg,#22d3ee,#10b981);color:#06121a;font-weight:800;font-size:16px;border:none;border-radius:12px;padding:14px 30px;cursor:pointer;font-family:inherit;box-shadow:0 10px 30px -10px rgba(34,211,238,.45)}
+  .gbtn:hover{filter:brightness(1.08)}
+  .gnote{font-size:12.5px;color:var(--muted);margin-top:14px;line-height:1.7}
+  .avatar,.mentor .mav{background:url(avatar.jpg) center/cover;color:transparent}
+  .gav{width:72px;height:72px;border-radius:50%;background:url(avatar.jpg) center/cover;margin-bottom:16px;border:2px solid rgba(34,211,238,.45);box-shadow:0 8px 24px -8px rgba(34,211,238,.5)}
+</style>
+</head>
+<body class="gated">
+
+<section id="gate">
+  <div class="wrap">
+    <div class="gav"></div>
+    <div class="eyebrow">Cristian Guerra · Ruta QA Automation</div>
+    <h1>Cómo ser <span class="g">QA Automation Engineer</span><br/>guiado por Cristian Guerra</h1>
+    <p class="sub">Un programa práctico basado en mi método real de trabajo: contract testing, Playwright + TypeScript, BDD, CI/CD, cloud y <b>QA aumentado con IA</b>. <b>Para cualquiera que quiera ser QA</b> — vengas de desarrollo, de QA manual, de otra carrera o desde cero.</p>
+    <div class="gstats">
+      <div class="gstat"><b>16</b><span>módulos + capstone</span></div>
+      <div class="gstat"><b>~10–12 h</b><span>por semana, a tu ritmo</span></div>
+      <div class="gstat"><b>+50</b><span>recursos, casi todos gratis</span></div>
+      <div class="gstat"><b>1</b><span>portafolio real al final</span></div>
+    </div>
+    <div class="two">
+      <div class="card">
+        <h4>Qué vas a lograr</h4>
+        <ul class="tight">
+          <li>Dominar el stack: <b>Playwright + TS, BDD, contract testing, CI/CD y cloud</b>.</li>
+          <li>Un <b>portafolio con proyectos reales</b>: cada módulo cierra con un entregable en un repo.</li>
+          <li><b>Criterio QA aumentado con IA</b> — la IA amplifica tu criterio, no lo sustituye.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>Cómo funciona</h4>
+        <ul class="tight">
+          <li><b>1 · Aprende:</b> nota del mentor, teoría y recursos seleccionados en cada módulo.</li>
+          <li><b>2 · Practica:</b> reto práctico + quiz de escenario (una respuesta por pregunta, sin trucos).</li>
+          <li><b>3 · Entrega:</b> marca el ✅ solo cuando el entregable funciona y lo puedes defender.</li>
+          <li><b>4 · Certifícate:</b> examen final de 20 preguntas que cruza todo el método — se aprueba con 80%.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="gcta">
+      <button class="gbtn" onclick="doAuth()">🔓 Entrar con Google y comenzar</button>
+      <p class="gnote">Tu progreso queda ligado a tu cuenta — retomas donde ibas, desde cualquier dispositivo.<br/>
+      <a href="#" onclick="enterGuest();return false">Ver el curso sin cuenta →</a> <span style="color:var(--dim)">(el avance se guarda solo en este navegador)</span></p>
+    </div>
+  </div>
+</section>
+
+<header class="hero homeonly">
+  <div class="wrap">
+    <div class="eyebrow">Cristian Guerra · Ruta para convertirte en QA Automation</div>
+    <h1>Cómo ser <span class="g">QA Automation Engineer</span><br/>guiado por Cristian Guerra</h1>
+    <p class="sub">Un curso interactivo, visual y práctico basado en mi método real de trabajo (contract testing, Playwright+TS, BDD, CI/CD, cloud y <b>QA aumentado con IA</b>). <b>Para cualquiera que quiera ser QA</b> — vengas de desarrollo, de QA manual, de otra carrera o desde cero. Cada quien avanza a su ritmo; en cada módulo hay pistas según tu punto de partida.</p>
+    <div class="meta">
+      <span class="chip">🗺️ <b>16 módulos</b> + capstone</span>
+      <span class="chip">🎓 <b>+50 recursos</b> (casi todos gratis)</span>
+      <span class="chip">🧩 Teoría → docs → repos → práctica</span>
+      <span class="chip">✅ Progreso guardado en tu navegador</span>
+    </div>
+    <div class="mentorbox">
+      <div class="avatar">CG</div>
+      <p><b>Nota del mentor:</b> esto no es teoría de curso — es el flujo que uso cada día. Sigue el orden, haz cada entregable, y no avances hasta que puedas <i>explicar el porqué</i>, no solo el cómo. Cuando dude algo, lo hablamos en el 1:1. — <b>Cristian</b></p>
+    </div>
+  </div>
+</header>
+
+<div class="progwrap">
+  <div class="inner">
+    <span style="font-size:12px;color:var(--muted)">Tu avance</span>
+    <div class="bar"><i id="barfill"></i></div>
+    <span class="pct" id="pcttxt">0%</span>
+    <span id="authWho" style="font-size:12px;color:var(--muted)"></span>
+    <button id="authBtn" class="btn" onclick="doAuth()" style="display:none">🔓 Entrar con Google</button>
+    <button class="btn" onclick="window.print()">🖨️ PDF</button>
+    <button class="btn" onclick="resetProg()">↺ Reset</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <h2 class="homeonly">🚦 Cómo usar este curso</h2>
+  <div class="two homeonly">
+    <div class="card">
+      <h4>El pacto</h4>
+      <ul class="tight">
+        <li>Un módulo por semana (~10–12 h). Cada uno cierra con un <b>entregable en un repo</b>.</li>
+        <li>Marca el ✅ del módulo solo cuando el entregable <b>funciona</b> y lo puedes defender.</li>
+        <li>“No sé” es válido; “no lo intenté” no.</li>
+        <li>Todo va a tu <b>portafolio</b> — al final tienes proyectos reales que mostrar.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Reglas de oro (mi método · palabras textuales)</h4>
+      <ul class="tight">
+        <li>“Mueve tu tiempo de <b>teclear</b> a <b>decidir</b>.”</li>
+        <li>“La IA <b>amplifica</b> tu criterio, no lo sustituye.”</li>
+        <li>“<b>Valida contra el contrato</b>, no adaptes el test a la respuesta — un verde falso es peor que un rojo honesto.”</li>
+        <li>“La <b>certificación la firma un humano</b>; no es una casilla que se automatiza.”</li>
+        <li>“<b>Itera estrecho, confirma amplio</b>: rápido en el detalle, riguroso en el cierre.”</li>
+        <li>“‘Toda verde’ no significa ‘el software está bien’ — significa que mis tests, como están escritos, no encontraron nada.”</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="homeonly">🗺️ El mapa del viaje</h2>
+  <p class="lead homeonly">Haz clic en cualquier estación para abrir su módulo — cada uno es una página propia con nota del mentor, teoría, recursos, reto práctico y quiz. Se pinta de verde cuando lo completas. El orden es por dificultad y dependencia: fundamentos → diseño → APIs → el pico (Playwright + arquitectura) → ingeniería → certificación → IA → carrera. Cada quien avanza a su ritmo.</p>
+  <div class="maplegend homeonly" id="legend"></div>
+  <div id="map" class="homeonly"></div>
+
+  <div class="modnav">
+    <a href="#/">🗺️ Mapa del curso</a>
+    <span class="mpos" id="modpos"></span>
+    <span style="display:flex;gap:8px;flex-wrap:wrap"><a id="prevmod" href="#/"></a><a id="nextmod" href="#/"></a></span>
+  </div>
+  <div id="modules"></div>
+
+  <h2 class="homeonly">🎓 Examen final del método</h2>
+  <p class="lead homeonly">20 preguntas de escenario que cruzan TODO el método — contratos, ciclos, evidencia, IA, riesgo. Se aprueba con <b>80%</b>. Las opciones se barajan en cada intento y cada pregunta se responde una sola vez, así que piensa antes de hacer clic. Inténtalo cuando termines los módulos. <span class="exambadge" id="exambadge"></span></p>
+  <div class="qmount homeonly" data-mid="final"></div>
+
+  <h2 class="homeonly">📖 Glosario del método</h2>
+  <p class="lead homeonly">Los términos como los uso yo — busca para filtrar. Onboarding rápido para cualquiera que llega.</p>
+  <input id="glosSearch" class="glos-input homeonly" placeholder="Buscar… (certificar, contrato, flakiness, POM, MCP, @IGNORE…)" oninput="renderGlos(this.value)" />
+  <div id="glosList" class="glos-grid homeonly"></div>
+
+  <div class="foot">
+    Ruta QA Automation · <b>guiada por Cristian Guerra Gómez</b> — Senior QA Automation / SDET · AI-Augmented Testing.<br/>
+    Basada en mi Metodología QA-IA y mi stack real. Ajústala a tu ritmo y al proyecto. Tu progreso se guarda en este navegador (o en tu cuenta de Google si el sitio tiene Firebase configurado).
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="quiz-data.js"></script>
+<script>
+const T = {
+  fund:{c:'#22d3ee',name:'Fundamentos'}, setup:{c:'#a78bfa',name:'Setup & Stack'},
+  auto:{c:'#10b981',name:'Automatización'}, eng:{c:'#f97316',name:'Ingeniería'},
+  ia:{c:'#facc15',name:'QA + IA'}, cap:{c:'#f3f4f6',name:'Capstone'}
+};
+const R = (ic,label,type,url,free)=>({ic,label,type,url,free:!!free});
+
+const COURSE = [
+ {id:'m1',track:'fund',icon:'🧠',title:'Mentalidad QA — de Dev a Tester',when:'Semana 1',level:'★☆☆☆☆',hours:'~10 h',
+  mentor:'La tesis de todo mi método: “mueve tu tiempo de teclear a decidir”. Tu valor no es escribir tests — es decidir QUÉ probar, con qué riesgo, y si cumple el contrato. La IA amplifica al que sabe y confunde al que no. Como dev ya tienes ventaja; ahora súmale criterio de calidad.',
+  theory:['La tesis: “mueve tu tiempo de teclear a decidir” — el valor está en decidir qué probar, con qué riesgo y si cumple el contrato.','Los 4 verbos con autonomía IA graduada: <b>Crear</b> (alta) · <b>Ejecutar</b> (alta) · <b>Validar</b> (media) · <b>Certificar</b> (el humano firma).','Los 7 principios del testing (ISTQB) y la paradoja del pesticida.','Verificación vs validación · QA vs QC vs testing.','SDLC/STLC, shift-left y el costo del defecto en el tiempo; risk-based testing (riesgo = probabilidad × impacto).','Manual vs automatizado no es rivalidad: la automatización da velocidad, regresión y escala, pero “no es magia”.','El nuevo perfil: Quality Engineering / “AI QA Engineer” — subes de altitud.'],
+  res:[R('🎓','Test Automation University (catálogo gratis)','Curso · gratis','https://testautomationu.applitools.com/',1),
+       R('📖','ISTQB Foundation Level — Syllabus','Docs · gratis','https://www.istqb.org/certifications/certified-tester-foundation-level',1),
+       R('📖','Fowler — The Practical Test Pyramid','Artículo · gratis','https://martinfowler.com/articles/practical-test-pyramid.html',1),
+       R('🎥','Ministry of Testing (comunidad y recursos)','Comunidad · gratis','https://www.ministryoftesting.com/',1)],
+  hands:['Elige una app o API pública y escribe una <b>mini estrategia de pruebas</b> (1 pág): riesgos, alcance, niveles, qué se automatiza y qué no.','Haz una sesión de <b>testing exploratorio</b> de 60 min con charter + notas.'],
+  deliver:'Documento “Estrategia de pruebas v0” + notas de exploración, en tu repo.'},
+
+ {id:'m2',track:'fund',icon:'🎯',title:'Diseño de pruebas & técnicas',when:'Semana 2',level:'★★☆☆☆',hours:'~12 h',
+  mentor:'Un dev automatiza rápido pero sin criterio de qué probar. Estas técnicas te dan más cobertura con menos casos — es lo que separa a un scripter de un ingeniero de calidad.',
+  theory:['Niveles (unit/integración/sistema/aceptación) y tipos (funcional, regresión, smoke, sanity).','Técnicas de caja negra: particiones de equivalencia, valores límite, tablas de decisión, transición de estados, pairwise, error guessing.','Testing exploratorio basado en sesiones (SBTM).','Reporte de defectos con evidencia (pasos, esperado vs real, ambiente, logs).'],
+  res:[R('📖','ISTQB — técnicas de diseño de pruebas','Docs · gratis','https://www.istqb.org/certifications/certified-tester-foundation-level',1),
+       R('🛠️','Microsoft PICT — combinatorial / pairwise','Herramienta · gratis','https://github.com/microsoft/pict',1),
+       R('🎓','TAU — Test Automation strategy & design','Curso · gratis','https://testautomationu.applitools.com/',1),
+       R('📖','Ministry of Testing — Exploratory testing','Guía · gratis','https://www.ministryoftesting.com/',1)],
+  hands:['Diseña la suite de casos de un formulario/endpoint aplicando <b>cada técnica</b> y justifica por qué.','Reporta 3 defectos con plantilla de evidencia.'],
+  deliver:'Suite de casos (con técnica aplicada) + 3 reportes de defecto con evidencia.'},
+
+ {id:'m3',track:'setup',icon:'🛠️',title:'Setup día 0 — el entorno',when:'Semana 3',level:'★★☆☆☆',hours:'~8 h',
+  mentor:'El día 0 de mi método: dejar el entorno listo para no pelear con herramientas después. Vienes de dev, así que esto es rápido — pero hazlo bien (versionado, cuentas, IDE).',
+  theory:['Node.js, npm y manejo de versiones.','Git en serio: ramas, PRs, conventional commits, code review de tests.','VS Code + extensiones para QA (Playwright, ESLint).','Estructura de un repo de automatización.'],
+  res:[R('📖','Node.js — descarga y docs','Docs · gratis','https://nodejs.org/en/download',1),
+       R('📖','Pro Git (libro completo, gratis)','Libro · gratis','https://git-scm.com/book/es/v2',1),
+       R('📖','VS Code — documentación','Docs · gratis','https://code.visualstudio.com/docs',1),
+       R('💻','Ejemplo: estructura de proyecto (Playwright)','Repo · público','https://github.com/microsoft/playwright')],
+  hands:['Deja tu entorno listo con <code>brew install node git gh</code> y crea tu repo del curso.','Configura un flujo de PRs contigo mismo (rama → PR → review → merge).'],
+  deliver:'Repo del curso creado, con README y primer PR mergeado.'},
+
+ {id:'m3b',track:'setup',icon:'🧠',title:'Obsidian — tu segundo cerebro (Fase 0 del método)',when:'Semana 4',level:'★★☆☆☆',hours:'~6 h',
+  mentor:'Antes que la IA va la documentación. “La IA sin contexto es un becario brillante con amnesia”: mientras más documentas, mejor arranca contextualizada. Este es el bucle que sostiene todo mi método.',
+  theory:['Obsidian como documentación viva y onboarding (de ti mismo y de la IA).','El bucle virtuoso: documentar ↔ la IA lee ↔ arranca con contexto.','Las 3 capas de contexto: CLAUDE.md (reglas del proyecto) · Memoria persistente (hechos sobre ti) · Obsidian (conocimiento profundo).','“Da el contexto suficiente, no todo”: apunta al doc relevante, no vuelques el vault entero.','Hooks = “cosas que pasan solas”: lo que quieras que ocurra siempre que X, es un hook, no una nota.'],
+  res:[R('📖','Obsidian — descarga','Herramienta · gratis','https://obsidian.md',1),
+       R('📖','Model Context Protocol (conectar herramientas)','Docs · gratis','https://modelcontextprotocol.io/',1),
+       R('📖','Claude Code','Docs','https://docs.claude.com/en/docs/claude-code')],
+  hands:['Crea un vault con: reglas del proyecto, glosario y una nota “de HU a certificación”.','Escribe un <code>CLAUDE.md</code> para tu repo del curso (reglas + comandos frecuentes).'],
+  deliver:'Vault base + CLAUDE.md del repo del curso.'},
+
+ {id:'m4',track:'setup',icon:'🔷',title:'TypeScript para QA',when:'Semana 4',level:'★★★☆☆',hours:'~12 h',
+  mentor:'TS es la base de Playwright moderno. No necesitas ser experto, pero sí manejar tipos, async/await y módulos — porque un buen framework de test es buen código.',
+  theory:['Tipos, interfaces, generics básicos.','async/await, Promises (clave en Playwright).','Módulos, imports, configuración tsconfig.','Tipar datos de prueba y respuestas de API.'],
+  res:[R('📖','TypeScript Handbook (oficial)','Docs · gratis','https://www.typescriptlang.org/docs/',1),
+       R('🎓','freeCodeCamp — Learn TypeScript','Curso · gratis','https://www.freecodecamp.org/news/learn-typescript-beginners-guide/',1),
+       R('🛠️','TypeScript Playground (probar en el navegador)','Herramienta · gratis','https://www.typescriptlang.org/play',1),
+       R('🎥','freeCodeCamp — cursos en YouTube','Video · gratis','https://www.youtube.com/@freecodecamp',1)],
+  hands:['Escribe utilidades tipadas para datos de prueba (builders/factories).','Tipa la respuesta de una API pública y valida sus campos.'],
+  deliver:'Módulo TS con builders de test data tipados + validación de una respuesta.'},
+
+ {id:'m5',track:'auto',icon:'🎭',title:'Playwright + TypeScript E2E — framework desde cero',when:'Semanas 5–6',level:'★★★★☆',hours:'~26 h',
+  mentor:'El corazón del oficio. Aquí construyes un framework de verdad — no scripts sueltos. Si dominas fixtures, POM y datos, ya piensas como SDET. Estudia frameworks de referencia open-source (los ejemplos oficiales de Playwright) para ver estructura real.',
+  theory:['Locators, auto-waiting, web-first assertions.','Fixtures, Page Object Model en TS, projects y baseURL.','Auth reutilizable con storageState; interceptación de red (mocking).','Aislamiento, paralelización, retries, trace viewer.'],
+  res:[R('📖','Playwright — documentación oficial','Docs · gratis','https://playwright.dev/',1),
+       R('🎓','Test Automation University — Playwright','Curso · gratis','https://testautomationu.applitools.com/',1),
+       R('🎥','Canal oficial de Playwright (YouTube)','Video · gratis','https://www.youtube.com/@Playwrightdev',1),
+       R('💻','microsoft/playwright — código y ejemplos','Repo · público','https://github.com/microsoft/playwright')],
+  hands:['Framework Playwright+TS <b>desde cero</b>: POM, fixtures, login con storageState, flujo <b>RBAC</b> (roles), smoke + regresión.','Un test <b>híbrido</b>: prepara estado por API y valida por UI, interceptando una llamada de red.'],
+  deliver:'Repo de framework Playwright+TS funcional (POM + fixtures + auth + RBAC + test híbrido).'},
+
+ {id:'m6',track:'auto',icon:'🔌',title:'API & Contract Testing — tu especialidad futura',when:'Semanas 7–8',level:'★★★★☆',hours:'~24 h',
+  mentor:'Este es MI diferenciador y será el tuyo. Vienes de APIs, así que aquí vuelas — pero el salto es el <b>contract testing</b>: validar el servicio contra su contrato canónico, no adaptar el test a lo que responde. Eso atrapa bugs de integración antes de producción.',
+  theory:['Regla absoluta: “<b>valida contra el contrato, NO adaptes el test a la respuesta</b>” — un verde falso es peor que un rojo honesto.','La biblia es SIEMPRE la última versión del contrato: revalida contra ella ANTES de reportar (una versión nueva puede resolver la duda).','“Auditoría de contrato” (paso humano): el esquema debe reflejar el <b>contrato</b>, no la respuesta observada.','Antipatrón que la IA tiende a cometer: “el test falla → relajo el esquema para que pase” → <b>PROHIBIDO</b>.','Distingue “alinear al contrato” (correcto) de “enmascarar” (tapar un incumplimiento).','Profundidad de API: schemas, auth (OAuth2/JWT), idempotencia, paginación, contratos de error; funcional vs contract vs negativo; REST/GraphQL/SOAP.','Validación tipada con Zod/AJV (el esquema ES el contrato) + OpenAPI como fuente de verdad.','Reportar de inmediato con evidencia (cURL + response): campo/tipo distinto, response sin documentar, naming raro.','Un stack empresarial común: Java + Cucumber + TestNG + RestAssured + Karate — pero el método es agnóstico al lenguaje y a la herramienta.'],
+  res:[R('📖','Karate DSL — API & contract testing','Repo · gratis','https://github.com/karatelabs/karate',1),
+       R('📖','REST Assured — docs','Docs · gratis','https://rest-assured.io/',1),
+       R('📖','Postman Learning Center','Curso · gratis','https://learning.postman.com/',1),
+       R('📖','Zod — validación de esquemas TS','Docs · gratis','https://zod.dev/',1),
+       R('📖','Pact — contract testing (concepto)','Docs · gratis','https://docs.pact.io/',1),
+       R('📖','OpenAPI / Swagger — el contrato','Docs · gratis','https://swagger.io/docs/specification/about/',1)],
+  hands:['Suite de API progresiva: Postman/Newman → RestAssured → Karate (funcional + negativo).','Suite de <b>contract testing</b> validando un servicio contra su contrato + validación de esquema con Zod/AJV.'],
+  deliver:'Repo de API (3 herramientas) + suite de contract testing con validación de esquema.'},
+
+ {id:'m7',track:'auto',icon:'🥒',title:'BDD — Gherkin, Cucumber & Serenity',when:'Semana 9',level:'★★★☆☆',hours:'~12 h',
+  mentor:'BDD convierte tus pruebas en documentación de negocio. Pero ojo: es una capa SOBRE la automatización. Aprende cuándo ayuda y cuándo estorba — un Gherkin acoplado a la UI es un anti-patrón.',
+  theory:['Filosofía BDD: 3 amigos, ejemplos, lenguaje ubicuo.','Gherkin declarativo vs imperativo; anti-patrones.','features → steps reutilizables; Serenity/Cucumber sobre Playwright o RestAssured.','Living documentation como salida del pipeline.'],
+  res:[R('📖','Cucumber — documentación','Docs · gratis','https://cucumber.io/docs/',1),
+       R('📖','Gherkin — referencia del lenguaje','Docs · gratis','https://cucumber.io/docs/gherkin/reference/',1),
+       R('📖','Serenity BDD — documentación','Docs · gratis','https://serenity-bdd.github.io/',1),
+       R('🎓','TAU — BDD / Cucumber','Curso · gratis','https://testautomationu.applitools.com/',1)],
+  hands:['Convierte 2–3 flujos de los módulos 5/6 a features Gherkin con steps reutilizables.','Genera documentación viva (Serenity/Allure).'],
+  deliver:'Suite BDD (features + steps reutilizables) con reporte de documentación viva.'},
+
+ {id:'m7b',track:'auto',icon:'🔁',title:'Ejecución disciplinada — ciclos, test data & known issues',when:'Semana 10',level:'★★★☆☆',hours:'~10 h',
+  mentor:'Dos reglas que casi nadie enseña y que salvan días: cómo iterar ciclos sin re-correr todo, y cómo manejar datos y fallos ajenos sin ensuciar la suite. “Itera estrecho, confirma amplio.”',
+  theory:['Protocolo de ciclos: nuevos → fix → retest SOLO lo que falló → regresión completa al final (una vez).','Gestión de test data: datasets documentados con sus caveats; datos con estado especial (un registro dado de baja que devuelve un código “vacío” como 204 ≠ bug); “sin data no se ejecuta nada”.','Formato del payload en el wire y cardinalidad entre entidades relacionadas (p. ej. 1→N) como parte del diseño de datos.','Known issues SIN enmascarar: tag <code>@IGNORE</code> + comentario en el <code>.feature</code>; el ticket queda Abierto y NO cierra la HU; condición explícita para quitarlo.','“La suite toda verde” ≠ “el software está bien”: solo significa que tus tests no encontraron nada.'],
+  res:[R('📖','Cucumber — tags y filtrado','Docs · gratis','https://cucumber.io/docs/cucumber/api/',1),
+       R('📖','Playwright — fixtures &amp; test data','Docs · gratis','https://playwright.dev/docs/test-fixtures',1)],
+  hands:['Aplica el protocolo de ciclos: marca fallos, re-corre solo esos, regresión al cierre.','Documenta un dataset con caveats y excluye un known issue con <code>@IGNORE</code> sin tapar el contrato.'],
+  deliver:'Suite con protocolo de ciclos aplicado + un known issue marcado @IGNORE y documentado.'},
+
+ {id:'m8',track:'eng',icon:'📊',title:'Reportes & Trazabilidad — evidencia que se puede firmar',when:'Semana 10',level:'★★★☆☆',hours:'~10 h',
+  mentor:'Un test que pasa y nadie ve, no existe. Un buen reporte te da evidencia; un gestor de pruebas conecta tus tests con los requisitos. Eso es lo que te permite <b>certificar</b> una historia — el cierre del ciclo. La herramienta cambia según la empresa; el estándar (evidencia + trazabilidad) no.',
+  theory:['Reportes con evidencia: pasos, screenshots, adjuntos. Allure es un estándar abierto muy usado, pero el principio aplica con cualquier reporter.','Gestión de pruebas y trazabilidad requisito→prueba→ejecución. Herramientas equivalentes: Xray, TestRail, Zephyr, qTest — el concepto es el mismo, elige el que use tu equipo.','La cadena “de requisito a certificación”, independiente de la herramienta.'],
+  res:[R('📖','Allure Report — documentación','Docs · gratis','https://allurereport.org/docs/',1),
+       R('💻','allure-framework (GitHub)','Repo · gratis','https://github.com/allure-framework',1),
+       R('📖','Xray for Jira — ejemplo de gestor de pruebas','Docs · gratis','https://docs.getxray.app/',1),
+       R('📖','TestRail — otro gestor de pruebas','Docs · gratis','https://www.testrail.com/',1),
+       R('🧭','Panorama de gestores de pruebas (para entender la categoría)','Comparativa · gratis','https://www.testrail.com/blog/popular-test-management-tools/',1)],
+  hands:['Integra un reporter con evidencia (p. ej. Allure) a tu framework Playwright.','Mapea una suite a casos en un gestor de pruebas y deja trazabilidad requisito→ejecución.'],
+  deliver:'Reporte con evidencia publicado + suite trazada en un gestor de pruebas (o simulación del flujo).'},
+
+ {id:'m8b',track:'eng',icon:'✅',title:'Sign-off / Certificación de una historia — el cierre del método',when:'Semana 12',level:'★★★★☆',hours:'~10 h',
+  mentor:'El cierre del ciclo: dejar una historia CERTIFICADA con evidencia y trazabilidad, de forma que cualquiera pueda auditar qué se probó. Y ojo — el sign-off lo firma un humano; no es una casilla que se automatiza. Cada empresa tiene su ritual; el estándar es el mismo.',
+  theory:['Qué significa “certificada / lista” (Definition of Done) y por qué el sign-off es humano.','La cadena de trazabilidad estándar: requisito → caso de prueba → ejecución → evidencia. <b>Cómo</b> se registre el cierre (un comentario, un campo del gestor, la descripción del PR) varía por empresa; la cadena no.','Enlaza cada escenario con su caso en el gestor de pruebas — sin enlaces ni placeholders “por resolver”. El mecanismo (tag, ID, anotación) depende de la herramienta.','Reporte autocontenido (single-file) como evidencia adjuntable.','Errores que INVALIDAN un sign-off: un verde no defendible, trazabilidad sin resolver, evidencia ausente.'],
+  res:[R('📖','Definition of Done — guía (Atlassian)','Artículo · gratis','https://www.atlassian.com/agile/project-management/definition-of-done',1),
+       R('📖','Allure — reporte single-file','Docs · gratis','https://allurereport.org/docs/',1)],
+  hands:['Certifica una historia end-to-end: escenarios enlazados a sus casos, ejecución, evidencia y registro de cierre.','Escribe tu checklist de “Definition of Done” de certificación (te sirve en cualquier empresa).'],
+  deliver:'Una historia “certificada” (simulada) con trazabilidad completa + checklist de Definition of Done.'},
+
+ {id:'m9',track:'eng',icon:'⚙️',title:'CI/CD & Docker',when:'Semana 11',level:'★★★★☆',hours:'~14 h',
+  mentor:'Que las pruebas corran solas en cada cambio es lo que las vuelve confiables. Tu experiencia dev con Git y pipelines es ventaja — el reto nuevo es el enfoque de calidad: gates, paralelización y control de flaky tests.',
+  theory:['CI/CD para testing: quality gates, paralelización, sharding, artefactos.','Gestión de flaky tests (cuarentena, retries responsables).','Contenedores para ambientes reproducibles.'],
+  res:[R('📖','GitHub Actions — documentación','Docs · gratis','https://docs.github.com/actions',1),
+       R('📖','GitLab CI/CD — documentación','Docs · gratis','https://docs.gitlab.com/ee/ci/',1),
+       R('📖','Docker — Get Started','Docs · gratis','https://docs.docker.com/get-started/',1),
+       R('🎥','freeCodeCamp — Docker (YouTube)','Video · gratis','https://www.youtube.com/@freecodecamp',1)],
+  hands:['Conteneriza tu framework Playwright y córrelo en GitHub Actions en cada PR.','Publica el reporte Allure como artefacto del pipeline.'],
+  deliver:'Pipeline CI que corre la suite en cada PR + reporte publicado.'},
+
+ {id:'m10',track:'eng',icon:'🚀',title:'Performance & Cloud (K6 · JMeter · AWS)',when:'Semana 12',level:'★★★★☆',hours:'~14 h',
+  mentor:'Primero “hace lo correcto”, luego “lo hace bien bajo presión” y “en la nube”. Aprende a leer percentiles (p95/p99), no solo pasó/falló, y a validar servicios serverless con sus rarezas (cold starts).',
+  theory:['Tipos: load, stress, soak, spike; métricas: latencia, throughput, p95/p99, error rate; SLI/SLO.','Observabilidad con Grafana.','Serverless: cold start, event-driven, trazas con CloudWatch Logs Insights.'],
+  res:[R('📖','Grafana k6 — documentación','Docs · gratis','https://grafana.com/docs/k6/latest/',1),
+       R('📖','Apache JMeter — user manual','Docs · gratis','https://jmeter.apache.org/usermanual/index.html',1),
+       R('📖','AWS Lambda — documentación','Docs · gratis','https://docs.aws.amazon.com/lambda/',1),
+       R('📖','AWS Well-Architected Framework','Docs · gratis','https://aws.amazon.com/architecture/well-architected/',1),
+       R('📖','Grafana — documentación','Docs · gratis','https://grafana.com/docs/',1)],
+  hands:['Test de carga en K6 contra un endpoint con thresholds; interpreta p95/p99.','Valida end-to-end una Lambda y rastrea una transacción en CloudWatch.'],
+  deliver:'Script K6 con thresholds + informe de performance + checklist de validación serverless.'},
+
+ {id:'m11',track:'ia',icon:'🤖',title:'QA Aumentado con IA — mi diferenciador',when:'Semana 13',level:'★★★★★',hours:'~14 h',
+  mentor:'Esto es lo que me hace distinto y ahora es tuyo. La IA es <b>arquitecto y generador</b> de pruebas; tú eres el director que revisa cada diff. Solo funciona cuando YA sabes diseñar y arquitectar — por eso va al final. El patrón: una IA “directora” (p. ej. Claude Code) que planea y mantiene contexto, y una IA “ejecutora” en el IDE (Copilot, Cursor…).',
+  theory:['El modelo central: “<b>la IA directora planea, la IA del IDE ejecuta</b>” — separar planeación de ejecución rinde mejor y funciona con cualquier par de herramientas.','Los 2 roles + el humano: <b>IA directora</b> = contexto y plan · <b>IA del IDE</b> = ejecutor pegado al código · <b>tú</b> = criterio.','Un archivo de instrucciones para la IA del IDE (p. ej. <code>copilot-instructions.md</code>, o las <i>rules</i> de Cursor) = “el CLAUDE.md del IDE”: el artefacto que conecta ambas IAs.','Anatomía de un buen prompt (5 bloques): Contexto + Insumo + Instrucción + Restricciones + Salida esperada.','“Contexto antes que prompt”: un prompt brillante sobre contexto pobre rinde poco.','<b>Prompt packs</b>: recetas reutilizables con huecos &lt;...&gt; — “de 10 min a 1”.','Las 3 capas de contexto: CLAUDE.md (reglas) · Memoria persistente (hechos sobre ti) · Obsidian (conocimiento).','Human-in-the-loop: “la IA se equivoca con seguridad” → revisa SIEMPRE el diff.','Test mental para delegar: ¿la responsabilidad es mía? ¿requiere criterio de negocio/riesgo? ¿es irreversible hacia afuera? ¿es mecánico sobre convención clara?','MCP: conectar herramientas al modelo — el cluster que domina vacantes 2026 es Playwright + MCP + Claude.'],
+  res:[R('📖','Claude Code','Docs','https://docs.claude.com/en/docs/claude-code'),
+       R('📖','GitHub Copilot — documentación','Docs','https://docs.github.com/copilot'),
+       R('📖','Model Context Protocol (MCP)','Docs · gratis','https://modelcontextprotocol.io/',1),
+       R('🛠️','Cursor — IDE con IA','Herramienta','https://cursor.com/')],
+  hands:['Genera una suite desde un contrato de API o una HU con Claude + Copilot, <b>revisando el diff</b>.','Construye un <b>prompt pack</b> + checklist de revisión de salida del LLM.'],
+  deliver:'Suite generada con IA (diff revisado) + prompt pack + checklist de revisión.'},
+
+ {id:'m12',track:'cap',icon:'🏆',title:'Capstone — sistema de calidad end-to-end',when:'Semanas 14–15',level:'★★★★★',hours:'~24 h',
+  mentor:'La prueba de que pasaste de “sé herramientas” a “diseño calidad”. Este repo será tu carta de presentación — el mismo tipo de trabajo que hago en producción. Lo defiendes ante mí en 30–45 min.',
+  theory:['Integra TODO en un proyecto real de referencia.','Justifica qué automatizaste, qué no, y por qué (riesgo).','Métricas de cobertura y calidad; decisiones de arquitectura documentadas.'],
+  res:[R('💻','Estudia: microsoft/playwright (referencia)','Repo · público','https://github.com/microsoft/playwright'),
+       R('💻','Estudia: karatelabs/karate (referencia)','Repo · público','https://github.com/karatelabs/karate'),
+       R('🎓','Test Automation University (repaso)','Curso · gratis','https://testautomationu.applitools.com/',1)],
+  hands:['App/API real → estrategia por riesgo → contract tests (Karate) → E2E Playwright+TS → capa BDD → CI/CD con reporte de evidencia + gestor de pruebas → K6 de performance → una parte generada con IA y revisada.','Defensa oral ante el mentor.'],
+  deliver:'Repo integral + README de arquitectura + pipeline verde + presentación de defensa.'},
+
+ {id:'m13',track:'cap',icon:'🧭',title:'Tu carrera QA+IA — posicionamiento',when:'Cierre',level:'★★★☆☆',hours:'~4 h',
+  mentor:'El cierre. El rol sube de altitud: de escribir tests a diseñar estrategia y supervisar pruebas generadas por IA. Cuenta tu diferencial — tu proyecto de portafolio es la prueba.',
+  theory:['El nuevo perfil: de QA manual → Quality Engineering → “AI QA Engineer”.','Agentic testing como la ola; MCP como habilidad diferenciadora.','Comunicar hallazgos a stakeholders: “la automatización es el detector, no la razón; el beneficiario es el consumidor”.','Cómo escalar un contract mismatch con evidencia (cURL + response), sin “cambien el servicio para que pase mi test”.'],
+  res:[R('📖','Model Context Protocol (MCP)','Docs · gratis','https://modelcontextprotocol.io/',1),
+       R('🎓','Test Automation University (mantente al día)','Curso · gratis','https://testautomationu.applitools.com/',1)],
+  hands:['Arma tu pitch de 2 min: qué te hace un QA aumentado y qué proyecto lo demuestra.','Redacta cómo reportarías un contract mismatch a un stakeholder con evidencia.'],
+  deliver:'Pitch de posicionamiento + un ejemplo de reporte de hallazgo a stakeholder.'}
+];
+
+// ---- render ----
+const legend = document.getElementById('legend');
+Object.values(T).forEach(t=>{ const s=document.createElement('span'); s.innerHTML=`<i class="ldot" style="background:${t.c}"></i>${t.name}`; legend.appendChild(s); });
+
+const map = document.getElementById('map');
+const modules = document.getElementById('modules');
+
+COURSE.forEach((m,i)=>{
+  const tc = T[m.track].c;
+  // map node
+  const node = document.createElement('div');
+  node.className='node'; node.id='node-'+m.id; node.style.setProperty('--tc',tc);
+  node.innerHTML = `<div class="ring"></div><div class="nn">MÓDULO ${i+1}</div><div class="nicon">${m.icon}</div><div class="ntitle">${m.title.split(' — ')[0]}</div><div class="ntrack">${T[m.track].name}</div>`;
+  node.onclick=()=>{ location.hash='#/'+m.id; };
+  map.appendChild(node);
+
+  // module
+  const mod = document.createElement('div');
+  mod.className='mod'; mod.id=m.id; mod.style.setProperty('--tc',tc);
+  const resHtml = m.res.map(r=>`<a class="res" href="${r.url}" target="_blank" rel="noopener"><span class="ric">${r.ic}</span><span class="rmain"><span class="rlabel">${r.label}</span><span class="rtype ${r.free?'free':''}">${r.type}</span></span></a>`).join('');
+  mod.innerHTML = `
+    <div class="mhead" onclick="this.parentElement.classList.toggle('open')">
+      <div class="mnum">${m.icon}</div>
+      <div class="mhcol">
+        <div class="mttl">${m.title}</div>
+        <div class="mmeta"><span>${m.when}</span><span>·</span><span>nivel <b>${m.level}</b></span><span>·</span><span>${m.hours}</span><span>·</span><span style="color:${tc}">${T[m.track].name}</span></div>
+      </div>
+      <span class="caret">▸</span>
+    </div>
+    <div class="mbody">
+      <div class="mentor"><div class="mav">CG</div><div class="mtext"><div class="who">Nota de Cristian</div>${m.mentor}</div></div>
+      <div class="seclbl">📓 Teoría</div>
+      <ul class="tight">${m.theory.map(t=>`<li>${t}</li>`).join('')}</ul>
+      <div class="seclbl">🔗 Recursos — cursos gratis · docs · repos</div>
+      <div class="reslist">${resHtml}</div>
+      <div class="hands">
+        <div class="hl">🧪 Reto práctico</div>
+        <ul class="tight">${m.hands.map(h=>`<li>${h}</li>`).join('')}</ul>
+        <div class="deliver"><input type="checkbox" id="chk-${m.id}"><label for="chk-${m.id}"><b>Entregable:</b> ${m.deliver}</label></div>
+      </div>
+      <div class="qmount" data-mid="${m.id}"></div>
+    </div>`;
+  modules.appendChild(mod);
+});
+
+// ---- glosario buscable ----
+const GLOSSARY = [
+ ['HU','Historia de Usuario: unidad de trabajo/requisito en gestores ágiles (Jira, Azure DevOps, GitLab…).'],
+ ['Certificar','Demostrar con evidencia y trazabilidad que una HU quedó probada. La firma es humana.'],
+ ['Defecto','Incumplimiento del producto vs lo esperado o el contrato. Se reporta; no se tapa.'],
+ ['Regresión','Volver a probar lo existente para asegurar que nada se rompió.'],
+ ['Flakiness','Test que a veces pasa y a veces no sin cambiar el código (selector/timing).'],
+ ['Forma canónica','La única manera acordada de escribir features/steps en el equipo.'],
+ ['Gherkin','Lenguaje Given/When/Then para describir comportamiento.'],
+ ['Cucumber','Framework que conecta el Gherkin con el código (steps).'],
+ ['Step definition','Código que implementa cada paso Given/When/Then.'],
+ ['Contract testing','Validar que un servicio cumple su contrato (esquema de API).'],
+ ['POM','Page Object Model: encapsula selectores/acciones de una pantalla en una clase.'],
+ ['Gestor de pruebas (TMS)','Test management: conecta requisitos, casos y ejecuciones. Ejemplos: Xray, Zephyr, TestRail, qTest. Cada empresa usa el suyo; el concepto es el mismo.'],
+ ['Allure','Reportes con evidencia navegable; single-file = adjuntable.'],
+ ['Trazabilidad','Cadena de links HU ↔ Test ↔ Ejecución ↔ código.'],
+ ['Claude Code','La IA “directora”: razona con contexto, planea, mantiene el método.'],
+ ['Copilot','La IA “ejecutora”: escribe código pegada al repo, en el IDE.'],
+ ['CLAUDE.md','Instrucciones que la IA carga siempre en un proyecto.'],
+ ['Prompt pack','Plantilla de prompt reutilizable para una tarea repetida.'],
+ ['Subagente','Agente de IA lanzado para una subtarea (búsqueda amplia, perspectiva independiente).'],
+ ['MCP','Model Context Protocol: permite a la IA hablar con herramientas externas (Jira, correo).'],
+ ['Hook','Acción automática disparada por un evento.'],
+ ['@IGNORE','Tag que excluye un known issue de la corrida sin enmascarar el contrato.'],
+ ['Trazabilidad de escenario','Enlace entre un escenario automatizado y su caso en el gestor de pruebas. El mecanismo (tag, ID, anotación) depende de la herramienta.'],
+ ['Known issue','Gap pendiente de un tercero/dependencia; el ticket queda Abierto y no cierra la HU.'],
+ ['Shift-left','Meterse en el diseño y la calidad temprano, no al final.'],
+ ['Risk-based testing','Priorizar pruebas por riesgo = probabilidad × impacto.'],
+];
+function esc2(s){return String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
+function renderGlos(q){
+  q=(q||'').toLowerCase().trim();
+  const host=document.getElementById('glosList'); if(!host) return;
+  const items=GLOSSARY.filter(([t,d])=>!q||t.toLowerCase().includes(q)||d.toLowerCase().includes(q));
+  host.innerHTML=items.length?items.map(([t,d])=>`<div class="glos-item"><div class="gt">${esc2(t)}</div><div class="gd">${esc2(d)}</div></div>`).join(''):'<div style="color:var(--muted);font-size:13px">Sin resultados.</div>';
+}
+renderGlos('');
+
+// ---- quizzes tipo wizard: una pregunta por card, con barra de progreso ----
+const QS={};
+const shuf=a=>a.map(v=>[Math.random(),v]).sort((x,y)=>x[0]-y[0]).map(p=>p[1]);
+function quizStart(id){
+  if(!QUIZ[id]||!QUIZ[id].length) return;
+  QS[id]={i:0,ok:0,seq:QUIZ[id].map(it=>shuf(it.o.map((op,oi)=>({op,ok:oi===it.a}))))};
+  renderQuizStep(id);
+}
+function renderQuizStep(id){
+  const box=document.querySelector(`.qmount[data-mid="${id}"]`); if(!box) return;
+  const qs=QUIZ[id], s=QS[id];
+  const lbl = id==='final' ? '🎓 Examen final' : '🧠 Reto del módulo';
+  if(s.i>=qs.length){
+    const score=Math.round(s.ok/qs.length*100);
+    if(id==='final') examDone(score);
+    const head = id==='final'
+      ? (score>=80?'🎓 APROBADO':'📚 Aún no — necesitas 80%')
+      : (s.ok===qs.length?'🏆 Dominado':'💪 Buen intento');
+    const sub = id==='final'
+      ? (score>=80?'Cruzaste todo el método. Este puntaje queda guardado en tu cuenta.':'Repasa los módulos donde fallaste y vuelve — las opciones se barajan en cada intento.')
+      : (s.ok===qs.length?'Este módulo es tuyo. Sigue con el siguiente.':'Repasa la teoría de arriba y reinténtalo — las preguntas se barajan.');
+    box.innerHTML=`<div class="quiz"><div class="ql">${lbl}</div><div class="qend">
+      <div class="qbig">${head}</div>
+      <div class="qbig2">${s.ok} / ${qs.length} <span>(${score}%)</span></div>
+      <div class="qsub">${sub}</div>
+      <button class="qnext" onclick="quizStart('${id}')">↺ Reintentar</button>
+    </div></div>`;
+    return;
+  }
+  const it=qs[s.i], opts=s.seq[s.i], pct=Math.round(s.i/qs.length*100);
+  box.innerHTML=`<div class="quiz"><div class="ql">${lbl} — una respuesta por pregunta</div>
+    <div class="qprog"><div class="qbar"><i style="width:${pct}%"></i></div><span class="qcount">${s.i+1} / ${qs.length}</span></div>
+    <div class="qcard">
+      <div class="qq">${it.q}</div>
+      <div class="qopts" id="qopts-${id}">${opts.map(o=>`<button class="qo" data-ok="${o.ok?1:0}" onclick="answerQuiz('${id}',this)">${o.op}</button>`).join('')}</div>
+      <div class="qwhy" id="why-${id}">💡 <b>Por qué:</b> ${it.why}</div>
+      <button class="qnext" id="qnext-${id}" style="display:none" onclick="QS['${id}'].i++;renderQuizStep('${id}')">${s.i+1===qs.length?'Ver resultado →':'Siguiente →'}</button>
+    </div></div>`;
+}
+function answerQuiz(id,btn){
+  const s=QS[id], cont=document.getElementById('qopts-'+id);
+  if(!s||!cont||cont.dataset.done) return;
+  cont.dataset.done='1';
+  const ok=btn.dataset.ok==='1'; if(ok) s.ok++;
+  [...cont.querySelectorAll('.qo')].forEach(b=>{ b.disabled=true; if(b.dataset.ok==='1') b.classList.add('ok'); });
+  if(!ok) btn.classList.add('no');
+  document.getElementById('why-'+id)?.classList.add('show');
+  document.getElementById('qnext-'+id).style.display='inline-block';
+}
+[...document.querySelectorAll('.qmount')].forEach(el=>quizStart(el.dataset.mid));
+
+// ---- progress ----
+const KEY='qacurso_v1';
+const chks = ()=>Array.from(document.querySelectorAll('input[type=checkbox]'));
+let examBest=null;
+function examDone(pct){ if(examBest==null||pct>examBest){ examBest=pct; saveP(); } renderExamBadge(); }
+function renderExamBadge(){ const el=document.getElementById('exambadge'); if(!el) return; el.textContent = examBest==null?'':(examBest>=80?`🎓 Aprobado — mejor puntaje: ${examBest}%`:`Mejor puntaje: ${examBest}% (meta: 80%)`); }
+function loadP(){ let s={}; try{s=JSON.parse(localStorage.getItem(KEY))||{}}catch(e){} chks().forEach(c=>{const id=c.id.replace('chk-',''); if(s[id]){c.checked=true; mark(id,true);} }); if(typeof s._exam==='number') examBest=s._exam; renderExamBadge(); upd(); }
+function saveP(){ const s={}; chks().forEach(c=>{ if(c.checked) s[c.id.replace('chk-','')]=1; }); if(examBest!=null) s._exam=examBest; localStorage.setItem(KEY,JSON.stringify(s)); cloudSave(s); }
+function mark(id,done){ document.getElementById(id)?.classList.toggle('done',done); document.getElementById('node-'+id)?.classList.toggle('done',done); }
+function upd(){ const total=COURSE.length; const done=chks().filter(c=>c.checked).length; const pct=Math.round(done/total*100); document.getElementById('barfill').style.width=pct+'%'; document.getElementById('pcttxt').textContent=pct+'%'; }
+document.addEventListener('change',e=>{ if(e.target.matches('input[type=checkbox]')){ const id=e.target.id.replace('chk-',''); mark(id,e.target.checked); saveP(); upd(); }});
+function resetProg(){ localStorage.removeItem(KEY); chks().forEach(c=>c.checked=false); COURSE.forEach(m=>mark(m.id,false)); upd(); }
+loadP();
+
+// ---- router: cada módulo es su propia página (#/m1 … #/m13) ----
+function route(){
+  const mm=location.hash.match(/^#\/(\w+)$/);
+  const id=(mm&&COURSE.some(m=>m.id===mm[1]))?mm[1]:null;
+  document.body.classList.toggle('modview',!!id);
+  document.querySelectorAll('.mod').forEach(el=>el.classList.toggle('active',el.id===id));
+  if(id){
+    const i=COURSE.findIndex(m=>m.id===id), p=COURSE[i-1], n=COURSE[i+1];
+    document.getElementById('modpos').textContent=`Módulo ${i+1} de ${COURSE.length}`;
+    const pv=document.getElementById('prevmod'), nx=document.getElementById('nextmod');
+    pv.style.display=p?'':'none'; if(p){ pv.href='#/'+p.id; pv.textContent='← '+p.title.split(' — ')[0]; }
+    nx.style.display=n?'':'none'; if(n){ nx.href='#/'+n.id; nx.textContent=n.title.split(' — ')[0]+' →'; }
+    window.scrollTo(0,0);
+  }
+}
+window.addEventListener('hashchange',route);
+route();
+
+// ---- Login con Google (Firebase) + progreso por usuario — OPCIONAL ----
+// Activar: crea proyecto en console.firebase.google.com → Authentication (Google) + Firestore,
+// copia firebase-config.example.js a firebase-config.js con tu config, cárgalo antes de este script y agrega tu dominio en Authentication → Settings → Authorized domains.
+const firebaseConfig = window.FIREBASE_CONFIG || { apiKey:"TU_API_KEY", authDomain:"TU_PROYECTO.firebaseapp.com", projectId:"TU_PROYECTO", appId:"TU_APP_ID" };
+let fbDb=null, fbUser=null;
+const FB_ON = firebaseConfig.apiKey && !/^TU_/.test(firebaseConfig.apiKey) && typeof firebase!=='undefined';
+function cloudSave(s){ if(fbDb && fbUser){ fbDb.collection('progress').doc(fbUser.uid).set({data:s,updated:Date.now()}).catch(()=>{}); } }
+async function cloudLoad(uid){ try{ const d=await fbDb.collection('progress').doc(uid).get(); const s=(d.exists&&d.data().data)||{}; chks().forEach(c=>{ const id=c.id.replace('chk-',''); const on=!!s[id]; c.checked=on; mark(id,on); }); if(typeof s._exam==='number'&&(examBest==null||s._exam>examBest)){ examBest=s._exam; renderExamBadge(); } upd(); }catch(e){} }
+function authUI(){ const w=document.getElementById('authWho'), b=document.getElementById('authBtn'); if(!b) return; b.style.display='inline-block'; if(fbUser){ w.textContent='👤 '+(fbUser.displayName||fbUser.email||'usuario'); b.textContent='Salir'; } else { w.textContent=''; b.textContent='🔓 Entrar con Google'; } }
+function doAuth(){ if(!FB_ON){ alert('Para el login con Google, configura Firebase (ver README del repo). Mientras tanto tu avance se guarda en este navegador.'); return; } if(fbUser){ firebase.auth().signOut(); } else { firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider()).catch(e=>alert('No se pudo iniciar sesión: '+e.message)); } }
+// ---- gate: dashboard de entrada, pide login antes de empezar ----
+const GUEST='qacurso_guest';
+const isGuest=()=>{ try{return localStorage.getItem(GUEST)==='1'}catch(e){return false} };
+function enterCourse(){ document.body.classList.remove('gated'); }
+function enterGuest(){ try{localStorage.setItem(GUEST,'1')}catch(e){} enterCourse(); }
+if(isGuest()||!FB_ON) enterCourse();
+
+if(FB_ON){ firebase.initializeApp(firebaseConfig); fbDb=firebase.firestore(); firebase.auth().onAuthStateChanged(u=>{ fbUser=u; authUI(); if(u){ try{localStorage.removeItem(GUEST)}catch(e){} enterCourse(); cloudLoad(u.uid); } else if(!isGuest()){ document.body.classList.add('gated'); } }); }
+authUI();
+</script>
+</body>
+</html>
