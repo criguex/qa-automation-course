@@ -28,6 +28,8 @@
   img{max-width:100%;height:auto;border-radius:14px;border:1px solid var(--line)}
   .kid{border:1px dashed rgba(250,204,21,.45);background:rgba(250,204,21,.06)}
   .foot{margin-top:40px;color:var(--muted);font-size:13px}
+  .pass{color:var(--mint);font-weight:700}.fail{color:var(--coral);font-weight:700}.warn{color:var(--gold);font-weight:700}
+  .card ul{margin:0;padding-left:20px}.card li{margin:6px 0;font-size:14px}
 </style>
 </head>
 <body>
@@ -44,7 +46,7 @@
 <div class="grid">
   <div class="card"><h3>🎯 Objetivos y prerrequisitos</h3><p>Qué vas a poder hacer al terminar, en verbos que se pueden comprobar, y qué necesitas antes de empezar.</p></div>
   <div class="card"><h3>📓 Teoría corta + 🧪 laboratorio</h3><p>La teoría justa y un laboratorio práctico. En los módulos nuevos, el laboratorio es un repo público real.</p></div>
-  <div class="card"><h3>🧠 Quiz autocorregible</h3><p>8 preguntas al azar del banco del módulo (8 a 10 por módulo), una respuesta por pregunta y la explicación de cada una. Apruebas con <b>6 de 8</b>. Cada intento saca otras preguntas.</p></div>
+  <div class="card"><h3>🧠 Quiz autocorregible</h3><p>8 preguntas al azar del banco del módulo (entre 8 y 18 por módulo), una respuesta por pregunta y la explicación de cada una. Apruebas con <b>6 de 8</b>. Cada intento saca otras preguntas.</p></div>
   <div class="card"><h3>✅ Reto con criterios verificables</h3><p>Criterios que se comprueban con un comando o una captura, no con una opinión. Ejemplos: “tu suite mata al menos 5 de 6 mutantes y el reporte JSON trae hashes”, “tu juez tiene un kappa ≥ 0.6 contra tus etiquetas”, “un PR con un fallo queda bloqueado para merge”.</p></div>
   <div class="card"><h3>📏 Rúbrica de 4 niveles</h3><p>1 · No cumple · 2 · En camino · 3 · Aprobado · 4 · Sobresaliente. El nivel 4 de cada módulo pide algo concreto de más.</p></div>
   <div class="card"><h3>🧬 Mutación de la semana</h3><p>Rompes algo a propósito en tu propio trabajo y demuestras que tu chequeo lo nota, o publicas que no lo nota. Es el hilo WAR: prueba al que prueba.</p></div>
@@ -54,8 +56,31 @@
 <div class="card">
   <p><b>Un módulo:</b> quiz ≥ 6/8 <b>y</b> reto en el nivel 3 de la rúbrica (todos los criterios cumplidos). Entonces marcas el ✅ del entregable.</p>
   <p style="margin-top:8px"><b>El examen final:</b> 26 preguntas de escenario que cruzan todo el curso; se aprueba con 80 %.</p>
-  <p style="margin-top:8px"><b>El proyecto final:</b> las cuatro filas de la rúbrica integrada al menos en el nivel 3, y otra persona reproduce tu paquete.</p>
+  <p style="margin-top:8px"><b>El capstone «Auditoría WAR»:</b> las cuatro filas de la rúbrica integrada al menos en el nivel 3, <b>y</b> otra persona reproduce tu paquete en un entorno limpio con exit 0 y la misma huella.</p>
   <p style="margin-top:8px">Tu avance, tu mejor puntaje en cada quiz y tu examen se guardan solo en tu navegador (localStorage). Si borras los datos del sitio, se borran.</p>
+</div>
+
+<h2>Qué es evidencia y qué no</h2>
+<div class="tablewrap"><table>
+  <tr><th>Cuenta como evidencia</th><th>No cuenta</th></tr>
+  <tr><td><span class="pass">✓ Sí:</span> el comando exacto, su salida y su exit code, guardados como salieron.</td><td><span class="fail">✗ No:</span> «me funcionó», o una captura sin el comando que la produjo.</td></tr>
+  <tr><td><span class="pass">✓ Sí:</span> un SHA-256 o una huella que otra persona recalcula y le da igual.</td><td><span class="fail">✗ No:</span> un log que existe pero que nadie puede atar a la corrida que lo produjo.</td></tr>
+  <tr><td><span class="pass">✓ Sí:</span> el orden en <code>git log</code>: prerregistro, después datos, después resultados.</td><td><span class="fail">✗ No:</span> un umbral que se movió después de ver el puntaje, aunque el nuevo «tenga más sentido».</td></tr>
+  <tr><td><span class="pass">✓ Sí:</span> un control que debe pasar y otro que debe fallar, con los dos resultados.</td><td><span class="fail">✗ No:</span> una suite verde que nunca viste fallar.</td></tr>
+  <tr><td><span class="pass">✓ Sí:</span> una hipótesis que falló, publicada con su número.</td><td><span class="fail">✗ No:</span> borrar la hipótesis que falló o cambiar el criterio para que pase.</td></tr>
+  <tr><td><span class="pass">✓ Sí:</span> la reproducción de otra persona, publicada tal cual, aunque le salga distinto.</td><td><span class="warn">! Ojo:</span> tu propia reproducción en otra máquina tuya, o una que operó un asistente, vale como «reproducido», no como «reproducido por un tercero». Se dice así en Límites.</td></tr>
+</table></div>
+
+<h2>Cómo comprobar tus propios criterios</h2>
+<div class="card">
+  <ul>
+    <li><b>Orden en el tiempo:</b> <code>git log --reverse --format="%h %ad %s" --date=iso</code>.</li>
+    <li><b>Umbrales intactos:</b> <code>git log -p -- thresholds.json</code> no muestra cambios después de la primera corrida.</li>
+    <li><b>Exit code:</b> termina cada comando con <code>; echo "exit=$?"</code> y guarda la salida.</li>
+    <li><b>Hashes:</b> <code>shasum -a 256 archivo</code>, o <code>shasum -a 256 -c SHA256SUMS</code> para una lista.</li>
+    <li><b>Huella en dos entornos:</b> un job de CI con matriz que haga <code>grep -q "fingerprint: XXXX-XXXX-XXXX"</code>, como el <code>verify.yml</code> de predictor-debugger.</li>
+    <li><b>Entorno limpio:</b> un runner nuevo de CI o un contenedor que nace y muere con el comando, por ejemplo <code>docker run --rm -v "$PWD":/w -w /w python:3.12-slim python3 verificar.py</code>.</li>
+  </ul>
 </div>
 
 <h2>Rúbrica de cada módulo</h2>
@@ -63,41 +88,25 @@
   <tr><th>1 · No cumple</th><th>2 · En camino</th><th>3 · Aprobado</th><th>4 · Sobresaliente</th></tr>
   <tr><td>Falta el entregable o no corre.</td><td>Corre, pero falla al menos un criterio de aprobación.</td><td>Cumple todos los criterios de aprobación.</td><td>Cumple todo y además el extra que pide ese módulo.</td></tr>
 </table></div>
+<p class="lead">Los módulos más nuevos traen una rúbrica por ejes: cuatro filas, cada una con estos cuatro niveles. Ahí el aprobado es tener las cuatro filas al menos en el nivel 3.</p>
 
-<h2>Rúbrica integrada del proyecto final</h2>
-<p class="lead">Cubre los tres ejes del curso: QA asistida por IA, ejecución de mutantes y el WAR Paradigm, más la evidencia.</p>
+<h2>Rúbrica integrada del capstone «Auditoría WAR»</h2>
+<p class="lead">Una fila por eje del curso, más la evidencia. Aprobado = las cuatro filas al menos en el nivel 3.</p>
 <div class="tablewrap"><table>
   <tr><th>Eje</th><th>1 · No cumple</th><th>2 · En camino</th><th>3 · Aprobado</th><th>4 · Sobresaliente</th></tr>
-  <tr><th>QA asistida por IA</th><td>El asistente actuó sin registro ni revisión.</td><td>Hay registro, pero faltan exit codes o hashes.</td><td>Hook probado, registro con comandos, hashes y exit codes, y diff revisado.</td><td>Además, revisión doble a ciegas y sección “qué no se ejecutó”.</td></tr>
-  <tr><th>Ejecución de mutantes</th><td>No hay mutantes o no hay línea base.</td><td>Hay mutantes, pero el kill rate cuenta fallos de infraestructura o falta el ledger.</td><td>Al menos 6 mutantes como datos, línea base válida, kill rate correcto y ledger con causas.</td><td>Además, el ledger prioriza la siguiente corrida y hay una ronda a ciegas con compromiso por hash.</td></tr>
-  <tr><th>WAR Paradigm</th><td>Solo se prueba el producto, nunca los guardias.</td><td>Se prueba un guardia (la suite o el juez).</td><td>Se prueban al menos dos guardias distintos (suite, juez, hook, gate) rompiendo algo a propósito.</td><td>Además, se publica un guardia que falló y lo que se aprendió.</td></tr>
-  <tr><th>Evidencia y reporte</th><td>Afirmaciones sin evidencia.</td><td>Evidencia parcial, o la huella no coincide entre entornos.</td><td>Prerregistro previo, huella igual en dos entornos y límites escritos.</td><td>Un tercero reproduce el paquete sin ayuda.</td></tr>
+  <tr><th>QA asistida por IA</th><td>El asistente ejecutó sin registro, o las reglas viven solo en el prompt.</td><td>Hay registro de sesiones, pero faltan comandos, exit codes o hashes, o el hook no tiene suite de ataques.</td><td>Hook o gate con suite de ataques en CI (exit 0); <code>receipts.jsonl</code> con cada comando, exit code y SHA-256; diff revisado por una persona y trailer <code>Co-Authored-By</code> en los commits del asistente.</td><td>Además, revisión doble a ciegas (dos revisores que no ven el trabajo del otro y un corrector acotado) y sección «Qué no se ejecutó».</td></tr>
+  <tr><th>Ejecución de mutantes</th><td>No hay mutantes o no hay línea base.</td><td>Hay mutantes, pero el kill rate cuenta fallos de infraestructura o de línea base, o falta el ledger.</td><td>Al menos 6 mutantes como datos, con un cambio cada uno; línea base válida; kill rate recalculable desde el JSON; cada SURVIVED en el ledger con causa; modo estricto que hace fallar al sobreviviente.</td><td>Además, el ledger prioriza la siguiente corrida y hay una ronda a ciegas con compromiso por hash verificada con <code>shasum -a 256</code>.</td></tr>
+  <tr><th>WAR Paradigm</th><td>Solo se prueba el producto, nunca los guardias.</td><td>Se prueba un solo guardia (la suite o el juez).</td><td>Se prueban al menos dos guardias distintos (suite, juez, hook, gate o verificador de evidencia), cada uno con un control que debe pasar y otro que debe fallar, con su comando y exit code.</td><td>Además, se publica un guardia que falló (un sobreviviente o un falso verde) y qué cambió después, sin mover umbrales.</td></tr>
+  <tr><th>Evidencia y reproducción</th><td>Afirmaciones sin un comando que las produzca.</td><td>Evidencia parcial, prerregistro posterior a los datos o huella distinta entre entornos.</td><td>Prerregistro anterior a los datos; lockfile y <code>--locked</code> o <code>npm ci</code>; misma huella en CI y en tu máquina; otra persona reproduce en un entorno limpio con exit 0 y la misma huella; README con Límites y Qué me contradiría.</td><td>Además, quien reproduce no tiene relación con el proyecto, usa otro sistema operativo y su reporte queda publicado tal cual, con las diferencias que encontró.</td></tr>
 </table></div>
 
-<h2>El mapa de la ruta</h2>
-<img src="docs/assets/route-map.svg" alt="Mapa de la ruta: 31 módulos en cuatro niveles (fundamentos, intermedio, AI-QA avanzado y QA científico) más el proyecto final y la carrera" />
-
-<h2>Tres rutas</h2>
-<div class="card"><p><b>Completa, desde cero:</b> los 31 módulos en orden, unas 33 semanas a 10–12 h por semana.</p></div>
-<div class="card">
-  <p><b>20 semanas, si ya automatizas UI o API</b> (los números son los del mapa):</p>
-  <div class="tablewrap" style="margin-top:8px"><table>
-    <tr><th>Semana</th><th>Módulo</th><th>Semana</th><th>Módulo</th></tr>
-    <tr><td>1</td><td>01 Mentalidad QA y oráculos</td><td>11</td><td>21 Triaje e impacto</td></tr>
-    <tr><td>2</td><td>07 API y contratos</td><td>12</td><td>22 LLM como juez</td></tr>
-    <tr><td>3</td><td>09 Ejecución disciplinada (defectos visibles)</td><td>13</td><td>23 Agentes y juez calibrado</td></tr>
-    <tr><td>4</td><td>13 Pipelines y gates</td><td>14</td><td>24 Jueces, fallas, cascadas</td></tr>
-    <tr><td>5</td><td>14 Contenedores efímeros</td><td>15</td><td>25 QA asistida por IA II</td></tr>
-    <tr><td>6</td><td>16 Determinismo y replay</td><td>16</td><td>26 Prerregistro y huellas</td></tr>
-    <tr><td>7</td><td>19 Mutation testing</td><td>17</td><td>27 Mutantes numéricos</td></tr>
-    <tr><td>8</td><td>20 Mutantes que aprenden</td><td>18</td><td>28 Fluidos y estadística</td></tr>
-    <tr><td>9</td><td>18 QA asistida por IA I</td><td>19</td><td>29 Lean y pruebas a ciegas</td></tr>
-    <tr><td>10</td><td>15 Performance, a11y y visual</td><td>20</td><td>30 Proyecto final</td></tr>
-  </table></div>
-</div>
-<div class="card">
-  <p><b>12 semanas:</b> 01 · 07 · 09 · 13 · 14 + 16 · 19 · 18 · 22 · 23 · 25 · 26 · 30 (proyecto final en versión corta). Los módulos 27 a 29 quedan como electiva de QA científico.</p>
-</div>
+<h2>La ruta</h2>
+<p class="lead">La ruta completa tiene 35 módulos. Los números de abajo son los del mapa del curso.</p>
+<img src="docs/assets/route-map.svg" alt="Ruta completa: 35 módulos en cuatro niveles (fundamentos, intermedio, AI-QA avanzado y QA científico), el capstone y la carrera" />
+<div class="card"><p><b>Completa, desde cero:</b> los 35 módulos en orden, unas 37 semanas a 10–12 h por semana.</p></div>
+<div class="card"><p><b>20 semanas, si ya automatizas pruebas de UI o API.</b> Cada tarjeta dice qué módulo trabajar esa semana.</p></div>
+<img src="docs/assets/ruta.svg" alt="Ruta de 20 semanas en cuatro niveles y el capstone Auditoría WAR en las semanas 21 y 22, con el número de módulo de cada semana" />
+<div class="card"><p><b>12 semanas:</b> semanas 1 a 5 como en la ruta de 20 (módulos 01, 08, 10, 14 y 15); semana 6, módulos 21 y 02 juntos; luego 19, 24, 25, 27 y dos semanas para el 28 (prerregistro, controles, huellas y reproducibilidad). Los módulos 29 a 33 quedan como electiva de QA científico, y el capstone, para cuando termines.</p></div>
 
 <h2>Honestidad</h2>
 <div class="card"><p>Nadie revisa tus respuestas desde un servidor. Si marcas un ✅ sin evidencia, solo te engañas a ti. La regla del curso aplica también aquí: un verde solo vale si sabes que habría salido rojo cuando algo estaba mal.</p></div>

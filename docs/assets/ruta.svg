@@ -1,0 +1,178 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="1040" viewBox="0 0 1280 1040" role="img" aria-label="Ruta de 20 semanas más el capstone: cuatro niveles, de fundamentos a QA científico, con los módulos nuevos marcados">
+<defs><pattern id="g" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#55DFBD" stroke-opacity="0.06" stroke-width="1"/></pattern><clipPath id="r"><rect width="1280" height="1040" rx="20"/></clipPath></defs>
+<g clip-path="url(#r)"><rect width="1280" height="1040" fill="#071B2B"/><rect width="1280" height="1040" fill="url(#g)"/><rect x="0" y="0" width="8" height="1040" fill="#55DFBD"/></g>
+<text x="56" y="60" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="28" font-weight="700" fill="#F4F7F5" text-anchor="start">La ruta: 20 semanas, 4 niveles y una auditoría que otro reproduce</text>
+<text x="56" y="92" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="15" font-weight="400" fill="#ABC0C8" text-anchor="start">8–10 h por semana. Eje C (WAR) en todas: cada semana cierra con una mutación de la semana, prueba al que prueba.</text>
+<rect x="40" y="118" width="1200" height="150" rx="14" fill="#0D2638" stroke="#214456"/>
+<text x="64" y="148" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="16" font-weight="700" fill="#F4F7F5" text-anchor="start">Nivel 1 · Fundamentos</text>
+<text x="1216" y="148" font-family="Menlo,Consolas,monospace" font-size="12" font-weight="400" fill="#8FA6B0" text-anchor="end">semanas 1–5</text>
+<rect x="64" y="162" width="182" height="96" rx="10" fill="#123448" stroke="#214456" stroke-width="1"/>
+<text x="78" y="182" font-family="Menlo,Consolas,monospace" font-size="11" font-weight="400" fill="#8FA6B0" text-anchor="start">S01 · eje C</text>
+<text x="78" y="204" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#F4F7F5" text-anchor="start">Oráculos</text>
+<text x="78" y="248" font-family="Menlo,Consolas,monospace" font-size="10.5" font-weight="400" fill="#8FA6B0" text-anchor="start">módulo 01</text>
+<rect x="258" y="162" width="182" height="96" rx="10" fill="#123448" stroke="#214456" stroke-width="1"/>
+<text x="272" y="182" font-family="Menlo,Consolas,monospace" font-size="11" font-weight="400" fill="#8FA6B0" text-anchor="start">S02 · eje C</text>
+<text x="272" y="204" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#F4F7F5" text-anchor="start">API y contratos</text>
+<text x="272" y="248" font-family="Menlo,Consolas,monospace" font-size="10.5" font-weight="400" fill="#8FA6B0" text-anchor="start">módulo 08</text>
+<rect x="452" y="162" width="182" height="96" rx="10" fill="#123448" stroke="#214456" stroke-width="1"/>
+<text x="466" y="182" font-family="Menlo,Consolas,monospace" font-size="11" font-weight="400" fill="#8FA6B0" text-anchor="start">S03 · eje C</text>
+<text x="466" y="204" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#F4F7F5" text-anchor="start">Defectos visibles</text>
+<text x="466" y="248" font-family="Menlo,Consolas,monospace" font-size="10.5" font-weight="400" fill="#8FA6B0" text-anchor="start">módulo 10</text>
+<rect x="646" y="162" width="182" height="96" rx="10" fill="#123448" stroke="#214456" stroke-width="1"/>
+<rect x="646" y="162" width="5" height="96" rx="2" fill="#55DFBD"/>
+<text x="660" y="182" font-family="Menlo,Consolas,monospace" font-size="11" font-weight="400" fill="#8FA6B0" text-anchor="start">S04 · eje A</text>
+<text x="660" y="204" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#F4F7F5" text-anchor="start">Pipelines y gates</text>
+<text x="660" y="248" font-family="Menlo,Consolas,monospace" font-size="10.5" font-weight="400" fill="#8FA6B0" text-anchor="start">módulo 14</text>
+<rect x="780.0" y="236" width="38.0" height="17" rx="8.5" fill="none" stroke="#55DFBD"/>
+<text x="799.0" y="248.5" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="10" font-weight="700" fill="#55DFBD" text-anchor="middle">nuevo</text>
+<rect x="840" y="162" width="182" height="96" rx="10" fill="#123448" stroke="#214456" stroke-width="1"/>
+<rect x="840" y="162" width="5" height="96" rx="2" fill="#55DFBD"/>
+<text x="854" y="182" font-family="Menlo,Consolas,monospace" font-size="11" font-weight="400" fill="#8FA6B0" text-anchor="start">S05 · eje A</text>
+<text x="854" y="204" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#F4F7F5" text-anchor="start">Contenedores</text>
+<text x="854" y="222" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#F4F7F5" text-anchor="start">efímeros</text>
+<text x="854" y="248" font-family="Menlo,Consolas,monospace" font-size="10.5" font-weight="400" fill="#8FA6B0" text-anchor="start">módulo 15</text>
+<rect x="974.0" y="236" width="38.0" height="17" rx="8.5" fill="none" stroke="#55DFBD"/>
+<text x="993.0" y="248.5" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="10" font-weight="700" fill="#55DFBD" text-anchor="middle">nuevo</text>
+<rect x="40" y="280" width="1200" height="150" rx="14" fill="#0D2638" stroke="#214456"/>
+<text x="64" y="310" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="16" font-weight="700" fill="#F4F7F5" text-anchor="start">Nivel 2 · Intermedio</text>
+<text x="1216" y="310" font-family="Menlo,Consolas,monospace" font-size="12" font-weight="400" fill="#8FA6B0" text-anchor="end">semanas 6–11</text>
+<rect x="64" y="324" width="182" height="96" rx="10" fill="#123448" stroke="#214456" stroke-width="1"/>
+<rect x="64" y="324" width="5" height="96" rx="2" fill="#55DFBD"/>
+<text x="78" y="344" font-family="Menlo,Consolas,monospace" font-size="11" font-weight="400" fill="#8FA6B0" text-anchor="start">S06 · eje B</text>
+<text x="78" y="366" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#F4F7F5" text-anchor="start">Ejecución de</text>
+<text x="78" y="384" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#F4F7F5" text-anchor="start">mutantes</text>
+<text x="78" y="410" font-family="Menlo,Consolas,monospace" font-size="10.5" font-weight="400" fill="#8FA6B0" text-anchor="start">módulos 20–21</text>
+<rect x="198.0" y="398" width="38.0" height="17" rx="8.5" fill="none" stroke="#55DFBD"/>
+<text x="217.0" y="410.5" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="10" font-weight="700" fill="#55DFBD" text-anchor="middle">nuevo</text>
+<rect x="258" y="324" width="182" height="96" rx="10" fill="#123448" stroke="#214456" stroke-width="1"/>
+<rect x="258" y="324" width="5" height="96" rx="2" fill="#55DFBD"/>
+<text x="272" y="344" font-family="Menlo,Consolas,monospace" font-size="11" font-weight="400" fill="#8FA6B0" text-anchor="start">S07 · eje B</text>
+<text x="272" y="366" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#F4F7F5" text-anchor="start">WAR Paradigm</text>
+<text x="272" y="410" font-family="Menlo,Consolas,monospace" font-size="10.5" font-weight="400" fill="#8FA6B0" text-anchor="start">módulo 02</text>
+<rect x="392.0" y="398" width="38.0" height="17" rx="8.5" fill="none" stroke="#55DFBD"/>
+<text x="411.0" y="410.5" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="10" font-weight="700" fill="#55DFBD" text-anchor="middle">nuevo</text>
+<rect x="452" y="324" width="182" height="96" rx="10" fill="#123448" stroke="#214456" stroke-width="1"/>
+<text x="466" y="344" font-family="Menlo,Consolas,monospace" font-size="11" font-weight="400" fill="#8FA6B0" text-anchor="start">S08 · eje B</text>
+<text x="466" y="366" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#F4F7F5" text-anchor="start">Mutantes que</text>
+<text x="466" y="384" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#F4F7F5" text-anchor="start">aprenden</text>
+<text x="466" y="410" font-family="Menlo,Consolas,monospace" font-size="10.5" font-weight="400" fill="#8FA6B0" text-anchor="start">módulo 22</text>
+<rect x="646" y="324" width="182" height="96" rx="10" fill="#123448" stroke="#214456" stroke-width="1"/>
+<rect x="646" y="324" width="5" height="96" rx="2" fill="#55DFBD"/>
+<text x="660" y="344" font-family="Menlo,Consolas,monospace" font-size="11" font-weight="400" fill="#8FA6B0" text-anchor="start">S09 · eje A</text>
+<text x="660" y="366" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#F4F7F5" text-anchor="start">QA asistida</text>
+<text x="660" y="384" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#F4F7F5" text-anchor="start">por IA I</text>
+<text x="660" y="410" font-family="Menlo,Consolas,monospace" font-size="10.5" font-weight="400" fill="#8FA6B0" text-anchor="start">módulo 19</text>
+<rect x="780.0" y="398" width="38.0" height="17" rx="8.5" fill="none" stroke="#55DFBD"/>
+<text x="799.0" y="410.5" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="10" font-weight="700" fill="#55DFBD" text-anchor="middle">nuevo</text>
+<rect x="840" y="324" width="182" height="96" rx="10" fill="#123448" stroke="#214456" stroke-width="1"/>
+<rect x="840" y="324" width="5" height="96" rx="2" fill="#55DFBD"/>
+<text x="854" y="344" font-family="Menlo,Consolas,monospace" font-size="11" font-weight="400" fill="#8FA6B0" text-anchor="start">S10 · eje C</text>
+<text x="854" y="366" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#F4F7F5" text-anchor="start">Triaje de CI</text>
+<text x="854" y="410" font-family="Menlo,Consolas,monospace" font-size="10.5" font-weight="400" fill="#8FA6B0" text-anchor="start">módulo 23</text>
+<rect x="974.0" y="398" width="38.0" height="17" rx="8.5" fill="none" stroke="#55DFBD"/>
+<text x="993.0" y="410.5" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="10" font-weight="700" fill="#55DFBD" text-anchor="middle">nuevo</text>
+<rect x="1034" y="324" width="182" height="96" rx="10" fill="#123448" stroke="#214456" stroke-width="1"/>
+<rect x="1034" y="324" width="5" height="96" rx="2" fill="#55DFBD"/>
+<text x="1048" y="344" font-family="Menlo,Consolas,monospace" font-size="11" font-weight="400" fill="#8FA6B0" text-anchor="start">S11 · eje C</text>
+<text x="1048" y="366" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#F4F7F5" text-anchor="start">Análisis de</text>
+<text x="1048" y="384" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#F4F7F5" text-anchor="start">impacto</text>
+<text x="1048" y="410" font-family="Menlo,Consolas,monospace" font-size="10.5" font-weight="400" fill="#8FA6B0" text-anchor="start">módulo 23</text>
+<rect x="1168.0" y="398" width="38.0" height="17" rx="8.5" fill="none" stroke="#55DFBD"/>
+<text x="1187.0" y="410.5" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="10" font-weight="700" fill="#55DFBD" text-anchor="middle">nuevo</text>
+<rect x="40" y="442" width="1200" height="150" rx="14" fill="#0D2638" stroke="#214456"/>
+<text x="64" y="472" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="16" font-weight="700" fill="#F4F7F5" text-anchor="start">Nivel 3 · AI-QA avanzado</text>
+<text x="1216" y="472" font-family="Menlo,Consolas,monospace" font-size="12" font-weight="400" fill="#8FA6B0" text-anchor="end">semanas 12–16</text>
+<rect x="64" y="486" width="182" height="96" rx="10" fill="#123448" stroke="#214456" stroke-width="1"/>
+<rect x="64" y="486" width="5" height="96" rx="2" fill="#55DFBD"/>
+<text x="78" y="506" font-family="Menlo,Consolas,monospace" font-size="11" font-weight="400" fill="#8FA6B0" text-anchor="start">S12 · eje C</text>
+<text x="78" y="528" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#F4F7F5" text-anchor="start">Evaluar IA</text>
+<text x="78" y="546" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#F4F7F5" text-anchor="start">con juez</text>
+<text x="78" y="572" font-family="Menlo,Consolas,monospace" font-size="10.5" font-weight="400" fill="#8FA6B0" text-anchor="start">módulo 24</text>
+<rect x="198.0" y="560" width="38.0" height="17" rx="8.5" fill="none" stroke="#55DFBD"/>
+<text x="217.0" y="572.5" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="10" font-weight="700" fill="#55DFBD" text-anchor="middle">nuevo</text>
+<rect x="258" y="486" width="182" height="96" rx="10" fill="#123448" stroke="#214456" stroke-width="1"/>
+<rect x="258" y="486" width="5" height="96" rx="2" fill="#55DFBD"/>
+<text x="272" y="506" font-family="Menlo,Consolas,monospace" font-size="11" font-weight="400" fill="#8FA6B0" text-anchor="start">S13 · eje C</text>
+<text x="272" y="528" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#F4F7F5" text-anchor="start">Calibración</text>
+<text x="272" y="546" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#F4F7F5" text-anchor="start">y agentes</text>
+<text x="272" y="572" font-family="Menlo,Consolas,monospace" font-size="10.5" font-weight="400" fill="#8FA6B0" text-anchor="start">módulo 25</text>
+<rect x="392.0" y="560" width="38.0" height="17" rx="8.5" fill="none" stroke="#55DFBD"/>
+<text x="411.0" y="572.5" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="10" font-weight="700" fill="#55DFBD" text-anchor="middle">nuevo</text>
+<rect x="452" y="486" width="182" height="96" rx="10" fill="#123448" stroke="#214456" stroke-width="1"/>
+<text x="466" y="506" font-family="Menlo,Consolas,monospace" font-size="11" font-weight="400" fill="#8FA6B0" text-anchor="start">S14 · eje A</text>
+<text x="466" y="528" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#F4F7F5" text-anchor="start">Jueces con</text>
+<text x="466" y="546" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#F4F7F5" text-anchor="start">probabilidad</text>
+<text x="466" y="572" font-family="Menlo,Consolas,monospace" font-size="10.5" font-weight="400" fill="#8FA6B0" text-anchor="start">módulo 26</text>
+<rect x="646" y="486" width="182" height="96" rx="10" fill="#123448" stroke="#214456" stroke-width="1"/>
+<text x="660" y="506" font-family="Menlo,Consolas,monospace" font-size="11" font-weight="400" fill="#8FA6B0" text-anchor="start">S15 · eje C</text>
+<text x="660" y="528" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#F4F7F5" text-anchor="start">Agentes y</text>
+<text x="660" y="546" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#F4F7F5" text-anchor="start">estabilidad</text>
+<text x="660" y="572" font-family="Menlo,Consolas,monospace" font-size="10.5" font-weight="400" fill="#8FA6B0" text-anchor="start">módulos 25–26</text>
+<rect x="840" y="486" width="182" height="96" rx="10" fill="#123448" stroke="#214456" stroke-width="1"/>
+<rect x="840" y="486" width="5" height="96" rx="2" fill="#55DFBD"/>
+<text x="854" y="506" font-family="Menlo,Consolas,monospace" font-size="11" font-weight="400" fill="#8FA6B0" text-anchor="start">S16 · eje A</text>
+<text x="854" y="528" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#F4F7F5" text-anchor="start">QA asistida</text>
+<text x="854" y="546" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#F4F7F5" text-anchor="start">por IA II</text>
+<text x="854" y="572" font-family="Menlo,Consolas,monospace" font-size="10.5" font-weight="400" fill="#8FA6B0" text-anchor="start">módulo 27</text>
+<rect x="974.0" y="560" width="38.0" height="17" rx="8.5" fill="none" stroke="#55DFBD"/>
+<text x="993.0" y="572.5" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="10" font-weight="700" fill="#55DFBD" text-anchor="middle">nuevo</text>
+<rect x="40" y="604" width="1200" height="150" rx="14" fill="#0D2638" stroke="#214456"/>
+<text x="64" y="634" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="16" font-weight="700" fill="#F4F7F5" text-anchor="start">Nivel 4 · QA científico</text>
+<text x="1216" y="634" font-family="Menlo,Consolas,monospace" font-size="12" font-weight="400" fill="#8FA6B0" text-anchor="end">semanas 17–20</text>
+<rect x="64" y="648" width="376" height="96" rx="10" fill="#123448" stroke="#55DFBD" stroke-width="2"/>
+<rect x="64" y="648" width="5" height="96" rx="2" fill="#55DFBD"/>
+<text x="78" y="668" font-family="Menlo,Consolas,monospace" font-size="11" font-weight="400" fill="#8FA6B0" text-anchor="start">S17–18 · eje A·C</text>
+<text x="78" y="690" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#F4F7F5" text-anchor="start">Prerregistro y</text>
+<text x="78" y="708" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#F4F7F5" text-anchor="start">reproducibilidad</text>
+<text x="78" y="734" font-family="Menlo,Consolas,monospace" font-size="10.5" font-weight="400" fill="#8FA6B0" text-anchor="start">módulo 28</text>
+<rect x="392.0" y="722" width="38.0" height="17" rx="8.5" fill="none" stroke="#55DFBD"/>
+<text x="411.0" y="734.5" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="10" font-weight="700" fill="#55DFBD" text-anchor="middle">nuevo</text>
+<rect x="452" y="648" width="182" height="96" rx="10" fill="#123448" stroke="#55DFBD" stroke-width="2"/>
+<rect x="452" y="648" width="5" height="96" rx="2" fill="#55DFBD"/>
+<text x="466" y="668" font-family="Menlo,Consolas,monospace" font-size="11" font-weight="400" fill="#8FA6B0" text-anchor="start">S19 · eje C</text>
+<text x="466" y="690" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#F4F7F5" text-anchor="start">QA de requisitos</text>
+<text x="466" y="734" font-family="Menlo,Consolas,monospace" font-size="10.5" font-weight="400" fill="#8FA6B0" text-anchor="start">módulo 29</text>
+<rect x="586.0" y="722" width="38.0" height="17" rx="8.5" fill="none" stroke="#55DFBD"/>
+<text x="605.0" y="734.5" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="10" font-weight="700" fill="#55DFBD" text-anchor="middle">nuevo</text>
+<rect x="646" y="648" width="182" height="96" rx="10" fill="#0D2638" stroke="#214456" stroke-width="1" stroke-dasharray="5 4"/>
+<text x="660" y="668" font-family="Menlo,Consolas,monospace" font-size="11" font-weight="400" fill="#8FA6B0" text-anchor="start">S19 · eje B·C</text>
+<text x="660" y="690" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#ABC0C8" text-anchor="start">Electiva: fluidos,</text>
+<text x="660" y="708" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#ABC0C8" text-anchor="start">mutación numérica</text>
+<text x="660" y="734" font-family="Menlo,Consolas,monospace" font-size="10.5" font-weight="400" fill="#8FA6B0" text-anchor="start">módulos 30–31</text>
+<rect x="840" y="648" width="182" height="96" rx="10" fill="#123448" stroke="#55DFBD" stroke-width="2"/>
+<rect x="840" y="648" width="5" height="96" rx="2" fill="#55DFBD"/>
+<text x="854" y="668" font-family="Menlo,Consolas,monospace" font-size="11" font-weight="400" fill="#8FA6B0" text-anchor="start">S20 · eje B·C</text>
+<text x="854" y="690" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#F4F7F5" text-anchor="start">Verificar una</text>
+<text x="854" y="708" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#F4F7F5" text-anchor="start">prueba formal</text>
+<text x="854" y="734" font-family="Menlo,Consolas,monospace" font-size="10.5" font-weight="400" fill="#8FA6B0" text-anchor="start">módulo 32</text>
+<rect x="974.0" y="722" width="38.0" height="17" rx="8.5" fill="none" stroke="#55DFBD"/>
+<text x="993.0" y="734.5" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="10" font-weight="700" fill="#55DFBD" text-anchor="middle">nuevo</text>
+<rect x="1034" y="648" width="182" height="96" rx="10" fill="#123448" stroke="#55DFBD" stroke-width="2"/>
+<rect x="1034" y="648" width="5" height="96" rx="2" fill="#55DFBD"/>
+<text x="1048" y="668" font-family="Menlo,Consolas,monospace" font-size="11" font-weight="400" fill="#8FA6B0" text-anchor="start">S20 · eje B·C</text>
+<text x="1048" y="690" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#F4F7F5" text-anchor="start">Prueba a ciegas</text>
+<text x="1048" y="734" font-family="Menlo,Consolas,monospace" font-size="10.5" font-weight="400" fill="#8FA6B0" text-anchor="start">módulo 33</text>
+<rect x="1168.0" y="722" width="38.0" height="17" rx="8.5" fill="none" stroke="#55DFBD"/>
+<text x="1187.0" y="734.5" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="10" font-weight="700" fill="#55DFBD" text-anchor="middle">nuevo</text>
+<rect x="40" y="766" width="1200" height="128" rx="14" fill="#0D2638" stroke="#55DFBD" stroke-width="2"/>
+<text x="64" y="796" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="16" font-weight="700" fill="#F4F7F5" text-anchor="start">Cierre · capstone</text>
+<text x="1216" y="796" font-family="Menlo,Consolas,monospace" font-size="12" font-weight="400" fill="#8FA6B0" text-anchor="end">semanas 21–22</text>
+<rect x="64" y="810" width="376" height="68" rx="10" fill="#123448" stroke="#55DFBD" stroke-width="2"/>
+<rect x="64" y="810" width="5" height="68" rx="2" fill="#55DFBD"/>
+<text x="78" y="830" font-family="Menlo,Consolas,monospace" font-size="11" font-weight="400" fill="#8FA6B0" text-anchor="start">S21–22 · ejes A · B · C</text>
+<text x="78" y="856" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="18" font-weight="700" fill="#F4F7F5" text-anchor="start">Capstone «Auditoría WAR»</text>
+<path d="M 454 844.0 h 36" stroke="#55DFBD" stroke-width="2.5"/><path d="M 490 838.0 l 10 6 l -10 6 z" fill="#55DFBD"/>
+<text x="516" y="828" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="13.5" font-weight="400" fill="#F4F7F5" text-anchor="start">A · un asistente de IA ejecuta bajo un hook probado; una persona firma</text>
+<text x="516" y="848" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="13.5" font-weight="400" fill="#F4F7F5" text-anchor="start">B · mutantes como datos, kill rate con línea base válida y ledger</text>
+<text x="516" y="868" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="13.5" font-weight="400" fill="#F4F7F5" text-anchor="start">C · dos guardias o más, rotos a propósito, con su control</text>
+<rect x="40" y="910" width="1200" height="34" rx="10" fill="none" stroke="#214456"/>
+<text x="56" y="932" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#55DFBD" text-anchor="start">✓ Aprobado = otra persona reproduce el paquete en un entorno limpio y obtiene la misma huella.</text>
+<rect x="56" y="962" width="5" height="16" rx="2" fill="#55DFBD"/>
+<text x="68" y="974" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="400" fill="#ABC0C8" text-anchor="start">módulo nuevo en esta versión</text>
+<rect x="270" y="961" width="22" height="16" rx="4" fill="#123448" stroke="#55DFBD" stroke-width="2"/>
+<text x="300" y="974" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="400" fill="#ABC0C8" text-anchor="start">módulo de QA científico</text>
+<rect x="470" y="961" width="22" height="16" rx="4" fill="#0D2638" stroke="#214456" stroke-dasharray="5 4"/>
+<text x="500" y="974" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="400" fill="#ABC0C8" text-anchor="start">electiva</text>
+<text x="590" y="974" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" font-weight="400" fill="#ABC0C8" text-anchor="start">Ejes: A = QA asistida por IA · B = ejecución de mutantes · C = WAR Paradigm</text>
+<text x="1224" y="1022" font-family="-apple-system,Segoe UI,Helvetica,Arial,sans-serif" font-size="12" font-weight="700" fill="#55DFBD" text-anchor="end">Cristian Guerra · QA · Medellín</text>
+</svg>
