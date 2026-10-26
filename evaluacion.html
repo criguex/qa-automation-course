@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cómo te evalúas · Ruta QA Automation</title>
+<style>
+  :root{--bg:#0a0e14;--panel:#0f1621;--panel2:#141d29;--line:#1e2a36;--txt:#f3f4f6;--muted:#9ca3af;--mint:#10b981;--cyan:#22d3ee;--gold:#facc15;--coral:#fb7185}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;line-height:1.6;font-size:15px}
+  a{color:var(--cyan)}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 16px 60px}
+  header{padding:36px 0 10px}
+  .eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);font-weight:800}
+  h1{font-size:30px;line-height:1.15;margin:8px 0}
+  h2{font-size:21px;margin:34px 0 10px}
+  .lead{color:var(--muted);max-width:780px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:12px 0}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+  .grid .card{margin:0}
+  .card h3{margin:0 0 6px;font-size:15px}
+  .card p{margin:0;color:#dfe4ee;font-size:14px}
+  .tablewrap{overflow-x:auto}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:560px}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  th{background:var(--panel2)}
+  code{font-family:Menlo,Consolas,monospace;font-size:.9em;background:#141d29;padding:1px 5px;border-radius:5px}
+  img{max-width:100%;height:auto;border-radius:14px;border:1px solid var(--line)}
+  .kid{border:1px dashed rgba(250,204,21,.45);background:rgba(250,204,21,.06)}
+  .foot{margin-top:40px;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="eyebrow">Ruta QA Automation · Cristian Guerra</div>
+  <h1>Cómo te evalúas</h1>
+  <p class="lead">Este sitio no tiene servidor ni profesor que corrija por ti. La evaluación es tuya y se apoya en evidencia que puedes mostrar: comandos, hashes, capturas y tu repo. Aquí está la regla completa. <a href="index.html">← Volver al curso</a></p>
+</header>
+
+<div class="card kid"><b>🧒 Explicado para un niño de 8 años:</b> en cada módulo hay un examen corto que se corrige solo, una tarea con una lista de “lo logré si…” y una tabla con cuatro niveles, de “todavía no” a “excelente”. Pasas el módulo cuando el examen sale bien y la tarea llega al nivel 3.</div>
+
+<h2>Qué trae cada módulo</h2>
+<div class="grid">
+  <div class="card"><h3>🎯 Objetivos y prerrequisitos</h3><p>Qué vas a poder hacer al terminar, en verbos que se pueden comprobar, y qué necesitas antes de empezar.</p></div>
+  <div class="card"><h3>📓 Teoría corta + 🧪 laboratorio</h3><p>La teoría justa y un laboratorio práctico. En los módulos nuevos, el laboratorio es un repo público real.</p></div>
+  <div class="card"><h3>🧠 Quiz autocorregible</h3><p>8 preguntas al azar del banco del módulo (8 a 10 por módulo), una respuesta por pregunta y la explicación de cada una. Apruebas con <b>6 de 8</b>. Cada intento saca otras preguntas.</p></div>
+  <div class="card"><h3>✅ Reto con criterios verificables</h3><p>Criterios que se comprueban con un comando o una captura, no con una opinión. Ejemplos: “tu suite mata al menos 5 de 6 mutantes y el reporte JSON trae hashes”, “tu juez tiene un kappa ≥ 0.6 contra tus etiquetas”, “un PR con un fallo queda bloqueado para merge”.</p></div>
+  <div class="card"><h3>📏 Rúbrica de 4 niveles</h3><p>1 · No cumple · 2 · En camino · 3 · Aprobado · 4 · Sobresaliente. El nivel 4 de cada módulo pide algo concreto de más.</p></div>
+  <div class="card"><h3>🧬 Mutación de la semana</h3><p>Rompes algo a propósito en tu propio trabajo y demuestras que tu chequeo lo nota, o publicas que no lo nota. Es el hilo WAR: prueba al que prueba.</p></div>
+</div>
+
+<h2>Cuándo apruebas</h2>
+<div class="card">
+  <p><b>Un módulo:</b> quiz ≥ 6/8 <b>y</b> reto en el nivel 3 de la rúbrica (todos los criterios cumplidos). Entonces marcas el ✅ del entregable.</p>
+  <p style="margin-top:8px"><b>El examen final:</b> 26 preguntas de escenario que cruzan todo el curso; se aprueba con 80 %.</p>
+  <p style="margin-top:8px"><b>El proyecto final:</b> las cuatro filas de la rúbrica integrada al menos en el nivel 3, y otra persona reproduce tu paquete.</p>
+  <p style="margin-top:8px">Tu avance, tu mejor puntaje en cada quiz y tu examen se guardan solo en tu navegador (localStorage). Si borras los datos del sitio, se borran.</p>
+</div>
+
+<h2>Rúbrica de cada módulo</h2>
+<div class="tablewrap"><table>
+  <tr><th>1 · No cumple</th><th>2 · En camino</th><th>3 · Aprobado</th><th>4 · Sobresaliente</th></tr>
+  <tr><td>Falta el entregable o no corre.</td><td>Corre, pero falla al menos un criterio de aprobación.</td><td>Cumple todos los criterios de aprobación.</td><td>Cumple todo y además el extra que pide ese módulo.</td></tr>
+</table></div>
+
+<h2>Rúbrica integrada del proyecto final</h2>
+<p class="lead">Cubre los tres ejes del curso: QA asistida por IA, ejecución de mutantes y el WAR Paradigm, más la evidencia.</p>
+<div class="tablewrap"><table>
+  <tr><th>Eje</th><th>1 · No cumple</th><th>2 · En camino</th><th>3 · Aprobado</th><th>4 · Sobresaliente</th></tr>
+  <tr><th>QA asistida por IA</th><td>El asistente actuó sin registro ni revisión.</td><td>Hay registro, pero faltan exit codes o hashes.</td><td>Hook probado, registro con comandos, hashes y exit codes, y diff revisado.</td><td>Además, revisión doble a ciegas y sección “qué no se ejecutó”.</td></tr>
+  <tr><th>Ejecución de mutantes</th><td>No hay mutantes o no hay línea base.</td><td>Hay mutantes, pero el kill rate cuenta fallos de infraestructura o falta el ledger.</td><td>Al menos 6 mutantes como datos, línea base válida, kill rate correcto y ledger con causas.</td><td>Además, el ledger prioriza la siguiente corrida y hay una ronda a ciegas con compromiso por hash.</td></tr>
+  <tr><th>WAR Paradigm</th><td>Solo se prueba el producto, nunca los guardias.</td><td>Se prueba un guardia (la suite o el juez).</td><td>Se prueban al menos dos guardias distintos (suite, juez, hook, gate) rompiendo algo a propósito.</td><td>Además, se publica un guardia que falló y lo que se aprendió.</td></tr>
+  <tr><th>Evidencia y reporte</th><td>Afirmaciones sin evidencia.</td><td>Evidencia parcial, o la huella no coincide entre entornos.</td><td>Prerregistro previo, huella igual en dos entornos y límites escritos.</td><td>Un tercero reproduce el paquete sin ayuda.</td></tr>
+</table></div>
+
+<h2>El mapa de la ruta</h2>
+<img src="docs/assets/route-map.svg" alt="Mapa de la ruta: 31 módulos en cuatro niveles (fundamentos, intermedio, AI-QA avanzado y QA científico) más el proyecto final y la carrera" />
+
+<h2>Tres rutas</h2>
+<div class="card"><p><b>Completa, desde cero:</b> los 31 módulos en orden, unas 33 semanas a 10–12 h por semana.</p></div>
+<div class="card">
+  <p><b>20 semanas, si ya automatizas UI o API</b> (los números son los del mapa):</p>
+  <div class="tablewrap" style="margin-top:8px"><table>
+    <tr><th>Semana</th><th>Módulo</th><th>Semana</th><th>Módulo</th></tr>
+    <tr><td>1</td><td>01 Mentalidad QA y oráculos</td><td>11</td><td>21 Triaje e impacto</td></tr>
+    <tr><td>2</td><td>07 API y contratos</td><td>12</td><td>22 LLM como juez</td></tr>
+    <tr><td>3</td><td>09 Ejecución disciplinada (defectos visibles)</td><td>13</td><td>23 Agentes y juez calibrado</td></tr>
+    <tr><td>4</td><td>13 Pipelines y gates</td><td>14</td><td>24 Jueces, fallas, cascadas</td></tr>
+    <tr><td>5</td><td>14 Contenedores efímeros</td><td>15</td><td>25 QA asistida por IA II</td></tr>
+    <tr><td>6</td><td>16 Determinismo y replay</td><td>16</td><td>26 Prerregistro y huellas</td></tr>
+    <tr><td>7</td><td>19 Mutation testing</td><td>17</td><td>27 Mutantes numéricos</td></tr>
+    <tr><td>8</td><td>20 Mutantes que aprenden</td><td>18</td><td>28 Fluidos y estadística</td></tr>
+    <tr><td>9</td><td>18 QA asistida por IA I</td><td>19</td><td>29 Lean y pruebas a ciegas</td></tr>
+    <tr><td>10</td><td>15 Performance, a11y y visual</td><td>20</td><td>30 Proyecto final</td></tr>
+  </table></div>
+</div>
+<div class="card">
+  <p><b>12 semanas:</b> 01 · 07 · 09 · 13 · 14 + 16 · 19 · 18 · 22 · 23 · 25 · 26 · 30 (proyecto final en versión corta). Los módulos 27 a 29 quedan como electiva de QA científico.</p>
+</div>
+
+<h2>Honestidad</h2>
+<div class="card"><p>Nadie revisa tus respuestas desde un servidor. Si marcas un ✅ sin evidencia, solo te engañas a ti. La regla del curso aplica también aquí: un verde solo vale si sabes que habría salido rojo cuando algo estaba mal.</p></div>
+
+<p class="foot">Ruta QA Automation · guiada por Cristian Guerra Gómez · contenido CC BY 4.0, código MIT.</p>
+</div>
+</body>
+</html>

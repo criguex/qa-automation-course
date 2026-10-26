@@ -169,63 +169,35 @@
   .gnote{font-size:12.5px;color:var(--muted);margin-top:14px;line-height:1.7}
   .avatar,.mentor .mav{background:url(avatar.jpg) center/cover;color:transparent}
   .gav{width:72px;height:72px;border-radius:50%;background:url(avatar.jpg) center/cover;margin-bottom:16px;border:2px solid rgba(34,211,238,.45);box-shadow:0 8px 24px -8px rgba(34,211,238,.5)}
+  .lvlhead{grid-column:1/-1;margin:14px 0 2px;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--tc)}
+  .kid{margin:0 0 14px;padding:12px 14px;border-radius:12px;border:1px dashed rgba(250,204,21,.45);background:rgba(250,204,21,.06);font-size:14px}
+  .goals{margin:8px 0 4px}.goals .card p{margin:0;font-size:14px;color:#dfe4ee}
+  .mutw{margin:14px 0 0;padding:12px 14px;border-radius:12px;border:1px solid rgba(251,113,133,.4);background:rgba(251,113,133,.07);font-size:14px}
+  .mutw b{display:block;margin-bottom:4px;color:#fb7185;font-size:11px;letter-spacing:.07em;text-transform:uppercase}
+  .evalnote{font-size:13.5px;color:#dfe4ee;margin:6px 0 10px}.qbest{color:var(--auto);font-weight:700}
+  .rubwrap{overflow-x:auto}.rub{width:100%;border-collapse:collapse;font-size:13px;min-width:560px}
+  .rub th,.rub td{border:1px solid var(--line);padding:8px 10px;vertical-align:top;text-align:left}
+  .rub th{background:var(--panel2);font-size:11.5px;letter-spacing:.04em}
+  .qverdict{font-weight:800;margin-right:4px}.qverdict.okv{color:#10b981}.qverdict.nov{color:#f43f5e}
 </style>
 </head>
-<body class="gated">
+<body>
 
-<section id="gate">
-  <div class="wrap">
-    <div class="gav"></div>
-    <div class="eyebrow">Cristian Guerra · Ruta QA Automation</div>
-    <h1>Cómo ser <span class="g">QA Automation Engineer</span><br/>guiado por Cristian Guerra</h1>
-    <p class="sub">Un programa práctico basado en mi método real de trabajo: contract testing, Playwright + TypeScript, BDD, CI/CD, cloud y <b>QA aumentado con IA</b>. <b>Para cualquiera que quiera ser QA</b> — vengas de desarrollo, de QA manual, de otra carrera o desde cero.</p>
-    <div class="gstats">
-      <div class="gstat"><b>16</b><span>módulos + capstone</span></div>
-      <div class="gstat"><b>~10–12 h</b><span>por semana, a tu ritmo</span></div>
-      <div class="gstat"><b>+50</b><span>recursos, casi todos gratis</span></div>
-      <div class="gstat"><b>1</b><span>portafolio real al final</span></div>
-    </div>
-    <div class="two">
-      <div class="card">
-        <h4>Qué vas a lograr</h4>
-        <ul class="tight">
-          <li>Dominar el stack: <b>Playwright + TS, BDD, contract testing, CI/CD y cloud</b>.</li>
-          <li>Un <b>portafolio con proyectos reales</b>: cada módulo cierra con un entregable en un repo.</li>
-          <li><b>Criterio QA aumentado con IA</b> — la IA amplifica tu criterio, no lo sustituye.</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h4>Cómo funciona</h4>
-        <ul class="tight">
-          <li><b>1 · Aprende:</b> nota del mentor, teoría y recursos seleccionados en cada módulo.</li>
-          <li><b>2 · Practica:</b> reto práctico + quiz de escenario (una respuesta por pregunta, sin trucos).</li>
-          <li><b>3 · Entrega:</b> marca el ✅ solo cuando el entregable funciona y lo puedes defender.</li>
-          <li><b>4 · Certifícate:</b> examen final de 20 preguntas que cruza todo el método — se aprueba con 80%.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="gcta">
-      <button class="gbtn" onclick="doAuth()">🔓 Entrar con Google y comenzar</button>
-      <p class="gnote">Tu progreso queda ligado a tu cuenta — retomas donde ibas, desde cualquier dispositivo.<br/>
-      <a href="#" onclick="enterGuest();return false">Ver el curso sin cuenta →</a> <span style="color:var(--dim)">(el avance se guarda solo en este navegador)</span></p>
-    </div>
-  </div>
-</section>
 
 <header class="hero homeonly">
   <div class="wrap">
     <div class="eyebrow">Cristian Guerra · Ruta para convertirte en QA Automation</div>
     <h1>Cómo ser <span class="g">QA Automation Engineer</span><br/>guiado por Cristian Guerra</h1>
-    <p class="sub">Un curso interactivo, visual y práctico basado en mi método real de trabajo (contract testing, Playwright+TS, BDD, CI/CD, cloud y <b>QA aumentado con IA</b>). <b>Para cualquiera que quiera ser QA</b> — vengas de desarrollo, de QA manual, de otra carrera o desde cero. Cada quien avanza a su ritmo; en cada módulo hay pistas según tu punto de partida.</p>
+    <p class="sub">Un curso interactivo, visual y práctico basado en mi método real de trabajo (contract testing, Playwright+TS, BDD, CI/CD, cloud, <b>QA asistida por IA</b>, evaluación de IA y agentes, y <b>mutation testing</b> con el WAR Paradigm). <b>Para cualquiera que quiera ser QA</b> — vengas de desarrollo, de QA manual, de otra carrera o desde cero. Cada quien avanza a su ritmo; en cada módulo hay pistas según tu punto de partida.</p>
     <div class="meta">
-      <span class="chip">🗺️ <b>16 módulos</b> + capstone</span>
-      <span class="chip">🎓 <b>+50 recursos</b> (casi todos gratis)</span>
+      <span class="chip">🗺️ <b>31 módulos</b> en 4 niveles + proyecto final</span>
+      <span class="chip">🎓 <b>+70 recursos</b> (casi todos gratis)</span><span class="chip">🧬 Hilo WAR: <b>prueba al que prueba</b></span>
       <span class="chip">🧩 Teoría → docs → repos → práctica</span>
       <span class="chip">✅ Progreso guardado en tu navegador</span>
     </div>
     <div class="mentorbox">
       <div class="avatar">CG</div>
-      <p><b>Nota del mentor:</b> esto no es teoría de curso — es el flujo que uso cada día. Sigue el orden, haz cada entregable, y no avances hasta que puedas <i>explicar el porqué</i>, no solo el cómo. Cuando dude algo, lo hablamos en el 1:1. — <b>Cristian</b></p>
+      <p><b>Nota del mentor:</b> esto no es teoría de curso — es el flujo que uso cada día. Sigue el orden, haz cada entregable, y no avances hasta que puedas <i>explicar el porqué</i>, no solo el cómo. Y el hilo de todo: <b>prueba al que prueba</b> — un verde solo vale si sabes que tu suite lo habría puesto rojo. — <b>Cristian</b></p>
     </div>
   </div>
 </header>
@@ -235,8 +207,6 @@
     <span style="font-size:12px;color:var(--muted)">Tu avance</span>
     <div class="bar"><i id="barfill"></i></div>
     <span class="pct" id="pcttxt">0%</span>
-    <span id="authWho" style="font-size:12px;color:var(--muted)"></span>
-    <button id="authBtn" class="btn" onclick="doAuth()" style="display:none">🔓 Entrar con Google</button>
     <button class="btn" onclick="window.print()">🖨️ PDF</button>
     <button class="btn" onclick="resetProg()">↺ Reset</button>
   </div>
@@ -264,12 +234,15 @@
         <li>“La <b>certificación la firma un humano</b>; no es una casilla que se automatiza.”</li>
         <li>“<b>Itera estrecho, confirma amplio</b>: rápido en el detalle, riguroso en el cierre.”</li>
         <li>“‘Toda verde’ no significa ‘el software está bien’ — significa que mis tests, como están escritos, no encontraron nada.”</li>
+        <li>“<b>Test the tester, mutate reality</b>: rompe el mundo a propósito y mira si tu suite grita.”</li>
+        <li>“Las reglas viven en <b>hooks y CI</b>, no en prompts; la evidencia es <b>comando + hash + exit code</b>.”</li>
       </ul>
     </div>
   </div>
 
   <h2 class="homeonly">🗺️ El mapa del viaje</h2>
-  <p class="lead homeonly">Haz clic en cualquier estación para abrir su módulo — cada uno es una página propia con nota del mentor, teoría, recursos, reto práctico y quiz. Se pinta de verde cuando lo completas. El orden es por dificultad y dependencia: fundamentos → diseño → APIs → el pico (Playwright + arquitectura) → ingeniería → certificación → IA → carrera. Cada quien avanza a su ritmo.</p>
+  <p class="lead homeonly">📏 <a href="evaluacion.html"><b>Cómo te evalúas</b></a>: quiz autocorregible, reto con criterios verificables y rúbrica de 4 niveles en cada módulo, más la ruta de 12 y de 20 semanas y el mapa visual.</p>
+  <p class="lead homeonly">Haz clic en cualquier estación para abrir su módulo — cada uno es una página propia con nota del mentor, teoría, recursos, reto práctico y quiz. Se pinta de verde cuando lo completas. Cuatro niveles: <b>1 · Fundamentos</b> → <b>2 · Intermedio</b> (pipelines, contenedores efímeros, mutantes, triaje) → <b>3 · AI-QA avanzado</b> → <b>4 · QA científico</b> → proyecto final. El hilo de todo: <b>prueba al que prueba</b>; cada módulo cierra con una mutación de la semana. Cada quien avanza a su ritmo.</p>
   <div class="maplegend homeonly" id="legend"></div>
   <div id="map" class="homeonly"></div>
 
@@ -281,7 +254,7 @@
   <div id="modules"></div>
 
   <h2 class="homeonly">🎓 Examen final del método</h2>
-  <p class="lead homeonly">20 preguntas de escenario que cruzan TODO el método — contratos, ciclos, evidencia, IA, riesgo. Se aprueba con <b>80%</b>. Las opciones se barajan en cada intento y cada pregunta se responde una sola vez, así que piensa antes de hacer clic. Inténtalo cuando termines los módulos. <span class="exambadge" id="exambadge"></span></p>
+  <p class="lead homeonly">26 preguntas de escenario que cruzan TODO el método — contratos, ciclos, evidencia, IA, mutantes, riesgo. Se aprueba con <b>80%</b>. Las opciones se barajan en cada intento y cada pregunta se responde una sola vez, así que piensa antes de hacer clic. Inténtalo cuando termines los módulos. <span class="exambadge" id="exambadge"></span></p>
   <div class="qmount homeonly" data-mid="final"></div>
 
   <h2 class="homeonly">📖 Glosario del método</h2>
@@ -291,65 +264,65 @@
 
   <div class="foot">
     Ruta QA Automation · <b>guiada por Cristian Guerra Gómez</b> — Senior QA Automation / SDET · AI-Augmented Testing.<br/>
-    Basada en mi Metodología QA-IA y mi stack real. Ajústala a tu ritmo y al proyecto. Tu progreso se guarda en este navegador (o en tu cuenta de Google si el sitio tiene Firebase configurado).
+    Basada en mi Metodología QA-IA y mi stack real. Ajústala a tu ritmo y al proyecto. Tu progreso, tus quizzes y tu examen se guardan solo en este navegador (localStorage).
   </div>
 </div>
 
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script src="quiz-data.js"></script>
 <script>
 const T = {
-  fund:{c:'#22d3ee',name:'Fundamentos'}, setup:{c:'#a78bfa',name:'Setup & Stack'},
-  auto:{c:'#10b981',name:'Automatización'}, eng:{c:'#f97316',name:'Ingeniería'},
-  ia:{c:'#facc15',name:'QA + IA'}, cap:{c:'#f3f4f6',name:'Capstone'}
+  n1:{c:'#22d3ee',name:'Nivel 1 · Fundamentos'}, n2:{c:'#10b981',name:'Nivel 2 · Intermedio'},
+  n3:{c:'#facc15',name:'Nivel 3 · AI-QA avanzado'}, n4:{c:'#a78bfa',name:'Nivel 4 · QA científico'},
+  cap:{c:'#fb7185',name:'Cierre · proyecto final'}
 };
+const QN = 8, QPASS = 0.75;
 const R = (ic,label,type,url,free)=>({ic,label,type,url,free:!!free});
 
 const COURSE = [
- {id:'m1',track:'fund',icon:'🧠',title:'Mentalidad QA — de Dev a Tester',when:'Semana 1',level:'★☆☆☆☆',hours:'~10 h',
+ {id:'m1',track:'n1',icon:'🧠',title:'Mentalidad QA — de Dev a Tester',when:'Semana 1',level:'★☆☆☆☆',hours:'~10 h',
   mentor:'La tesis de todo mi método: “mueve tu tiempo de teclear a decidir”. Tu valor no es escribir tests — es decidir QUÉ probar, con qué riesgo, y si cumple el contrato. La IA amplifica al que sabe y confunde al que no. Como dev ya tienes ventaja; ahora súmale criterio de calidad.',
-  theory:['La tesis: “mueve tu tiempo de teclear a decidir” — el valor está en decidir qué probar, con qué riesgo y si cumple el contrato.','Los 4 verbos con autonomía IA graduada: <b>Crear</b> (alta) · <b>Ejecutar</b> (alta) · <b>Validar</b> (media) · <b>Certificar</b> (el humano firma).','Los 7 principios del testing (ISTQB) y la paradoja del pesticida.','Verificación vs validación · QA vs QC vs testing.','SDLC/STLC, shift-left y el costo del defecto en el tiempo; risk-based testing (riesgo = probabilidad × impacto).','Manual vs automatizado no es rivalidad: la automatización da velocidad, regresión y escala, pero “no es magia”.','El nuevo perfil: Quality Engineering / “AI QA Engineer” — subes de altitud.'],
+  theory:['La tesis: “mueve tu tiempo de teclear a decidir” — el valor está en decidir qué probar, con qué riesgo y si cumple el contrato.','Los 4 verbos con autonomía IA graduada: <b>Crear</b> (alta) · <b>Ejecutar</b> (alta) · <b>Validar</b> (media) · <b>Certificar</b> (el humano firma).','Los 7 principios del testing (ISTQB) y la paradoja del pesticida.','Verificación vs validación · QA vs QC vs testing.','SDLC/STLC, shift-left y el costo del defecto en el tiempo; risk-based testing (riesgo = probabilidad × impacto).','Manual vs automatizado no es rivalidad: la automatización da velocidad, regresión y escala, pero “no es magia”.','El nuevo perfil: Quality Engineering / “AI QA Engineer” — subes de altitud.','Oráculo = lo que decide si una prueba pasa. Separa “¿funciona como se especificó?” (pasa/falla) de “¿lo que produjo es bueno?” (puntaje contra criterios). En war-paradigm 01, los criterios <code>must</code> bloquean y los <code>should</code> suman.'],
   res:[R('🎓','Test Automation University (catálogo gratis)','Curso · gratis','https://testautomationu.applitools.com/',1),
-       R('📖','ISTQB Foundation Level — Syllabus','Docs · gratis','https://www.istqb.org/certifications/certified-tester-foundation-level',1),
+       R('📖','ISTQB Foundation Level — Syllabus','Docs · gratis','https://istqb.org/certifications/certified-tester-foundation-level-ctfl-v4-0/',1),
        R('📖','Fowler — The Practical Test Pyramid','Artículo · gratis','https://martinfowler.com/articles/practical-test-pyramid.html',1),
-       R('🎥','Ministry of Testing (comunidad y recursos)','Comunidad · gratis','https://www.ministryoftesting.com/',1)],
+       R('🎥','Ministry of Testing (comunidad y recursos)','Comunidad · gratis','https://www.ministryoftesting.com/',1),
+       R('🧪','Laboratorio: war-paradigm · 01 (oráculos must/should)','Repo · público','https://github.com/criguex/war-paradigm/tree/main/experiments/01-ai-verdict',1),
+       R('📖','Test oracle (concepto)','Artículo · gratis','https://en.wikipedia.org/wiki/Test_oracle',1)],
   hands:['Elige una app o API pública y escribe una <b>mini estrategia de pruebas</b> (1 pág): riesgos, alcance, niveles, qué se automatiza y qué no.','Haz una sesión de <b>testing exploratorio</b> de 60 min con charter + notas.'],
   deliver:'Documento “Estrategia de pruebas v0” + notas de exploración, en tu repo.'},
 
- {id:'m2',track:'fund',icon:'🎯',title:'Diseño de pruebas & técnicas',when:'Semana 2',level:'★★☆☆☆',hours:'~12 h',
+ {id:'m2',track:'n1',icon:'🎯',title:'Diseño de pruebas & técnicas',when:'Semana 2',level:'★★☆☆☆',hours:'~12 h',
   mentor:'Un dev automatiza rápido pero sin criterio de qué probar. Estas técnicas te dan más cobertura con menos casos — es lo que separa a un scripter de un ingeniero de calidad.',
   theory:['Niveles (unit/integración/sistema/aceptación) y tipos (funcional, regresión, smoke, sanity).','Técnicas de caja negra: particiones de equivalencia, valores límite, tablas de decisión, transición de estados, pairwise, error guessing.','Testing exploratorio basado en sesiones (SBTM).','Reporte de defectos con evidencia (pasos, esperado vs real, ambiente, logs).'],
-  res:[R('📖','ISTQB — técnicas de diseño de pruebas','Docs · gratis','https://www.istqb.org/certifications/certified-tester-foundation-level',1),
+  res:[R('📖','ISTQB — técnicas de diseño de pruebas','Docs · gratis','https://istqb.org/certifications/certified-tester-foundation-level-ctfl-v4-0/',1),
        R('🛠️','Microsoft PICT — combinatorial / pairwise','Herramienta · gratis','https://github.com/microsoft/pict',1),
        R('🎓','TAU — Test Automation strategy & design','Curso · gratis','https://testautomationu.applitools.com/',1),
        R('📖','Ministry of Testing — Exploratory testing','Guía · gratis','https://www.ministryoftesting.com/',1)],
   hands:['Diseña la suite de casos de un formulario/endpoint aplicando <b>cada técnica</b> y justifica por qué.','Reporta 3 defectos con plantilla de evidencia.'],
   deliver:'Suite de casos (con técnica aplicada) + 3 reportes de defecto con evidencia.'},
 
- {id:'m3',track:'setup',icon:'🛠️',title:'Setup día 0 — el entorno',when:'Semana 3',level:'★★☆☆☆',hours:'~8 h',
+ {id:'m3',track:'n1',icon:'🛠️',title:'Setup día 0 — el entorno',when:'Semana 3',level:'★★☆☆☆',hours:'~8 h',
   mentor:'El día 0 de mi método: dejar el entorno listo para no pelear con herramientas después. Vienes de dev, así que esto es rápido — pero hazlo bien (versionado, cuentas, IDE).',
-  theory:['Node.js, npm y manejo de versiones.','Git en serio: ramas, PRs, conventional commits, code review de tests.','VS Code + extensiones para QA (Playwright, ESLint).','Estructura de un repo de automatización.'],
+  theory:['Node.js, npm y manejo de versiones: usa la LTS (Node 24 a oct-2026; la 26 todavía es “Current”). <code>brew install node</code> instala la Current, no la LTS.','Versiones vigentes verificadas el 26-oct-2026: Playwright 1.64 · TypeScript 7.0 · Node 24 LTS · Java 25 LTS (si vas por el stack Java) · Karate 2.1 · k6 2.3. Fíjalas en <code>package.json</code>/lockfile y súbelas a propósito, no por accidente.','Git en serio: ramas, PRs, conventional commits, code review de tests.','VS Code + extensiones para QA (Playwright, ESLint).','Estructura de un repo de automatización.'],
   res:[R('📖','Node.js — descarga y docs','Docs · gratis','https://nodejs.org/en/download',1),
        R('📖','Pro Git (libro completo, gratis)','Libro · gratis','https://git-scm.com/book/es/v2',1),
        R('📖','VS Code — documentación','Docs · gratis','https://code.visualstudio.com/docs',1),
        R('💻','Ejemplo: estructura de proyecto (Playwright)','Repo · público','https://github.com/microsoft/playwright')],
-  hands:['Deja tu entorno listo con <code>brew install node git gh</code> y crea tu repo del curso.','Configura un flujo de PRs contigo mismo (rama → PR → review → merge).'],
+  hands:['Deja tu entorno listo con <code>brew install node@24 git gh</code> (o <code>nvm install --lts</code>), arranca el proyecto con <code>npm init playwright@latest</code> y crea tu repo del curso.','Configura un flujo de PRs contigo mismo (rama → PR → review → merge).'],
   deliver:'Repo del curso creado, con README y primer PR mergeado.'},
 
- {id:'m3b',track:'setup',icon:'🧠',title:'Obsidian — tu segundo cerebro (Fase 0 del método)',when:'Semana 4',level:'★★☆☆☆',hours:'~6 h',
+ {id:'m3b',track:'n1',icon:'🧠',title:'Obsidian — tu segundo cerebro (Fase 0 del método)',when:'Semana 4',level:'★★☆☆☆',hours:'~6 h',
   mentor:'Antes que la IA va la documentación. “La IA sin contexto es un becario brillante con amnesia”: mientras más documentas, mejor arranca contextualizada. Este es el bucle que sostiene todo mi método.',
   theory:['Obsidian como documentación viva y onboarding (de ti mismo y de la IA).','El bucle virtuoso: documentar ↔ la IA lee ↔ arranca con contexto.','Las 3 capas de contexto: CLAUDE.md (reglas del proyecto) · Memoria persistente (hechos sobre ti) · Obsidian (conocimiento profundo).','“Da el contexto suficiente, no todo”: apunta al doc relevante, no vuelques el vault entero.','Hooks = “cosas que pasan solas”: lo que quieras que ocurra siempre que X, es un hook, no una nota.'],
   res:[R('📖','Obsidian — descarga','Herramienta · gratis','https://obsidian.md',1),
        R('📖','Model Context Protocol (conectar herramientas)','Docs · gratis','https://modelcontextprotocol.io/',1),
-       R('📖','Claude Code','Docs','https://docs.claude.com/en/docs/claude-code')],
+       R('📖','Claude Code','Docs','https://code.claude.com/docs')],
   hands:['Crea un vault con: reglas del proyecto, glosario y una nota “de HU a certificación”.','Escribe un <code>CLAUDE.md</code> para tu repo del curso (reglas + comandos frecuentes).'],
   deliver:'Vault base + CLAUDE.md del repo del curso.'},
 
- {id:'m4',track:'setup',icon:'🔷',title:'TypeScript para QA',when:'Semana 4',level:'★★★☆☆',hours:'~12 h',
+ {id:'m4',track:'n1',icon:'🔷',title:'TypeScript para QA',when:'Semana 5',level:'★★★☆☆',hours:'~12 h',
   mentor:'TS es la base de Playwright moderno. No necesitas ser experto, pero sí manejar tipos, async/await y módulos — porque un buen framework de test es buen código.',
-  theory:['Tipos, interfaces, generics básicos.','async/await, Promises (clave en Playwright).','Módulos, imports, configuración tsconfig.','Tipar datos de prueba y respuestas de API.'],
+  theory:['Tipos, interfaces, generics básicos.','async/await, Promises (clave en Playwright).','Módulos, imports, configuración tsconfig.','TypeScript 7 (compilador nativo, ago-2026) cambia defaults: <code>strict</code> ya viene en true, <code>types</code> arranca vacío (agrega <code>"types": ["node"]</code>), y <code>moduleResolution: node</code>, <code>baseUrl</code> y <code>target: es5</code> ya son error. Usa <code>moduleResolution: bundler</code> o <code>nodenext</code> y <code>paths</code> relativos a la raíz.','Tipar datos de prueba y respuestas de API.'],
   res:[R('📖','TypeScript Handbook (oficial)','Docs · gratis','https://www.typescriptlang.org/docs/',1),
        R('🎓','freeCodeCamp — Learn TypeScript','Curso · gratis','https://www.freecodecamp.org/news/learn-typescript-beginners-guide/',1),
        R('🛠️','TypeScript Playground (probar en el navegador)','Herramienta · gratis','https://www.typescriptlang.org/play',1),
@@ -357,7 +330,7 @@ const COURSE = [
   hands:['Escribe utilidades tipadas para datos de prueba (builders/factories).','Tipa la respuesta de una API pública y valida sus campos.'],
   deliver:'Módulo TS con builders de test data tipados + validación de una respuesta.'},
 
- {id:'m5',track:'auto',icon:'🎭',title:'Playwright + TypeScript E2E — framework desde cero',when:'Semanas 5–6',level:'★★★★☆',hours:'~26 h',
+ {id:'m5',track:'n1',icon:'🎭',title:'Playwright + TypeScript E2E — framework desde cero',when:'Semanas 6–7',level:'★★★★☆',hours:'~26 h',
   mentor:'El corazón del oficio. Aquí construyes un framework de verdad — no scripts sueltos. Si dominas fixtures, POM y datos, ya piensas como SDET. Estudia frameworks de referencia open-source (los ejemplos oficiales de Playwright) para ver estructura real.',
   theory:['Locators, auto-waiting, web-first assertions.','Fixtures, Page Object Model en TS, projects y baseURL.','Auth reutilizable con storageState; interceptación de red (mocking).','Aislamiento, paralelización, retries, trace viewer.'],
   res:[R('📖','Playwright — documentación oficial','Docs · gratis','https://playwright.dev/',1),
@@ -367,19 +340,23 @@ const COURSE = [
   hands:['Framework Playwright+TS <b>desde cero</b>: POM, fixtures, login con storageState, flujo <b>RBAC</b> (roles), smoke + regresión.','Un test <b>híbrido</b>: prepara estado por API y valida por UI, interceptando una llamada de red.'],
   deliver:'Repo de framework Playwright+TS funcional (POM + fixtures + auth + RBAC + test híbrido).'},
 
- {id:'m6',track:'auto',icon:'🔌',title:'API & Contract Testing — tu especialidad futura',when:'Semanas 7–8',level:'★★★★☆',hours:'~24 h',
+ {id:'m6',track:'n1',icon:'🔌',title:'API & Contract Testing — tu especialidad futura',when:'Semanas 8–9',level:'★★★★☆',hours:'~24 h',
   mentor:'Este es MI diferenciador y será el tuyo. Vienes de APIs, así que aquí vuelas — pero el salto es el <b>contract testing</b>: validar el servicio contra su contrato canónico, no adaptar el test a lo que responde. Eso atrapa bugs de integración antes de producción.',
-  theory:['Regla absoluta: “<b>valida contra el contrato, NO adaptes el test a la respuesta</b>” — un verde falso es peor que un rojo honesto.','La biblia es SIEMPRE la última versión del contrato: revalida contra ella ANTES de reportar (una versión nueva puede resolver la duda).','“Auditoría de contrato” (paso humano): el esquema debe reflejar el <b>contrato</b>, no la respuesta observada.','Antipatrón que la IA tiende a cometer: “el test falla → relajo el esquema para que pase” → <b>PROHIBIDO</b>.','Distingue “alinear al contrato” (correcto) de “enmascarar” (tapar un incumplimiento).','Profundidad de API: schemas, auth (OAuth2/JWT), idempotencia, paginación, contratos de error; funcional vs contract vs negativo; REST/GraphQL/SOAP.','Validación tipada con Zod/AJV (el esquema ES el contrato) + OpenAPI como fuente de verdad.','Reportar de inmediato con evidencia (cURL + response): campo/tipo distinto, response sin documentar, naming raro.','Un stack empresarial común: Java + Cucumber + TestNG + RestAssured + Karate — pero el método es agnóstico al lenguaje y a la herramienta.'],
+  theory:['Regla absoluta: “<b>valida contra el contrato, NO adaptes el test a la respuesta</b>” — un verde falso es peor que un rojo honesto.','La biblia es SIEMPRE la última versión del contrato: revalida contra ella ANTES de reportar (una versión nueva puede resolver la duda).','“Auditoría de contrato” (paso humano): el esquema debe reflejar el <b>contrato</b>, no la respuesta observada.','Antipatrón que la IA tiende a cometer: “el test falla → relajo el esquema para que pase” → <b>PROHIBIDO</b>.','Distingue “alinear al contrato” (correcto) de “enmascarar” (tapar un incumplimiento).','Profundidad de API: schemas, auth (OAuth2/JWT), idempotencia, paginación, contratos de error; funcional vs contract vs negativo; REST/GraphQL/SOAP.','Validación tipada con Zod/AJV (el esquema ES el contrato) + OpenAPI como fuente de verdad.','Reportar de inmediato con evidencia (cURL + response): campo/tipo distinto, response sin documentar, naming raro.','Un stack empresarial común: Java + Cucumber + TestNG + RestAssured + Karate — pero el método es agnóstico al lenguaje y a la herramienta.','Karate 2 (abr-2026) es una reescritura: pide Java 21+, trae CLI propia (sin Maven ni Gradle), auth declarativa y soft assertions. Si heredas un proyecto Karate 1.x, sigue la guía de migración v1 → v2 antes de subir la versión.','Datos propios por prueba y limpieza en <code>finally</code>: la prueba deja la base como estaba aunque falle una aserción (restful-booker-quality-suite, <code>tests/api/booking-crud.spec.ts</code>).','Errores de contrato legibles: <code>safeParse</code> + <code>z.prettifyError</code> muestran campo por campo qué se violó (restful-booker-quality-suite, <code>src/support/expectSchema.ts</code>). En civica-playwright-challenge la regla está escrita: un drift se reporta, nunca se adapta el test.'],
   res:[R('📖','Karate DSL — API & contract testing','Repo · gratis','https://github.com/karatelabs/karate',1),
+       R('📖','Karate 2 — qué cambió (v1 → v2)','Docs · gratis','https://docs.karatelabs.io/getting-started/whats-new-v2',1),
        R('📖','REST Assured — docs','Docs · gratis','https://rest-assured.io/',1),
        R('📖','Postman Learning Center','Curso · gratis','https://learning.postman.com/',1),
        R('📖','Zod — validación de esquemas TS','Docs · gratis','https://zod.dev/',1),
        R('📖','Pact — contract testing (concepto)','Docs · gratis','https://docs.pact.io/',1),
-       R('📖','OpenAPI / Swagger — el contrato','Docs · gratis','https://swagger.io/docs/specification/about/',1)],
+       R('📖','OpenAPI / Swagger — el contrato','Docs · gratis','https://swagger.io/docs/specification/v3_0/about/',1),
+       R('🧪','Laboratorio: criguex/restful-booker-quality-suite','Repo · público','https://github.com/criguex/restful-booker-quality-suite',1),
+       R('🧪','Laboratorio: criguex/civica-playwright-challenge (contratos Zod)','Repo · público','https://github.com/criguex/civica-playwright-challenge',1),
+       R('📖','Playwright — API testing','Docs · gratis','https://playwright.dev/docs/api-testing',1)],
   hands:['Suite de API progresiva: Postman/Newman → RestAssured → Karate (funcional + negativo).','Suite de <b>contract testing</b> validando un servicio contra su contrato + validación de esquema con Zod/AJV.'],
   deliver:'Repo de API (3 herramientas) + suite de contract testing con validación de esquema.'},
 
- {id:'m7',track:'auto',icon:'🥒',title:'BDD — Gherkin, Cucumber & Serenity',when:'Semana 9',level:'★★★☆☆',hours:'~12 h',
+ {id:'m7',track:'n1',icon:'🥒',title:'BDD — Gherkin, Cucumber & Serenity',when:'Semana 10',level:'★★★☆☆',hours:'~12 h',
   mentor:'BDD convierte tus pruebas en documentación de negocio. Pero ojo: es una capa SOBRE la automatización. Aprende cuándo ayuda y cuándo estorba — un Gherkin acoplado a la UI es un anti-patrón.',
   theory:['Filosofía BDD: 3 amigos, ejemplos, lenguaje ubicuo.','Gherkin declarativo vs imperativo; anti-patrones.','features → steps reutilizables; Serenity/Cucumber sobre Playwright o RestAssured.','Living documentation como salida del pipeline.'],
   res:[R('📖','Cucumber — documentación','Docs · gratis','https://cucumber.io/docs/',1),
@@ -389,15 +366,16 @@ const COURSE = [
   hands:['Convierte 2–3 flujos de los módulos 5/6 a features Gherkin con steps reutilizables.','Genera documentación viva (Serenity/Allure).'],
   deliver:'Suite BDD (features + steps reutilizables) con reporte de documentación viva.'},
 
- {id:'m7b',track:'auto',icon:'🔁',title:'Ejecución disciplinada — ciclos, test data & known issues',when:'Semana 10',level:'★★★☆☆',hours:'~10 h',
+ {id:'m7b',track:'n1',icon:'🔁',title:'Ejecución disciplinada — ciclos, test data & known issues',when:'Semana 11',level:'★★★☆☆',hours:'~10 h',
   mentor:'Dos reglas que casi nadie enseña y que salvan días: cómo iterar ciclos sin re-correr todo, y cómo manejar datos y fallos ajenos sin ensuciar la suite. “Itera estrecho, confirma amplio.”',
-  theory:['Protocolo de ciclos: nuevos → fix → retest SOLO lo que falló → regresión completa al final (una vez).','Gestión de test data: datasets documentados con sus caveats; datos con estado especial (un registro dado de baja que devuelve un código “vacío” como 204 ≠ bug); “sin data no se ejecuta nada”.','Formato del payload en el wire y cardinalidad entre entidades relacionadas (p. ej. 1→N) como parte del diseño de datos.','Known issues SIN enmascarar: tag <code>@IGNORE</code> + comentario en el <code>.feature</code>; el ticket queda Abierto y NO cierra la HU; condición explícita para quitarlo.','“La suite toda verde” ≠ “el software está bien”: solo significa que tus tests no encontraron nada.'],
+  theory:['Protocolo de ciclos: nuevos → fix → retest SOLO lo que falló → regresión completa al final (una vez).','Gestión de test data: datasets documentados con sus caveats; datos con estado especial (un registro dado de baja que devuelve un código “vacío” como 204 ≠ bug); “sin data no se ejecuta nada”.','Formato del payload en el wire y cardinalidad entre entidades relacionadas (p. ej. 1→N) como parte del diseño de datos.','Known issues SIN enmascarar: tag <code>@IGNORE</code> + comentario en el <code>.feature</code>; el ticket queda Abierto y NO cierra la HU; condición explícita para quitarlo.','“La suite toda verde” ≠ “el software está bien”: solo significa que tus tests no encontraron nada.','En Playwright un defecto conocido se marca con <code>test.fail</code> y su ID: el día que lo arreglen, la prueba se pone en rojo y te avisa (restful-booker-quality-suite, <code>tests/api/known-defects.spec.ts</code>).'],
   res:[R('📖','Cucumber — tags y filtrado','Docs · gratis','https://cucumber.io/docs/cucumber/api/',1),
-       R('📖','Playwright — fixtures &amp; test data','Docs · gratis','https://playwright.dev/docs/test-fixtures',1)],
+       R('📖','Playwright — fixtures &amp; test data','Docs · gratis','https://playwright.dev/docs/test-fixtures',1),
+       R('📖','Playwright — anotaciones (test.fail)','Docs · gratis','https://playwright.dev/docs/test-annotations',1)],
   hands:['Aplica el protocolo de ciclos: marca fallos, re-corre solo esos, regresión al cierre.','Documenta un dataset con caveats y excluye un known issue con <code>@IGNORE</code> sin tapar el contrato.'],
   deliver:'Suite con protocolo de ciclos aplicado + un known issue marcado @IGNORE y documentado.'},
 
- {id:'m8',track:'eng',icon:'📊',title:'Reportes & Trazabilidad — evidencia que se puede firmar',when:'Semana 10',level:'★★★☆☆',hours:'~10 h',
+ {id:'m8',track:'n2',icon:'📊',title:'Reportes & Trazabilidad — evidencia que se puede firmar',when:'Semana 12',level:'★★★☆☆',hours:'~10 h',
   mentor:'Un test que pasa y nadie ve, no existe. Un buen reporte te da evidencia; un gestor de pruebas conecta tus tests con los requisitos. Eso es lo que te permite <b>certificar</b> una historia — el cierre del ciclo. La herramienta cambia según la empresa; el estándar (evidencia + trazabilidad) no.',
   theory:['Reportes con evidencia: pasos, screenshots, adjuntos. Allure es un estándar abierto muy usado, pero el principio aplica con cualquier reporter.','Gestión de pruebas y trazabilidad requisito→prueba→ejecución. Herramientas equivalentes: Xray, TestRail, Zephyr, qTest — el concepto es el mismo, elige el que use tu equipo.','La cadena “de requisito a certificación”, independiente de la herramienta.'],
   res:[R('📖','Allure Report — documentación','Docs · gratis','https://allurereport.org/docs/',1),
@@ -408,7 +386,7 @@ const COURSE = [
   hands:['Integra un reporter con evidencia (p. ej. Allure) a tu framework Playwright.','Mapea una suite a casos en un gestor de pruebas y deja trazabilidad requisito→ejecución.'],
   deliver:'Reporte con evidencia publicado + suite trazada en un gestor de pruebas (o simulación del flujo).'},
 
- {id:'m8b',track:'eng',icon:'✅',title:'Sign-off / Certificación de una historia — el cierre del método',when:'Semana 12',level:'★★★★☆',hours:'~10 h',
+ {id:'m8b',track:'n2',icon:'✅',title:'Sign-off / Certificación de una historia — el cierre del método',when:'Semana 13',level:'★★★★☆',hours:'~10 h',
   mentor:'El cierre del ciclo: dejar una historia CERTIFICADA con evidencia y trazabilidad, de forma que cualquiera pueda auditar qué se probó. Y ojo — el sign-off lo firma un humano; no es una casilla que se automatiza. Cada empresa tiene su ritual; el estándar es el mismo.',
   theory:['Qué significa “certificada / lista” (Definition of Done) y por qué el sign-off es humano.','La cadena de trazabilidad estándar: requisito → caso de prueba → ejecución → evidencia. <b>Cómo</b> se registre el cierre (un comentario, un campo del gestor, la descripción del PR) varía por empresa; la cadena no.','Enlaza cada escenario con su caso en el gestor de pruebas — sin enlaces ni placeholders “por resolver”. El mecanismo (tag, ID, anotación) depende de la herramienta.','Reporte autocontenido (single-file) como evidencia adjuntable.','Errores que INVALIDAN un sign-off: un verde no defendible, trazabilidad sin resolver, evidencia ausente.'],
   res:[R('📖','Definition of Done — guía (Atlassian)','Artículo · gratis','https://www.atlassian.com/agile/project-management/definition-of-done',1),
@@ -416,54 +394,415 @@ const COURSE = [
   hands:['Certifica una historia end-to-end: escenarios enlazados a sus casos, ejecución, evidencia y registro de cierre.','Escribe tu checklist de “Definition of Done” de certificación (te sirve en cualquier empresa).'],
   deliver:'Una historia “certificada” (simulada) con trazabilidad completa + checklist de Definition of Done.'},
 
- {id:'m9',track:'eng',icon:'⚙️',title:'CI/CD & Docker',when:'Semana 11',level:'★★★★☆',hours:'~14 h',
+ {id:'m9',track:'n2',icon:'⚙️',title:'CI/CD & Docker',when:'Semana 14',level:'★★★★☆',hours:'~14 h',
   mentor:'Que las pruebas corran solas en cada cambio es lo que las vuelve confiables. Tu experiencia dev con Git y pipelines es ventaja — el reto nuevo es el enfoque de calidad: gates, paralelización y control de flaky tests.',
-  theory:['CI/CD para testing: quality gates, paralelización, sharding, artefactos.','Gestión de flaky tests (cuarentena, retries responsables).','Contenedores para ambientes reproducibles.'],
-  res:[R('📖','GitHub Actions — documentación','Docs · gratis','https://docs.github.com/actions',1),
-       R('📖','GitLab CI/CD — documentación','Docs · gratis','https://docs.gitlab.com/ee/ci/',1),
+  theory:['CI/CD para testing: quality gates, paralelización, sharding, artefactos.','Gestión de flaky tests (cuarentena, retries responsables).','Contenedores para ambientes reproducibles.','Un check verde no bloquea nada si la rama no está protegida y el check no es requerido. Lo ves a fondo en el módulo de pipelines.'],
+  res:[R('📖','GitHub Actions — documentación','Docs · gratis','https://docs.github.com/en/actions',1),
+       R('📖','GitLab CI/CD — documentación','Docs · gratis','https://docs.gitlab.com/ci/',1),
        R('📖','Docker — Get Started','Docs · gratis','https://docs.docker.com/get-started/',1),
-       R('🎥','freeCodeCamp — Docker (YouTube)','Video · gratis','https://www.youtube.com/@freecodecamp',1)],
+       R('🎥','freeCodeCamp — Docker (YouTube)','Video · gratis','https://www.youtube.com/@freecodecamp',1),
+       R('📖','npm ci','Docs · gratis','https://docs.npmjs.com/cli/v10/commands/npm-ci',1)],
   hands:['Conteneriza tu framework Playwright y córrelo en GitHub Actions en cada PR.','Publica el reporte Allure como artefacto del pipeline.'],
   deliver:'Pipeline CI que corre la suite en cada PR + reporte publicado.'},
 
- {id:'m10',track:'eng',icon:'🚀',title:'Performance & Cloud (K6 · JMeter · AWS)',when:'Semana 12',level:'★★★★☆',hours:'~14 h',
+ {id:'m28',track:'n2',icon:'🛤️',title:'Pipelines — anatomía, gates de calidad y pipelines de evidencia',when:'Semana 15',level:'★★★★☆',hours:'~12 h',
+  mentor:'Un pipeline es una fila de guardias. Si sabes leerlo, sabes qué te dice un check verde y, sobre todo, qué no te dice. Aquí lo desarmas pieza por pieza con workflows reales y luego lo rompes a propósito para ver si el gate lo nota.',
+  theory:['Anatomía: triggers (<code>push</code>, <code>pull_request</code>, tags, <code>schedule</code>, <code>workflow_dispatch</code>) → jobs → steps. <code>strategy.matrix</code> combina versiones o sistemas; <code>needs</code> encadena jobs (sin <code>needs</code> corren en paralelo); <code>concurrency</code> cancela corridas viejas del mismo PR.','Caché frente a artefacto: la caché acelera y puede desaparecer sin que nada se rompa; el artefacto es evidencia que alguien va a descargar (<code>actions/upload-artifact</code>).','Secrets y variables: los secrets se enmascaran en los logs y no llegan a los PR que vienen de forks. Condiciones con <code>if:</code> — <code>always()</code>, <code>failure()</code>, <code>!cancelled()</code>.','Gate de calidad = required status check + protección de rama. Un check verde sin protección de rama no bloquea nada: qa-eval-lab lo declara en sus límites.','Qué significa un verde: en <code>qa-eval-lab/.github/workflows/eval-gate.yml</code>, sin <code>OPENAI_API_KEY</code> un paso imprime <code>::notice title=LLM eval skipped::</code> y los pasos de DeepEval y Promptfoo se saltan. Ese verde dice que pasaron las pruebas de UI; ningún LLM fue evaluado.','Fallos silenciosos: <code>|| true</code> convierte cualquier fallo en éxito. Revisa también los fallbacks: en ese mismo workflow, <code>npm ci || npm install</code> hace que un lockfile desalineado no tumbe el job.','Orden de un pipeline de pruebas: lint → typecheck → unit → API/contract → UI → performance → visual. Lo barato y rápido va primero (shift-left).','Caso real: <code>civica-playwright-challenge/.github/workflows/ci.yml</code> encadena 9 gates en un job (lint, typecheck, mock con accesibilidad, mutation, audit, API, contract, performance y visual) y sube el reporte, el ledger de mutación y los reportes de auditoría con <code>if: ${{ !cancelled() }}</code>.','Caso real: <code>restful-booker-quality-suite/.github/workflows/tests.yml</code> clona el SUT en el commit <code>0046115</code>, lo levanta con Docker Compose, espera <code>/ping</code> y corre format:check, lint, typecheck y la suite de cuatro gates (api, contract, component, performance). El CI estuvo rojo el 15 y el 16 de octubre en <code>npm run format:check</code> (Prettier: “Code style issues found in 2 files”) hasta que se arregló el formato.','Reintentar no es ocultar: un test que falla y pasa en el retry se reporta como flaky (jev-ci-triage), no desaparece. La selección por impacto (jev-test-impact) va con fail-safe y suite completa nocturna.','Pipelines de evidencia: release solo tras CI verde y artefactos con hash. <code>predictor-debugger/.github/workflows/reproduce.yml</code> se dispara con <code>workflow_dispatch</code> o un tag <code>v*</code>, baja <code>data-v1</code> en un <code>ubuntu-24.04</code> limpio, recalcula y exige con <code>grep -q</code> los veredictos y la huella; <code>verify.yml</code> hace la comprobación barata en cada push.'],
+  res:[R('📖','GitHub Actions — sintaxis de workflows','Docs · gratis','https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax',1),
+       R('📖','Protección de rama y required checks','Docs · gratis','https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches',1),
+       R('🧪','Caso real: ci.yml de civica (9 gates)','Repo · público','https://github.com/criguex/civica-playwright-challenge/blob/main/.github/workflows/ci.yml',1),
+       R('🧪','Caso real: eval-gate.yml de qa-eval-lab','Repo · público','https://github.com/criguex/qa-eval-lab/blob/main/.github/workflows/eval-gate.yml',1),
+       R('🧪','Caso real: tests.yml de restful-booker','Repo · público','https://github.com/criguex/restful-booker-quality-suite/blob/main/.github/workflows/tests.yml',1),
+       R('🧪','Caso real: reproduce.yml de predictor-debugger','Repo · público','https://github.com/criguex/predictor-debugger/blob/main/.github/workflows/reproduce.yml',1)],
+  hands:['Lee los cuatro workflows de los casos reales y dibuja para cada uno: triggers, jobs, gates en orden y qué artefactos sube.','Escribe tu pipeline con al menos 3 gates encadenados (por ejemplo lint → contract → UI) y artefactos con su hash (<code>sha256sum</code> del reporte).','Activa la protección de rama con tu check como required status check y abre un PR con un fallo a propósito.','Rompe el pipeline: quita un <code>needs</code>, agrega <code>|| true</code> a un paso o borra un secret, y anota qué gate lo notó y cuál no.'],
+  crit:['El pipeline tiene al menos 3 gates encadenados, y un gate posterior no corre si uno anterior falla.','El PR con el fallo queda bloqueado para merge (captura del PR con el check requerido en rojo).','Los artefactos se suben aunque falle la suite y traen su hash.','Cada ruptura del pipeline queda en una tabla: qué rompiste, qué gate lo notó, o “nadie lo notó” como hallazgo.'],
+  deliver:'Workflow con 3 o más gates y artefactos + PR bloqueado + tabla de rupturas del pipeline.'},
+
+ {id:'m27',track:'n2',icon:'📦',title:'Contenedores efímeros — que la evidencia sobreviva al entorno',when:'Semana 16',level:'★★★★☆',hours:'~10 h',
+  mentor:'Los runners de CI, los contenedores y los entornos de preview nacen, trabajan y mueren. Lo que no sacaste antes de que mueran se perdió. Hay un caso real que lo muestra: un recálculo científico completo, operado por un asistente de IA en un ejecutor efímero, donde se perdieron los arrays de una corrida y sobrevivieron los hashes y las estadísticas guardados como recibos.',
+  theory:['Entornos desechables: runners de GitHub Actions (cada job arranca limpio), contenedores Docker, devcontainers, Testcontainers (bases de datos y servicios que nacen y mueren con la prueba) y entornos de preview por PR.','Cuando el contenedor muere se pierde todo lo que vivía solo ahí: el estado, los archivos que no subiste, la caché y los procesos en curso.','Todo lo que importa sale como artefacto o recibo: logs, hashes y reportes (<code>actions/upload-artifact</code>).','Entradas fijadas: lockfiles con <code>npm ci</code> o <code>uv run --locked</code>, imágenes Docker por digest (<code>@sha256:…</code>) y no por tag, y flags como <code>--frozen</code>.','Checkpoints idempotentes y locks: si la corrida se corta, se retoma desde el último checkpoint verificado sin repetir trabajo, y un <code>flock</code> evita que dos procesos hagan lo mismo.','Verifica en un entorno limpio, desde cero, no en la máquina del autor: <code>predictor-debugger/.github/workflows/reproduce.yml</code> baja <code>data-v1</code> en un <code>ubuntu-24.04</code> nuevo y exige la huella.','Caso real, release <code>repro-ia-20261026</code> de predictor-debugger: un asistente de IA recalculó las rondas 1 a 4 desde <code>data-v1</code> y obtuvo las mismas huellas y veredictos. El paquete dice que los 81 arrays de una corrida previa desaparecieron con el ejecutor efímero y que los hashes y estadísticas durables se recuperaron (<code>results_scope.txt</code>). Los 81 archivos de la R1 se regeneraron como corrida nueva: ninguno es idéntico bit a bit; difieren como máximo en 8,9e-16.','La R4 se interrumpió y se retomó desde puntos de control. Los recibos lo cuentan: un <code>flock</code> global serializa las tareas y el SHA y las filas de cada tarea se revisan bajo lock para retomar sin repetir (<code>receipts/lock-hardening.json</code>); al perder la sesión, la política fue no relanzar nada mientras la identidad del proceso viejo fuera incierta (<code>receipts/interruption.json</code>).','Se conecta con QA científico (huellas, manifiestos, reproducibilidad) y con QA asistida por IA: el asistente operó, y el release lo declara como no independiente.'],
+  res:[R('🧪','Caso real: release repro-ia-20261026','Repo · público','https://github.com/criguex/predictor-debugger/releases/tag/repro-ia-20261026',1),
+       R('🧪','reproduce.yml — recálculo en un runner limpio','Repo · público','https://github.com/criguex/predictor-debugger/blob/main/.github/workflows/reproduce.yml',1),
+       R('🛠️','actions/upload-artifact','Repo · gratis','https://github.com/actions/upload-artifact',1),
+       R('🛠️','Testcontainers','Herramienta · gratis','https://testcontainers.com/',1),
+       R('📖','Dev Containers — especificación','Docs · gratis','https://containers.dev/',1),
+       R('📖','flock(1) — manual','Docs · gratis','https://man7.org/linux/man-pages/man1/flock.1.html',1)],
+  hands:['Descarga el paquete del release <code>repro-ia-20261026</code>, verifica su SHA-256 contra el <code>.sha256</code> publicado y lee <code>results_scope.txt</code>, <code>receipts/interruption.json</code> y <code>receipts/lock-hardening.json</code>. Escribe qué se perdió, qué sobrevivió y por qué.','Escribe un workflow que corra tu suite en un runner limpio y suba los resultados como artefacto con su <code>SHA256SUMS</code>.','Haz que una corrida larga escriba checkpoints atómicos (archivo temporal + rename) bajo <code>flock</code>, y que al retomarse salte lo ya verificado.','Cancela el job a mitad de la corrida (o borra la caché) y relánzalo.'],
+  crit:['El workflow corre en un runner limpio y sube un artefacto con hashes.','Al matar el job y relanzarlo, el resultado tiene la misma huella o el mismo hash.','Nada del resultado depende de archivos que solo existían en el contenedor muerto.','Las entradas están fijadas (lockfile, imagen por digest) y el log lo muestra.'],
+  deliver:'Workflow en runner limpio con artefacto y hashes + checkpoints bajo lock + evidencia de la corrida matada y retomada con la misma huella.'},
+
+ {id:'m10',track:'n2',icon:'🚀',title:'Performance & Cloud (K6 · JMeter · AWS)',when:'Semana 17',level:'★★★★☆',hours:'~14 h',
   mentor:'Primero “hace lo correcto”, luego “lo hace bien bajo presión” y “en la nube”. Aprende a leer percentiles (p95/p99), no solo pasó/falló, y a validar servicios serverless con sus rarezas (cold starts).',
-  theory:['Tipos: load, stress, soak, spike; métricas: latencia, throughput, p95/p99, error rate; SLI/SLO.','Observabilidad con Grafana.','Serverless: cold start, event-driven, trazas con CloudWatch Logs Insights.'],
+  theory:['Tipos: load, stress, soak, spike; métricas: latencia, throughput, p95/p99, error rate; SLI/SLO.','Observabilidad con Grafana.','Serverless: cold start, event-driven, trazas con CloudWatch Logs Insights.','k6 2.x (2026) limpió lo deprecado: ya no existen <code>k6 pause/resume/scale/status</code> ni el executor <code>externally-controlled</code>; para la nube es <code>k6 cloud run script.js</code>. Si un tutorial viejo usa esos comandos, tradúcelo a <code>ramping-vus</code>/<code>constant-arrival-rate</code>.','Accesibilidad con axe-core (violaciones serious y critical) y regresión visual con baselines generadas en Linux con Docker: una baseline tomada en macOS no la recoge el CI (civica-playwright-challenge).','Presupuesto de rendimiento con p95 sobre 20 muestras (restful-booker-quality-suite, <code>tests/performance/api.performance.spec.ts</code>).'],
   res:[R('📖','Grafana k6 — documentación','Docs · gratis','https://grafana.com/docs/k6/latest/',1),
        R('📖','Apache JMeter — user manual','Docs · gratis','https://jmeter.apache.org/usermanual/index.html',1),
        R('📖','AWS Lambda — documentación','Docs · gratis','https://docs.aws.amazon.com/lambda/',1),
        R('📖','AWS Well-Architected Framework','Docs · gratis','https://aws.amazon.com/architecture/well-architected/',1),
-       R('📖','Grafana — documentación','Docs · gratis','https://grafana.com/docs/',1)],
+       R('📖','Grafana — documentación','Docs · gratis','https://grafana.com/docs/',1),
+       R('📖','Playwright — accessibility testing','Docs · gratis','https://playwright.dev/docs/accessibility-testing',1),
+       R('📖','Playwright — snapshots visuales','Docs · gratis','https://playwright.dev/docs/test-snapshots',1)],
   hands:['Test de carga en K6 contra un endpoint con thresholds; interpreta p95/p99.','Valida end-to-end una Lambda y rastrea una transacción en CloudWatch.'],
   deliver:'Script K6 con thresholds + informe de performance + checklist de validación serverless.'},
 
- {id:'m11',track:'ia',icon:'🤖',title:'QA Aumentado con IA — mi diferenciador',when:'Semana 13',level:'★★★★★',hours:'~14 h',
+ {id:'m20',track:'n2',icon:'🎞️',title:'Determinismo — mocks, record/replay y fixtures indexados por hash',when:'Semana 18',level:'★★★☆☆',hours:'~10 h',
+  mentor:'Una suite que depende de un tercero o de una IA cambia cuando ellos cambian, no cuando cambia tu código. La salida es grabar y reproducir, con una regla: si la entrada cambia, la grabación vieja no sirve y la prueba queda sin verificar, nunca verde.',
+  theory:['Dobles de prueba (mock, stub, fake) para aislar terceros: civica-playwright-challenge usa una capa de mocks determinista porque IMDb bloquea bots, y su E2E real hace skip con un motivo honesto (ADR 0002).','Record/replay: la primera corrida graba la respuesta del servicio o del juez; las siguientes la reproducen sin red ni llaves.','La llave es un hash: en playwright-jev es <code>sha256(model, estado redactado, pregunta)</code>. Si cambias una palabra, el fixture falta y la prueba queda <i>unverified</i>: no pasa.','Lo mismo en agent-eval-jev y jev-test-impact: las grabaciones se indexan por el hash de la petición exacta, así una pregunta cambiada nunca reutiliza una respuesta vieja.','Veredictos de tres valores: yes / no / ambiguous. Lo ambiguo o sin verificar nunca pasa (playwright-jev, ADR 0001: fail-closed).','Deja la decisión escrita en un ADR: contexto, decisión y consecuencias. playwright-jev documenta cinco en <code>docs/adr/</code>.'],
+  res:[R('🧪','Laboratorio: criguex/playwright-jev','Repo · público','https://github.com/criguex/playwright-jev',1),
+       R('📖','ADR 0002 — record/replay por pregunta','Docs · gratis','https://github.com/criguex/playwright-jev/blob/main/docs/adr/0002-record-replay-per-question.md',1),
+       R('📖','ADR 0002 de civica — mocks como respaldo','Docs · gratis','https://github.com/criguex/civica-playwright-challenge/blob/main/docs/adr/0002-mock-fallback.md',1),
+       R('📖','xUnit Test Patterns — Test Double','Libro · gratis','http://xunitpatterns.com/',1),
+       R('📖','Python hashlib','Docs · gratis','https://docs.python.org/3/library/hashlib.html',1)],
+  hands:['Clona playwright-jev y corre <code>JEV_MODE=replay npm run test:examples</code>. Cambia una palabra de un texto juzgado y muestra que la prueba queda unverified, no verde.','En tu framework, graba las respuestas de un servicio externo con llave = hash de la petición y reprodúcelas en CI sin red.','Escribe un ADR de una página con la decisión de record/replay y su política de falla.'],
+  crit:['Cambiar una palabra de la entrada deja la prueba sin verificar (nunca verde), y lo muestras con la salida del comando.','El CI corre sin llaves ni red, solo con grabaciones.','Cada grabación tiene su llave por hash y no se reutiliza si la petición cambia.','El ADR dice qué pasa cuando falta una grabación.'],
+  deliver:'Suite con record/replay por hash + demo de “cambio una palabra → unverified” + ADR.'},
+
+ {id:'m11',track:'n2',icon:'🤖',title:'QA Aumentado con IA — mi diferenciador',when:'Semana 19',level:'★★★★★',hours:'~14 h',
   mentor:'Esto es lo que me hace distinto y ahora es tuyo. La IA es <b>arquitecto y generador</b> de pruebas; tú eres el director que revisa cada diff. Solo funciona cuando YA sabes diseñar y arquitectar — por eso va al final. El patrón: una IA “directora” (p. ej. Claude Code) que planea y mantiene contexto, y una IA “ejecutora” en el IDE (Copilot, Cursor…).',
-  theory:['El modelo central: “<b>la IA directora planea, la IA del IDE ejecuta</b>” — separar planeación de ejecución rinde mejor y funciona con cualquier par de herramientas.','Los 2 roles + el humano: <b>IA directora</b> = contexto y plan · <b>IA del IDE</b> = ejecutor pegado al código · <b>tú</b> = criterio.','Un archivo de instrucciones para la IA del IDE (p. ej. <code>copilot-instructions.md</code>, o las <i>rules</i> de Cursor) = “el CLAUDE.md del IDE”: el artefacto que conecta ambas IAs.','Anatomía de un buen prompt (5 bloques): Contexto + Insumo + Instrucción + Restricciones + Salida esperada.','“Contexto antes que prompt”: un prompt brillante sobre contexto pobre rinde poco.','<b>Prompt packs</b>: recetas reutilizables con huecos &lt;...&gt; — “de 10 min a 1”.','Las 3 capas de contexto: CLAUDE.md (reglas) · Memoria persistente (hechos sobre ti) · Obsidian (conocimiento).','Human-in-the-loop: “la IA se equivoca con seguridad” → revisa SIEMPRE el diff.','Test mental para delegar: ¿la responsabilidad es mía? ¿requiere criterio de negocio/riesgo? ¿es irreversible hacia afuera? ¿es mecánico sobre convención clara?','MCP: conectar herramientas al modelo — el cluster que domina vacantes 2026 es Playwright + MCP + Claude.'],
-  res:[R('📖','Claude Code','Docs','https://docs.claude.com/en/docs/claude-code'),
-       R('📖','GitHub Copilot — documentación','Docs','https://docs.github.com/copilot'),
+  theory:['El modelo central: “<b>la IA directora planea, la IA del IDE ejecuta</b>” — separar planeación de ejecución rinde mejor y funciona con cualquier par de herramientas.','Los 2 roles + el humano: <b>IA directora</b> = contexto y plan · <b>IA del IDE</b> = ejecutor pegado al código · <b>tú</b> = criterio.','Un archivo de instrucciones para la IA del IDE (p. ej. <code>copilot-instructions.md</code>, o las <i>rules</i> de Cursor) = “el CLAUDE.md del IDE”: el artefacto que conecta ambas IAs.','Anatomía de un buen prompt (5 bloques): Contexto + Insumo + Instrucción + Restricciones + Salida esperada.','“Contexto antes que prompt”: un prompt brillante sobre contexto pobre rinde poco.','<b>Prompt packs</b>: recetas reutilizables con huecos &lt;...&gt; — “de 10 min a 1”.','Las 3 capas de contexto: CLAUDE.md (reglas) · Memoria persistente (hechos sobre ti) · Obsidian (conocimiento).','Human-in-the-loop: “la IA se equivoca con seguridad” → revisa SIEMPRE el diff.','Test mental para delegar: ¿la responsabilidad es mía? ¿requiere criterio de negocio/riesgo? ¿es irreversible hacia afuera? ¿es mecánico sobre convención clara?','MCP: conectar herramientas al modelo (p. ej. Playwright MCP para que el asistente maneje un navegador real). La combinación Playwright + MCP + un asistente de código aparece cada vez más en vacantes de QA.'],
+  res:[R('📖','Claude Code','Docs','https://code.claude.com/docs'),
+       R('📖','GitHub Copilot — documentación','Docs','https://docs.github.com/en/copilot'),
        R('📖','Model Context Protocol (MCP)','Docs · gratis','https://modelcontextprotocol.io/',1),
-       R('🛠️','Cursor — IDE con IA','Herramienta','https://cursor.com/')],
+       R('🛠️','Cursor — IDE con IA','Herramienta','https://cursor.com/'),
+       R('🛠️','Playwright MCP — el asistente maneja el navegador','Repo · gratis','https://github.com/microsoft/playwright-mcp',1)],
   hands:['Genera una suite desde un contrato de API o una HU con Claude + Copilot, <b>revisando el diff</b>.','Construye un <b>prompt pack</b> + checklist de revisión de salida del LLM.'],
   deliver:'Suite generada con IA (diff revisado) + prompt pack + checklist de revisión.'},
 
- {id:'m12',track:'cap',icon:'🏆',title:'Capstone — sistema de calidad end-to-end',when:'Semanas 14–15',level:'★★★★★',hours:'~24 h',
-  mentor:'La prueba de que pasaste de “sé herramientas” a “diseño calidad”. Este repo será tu carta de presentación — el mismo tipo de trabajo que hago en producción. Lo defiendes ante mí en 30–45 min.',
-  theory:['Integra TODO en un proyecto real de referencia.','Justifica qué automatizaste, qué no, y por qué (riesgo).','Métricas de cobertura y calidad; decisiones de arquitectura documentadas.'],
-  res:[R('💻','Estudia: microsoft/playwright (referencia)','Repo · público','https://github.com/microsoft/playwright'),
-       R('💻','Estudia: karatelabs/karate (referencia)','Repo · público','https://github.com/karatelabs/karate'),
-       R('🎓','Test Automation University (repaso)','Curso · gratis','https://testautomationu.applitools.com/',1)],
-  hands:['App/API real → estrategia por riesgo → contract tests (Karate) → E2E Playwright+TS → capa BDD → CI/CD con reporte de evidencia + gestor de pruebas → K6 de performance → una parte generada con IA y revisada.','Defensa oral ante el mentor.'],
-  deliver:'Repo integral + README de arquitectura + pipeline verde + presentación de defensa.'},
+ {id:'m14',track:'n2',icon:'🛡️',title:'QA asistida por IA — el asistente prueba, la persona firma',when:'Semana 20',level:'★★★★☆',hours:'~12 h',
+  mentor:'Hoy un asistente como Claude Code o Codex diseña casos, corre la suite y hasta audita sus propios resultados. Eso no me quita trabajo: me lo cambia. Yo decido qué reglas no se negocian, las pongo donde el asistente no las puede “olvidar” (hooks y CI) y firmo solo lo que tiene evidencia que se puede volver a correr.',
+  theory:['Reparto de roles: el asistente <b>diseña, ejecuta y audita</b>; la persona <b>decide y firma</b>. Un verde que nadie puede re-ejecutar no se firma.','Las reglas viven en <b>hooks y CI</b>, no en prompts: un prompt es una petición que el modelo puede pasar por alto; un hook que sale con código 2 es un muro. Ejemplo real: el hook <code>PreToolUse</code> de Claude Code del experimento 03 de war-paradigm bloquea cualquier <code>git push</code> a <code>main</code> con <code>exit 2</code>.','Prueba la barrera como pruebas el producto (hilo WAR): ese hook tiene 28 casos que intentan colarse, incluidos comandos encadenados y el <code>git push</code> pelado estando en <code>main</code>.','Contexto del asistente versionado en el repo: <code>CLAUDE.md</code> para Claude Code, <code>AGENTS.md</code> para Codex. Ahí van comandos, convenciones y lo prohibido; nunca secretos.','Evidencia = <b>comando + hash + exit code</b>. En agent-eval-jev las respuestas del juez se guardan con el hash exacto de la petición, y el CI reconstruye el reporte y falla si difiere del commiteado.','Fail-safe por diseño: si el asistente o el servicio de IA falla, el sistema hace lo conservador (correr todo, marcar <code>unknown</code>), nunca lo cómodo (saltarse pruebas, poner verde).','Declara la autoría: en predictor-debugger una reproducción completa la ejecutó un asistente bajo dirección humana, y el README lo dice: no es una revisión independiente.'],
+  res:[R('📖','Claude Code — hooks','Docs · gratis','https://code.claude.com/docs/en/hooks',1),
+       R('📖','Claude Code en GitHub Actions','Docs · gratis','https://code.claude.com/docs/en/github-actions',1),
+       R('💻','openai/codex — Codex CLI','Repo · gratis','https://github.com/openai/codex',1),
+       R('🧪','Laboratorio: war-paradigm · experimento 03 (hook + 28 casos)','Repo · público','https://github.com/criguex/war-paradigm/tree/main/experiments/03-second-brain',1)],
+  hands:['Pídele a tu asistente (Claude Code o Codex) que diseñe y corra 5 casos nuevos para tu framework. Revisa el diff línea por línea y anota qué aceptaste, qué corregiste y por qué.','Escribe un hook que bloquee una acción peligrosa (push a <code>main</code>, borrar <code>test-results/</code>, editar un snapshot) y pruébalo con al menos 10 intentos de saltártelo, incluidos comandos encadenados.','Deja un <code>EVIDENCIA.md</code>: por cada corrida, comando exacto, commit, hash de las entradas (<code>shasum -a 256</code>) y exit code.'],
+  crit:['El hook sale con código distinto de 0 en todos los intentos de saltárselo y deja pasar los comandos legítimos.','Cada afirmación del <code>EVIDENCIA.md</code> se puede re-ejecutar con el comando escrito y da el mismo exit code.','El diff del asistente tiene tu revisión explícita; ningún test se aceptó sin correrlo.','Ninguna regla crítica vive solo en un prompt.'],
+  deliver:'Hook probado + casos generados con asistente (diff revisado) + EVIDENCIA.md con comandos, hashes y exit codes.'},
+
+ {id:'m15',track:'n2',icon:'🧬',title:'Mutation testing — prueba al que prueba (WAR Paradigm)',when:'Semana 21',level:'★★★★☆',hours:'~14 h',
+  mentor:'“Test the tester, mutate reality.” Una suite verde puede ser excelente o puede estar dormida, y desde afuera se ven iguales. La única forma de saberlo es romper algo a propósito y mirar si la suite grita. Este módulo es el hilo de todo el curso: aquí se mide cada técnica que aprendiste.',
+  theory:['El paradigma en 4 pasos: <b>Generar</b> (la realidad base, y confirmar que el guardián la acepta) → <b>Mutar</b> (cambiar exactamente una regla) → <b>Auditar</b> (pasar el mundo roto por el guardián) → <b>Validar</b> (leer el veredicto).','Tres veredictos, siempre visibles: <b>PASS</b> (la línea base sin mutar se comporta como se espera: el guardián no grita en falso) · <b>KILLED</b> (atrapó la mutación) · <b>SURVIVED</b> (no la vio: bug real o punto ciego).','La línea base va primero y fuera del puntaje: si la base o el reset fallan, no hay mutantes muertos, hay un experimento inválido.','<b>Kill rate</b> = KILLED / (KILLED + SURVIVED). En war-paradigm 02: 5 de 6, un 83 %. En el track físico: 54 KILLED y 3 SURVIVED de 57 mutantes, más 27 PASS de línea base (84 variantes).','Un SURVIVED no se borra ni se salta: se marca como fallo esperado, se imprime en rojo y se sigue en un <b>ledger</b> hasta que alguien lo arregla. En el experimento 02 el sobreviviente es un bug real: un editor se sube a admin y la app responde 200.','Mutantes como datos: cada uno cambia una sola cosa y deja su registro JSON (revisión del código y hashes de entrada) como evidencia.','Dos mutantes con la misma salida son equivalentes: cuéntalos aparte. En el track físico, los 54 KILLED corresponden a 51 comportamientos distintos.','Herramientas para mutar código: Stryker (JS/TS) y PIT (Java). WAR va más allá del código: muta flujos de negocio, leyes físicas o comandos.'],
+  res:[R('🧪','Laboratorio: criguex/war-paradigm','Repo · público','https://github.com/criguex/war-paradigm',1),
+       R('🧪','Experimento 02 — mutantes del flujo dorado','Repo · público','https://github.com/criguex/war-paradigm/tree/main/experiments/02-mutants',1),
+       R('🧪','Track físico: criguex/scientific-qa-evidence','Repo · público','https://github.com/criguex/scientific-qa-evidence',1),
+       R('🛠️','Stryker Mutator (JS/TS)','Herramienta · gratis','https://stryker-mutator.io/',1),
+       R('🛠️','PIT — mutation testing para Java','Herramienta · gratis','https://pitest.org/',1),
+       R('📖','Mutation testing (concepto)','Artículo · gratis','https://en.wikipedia.org/wiki/Mutation_testing',1)],
+  hands:['Clona war-paradigm, corre <code>npm ci</code>, <code>npx playwright install --with-deps chromium</code> y <code>npm run demo:02</code>, y explica por escrito por qué sobrevive el mutante del auto-ascenso a admin.','Sobre tu framework del módulo 5: escribe 6 mutantes como datos (un cambio cada uno: rol, estado, campo del contrato, orden del flujo), córrelos y clasifícalos en PASS/KILLED/SURVIVED.','Corre Stryker (o PIT si vas por Java) sobre un módulo con tests unitarios y compara su kill rate con lo que esperabas.'],
+  crit:['La línea base corre primero, y si falla invalida la corrida en vez de sumar KILLED.','El kill rate se calcula sin la línea base, y cada SURVIVED está en el ledger con su causa (bug o punto ciego) y su siguiente paso.','Ningún sobreviviente se borra, se salta o se oculta para subir el número.','Cada mutante cambia exactamente una cosa y deja su registro de evidencia.'],
+  deliver:'Catálogo de mutantes como datos + scoreboard PASS/KILLED/SURVIVED + kill rate + ledger de sobrevivientes.'},
+
+ {id:'m21',track:'n2',icon:'🔁',title:'Mutantes que aprenden — ledger, priorización y mutantes que miden al auditor',when:'Semana 22',level:'★★★★☆',hours:'~10 h',
+  mentor:'Correr mutantes una vez es una foto. Guardar lo que pasó y usarlo en la siguiente corrida es una película: primero los que fallaron antes, después los nuevos y al final los que siempre pasan. La misma idea sirve para medir a un auditor de seguridad: siembras el defecto y miras si lo encuentra.',
+  theory:['En civica-playwright-challenge hay tres clases de mutante (equivalent, boundary, negative) y un <code>prioritize()</code> que ordena: primero los que fallaron antes, luego los nunca vistos y al final los que siempre pasan.','Un reporter escribe <code>test-results/mutation-insights.json</code>: ese es el ledger. En civica ese archivo está en <code>.gitignore</code> y existe solo como artefacto de CI; para que el loop aprenda entre corridas de CI hay que restaurar ese artefacto.','Reordenar no puede romper el determinismo: cambia el orden, no el veredicto de cada mutante.','Mutantes que miden al auditor: sobre una línea base endurecida se siembra un defecto de seguridad por mutante (PII, headers, cookies, permisos Android). En el POC 3 de civica el kill rate es 6/6.','Si un mutante nuevo sobrevive, es un hallazgo del auditor: se reporta, y el mutante no se ajusta para que muera.','Siguiente paso de la hoja de ruta de civica: relaciones metamórficas, por ejemplo “los resultados de X contienen los de un prefijo de X”.'],
+  res:[R('🧪','Laboratorio: criguex/civica-playwright-challenge','Repo · público','https://github.com/criguex/civica-playwright-challenge',1),
+       R('📖','MUTATION-TESTING.md — el loop de aprendizaje','Docs · gratis','https://github.com/criguex/civica-playwright-challenge/blob/main/docs/MUTATION-TESTING.md',1),
+       R('📖','AUDIT-POC.md — mutantes de seguridad','Docs · gratis','https://github.com/criguex/civica-playwright-challenge/blob/main/docs/AUDIT-POC.md',1),
+       R('📖','Playwright — reporters','Docs · gratis','https://playwright.dev/docs/test-reporters',1),
+       R('📖','Chen et al. — Metamorphic Testing (ACM CSUR 2018)','Artículo','https://doi.org/10.1145/3143561')],
+  hands:['En civica-playwright-challenge corre <code>npm run test:mutation</code> dos veces y compara <code>test-results/mutation-insights.json</code> entre corridas.','Fuerza el fallo de un mutante y muestra en el log que la siguiente corrida lo pone primero.','Corre <code>npm run test:audit -- securityMutants</code> y agrega un mutante nuevo en <code>src/audit/securityMutations.ts</code> (por ejemplo, quitar <code>X-Frame-Options</code> o meter un JWT en el body).'],
+  crit:['El log de la segunda corrida muestra primero al mutante que falló en la primera.','El ledger guarda la clase, el resultado y la corrida de cada mutante.','Si tu mutante de seguridad sobrevive, aparece como hallazgo del auditor y el mutante no se tocó.','El veredicto de cada mutante es el mismo con cualquier orden.'],
+  deliver:'Ledger de dos corridas + evidencia de la priorización + mutante de seguridad nuevo con su veredicto.'},
+
+ {id:'m18',track:'n2',icon:'🚦',title:'Triaje de fallos en CI y selección de pruebas por impacto',when:'Semana 23',level:'★★★★☆',hours:'~12 h',
+  mentor:'Un pipeline rojo es una lista de preguntas, y solo algunas son bugs. Y una suite completa en cada PR quema minutos que no siempre necesitas. Dos herramientas, una regla: las reglas deterministas deciden lo que pueden, la IA solo opina sobre lo ambiguo y, ante la duda, se hace lo seguro. Nunca un rojo se vuelve verde.',
+  theory:['Cinco clases de fallo: <b>regression</b> (cambió el producto) · <b>flaky</b> (mismo código, otro resultado) · <b>environment</b> (red, dependencia, runner) · <b>test-data</b> (fixtures o semillas) · <b>unknown</b> (no hay evidencia: lo mira una persona).','Reglas en orden (jev-ci-triage): falló y pasó en un retry de la misma corrida → flaky; marcador de infraestructura (<code>ECONNREFUSED</code>, DNS, <code>net::ERR_*</code>, 502/503/504…) sin cambios en el código propio del test → environment. Un 500 a secas no cuenta como infraestructura.','Test-data nunca lo decide una regla: distinguir “cambió el fixture” de “cambió el producto” es una pregunta de significado. Ahí opina el modelo con umbral de confianza 0.75; por debajo, decide una persona.','El triaje no re-ejecuta, no salta y no pone verde: <code>fail-on</code> puede hacer fallar el paso, nunca hacerlo pasar. Antes de enviar nada al modelo se redactan tokens, correos, JWT y rutas personales.','Selección por impacto (jev-test-impact): el grafo de imports decide los tests unitarios; los end-to-end no importan el código que ejercitan, así que para ellos se pregunta “¿este cambio podría alterar este test?” con un umbral bajo a propósito (0.2).','Fail-safe: si el modelo falla, tarda o responde raro, <b>corre la suite completa</b>. Y la suite completa sigue corriendo en <code>main</code> y de noche.','Medido en 20 commits con 15 tests rotos: 69.9 % menos tests y 0 de 15 perdidos. La política “insegura” (saltar los e2e sin mapa) ahorraba más pero perdía 4 de 15. Es una demo pequeña: evidencia, no garantía.'],
+  res:[R('🧪','Laboratorio: criguex/jev-ci-triage','Repo · público','https://github.com/criguex/jev-ci-triage',1),
+       R('🧪','Laboratorio: criguex/jev-test-impact','Repo · público','https://github.com/criguex/jev-test-impact',1),
+       R('📖','Fowler — Eradicating Non-Determinism in Tests','Artículo · gratis','https://martinfowler.com/articles/nonDeterminism.html',1),
+       R('📖','Playwright — sharding','Docs · gratis','https://playwright.dev/docs/test-sharding',1)],
+  hands:['Clona jev-ci-triage y corre <code>npm ci</code>, <code>npm test</code>, <code>npm run demo:triage</code> y <code>npm run demo:eval</code>. Abre <code>report/index.html</code> y justifica cada clase.','Clona jev-test-impact y corre <code>JTI_JEV_MODE=replay npm run bench</code>. Explica por qué la fila “insegura” pierde 4 de 15.','Toma 10 fallos reales de tu pipeline (o de tu framework), clasifícalos a mano en las 5 clases con la evidencia de cada uno y escribe las reglas que habrían decidido los fáciles.'],
+  crit:['Ningún fallo pasa de rojo a verde por el triaje.','Cada clasificación trae su evidencia: retry, marcador, historial o archivos cambiados.','Lo dudoso termina en unknown o en revisión humana, no en una suposición.','La selección por impacto tiene fail-safe a suite completa, y la suite completa sigue corriendo en main.'],
+  deliver:'Triaje de 10 fallos con evidencia + reglas escritas + análisis de la selección por impacto (ahorro vs. fallos perdidos).'},
+
+ {id:'m16',track:'n3',icon:'⚖️',title:'Evaluar IA con un LLM como juez — atrapar el falso verde',when:'Semana 24',level:'★★★★☆',hours:'~12 h',
+  mentor:'Una respuesta de IA puede estar bien escrita y ser falsa. Un <code>status == 200</code> o un “el campo existe” la dejan pasar: eso es un falso verde. Aquí aprendes a poner un juez con umbral escrito, a sembrar trampas para probar al juez, y a no confundir “el job salió verde” con “alguien evaluó algo”.',
+  theory:['Dos preguntas, dos oráculos: ¿corre como se especificó? (determinista: esquema, códigos, roles) y ¿lo que produjo es bueno? (puntaje contra criterios explícitos).','<b>LLM como juez</b>: otro modelo califica la respuesta contra una rúbrica o una respuesta de referencia y da un puntaje de 0 a 1. En qa-eval-lab, GEval (Correctness) y AnswerRelevancy usan umbral <code>0.7</code>.','La trampa sembrada: “¿Cuál es la capital de Colombia?” → “La capital de Colombia es Medellín.” Frase perfecta, dato falso. <code>test_false_green_detectado</code> pasa solo si el juez la califica por debajo de 0.7. Así se prueba al juez (hilo WAR).','Promptfoo para aserciones sobre prompts: <code>contains</code>, <code>not-contains</code>, <code>llm-rubric</code>, comparación de modelos y red-teaming (inyección de prompt, PII, jailbreak).','Verde sin llave no es verde evaluado: sin <code>OPENAI_API_KEY</code> el CI de qa-eval-lab salta los pasos de LLM e imprime un <code>::notice::</code>. Ese check verde solo dice que pasaron las pruebas de UI.','Calibra al juez contra etiquetas humanas: en qa-eval-lab, 10 casos dan acuerdo 8/10 y kappa de Cohen 0.58, por debajo de la barra de 0.6 que el propio script usa para pedir recalibrar la rúbrica.','No muevas el umbral después de ver el puntaje: en qa-eval-lab un caso que debía caer sacó 0.67 contra el umbral por defecto 0.5 y pasó. Subir el umbral al verlo sería afinar al resultado.'],
+  res:[R('🧪','Laboratorio: criguex/qa-eval-lab','Repo · público','https://github.com/criguex/qa-eval-lab',1),
+       R('📖','DeepEval — primeros pasos','Docs · gratis','https://deepeval.com/docs/getting-started',1),
+       R('📖','Promptfoo — introducción','Docs · gratis','https://www.promptfoo.dev/docs/intro/',1),
+       R('📖','Kappa de Cohen (concepto)','Artículo · gratis','https://en.wikipedia.org/wiki/Cohen%27s_kappa',1)],
+  hands:['Clona qa-eval-lab y corre lo que funciona sin llave: <code>npm run test:ui</code> y <code>python evals/calibration/calibrate_judge.py</code>. Anota el acuerdo y el kappa.','Arma 10 preguntas con respuesta de referencia para un asistente que conozcas y siembra 3 respuestas bien escritas pero falsas. Escribe el umbral en el repo ANTES de correr el juez.','Etiqueta tú los 10 casos (pasa/falla) y calcula acuerdo y kappa contra el juez.'],
+  crit:['El umbral está commiteado antes de la primera corrida del juez y no se movió después.','Cada trampa sembrada tiene un test que pasa solo si el juez la tumba.','El reporte dice qué corrió y qué se saltó (sin llave no hay juez).','El kappa va con el número de casos; si queda bajo la barra, la conclusión es “recalibrar”, no “funciona”.'],
+  deliver:'Mini-suite de evaluación con juez + trampas sembradas + reporte de calibración (acuerdo y kappa).'},
+
+ {id:'m17',track:'n3',icon:'🧭',title:'Evaluar agentes de IA — chequeos de código + juez calibrado',when:'Semana 25',level:'★★★★★',hours:'~14 h',
+  mentor:'Un agente no solo responde: llama herramientas, lee páginas, decide pasos. Falla de formas que un test unitario no ve: contesta de memoria sin llamar la herramienta, da el número correcto del día equivocado, obedece una instrucción escondida en una web. Mi receta: código para todo lo que se puede calcular, un juez calibrado para lo demás, y una persona para lo dudoso.',
+  theory:['<b>Golden set</b>: casos reales del agente etiquetados por una persona con una rúbrica escrita. En agent-eval-jev: 60 casos y 4 criterios (<code>tool_use</code>, <code>grounded</code>, <code>complete</code>, <code>policy</code>); un caso pasa solo si cumple los cuatro.','Capa 1, código: nombres y esquemas de herramientas, herramientas esperadas llamadas, cada número de la respuesta presente en un resultado de herramienta, y un “canary” de los tests de inyección ausente de la respuesta. La aritmética se queda en código.','Capa 2, juez: preguntas tipadas (sí/no, opción, puntaje) que devuelven probabilidades. Esa confianza es autorreporte: sirve para <b>enrutar a una persona</b>, no como prueba de acierto. Cualquier criterio entre 0.35 y 0.65 va a revisión humana.','Pesos fijados en código antes de ajustar nada; solo el umbral y el margen se ajustan, y solo en el split de calibración. Los números honestos son los del <b>held-out</b>: 29 casos que el umbral nunca vio.','Resultado real (held-out): solo código 79.3 % (kappa 0.55); juez solo 79.3 % (kappa 0.60, con 11 falsos FAIL); <b>código + juez calibrado 93.1 % (kappa 0.86)</b>; juez LLM 86.2 % (kappa 0.72). Los intervalos se solapan: es una dirección, no una brecha probada.','Defectos sembrados para probar al juez (hilo WAR): un número alterado (€219.24 → €231.50), la ciudad equivocada (Lisboa de Ohio en vez de Portugal), una inyección obedecida, el prompt filtrado. Cada uno marcado como sembrado.','Gate en CI: el mismo gate que deja pasar al agente v2 (94 %) bloquea al v1 (18 %). Y fija el proveedor del juez: sin fijarlo, dos upstreams dieron 0.84–0.87 y 0.52–0.62 a la misma pregunta.'],
+  res:[R('🧪','Laboratorio: criguex/agent-eval-jev','Repo · público','https://github.com/criguex/agent-eval-jev',1),
+       R('📖','Jev (TypeSafe AI) — documentación','Docs','https://docs.typesafe.ai'),
+       R('📖','Kappa de Cohen (concepto)','Artículo · gratis','https://en.wikipedia.org/wiki/Cohen%27s_kappa',1)],
+  hands:['Clona agent-eval-jev y corre el replay offline: <code>pytest -q</code>, <code>python -m agenteval evaluate</code> y <code>python -m agenteval gate</code>. Explica con tus palabras por qué el gate bloquea a v1.','Toma 20 trazas de un agente (o de un chatbot con herramientas), escribe la rúbrica de 4 criterios y etiquétalas tú antes de correr cualquier juez.','Implementa 2 chequeos de código (números presentes en resultados de herramientas y canary ausente) y siembra 3 defectos para comprobar que los atrapan.'],
+  crit:['Las etiquetas humanas están escritas antes de correr el juez.','Hay split de calibración y held-out; el umbral solo se ajusta en calibración y se reporta el held-out.','Los casos dudosos van a revisión humana; nada se aprueba solo por la confianza del juez.','Cada defecto sembrado está marcado como sembrado y su chequeo lo atrapa.'],
+  deliver:'Golden set con rúbrica + chequeos de código + reporte de acuerdo en held-out + gate que bloquea una versión mala.'},
+
+ {id:'m22',track:'n3',icon:'🎚️',title:'Jueces con probabilidad — modos de falla, estabilidad y cascadas',when:'Semana 26',level:'★★★★☆',hours:'~12 h',
+  mentor:'Un juez que devuelve probabilidades no te dice que acertó: te dice qué tan seguro dice estar. Eso sirve para enrutar, no para aprobar. Aquí decides qué pasa cuando el juez se cae, mides si su veredicto cambia entre corridas idénticas y pones un juez barato delante de uno caro sin dejarlo bloquear nada hasta medirlo.',
+  theory:['Tres políticas de falla para el mismo tipo de juez: <b>fail-closed</b> en aserciones (playwright-jev: unverified nunca pasa), <b>fail-open</b> en triaje (jev-ci-triage: <code>unknown · unverified</code>, sin adivinar) y <b>fail-safe</b> en selección (jev-test-impact: suite completa).','La confianza es autorreporte: en jev-ci-triage la misma entrada volvió con 0.69, 0.71, 0.78 y 0.84 contra un umbral de 0.75. Un caso cerca del umbral puede caer a cualquier lado.','<b>Flip rate</b>: la proporción de decisiones que cambian entre corridas idénticas. Fija modelo, temperatura y versión del prompt.','war-paradigm 01 corre la misma entrada 3 veces: con pins el veredicto queda STABLE; sin pins queda UNSTABLE y pasa de aprobado a rechazado.','Redacta antes de enviar: tokens, JWT, correos, tarjetas y rutas personales salen del texto (<code>jev-ci-triage/src/redact.ts</code>).','Cascada (laya-server): un juez local en CPU va primero; un estado de más de 1500 caracteres va a la nube, una confianza menor a 0.8 sube a Jev y un error de la nube vuelve con <code>escalate: true</code> para una persona.','Modo sombra: las respuestas se anotan pero no bloquean nada. El README de laya-server lo dice: nadie ha medido todavía la calidad de Laya en español, y esa medición va antes de confiar en ella. Ese repo no tiene CI: solo <code>npm test</code> corre los 7 casos de la política.'],
+  res:[R('🧪','Laboratorio: war-paradigm · 01 (veredicto estable)','Repo · público','https://github.com/criguex/war-paradigm/tree/main/experiments/01-ai-verdict',1),
+       R('🧪','Laboratorio: criguex/laya-server (cascada)','Repo · público','https://github.com/criguex/laya-server',1),
+       R('📖','ADR 0001 — veredictos de tres valores, fail-closed','Docs · gratis','https://github.com/criguex/playwright-jev/blob/main/docs/adr/0001-three-valued-verdicts-fail-closed.md',1),
+       R('🧪','Laboratorio: criguex/jev-ci-triage (redacción, fail-open)','Repo · público','https://github.com/criguex/jev-ci-triage',1),
+       R('📖','Jev (TypeSafe AI) — documentación','Docs','https://docs.typesafe.ai')],
+  hands:['Escribe la tabla “si el juez cae, qué pasa” para tres usos tuyos (una aserción, un triaje, una selección), con la política y su porqué.','Corre <code>npm run demo:01</code> en war-paradigm y explica por qué sin pins el veredicto es UNSTABLE.','En laya-server corre <code>npm test</code> y agrega casos para un estado de exactamente 1500 caracteres y para un <code>CASCADE_URL</code> caído. Propón el workflow de CI que hoy no tiene.','Mide el flip rate de un juez con 5 repeticiones sobre 20 casos.','Escribe un redactor (o reutiliza el de jev-ci-triage) y pruébalo con un log que tenga un token, un correo y un número de tarjeta.'],
+  crit:['Cada uso de la tabla tiene política (closed, open o safe) y justificación.','El flip rate va con el número de casos y de repeticiones.','Los dos casos nuevos de laya-server pasan con <code>npm test</code>.','El redactor elimina el token, el correo y la tarjeta del log de prueba, y lo muestras.'],
+  deliver:'Tabla de modos de falla + flip rate medido + casos nuevos de la cascada + redactor probado.'},
+
+ {id:'m23',track:'n3',icon:'📜',title:'QA asistida por IA II — agentes que ejecutan, una persona que firma y un reporte honesto',when:'Semana 27',level:'★★★★★',hours:'~12 h',
+  mentor:'Cuando un asistente ejecuta una auditoría completa, la pregunta ya no es si puede hacerlo, sino si otra persona puede comprobar lo que hizo. Registro de comandos con su exit code, hashes de entradas y salidas, dos revisores ciegos, una sección de lo que no se ejecutó y un README que no promete más de lo medido.',
+  theory:['Registro de sesiones: el 20-oct-2026 Codex corrió 19 sesiones para scientific-qa-evidence, una principal y 18 subagentes con rol propio. El log trae llamadas a herramientas, commits y el SHA-256 de cada archivo de sesión.','Separar lo ejecutado de lo ilustrado: ese log tiene una sección “What was not executed”.','Revisión doble a ciegas: dos jueces que no ven el trabajo del otro y un corrector acotado. La síntesis la hace la persona.','Autoría declarada: trailers <code>Co-Authored-By</code> por agente, y la persona responde por las afirmaciones, los límites y la decisión de publicar (<code>AUTHORSHIP.md</code>).','Publica tus errores: el estudio lista hallazgos sobre sus propios defectos (<code>FINDINGS.md</code>). Una recompilación operada por un asistente se declara como no independiente.','Reporte honesto: “Medido en este repo / Lo que esto dice y lo que no / Límites / Qué me contradiría”. Tamaño de muestra, un solo anotador, intervalos que se solapan.','Figuras y animaciones generadas desde el log real, con el script en el repo (predictor-debugger, <code>tools/figuras.py</code>).'],
+  res:[R('🧪','Laboratorio: CODEX_WORK_LOG.md (scientific-qa-evidence)','Docs · gratis','https://github.com/criguex/scientific-qa-evidence/blob/main/docs/CODEX_WORK_LOG.md',1),
+       R('📖','AUTHORSHIP.md — quién responde por qué','Docs · gratis','https://github.com/criguex/scientific-qa-evidence/blob/main/AUTHORSHIP.md',1),
+       R('📖','FINDINGS.md — defectos del propio estudio','Docs · gratis','https://github.com/criguex/scientific-qa-evidence/blob/main/FINDINGS.md',1),
+       R('📖','Anthropic — Building effective agents','Artículo · gratis','https://www.anthropic.com/engineering/building-effective-agents',1)],
+  hands:['Dirige a un asistente en una auditoría acotada (por ejemplo, recalcular una huella de predictor-debugger) y entrega: log de comandos con exit codes, hashes de entradas y salidas, y una sección “qué no se ejecutó”.','Pide dos revisiones ciegas (dos sesiones que no ven la otra) y escribe tu síntesis.','Reescribe el README de un proyecto tuyo con la estructura “Medido / Lo que dice y lo que no / Límites / Qué me contradiría”.'],
+  crit:['Otra persona repite la tarea solo con tu paquete y obtiene el mismo resultado.','Cada afirmación del informe enlaza a un comando y su exit code.','El informe trae al menos un error propio encontrado y corregido.','Un revisor no encuentra afirmaciones sin archivo de evidencia.'],
+  deliver:'Paquete de auditoría operada por IA (log, hashes, revisiones ciegas, “qué no se ejecutó”) + README honesto.'},
+
+ {id:'m19',track:'n4',icon:'🔏',title:'Reproducibilidad y prerregistro — umbrales antes de los datos',when:'Semana 28',level:'★★★★★',hours:'~12 h',
+  mentor:'Si puedo mover la meta después de ver el resultado, siempre gano, y eso no prueba nada. Por eso escribo las hipótesis y los umbrales en un commit antes de generar los datos, publico también lo que falla y corro todo en varias máquinas hasta que la huella coincide. Es la versión científica de “valida contra el contrato”.',
+  theory:['<b>Prerregistro</b>: hipótesis con nombre (H1, H14, H17…) y su umbral de aprobación en un commit antes de generar datos. Después, nada se ajusta para “arreglar” un resultado.','Publica los fallos: en predictor-debugger, H14 (ronda 3) pedía un promedio ≥ 0.7 en las cuatro redes y una sacó 0.635. Falló, se publicó tal cual, y su fallo dio la idea de H17, que pasó en la ronda 4.','Comparadores que deberían fallar: incluye controles que sabes malos para comprobar que la prueba distingue (hilo WAR: probar al que prueba).','<b>Huella</b>: un código corto (por ejemplo <code>EEC9-09E0-F77D</code>) que resume los veredictos de una ronda. Si algo cambia, cambia la huella; si coincide en otra máquina, coinciden los veredictos.','Varias máquinas y sistemas: Mac, dos Windows, Linux en WSL2, GitHub CI y otra máquina Linux, con las mismas huellas. Si las máquinas son tuyas no es una reproducción independiente, y se dice.','Entorno fijado: <code>uv run --locked</code> con las versiones del lockfile; datos fuera de git, publicados con <code>SHA256SUMS</code> y verificados antes de extraer (se rechazan rutas absolutas, <code>..</code> y enlaces).','Bit-idéntico no es lo mismo que veredicto-idéntico: regenerar los datos dio diferencias de hasta 8.9e-16 entre sistemas. Por eso hay archivos canónicos y se comparan veredictos y huellas.','Escribe qué te contradiría: una prueba a ciegas, otro régimen, otra persona que obtiene otra huella.'],
+  res:[R('🧪','Laboratorio: criguex/predictor-debugger','Repo · público','https://github.com/criguex/predictor-debugger',1),
+       R('📖','Prerregistro — Center for Open Science','Guía · gratis','https://www.cos.io/initiatives/prereg',1),
+       R('🛠️','uv — entornos Python con lockfile','Herramienta · gratis','https://docs.astral.sh/uv/',1),
+       R('📖','Reproducible Builds','Guía · gratis','https://reproducible-builds.org/',1)],
+  hands:['Clona predictor-debugger y corre el nivel barato: <code>uv run --locked verify.py --saved mac</code>. Debe imprimir <code>verdicts equal ...: True</code> y la huella <code>EEC9-09E0-F77D</code>. Repite con <code>war</code> y <code>guerra</code>.','En tu propio proyecto: escribe 3 hipótesis con umbral en un <code>PREREGISTRO.md</code>, haz commit y solo después corre la suite o el benchmark.','Genera una huella de tus veredictos (por ejemplo <code>shasum -a 256</code> de un JSON ordenado) y compárala en dos entornos: tu laptop y el CI.'],
+  crit:['El commit del prerregistro es anterior a los datos y a la primera corrida (se ve en <code>git log</code>).','Las hipótesis que fallan se reportan con su número, sin cambiar el umbral.','La huella coincide en dos entornos, o la diferencia queda explicada.','Los límites están escritos: qué no prueba y qué te contradiría.'],
+  deliver:'PREREGISTRO.md con commit previo + resultados (pasa/falla) + huella en dos entornos + sección de límites.'},
+
+ {id:'m24',track:'n4',icon:'🧪',title:'Controles, arnés y mutación numérica — contrato congelado y oráculo independiente',when:'Semana 29',level:'★★★★★',hours:'~12 h',
+  mentor:'Antes de confiar en un experimento, pruebo el experimento: un control que debe pasar, controles que deben fallar y pruebas del arnés mismo. ¿Qué hace el runner si el oráculo lanza una excepción o devuelve NaN? No es teoría: el runner de un estudio real llegó a reportar <code>oracle_valid: true</code> con el oráculo fallado.',
+  theory:['Control positivo: lo que debe pasar (el solver exacto, el caso limpio). Controles negativos: un saboteado de cada tipo, que debe fallar.','Prueba el arnés: “baseline inválida bloquea a sus mutantes”, “NaN nunca es PASS” y “excepción del oráculo no es un mutante muerto”.','Hallazgo real: en scientific-qa-evidence el runner reportaba <code>oracle_valid: true</code> cuando el oráculo había fallado (FINDINGS, hallazgo 8).','Contrato congelado: la tolerancia (10⁻⁶) se fija antes de correr, y el oráculo no comparte solver con la implementación.','La campaña: 84 variantes pareadas en 9 modelos físicos, con 27 PASS, 54 KILLED y 3 SURVIVED, igual en macOS y en Linux. La mutación diminuta del circuito RC sobrevive y se deja visible a propósito.','Separa casos de comportamientos: los 54 KILLED corresponden a 51 comportamientos distintos.'],
+  res:[R('🧪','Laboratorio: criguex/scientific-qa-evidence','Repo · público','https://github.com/criguex/scientific-qa-evidence',1),
+       R('📖','CONTRACT.md — tolerancia y clasificación','Docs · gratis','https://github.com/criguex/scientific-qa-evidence/blob/main/evidence/numerical/source/CONTRACT.md',1),
+       R('📖','FINDINGS.md — hallazgo 8 (el arnés)','Docs · gratis','https://github.com/criguex/scientific-qa-evidence/blob/main/FINDINGS.md',1),
+       R('🧪','war-paradigm — pista 1, simulaciones físicas','Repo · público','https://github.com/criguex/war-paradigm',1)],
+  hands:['En <code>scientific-qa-evidence/evidence/numerical/source</code> corre <code>python3 -m unittest -v test_runner</code>.','Inyecta un oráculo que devuelva <code>float("nan")</code> y comprueba que nunca da PASS ni KILLED.','Agrega un décimo modelo sencillo (caída libre con arrastre lineal) con su oráculo analítico, dos mutantes conocidos y uno cerca del umbral.'],
+  crit:['Tu arnés tiene las tres pruebas (baseline inválida, NaN, excepción del oráculo) y las tres pasan.','El NaN inyectado nunca sale PASS ni KILLED.','La tabla separa casos de comportamientos distintos.','Si el mutante cerca del umbral sobrevive, se reporta SURVIVED sin bajar la tolerancia.'],
+  deliver:'Arnés con 3 pruebas de sí mismo + décimo modelo con oráculo y mutantes + tabla de veredictos.'},
+
+ {id:'m25',track:'n4',icon:'🌊',title:'Física de fluidos y estadística para el depurador',when:'Semana 30',level:'★★★★★',hours:'~14 h',
+  mentor:'No necesitas ser físico para probar un modelo de fluidos, pero sí entender qué ley vigila cada chequeo. Y no necesitas ser estadístico para decir si un chequeo ordena bien el error, pero sí saber cuándo una diferencia es ruido.',
+  theory:['Tres leyes que vigila el depurador de predictor-debugger: incompresibilidad (div u = 0, check D1), balance de energía (la energía cinética solo decae por viscosidad, a ritmo ν·enstrofía, D2) y ecuación de momento (residuo de Navier–Stokes, D3).','D4 es el error contra la referencia: sirve para juzgar al depurador, no es un check del depurador.','Controles del diseño: P0 es el solver exacto (positivo), P0f32 el mismo redondeado a float32, P1 la persistencia, P2 la FNO, P3a rompe la incompresibilidad y P3b inyecta energía.','Lo que se prueba es el depurador, no la red: una red mala es un resultado aceptable; un depurador que no distingue los controles es un fracaso.','One-step frente a rollout: en el rollout la red usa sus propias respuestas 20 pasos seguidos y los errores se arrastran.','Spearman mide si un chequeo ordena bien el error (rangos, no valores). Bootstrap por clusters: se remuestrean trayectorias, no pasos; remuestrear pasos da intervalos más estrechos y engañosos.','Intervalo de Wilson: 27 de 29 casos no es “93 %” a secas, es 93.1 % con intervalo de 78–98 %.'],
+  res:[R('🧪','Laboratorio: criguex/predictor-debugger','Repo · público','https://github.com/criguex/predictor-debugger',1),
+       R('📖','NASA Glenn — ecuaciones de Navier–Stokes','Artículo · gratis','https://www.grc.nasa.gov/www/k-12/airplane/nseqs.html',1),
+       R('📖','SciPy — spearmanr','Docs · gratis','https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.spearmanr.html',1),
+       R('📖','SciPy — bootstrap','Docs · gratis','https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.bootstrap.html',1),
+       R('📖','Li et al. — Fourier Neural Operator','Artículo · gratis','https://arxiv.org/abs/2010.08895',1)],
+  hands:['Lee <code>DESIGN.md</code> (System y Debugger checks) y <code>pd/checks.py</code> de predictor-debugger. Explica con tus palabras por qué D1 atrapa a P3a y D2 a P3b.','Con el kit de <code>round5/KIT.md</code> (paso 1) genera un par exacto y tres saboteados (energía ×1.05, gradiente agregado, fase corrida) y predice qué check debería marcar cada uno ANTES de correr. Usa el modo saved o pocos pares: el recálculo completo tarda horas.','Muestra con un ejemplo sintético que el bootstrap por pasos da un intervalo más estrecho que el bootstrap por clusters.','Recalcula el intervalo de Wilson para 27/29 y compáralo con el 93.1 % (78–98 %) de agent-eval-jev.'],
+  crit:['Tus predicciones sobre los tres saboteados están escritas antes de correr, y coinciden con el depurador o explicas por qué no.','Explicas por qué D4 no es un check del depurador.','Tu Wilson para 27/29 da aproximadamente 78–98 %.','Tu conclusión “A es mejor que B” se apoya en intervalos, no en el punto.'],
+  deliver:'Predicciones D1/D2/D3 con su verificación + demo de bootstrap por clusters + Wilson recalculado.'},
+
+ {id:'m26',track:'n4',icon:'🔐',title:'Verificación formal con Lean y pruebas a ciegas con compromiso por hash',when:'Semana 31',level:'★★★★★',hours:'~14 h',
+  mentor:'Un verificador formal también es un guardia, y también se prueba: le das un enunciado mutado y miras si lo rechaza. Y cuando quien construye el chequeo conoce las trampas, la prueba no vale; por eso las etiquetas se comprometen con un hash antes de entregar nada.',
+  theory:['Lean a nivel de usuario: compilar desde la fuente con <code>lake</code>, revisar los axiomas (<code>#print axioms</code>, sin <code>sorryAx</code>) y comparar contra el enunciado del desafío con Comparator y dos kernels (Lean y nanoda).','Mutantes del enunciado con un control de solo comentario: en scientific-qa-evidence, 6/6 mutantes rechazados y el control de solo comentario aceptado.','Rechazado no quiere decir falso: quiere decir que el enunciado cambió. En los controles con Mathlib se rechazaron los 8 enunciados cambiados, incluidos 4 equivalentes, y una segunda vía en Lean clasificó cada uno.','Cadena de suministro: una compilación “limpia” había recibido 7 dependencias precompiladas, y solo comparar las fechas de los <code>.olean</code> con el inicio de la compilación lo destapó.','Alcance: es una reproducción de QA de pruebas publicadas; no demuestra nada nuevo ni reclama un resultado del problema del milenio.','Prueba a ciegas: quien prepara las trampas compromete el SHA-256 de sus etiquetas (o de una semilla, con sal) antes de entregar; quien prueba publica su veredicto; después se revela y se verifica.','Ejemplos reales: <code>predictor-debugger/round5/KIT.md</code> y la semilla secreta del benchmark de fallos a ciegas, comprometida por hash (<code>openssl rand -hex 16</code>).'],
+  res:[R('🧪','Laboratorio: criguex/scientific-qa-evidence','Repo · público','https://github.com/criguex/scientific-qa-evidence',1),
+       R('📖','Theorem Proving in Lean 4','Libro · gratis','https://lean-lang.org/theorem_proving_in_lean4/',1),
+       R('🛠️','leanprover/comparator','Repo · gratis','https://github.com/leanprover/comparator',1),
+       R('🧪','predictor-debugger — round5/KIT.md (prueba a ciegas)','Docs · gratis','https://github.com/criguex/predictor-debugger/blob/main/round5/KIT.md',1),
+       R('📖','Commitment scheme (concepto)','Artículo · gratis','https://en.wikipedia.org/wiki/Commitment_scheme',1)],
+  hands:['Reproduce <code>experiments/mathlib-controls/</code> de scientific-qa-evidence con el teorema de los primos: el enunciado correcto se acepta y los mutados se rechazan. La reproducción completa sin caché tarda más de una hora: empieza por estos controles.','Escribe 4 mutantes de un enunciado sencillo y clasifícalos (equivalente, más débil o falso) con una segunda vía.','En parejas: uno prepara 20 mutantes del flujo de war-paradigm 02 con ids aleatorios y commitea el SHA-256 de su <code>etiquetas.json</code> con sal; el otro corre la suite y publica su veredicto; luego se revela y se verifica con <code>shasum -a 256</code>.'],
+  crit:['Cada mutante del enunciado tiene su clase demostrada por una segunda vía y el recibo de la corrida.','El hash revelado coincide con el comprometido.','El veredicto se publicó antes de revelar las etiquetas (se ve en <code>git log</code>).','Se reportan falsos positivos y mutantes escapados.'],
+  deliver:'4 mutantes de enunciado clasificados + prueba a ciegas en parejas con compromiso por hash.'},
+
+ {id:'m12',track:'cap',icon:'🏆',title:'Proyecto final — auditoría WAR de un sistema real',when:'Semanas 32–33',level:'★★★★★',hours:'~24 h',
+  mentor:'La prueba de que pasaste de “sé herramientas” a “diseño calidad”: una auditoría WAR de un sistema que elijas. Si otra persona no la puede reproducir desde tu paquete, no está aprobada. La defiendes en 30–45 min ante alguien que no la escribió.',
+  theory:['Integra los tres ejes: <b>QA asistida por IA</b> (un asistente ejecuta bajo un hook, con registro de comandos; tú firmas), <b>ejecución de mutantes</b> (golden flow, mutantes como datos, kill rate y ledger) y el <b>WAR Paradigm</b> (cada guardia de tu sistema se prueba rompiendo algo a propósito).','Prerregistro: hipótesis y umbrales en un commit antes de generar datos.','Si tu sistema tiene IA: golden set, juez con umbral previo y kappa en held-out con intervalo.','Pipeline con gates encadenados, artefactos con hash y huella de los veredictos, verificado en un runner limpio.','README con “Medido / Lo que dice y lo que no / Límites / Qué me contradiría”.'],
+  res:[R('🧪','Modelo: criguex/war-paradigm','Repo · público','https://github.com/criguex/war-paradigm',1),
+       R('🧪','Modelo: criguex/predictor-debugger','Repo · público','https://github.com/criguex/predictor-debugger',1),
+       R('🧪','Modelo: criguex/agent-eval-jev','Repo · público','https://github.com/criguex/agent-eval-jev',1),
+       R('📖','Playwright — documentación oficial','Docs · gratis','https://playwright.dev/',1)],
+  hands:['Elige un sistema (una app tuya, una API pública o una demo) y escribe el prerregistro.','Golden flow + al menos 6 mutantes como datos, con línea base y ledger.','Pipeline con 3 o más gates, artefactos con hash y huella; un asistente ejecuta la auditoría bajo un hook, con registro de comandos y exit codes.','Si el sistema tiene IA: golden set, juez con umbral previo y reporte de kappa en held-out.','Defensa oral de 30–45 min ante alguien que no escribió el código.'],
+  crit:['Otra persona reproduce el paquete y obtiene la misma huella.','El commit del prerregistro es anterior a los datos.','El kill rate se reporta con línea base válida y cada SURVIVED está en el ledger.','Cada afirmación del README enlaza a un comando y su exit code.','Las cuatro filas de la rúbrica integrada están al menos en el nivel 3.'],
+  deliver:'Paquete de auditoría WAR reproducible por un tercero + README con límites + defensa.'},
 
  {id:'m13',track:'cap',icon:'🧭',title:'Tu carrera QA+IA — posicionamiento',when:'Cierre',level:'★★★☆☆',hours:'~4 h',
   mentor:'El cierre. El rol sube de altitud: de escribir tests a diseñar estrategia y supervisar pruebas generadas por IA. Cuenta tu diferencial — tu proyecto de portafolio es la prueba.',
-  theory:['El nuevo perfil: de QA manual → Quality Engineering → “AI QA Engineer”.','Agentic testing como la ola; MCP como habilidad diferenciadora.','Comunicar hallazgos a stakeholders: “la automatización es el detector, no la razón; el beneficiario es el consumidor”.','Cómo escalar un contract mismatch con evidencia (cURL + response), sin “cambien el servicio para que pase mi test”.'],
+  theory:['El nuevo perfil: de QA manual → Quality Engineering → “AI QA Engineer”.','Agentic testing: asistentes (Claude Code, Codex) que diseñan, corren y auditan pruebas; MCP para conectarlos a tus herramientas. La firma sigue siendo humana.','Comunicar hallazgos a stakeholders: “la automatización es el detector, no la razón; el beneficiario es el consumidor”.','Cómo escalar un contract mismatch con evidencia (cURL + response), sin “cambien el servicio para que pase mi test”.'],
   res:[R('📖','Model Context Protocol (MCP)','Docs · gratis','https://modelcontextprotocol.io/',1),
        R('🎓','Test Automation University (mantente al día)','Curso · gratis','https://testautomationu.applitools.com/',1)],
   hands:['Arma tu pitch de 2 min: qué te hace un QA aumentado y qué proyecto lo demuestra.','Redacta cómo reportarías un contract mismatch a un stakeholder con evidencia.'],
   deliver:'Pitch de posicionamiento + un ejemplo de reporte de hallazgo a stakeholder.'}
 ];
+
+const EVAL = {
+ m1:{obj:['Explicar con un ejemplo la diferencia entre “corre como se especificó” y “lo que produjo es bueno”, y nombrar el oráculo de cada prueba.','Escribir una estrategia de pruebas de una página con riesgos, alcance y lo que no se automatiza.','Conducir una sesión exploratoria de 60 min con charter y notas.'],
+  pre:'Ninguno: es el punto de partida.',
+  kid:'Probar es como ser el profe que revisa la tarea: no basta con que la hoja esté llena, hay que ver si las respuestas están bien. La hoja de respuestas se llama “oráculo”.',
+  crit:['La estrategia cabe en una página y nombra al menos 3 riesgos con probabilidad × impacto.','Cada prueba planeada dice cuál es su oráculo (qué decide si pasa).','Las notas exploratorias tienen charter, duración y al menos un hallazgo o una pregunta abierta.'],
+  top:'Escribes 3 criterios must y 3 should con peso para una historia propia, y un scorer que calcula la evidencia en código (como war-paradigm 01).',
+  mut:'¿Cómo sabes que tus tests detectarían un bug? Si nunca los viste fallar, no lo sabes. Ese es el hilo de todo el curso: <i>test the tester, mutate reality</i>.'},
+ m2:{obj:['Aplicar particiones, valores límite, tablas de decisión, transición de estados y pairwise a un mismo formulario o endpoint.','Justificar cuántos casos necesitas y por qué.','Reportar un defecto con pasos, esperado frente a real, ambiente y evidencia.'],
+  pre:'Módulo 1.',
+  kid:'Si un juego deja entrar a niños de 8 a 12 años, no pruebas todas las edades: pruebas 7, 8, 12 y 13, que es donde se esconden los errores.',
+  crit:['Cada técnica aparece aplicada con sus casos y la razón de usarla.','Los valores límite incluyen el borde y el vecino de cada lado.','Los 3 reportes de defecto se pueden reproducir solo con lo escrito.'],
+  top:'Generas el pairwise con PICT y muestras cuántos casos ahorró frente a todas las combinaciones.',
+  mut:'Cada técnica de diseño es una fábrica de mutantes: un valor límite movido en 1 es justo la mutación que tu suite debería matar.'},
+ m3:{obj:['Instalar Node LTS, git y gh, y crear un proyecto Playwright con el lockfile commiteado.','Hacer un ciclo rama → PR → review → merge.','Explicar por qué npx usa la versión del proyecto y no la global.'],
+  pre:'Una computadora donde puedas instalar software.',
+  kid:'Antes de cocinar dejas lista la cocina: ollas limpias e ingredientes a mano. Así no peleas con la estufa mientras cocinas.',
+  crit:['<code>node --version</code> muestra una versión LTS y <code>npx playwright --version</code> corre desde el proyecto.','El repo tiene README, <code>.gitignore</code> (node_modules, test-results, playwright-report) y lockfile.','Hay al menos un PR mergeado con descripción.'],
+  top:'Un workflow mínimo corre <code>npm ci</code> y falla si el lockfile no coincide con el package.json.',
+  mut:'Rompe tu entorno a propósito antes de confiar en él: cambia la versión de Node o borra el lockfile y mira si tu CI lo nota.'},
+ m3b:{obj:['Armar un vault con reglas del proyecto, glosario y una nota “de HU a certificación”.','Escribir un CLAUDE.md o AGENTS.md con comandos frecuentes, convenciones y lo prohibido.','Distinguir qué va en contexto, qué en memoria y qué en un hook.'],
+  pre:'Módulo 3.',
+  kid:'Es el cuaderno de la clase: si ahí están escritas las reglas del juego, cualquiera (también la IA) puede jugar bien sin preguntarte todo.',
+  crit:['El vault tiene una nota de entrada (READ FIRST) que enlaza a las demás.','Ninguna nota queda aislada y ningún enlace apunta a una nota que no existe.','El CLAUDE.md o AGENTS.md no tiene secretos.'],
+  top:'Un test rompe el build si hay un enlace roto o una nota aislada (como <code>tests/vault-links.test.mjs</code> de war-paradigm 03).',
+  mut:'La documentación también se prueba: borra una nota enlazada y comprueba que tu chequeador de enlaces lo nota.'},
+ m4:{obj:['Tipar datos de prueba con builders o factories.','Tipar y validar en runtime la respuesta de una API.','Configurar un tsconfig que compile con TypeScript 7.'],
+  pre:'Módulo 3 y JavaScript básico.',
+  kid:'Un tipo es como la forma del molde: si intentas meter un cuadrado en el molde redondo, el compilador te avisa antes de hornear.',
+  crit:['<code>npx tsc --noEmit</code> termina con exit code 0 en TypeScript 7.','Los builders no usan <code>any</code>.','La validación de la respuesta falla con un mensaje claro si falta un campo.'],
+  top:'Muestras un bug que el compilador atrapó y que habría sido flaky en runtime.',
+  mut:'Un tipo es un guardián: quítale un campo obligatorio a un objeto y comprueba que el compilador grite.'},
+ m5:{obj:['Construir un framework Playwright+TS con POM, fixtures y login con storageState.','Escribir un test híbrido: estado por API, validación por UI e interceptación de red.','Diagnosticar un fallo con el trace viewer en vez de con sleep.'],
+  pre:'Módulos 3 y 4.',
+  kid:'Playwright es un robot que usa la página como una persona: hace clic, escribe y mira si aparece lo que debería.',
+  crit:['<code>npx playwright test</code> termina en verde en local y en CI.','Ningún test usa <code>waitForTimeout</code> ni sleep.','El login se hace una vez y se reutiliza con storageState.','Hay al menos un flujo con dos roles (RBAC).'],
+  top:'Rompes el producto a propósito en dos lugares y muestras que tus tests se ponen rojos.',
+  mut:'Cuando un test pase por primera vez, rompe el producto a propósito (cambia un texto, quita un permiso) y comprueba que se pone rojo. Un test que nunca viste fallar no ha demostrado nada.'},
+ m6:{obj:['Escribir pruebas de API que crean sus datos y los limpian aunque falle una aserción.','Validar respuestas con esquemas estrictos (Zod o AJV) y leer el error campo por campo.','Distinguir un drift que se reporta de algo que se adapta en el test.'],
+  pre:'Módulos 4 y 5; HTTP y JSON.',
+  kid:'Un contrato es como la receta: si pides arepa con queso y llega sin queso, no cambias la receta para que “pase”: avisas que llegó mal.',
+  crit:['Con 5 mutaciones del payload (campo faltante, tipo cambiado, regex rota, array vacío, campo extra en un esquema estricto) mueren las 5, o explicas la que sobrevive.','La prueba nueva deja la base igual que antes aunque fuerces un fallo en medio (listado antes y después).','Ningún esquema se relajó para que un test pasara.'],
+  top:'Cada incumplimiento tiene un reporte con <code>curl</code> para reproducirlo.',
+  mut:'Muta el contrato: cambia <code>year</code> a número en el mock de civica y comprueba que <code>npm run test:contract</code> falla con un mensaje legible.'},
+ m7:{obj:['Escribir features Gherkin declarativas con steps reutilizables.','Decidir cuándo BDD ayuda y cuándo estorba.','Generar documentación viva desde el pipeline.'],
+  pre:'Módulos 5 y 6.',
+  kid:'Gherkin es contar la prueba como un cuento corto: “Dado que…, cuando…, entonces…”, para que todo el equipo la entienda.',
+  crit:['Ningún step menciona selectores ni clics de UI.','Al menos un step se reutiliza en 3 escenarios.','El reporte de documentación viva se genera en el pipeline.'],
+  top:'Un escenario mutado (otro rol u otro estado) falla y lo muestras.',
+  mut:'Un escenario Gherkin es una promesa: muta un paso del flujo (otro rol, otro estado) y comprueba que algún escenario falla.'},
+ m7b:{obj:['Aplicar el protocolo de ciclos: re-correr solo lo que falló y hacer la regresión completa al cierre.','Dejar un defecto conocido visible con <code>test.fail</code> o <code>@IGNORE</code> sin tapar regresiones.','Documentar un dataset con sus caveats.'],
+  pre:'Módulos 5 a 7.',
+  kid:'Si sabes que un juguete está roto, le pones una etiqueta de “roto” en vez de esconderlo. Y el día que lo arreglen, la etiqueta te avisa.',
+  crit:['El defecto conocido está marcado, y el día que se arregla la prueba se pone en rojo (lo demuestras arreglándolo en una copia).','El ticket sigue abierto y la condición para quitar la marca está escrita.','La regresión final corre una sola vez, al cierre.'],
+  top:'Clasificas dos observaciones raras como “defecto” o “punto a aclarar” con argumento (como el <code>/ping</code> → 201 de restful-booker).',
+  mut:'Un known issue marcado es un mutante sobreviviente con nombre: arréglalo en una copia y comprueba que la marca te avisa.'},
+ m8:{obj:['Integrar un reporter con evidencia (pasos, capturas, adjuntos) a tu framework.','Trazar requisito → caso → ejecución en un gestor de pruebas.','Explicar qué parte de la evidencia sobrevive a un cambio de herramienta.'],
+  pre:'Módulos 5 y 7.',
+  kid:'El reporte es la foto de la tarea corregida: no basta con decir “la hice”, hay que mostrar la hoja.',
+  crit:['El reporte se abre sin tu máquina (artefacto o archivo único).','Cada test fallido trae captura o trace.','Cada caso tiene enlace a su requisito.'],
+  top:'Siembras un fallo y muestras que aparece en el reporte con su evidencia.',
+  mut:'El reporte también se prueba: siembra un fallo y comprueba que aparece en el reporte con su evidencia.'},
+ m8b:{obj:['Certificar una historia con escenarios enlazados, ejecución y evidencia.','Escribir un checklist de Definition of Done de certificación.','Reconocer los errores que invalidan un sign-off.'],
+  pre:'Módulo 8.',
+  kid:'Firmar una certificación es como el profe que firma la libreta: solo firma si vio las notas, no porque alguien le dijo que todo iba bien.',
+  crit:['Cada escenario tiene enlace real a su caso, sin placeholders.','La evidencia es autocontenida y adjuntable.','El checklist incluye los errores que invalidan el sign-off.'],
+  top:'Para cada requisito muestras un mutante que la suite atrapa.',
+  mut:'Antes de firmar pregúntate: ¿esta suite habría fallado si el requisito no se cumpliera? Si no lo sabes, te falta un mutante.'},
+ m9:{obj:['Escribir un workflow con matriz, artefactos aunque falle y condición sobre secretos.','Correr la suite en contenedor y en cada PR.','Explicar por qué un check verde no bloquea un merge sin protección de rama.'],
+  pre:'Módulos 3 y 5; YAML.',
+  kid:'El CI es un robot que revisa la tarea cada vez que alguien entrega un cambio. Si algo sale mal, la luz se pone roja.',
+  crit:['El workflow falla si el lockfile no coincide (<code>npm ci</code>).','Corre en una matriz de 2 sistemas operativos.','Sube el reporte aunque la suite falle.','Imprime un <code>::notice::</code> cuando se salta un paso por falta de secreto.'],
+  top:'Abres un PR con un test roto a propósito y muestras que la protección de rama lo bloquea.',
+  mut:'Prueba tu gate: abre un PR con un test roto a propósito y confirma que el pipeline lo bloquea.'},
+ m28:{obj:['Leer un workflow y decir qué significa su check verde y qué no.','Escribir un pipeline con 3 gates encadenados, artefactos con hash y protección de rama.','Romper el pipeline a propósito y demostrar qué gate lo nota.'],
+  pre:'Módulo de CI/CD y Docker; YAML.',
+  kid:'Un pipeline es una fila de porteros: si el primero dice “no pasa”, los demás ni miran. Y una luz verde solo dice que pasaste por los porteros que estaban ahí, no por los que faltaban.',
+  top:'Agregas <code>concurrency</code>, un job nocturno con <code>schedule</code> y un release que solo se publica si el CI del tag está verde.',
+  mut:'Rompe el pipeline a propósito: quita un <code>needs</code>, agrega <code>|| true</code> a un paso, borra un secret o desactiva la protección de rama, y comprueba si el gate lo nota.'},
+ m27:{obj:['Diseñar una corrida cuya evidencia sobrevive a que el contenedor muera.','Fijar las entradas (lockfile, digest) y verificar en un entorno limpio.','Retomar una corrida interrumpida desde checkpoints verificados sin repetir trabajo.'],
+  pre:'Módulos de CI/CD y de pipelines; Docker básico.',
+  kid:'Es como hacer la tarea en un tablero que se borra solo al final de la clase: si no le tomas foto antes, se pierde. Aquí aprendes a tomar la foto a tiempo.',
+  top:'El recálculo se repite en un segundo runner limpio y la huella coincide.',
+  mut:'Mata el contenedor a mitad de la corrida, o borra la caché, y comprueba si la evidencia sobrevive y si la corrida se puede retomar o repetir.'},
+ m10:{obj:['Escribir un test de carga en k6 con thresholds y leer p95/p99.','Agregar accesibilidad y regresión visual sin volver flaky la suite.','Validar una función serverless de punta a punta con trazas.'],
+  pre:'Módulos 5 y 9.',
+  kid:'Una cosa es que el ascensor funcione con una persona y otra que funcione con veinte. La prueba de carga mete a los veinte.',
+  crit:['Los thresholds de k6 hacen fallar la corrida cuando se superan.','El presupuesto de p95 está justificado con datos (por ejemplo, 20 muestras).','Las baselines visuales se generan en el mismo sistema que usa el CI.'],
+  top:'Inyectas latencia o un 503 a propósito y muestras que tus thresholds fallan.',
+  mut:'Muta la realidad del sistema: mete latencia o un 503 a propósito y comprueba que tus thresholds de k6 fallan.'},
+ m20:{obj:['Grabar y reproducir respuestas de un tercero o de una IA con llave = hash de la petición.','Demostrar que un cambio en la entrada deja la prueba sin verificar, nunca verde.','Escribir un ADR con la política de falla.'],
+  pre:'Módulos 5, 6 y 9; hashing básico.',
+  kid:'Es como grabar la respuesta del profe para repasar en casa. Pero si cambias la pregunta, la grabación vieja ya no sirve y no puedes usarla como si fuera la nueva.',
+  top:'La prueba de “cambio una palabra → unverified” forma parte del propio CI.',
+  mut:'Cambia una palabra del texto juzgado y comprueba que la prueba queda unverified, no verde.'},
+ m11:{obj:['Generar pruebas con una IA directora y una ejecutora, revisando cada diff.','Escribir un prompt con los 5 bloques (contexto, insumo, instrucción, restricciones, salida).','Armar un prompt pack con checklist de revisión.'],
+  pre:'Módulos 3b, 5 y 6.',
+  kid:'La IA es un ayudante muy rápido que a veces se equivoca muy seguro. Tú eres quien revisa antes de entregar.',
+  crit:['Cada test generado se corrió y tiene tu revisión en el diff.','El prompt pack tiene huecos marcados y un ejemplo de uso.','El checklist de revisión atrapa al menos un error real del LLM.'],
+  top:'Mutas el producto y muestras que los tests generados se ponen rojos.',
+  mut:'La IA también escribe los checks. Cuando el código y sus tests salen del mismo lugar, un verde prueba menos de lo que parece: mútalo para saber si tiene dientes.'},
+ m14:{obj:['Poner una regla que no se negocia en un hook o en el CI, no en un prompt.','Atacar tu propio hook con al menos 10 intentos de saltártelo.','Dejar evidencia re-ejecutable: comando, hash y exit code.'],
+  pre:'Módulos 3b, 9 y 11; bash básico.',
+  kid:'Pedirle al robot “por favor no toques eso” es una petición. Ponerle una reja es una regla. Aquí aprendes a poner rejas y a comprobar que no tienen huecos.',
+  top:'Agregas 5 formas nuevas de colar un push a main a los tests del hook de war-paradigm 03, y cada una queda bloqueada o reportada como agujero.',
+  mut:'Inventa 5 formas nuevas de colar un push a main (alias, variable, <code>git -C</code>, refspec raro) y agrégalas a los tests del hook.'},
+ m15:{obj:['Clasificar mutantes en PASS de línea base, KILLED y SURVIVED sin contar fallos de infraestructura.','Calcular el kill rate y llevar un ledger de sobrevivientes.','Correr Stryker o PIT y resolver cada sobreviviente.'],
+  pre:'Módulos 5, 6 y 7b.',
+  kid:'Para saber si el guardia está despierto haces un ruido a propósito. Si grita, está despierto (KILLED). Si no, está dormido (SURVIVED), y eso hay que contarlo.',
+  crit:['Tu suite mata al menos 5 de 6 mutantes, y el que sobrevive está en el ledger con su causa.','El reporte JSON de cada escenario trae estado esperado y observado, revisión de git y hashes de las entradas.','La línea base corre primero; un 5xx o un fallo de login sale como INCONCLUSIVE o baseline inválida, nunca como KILLED.','Ningún sobreviviente se borra, se salta o se oculta.'],
+  top:'Haces el ejercicio “Kill it yourself” de war-paradigm 02: arreglas la regla en <code>app/server.js</code> y el sobreviviente pasa a KILLED.',
+  mut:'Agrega dos mutantes nuevos al flujo (publicar sin aprobar, aprobar el documento propio) y predice su veredicto antes de correr.'},
+ m21:{obj:['Guardar el resultado de cada mutante entre corridas y priorizar la siguiente.','Medir un auditor de seguridad con mutantes sembrados.','Reportar un mutante sobreviviente como hallazgo sin tocarlo.'],
+  pre:'Módulo de mutation testing.',
+  kid:'Si en el último partido el portero falló los tiros por la izquierda, en el entrenamiento le tiras primero por la izquierda.',
+  top:'Implementas una relación metamórfica de la hoja de ruta de civica (“los resultados de X contienen los de un prefijo de X”).',
+  mut:'Fuerza el fallo de un mutante y comprueba que la siguiente corrida lo pone primero.'},
+ m18:{obj:['Clasificar fallos de CI en 5 clases, cada uno con su evidencia.','Escribir reglas deterministas para los casos fáciles.','Medir una selección por impacto con “0 escapados” como criterio.'],
+  pre:'Módulo de CI/CD y módulo de mutation testing.',
+  kid:'Cuando varias cosas salen mal a la vez, un buen cartero pone cada carta en su buzón: esta es un error real, esta es mala suerte, esta es de la red.',
+  top:'Reproduces el benchmark de impacto sobre 10 commits tuyos y reportas tests saltados, minutos ahorrados y fallos escapados (0).',
+  mut:'Siembra un séptimo fallo (un 500 de la app sin cambios de infraestructura) y predice su clase antes de correr.'},
+ m16:{obj:['Montar un juez LLM con el umbral escrito antes de correr.','Sembrar falsos verdes y probar que el juez los tumba.','Calcular el acuerdo y el kappa del juez contra tus etiquetas.'],
+  pre:'Módulos de API y de QA aumentado con IA; Python básico.',
+  kid:'Un robot puede escribir una frase muy bonita y equivocada. El juez es el profe que la compara con la hoja de respuestas, no con la letra bonita.',
+  crit:['El umbral está commiteado antes de la primera corrida del juez y no se movió después.','Cada trampa sembrada pasa una aserción ingenua y el juez la reprueba; muestras las dos salidas lado a lado.','Tu juez tiene un kappa ≥ 0.6 contra tus etiquetas, reportado con el número de casos; si queda por debajo, la conclusión es “recalibrar”.','El reporte dice qué corrió y qué se saltó (sin llave no hay juez).'],
+  top:'Con un juez simulado verificas los tres comportamientos de qa-eval-lab: 0.1 → pasa, 0.9 → falla, error → error.',
+  mut:'Agrega dos filas de falso verde de tu dominio y comprueba que una aserción ingenua las deja pasar y el juez no.'},
+ m17:{obj:['Construir un golden set con una rúbrica de 4 criterios y etiquetas previas al juez.','Combinar chequeos de código, un juez y revisión humana en un veredicto.','Reportar el acuerdo en held-out con intervalo de confianza y kappa.'],
+  pre:'Módulo de LLM como juez; estadística descriptiva.',
+  kid:'Para calificar a un robot que planea viajes, una calculadora revisa los números, un juez rápido responde sí o no, y si el juez duda, decide una persona.',
+  top:'Implementas kappa y Wilson a mano y coinciden con scikit-learn y con <code>agenteval/metrics.py</code> en 3 casos.',
+  mut:'Siembra dos defectos nuevos (una fecha corrida un día, una moneda equivocada) con su etiqueta escrita antes, y di qué capa los atrapa.'},
+ m22:{obj:['Elegir fail-closed, fail-open o fail-safe según el uso del juez.','Medir el flip rate de un juez y declararlo STABLE o UNSTABLE.','Diseñar una cascada de jueces en modo sombra.'],
+  pre:'Módulos de agentes y de determinismo.',
+  kid:'Si el árbitro no está seguro, no inventa: pide la repetición. Y al árbitro nuevo lo pones a mirar unos partidos antes de dejarlo pitar.',
+  top:'Propones el experimento que falta según el README de laya-server (un set etiquetado en español), con el umbral escrito antes, y no activas el bloqueo hasta tener ese número.',
+  mut:'Quita un pin (modelo, temperatura o versión del prompt) y comprueba si el veredicto se vuelve UNSTABLE.'},
+ m23:{obj:['Dirigir a un asistente en una auditoría con registro de comandos, exit codes y hashes.','Organizar una revisión doble a ciegas y escribir la síntesis.','Escribir un reporte con límites y “qué me contradiría”.'],
+  pre:'Módulos de QA asistida por IA I y de agentes.',
+  kid:'Si un amigo hace el experimento por ti, anotas cada paso para que otro lo pueda repetir y le dé lo mismo. Y dices claramente lo que no alcanzaste a hacer.',
+  top:'Escribes un test que compara los números del README con el JSON de resultados (como <code>evidence/test_consistency.py</code>).',
+  mut:'Entrega tu paquete a otra persona sin explicarle nada y anota dónde se trabó.'},
+ m19:{obj:['Prerregistrar hipótesis y umbrales en un commit anterior a los datos.','Calcular una huella de veredictos y compararla entre dos entornos.','Explicar por qué bit-idéntico no es lo mismo que veredicto-idéntico.'],
+  pre:'Módulos de CI/CD, de LLM como juez y de determinismo.',
+  kid:'Antes del partido escribes quién crees que va a ganar y lo guardas en un sobre cerrado. Así nadie puede decir después “yo sabía”.',
+  top:'Cambias un byte de un umbral y muestras que la huella cambia, y escribes un verificador que detecta tanto un log ausente como uno sustituido.',
+  mut:'Cambia un byte de un umbral y comprueba que la huella cambia.'},
+ m24:{obj:['Incluir controles positivos y negativos en un experimento.','Probar el arnés: baseline inválida, NaN y excepciones del oráculo.','Mutar un modelo numérico con tolerancia congelada y oráculo independiente.'],
+  pre:'Módulos de mutation testing y de prerregistro; Python.',
+  kid:'Antes de usar una balanza pesas algo que ya sabes cuánto pesa. Si la balanza dice otra cosa, el problema es la balanza.',
+  top:'Tu tabla separa casos de comportamientos distintos y explica cuáles mutantes son equivalentes.',
+  mut:'Inyecta un oráculo que devuelve NaN y comprueba que nunca da PASS ni KILLED.'},
+ m25:{obj:['Explicar qué ley física vigila cada check (D1, D2, D3) y por qué D4 no es un check.','Predecir qué check marca cada saboteado antes de correr.','Usar Spearman, bootstrap por clusters y Wilson para decidir si una diferencia es ruido.'],
+  pre:'Módulo de controles y arnés; cálculo vectorial básico y numpy.',
+  kid:'El agua no se deja apretar y la energía no aparece de la nada. El revisor mira si la red neuronal respeta esas reglas, como un árbitro que conoce el reglamento.',
+  top:'Concluyes en tu propio proyecto si “A es mejor que B” con intervalos por clusters.',
+  mut:'Sabotea un par (energía ×1.05) y predice qué check lo marca antes de correr.'},
+ m26:{obj:['Compilar un proyecto Lean y revisar sus axiomas.','Escribir mutantes de un enunciado y clasificarlos con una segunda vía.','Correr una prueba a ciegas con compromiso por hash.'],
+  pre:'Módulos de prerregistro y de controles; lógica proposicional básica.',
+  kid:'Es como esconder la respuesta en un sobre sellado antes del examen: cuando lo abres, todos ven que no la cambiaste.',
+  top:'En una compilación propia demuestras si hubo artefactos precompilados comparando las fechas de los <code>.olean</code> con el inicio de la compilación.',
+  mut:'Cambia el enunciado sin cambiar la prueba y comprueba que Comparator lo rechaza; luego cambia solo un comentario y comprueba que lo acepta.'},
+ m12:{obj:['Integrar los tres ejes (QA asistida por IA, ejecución de mutantes y WAR Paradigm) en una auditoría reproducible.','Defender cada decisión con su riesgo y su evidencia.','Lograr que un tercero reproduzca tu paquete.'],
+  pre:'Niveles 1 a 3. El nivel 4 suma, pero no es obligatorio.',
+  kid:'Es el examen final: demuestras que tus guardias están despiertos, que la IA te ayudó sin hacer trampa y que otra persona puede repetirlo todo y le da lo mismo.',
+  rubm:[['QA asistida por IA',['El asistente actuó sin registro ni revisión.','Hay registro, pero faltan exit codes o hashes.','Hook probado, registro con comandos, hashes y exit codes, y diff revisado.','Además, revisión doble a ciegas y sección “qué no se ejecutó”.']],
+        ['Ejecución de mutantes',['No hay mutantes o no hay línea base.','Hay mutantes, pero el kill rate cuenta fallos de infraestructura o falta el ledger.','Al menos 6 mutantes como datos, línea base válida, kill rate correcto y ledger con causas.','Además, el ledger prioriza la siguiente corrida y hay una ronda a ciegas con compromiso por hash.']],
+        ['WAR Paradigm',['Solo se prueba el producto, nunca los guardias.','Se prueba un guardia (la suite o el juez).','Se prueban al menos dos guardias distintos (suite, juez, hook, gate) rompiendo algo a propósito.','Además, se publica un guardia que falló y lo que se aprendió.']],
+        ['Evidencia y reporte',['Afirmaciones sin evidencia.','Evidencia parcial, o la huella no coincide entre entornos.','Prerregistro previo, huella igual en dos entornos y límites escritos.','Un tercero reproduce el paquete sin ayuda.']]],
+  mut:'Prueba al que prueba: corre mutantes contra tu propia suite y reporta el kill rate con los sobrevivientes a la vista.'},
+ m13:{obj:['Contar en 2 minutos qué te diferencia, con un proyecto que lo demuestre.','Escalar un contract mismatch con evidencia.','Mostrar tus números (kill rate, kappa, huella) junto al comando que los produce.'],
+  pre:'Proyecto final.',
+  kid:'Contar lo que sabes hacer es como mostrar tu mejor dibujo: no dices “dibujo bien”, lo enseñas.',
+  crit:['El pitch dura 2 minutos o menos y cita un proyecto tuyo con enlace.','El reporte del hallazgo trae curl + response e impacto en el consumidor.','Cada número del pitch sale de un comando que se puede correr.'],
+  top:'Tu repo de portafolio tiene README bilingüe con límites y una animación generada desde un log real.',
+  mut:'Tu diferencial medible: kill rate de tu suite, acuerdo de tu juez con etiquetas humanas, huellas reproducibles. Números que salen de un comando, no de un adjetivo.'},
+};
+COURSE.forEach(m=>Object.assign(m,EVAL[m.id]||{}));
+const LVL = ['1 · No cumple','2 · En camino','3 · Aprobado','4 · Sobresaliente'];
 
 // ---- render ----
 const legend = document.getElementById('legend');
@@ -472,8 +811,10 @@ Object.values(T).forEach(t=>{ const s=document.createElement('span'); s.innerHTM
 const map = document.getElementById('map');
 const modules = document.getElementById('modules');
 
+let prevTrack=null;
 COURSE.forEach((m,i)=>{
   const tc = T[m.track].c;
+  if(m.track!==prevTrack){ const h=document.createElement('div'); h.className='lvlhead'; h.style.setProperty('--tc',tc); h.textContent=T[m.track].name; map.appendChild(h); prevTrack=m.track; }
   // map node
   const node = document.createElement('div');
   node.className='node'; node.id='node-'+m.id; node.style.setProperty('--tc',tc);
@@ -496,15 +837,24 @@ COURSE.forEach((m,i)=>{
     </div>
     <div class="mbody">
       <div class="mentor"><div class="mav">CG</div><div class="mtext"><div class="who">Nota de Cristian</div>${m.mentor}</div></div>
+      <div class="kid">🧒 <b>Explicado para un niño de 8 años:</b> ${m.kid}</div>
+      <div class="two goals"><div class="card"><h4>🎯 Al terminar puedes…</h4><ul class="tight">${m.obj.map(o=>`<li>${o}</li>`).join('')}</ul></div><div class="card"><h4>🧩 Prerrequisitos</h4><p>${m.pre}</p></div></div>
       <div class="seclbl">📓 Teoría</div>
       <ul class="tight">${m.theory.map(t=>`<li>${t}</li>`).join('')}</ul>
       <div class="seclbl">🔗 Recursos — cursos gratis · docs · repos</div>
       <div class="reslist">${resHtml}</div>
       <div class="hands">
-        <div class="hl">🧪 Reto práctico</div>
+        <div class="hl">🧪 Laboratorio y reto práctico</div>
         <ul class="tight">${m.hands.map(h=>`<li>${h}</li>`).join('')}</ul>
+        <div class="hl" style="margin-top:14px">✅ Criterios de aprobación (verificables)</div>
+        <ul class="tight">${m.crit.map(c=>`<li>${c}</li>`).join('')}</ul>
         <div class="deliver"><input type="checkbox" id="chk-${m.id}"><label for="chk-${m.id}"><b>Entregable:</b> ${m.deliver}</label></div>
       </div>
+      <div class="mutw"><b>🧬 Mutación de la semana (WAR)</b> ${m.mut}</div>
+      <div class="seclbl">📏 Cómo te evalúas</div>
+      <p class="evalnote">Apruebas el módulo con dos cosas: el <b>quiz</b> (${QN} preguntas al azar del banco de ${(QUIZ[m.id]||[]).length}; mínimo ${Math.ceil(QN*QPASS)} bien) y el <b>reto</b> en el nivel 3 de la rúbrica. <span class="qbest" id="qbest-${m.id}"></span></p>
+      ${m.rubm?`<div class="rubwrap"><table class="rub"><tr><th>Eje</th>${LVL.map(l=>`<th>${l}</th>`).join('')}</tr>${m.rubm.map(([k,ls])=>`<tr><th>${k}</th>${ls.map(x=>`<td>${x}</td>`).join('')}</tr>`).join('')}</table></div><p class="evalnote">Aprobado = las cuatro filas al menos en el nivel 3.</p>`
+        :`<div class="rubwrap"><table class="rub"><tr>${LVL.map(l=>`<th>${l}</th>`).join('')}</tr><tr><td>Falta el entregable o no corre.</td><td>Corre, pero falla al menos un criterio de aprobación.</td><td>Cumple todos los criterios de aprobación.</td><td>Cumple todo y además: ${m.top}</td></tr></table></div>`}
       <div class="qmount" data-mid="${m.id}"></div>
     </div>`;
   modules.appendChild(mod);
@@ -532,12 +882,33 @@ const GLOSSARY = [
  ['Prompt pack','Plantilla de prompt reutilizable para una tarea repetida.'],
  ['Subagente','Agente de IA lanzado para una subtarea (búsqueda amplia, perspectiva independiente).'],
  ['MCP','Model Context Protocol: permite a la IA hablar con herramientas externas (Jira, correo).'],
- ['Hook','Acción automática disparada por un evento.'],
+ ['Hook','Acción automática disparada por un evento. En asistentes de IA, un hook que sale con código 2 bloquea la acción: ahí viven las reglas que no se negocian.'],
  ['@IGNORE','Tag que excluye un known issue de la corrida sin enmascarar el contrato.'],
  ['Trazabilidad de escenario','Enlace entre un escenario automatizado y su caso en el gestor de pruebas. El mecanismo (tag, ID, anotación) depende de la herramienta.'],
  ['Known issue','Gap pendiente de un tercero/dependencia; el ticket queda Abierto y no cierra la HU.'],
  ['Shift-left','Meterse en el diseño y la calidad temprano, no al final.'],
  ['Risk-based testing','Priorizar pruebas por riesgo = probabilidad × impacto.'],
+ ['Mutante','Copia del sistema con exactamente una cosa rota a propósito, para ver si las pruebas lo notan.'],
+ ['KILLED / SURVIVED','KILLED: las pruebas atraparon el mutante. SURVIVED: no lo vieron (bug real o punto ciego).'],
+ ['Línea base (baseline)','La corrida sin mutar. Tiene que pasar primero y no cuenta en el puntaje.'],
+ ['Kill rate','KILLED / (KILLED + SURVIVED). Mide qué tan afilada está la suite, no qué tan bueno es el software.'],
+ ['Ledger','Registro de sobrevivientes, discrepancias y falsos positivos, con causa, dueño y siguiente paso.'],
+ ['WAR Paradigm','“Test the tester, mutate reality”: romper el mundo a propósito para medir si el guardián (suite, oráculo, juez, hook) lo nota.'],
+ ['Falso verde','Un ✓ que debía ser ✗: la respuesta se ve bien pero está mal.'],
+ ['LLM como juez','Un modelo que califica respuestas contra una rúbrica o una referencia, con un umbral escrito antes.'],
+ ['Golden set','Casos de referencia etiquetados por personas con una rúbrica; contra ellos se mide al juez.'],
+ ['Kappa de Cohen','Acuerdo entre dos evaluadores corregido por el azar: 1 es acuerdo total, 0 es el que daría el azar.'],
+ ['Held-out','Casos que el ajuste nunca vio; el número honesto se reporta ahí.'],
+ ['Prerregistro','Hipótesis y umbrales en un commit antes de generar los datos.'],
+ ['Huella','Código corto que resume los veredictos de una corrida; si coincide en otra máquina, coinciden los veredictos.'],
+ ['Exit code','Número con el que termina un comando: 0 es éxito y cualquier otro es falla. Es la evidencia mínima que entiende un CI.'],
+ ['Selección por impacto','Correr solo las pruebas que un cambio puede afectar, con la suite completa como red de seguridad.'],
+ ['Required status check','Un check que la rama protegida exige en verde antes de dejar hacer merge. Sin él, un check rojo no bloquea nada.'],
+ ['Artefacto','Archivo que el pipeline sube para que sobreviva al runner: reportes, logs, hashes. La caché, en cambio, puede desaparecer.'],
+ ['Contenedor efímero','Entorno que nace para una tarea y muere al terminar: lo que no sacaste como artefacto o recibo, se pierde.'],
+ ['Checkpoint idempotente','Punto de control desde el que se retoma sin repetir ni duplicar trabajo, verificado por hash.'],
+ ['Digest','Identificador de contenido de una imagen (@sha256:…). A diferencia de un tag, siempre apunta a la misma imagen.'],
+ ['Fail-safe','Ante la duda o la falla de una herramienta, hacer lo conservador: correr todo o marcar unknown.'],
 ];
 function esc2(s){return String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
 function renderGlos(q){
@@ -553,22 +924,23 @@ const QS={};
 const shuf=a=>a.map(v=>[Math.random(),v]).sort((x,y)=>x[0]-y[0]).map(p=>p[1]);
 function quizStart(id){
   if(!QUIZ[id]||!QUIZ[id].length) return;
-  QS[id]={i:0,ok:0,seq:QUIZ[id].map(it=>shuf(it.o.map((op,oi)=>({op,ok:oi===it.a}))))};
+  const qs = id==='final' ? QUIZ[id] : shuf(QUIZ[id]).slice(0,QN);
+  QS[id]={i:0,ok:0,qs,seq:qs.map(it=>shuf(it.o.map((op,oi)=>({op,ok:oi===it.a}))))};
   renderQuizStep(id);
 }
 function renderQuizStep(id){
   const box=document.querySelector(`.qmount[data-mid="${id}"]`); if(!box) return;
-  const qs=QUIZ[id], s=QS[id];
+  const s=QS[id], qs=s.qs;
   const lbl = id==='final' ? '🎓 Examen final' : '🧠 Reto del módulo';
   if(s.i>=qs.length){
     const score=Math.round(s.ok/qs.length*100);
-    if(id==='final') examDone(score);
+    if(id==='final') examDone(score); else quizDone(id,s.ok,qs.length);
     const head = id==='final'
       ? (score>=80?'🎓 APROBADO':'📚 Aún no — necesitas 80%')
-      : (s.ok===qs.length?'🏆 Dominado':'💪 Buen intento');
+      : (s.ok/qs.length>=QPASS?'✅ Quiz aprobado':'📚 Aún no');
     const sub = id==='final'
       ? (score>=80?'Cruzaste todo el método. Este puntaje queda guardado en tu cuenta.':'Repasa los módulos donde fallaste y vuelve — las opciones se barajan en cada intento.')
-      : (s.ok===qs.length?'Este módulo es tuyo. Sigue con el siguiente.':'Repasa la teoría de arriba y reinténtalo — las preguntas se barajan.');
+      : (s.ok/qs.length>=QPASS?'Te falta el reto práctico en el nivel 3 de la rúbrica para aprobar el módulo.':`Necesitas ${Math.ceil(qs.length*QPASS)} de ${qs.length}. Repasa la teoría y reinténtalo: salen otras preguntas del banco.`);
     box.innerHTML=`<div class="quiz"><div class="ql">${lbl}</div><div class="qend">
       <div class="qbig">${head}</div>
       <div class="qbig2">${s.ok} / ${qs.length} <span>(${score}%)</span></div>
@@ -583,7 +955,7 @@ function renderQuizStep(id){
     <div class="qcard">
       <div class="qq">${it.q}</div>
       <div class="qopts" id="qopts-${id}">${opts.map(o=>`<button class="qo" data-ok="${o.ok?1:0}" onclick="answerQuiz('${id}',this)">${o.op}</button>`).join('')}</div>
-      <div class="qwhy" id="why-${id}">💡 <b>Por qué:</b> ${it.why}</div>
+      <div class="qwhy" id="why-${id}"><span class="qverdict" id="verdict-${id}"></span>💡 <b>Por qué:</b> ${it.why}</div>
       <button class="qnext" id="qnext-${id}" style="display:none" onclick="QS['${id}'].i++;renderQuizStep('${id}')">${s.i+1===qs.length?'Ver resultado →':'Siguiente →'}</button>
     </div></div>`;
 }
@@ -594,6 +966,7 @@ function answerQuiz(id,btn){
   const ok=btn.dataset.ok==='1'; if(ok) s.ok++;
   [...cont.querySelectorAll('.qo')].forEach(b=>{ b.disabled=true; if(b.dataset.ok==='1') b.classList.add('ok'); });
   if(!ok) btn.classList.add('no');
+  const v=document.getElementById('verdict-'+id); if(v){ v.textContent=ok?'✓ Correcto. ':'✗ Incorrecto. '; v.className='qverdict '+(ok?'okv':'nov'); }
   document.getElementById('why-'+id)?.classList.add('show');
   document.getElementById('qnext-'+id).style.display='inline-block';
 }
@@ -602,15 +975,17 @@ function answerQuiz(id,btn){
 // ---- progress ----
 const KEY='qacurso_v1';
 const chks = ()=>Array.from(document.querySelectorAll('input[type=checkbox]'));
-let examBest=null;
+let examBest=null, quizBest={};
+function quizDone(id,ok,n){ const b=quizBest[id]; if(!b||ok/n>b[0]/b[1]){ quizBest[id]=[ok,n]; saveP(); } renderQuizBest(id); }
+function renderQuizBest(id){ const el=document.getElementById('qbest-'+id), b=quizBest[id]; if(!el||!b) return; el.textContent=`Tu mejor quiz: ${b[0]}/${b[1]} ${b[0]/b[1]>=QPASS?'✓ aprobado':'(aún no)'}`; }
 function examDone(pct){ if(examBest==null||pct>examBest){ examBest=pct; saveP(); } renderExamBadge(); }
 function renderExamBadge(){ const el=document.getElementById('exambadge'); if(!el) return; el.textContent = examBest==null?'':(examBest>=80?`🎓 Aprobado — mejor puntaje: ${examBest}%`:`Mejor puntaje: ${examBest}% (meta: 80%)`); }
-function loadP(){ let s={}; try{s=JSON.parse(localStorage.getItem(KEY))||{}}catch(e){} chks().forEach(c=>{const id=c.id.replace('chk-',''); if(s[id]){c.checked=true; mark(id,true);} }); if(typeof s._exam==='number') examBest=s._exam; renderExamBadge(); upd(); }
-function saveP(){ const s={}; chks().forEach(c=>{ if(c.checked) s[c.id.replace('chk-','')]=1; }); if(examBest!=null) s._exam=examBest; localStorage.setItem(KEY,JSON.stringify(s)); cloudSave(s); }
+function loadP(){ let s={}; try{s=JSON.parse(localStorage.getItem(KEY))||{}}catch(e){} chks().forEach(c=>{const id=c.id.replace('chk-',''); if(s[id]){c.checked=true; mark(id,true);} }); if(typeof s._exam==='number') examBest=s._exam; if(s._quiz&&typeof s._quiz==='object') quizBest=s._quiz; Object.keys(quizBest).forEach(renderQuizBest); renderExamBadge(); upd(); }
+function saveP(){ const s={}; chks().forEach(c=>{ if(c.checked) s[c.id.replace('chk-','')]=1; }); if(examBest!=null) s._exam=examBest; s._quiz=quizBest; try{ localStorage.setItem(KEY,JSON.stringify(s)); }catch(e){} }
 function mark(id,done){ document.getElementById(id)?.classList.toggle('done',done); document.getElementById('node-'+id)?.classList.toggle('done',done); }
 function upd(){ const total=COURSE.length; const done=chks().filter(c=>c.checked).length; const pct=Math.round(done/total*100); document.getElementById('barfill').style.width=pct+'%'; document.getElementById('pcttxt').textContent=pct+'%'; }
 document.addEventListener('change',e=>{ if(e.target.matches('input[type=checkbox]')){ const id=e.target.id.replace('chk-',''); mark(id,e.target.checked); saveP(); upd(); }});
-function resetProg(){ localStorage.removeItem(KEY); chks().forEach(c=>c.checked=false); COURSE.forEach(m=>mark(m.id,false)); upd(); }
+function resetProg(){ quizBest={}; examBest=null; try{ localStorage.removeItem(KEY); }catch(e){} renderExamBadge(); document.querySelectorAll('.qbest').forEach(e=>e.textContent=''); chks().forEach(c=>c.checked=false); COURSE.forEach(m=>mark(m.id,false)); upd(); }
 loadP();
 
 // ---- router: cada módulo es su propia página (#/m1 … #/m13) ----
@@ -631,25 +1006,6 @@ function route(){
 window.addEventListener('hashchange',route);
 route();
 
-// ---- Login con Google (Firebase) + progreso por usuario — OPCIONAL ----
-// Activar: crea proyecto en console.firebase.google.com → Authentication (Google) + Firestore,
-// copia firebase-config.example.js a firebase-config.js con tu config, cárgalo antes de este script y agrega tu dominio en Authentication → Settings → Authorized domains.
-const firebaseConfig = window.FIREBASE_CONFIG || { apiKey:"TU_API_KEY", authDomain:"TU_PROYECTO.firebaseapp.com", projectId:"TU_PROYECTO", appId:"TU_APP_ID" };
-let fbDb=null, fbUser=null;
-const FB_ON = firebaseConfig.apiKey && !/^TU_/.test(firebaseConfig.apiKey) && typeof firebase!=='undefined';
-function cloudSave(s){ if(fbDb && fbUser){ fbDb.collection('progress').doc(fbUser.uid).set({data:s,updated:Date.now()}).catch(()=>{}); } }
-async function cloudLoad(uid){ try{ const d=await fbDb.collection('progress').doc(uid).get(); const s=(d.exists&&d.data().data)||{}; chks().forEach(c=>{ const id=c.id.replace('chk-',''); const on=!!s[id]; c.checked=on; mark(id,on); }); if(typeof s._exam==='number'&&(examBest==null||s._exam>examBest)){ examBest=s._exam; renderExamBadge(); } upd(); }catch(e){} }
-function authUI(){ const w=document.getElementById('authWho'), b=document.getElementById('authBtn'); if(!b) return; b.style.display='inline-block'; if(fbUser){ w.textContent='👤 '+(fbUser.displayName||fbUser.email||'usuario'); b.textContent='Salir'; } else { w.textContent=''; b.textContent='🔓 Entrar con Google'; } }
-function doAuth(){ if(!FB_ON){ alert('Para el login con Google, configura Firebase (ver README del repo). Mientras tanto tu avance se guarda en este navegador.'); return; } if(fbUser){ firebase.auth().signOut(); } else { firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider()).catch(e=>alert('No se pudo iniciar sesión: '+e.message)); } }
-// ---- gate: dashboard de entrada, pide login antes de empezar ----
-const GUEST='qacurso_guest';
-const isGuest=()=>{ try{return localStorage.getItem(GUEST)==='1'}catch(e){return false} };
-function enterCourse(){ document.body.classList.remove('gated'); }
-function enterGuest(){ try{localStorage.setItem(GUEST,'1')}catch(e){} enterCourse(); }
-if(isGuest()||!FB_ON) enterCourse();
-
-if(FB_ON){ firebase.initializeApp(firebaseConfig); fbDb=firebase.firestore(); firebase.auth().onAuthStateChanged(u=>{ fbUser=u; authUI(); if(u){ try{localStorage.removeItem(GUEST)}catch(e){} enterCourse(); cloudLoad(u.uid); } else if(!isGuest()){ document.body.classList.add('gated'); } }); }
-authUI();
 </script>
 </body>
 </html>

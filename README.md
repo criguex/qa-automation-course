@@ -1,6 +1,6 @@
 # Ruta QA Automation
 
-Curso interactivo de QA Automation en español, de una sola página y sin build: módulos con nota del mentor, teoría, recursos, reto práctico y quiz, más examen final y glosario.
+Curso interactivo de QA Automation en español, de una sola página y sin build: 31 módulos en 4 niveles con nota del mentor, teoría, recursos, reto práctico y quiz, más examen final y glosario.
 
 ## Abrirlo
 
@@ -9,7 +9,7 @@ python3 -m http.server 8080
 # http://localhost:8080
 ```
 
-El progreso se guarda en el navegador (localStorage). Firebase es opcional: ver `firebase-config.example.js`.
+El progreso se guarda solo en el navegador (localStorage). No hay cuentas ni servidor.
 
 ## Licencia
 
