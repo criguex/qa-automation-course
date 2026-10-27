@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#071B2B">
+  <title>Cazabichos · Villa Bichos</title>
+  <link rel="icon" href="data:,">
+  <style>
+    :root { color-scheme: light; --navy: #071B2B; --mint: #55DFBD; --paper: #fffdf4; --muted: #425769; --line: #cddbd7; font-family: ui-rounded, "Trebuchet MS", system-ui, sans-serif; color: var(--navy); }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow: hidden; background: #c5e5ec; font-size: 18px; }
+    button { font: inherit; font-weight: 800; color: var(--navy); border: 2px solid transparent; border-radius: 999px; padding: 12px 22px; min-height: 48px; background: var(--mint); cursor: pointer; touch-action: manipulation; }
+    button:hover { background: #a5f3d9; }
+    button:focus-visible, canvas:focus-visible { outline: 4px solid #8462da; outline-offset: 4px; }
+    button:disabled { cursor: default; background: #dce4e0; color: #52615d; }
+    button.secondary { background: white; border-color: var(--line); }
+    button.secondary:hover { background: #e8f9ef; }
+    button.small { padding: 9px 16px; font-size: 15px; }
+    [hidden] { display: none !important; }
+    #world { display: block; width: 100vw; height: 100dvh; outline: none; touch-action: none; }
+    .topbar { position: fixed; z-index: 2; top: max(20px, env(safe-area-inset-top)); left: 24px; right: 24px; display: flex; justify-content: space-between; align-items: center; gap: 12px; pointer-events: none; }
+    .brand, .tools { display: flex; align-items: center; gap: 10px; }
+    .brand { border-radius: 20px; color: white; padding: 10px 17px 10px 10px; background: var(--navy); box-shadow: 0 4px 0 #071b2b18; }
+    .brand-icon { display: grid; place-items: center; width: 38px; height: 38px; background: var(--mint); color: var(--navy); border-radius: 12px; font-size: 26px; }
+    .brand strong { display: block; letter-spacing: -.5px; font-size: 19px; }
+    .brand small { display: block; color: #b8ddd6; font-size: 10px; letter-spacing: 2px; }
+    .tools { pointer-events: auto; }
+    .stars { border-radius: 999px; background: var(--paper); padding: 12px 17px; font-weight: 900; white-space: nowrap; }
+    .star-icon { color: #875400; }
+    #hud { pointer-events: none; }
+    .objective { position: fixed; z-index: 1; top: 100px; left: 24px; width: min(385px, calc(100vw - 200px)); padding: 17px 22px; border-radius: 22px; background: var(--paper); box-shadow: 0 5px 0 #071b2b16; border-left: 6px solid var(--mint); }
+    .eyebrow { display: block; font-size: 11px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 7px; }
+    #objective { font-size: 20px; font-weight: 900; margin: 0; line-height: 1.25; }
+    #objective-detail { display: block; color: var(--muted); font-size: 14px; margin-top: 7px; line-height: 1.4; }
+    .map-wrap { position: fixed; z-index: 1; top: 100px; right: 24px; width: 164px; background: var(--paper); padding: 9px; border-radius: 24px; box-shadow: 0 5px 0 #071b2b16; text-align: center; }
+    #minimap { display: block; width: 146px; height: 132px; border-radius: 17px; }
+    .map-wrap small { display: block; font-size: 11px; letter-spacing: 1px; font-weight: 900; margin: 8px 0 3px; }
+    .bottom-bar { position: fixed; z-index: 1; left: 24px; right: 24px; bottom: max(20px, env(safe-area-inset-bottom)); display: flex; justify-content: space-between; gap: 15px; align-items: end; pointer-events: none; }
+    .controls-help { padding: 13px 18px; border-radius: 18px; background: #071b2bea; color: white; font-size: 13px; line-height: 1.8; }
+    kbd { font-family: inherit; display: inline-block; color: var(--navy); background: #fffdf4; border-radius: 5px; padding: 0 5px; font-weight: 900; margin-right: 3px; }
+    #notebook { pointer-events: auto; background: var(--paper); border: 2px solid var(--navy); box-shadow: 0 3px 0 var(--navy); }
+    #prompt { position: fixed; z-index: 3; bottom: 102px; left: 50%; transform: translateX(-50%); border: 3px solid white; box-shadow: 0 5px 18px #071b2b25; max-width: calc(100vw - 36px); white-space: nowrap; }
+    #toast { position: fixed; z-index: 3; top: 52%; left: 50%; transform: translate(-50%, -50%); background: var(--navy); color: white; border-radius: 22px; padding: 18px 25px; font-size: 20px; max-width: min(540px, 90vw); text-align: center; pointer-events: none; }
+    #start { position: fixed; z-index: 5; inset: 0; padding: 100px 6vw 45px; display: flex; align-items: center; background: linear-gradient(90deg, #e9f7efee 0%, #e9f7efc9 31%, transparent 70%); overflow: auto; }
+    .start-card { max-width: 500px; padding: 35px; background: #fffdf4f5; border-radius: 35px; box-shadow: 0 18px 60px #071b2b18; border: 2px solid white; }
+    .tag { display: inline-flex; gap: 8px; align-items: center; font-size: 12px; font-weight: 900; letter-spacing: 1px; padding: 8px 12px; background: #d8f5e7; border-radius: 999px; }
+    h1 { font-size: clamp(44px, 5vw, 66px); line-height: .98; letter-spacing: -3px; margin: 23px 0 15px; }
+    h1 span { color: #20765e; }
+    .start-card > p { color: var(--muted); font-size: 19px; line-height: 1.5; margin: 0 0 22px; }
+    .mission-preview { background: #f4e9d4; padding: 14px 17px; border-radius: 18px; display: flex; gap: 13px; align-items: center; margin-bottom: 22px; }
+    .mission-preview > span { font-size: 33px; }
+    .mission-preview small { display: block; color: var(--muted); font-size: 12px; margin-bottom: 3px; }
+    .mission-preview strong { font-size: 17px; }
+    #play { width: 100%; padding: 16px; font-size: 22px; box-shadow: 0 4px 0 #218d70; }
+    #load-note { font-size: 13px; text-align: center; margin: 13px 0 0; }
+    .start-controls { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; margin-top: 26px; font-size: 13px; color: var(--muted); }
+    .start-controls b { color: var(--navy); }
+    dialog { border: 0; padding: 0; width: min(720px, calc(100vw - 28px)); max-height: calc(100dvh - 32px); overflow: auto; border-radius: 28px; background: var(--paper); color: var(--navy); box-shadow: 0 22px 80px #071b2b55; }
+    dialog::backdrop { background: #071b2b88; }
+    .dialog-body { padding: 27px 30px 30px; }
+    .dialog-header { display: flex; align-items: center; gap: 14px; padding-bottom: 18px; border-bottom: 2px solid #e3e8dc; margin-bottom: 20px; }
+    .avatar { display: grid; place-items: center; font-size: 34px; background: #d8f5e7; width: 64px; height: 64px; border-radius: 20px; flex-shrink: 0; }
+    .dialog-header h2 { font-size: 26px; margin: 0; letter-spacing: -.7px; }
+    .dialog-header .eyebrow { margin-bottom: 5px; }
+    #dialog-copy { font-size: 21px; line-height: 1.45; margin: 0 0 20px; }
+    #dialog-copy:empty { display: none; }
+    #dialog-extra { margin-bottom: 20px; }
+    #dialog-extra:empty { display: none; }
+    #dialog-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    #dialog-actions.cards { display: grid; grid-template-columns: 1fr; }
+    #dialog-actions.cards button { border-radius: 17px; padding: 16px 20px; text-align: left; background: #e4f6ed; border: 2px solid #b7d8c8; }
+    #dialog-actions.cards button:hover { background: #c5f3df; }
+    .oracle-table { width: 100%; border-collapse: collapse; font-size: 18px; text-align: left; }
+    .oracle-table th { font-size: 12px; letter-spacing: .5px; color: var(--muted); padding: 8px; border-bottom: 2px solid #cbd8cc; }
+    .oracle-table td { padding: 9px 8px; border-bottom: 1px solid #dce4db; }
+    .oracle-table .good { color: #236348; font-weight: 900; }
+    .oracle-table .bad { color: #9b3353; font-weight: 900; }
+    .age-buttons { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+    .age-buttons button { min-width: 70px; padding: 12px; font-size: 22px; border: 2px solid var(--navy); background: #ffdc8e; }
+    .machine-result { padding: 15px 18px; background: #e5efe8; border-radius: 14px; margin: 15px 0 0; font-weight: 700; font-size: 18px; line-height: 1.4; }
+    .hint { color: #765326; background: #fff0cc; padding: 13px 17px; border-radius: 14px; margin: 0 0 15px; font-size: 18px; }
+    .report { background: #e5f2e8; border-radius: 18px; padding: 16px 19px; line-height: 1.6; }
+    #touch-controls { position: fixed; z-index: 2; left: 26px; right: 26px; bottom: 28px; display: none; justify-content: space-between; align-items: end; pointer-events: none; }
+    #joystick { width: 124px; height: 124px; border: 3px solid #ffffffe6; background: #071b2b50; border-radius: 50%; display: grid; place-items: center; touch-action: none; pointer-events: auto; }
+    #stick { width: 52px; height: 52px; border-radius: 50%; background: var(--paper); border: 3px solid var(--navy); pointer-events: none; }
+    .touch-right { display: grid; gap: 10px; pointer-events: auto; justify-items: end; }
+    #touch-action { width: 98px; height: 70px; border: 3px solid white; padding: 8px; font-size: 17px; }
+    .camera-buttons { display: flex; gap: 10px; }
+    .camera-buttons button { width: 48px; padding: 8px; background: #fffdf4; font-size: 24px; }
+    #fatal { position: fixed; inset: 20%; background: var(--paper); padding: 30px; border-radius: 25px; z-index: 10; overflow: auto; }
+    @media (pointer: coarse) { #touch-controls { display: flex; } .controls-help { display: none; } .bottom-bar { bottom: 190px; right: 20px; left: auto; } #notebook { font-size: 15px; padding: 10px 15px; } #prompt { bottom: 190px; left: 20px; transform: none; max-width: 55vw; white-space: normal; } }
+    @media (max-width: 650px) { .topbar { left: 12px; right: 12px; top: 12px; } .brand { padding: 8px; gap: 7px; } .brand strong { font-size: 15px; } .brand small { font-size: 8px; } .brand-icon { width: 30px; height: 30px; font-size: 22px; } .stars { font-size: 14px; padding: 11px; } #voice { max-width: 54px; overflow: hidden; white-space: nowrap; padding: 10px 12px; font-size: 20px; } .objective { left: 12px; top: 80px; width: calc(100vw - 142px); padding: 12px; } #objective { font-size: 17px; } #objective-detail { font-size: 12px; } .objective .eyebrow { font-size: 9px; letter-spacing: 1px; } .map-wrap { right: 12px; top: 80px; width: 112px; padding: 6px; border-radius: 17px; } #minimap { width: 100px; height: 90px; } .map-wrap small { font-size: 8px; } #start { padding: 85px 14px 25px; background: #e9f7ef99; } .start-card { margin: auto; padding: 25px; max-width: 450px; } h1 { font-size: 48px; margin-top: 17px; } .start-card > p { font-size: 17px; } .start-controls { gap: 9px; margin-top: 20px; font-size: 12px; } .dialog-body { padding: 20px; } .dialog-header h2 { font-size: 22px; } #dialog-copy { font-size: 19px; } .avatar { width: 52px; height: 52px; font-size: 28px; } .age-buttons { gap: 6px; } .age-buttons button { min-width: 48px; flex: 1; } .oracle-table { font-size: 16px; } .oracle-table td { padding: 8px 5px; } }
+    @media (max-height: 600px) { #start { padding: 80px 20px 20px; align-items: start; } .start-card { padding: 22px; max-width: 550px; } h1 { font-size: 40px; margin: 12px 0; } .mission-preview { display: none; } .start-card > p { font-size: 16px; margin-bottom: 15px; } .start-controls { margin-top: 15px; } #touch-controls { bottom: 15px; } #joystick { width: 100px; height: 100px; } .map-wrap { width: 112px; } #minimap { width: 94px; height: 85px; } }
+  </style>
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}</script>
+</head>
+<body>
+  <canvas id="world" tabindex="0" aria-label="Villa Bichos, mundo 3D. Usa WASD o flechas para caminar, E para interactuar."></canvas>
+  <header class="topbar">
+    <div class="brand"><span class="brand-icon" aria-hidden="true">✳</span><div><strong>cazabichos</strong><small>ESCUELA DE DETECTIVES</small></div></div>
+    <div class="tools"><span class="stars" aria-label="Estrellas ganadas"><span class="star-icon" aria-hidden="true">★</span> <span id="stars">0</span> / 1</span><button id="voice" class="small secondary" aria-pressed="false" aria-label="Activar narración">◌ Voz apagada</button></div>
+  </header>
+  <main id="hud" hidden>
+    <section class="objective" aria-live="polite"><span class="eyebrow" id="mission-label">MISIÓN 01 · UN HELADO CON SORPRESA</span><p id="objective">Habla con Doña Rosa</p><span id="objective-detail">Sigue el marcador amarillo hasta la heladería.</span></section>
+    <aside class="map-wrap"><canvas id="minimap" width="292" height="264" aria-label="Minimapa: punto azul, tú; estrella amarilla, tu objetivo."></canvas><small>VILLA BICHOS · N ↑</small></aside>
+    <div class="bottom-bar"><div class="controls-help"><kbd>W A S D</kbd> o <kbd>↑ ↓ ← →</kbd> caminar &nbsp; <kbd>Shift</kbd> correr<br>Arrastra / <kbd>Alt + ← →</kbd> mirar · <kbd>Q</kbd><kbd>R</kbd> girar · <kbd>E</kbd> interactuar</div><button id="notebook" hidden>▤ Mi hoja de respuestas</button></div>
+  </main>
+  <button id="prompt" hidden></button>
+  <div id="toast" role="status" hidden></div>
+  <div id="touch-controls" hidden><div id="joystick" role="group" aria-label="Joystick táctil: arrastra para caminar; al borde corres"><span id="stick"></span></div><div class="touch-right"><div class="camera-buttons"><button id="camera-left" aria-label="Girar cámara a la izquierda">↶</button><button id="camera-right" aria-label="Girar cámara a la derecha">↷</button></div><button id="touch-action">E · Acción</button></div></div>
+  <section id="start" aria-label="Inicio del juego"><div class="start-card"><span class="tag">● UNA PEQUEÑA AVENTURA QA</span><h1>Pequeños<br>detectives.<br><span>Grandes pistas.</span></h1><p>¡Bienvenido a Villa Bichos! Prueba, descubre y atrapa a un travieso error.</p><div class="mission-preview"><span aria-hidden="true">🍦</span><div><small>TU PRIMER CASO</small><strong>La heladería de Doña Rosa</strong></div></div><button id="play" disabled>Preparando la plaza…</button><p id="load-note">Construyendo un mundo de pequeñas pistas.</p><div class="start-controls"><span>⌨ <b>WASD / flechas</b> · Caminar</span><span>⇧ <b>Shift</b> · Correr</span><span>🖱 <b>Arrastra / Alt + ← →</b> · Mirar</span><span>✋ <b>E</b> · Hablar y atrapar</span><span>◎ <b>Tablet</b> · Joystick y acción</span><span>♡ <b>A tu ritmo.</b> Sin perder vidas.</span></div></div></section>
+  <dialog id="dialog" aria-labelledby="dialog-title"><div class="dialog-body"><div class="dialog-header"><span id="dialog-avatar" class="avatar" aria-hidden="true"></span><div><span id="dialog-label" class="eyebrow"></span><h2 id="dialog-title"></h2></div></div><p id="dialog-copy"></p><div id="dialog-extra"></div><div id="dialog-actions"></div></div></dialog>
+  <section id="fatal" hidden role="alert"><h2>No pudimos abrir la plaza</h2><p>Revisa tu conexión a internet y vuelve a cargar. El juego necesita descargar Three.js una vez.</p><button onclick="location.reload()">Volver a intentar</button></section>
+  <script type="module">import('./juego.js').catch(() => { document.querySelector('#fatal').hidden = false; });</script>
+</body>
+</html>
