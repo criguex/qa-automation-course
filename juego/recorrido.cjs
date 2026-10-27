@@ -2,7 +2,7 @@ const assert = require('node:assert/strict');
 const { spawn } = require('node:child_process');
 const { writeFileSync, mkdirSync } = require('node:fs');
 const { join } = require('node:path');
-const { chromium } = require('/Users/cris/.npm/_npx/e41f203b7505f1fb/node_modules/playwright');
+const { chromium } = require(process.env.PLAYWRIGHT_PATH || 'playwright');
 const output = join(__dirname, 'recorrido-salidas');
 mkdirSync(output, { recursive: true });
 const errors = [];
@@ -59,6 +59,28 @@ async function run() {
       api.setCamera(yaw);
       api.look(0,(pitch-api.snapshot().camera.pitch)/.003);
     }, { yaw, pitch });
+    const checkLabels = async (view, name) => {
+      await view.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+      const layout = await view.evaluate(() => {
+        const rect = element => {
+          const { left, top, right, bottom, width, height } = element.getBoundingClientRect();
+          return { left, top, right, bottom, width, height, text: element.textContent };
+        };
+        return {
+          width: innerWidth, height: innerHeight,
+          labels: [...document.querySelectorAll('.world-label')].filter(element => getComputedStyle(element).visibility === 'visible').map(rect),
+          panels: [...document.querySelectorAll('.objective, .map-wrap')].map(rect)
+        };
+      });
+      assert(layout.labels.length > 0, `${name}: debe haber alguna etiqueta visible`);
+      const overlaps = (a,b) => a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
+      for (const [i,label] of layout.labels.entries()) {
+        assert(label.left >= 0 && label.top >= 0 && label.right <= layout.width && label.bottom <= layout.height, `${name}: ${label.text} sale de pantalla`);
+        for (const panel of layout.panels) assert(!overlaps(label,panel), `${name}: ${label.text} tapa la UI`);
+        for (const other of layout.labels.slice(i+1)) assert(!overlaps(label,other), `${name}: ${label.text} se solapa con ${other.text}`);
+      }
+      return layout.labels;
+    };
     const visit = async name => {
       await page.evaluate(() => new Promise(requestAnimationFrame));
       const result = await page.evaluate(key => {
@@ -89,6 +111,7 @@ async function run() {
     await page.keyboard.up('Alt');
     assert((await state()).camera.yaw > initial.camera.yaw);
     await page.evaluate(() => window.cazabichosTest.setCamera(0));
+    await checkLabels(page,'Plaza');
     await shot('02-plaza');
     await page.evaluate(() => window.cazabichosTest.look(100,40));
     const looked = await state();
@@ -211,6 +234,28 @@ async function run() {
     await move(-8,-2);
     const farRosa = await aim('Doña Rosa');
     assert.equal(farRosa.aiming, 'rosa');
+    const shopLabels = await checkLabels(page,'Heladería');
+    const rosaLabel = shopLabels.find(label => label.text === 'Doña Rosa');
+    assert(rosaLabel);
+    await move(-8,-3.5);
+    await aim('Doña Rosa');
+    const closerRosa = (await checkLabels(page,'Heladería cercana')).find(label => label.text === 'Doña Rosa');
+    assert(closerRosa);
+    assert.equal(closerRosa.width,rosaLabel.width);
+    assert.equal(closerRosa.height,rosaLabel.height);
+    await camera((await state()).camera.yaw+Math.PI);
+    await page.waitForFunction(() => getComputedStyle([...document.querySelectorAll('.world-label')].find(element => element.textContent === 'Doña Rosa')).visibility === 'hidden');
+    await move(0,14);
+    await aim('Doña Rosa');
+    await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+    await page.waitForFunction(() => getComputedStyle([...document.querySelectorAll('.world-label')].find(element => element.textContent === 'Doña Rosa')).visibility === 'hidden');
+    await move(9,-14.5);
+    await aim('inventor');
+    await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+    await page.waitForFunction(() => getComputedStyle([...document.querySelectorAll('.world-label')].find(element => element.textContent === 'Inventor Leo')).visibility === 'hidden');
+    await move(-8,-2);
+    await aim('Doña Rosa');
+    await checkLabels(page,'Heladería al volver');
     await page.locator('#aim-name').waitFor();
     assert.equal(await page.locator('#aim-name').textContent(), 'Doña Rosa');
     await page.evaluate(point => window.cazabichosTest.clickAt(point.x,point.y), farRosa);
@@ -311,6 +356,8 @@ async function run() {
     await tablet.waitForTimeout(250);
     await tablet.mouse.up();
     assert((await tablet.evaluate(() => window.cazabichosTest.snapshot())).player.x > 0);
+    await tablet.evaluate(() => { const api = window.cazabichosTest; api.moveTo(-8,-2); api.aimAt('Doña Rosa'); });
+    await checkLabels(tablet,'Heladería en tablet');
     await tablet.evaluate(() => { const api = window.cazabichosTest; const p = api.snapshot().targets.rosa; api.moveTo(p.x, p.z); });
     await tablet.locator('#touch-action').click();
     assert.equal(await tablet.locator('#dialog-title').textContent(), 'La heladería de Doña Rosa');
@@ -318,7 +365,7 @@ async function run() {
     screenshots.push('08-tablet.png');
     assert.deepEqual(errors, []);
     writeFileSync(`${output}/recorrido.json`, JSON.stringify({ passed: true, errors, screenshots }, null, 2));
-    console.log('PASS: misión completa por clic, mouse, captura simulada, zoom, autowalk, colisiones, teclado, tablet, consola y persistencia.');
+    console.log('PASS: misión completa por clic, mouse, captura simulada, zoom, autowalk, colisiones, teclado, tablet, etiquetas, consola y persistencia.');
   } catch (error) {
     writeFileSync(`${output}/recorrido.json`, JSON.stringify({ passed: false, error: error.message, serverLog, errors, screenshots }, null, 2));
     console.error(error.message);

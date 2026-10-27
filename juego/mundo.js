@@ -42,6 +42,9 @@ export function createWorld(canvas, interactTarget) {
   }
   const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
   const ballGeometry = new THREE.IcosahedronGeometry(1, 1);
+  const faceGeometry = new THREE.SphereGeometry(1, 12, 10);
+  const smileGeometry = new THREE.TorusGeometry(.125, .022, 4, 12, Math.PI);
+  const glassesGeometry = new THREE.TorusGeometry(.15, .025, 6, 16);
   function box(w, h, d, color, x, y, z, parent) {
     const item = mesh(boxGeometry, color, x, y, z, parent);
     item.scale.set(w, h, d);
@@ -52,33 +55,49 @@ export function createWorld(canvas, interactTarget) {
     item.scale.setScalar(r);
     return item;
   }
+  function round(r, color, x, y, z, parent) {
+    const item = mesh(faceGeometry, color, x, y, z, parent);
+    item.scale.setScalar(r);
+    return item;
+  }
   function cylinder(top, bottom, h, color, x, y, z, parent, segments = 10) {
     return mesh(new THREE.CylinderGeometry(top, bottom, h, segments), color, x, y, z, parent);
   }
   function obstacle(x, z, w, d, height = 4) {
     colliders.push(new THREE.Box3(new THREE.Vector3(x - w / 2, 0, z - d / 2), new THREE.Vector3(x + w / 2, height, z + d / 2)));
   }
-  function label(text, x, y, z, width = 4, color = '#071B2B', bg = '#fffdf4') {
+  const labels = [];
+  function label(text, x, y, z) {
+    const element = document.createElement('span');
+    element.className = 'world-label';
+    element.textContent = text;
+    element.setAttribute('aria-hidden', 'true');
+    document.body.append(element);
+    const item = { element, position: new THREE.Vector3(x,y,z), visible: true, distance: 0, rect: null, shown: false };
+    labels.push(item);
+    return item;
+  }
+  const signGeometry = new THREE.PlaneGeometry(1, 1);
+  function sign(text, width, depth, parent) {
     const surface = document.createElement('canvas');
-    surface.width = 512;
+    surface.width = 1024;
     surface.height = 112;
     const ctx = surface.getContext('2d');
-    ctx.fillStyle = bg;
+    ctx.fillStyle = '#fffdf4';
     ctx.beginPath();
-    ctx.roundRect(6, 7, 500, 96, 30);
+    ctx.roundRect(6, 7, 1012, 96, 22);
     ctx.fill();
-    ctx.fillStyle = color;
-    ctx.font = 'bold 36px Trebuchet MS, sans-serif';
+    ctx.fillStyle = '#071b2b';
+    ctx.font = 'bold 48px Trebuchet MS, sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText(text, 256, 58, 470);
+    ctx.fillText(text, 512, 58, 970);
     const texture = new THREE.CanvasTexture(surface);
     texture.colorSpace = THREE.SRGBColorSpace;
-    const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: texture, depthWrite: false }));
-    sprite.position.set(x, y, z);
-    sprite.scale.set(width, width * 112 / 512, 1);
-    scene.add(sprite);
-    return sprite;
+    const board = new THREE.Mesh(signGeometry, new THREE.MeshStandardMaterial({ map: texture, roughness: .95, transparent: true }));
+    board.position.set(0,2.55,depth/2+.24);
+    board.scale.set(width-.5,.48,1);
+    parent.add(board);
   }
   box(150, .3, 150, '#b1cfa3', 0, -.42, 0);
   box(36, .4, 32, '#add5a1', 0, -.2, 0);
@@ -115,7 +134,7 @@ export function createWorld(canvas, interactTarget) {
     }
     obstacle(x, z, width + .2, depth + .2, 4.6);
     houses.push({ x, z, w: width, d: depth, color });
-    if (title) label(title, x, 4.7, z + depth / 2, width + .8);
+    if (title) sign(title, width, depth, group);
     return group;
   }
   house(-13, 2, '#f2b683', '#de7858');
@@ -123,7 +142,7 @@ export function createWorld(canvas, interactTarget) {
   house(13, 2, '#f4d58b', '#df9560');
   house(13, 11, '#9dcfd2', '#4d9da9');
   const iceShop = house(-8, -11.5, '#f4b8b4', '#e46b7b', 5.6, 4.7, 'HELADERÍA · DOÑA ROSA');
-  for (let i = 0; i < 7; i++) box(.82, .24, 1.1, i % 2 ? '#fff6df' : '#e6758c', -2.46 + i * .82, 2.6, 2.75, iceShop);
+  for (let i = 0; i < 7; i++) box(.82, .24, 1.1, i % 2 ? '#fff6df' : '#e6758c', -2.46 + i * .82, 2.14, 2.75, iceShop);
   cylinder(.48, 0, 1.35, '#d6a46c', 0, 5, 0, iceShop);
   ball(.64, '#ffccdb', 0, 5.95, 0, iceShop);
   ball(.5, '#a0ecc9', -.23, 6.25, 0, iceShop);
@@ -162,13 +181,10 @@ export function createWorld(canvas, interactTarget) {
     for (const dx of [-.85,.85]) box(.13,.7,.6,'#465d60',x+dx,.35,z);
     obstacle(x,z,2.3,.9,1.3);
   }
-  function person(shirt, hat, skin = '#e3b389') {
+  function person(shirt, skin = '#e3b389') {
     const group = new THREE.Group();
     box(.65,.8,.42,shirt,0,1.03,0,group);
-    const head = ball(.36,skin,0,1.77,0,group);
-    head.scale.y = 1.08;
-    cylinder(.42,.42,.12,hat,0,2.03,0,group);
-    cylinder(.3,.35,.26,hat,0,2.18,0,group);
+    round(.5,skin,0,1.83,0,group);
     const legs = [-.19,.19].map(x => {
       const leg = new THREE.Group();
       leg.position.set(x,.72,0);
@@ -181,23 +197,55 @@ export function createWorld(canvas, interactTarget) {
       const arm = new THREE.Group();
       arm.position.set(x,1.34,0);
       box(.2,.52,.25,shirt,0,-.15,0,arm);
-      ball(.13,skin,0,-.43,0,arm);
+      round(.13,skin,0,-.43,0,arm);
       group.add(arm);
       return arm;
     });
-    for (const x of [-.12,.12]) {
-      ball(.055,'#071b2b',x,1.81,.31,group);
-    }
-    box(.12,.035,.045,'#9a4b40',0,1.64,.34,group);
+    const eyes = [-.18,.18].map(x => {
+      const eye = new THREE.Group();
+      eye.position.set(x,1.88,.45);
+      const white = round(.12,'#fffdf4',0,0,0,eye);
+      white.scale.set(.12,.145,.075);
+      round(.068,'#17283c',0,0,.075,eye);
+      round(.024,'#ffffff',-.022,.03,.132,eye);
+      group.add(eye);
+      const cheek = round(.09,'#ec9c97',x*1.7,1.68,.4,group);
+      cheek.scale.z *= .35;
+      return eye;
+    });
+    round(.06,skin,0,1.76,.5,group);
+    const smile = mesh(smileGeometry,'#9a4b40',0,1.68,.48,group);
+    smile.rotation.z = Math.PI;
     scene.add(group);
-    return { group, legs, arms };
+    return { group, legs, arms, eyes, near: false, greeting: 0 };
   }
-  const rosa = person('#e985a4','#fff1c9');
+  const rosa = person('#fff1dc');
+  round(.5,'#bec7cc',0,1.92,-.13,rosa.group);
+  for (const x of [-.27,0,.27]) round(.21,'#dce2e3',x,2.18+(x === 0 ? .08 : 0),.18,rosa.group);
+  round(.25,'#bec7cc',0,2.4,-.18,rosa.group);
+  cylinder(.36,.46,.55,'#d87596',0,.77,0,rosa.group);
+  box(.5,.65,.08,'#ef9bb6',0,1,.25,rosa.group);
+  for (const x of [-.19,.19]) box(.07,.4,.07,'#ef9bb6',x,1.28,.23,rosa.group);
+  box(.25,.17,.045,'#ffe2e9',0,.88,.31,rosa.group);
   rosa.group.position.set(-8,0,-8);
-  label('Doña Rosa',-8,2.9,-8,2.8);
-  const inventor = person('#ffd374','#78b9bf','#b67c59');
+  label('Doña Rosa',-8,2.95,-8);
+  const inventor = person('#fffdf4','#b67c59');
+  round(.48,'#d8e3e7',0,1.96,-.16,inventor.group);
+  for (const [x,y,z,tilt] of [[-.4,2.15,0,-.8],[-.22,2.33,.03,-.4],[0,2.38,0,.2],[.25,2.3,.04,.5],[.43,2.13,-.02,1]]) {
+    const tuft = round(.2,'#eaf1ef',x,y,z,inventor.group);
+    tuft.scale.set(.15,.28,.18);
+    tuft.rotation.z = -tilt;
+  }
+  for (const x of [-.18,.18]) {
+    mesh(glassesGeometry,'#32566b',x,1.88,.595,inventor.group);
+    box(.15,.16,.05,'#c9ddd9',x, .88,.24,inventor.group);
+    box(.28,.48,.45,'#fffdf4',x,.62,0,inventor.group);
+  }
+  box(.08,.035,.035,'#32566b',0,1.88,.595,inventor.group);
+  box(.15,.38,.05,'#72c5b3',0,1.23,.24,inventor.group);
+  box(.035,.43,.04,'#c9ddd9',0,.92,.24,inventor.group);
   inventor.group.position.set(9,0,-8);
-  label('Inventor Leo',9,2.9,-8,2.9);
+  label('Inventor Leo',9,2.95,-8);
   const machine = new THREE.Group();
   machine.position.set(-4.6,0,-8.2);
   scene.add(machine);
@@ -208,13 +256,22 @@ export function createWorld(canvas, interactTarget) {
   cylinder(.13,.13,.3,'#a0b5b4',0,.99,.68,machine);
   ball(.12,'#e47685',.45,.9,.6,machine);
   obstacle(-4.6,-8.2,1.25,1.1,2.2);
-  label('PRUEBA AQUÍ',-4.6,2.8,-8.2,2.3);
-  const player = person('#55dfbd','#ffcf6f');
+  label('PRUEBA AQUÍ',-4.6,2.65,-8.2);
+  const player = person('#fff1d8');
+  round(.47,'#694a37',0,1.88,-.12,player.group);
+  for (const x of [-.36,.36]) round(.18,'#694a37',x,2.02,.1,player.group);
+  const cap = round(.44,'#e6b777',0,2.2,-.02,player.group);
+  cap.scale.y *= .55;
+  cylinder(.47,.47,.07,'#c3925d',0,2.18,.02,player.group);
+  box(.5,.07,.35,'#e6b777',0,2.18,.34,player.group);
+  box(.68,.69,.46,'#55dfbd',0,1.04,0,player.group);
+  box(.1,.62,.035,'#fff1d8',0,1.05,.25,player.group);
+  for (const x of [-.23,.23]) box(.14,.15,.04,'#2ca184',x,.94,.26,player.group);
   player.group.position.set(0,0,8);
   player.group.rotation.y = Math.PI;
   box(.6,.58,.25,'#cf9b5c',0,1.1,-.32,player.group);
   const net = new THREE.Group();
-  net.position.set(.52,.75,.1);
+  net.position.set(0,-.43,.07);
   net.rotation.z = -.3;
   cylinder(.035,.035,1.15,'#99734e',0,.4,0,net);
   mesh(new THREE.TorusGeometry(.36,.035,5,16),'#fff6d8',0,1.2,0,net);
@@ -222,7 +279,7 @@ export function createWorld(canvas, interactTarget) {
     box(.015,.6,.015,'#e5ece2',p,1.2,0,net);
     box(.6,.015,.015,'#e5ece2',0,1.2+p,0,net);
   }
-  player.group.add(net);
+  player.arms[1].add(net);
   const robot = new THREE.Group();
   box(.5,.45,.45,'#fff8df',0,.2,0,robot);
   box(.6,.4,.45,'#ffdb76',0,.68,0,robot);
@@ -258,7 +315,7 @@ export function createWorld(canvas, interactTarget) {
   box(.12,1.4,.12,'#816c54',0,.7,0,future);
   future.visible = false;
   scene.add(future);
-  const futureLabel = label('PRÓXIMAMENTE · CERRADO',10,2.1,9,4.6,'#ffffff','#526574');
+  const futureLabel = label('PRÓXIMAMENTE · CERRADO',10,2.1,9);
   futureLabel.visible = false;
   const confetti = new THREE.Group();
   scene.add(confetti);
@@ -279,6 +336,58 @@ export function createWorld(canvas, interactTarget) {
   const destination = mesh(new THREE.TorusGeometry(.45,.045,6,28),'#55dfbd',0,.13,0);
   destination.rotation.x = Math.PI / 2;
   destination.visible = false;
+  scene.updateMatrixWorld(true);
+  const movingObjects = [player.group,robot,bug,marker,confetti,destination];
+  const labelOccluders = scene.children.filter(object => (object.isMesh || object.isGroup) && !movingObjects.includes(object)).map(object => ({ object, bounds: new THREE.Box3().setFromObject(object).expandByScalar(.2) }));
+  const movingLabelOccluders = [player.group,robot,bug].map(object => ({ object, bounds: new THREE.Box3() }));
+  labelOccluders.push(...movingLabelOccluders);
+  const labelRaycaster = new THREE.Raycaster();
+  const labelDirection = new THREE.Vector3();
+  const labelPoint = new THREE.Vector3();
+  const labelHit = new THREE.Vector3();
+  const labelHits = [];
+  const labelPanels = [...document.querySelectorAll('.objective, .map-wrap, .topbar')];
+  function updateLabels() {
+    scene.updateMatrixWorld(true);
+    camera.updateMatrixWorld();
+    for (const item of movingLabelOccluders) if (item.object.visible) item.bounds.setFromObject(item.object);
+    const viewport = canvas.getBoundingClientRect();
+    const occupied = labelPanels.map(panel => panel.getBoundingClientRect()).filter(rect => rect.width && rect.height);
+    for (const item of labels) {
+      item.rect = item.element.getBoundingClientRect();
+      item.distance = item.position.distanceToSquared(camera.position);
+      item.shown = false;
+    }
+    labels.sort((a,b) => a.distance-b.distance);
+    for (const item of labels) {
+      const distance = Math.hypot(item.position.x-player.group.position.x,item.position.z-player.group.position.z);
+      if (!enabled || !item.visible || distance < 2.5 || distance > 22 || item.distance < 9 || item.distance > 34*34) continue;
+      labelPoint.copy(item.position).project(camera);
+      if (Math.abs(labelPoint.x) > 1 || Math.abs(labelPoint.y) > 1 || Math.abs(labelPoint.z) > 1) continue;
+      const left = viewport.left+(labelPoint.x+1)*viewport.width/2-item.rect.width/2;
+      const top = viewport.top+(1-labelPoint.y)*viewport.height/2-item.rect.height;
+      const rect = { left, top, right: left+item.rect.width, bottom: top+item.rect.height };
+      if (rect.left < 8 || rect.top < 8 || rect.right > innerWidth-8 || rect.bottom > innerHeight-8) continue;
+      if (occupied.some(other => rect.left < other.right+6 && rect.right > other.left-6 && rect.top < other.bottom+6 && rect.bottom > other.top-6)) continue;
+      labelDirection.copy(item.position).sub(camera.position).normalize();
+      labelRaycaster.set(camera.position,labelDirection);
+      labelRaycaster.far = Math.sqrt(item.distance)-.1;
+      const occluded = labelOccluders.some(({ object, bounds }) => {
+        if (!object.visible || !bounds.containsPoint(camera.position) && (!labelRaycaster.ray.intersectBox(bounds,labelHit) || camera.position.distanceToSquared(labelHit) >= item.distance)) return false;
+        labelHits.length = 0;
+        labelRaycaster.intersectObject(object,true,labelHits);
+        return labelHits.length > 0;
+      });
+      if (occluded) continue;
+      item.rect = rect;
+      item.shown = true;
+      occupied.push(rect);
+    }
+    for (const item of labels) {
+      item.element.style.visibility = item.shown ? 'visible' : 'hidden';
+      if (item.shown) item.element.style.transform = `translate(${item.rect.left}px,${item.rect.top}px)`;
+    }
+  }
   const interactables = {
     rosa: { object: rosa.group, name: 'Doña Rosa', point: targets.rosa, reach: 2.2, height: 1.25 },
     machine: { object: machine, name: 'Máquina de helados', point: targets.machine, reach: 2.2, height: 1.2 },
@@ -681,6 +790,18 @@ export function createWorld(canvas, interactTarget) {
     player.legs.forEach((leg,i) => { leg.rotation.x = Math.sin(elapsed*walking*2.5+i*Math.PI)*.55*(walking ? 1 : 0); });
     player.arms.forEach((arm,i) => { arm.rotation.x = Math.sin(elapsed*walking*2.5+i*Math.PI+Math.PI)*.4*(walking ? 1 : 0); });
     player.group.position.y = walking ? Math.abs(Math.sin(elapsed*walking*2.5))*.045 : 0;
+    for (const [i,person] of [player,rosa,inventor].entries()) {
+      const blink = (elapsed+i*1.37)%4.6;
+      for (const eye of person.eyes) eye.scale.y = blink < .16 ? Math.max(.08,Math.abs(blink-.08)/.08) : 1;
+      if (person === player) continue;
+      const near = Math.hypot(position.x-person.group.position.x,position.z-person.group.position.z) < 4.4;
+      if (active && near && !person.near) person.greeting = .8;
+      person.near = near;
+      person.greeting = Math.max(0,person.greeting-dt);
+      const greeting = Math.sin(person.greeting/.8*Math.PI);
+      person.group.position.y = greeting*.14;
+      person.arms[1].rotation.z = greeting*.9;
+    }
     robot.position.set(position.x+1.15,1.4+Math.sin(elapsed*2)*.12,position.z+.4);
     robot.rotation.y = player.group.rotation.y;
     bug.visible = chasing;
@@ -717,6 +838,7 @@ export function createWorld(canvas, interactTarget) {
       if (celebration<=0) confetti.visible = false;
     }
     updateCamera(1-Math.exp(-dt*7));
+    updateLabels();
     updateAim();
     mapTick += dt;
     if (mapTick>.08) { drawMap(target); mapTick=0; }
