@@ -215,7 +215,7 @@ async function run() {
     assert.equal(await page.locator('#aim-name').textContent(), 'Doña Rosa');
     await page.evaluate(point => window.cazabichosTest.clickAt(point.x,point.y), farRosa);
     assert.equal((await state()).autoWalk?.name, 'rosa');
-    await page.getByRole('button', { name: 'Acercate mas', exact: true }).waitFor();
+    await page.getByRole('button', { name: 'Acércate más', exact: true }).waitFor();
     await page.getByRole('heading', { name: 'La heladería de Doña Rosa', exact: true }).waitFor();
     await button('Recibir la hoja de respuestas');
     await stage('testing');
@@ -252,7 +252,7 @@ async function run() {
     });
     assert.equal(farBug?.stage, 'chase');
     assert.equal(farBug?.autoWalk?.name, 'bug');
-    await page.getByRole('button', { name: 'Acercate mas', exact: true }).waitFor();
+    await page.getByRole('button', { name: 'Acércate más', exact: true }).waitFor();
     await page.locator('#world').focus();
     await page.keyboard.press('s');
     assert.equal((await state()).autoWalk, null);

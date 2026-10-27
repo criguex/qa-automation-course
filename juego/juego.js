@@ -312,7 +312,7 @@ function frame(time) {
   lastTime = time;
   world.tick(dt, { active: started && !dialog.open && !document.hidden, chasing: mission.stage === 'chase', target: missionTarget(), completed: mission.completed });
   const nearby = started && !dialog.open ? interaction() : null;
-  const text = started && !dialog.open && time < farUntil ? 'Acercate mas' : nearby?.text ?? '';
+  const text = started && !dialog.open && time < farUntil ? 'Acércate más' : nearby?.text ?? '';
   if (text !== lastInteraction) {
     $('#prompt').textContent = text;
     $('#prompt').hidden = !text;
