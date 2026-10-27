@@ -7,7 +7,7 @@ export const targets = {
   future: { x: 10, z: 9 }
 };
 
-export function createWorld(canvas) {
+export function createWorld(canvas, interactTarget) {
   const scene = new THREE.Scene();
   scene.background = new THREE.Color('#c6e7ed');
   scene.fog = new THREE.Fog('#c6e7ed', 32, 65);
@@ -276,12 +276,31 @@ export function createWorld(canvas) {
     for (const piece of confettiPieces) piece.position.set(player.group.position.x+(Math.random()-.5)*9,5+Math.random()*5,player.group.position.z+(Math.random()-.5)*8);
     confetti.visible = true;
   }
+  const destination = mesh(new THREE.TorusGeometry(.45,.045,6,28),'#55dfbd',0,.13,0);
+  destination.rotation.x = Math.PI / 2;
+  destination.visible = false;
+  const interactables = {
+    rosa: { object: rosa.group, name: 'Doña Rosa', point: targets.rosa, reach: 2.2, height: 1.25 },
+    machine: { object: machine, name: 'Máquina de helados', point: targets.machine, reach: 2.2, height: 1.2 },
+    inventor: { object: inventor.group, name: 'Inventor Leo', point: targets.inventor, reach: 2.2, height: 1.25 },
+    bug: { object: bug, name: 'Bicho', point: bug.position, reach: 2.15, height: .65 },
+    future: { object: future, name: 'Próxima aventura', point: targets.future, reach: 2.2, height: 1 }
+  };
   let yaw = 0;
-  let pitch = .6;
+  let pitch = .42;
+  let cameraDistance = 9;
   let elapsed = 0;
   let enabled = false;
   let pointer = null;
   let previousPointer = null;
+  let pointerTravel = 0;
+  let rightWalking = false;
+  let lockAllowed = false;
+  let hovering = null;
+  let aiming = null;
+  let autoWalk = null;
+  let blockedTime = 0;
+  let netSwing = 0;
   let stickPointer = null;
   let stickX = 0;
   let stickY = 0;
@@ -289,39 +308,131 @@ export function createWorld(canvas) {
   const keys = new Set();
   const joystick = document.querySelector('#joystick');
   const stick = document.querySelector('#stick');
+  const reticle = document.querySelector('#reticle');
+  const aimName = document.querySelector('#aim-name');
+  const cameraHint = document.querySelector('#camera-hint');
+  const locked = () => document.pointerLockElement === canvas;
+  function cancelWalk() {
+    autoWalk = null;
+    blockedTime = 0;
+    destination.visible = false;
+  }
   function clearInput() {
     keys.clear();
     stickX = 0;
     stickY = 0;
     stick.style.transform = '';
     pointer = null;
+    previousPointer = null;
     stickPointer = null;
+    rightWalking = false;
+    pointerTravel = 0;
+    cancelWalk();
   }
+  function releasePointer() {
+    lockAllowed = false;
+    enabled = false;
+    clearInput();
+    if (locked()) document.exitPointerLock();
+  }
+  function requestPointer() {
+    if (!enabled || locked() || !canvas.requestPointerLock) return;
+    lockAllowed = true;
+    try {
+      const request = canvas.requestPointerLock();
+      request?.catch(() => { lockAllowed = false; });
+    } catch {
+      lockAllowed = false;
+    }
+  }
+  function look(dx,dy) {
+    if (!Number.isFinite(dx) || !Number.isFinite(dy)) return;
+    yaw -= dx * .003;
+    pitch = THREE.MathUtils.clamp(pitch + dy * .003, .03, 1.05);
+  }
+  document.addEventListener('pointerlockchange', () => {
+    pointer = null;
+    if (!locked()) rightWalking = false;
+    if (locked() && (!enabled || !lockAllowed)) document.exitPointerLock();
+  });
+  document.addEventListener('pointerlockerror', () => { lockAllowed = false; });
+  document.addEventListener('mousemove', event => {
+    if (!enabled) return;
+    if (locked()) look(event.movementX,event.movementY);
+    else if (pointer === 'mouse') {
+      const dx = event.clientX-previousPointer.x;
+      const dy = event.clientY-previousPointer.y;
+      pointerTravel += Math.hypot(dx,dy);
+      look(dx,dy);
+      previousPointer = { x: event.clientX, y: event.clientY };
+    }
+  });
   window.addEventListener('keydown', event => {
     if (!enabled || event.target.closest('button, dialog')) return;
     const key = event.key.toLowerCase();
     if (['arrowup','arrowdown','arrowleft','arrowright',' '].includes(key)) event.preventDefault();
+    if (['w','a','s','d','arrowup','arrowdown','arrowleft','arrowright'].includes(key)) cancelWalk();
     keys.add(key);
   });
   window.addEventListener('keyup', event => keys.delete(event.key.toLowerCase()));
-  window.addEventListener('blur', clearInput);
-  document.addEventListener('visibilitychange', clearInput);
-  canvas.addEventListener('pointerdown', event => {
+  window.addEventListener('blur', releasePointer);
+  document.addEventListener('visibilitychange', () => { if (document.hidden) releasePointer(); });
+  canvas.addEventListener('contextmenu', event => event.preventDefault());
+  canvas.addEventListener('wheel', event => {
     if (!enabled) return;
+    event.preventDefault();
+    cameraDistance = THREE.MathUtils.clamp(cameraDistance + event.deltaY * .01, 4, 13);
+  }, { passive: false });
+  canvas.addEventListener('mousedown', event => {
+    if (!enabled) return;
+    canvas.focus({ preventScroll: true });
+    if (event.button === 2) {
+      event.preventDefault();
+      cancelWalk();
+      rightWalking = true;
+    } else if (event.button === 0) {
+      pointer = 'mouse';
+      pointerTravel = 0;
+      previousPointer = { x: event.clientX, y: event.clientY };
+    }
+  });
+  canvas.addEventListener('pointerdown', event => {
+    if (!enabled || event.pointerType === 'mouse') return;
+    event.preventDefault();
     pointer = event.pointerId;
     previousPointer = { x: event.clientX, y: event.clientY };
     canvas.setPointerCapture(pointer);
     canvas.focus({ preventScroll: true });
   });
   canvas.addEventListener('pointermove', event => {
+    if (!enabled || locked()) return;
+    if (event.pointerType === 'mouse') {
+      hovering = { x: event.clientX, y: event.clientY };
+      return;
+    }
     if (event.pointerId !== pointer) return;
-    yaw -= (event.clientX - previousPointer.x) * .006;
-    pitch = THREE.MathUtils.clamp(pitch + (event.clientY - previousPointer.y) * .004, .3, 1.1);
+    const dx = event.clientX - previousPointer.x;
+    const dy = event.clientY - previousPointer.y;
+    pointerTravel += Math.hypot(dx,dy);
+    look(dx*2,dy*4/3);
     previousPointer = { x: event.clientX, y: event.clientY };
   });
-  const releaseCamera = () => { pointer = null; };
-  canvas.addEventListener('pointerup', releaseCamera);
-  canvas.addEventListener('pointercancel', releaseCamera);
+  canvas.addEventListener('pointerleave', () => { if (pointer === null) hovering = null; });
+  document.addEventListener('mouseup', event => {
+    if (event.button === 2) rightWalking = false;
+    if (event.button !== 0 || pointer !== 'mouse') return;
+    const clicked = enabled && pointerTravel < 6 && (locked() || event.target === canvas);
+    pointer = null;
+    if (clicked) {
+      clickAt(event.clientX,event.clientY);
+      requestPointer();
+    }
+  });
+  canvas.addEventListener('pointerup', event => {
+    if (event.pointerId === pointer) pointer = null;
+  });
+  canvas.addEventListener('pointercancel', clearInput);
+  canvas.addEventListener('lostpointercapture', () => { pointer = null; });
   function setStick(event) {
     const rect = joystick.getBoundingClientRect();
     const dx = (event.clientX - rect.left - rect.width / 2) / (rect.width * .33);
@@ -334,6 +445,7 @@ export function createWorld(canvas) {
   joystick.addEventListener('pointerdown', event => {
     if (!enabled) return;
     event.preventDefault();
+    cancelWalk();
     stickPointer = event.pointerId;
     joystick.setPointerCapture(stickPointer);
     setStick(event);
@@ -358,14 +470,116 @@ export function createWorld(canvas) {
   }
   function moveTo(x,z) {
     if (!canStand(x,z)) throw new Error('Posición fuera de la plaza o dentro de una colisión.');
+    cancelWalk();
     player.group.position.set(x,0,z);
-    cameraLook.set(x,1.1,z);
+    cameraAnchor.set(x,1.65,z);
+    updateCamera(1);
   }
-  const cameraLook = new THREE.Vector3(0,1,8);
+  const cameraAnchor = new THREE.Vector3(0,1.65,8);
+  const cameraLook = new THREE.Vector3();
   const desiredCamera = new THREE.Vector3();
   const cameraDirection = new THREE.Vector3();
   const hit = new THREE.Vector3();
   const ray = new THREE.Ray();
+  const raycaster = new THREE.Raycaster();
+  const ground = new THREE.Plane(new THREE.Vector3(0,1,0),-.1);
+  const groundPoint = new THREE.Vector3();
+  function pick(x,y) {
+    const rect = canvas.getBoundingClientRect();
+    if (x < rect.left || x > rect.right || y < rect.top || y > rect.bottom) return null;
+    scene.updateMatrixWorld(true);
+    camera.updateMatrixWorld();
+    raycaster.setFromCamera(new THREE.Vector2((x-rect.left)/rect.width*2-1,1-(y-rect.top)/rect.height*2),camera);
+    let closest = null;
+    let distance = Infinity;
+    for (const [name,item] of Object.entries(interactables)) {
+      if (!item.object.visible) continue;
+      const intersection = raycaster.intersectObject(item.object,true)[0];
+      if (intersection && intersection.distance < distance) {
+        closest = name;
+        distance = intersection.distance;
+      }
+    }
+    for (const bounds of colliders) {
+      if (closest && bounds.containsPoint(interactables[closest].object.position)) continue;
+      if (raycaster.ray.intersectBox(bounds,hit) && hit.distanceTo(raycaster.ray.origin) < distance) return null;
+    }
+    if (closest) return { name: closest };
+    if (!raycaster.ray.intersectPlane(ground,groundPoint) || !canStand(groundPoint.x,groundPoint.z)) return null;
+    return { x: groundPoint.x, z: groundPoint.z };
+  }
+  function updateAim() {
+    const rect = canvas.getBoundingClientRect();
+    const point = locked() ? { x: rect.left+rect.width/2, y: rect.top+rect.height/2 } : hovering;
+    aiming = enabled && point ? pick(point.x,point.y)?.name ?? null : null;
+    reticle.hidden = !enabled || !locked();
+    reticle.textContent = aiming ? '⌕' : '+';
+    reticle.classList.toggle('targeted',Boolean(aiming));
+    aimName.hidden = !aiming;
+    aimName.textContent = aiming ? interactables[aiming].name : '';
+    cameraHint.hidden = !enabled || locked() || matchMedia('(pointer: coarse)').matches;
+  }
+  function clickAt(x,y) {
+    if (!enabled || !Number.isFinite(x) || !Number.isFinite(y)) return;
+    const rect = canvas.getBoundingClientRect();
+    hovering = locked() ? { x: rect.left+rect.width/2, y: rect.top+rect.height/2 } : { x, y };
+    const picked = pick(hovering.x,hovering.y);
+    cancelWalk();
+    if (!picked) return;
+    if (picked.name) {
+      const item = interactables[picked.name];
+      if (picked.name === 'bug') netSwing = .35;
+      interactTarget(picked.name);
+      const distance = Math.hypot(player.group.position.x-item.point.x,player.group.position.z-item.point.z);
+      if (!enabled || locked() || (picked.name === 'bug' ? distance <= item.reach : distance < item.reach)) return;
+      autoWalk = { name: picked.name, x: item.point.x, z: item.point.z };
+    } else if (!locked()) {
+      autoWalk = picked;
+    }
+    if (autoWalk) {
+      destination.position.set(autoWalk.x,.13,autoWalk.z);
+      destination.visible = true;
+    }
+    updateAim();
+  }
+  function aimAt(name) {
+    const normalized = String(name).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+    const key = Object.keys(interactables).find(key => key === normalized || interactables[key].name.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase() === normalized) ?? ({ maquina: 'machine', inventor: 'inventor', bicho: 'bug' })[normalized];
+    const item = interactables[key];
+    if (!item?.object.visible) return null;
+    const dx = item.object.position.x-player.group.position.x;
+    const dz = item.object.position.z-player.group.position.z;
+    const distance = Math.hypot(dx,dz);
+    yaw = Math.atan2(-dx,-dz)+Math.asin(Math.min(.85/Math.max(distance,.001),1));
+    pitch = THREE.MathUtils.clamp(Math.atan2(1.65-item.height,Math.sqrt(Math.max(0,distance*distance-.85*.85))),.03,1.05);
+    cameraAnchor.set(player.group.position.x,1.65,player.group.position.z);
+    updateCamera(1);
+    const rect = canvas.getBoundingClientRect();
+    hovering = { x: rect.left+rect.width/2, y: rect.top+rect.height/2 };
+    updateAim();
+    return { ...hovering, aiming };
+  }
+  function updateCamera(follow) {
+    const position = player.group.position;
+    cameraAnchor.lerp(new THREE.Vector3(position.x,1.65,position.z),follow);
+    cameraDirection.set(Math.cos(yaw),0,-Math.sin(yaw));
+    ray.set(cameraAnchor,cameraDirection);
+    let shoulder = .85;
+    for (const bounds of colliders) {
+      if (ray.intersectBox(bounds,hit)) shoulder = Math.min(shoulder,Math.max(0,hit.distanceTo(cameraAnchor)-.15));
+    }
+    cameraLook.copy(cameraAnchor).addScaledVector(cameraDirection,shoulder);
+    desiredCamera.set(Math.sin(yaw)*cameraDistance*Math.cos(pitch),cameraDistance*Math.sin(pitch),Math.cos(yaw)*cameraDistance*Math.cos(pitch)).add(cameraLook);
+    cameraDirection.copy(desiredCamera).sub(cameraLook);
+    let distance = cameraDirection.length();
+    cameraDirection.normalize();
+    ray.set(cameraLook,cameraDirection);
+    for (const bounds of colliders) {
+      if (ray.intersectBox(bounds,hit)) distance = Math.min(distance,Math.max(.2,hit.distanceTo(cameraLook)-.35));
+    }
+    camera.position.copy(cameraLook).addScaledVector(cameraDirection,distance);
+    camera.lookAt(cameraLook);
+  }
   const map = document.querySelector('#minimap').getContext('2d');
   function drawMap(target) {
     const scaleX = 292/38;
@@ -416,18 +630,54 @@ export function createWorld(canvas) {
       if (keys.has('r') || alt && keys.has('arrowright')) yaw -= dt*1.8;
       let horizontal = Number(keys.has('d') || !alt && keys.has('arrowright'))-Number(keys.has('a') || !alt && keys.has('arrowleft'))+stickX;
       let vertical = Number(keys.has('s') || !alt && keys.has('arrowdown'))-Number(keys.has('w') || !alt && keys.has('arrowup'))+stickY;
+      if (rightWalking) vertical -= 1;
       const magnitude = Math.hypot(horizontal,vertical);
+      const speed = keys.has('shift') || Math.hypot(stickX,stickY) > .8 ? 6 : 3.8;
+      let dx = 0;
+      let dz = 0;
       if (magnitude > .12) {
+        cancelWalk();
         horizontal /= Math.max(1,magnitude);
         vertical /= Math.max(1,magnitude);
-        const speed = keys.has('shift') || Math.hypot(stickX,stickY) > .8 ? 6 : 3.8;
-        const dx = (Math.cos(yaw)*horizontal+Math.sin(yaw)*vertical)*speed*dt;
-        const dz = (-Math.sin(yaw)*horizontal+Math.cos(yaw)*vertical)*speed*dt;
+        dx = (Math.cos(yaw)*horizontal+Math.sin(yaw)*vertical)*speed*dt;
+        dz = (-Math.sin(yaw)*horizontal+Math.cos(yaw)*vertical)*speed*dt;
+      } else if (autoWalk) {
+        const item = interactables[autoWalk.name];
+        const point = item ? item.point : autoWalk;
+        const distance = Math.hypot(point.x-position.x,point.z-position.z);
+        if (distance < (item ? item.reach-.15 : .18)) {
+          const name = autoWalk.name;
+          cancelWalk();
+          if (name) {
+            if (name === 'bug') netSwing = .35;
+            interactTarget(name);
+          }
+        } else {
+          const step = Math.min(speed*dt,distance);
+          dx = (point.x-position.x)/distance*step;
+          dz = (point.z-position.z)/distance*step;
+          destination.position.set(point.x,.13,point.z);
+        }
+      }
+      if (dx || dz) {
+        const oldX = position.x;
+        const oldZ = position.z;
         move(player.group,dx,dz);
-        player.group.rotation.y = Math.atan2(dx,dz);
-        walking = speed;
+        const travelled = Math.hypot(position.x-oldX,position.z-oldZ);
+        if (autoWalk) {
+          blockedTime = travelled < .005 ? blockedTime+dt : 0;
+          if (blockedTime > .4) cancelWalk();
+        }
+        if (travelled > 0) {
+          const angle = Math.atan2(position.x-oldX,position.z-oldZ)-player.group.rotation.y;
+          player.group.rotation.y += Math.atan2(Math.sin(angle),Math.cos(angle))*(1-Math.exp(-dt*12));
+        }
+        walking = travelled > 0 ? speed : 0;
       }
     }
+    netSwing = Math.max(0,netSwing-dt);
+    net.rotation.x = -Math.sin(netSwing/.35*Math.PI)*1.6;
+
     player.legs.forEach((leg,i) => { leg.rotation.x = Math.sin(elapsed*walking*2.5+i*Math.PI)*.55*(walking ? 1 : 0); });
     player.arms.forEach((arm,i) => { arm.rotation.x = Math.sin(elapsed*walking*2.5+i*Math.PI+Math.PI)*.4*(walking ? 1 : 0); });
     player.group.position.y = walking ? Math.abs(Math.sin(elapsed*walking*2.5))*.045 : 0;
@@ -466,18 +716,8 @@ export function createWorld(canvas) {
       }
       if (celebration<=0) confetti.visible = false;
     }
-    const follow = 1-Math.exp(-dt*7);
-    cameraLook.lerp(new THREE.Vector3(position.x,1.25,position.z),follow);
-    desiredCamera.set(Math.sin(yaw)*9*Math.cos(pitch),9*Math.sin(pitch),Math.cos(yaw)*9*Math.cos(pitch)).add(cameraLook);
-    cameraDirection.copy(desiredCamera).sub(cameraLook);
-    let distance = cameraDirection.length();
-    cameraDirection.normalize();
-    ray.set(cameraLook,cameraDirection);
-    for (const bounds of colliders) {
-      if (ray.intersectBox(bounds,hit)) distance = Math.min(distance,Math.max(1.3,hit.distanceTo(cameraLook)-.35));
-    }
-    camera.position.copy(cameraLook).addScaledVector(cameraDirection,distance);
-    camera.lookAt(cameraLook);
+    updateCamera(1-Math.exp(-dt*7));
+    updateAim();
     mapTick += dt;
     if (mapTick>.08) { drawMap(target); mapTick=0; }
     renderer.render(scene,camera);
@@ -489,5 +729,5 @@ export function createWorld(canvas) {
   }
   window.addEventListener('resize',resize);
   resize();
-  return { tick, player: player.group, bug, celebrate, moveTo, canStand, clearInput, setCamera: value => { if (Number.isFinite(value)) yaw = value; }, getCamera: () => ({ yaw, pitch }), renderer };
+  return { tick, player: player.group, bug, celebrate, moveTo, canStand, clearInput, setCamera: value => { if (Number.isFinite(value)) yaw = value; }, getCamera: () => ({ yaw, pitch }), getInput: () => ({ aiming, autoWalk: autoWalk ? { ...autoWalk } : null, cameraDistance }), releasePointer, look, clickAt, aimAt, renderer };
 }

@@ -41,6 +41,12 @@
     kbd { font-family: inherit; display: inline-block; color: var(--navy); background: #fffdf4; border-radius: 5px; padding: 0 5px; font-weight: 900; margin-right: 3px; }
     #notebook { pointer-events: auto; background: var(--paper); border: 2px solid var(--navy); box-shadow: 0 3px 0 var(--navy); }
     #prompt { position: fixed; z-index: 3; bottom: 102px; left: 50%; transform: translateX(-50%); border: 3px solid white; box-shadow: 0 5px 18px #071b2b25; max-width: calc(100vw - 36px); white-space: nowrap; }
+    #reticle { position: fixed; z-index: 2; top: 50%; left: 50%; transform: translate(-50%,-50%); color: white; font-size: 23px; line-height: 1; text-shadow: 0 1px 4px var(--navy); pointer-events: none; }
+    #reticle.targeted { color: var(--mint); font-size: 32px; }
+    #aim-name, #camera-hint { position: fixed; z-index: 2; left: 50%; transform: translateX(-50%); border-radius: 14px; padding: 7px 12px; background: #071b2be6; color: white; font-size: 14px; text-align: center; pointer-events: none; }
+    #aim-name { top: calc(50% + 24px); }
+    #camera-hint { bottom: 164px; }
+    .start-controls .mouse-help { grid-column: 1 / -1; line-height: 1.6; }
     #toast { position: fixed; z-index: 3; top: 52%; left: 50%; transform: translate(-50%, -50%); background: var(--navy); color: white; border-radius: 22px; padding: 18px 25px; font-size: 20px; max-width: min(540px, 90vw); text-align: center; pointer-events: none; }
     #start { position: fixed; z-index: 5; inset: 0; padding: 100px 6vw 45px; display: flex; align-items: center; background: linear-gradient(90deg, #e9f7efee 0%, #e9f7efc9 31%, transparent 70%); overflow: auto; }
     .start-card { max-width: 500px; padding: 35px; background: #fffdf4f5; border-radius: 35px; box-shadow: 0 18px 60px #071b2b18; border: 2px solid white; }
@@ -96,7 +102,7 @@
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}</script>
 </head>
 <body>
-  <canvas id="world" tabindex="0" aria-label="Villa Bichos, mundo 3D. Usa WASD o flechas para caminar, E para interactuar."></canvas>
+  <canvas id="world" tabindex="0" aria-label="Villa Bichos, mundo 3D. Mouse para mirar, clic para actuar, clic derecho o WASD para caminar, rueda para zoom, E para interactuar."></canvas>
   <header class="topbar">
     <div class="brand"><span class="brand-icon" aria-hidden="true">✳</span><div><strong>cazabichos</strong><small>ESCUELA DE DETECTIVES</small></div></div>
     <div class="tools"><span class="stars" aria-label="Estrellas ganadas"><span class="star-icon" aria-hidden="true">★</span> <span id="stars">0</span> / 1</span><button id="voice" class="small secondary" aria-pressed="false" aria-label="Activar narración">◌ Voz apagada</button></div>
@@ -104,12 +110,15 @@
   <main id="hud" hidden>
     <section class="objective" aria-live="polite"><span class="eyebrow" id="mission-label">MISIÓN 01 · UN HELADO CON SORPRESA</span><p id="objective">Habla con Doña Rosa</p><span id="objective-detail">Sigue el marcador amarillo hasta la heladería.</span></section>
     <aside class="map-wrap"><canvas id="minimap" width="292" height="264" aria-label="Minimapa: punto azul, tú; estrella amarilla, tu objetivo."></canvas><small>VILLA BICHOS · N ↑</small></aside>
-    <div class="bottom-bar"><div class="controls-help"><kbd>W A S D</kbd> o <kbd>↑ ↓ ← →</kbd> caminar &nbsp; <kbd>Shift</kbd> correr<br>Arrastra / <kbd>Alt + ← →</kbd> mirar · <kbd>Q</kbd><kbd>R</kbd> girar · <kbd>E</kbd> interactuar</div><button id="notebook" hidden>▤ Mi hoja de respuestas</button></div>
+    <div class="bottom-bar"><div class="controls-help">Mouse: mirar · Clic: accion · Clic derecho: caminar · Rueda: zoom · WASD: caminar · E: accion<br><kbd>Esc</kbd> soltar mouse · <kbd>Shift</kbd> correr · Arrastra / <kbd>Q</kbd><kbd>R</kbd> mirar</div><button id="notebook" hidden>▤ Mi hoja de respuestas</button></div>
   </main>
+  <span id="reticle" aria-hidden="true" hidden>+</span>
+  <span id="aim-name" hidden></span>
+  <span id="camera-hint" hidden>Haz clic para controlar la camara</span>
   <button id="prompt" hidden></button>
   <div id="toast" role="status" hidden></div>
   <div id="touch-controls" hidden><div id="joystick" role="group" aria-label="Joystick táctil: arrastra para caminar; al borde corres"><span id="stick"></span></div><div class="touch-right"><div class="camera-buttons"><button id="camera-left" aria-label="Girar cámara a la izquierda">↶</button><button id="camera-right" aria-label="Girar cámara a la derecha">↷</button></div><button id="touch-action">E · Acción</button></div></div>
-  <section id="start" aria-label="Inicio del juego"><div class="start-card"><span class="tag">● UNA PEQUEÑA AVENTURA QA</span><h1>Pequeños<br>detectives.<br><span>Grandes pistas.</span></h1><p>¡Bienvenido a Villa Bichos! Prueba, descubre y atrapa a un travieso error.</p><div class="mission-preview"><span aria-hidden="true">🍦</span><div><small>TU PRIMER CASO</small><strong>La heladería de Doña Rosa</strong></div></div><button id="play" disabled>Preparando la plaza…</button><p id="load-note">Construyendo un mundo de pequeñas pistas.</p><div class="start-controls"><span>⌨ <b>WASD / flechas</b> · Caminar</span><span>⇧ <b>Shift</b> · Correr</span><span>🖱 <b>Arrastra / Alt + ← →</b> · Mirar</span><span>✋ <b>E</b> · Hablar y atrapar</span><span>◎ <b>Tablet</b> · Joystick y acción</span><span>♡ <b>A tu ritmo.</b> Sin perder vidas.</span></div></div></section>
+  <section id="start" aria-label="Inicio del juego"><div class="start-card"><span class="tag">● UNA PEQUEÑA AVENTURA QA</span><h1>Pequeños<br>detectives.<br><span>Grandes pistas.</span></h1><p>¡Bienvenido a Villa Bichos! Prueba, descubre y atrapa a un travieso error.</p><div class="mission-preview"><span aria-hidden="true">🍦</span><div><small>TU PRIMER CASO</small><strong>La heladería de Doña Rosa</strong></div></div><button id="play" disabled>Preparando la plaza…</button><p id="load-note">Construyendo un mundo de pequeñas pistas.</p><div class="start-controls"><span class="mouse-help">Mouse: mirar · Clic: accion · Clic derecho: caminar · Rueda: zoom · WASD: caminar · E: accion</span><span>⇧ <b>Shift</b> · Correr</span><span><b>Esc</b> · Soltar mouse</span><span>🖱 <b>Sin captura</b> · Arrastra para mirar, clic para ir</span><span>◎ <b>Tablet</b> · Joystick y acción</span><span>♡ <b>A tu ritmo.</b> Sin perder vidas.</span></div></div></section>
   <dialog id="dialog" aria-labelledby="dialog-title"><div class="dialog-body"><div class="dialog-header"><span id="dialog-avatar" class="avatar" aria-hidden="true"></span><div><span id="dialog-label" class="eyebrow"></span><h2 id="dialog-title"></h2></div></div><p id="dialog-copy"></p><div id="dialog-extra"></div><div id="dialog-actions"></div></div></dialog>
   <section id="fatal" hidden role="alert"><h2>No pudimos abrir la plaza</h2><p>Revisa tu conexión a internet y vuelve a cargar. El juego necesita descargar Three.js una vez.</p><button onclick="location.reload()">Volver a intentar</button></section>
   <script type="module">import('./juego.js').catch(() => { document.querySelector('#fatal').hidden = false; });</script>

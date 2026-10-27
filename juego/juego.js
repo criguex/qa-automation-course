@@ -3,7 +3,7 @@ import { ages, questions, createMission, receiveOracle, testAge, catchBug, answe
 
 const $ = selector => document.querySelector(selector);
 const canvas = $('#world');
-const world = createWorld(canvas);
+const world = createWorld(canvas, interactTarget);
 const mission = createMission(loadProgress());
 const dialog = $('#dialog');
 let started = false;
@@ -11,10 +11,11 @@ let voice = false;
 let toastUntil = 0;
 let lastTime = performance.now();
 let lastInteraction = '';
+let farUntil = 0;
 const objectives = {
   intro: ['Habla con Doña Rosa', 'Sigue la estrella amarilla hasta la heladería.'],
   testing: ['Prueba la máquina de helados', 'Compara cada respuesta con tu hoja. Prueba los bordes: 7, 8, 12 y 13.'],
-  chase: ['¡Atrapa al bicho con tu red!', 'Corre con Shift. Acércate y pulsa E. En tablet, lleva el joystick al borde.'],
+  chase: ['¡Atrapa al bicho con tu red!', 'Apunta y haz clic para lanzar la red. Corre con Shift. En tablet, lleva el joystick al borde.'],
   report: ['Completa tu ficha de detective', 'Cuenta qué hiciste, qué esperabas y qué pasó.'],
   delivery: ['Lleva la ficha al Inventor', 'Te espera junto al taller verde. Sigue la estrella.'],
   completed: ['¡Misión completada!', 'Ganaste una estrella. Puedes explorar Villa Bichos.']
@@ -76,7 +77,7 @@ dialog.addEventListener('close', () => {
 });
 
 function showDialog({ title, label = 'VILLA BICHOS', avatar = '✳', copy = '', extra = '', actions = [], cards = false, focus }) {
-  world.clearInput();
+  world.releasePointer();
   $('#dialog-title').textContent = title;
   $('#dialog-label').textContent = label;
   $('#dialog-avatar').textContent = avatar;
@@ -151,7 +152,7 @@ function showMachine(result = null, age = null) {
     if (mission.stage === 'chase') {
       showDialog({
         title: '¡Un bicho a la vista!', label: 'PIP · TU ROBOT AYUDANTE', avatar: '🤖',
-        copy: '¡Falló dos veces con 12! El bicho salió de la máquina. Acércate y pulsa E para atraparlo con tu red.',
+        copy: '¡Falló dos veces con 12! El bicho salió de la máquina. Acércate, apunta y haz clic para atraparlo con tu red. También puedes pulsar E.',
         extra: '<p class="hint">Puedes correr con Shift. En tablet, empuja el joystick hasta el borde y toca Acción.</p>',
         actions: [{ text: '¡A por el bicho!', action: closeDialog }]
       });
@@ -220,19 +221,41 @@ function distance(target) {
   return Math.hypot(world.player.position.x-target.x,world.player.position.z-target.z);
 }
 
+function interactTarget(name) {
+  if (!started || dialog.open) return;
+  const point = name === 'bug' ? world.bug.position : targets[name];
+  if (!point) return;
+  if (name === 'bug' ? distance(point) > 2.15 : distance(point) >= 2.2) {
+    farUntil = performance.now()+1800;
+    return;
+  }
+  farUntil = 0;
+  if (name === 'rosa') talkRosa();
+  else if (name === 'machine' && mission.stage === 'testing') showMachine();
+  else if (name === 'inventor') talkInventor();
+  else if (name === 'bug' && mission.stage === 'chase') captureBug();
+  else if (name === 'future' && mission.completed) showFuture();
+}
+
+function captureBug() {
+  if (distance(world.bug.position)>2.15 || !catchBug(mission)) return;
+  updateHud();
+  showQuestion();
+}
+
+function showFuture() {
+  showDialog({ title: 'Próximamente', label: 'MISIÓN 02 · BLOQUEADA', avatar: '🔒', copy: 'El Inventor está preparando otra aventura. ¡Vuelve pronto, detective!', actions: [{ text: 'Seguir explorando', action: closeDialog }] });
+}
+
 function interaction() {
   if (mission.stage === 'chase') {
-    return distance(world.bug.position) <= 2.15 ? { text: 'E · ¡Atrapar al bicho!', action: () => {
-      if (distance(world.bug.position)>2.15 || !catchBug(mission)) return;
-      updateHud();
-      showQuestion();
-    } } : null;
+    return distance(world.bug.position) <= 2.15 ? { text: 'Clic / E · ¡Atrapar al bicho!', action: captureBug } : null;
   }
   if (mission.stage === 'report') return { text: 'E · Completar mi ficha', action: () => showQuestion() };
   if (distance(targets.rosa)<2.2) return { text: 'E · Hablar con Doña Rosa', action: talkRosa };
   if (distance(targets.machine)<2.2 && mission.stage === 'testing') return { text: 'E · Probar la máquina', action: () => showMachine() };
   if (distance(targets.inventor)<2.2) return { text: mission.stage === 'delivery' ? 'E · Entregar la ficha' : 'E · Hablar con el Inventor', action: talkInventor };
-  if (mission.completed && distance(targets.future)<2.2) return { text: 'E · Próxima aventura', action: () => showDialog({ title: 'Próximamente', label: 'MISIÓN 02 · BLOQUEADA', avatar: '🔒', copy: 'El Inventor está preparando otra aventura. ¡Vuelve pronto, detective!', actions: [{ text: 'Seguir explorando', action: closeDialog }] }) };
+  if (mission.completed && distance(targets.future)<2.2) return { text: 'E · Próxima aventura', action: showFuture };
   return null;
 }
 
@@ -289,7 +312,7 @@ function frame(time) {
   lastTime = time;
   world.tick(dt, { active: started && !dialog.open && !document.hidden, chasing: mission.stage === 'chase', target: missionTarget(), completed: mission.completed });
   const nearby = started && !dialog.open ? interaction() : null;
-  const text = nearby?.text ?? '';
+  const text = started && !dialog.open && time < farUntil ? 'Acercate mas' : nearby?.text ?? '';
   if (text !== lastInteraction) {
     $('#prompt').textContent = text;
     $('#prompt').hidden = !text;
@@ -302,9 +325,12 @@ requestAnimationFrame(frame);
 
 if (new URLSearchParams(location.search).get('test') === '1') {
   window.cazabichosTest = Object.freeze({
-    snapshot: () => structuredClone({ ...mission, started, player: { x: world.player.position.x, z: world.player.position.z }, bug: { x: world.bug.position.x, z: world.bug.position.z }, targets, camera: world.getCamera(), dialog: dialog.open ? $('#dialog-title').textContent : null, drawCalls: world.renderer.info.render.calls }),
+    snapshot: () => structuredClone({ ...mission, started, player: { x: world.player.position.x, z: world.player.position.z }, bug: { x: world.bug.position.x, z: world.bug.position.z }, targets, camera: world.getCamera(), ...world.getInput(), dialog: dialog.open ? $('#dialog-title').textContent : null, drawCalls: world.renderer.info.render.calls }),
     moveTo: (x,z) => world.moveTo(x,z),
     canStand: (x,z) => world.canStand(x,z),
-    setCamera: yaw => world.setCamera(yaw)
+    setCamera: yaw => world.setCamera(yaw),
+    look: (dx,dy) => world.look(dx,dy),
+    clickAt: (x,y) => world.clickAt(x,y),
+    aimAt: name => world.aimAt(name)
   });
 }
