@@ -1,0 +1,353 @@
+[
+  {
+    "id": "E01",
+    "inicio": "00:00",
+    "fin": "00:37",
+    "tipo": "terminal",
+    "visual": "Prueba golden en verde (✓ mint) y, encima, una firma a punto de estamparse. Antes de que caiga, aparece la línea del mutante self-grant: 'Mutation was accepted with HTTP 200' en coral. La firma se detiene.",
+    "texto_pantalla": {
+      "es": "golden ✓ … self-grant: HTTP 200 ✗\nCon ese verde habría certificado un bug",
+      "en": "golden ✓ … self-grant: HTTP 200 ✗\nThat green would have certified a bug"
+    },
+    "assets": [
+      "brand/war-paradigm/experiments/02-mutants/README.md (What you will see, The finding)",
+      "brand/war-paradigm/docs/assets/explained.gif"
+    ],
+    "notas_animacion": "Líneas reales del README: '✓ golden: create → approve → publish' y 'KNOWN SURVIVOR self-grant Mutation was accepted with HTTP 200.' Frase real: 'Every happy-path test was green while this was open.'"
+  },
+  {
+    "id": "E02",
+    "inicio": "00:37",
+    "fin": "00:57",
+    "tipo": "titulo",
+    "visual": "Tarjeta de título navy con ícono ✅.",
+    "texto_pantalla": {
+      "es": "Módulo 8b · Sign-off\nCertificar una historia\nCristian Guerra · QA · Medellín",
+      "en": "Module 8b · Sign-off\nCertifying a story\nCristian Guerra · QA · Medellín"
+    },
+    "assets": [],
+    "notas_animacion": "Subtítulo en gold: 'La firma es humana' / 'The signature is human'."
+  },
+  {
+    "id": "E03",
+    "inicio": "00:57",
+    "fin": "01:26",
+    "tipo": "analogia",
+    "visual": "Un profe revisa una libreta de notas con lupa antes de firmar (✓). Una materia sin nota queda como 'pendiente' (⚠). Un sello automático intenta firmar solo y se tacha (✗).",
+    "texto_pantalla": {
+      "es": "Firma solo quien vio las notas\nSin nota → “pendiente”, no inventada",
+      "en": "Only the one who saw the grades signs\nNo grade → “pending”, never made up"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/modules-01-14.json (m8b.kid)"
+    ],
+    "notas_animacion": "Ilustración simple."
+  },
+  {
+    "id": "E04",
+    "inicio": "01:26",
+    "fin": "02:09",
+    "tipo": "diagrama",
+    "visual": "Dos orillas separadas por un abismo: 'done dev' (código integrado y funcionando) y 'certificada' (probada contra criterios + evidencia + trazabilidad). El puente se construye con las cuatro condiciones de la DoD.",
+    "texto_pantalla": {
+      "es": "Done ≠ certificada\nDoD = condiciones verificables",
+      "en": "Done ≠ certified\nDoD = checkable conditions"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/quiz-11-19.json (m8b, preguntas 3 y 9)"
+    ],
+    "notas_animacion": "Cuatro tablones: escenarios enlazados · ejecución registrada · evidencia adjunta · known issues declarados."
+  },
+  {
+    "id": "E05",
+    "inicio": "02:09",
+    "fin": "02:54",
+    "tipo": "diagrama",
+    "visual": "Una mano humana firma; un robot de sello se queda afuera. Luego, escena de presión: reloj del deadline, una barra '30 % sin correr'. Se separan dos documentos: tu firma (estado real) y el acta de riesgo aceptado con nombre del que decide.",
+    "texto_pantalla": {
+      "es": "Tu firma = “esto se probó”\nRiesgo aceptado: por escrito y con nombre propio",
+      "en": "Your signature = “this was tested”\nAccepted risk: in writing, under its own name"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/quiz-11-19.json (m8b, preguntas 2 y 10)"
+    ],
+    "notas_animacion": "El 30 % es el ejemplo del banco de preguntas."
+  },
+  {
+    "id": "E06",
+    "inicio": "02:54",
+    "fin": "03:12",
+    "tipo": "diagrama",
+    "visual": "Cadena requisito → caso → ejecución → evidencia; el último eslabón 'registro de cierre' cambia de forma (comentario en ticket, campo del gestor, descripción de PR) mientras la cadena queda fija.",
+    "texto_pantalla": {
+      "es": "Cómo se registra varía · la cadena no",
+      "en": "How it's recorded varies · the chain doesn't"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/modules-01-14.json (m8b.theory)"
+    ],
+    "notas_animacion": "Reutilizar los eslabones de la escena E12 del módulo 8."
+  },
+  {
+    "id": "E07",
+    "inicio": "03:12",
+    "fin": "04:00",
+    "tipo": "codigo",
+    "visual": "story-US-42.json con los seis requisitos y los cuatro límites; las etiquetas must en mint y should en gold.",
+    "texto_pantalla": {
+      "es": "US-42 · R-1…R-6 · B-1…B-4",
+      "en": "US-42 · R-1…R-6 · B-1…B-4"
+    },
+    "assets": [
+      "brand/war-paradigm/experiments/01-ai-verdict/fixtures/story-US-42.json"
+    ],
+    "notas_animacion": "Texto real del JSON (en inglés): { \"id\": \"R-2\", \"priority\": \"must\", \"text\": \"Only approvers and admins can approve a draft; anyone else gets 403\" } … { \"id\": \"B-4\", \"text\": \"title with 81 characters is rejected (422)\" }."
+  },
+  {
+    "id": "E08",
+    "inicio": "04:00",
+    "fin": "04:23",
+    "tipo": "codigo",
+    "visual": "Tabla de criterios del README de 01-ai-verdict con AC-1 resaltado ('Every scenario cites its source in the story (US-42/R-n)' · must · blocks).",
+    "texto_pantalla": {
+      "es": "Sin fuente citada → plan rechazado",
+      "en": "No cited source → plan rejected"
+    },
+    "assets": [
+      "brand/war-paradigm/experiments/01-ai-verdict/README.md (Score against acceptance criteria)"
+    ],
+    "notas_animacion": "Fila real: | AC-1 | Every scenario cites its source in the story (`US-42/R-n`) | must | blocks |."
+  },
+  {
+    "id": "E09",
+    "inicio": "04:23",
+    "fin": "05:47",
+    "tipo": "diagrama",
+    "visual": "Dos oráculos (Q1 pasa/falla; Q2 puntaje con evidencia). Regla de decisión en tres líneas. Una corrida con puntaje sobre 70 que igual queda REJECTED por un must. Al final, la misma entrada corrida 3 veces con el mismo veredicto.",
+    "texto_pantalla": {
+      "es": "must no cumplido → REJECTED · puntaje < 70 → REJECTED\nUmbral acordado, no una sensación",
+      "en": "must not met → REJECTED · score < 70 → REJECTED\nAn agreed gate, not a vibe"
+    },
+    "assets": [
+      "brand/war-paradigm/experiments/01-ai-verdict/README.md (The method)"
+    ],
+    "notas_animacion": "Bloque real: 'any must not met → REJECTED, whatever the score / score below the gate (70) → REJECTED / otherwise → APPROVED'. Frase real: 'run 3 of the unpinned set scores above the gate and is still rejected'."
+  },
+  {
+    "id": "E10",
+    "inicio": "05:47",
+    "fin": "06:22",
+    "tipo": "diagrama",
+    "visual": "Escenarios con enlaces que llevan a su caso (✓) y uno con 'por resolver' que rompe la cadena (✗). Mecanismos de enlace como fichas intercambiables: tag, ID en el título, anotación. Un rojo honesto con etiqueta de known issue queda dentro de la cadena (✓).",
+    "texto_pantalla": {
+      "es": "Placeholder = cadena rota ✗\nRojo honesto documentado ≠ inválido ✓",
+      "en": "Placeholder = broken chain ✗\nDocumented honest red ≠ invalid ✓"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/quiz-11-19.json (m8b, pregunta 1)"
+    ],
+    "notas_animacion": "Sin datos numéricos."
+  },
+  {
+    "id": "E11",
+    "inicio": "06:22",
+    "fin": "07:23",
+    "tipo": "diagrama",
+    "visual": "Tres fuentes de evidencia: 'mi máquina' (se apaga ✗), 'artefacto de CI' (vence a los 14 días ⚠), 'archivo único adjunto al ticket' (sigue abriendo años después ✓). Captura del informe single-file de spendwise como ejemplo.",
+    "texto_pantalla": {
+      "es": "Mi máquina ✗ · CI 14 días ⚠ · archivo único adjunto ✓",
+      "en": "My machine ✗ · CI 14 days ⚠ · single file attached ✓"
+    },
+    "assets": [
+      "brand/restful-booker-quality-suite/.github/workflows/tests.yml (retention-days: 14)",
+      "brand/spendwise-qa-assessment/docs/INFORME-QA-SpendWise.html",
+      "https://allurereport.org/docs/"
+    ],
+    "notas_animacion": "La mención de Allure single-file viene del recurso del módulo; no mostrar comandos de Allure sin verificarlos en su documentación."
+  },
+  {
+    "id": "E12",
+    "inicio": "07:23",
+    "fin": "08:40",
+    "tipo": "resumen",
+    "visual": "Tres sellos de INVÁLIDO (verde no defendible, trazabilidad sin resolver, evidencia ausente) y una historia con dos @IGNORE abiertos que queda 'abierta'. Luego la lista de preguntas sí/no que se va llenando.",
+    "texto_pantalla": {
+      "es": "Invalidan: verde no defendible · trazabilidad sin resolver · evidencia ausente\nKnown issue abierto → la HU queda abierta",
+      "en": "Invalidating: indefensible green · unresolved traceability · missing evidence\nOpen known issue → the story stays open"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/modules-01-14.json (m8b.theory)",
+      "brand/qa-automation-course/i18n/es/quiz-11-19.json (m8b, pregunta 4)"
+    ],
+    "notas_animacion": "Las preguntas sí/no son una propuesta del guion; rotular 'tu checklist'."
+  },
+  {
+    "id": "E13",
+    "inicio": "08:40",
+    "fin": "09:35",
+    "tipo": "codigo",
+    "visual": "La nota 'Definition of done for a story' renderizada como en Obsidian, con las casillas marcándose una a una; 'Green 3 times in a row' resaltado en gold.",
+    "texto_pantalla": {
+      "es": "Una historia está certificada cuando cada línea es verdad",
+      "en": "A story is certified when every line is true"
+    },
+    "assets": [
+      "brand/war-paradigm/experiments/03-second-brain/vault/01 QA process/Definition of done for a story.md"
+    ],
+    "notas_animacion": "Texto real (en inglés) de las nueve casillas, desde 'Scenarios designed from the story's acceptance criteria, each one citing its source (US-nn/R-n)' hasta 'Session note written'."
+  },
+  {
+    "id": "E14",
+    "inicio": "09:35",
+    "fin": "09:52",
+    "tipo": "analogia",
+    "visual": "Cinco QA con cinco checklists distintas generan cinco estándares al azar (✗). El equipo acuerda una sola DoD y cada uno la implementa en su checklist (✓).",
+    "texto_pantalla": {
+      "es": "Una DoD por equipo, no por persona",
+      "en": "One DoD per team, not per person"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/quiz-11-19.json (m8b, pregunta 7)"
+    ],
+    "notas_animacion": "Ilustración simple."
+  },
+  {
+    "id": "E15",
+    "inicio": "09:52",
+    "fin": "10:32",
+    "tipo": "codigo",
+    "visual": "Dos tarjetas de decisión: la recomendación de release de restful-booker y la de spendwise, con lo que sí, lo que no y las condiciones.",
+    "texto_pantalla": {
+      "es": "No-go para XML · decimales · fechas sin validar — demo solo JSON con condiciones\n“Liberar con condiciones: puntos 1 a 3 resueltos y sus pruebas pasan”",
+      "en": "No-go for XML · decimals · unvalidated dates — JSON-only demo with conditions\n“Release with conditions: points 1–3 fixed and their tests pass”"
+    },
+    "assets": [
+      "brand/restful-booker-quality-suite/docs/EXECUTION_REPORT.md (Release decision)",
+      "brand/spendwise-qa-assessment/docs/04-resumen-ejecutivo.md (Salida a producción)"
+    ],
+    "notas_animacion": "Textos reales: 'Recommendation: no-go for a production contract that supports XML, decimal prices or untrusted date input.' · 'A constrained JSON-only demonstration can proceed if integer prices and validated dates are enforced upstream and the remaining status-code defects are logged.' · 'Liberar con condiciones: cuando los puntos 1 a 3 estén resueltos y sus pruebas pasen.'"
+  },
+  {
+    "id": "E16",
+    "inicio": "10:32",
+    "fin": "11:11",
+    "tipo": "terminal",
+    "visual": "Terminal con los comandos de la raíz de war-paradigm y npm test corriendo tres veces; un contador 1/3, 2/3, 3/3.",
+    "texto_pantalla": {
+      "es": "Verde 3 veces seguidas, no 1",
+      "en": "Green 3 times in a row, not once"
+    },
+    "assets": [
+      "brand/war-paradigm/README.es.md",
+      "brand/war-paradigm/experiments/02-mutants/README.md"
+    ],
+    "notas_animacion": "Comandos reales: git clone https://github.com/criguex/war-paradigm.git && cd war-paradigm · npm ci && npx playwright install --with-deps chromium · npm test. Las tres corridas no están registradas: grabarlas en la producción; no inventar tiempos ni salidas. El resultado documentado es '5/7 scored mutants killed · 2 survived · 0 excluded from score'."
+  },
+  {
+    "id": "E17",
+    "inicio": "11:11",
+    "fin": "12:22",
+    "tipo": "diagrama",
+    "visual": "Matriz requisito → mutante: R-2 → role-swap (403) ✓, R-3 → reorder (409) ✓, R-5 → stale-token (401) ✓, R-6 → drop-input (422) ✓, B-4 → boundary (422) ✓, R-1 → golden ✓, 'nadie cambia su propio rol' → self-grant (SURVIVED ✗), permisos de crear (viewer → 403) → viewer-create (SURVIVED ✗). R-4 y B-1 quedan vacíos con ⚠ 'sin mutante'.",
+    "texto_pantalla": {
+      "es": "R-4 (viewer no publica) ⚠ sin mutante · B-1 ⚠ sin mutante",
+      "en": "R-4 (viewer can't publish) ⚠ no mutant · B-1 ⚠ no mutant"
+    },
+    "assets": [
+      "brand/war-paradigm/experiments/02-mutants/tests/scenarios.ts",
+      "brand/war-paradigm/experiments/01-ai-verdict/fixtures/story-US-42.json",
+      "brand/war-paradigm/experiments/03-second-brain/vault/04 Sessions/2026-09-24 - mutants on DocFlow.md"
+    ],
+    "notas_animacion": "El mapeo es análisis del guion (no está escrito en el repo): rotular 'mapeo de Cristian'. Datos reales de scenarios.ts: role-swap expect 403 step approve as viewer · drop-input 422 · reorder 409 · stale-token 401 ttl 0 · boundary 422 title 81 · self-grant 403 esperado, 200 observado · viewer-create step create as viewer, 403 esperado, 201 observado."
+  },
+  {
+    "id": "E18",
+    "inicio": "12:22",
+    "fin": "13:45",
+    "tipo": "codigo",
+    "visual": "La nota de sesión del 24-sep renderizada (Goal, What happened, Decisions, Next) y al lado una plantilla de registro de cierre con sus campos llenándose.",
+    "texto_pantalla": {
+      "es": "Registro de cierre: requisitos+enlaces · corrida (fecha, revisión) · evidencia · known issues · riesgos aceptados (quién) · decisión (nombre, fecha)",
+      "en": "Closing record: requirements+links · run (date, revision) · evidence · known issues · accepted risks (who) · decision (name, date)"
+    },
+    "assets": [
+      "brand/war-paradigm/experiments/03-second-brain/vault/04 Sessions/2026-09-24 - mutants on DocFlow.md"
+    ],
+    "notas_animacion": "Texto real de la nota: '6 mutants as data, API-first. 5 killed, 1 survived.' · 'Opened DEF-001 self-grant role.' · 'Re-run the round after the fix; the self-grant mutant must be killed'. La plantilla de cierre es propuesta del guion."
+  },
+  {
+    "id": "E19",
+    "inicio": "13:45",
+    "fin": "14:57",
+    "tipo": "codigo",
+    "visual": "La regla de publicar de app/server.js con el 403 de viewers resaltado; al lado, la regla de la matriz de roles. Un mutante nuevo para R-4 entra como dato y queda con una etiqueta gold 'esperado, no demostrado' hasta que corre.",
+    "texto_pantalla": {
+      "es": "¿Habría fallado la suite si R-4 no se cumpliera?\nLeer el código ≠ evidencia ⚠",
+      "en": "Would the suite fail if R-4 weren't met?\nReading code ≠ evidence ⚠"
+    },
+    "assets": [
+      "brand/war-paradigm/experiments/02-mutants/app/server.js",
+      "brand/war-paradigm/experiments/03-second-brain/vault/03 Knowledge/Roles and permissions.md",
+      "brand/war-paradigm/experiments/02-mutants/tests/scenarios.ts"
+    ],
+    "notas_animacion": "Líneas reales: if (!can.publish(auth.user)) return [403, { error: 'viewers cannot publish' }]; · 'A forbidden role always gets 403, before any validation (422) or state (409) check.' El mutante de R-4 NO existe en el repo: si se muestra su línea de datos, rotularla 'propuesta' y no mostrar un resultado de corrida."
+  },
+  {
+    "id": "E20",
+    "inicio": "14:57",
+    "fin": "15:22",
+    "tipo": "resumen",
+    "visual": "Checklist de la rúbrica con franja dorada del nivel top.",
+    "texto_pantalla": {
+      "es": "☐ cada escenario con enlace real, sin placeholders\n☐ evidencia autocontenida y adjuntable\n☐ checklist con los errores que invalidan\n⚠ Top: un mutante atrapado por cada requisito",
+      "en": "☐ every scenario has a real link, no placeholders\n☐ self-contained, attachable evidence\n☐ checklist lists the invalidating errors\n⚠ Top: one caught mutant per requirement"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/modules-01-14.json (m8b.crit, m8b.top, m8b.deliver)"
+    ],
+    "notas_animacion": "Casillas que se marcan con ✓."
+  },
+  {
+    "id": "E21",
+    "inicio": "15:22",
+    "fin": "15:48",
+    "tipo": "quiz",
+    "visual": "Pregunta 1 con opciones y pausa.",
+    "texto_pantalla": {
+      "es": "¿Cuál INVALIDA un sign-off?\nA rojo honesto como known issue · B enlace “por resolver” · C @IGNORE con ticket y salida · D reporte single-file",
+      "en": "Which one INVALIDATES a sign-off?\nA honest red as a known issue · B link “to be resolved” · C @IGNORE with ticket and exit · D single-file report"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/quiz-11-19.json (m8b, pregunta 1)"
+    ],
+    "notas_animacion": "⏸ con cuenta regresiva."
+  },
+  {
+    "id": "E22",
+    "inicio": "15:48",
+    "fin": "16:24",
+    "tipo": "quiz",
+    "visual": "Revelación de la 1 y preguntas 2 y 3 con respuesta.",
+    "texto_pantalla": {
+      "es": "1 → B ✓\n2 Juicio de riesgo + responsabilidad: no se automatiza\n3 Reconstruir la cadena desde los registros, sin nadie",
+      "en": "1 → B ✓\n2 Risk judgment + responsibility: can't be automated\n3 Rebuild the chain from records, without anyone"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/quiz-11-19.json (m8b, preguntas 2 y 8)"
+    ],
+    "notas_animacion": "Correcta con ✓ y la palabra pasa."
+  },
+  {
+    "id": "E23",
+    "inicio": "16:24",
+    "fin": "16:59",
+    "tipo": "resumen",
+    "visual": "Tres tarjetas y la tarjeta del módulo 9 con ícono ⚙️. Firma.",
+    "texto_pantalla": {
+      "es": "1 Certificada ≠ done\n2 La firma es humana; el riesgo se acepta por escrito\n3 Un mutante por requisito antes de firmar\nSiguiente: Módulo 9 · CI/CD & Docker\nCristian Guerra · QA · Medellín",
+      "en": "1 Certified ≠ done\n2 The signature is human; risk is accepted in writing\n3 One mutant per requirement before signing\nNext: Module 9 · CI/CD & Docker\nCristian Guerra · QA · Medellín"
+    },
+    "assets": [],
+    "notas_animacion": "Cierre con la URL del curso."
+  }
+]

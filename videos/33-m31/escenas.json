@@ -1,0 +1,380 @@
+[
+  {
+    "id": "E01",
+    "inicio": "00:00",
+    "fin": "00:38",
+    "tipo": "titulo",
+    "visual": "Un detective (lupa) y una caja de trampas, ambos con la misma etiqueta «Cristian». Una flecha circular los une. Luego la tabla real de la mini-ronda aparece: la fila «energia x1.0001 · escapó · 4» en coral.",
+    "texto_pantalla": {
+      "es": "Rondas 1–4: yo hice las trampas y el detective · ✗ 4 trampas escaparon",
+      "en": "Rounds 1–4: I built the traps and the detective · ✗ 4 traps slipped through"
+    },
+    "assets": [
+      "predictor-debugger/round5/KIT.md («Qué se prueba»)",
+      "corrida de la mini-ronda (fuentes.md)"
+    ],
+    "notas_animacion": "Firma abajo a la izquierda: Cristian Guerra · QA · Medellín."
+  },
+  {
+    "id": "E02",
+    "inicio": "00:38",
+    "fin": "01:14",
+    "tipo": "terminal",
+    "visual": "Terminal: se cambia una palabra en etiquetas.json (resaltada) y revelar.py responde en coral con el hash que no coincide y exit=1.",
+    "texto_pantalla": {
+      "es": "$ uv run --locked python revelar.py ronda/etiquetas.json compromiso.txt veredictos.json; echo \"exit=$?\"\nel hash no coincide: 89168671f90683a71750696092c04ee4b0805b08bcf21524a1cf10ce2920ffaa != 4ef6b894ee42a218c74aad018d00fdc7b9b0ce5bd9713f738069b3f6ae03f4b6\nexit=1",
+      "en": "$ uv run --locked python revelar.py ronda/etiquetas.json compromiso.txt veredictos.json; echo \"exit=$?\"\nel hash no coincide: 89168671f90683a71750696092c04ee4b0805b08bcf21524a1cf10ce2920ffaa != 4ef6b894ee42a218c74aad018d00fdc7b9b0ce5bd9713f738069b3f6ae03f4b6\nexit=1"
+    },
+    "assets": [
+      "Corrida de la mini-ronda (fuentes.md, «Mutación: una etiqueta»)",
+      "revelar.py del módulo (m31.hands, paso 5)"
+    ],
+    "notas_animacion": "Subtítulo EN: «el hash no coincide» = «the hash doesn't match»."
+  },
+  {
+    "id": "E03",
+    "inicio": "01:14",
+    "fin": "01:52",
+    "tipo": "analogia",
+    "visual": "Ilustración: un niño escribe en un papel cuáles cajas tienen trampa, lo mete en un sobre y lo sella con un sello mint. Su amigo revisa las cajas con una lupa. Al final abren el sobre frente a todos y aparece un ✓ grande: «no cambió nada».",
+    "texto_pantalla": {
+      "es": "Escribes cuáles cajas tienen trampa · Sobre sellado · Al final lo abren todos",
+      "en": "Write down which boxes are traps · Seal the envelope · Open it in front of everyone"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/modules-30-35.json (m31.kid)"
+    ],
+    "notas_animacion": "Personajes simples; el sello es el símbolo visual del hash durante todo el video."
+  },
+  {
+    "id": "E04",
+    "inicio": "01:52",
+    "fin": "02:37",
+    "tipo": "diagrama",
+    "visual": "Dos personajes separados por una pared: A (prepara las trampas) y B (corre el depurador). A tiene el código de B abierto en una pantalla: «se vale leer el código y apuntar justo debajo de los umbrales».",
+    "texto_pantalla": {
+      "es": "Ronda 5: otra persona prepara los pares · «Se vale leer el código del depurador y apuntar justo debajo de sus umbrales»",
+      "en": "Round 5: someone else prepares the pairs · \"You're allowed to read the debugger's code and aim right below its thresholds\""
+    },
+    "assets": [
+      "predictor-debugger/round5/KIT.md («Qué se prueba»",
+      "«Las reglas del juego»)"
+    ],
+    "notas_animacion": "La pared entre A y B tiene una sola rendija por donde pasan objetos: primero el hash, luego los pares, al final las etiquetas."
+  },
+  {
+    "id": "E05",
+    "inicio": "02:37",
+    "fin": "03:20",
+    "tipo": "diagrama",
+    "visual": "Archivo etiquetas.json entra a una máquina «SHA-256» y sale una tira hex de 64 caracteres. Solo la tira viaja hacia B. Al final, el archivo revelado vuelve a pasar por la máquina y las dos tiras se comparan carácter a carácter: ✓ coinciden. Luego una letra cambia en el archivo y la tira entera cambia: ✗.",
+    "texto_pantalla": {
+      "es": "1 · shasum -a 256 etiquetas.json · 2 · se manda SOLO el hash · 3 · al revelar, cualquiera lo recalcula",
+      "en": "1 · shasum -a 256 etiquetas.json · 2 · send ONLY the hash · 3 · at the reveal, anyone recomputes it"
+    },
+    "assets": [
+      "predictor-debugger/round5/KIT.md (paso 4, «Compromiso»)",
+      "https://en.wikipedia.org/wiki/Commitment_scheme"
+    ],
+    "notas_animacion": "Animar el efecto avalancha: cambiar una letra cambia toda la tira."
+  },
+  {
+    "id": "E06",
+    "inicio": "03:20",
+    "fin": "04:03",
+    "tipo": "diagrama",
+    "visual": "Un atacante con una lista de etiquetados posibles calcula hashes uno por uno y compara con el publicado. Sin sal, uno coincide (✗ adivinado). Se añade el campo «sal» de 32 hex: la lista del atacante deja de servir (✓ no se puede adivinar).",
+    "texto_pantalla": {
+      "es": "«sal»: 32 caracteres hex aleatorios · sin sal, el hash se puede adivinar probando · con sal, compromete sin revelar",
+      "en": "\"sal\" (salt): 32 random hex characters · without it, the hash can be guessed by trial · with it, it commits without revealing"
+    },
+    "assets": [
+      "predictor-debugger/round5/KIT.md (paso 3, formato de etiquetas.json)",
+      "qa-automation-course/i18n/es/modules-30-35.json (m31.theory, «La sal»)"
+    ],
+    "notas_animacion": "Mostrar el JSON con el campo «sal» arriba, tal como lo define el kit."
+  },
+  {
+    "id": "E07",
+    "inicio": "04:03",
+    "fin": "04:50",
+    "tipo": "diagrama",
+    "visual": "Un commit en GitHub con el archivo round5/compromisos/<usuario>.txt y su hora. Luego, una rejilla de 100 archivos con nombres hex aleatorios (pares/9f3a1c2b.npz…) que se barajan; al lado, «pares.sha256».",
+    "texto_pantalla": {
+      "es": "Hash con hora: round5/compromisos/<usuario>.txt · ≥ 100 pares · ids con secrets.token_hex(4) · proporción secreta · pares.sha256",
+      "en": "Timestamped hash: round5/compromisos/<user>.txt · ≥ 100 pairs · ids from secrets.token_hex(4) · secret ratio · pares.sha256"
+    },
+    "assets": [
+      "predictor-debugger/round5/KIT.md (pasos 2, 4 y 5)"
+    ],
+    "notas_animacion": "Los nombres de archivo en pantalla son ilustrativos (formato real: 8 caracteres hex)."
+  },
+  {
+    "id": "E08",
+    "inicio": "04:50",
+    "fin": "05:30",
+    "tipo": "diagrama",
+    "visual": "Línea de tiempo tipo git log con cuatro commits en orden: «compromiso de A» → «regla congelada de B» → «veredictos de B» → «revelación de A». Si se intenta mover un commit de lugar, aparece ✗.",
+    "texto_pantalla": {
+      "es": "Orden en git log: compromiso de A → regla congelada de B → veredictos de B → revelación",
+      "en": "Order in git log: A's commitment → B's frozen rule → B's verdicts → reveal"
+    },
+    "assets": [
+      "predictor-debugger/round5/KIT.md (pasos 6 y 7)",
+      "qa-automation-course/i18n/es/modules-30-35.json (m31.crit)"
+    ],
+    "notas_animacion": "Cada commit con su hora; la flecha del tiempo en mint."
+  },
+  {
+    "id": "E09",
+    "inicio": "05:30",
+    "fin": "06:13",
+    "tipo": "diagrama",
+    "visual": "Tabla con tres columnas: falsas alarmas (esperado 0), detectadas, escapadas; filas por tipo y magnitud. Una fila coral de escapadas queda fija; una mano intenta borrarla y aparece «✗ no se esconde».",
+    "texto_pantalla": {
+      "es": "Falsas alarmas (esperado 0) · detectadas por tipo y tamaño · escapadas también · «lo que quede por debajo se reporta como no detectado, no se esconde»",
+      "en": "False alarms (expected 0) · detected by type and size · escaped too · \"whatever falls below gets reported as not detected, not hidden\""
+    },
+    "assets": [
+      "predictor-debugger/round5/KIT.md («Lo que se va a reportar»)"
+    ],
+    "notas_animacion": "La mano que intenta borrar la fila es el chiste visual del bloque."
+  },
+  {
+    "id": "E10",
+    "inicio": "06:13",
+    "fin": "06:59",
+    "tipo": "diagrama",
+    "visual": "Una terminal del autor, fuera de la sesión del asistente, genera la semilla con openssl rand -hex 16. Solo el hash sale de esa ventana hacia el repo. El asistente aparece con una nota gold: «tenía acceso al disco · la regla descansa en el compromiso».",
+    "texto_pantalla": {
+      "es": "openssl rand -hex 16 fuera de la sesión del asistente · solo se publica el SHA-256 · Regla 2: quien corre los chequeos no lee la semilla · Regla 4: semilla perdida o editada = experimento anulado",
+      "en": "openssl rand -hex 16 outside the assistant's session · only the SHA-256 is published · Rule 2: whoever runs the checks doesn't read the seed · Rule 4: lost or edited seed = experiment void"
+    },
+    "assets": [
+      "scientific-qa-evidence/experiments/blind-faults/SEED_COMMITMENT.md"
+    ],
+    "notas_animacion": "La nota gold sobre el acceso al disco tiene que quedarse en pantalla mientras la voz la dice."
+  },
+  {
+    "id": "E11",
+    "inicio": "06:59",
+    "fin": "07:43",
+    "tipo": "diagrama",
+    "visual": "Marcador: línea base 3/21, protocolo 15/21. Luego cuatro escalones de revisión con sus hallazgos: 7, 3, 0, 7 → total 17. Un sello gold: «v1 conservada con fe de erratas · benchmark de regresión, no tasa real».",
+    "texto_pantalla": {
+      "es": "Línea base 3/21 · protocolo 15/21 · 4 rondas de revisión: 17 problemas · v1 con fe de erratas · benchmark de regresión, no tasa de detección real",
+      "en": "Baseline 3/21 · protocol 15/21 · 4 review rounds: 17 problems · v1 kept with errata · regression benchmark, not a real detection rate"
+    },
+    "assets": [
+      "scientific-qa-evidence/experiments/blind-faults/STATUS.md",
+      "RESULTS.md (fe de erratas)",
+      "review_rounds.json",
+      "README.es.md («Benchmark de fallos a ciegas»)"
+    ],
+    "notas_animacion": "Los cuatro escalones muestran quién revisó: revisión externa (7 y 3) y el asistente (0 y 7)."
+  },
+  {
+    "id": "E12",
+    "inicio": "07:43",
+    "fin": "08:23",
+    "tipo": "terminal",
+    "visual": "Terminal: clone, cd y shasum sobre la semilla. Debajo, el hash publicado en SEED_COMMITMENT.md; los dos se superponen carácter a carácter y quedan en mint con ✓.",
+    "texto_pantalla": {
+      "es": "$ git clone https://github.com/criguex/scientific-qa-evidence.git\n$ cd scientific-qa-evidence/experiments/blind-faults\n$ shasum -a 256 semilla-experimento.txt\n6ab9f825a6e0102f06589795a3f3afb81b954ec054362e7e0352018547614d5e  semilla-experimento.txt",
+      "en": "$ git clone https://github.com/criguex/scientific-qa-evidence.git\n$ cd scientific-qa-evidence/experiments/blind-faults\n$ shasum -a 256 semilla-experimento.txt\n6ab9f825a6e0102f06589795a3f3afb81b954ec054362e7e0352018547614d5e  semilla-experimento.txt"
+    },
+    "assets": [
+      "Corrida en el clon de scientific-qa-evidence @ c02e623",
+      "hash publicado: experiments/blind-faults/SEED_COMMITMENT.md"
+    ],
+    "notas_animacion": "Superponer la línea de SEED_COMMITMENT.md con la salida para mostrar la coincidencia."
+  },
+  {
+    "id": "E13",
+    "inicio": "08:23",
+    "fin": "09:06",
+    "tipo": "terminal",
+    "visual": "Terminal con la receta de RESULTS.md: carpeta aparte, assign.py con la semilla, diff contra key.json y contra la carpeta de casos. La palabra «identical» aparece en mint.",
+    "texto_pantalla": {
+      "es": "$ mkdir /tmp/repro && cp protocol_lib.py assign.py /tmp/repro/\n$ (cd /tmp/repro && python3 assign.py --seed-file \"$OLDPWD/semilla-experimento.txt\" --out cases)\n{\n  \"seed_sha256\": \"6ab9f825a6e0102f06589795a3f3afb81b954ec054362e7e0352018547614d5e\",\n  \"cases\": 21,\n  \"out\": \"cases\",\n  \"key\": \"key.json (keep private until results are recorded)\"\n}\n$ diff /tmp/repro/key.json key.json && diff -r /tmp/repro/cases cases && echo identical\nidentical",
+      "en": "$ mkdir /tmp/repro && cp protocol_lib.py assign.py /tmp/repro/\n$ (cd /tmp/repro && python3 assign.py --seed-file \"$OLDPWD/semilla-experimento.txt\" --out cases)\n{\n  \"seed_sha256\": \"6ab9f825a6e0102f06589795a3f3afb81b954ec054362e7e0352018547614d5e\",\n  \"cases\": 21,\n  \"out\": \"cases\",\n  \"key\": \"key.json (keep private until results are recorded)\"\n}\n$ diff /tmp/repro/key.json key.json && diff -r /tmp/repro/cases cases && echo identical\nidentical"
+    },
+    "assets": [
+      "scientific-qa-evidence/experiments/blind-faults/RESULTS.md («Reproduce the assignment»)",
+      "corrida propia (fuentes.md)"
+    ],
+    "notas_animacion": "En la corrida de este paquete se usó una carpeta del scratchpad en lugar de /tmp/repro; la salida es la misma."
+  },
+  {
+    "id": "E14",
+    "inicio": "09:06",
+    "fin": "09:50",
+    "tipo": "codigo",
+    "visual": "Editor con preparar.py del módulo. Se iluminan: el diccionario de trampas, la sal con secrets.token_hex(16), el id con secrets.token_hex(4) y la magnitud.",
+    "texto_pantalla": {
+      "es": "# preparar.py (módulo m31, paso 3; persona A)\ntrampas = {\n    \"correcto\": lambda u: u,\n    \"float32\": lambda u: u.astype(np.float32).astype(np.float64),\n    \"energia x1.05\": lambda u: 1.05 * u,\n    \"energia x1.0001\": lambda u: 1.0001 * u,\n    \"ruido 1e-3\": lambda u: u + 1e-3 * np.random.default_rng(secrets.randbits(32)).standard_normal(u.shape),\n}\netiquetas = {\"sal\": secrets.token_hex(16), \"pares\": {}}\n...\n        pid = secrets.token_hex(4)\n        np.savez(out / \"pares\" / f\"{pid}.npz\", u0=u0, u1=u1)\n        mag = float(np.linalg.norm(u1 - exacto) / np.linalg.norm(exacto))",
+      "en": "# preparar.py (module m31, step 3; person A)\ntrampas = {\n    \"correcto\": lambda u: u,\n    \"float32\": lambda u: u.astype(np.float32).astype(np.float64),\n    \"energia x1.05\": lambda u: 1.05 * u,\n    \"energia x1.0001\": lambda u: 1.0001 * u,\n    \"ruido 1e-3\": lambda u: u + 1e-3 * np.random.default_rng(secrets.randbits(32)).standard_normal(u.shape),\n}\netiquetas = {\"sal\": secrets.token_hex(16), \"pares\": {}}\n...\n        pid = secrets.token_hex(4)\n        np.savez(out / \"pares\" / f\"{pid}.npz\", u0=u0, u1=u1)\n        mag = float(np.linalg.norm(u1 - exacto) / np.linalg.norm(exacto))"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/modules-30-35.json (m31.hands, paso 3",
+      "script completo en fuentes.md)"
+    ],
+    "notas_animacion": "Subtítulos EN para los nombres de las trampas: correcto = correct, energia = energy, ruido = noise."
+  },
+  {
+    "id": "E15",
+    "inicio": "09:50",
+    "fin": "10:34",
+    "tipo": "terminal",
+    "visual": "Terminal: corre preparar.py, se crea compromiso.txt y se muestra; la carpeta ronda/pares se lista con 20 archivos de nombre hex. etiquetas.json queda con un candado: «se queda en la máquina de A».",
+    "texto_pantalla": {
+      "es": "$ uv run --locked python preparar.py ronda\n$ shasum -a 256 ronda/etiquetas.json > compromiso.txt\n$ cat compromiso.txt\n4ef6b894ee42a218c74aad018d00fdc7b9b0ce5bd9713f738069b3f6ae03f4b6  ronda/etiquetas.json\n$ ls ronda/pares | head -3; ls ronda/pares | wc -l\n0b2b989e.npz\n12718f40.npz\n197da814.npz\n      20",
+      "en": "$ uv run --locked python preparar.py ronda\n$ shasum -a 256 ronda/etiquetas.json > compromiso.txt\n$ cat compromiso.txt\n4ef6b894ee42a218c74aad018d00fdc7b9b0ce5bd9713f738069b3f6ae03f4b6  ronda/etiquetas.json\n$ ls ronda/pares | head -3; ls ronda/pares | wc -l\n0b2b989e.npz\n12718f40.npz\n197da814.npz\n      20"
+    },
+    "assets": [
+      "Corrida propia en un clon de predictor-debugger @ 03223f7 (fuentes.md)"
+    ],
+    "notas_animacion": "El candado sobre etiquetas.json es el sello visual del video."
+  },
+  {
+    "id": "E16",
+    "inicio": "10:34",
+    "fin": "11:21",
+    "tipo": "terminal",
+    "visual": "Terminal: B hashea su regla (revisar.py y thresholds.json), corre revisar.py y muestra el inicio de veredictos.json. El hash de thresholds.json se resalta: coincide con el publicado en RESULTS.md de la ronda 1.",
+    "texto_pantalla": {
+      "es": "$ shasum -a 256 revisar.py thresholds.json\ndea1b9a02da470ae6d78138242ecd6dbf623ae15bc51650f050fb97cae26ea04  revisar.py\n77bfdca0156fc677a4f044caeedcb65b4ae717b582bc329d8f39234abfad32eb  thresholds.json\n$ uv run --locked python revisar.py ronda/pares > veredictos.json\n$ head -12 veredictos.json\n{\n \"0b2b989e\": {\n  \"marcado\": true,\n  \"por\": [\n   \"D2\",\n   \"D3\"\n  ]\n },\n \"12718f40\": {\n  \"marcado\": false,\n  \"por\": []\n },",
+      "en": "$ shasum -a 256 revisar.py thresholds.json\ndea1b9a02da470ae6d78138242ecd6dbf623ae15bc51650f050fb97cae26ea04  revisar.py\n77bfdca0156fc677a4f044caeedcb65b4ae717b582bc329d8f39234abfad32eb  thresholds.json\n$ uv run --locked python revisar.py ronda/pares > veredictos.json\n$ head -12 veredictos.json\n{\n \"0b2b989e\": {\n  \"marcado\": true,\n  \"por\": [\n   \"D2\",\n   \"D3\"\n  ]\n },\n \"12718f40\": {\n  \"marcado\": false,\n  \"por\": []\n },"
+    },
+    "assets": [
+      "Corrida propia (fuentes.md)",
+      "revisar.py del módulo (m31.hands, paso 4)",
+      "hash de thresholds.json en predictor-debugger/RESULTS.md («77bfdca0…ad32eb»)"
+    ],
+    "notas_animacion": "Subtítulos EN: marcado = flagged, por = by."
+  },
+  {
+    "id": "E17",
+    "inicio": "11:21",
+    "fin": "12:04",
+    "tipo": "terminal",
+    "visual": "Terminal con la salida real de revelar.py: la tabla por tipo; las filas «aceptado bien» y «detectada» en mint con ✓, la fila «escapó» en coral con ✗; exit=0.",
+    "texto_pantalla": {
+      "es": "$ uv run --locked python revelar.py ronda/etiquetas.json compromiso.txt veredictos.json; echo \"exit=$?\"\ncorrecto           aceptado bien  4\nenergia x1.0001    escapó         4\nenergia x1.05      detectada      4\nfloat32            aceptado bien  4\nruido 1e-3         detectada      4\nexit=0",
+      "en": "$ uv run --locked python revelar.py ronda/etiquetas.json compromiso.txt veredictos.json; echo \"exit=$?\"\ncorrecto           aceptado bien  4\nenergia x1.0001    escapó         4\nenergia x1.05      detectada      4\nfloat32            aceptado bien  4\nruido 1e-3         detectada      4\nexit=0"
+    },
+    "assets": [
+      "Corrida propia (fuentes.md)",
+      "revelar.py del módulo (m31.hands, paso 5)"
+    ],
+    "notas_animacion": "Subtítulos EN: aceptado bien = correctly accepted, detectada = detected, escapó = escaped."
+  },
+  {
+    "id": "E18",
+    "inicio": "12:04",
+    "fin": "12:45",
+    "tipo": "terminal",
+    "visual": "Terminal dividida. Arriba: una etiqueta cambia de «trampa» a «correcto» y revelar.py falla con exit=1. Abajo: se restaura el archivo, cambia solo la sal, y revelar.py vuelve a fallar con otro hash y exit=1. Al final, shasum -c sobre el archivo restaurado da OK.",
+    "texto_pantalla": {
+      "es": "# 1 · una etiqueta: \"trampa\" → \"correcto\"\nel hash no coincide: 89168671f90683a71750696092c04ee4b0805b08bcf21524a1cf10ce2920ffaa != 4ef6b894ee42a218c74aad018d00fdc7b9b0ce5bd9713f738069b3f6ae03f4b6\nexit=1\n# 2 · archivo restaurado, solo cambia la sal\nel hash no coincide: 43c1409c7f809d64b21a1cf89a8ce998e1e54f5ad56d2b1a7d685dfe75ed08d7 != 4ef6b894ee42a218c74aad018d00fdc7b9b0ce5bd9713f738069b3f6ae03f4b6\nexit=1\n# restaurado\n$ shasum -a 256 -c compromiso.txt\nronda/etiquetas.json: OK",
+      "en": "# 1 · one label: \"trampa\" → \"correcto\"\nel hash no coincide: 89168671f90683a71750696092c04ee4b0805b08bcf21524a1cf10ce2920ffaa != 4ef6b894ee42a218c74aad018d00fdc7b9b0ce5bd9713f738069b3f6ae03f4b6\nexit=1\n# 2 · file restored, only the salt changes\nel hash no coincide: 43c1409c7f809d64b21a1cf89a8ce998e1e54f5ad56d2b1a7d685dfe75ed08d7 != 4ef6b894ee42a218c74aad018d00fdc7b9b0ce5bd9713f738069b3f6ae03f4b6\nexit=1\n# restored\n$ shasum -a 256 -c compromiso.txt\nronda/etiquetas.json: OK"
+    },
+    "assets": [
+      "Corrida propia (fuentes.md, «Mutación»)",
+      "qa-automation-course/i18n/es/modules-30-35.json (m31.mut)"
+    ],
+    "notas_animacion": "Las líneas con # son rótulos de la escena. Subtítulo EN: el hash no coincide = the hash doesn't match."
+  },
+  {
+    "id": "E19",
+    "inicio": "12:45",
+    "fin": "13:24",
+    "tipo": "diagrama",
+    "visual": "Dos opciones lado a lado: «los pares del paso 3» y «20 mutantes del golden flow de war-paradigm (tests/scenarios.ts)». Debajo, el flujo A → hash → B regla → B veredictos → A revela → B verifica y publica la tabla.",
+    "texto_pantalla": {
+      "es": "Prueba a ciegas en parejas · Opción 1: pares del paso 3 · Opción 2: 20 mutantes de war-paradigm/experiments/02-mutants",
+      "en": "Blind test in pairs · Option 1: the step 3 pairs · Option 2: 20 mutants from war-paradigm/experiments/02-mutants"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/modules-30-35.json (m31.hands, ejercicio verificable",
+      "m31.deliver)"
+    ],
+    "notas_animacion": "El flujo usa los mismos colores que la línea de tiempo de E08."
+  },
+  {
+    "id": "E20",
+    "inicio": "13:24",
+    "fin": "14:15",
+    "tipo": "diagrama",
+    "visual": "Lista de seis criterios que se marcan con ✓ uno por uno; luego la escalera de la rúbrica 1–4 con el nivel 4: «al menos una trampa justo debajo de un umbral, reportada como escapada si así fue».",
+    "texto_pantalla": {
+      "es": "git log en orden · shasum coincide · revelar.py sale con 1 si cambias una palabra · ids aleatorios · ninguna fila quitada · el reporte dice qué no prueba",
+      "en": "git log in order · shasum matches · revelar.py exits 1 if you change one word · random ids · no row removed · the report says what it doesn't prove"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/modules-30-35.json (m31.crit, m31.top)",
+      "qa-automation-course/i18n/es/pages.json (eval.s05)"
+    ],
+    "notas_animacion": "El nivel 4 con borde gold."
+  },
+  {
+    "id": "E21",
+    "inicio": "14:15",
+    "fin": "14:46",
+    "tipo": "quiz",
+    "visual": "Tarjeta de pregunta con cuatro opciones; cuenta regresiva gold de 5 segundos; la correcta en mint con ✓.",
+    "texto_pantalla": {
+      "es": "¿Para qué lleva etiquetas.json un campo «sal» de 32 caracteres hex aleatorios? · A) Para que el archivo pese más · B) Para que nadie adivine las etiquetas probando etiquetados contra el hash · C) Para firmar el archivo · D) Para ordenar los pares → ✓ B",
+      "en": "Why does etiquetas.json carry a \"sal\" (salt) field of 32 random hex characters? · A) To make the file bigger · B) So nobody can guess the labels by hashing candidate labelings · C) To sign the file · D) To sort the pairs → ✓ B"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/quiz-28-35.json (m31, pregunta 2)"
+    ],
+    "notas_animacion": "Pausa de 5 s antes de revelar."
+  },
+  {
+    "id": "E22",
+    "inicio": "14:46",
+    "fin": "15:21",
+    "tipo": "quiz",
+    "visual": "Misma tarjeta, segunda pregunta.",
+    "texto_pantalla": {
+      "es": "Los ids son 0001, 0002, 0003… y las trampas van primero. ¿Qué problema hay? · A) Ninguno · B) El orden filtra la etiqueta: el kit pide ids aleatorios sin relación con la etiqueta ni con el orden · C) Los ids son muy cortos · D) Faltan ceros → ✓ B",
+      "en": "The ids are 0001, 0002, 0003… and the traps come first. What's wrong? · A) Nothing · B) The order leaks the label: the kit asks for random ids unrelated to label or order · C) The ids are too short · D) Missing zeros → ✓ B"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/quiz-28-35.json (m31, pregunta 3)"
+    ],
+    "notas_animacion": "Pausa de 5 s antes de revelar."
+  },
+  {
+    "id": "E23",
+    "inicio": "15:21",
+    "fin": "15:59",
+    "tipo": "quiz",
+    "visual": "Misma tarjeta, tercera pregunta.",
+    "texto_pantalla": {
+      "es": "Una trampa de energía ×1,0001 queda por debajo del piso y no se marca. ¿Qué se reporta? · A) Se quita porque era demasiado pequeña · B) Se reporta como no detectada, con su tipo y magnitud · C) Se bajan los umbrales y se vuelve a correr · D) Se cuenta como acierto → ✓ B",
+      "en": "An energy ×1.0001 trap falls below the floor and isn't flagged. What gets reported? · A) It's dropped for being too small · B) It's reported as not detected, with its type and magnitude · C) Thresholds get lowered and it's rerun · D) It counts as a hit → ✓ B"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/quiz-28-35.json (m31, pregunta 5)"
+    ],
+    "notas_animacion": "Pausa de 5 s antes de revelar."
+  },
+  {
+    "id": "E24",
+    "inicio": "15:59",
+    "fin": "16:47",
+    "tipo": "resumen",
+    "visual": "Tres tarjetas: «Sella antes de entregar» · «Congela la regla antes de abrir» · «Reporta lo que escapa». Luego la tarjeta del capstone y la firma.",
+    "texto_pantalla": {
+      "es": "1 · Sella antes de entregar: hash con sal · 2 · Congela la regla antes de abrir · 3 · Reporta lo que escapa · Siguiente: capstone «Auditoría WAR»",
+      "en": "1 · Seal before delivery: salted hash · 2 · Freeze the rule before opening · 3 · Report what slips through · Next: capstone \"WAR Audit\""
+    },
+    "assets": [
+      "qa-automation-course/course.json (orden: m31 posición 33, m12 posición 34)"
+    ],
+    "notas_animacion": "Firma final: Cristian Guerra · QA · Medellín. Enlace al módulo en pantalla."
+  }
+]

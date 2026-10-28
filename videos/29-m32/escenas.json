@@ -1,0 +1,307 @@
+[
+  {
+    "id": "E01",
+    "inicio": "00:00",
+    "fin": "00:39",
+    "tipo": "animacion",
+    "visual": "Página de spec en blanco que se llena de líneas. Tres frases se iluminan una tras otra con una calculadora al lado: 'ventana semanal (20 ago – 27 sep)' → calendario que cuenta 38 días ✗ · '14 competidores' → lista de 12 → grafo de 7 ✗ · 'escalados 31' y 'escalados 2' en la misma pantalla ✗. Contador final: 19.",
+    "texto_pantalla": {
+      "es": "\"Semanal\" = 38 días · 14 = 12 = 7 · 31 ≠ 2",
+      "en": "\"Weekly\" = 38 days · 14 = 12 = 7 · 31 ≠ 2"
+    },
+    "assets": [],
+    "notas_animacion": "Cifras de spec-review-case-study/docs/findings.es.md (F04, F05, F06)."
+  },
+  {
+    "id": "E02",
+    "inicio": "00:39",
+    "fin": "01:03",
+    "tipo": "titulo",
+    "visual": "Tarjeta con ícono 📐 y chip criguex/spec-review-case-study. Tres insignias del README: 19 hallazgos · 4 bloqueantes · 0 código antes de revisar. Firma.",
+    "texto_pantalla": {
+      "es": "Módulo 29 · QA de requisitos: revisar la spec antes de construir\nCristian Guerra · QA · Medellín",
+      "en": "Module 29 · Requirements QA: review the spec before building\nCristian Guerra · QA · Medellín"
+    },
+    "assets": [
+      "spec-review-case-study/docs/assets/banner.svg"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E03",
+    "inicio": "01:03",
+    "fin": "01:48",
+    "tipo": "analogia",
+    "visual": "Receta de torta en dos páginas: '3 huevos' en la página 1 y '2 huevos' en la 2; temperatura del horno en blanco. Una lupa marca cada problema; el cocinero deja el horno apagado y levanta la mano para preguntar.",
+    "texto_pantalla": {
+      "es": "Preguntar antes cuesta un minuto. Después, la torta.",
+      "en": "Asking first costs a minute. Later, the cake."
+    },
+    "assets": [
+      "spec-review-case-study/docs/assets/explained.es.gif (referencia de estilo; EN: explained.gif)"
+    ],
+    "notas_animacion": "Basada en m32.kid y en la sección para niños del README.es.md."
+  },
+  {
+    "id": "E04",
+    "inicio": "01:48",
+    "fin": "02:27",
+    "tipo": "diagrama",
+    "visual": "La spec sale de una captura de pantalla de una demo ajena (cabecera difuminada 'Empresa A', competidores genéricos, números de 'una semana'). Una flecha convierte cada cifra en un signo de interrogación dirigido al dueño.",
+    "texto_pantalla": {
+      "es": "Si copia una demo, sus números son ejemplos, no requisitos",
+      "en": "If it copies a demo, its numbers are examples, not requirements"
+    },
+    "assets": [],
+    "notas_animacion": "Todo anonimizado como en el repo: no inventar nombres de empresas."
+  },
+  {
+    "id": "E05",
+    "inicio": "02:27",
+    "fin": "03:11",
+    "tipo": "diagrama",
+    "visual": "Seis pasos en fila: 1 leer la intención · 2 recalcular cada número · 3 cuestionar los 'hechos' · 4 seguir cada definición · 5 severidad · 6 decidir (preguntas + fases).",
+    "texto_pantalla": {
+      "es": "Leer · recalcular · cuestionar · rastrear · calificar · decidir",
+      "en": "Read · recompute · challenge · trace · rate · decide"
+    },
+    "assets": [
+      "spec-review-case-study/docs/assets/how-it-works.svg"
+    ],
+    "notas_animacion": "Basado en README.es.md §Cómo funciona."
+  },
+  {
+    "id": "E06",
+    "inicio": "03:11",
+    "fin": "03:41",
+    "tipo": "diagrama",
+    "visual": "Tres montones de tarjetas: 7 números que no cuadran · 3 costos/latencias como hechos · 9 cosas sin definir. Cuatro tarjetas con borde coral 'Bloqueante' (F11, F12, F16, F18). Debajo, un contador de estado: 8 Propuesto · 11 Abierto · 0 cerrado.",
+    "texto_pantalla": {
+      "es": "19 hallazgos · 4 bloqueantes · identificados, no cerrados",
+      "en": "19 findings · 4 blockers · identified, not closed"
+    },
+    "assets": [
+      "spec-review-case-study/README.es.md (tabla de hallazgos)"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E07",
+    "inicio": "03:41",
+    "fin": "05:04",
+    "tipo": "diagrama",
+    "visual": "Cuatro mini-tableros: F06 calendario 20 ago → 27 sep = 38 días · F05 barras de 12 competidores que suman 1.517 de 2.070 (553 sin cuenta) y un grafo de 7 nodos · F04 tarjeta '31' junto a barra '2' y panel '2' · F02 dona 85 % amenazas sobre 67 % ruido que se desborda; máx. 683 no-ruido vs 1.753 amenazas. Al final F03: 'ruido' 67 % (KPI) vs 4 % (etiqueta).",
+    "texto_pantalla": {
+      "es": "Sumar, dividir, comparar el mismo dato en todas partes",
+      "en": "Add, divide, compare the same figure everywhere"
+    },
+    "assets": [
+      "spec-review-case-study/docs/findings.es.md (F02-F06)"
+    ],
+    "notas_animacion": "Cada contradicción con ✗ y la palabra 'falla'."
+  },
+  {
+    "id": "E08",
+    "inicio": "05:04",
+    "fin": "05:50",
+    "tipo": "diagrama",
+    "visual": "Tres pruebas de aceptación como tarjetas: gasto $0,2087 ± $0,01 · ruido 67 % · P50 200–250 ms. Cada una con la pregunta '¿qué comportamiento demuestra?' y respuesta '—'. Se reemplazan por una sola tarjeta mint: 'prueba con 10 señales fijas: contrato JSON + reglas de escalado'.",
+    "texto_pantalla": {
+      "es": "F10: pruebas que copian la demo = falso verde de diseño",
+      "en": "F10: tests that copy the demo = a design-time false green"
+    },
+    "assets": [
+      "spec-review-case-study/docs/findings.es.md (F10)"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E09",
+    "inicio": "05:50",
+    "fin": "06:35",
+    "tipo": "diagrama",
+    "visual": "Medidor de probabilidad con aguja en 0,85 y la etiqueta '⚠ sin calibrar'. A la derecha, una pila de ~100 señales que el dueño marca útil/ruido, y un arco hacia el módulo 25 (calibrar un juez).",
+    "texto_pantalla": {
+      "es": "F13: 0,85 sin un set etiquetado es arbitrario",
+      "en": "F13: 0.85 without a labeled set is arbitrary"
+    },
+    "assets": [
+      "spec-review-case-study/docs/findings.es.md (F13)"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E10",
+    "inicio": "06:35",
+    "fin": "07:16",
+    "tipo": "diagrama",
+    "visual": "Escala de severidad de tres niveles con su definición: Bloqueante (coral) · Alta (gold) · Media (texto). Sello al lado: 'criterio de quien revisa, no medición'.",
+    "texto_pantalla": {
+      "es": "Bloqueante · Alta · Media — y es criterio",
+      "en": "Blocker · High · Medium — and it's judgment"
+    },
+    "assets": [
+      "spec-review-case-study/docs/findings.es.md (Escala de severidad)"
+    ],
+    "notas_animacion": "Cita de Límites del README.es.md."
+  },
+  {
+    "id": "E11",
+    "inicio": "07:16",
+    "fin": "08:00",
+    "tipo": "terminal",
+    "visual": "Salida real (copia de spec-review-case-study, commit 97dc791, 2026-10-26):\n$ git clone https://github.com/criguex/spec-review-case-study.git && cd spec-review-case-study\n$ python3 check_numbers.py; echo \"exit=$?\"\n! F01  1334 + 1158 = 2492 raw, 2070 unique: 422 duplicates (16.9%), all of them web (36.4% of web), none social\n✗ F02  1753 threats = 84.7% of signals, but 67% noise leaves at most 683 non-noise\n✗ F03  noise KPI 67% vs 'ignore' label 4% in the taxonomy\n✗ F04  escalated: 31 (KPI) / 2 (bar) / 2 (panel); brief promises 3 actions, shows 2\n✗ F05  12 of 14 competitors listed, sum 1517: 553 signals (26.7%) unaccounted; graph draws 7\n✗ F06  'weekly' window 20 Aug - 27 Sep = 38 days\n✗ F07  'tokens processed' 24,849 counts output only; input ~2,070,000 is 98.8% of all tokens\n! F08  week spend $0.2087 vs 2.07M input tokens x $0.1/M = $0.2070: classifier input only; output and brief costs missing\n6 contradictions, 2 unexplained, 0 ok\nassumptions behind F01, F02, F07 and F08: python3 check_numbers.py --assumptions\nexit=1",
+    "texto_pantalla": {
+      "es": "✗ 6 contradicciones · ⚠ 2 sin explicar · exit 1",
+      "en": "✗ 6 contradictions · ⚠ 2 unexplained · exit 1"
+    },
+    "assets": [
+      "spec-review-case-study/check_numbers.py"
+    ],
+    "notas_animacion": "Ojo: la salida del repo hoy difiere de la que trae el texto del módulo (26.7 % vs 27 %, 98.8 % vs 99 %, mensaje de F08 y la línea de assumptions). Se muestra la real."
+  },
+  {
+    "id": "E12",
+    "inicio": "08:00",
+    "fin": "08:46",
+    "tipo": "codigo",
+    "visual": "Código real de check_numbers.py:\nSPEC = {\n    \"social\": 1334, \"web\": 1158, \"unique\": 2070, \"web_shown\": 736,\n    \"threats\": 1753, \"noise\": 0.67, \"ignore_share\": 0.04,\n    ...\n    \"window\": (date(2026, 8, 20), date(2026, 9, 27)),\n    \"output_tokens\": 24849, \"week_spend\": 0.2087,\n}\nASSUMPTIONS = {\"input_tokens_per_signal\": 1000, \"input_price_per_m\": 0.10, \"spend_tolerance\": 0.002}\n...\n    start, end = s[\"window\"]\n    days = (end - start).days\n    yield \"F06\", mark(days == 7), f\"'weekly' window {start:%d %b} - {end:%d %b} = {days} days\"\n...\n    return 1 if wrong or unclear else 0",
+    "texto_pantalla": {
+      "es": "✗ contradicción · ! sin explicar · ✓ cuadra",
+      "en": "✗ contradiction · ! unexplained · ✓ adds up"
+    },
+    "assets": [
+      "spec-review-case-study/check_numbers.py"
+    ],
+    "notas_animacion": "SPEC = cifras de la spec; ASSUMPTIONS = estimaciones propias. Resaltarlos con colores distintos."
+  },
+  {
+    "id": "E13",
+    "inicio": "08:46",
+    "fin": "09:47",
+    "tipo": "terminal",
+    "visual": "Salidas reales:\n$ python3 -m unittest test_check_numbers\nRan 7 tests in 0.000s\nOK\n$ python3 check_numbers.py --assumptions\n- F01: duplicates are raw (social + web) minus unique; the spec gives no dedup rule.\n- F02: 'noise' is a share of unique signals, so threats must fit in what is left.\n- F07, F08: ~1,000 input tokens per signal is our estimate, not a number in the spec.\n- F08: $0.10 per million input tokens is the classifier price the spec quotes; output and brief costs have no price in the spec, so the weekly spend can never be fully verified here.\nY el CI (.github/workflows/check.yml): 'tests of the checker itself' → 'the published spec must still fail' (test \"$code\" -eq 1).",
+    "texto_pantalla": {
+      "es": "El verificador también se prueba · la spec debe seguir fallando",
+      "en": "The checker gets tested too · the spec must keep failing"
+    },
+    "assets": [
+      "spec-review-case-study/test_check_numbers.py",
+      "spec-review-case-study/.github/workflows/check.yml"
+    ],
+    "notas_animacion": "Las pruebas imprimen también la salida del script (llaman a main); se recortan."
+  },
+  {
+    "id": "E14",
+    "inicio": "09:47",
+    "fin": "10:35",
+    "tipo": "navegador",
+    "visual": "GitHub: spec-review-case-study/docs/checklist.es.md. Scroll por los bloques 0 a 6; resaltar '- [ ] Las ventanas de tiempo cuadran con su nombre (\"semanal\" = 7 días). [F06]' y los cuatro puntos sin hallazgo (primero del bloque 0 y los tres del bloque 6).",
+    "texto_pantalla": {
+      "es": "26 puntos · 7 bloques (0-6) · cada uno con su hallazgo",
+      "en": "26 items · 7 blocks (0-6) · each tied to its finding"
+    },
+    "assets": [
+      "spec-review-case-study/docs/checklist.es.md",
+      "spec-review-case-study/docs/checklist.md"
+    ],
+    "notas_animacion": "El README dice 'seis bloques', pero el archivo tiene bloques numerados del 0 al 6 (siete). Se narra lo que tiene el archivo."
+  },
+  {
+    "id": "E15",
+    "inicio": "10:35",
+    "fin": "11:17",
+    "tipo": "diagrama",
+    "visual": "Cinco puertas en fila: P0 Definir (0 código · 7 preguntas · puerta: respuestas en la mano) → P1 MVP 1–2 días (puerta: 10 señales fijas) → P2 Calibrar (puerta: precisión medida, no supuesta) → P3 Interfaz (solo si P2 demuestra valor) → P4 Escalar (14+ competidores).",
+    "texto_pantalla": {
+      "es": "Fases con puerta · la primera tiene cero código",
+      "en": "Gated phases · the first has zero code"
+    },
+    "assets": [
+      "spec-review-case-study/docs/findings.es.md (Qué salió de la revisión)"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E16",
+    "inicio": "11:17",
+    "fin": "11:40",
+    "tipo": "terminal",
+    "visual": "Mutante de control en una copia (revertido después):\n-    \"window\": (date(2026, 8, 20), date(2026, 9, 27)),\n+    \"window\": (date(2026, 8, 20), date(2026, 8, 27)),\n$ python3 check_numbers.py\n✓ F06  'weekly' window 20 Aug - 27 Aug = 7 days\n5 contradictions, 2 unexplained, 1 ok\n(exit 1)",
+    "texto_pantalla": {
+      "es": "Control: F06 ✓ 7 días · el chequeo responde",
+      "en": "Control: F06 ✓ 7 days · the check reacts"
+    },
+    "assets": [],
+    "notas_animacion": "En el repo actual la constante es SPEC[\"window\"], no WINDOW como dice el texto del módulo."
+  },
+  {
+    "id": "E17",
+    "inicio": "11:40",
+    "fin": "12:30",
+    "tipo": "terminal",
+    "visual": "Mutante 'peligroso' del curso, en la copia:\n-    \"output_tokens\": 24849, \"week_spend\": 0.2087,\n+    \"output_tokens\": 24849, \"week_spend\": 0.40,\n$ python3 check_numbers.py | grep F08\n! F08  week spend $0.4 vs 2.07M input tokens x $0.1/M = $0.2070: above input cost; the rest has no price in the spec, so it cannot be checked\nAl lado, el commit 97dc791 (2026-10-26): 'F08 ya no da ✓ con un gasto que no se puede comprobar…' y la prueba: def test_spend_far_above_input_cost_is_not_ok(self): self.assertEqual(verdicts(week_spend=0.40)[\"F08\"], \"!\")",
+    "texto_pantalla": {
+      "es": "El curso dice que sobrevive · hoy ✓ muere: lo mató 97dc791",
+      "en": "The course says it survives · today ✓ it dies: 97dc791 killed it"
+    },
+    "assets": [
+      "spec-review-case-study/test_check_numbers.py"
+    ],
+    "notas_animacion": "Mostrar el texto de m32.mut tachado parcialmente con la etiqueta 'desactualizado'."
+  },
+  {
+    "id": "E18",
+    "inicio": "12:30",
+    "fin": "13:24",
+    "tipo": "terminal",
+    "visual": "Mutante nuevo en la copia (revertido después):\n-    \"social\": 1334, \"web\": 1158, \"unique\": 2070, \"web_shown\": 736,\n+    \"social\": 1334, \"web\": 1158, \"unique\": 2070, \"web_shown\": 1158,\n$ python3 check_numbers.py\n✓ F01  1334 + 1158 = 2492 raw, 2070 unique: 422 duplicates (16.9%), all of them web (0.0% of web), none social\n6 contradictions, 1 unexplained, 1 ok\n$ python3 -m unittest test_check_numbers\nRan 7 tests in 0.000s\nOK",
+    "texto_pantalla": {
+      "es": "F01 ✓ con un mensaje que se contradice · 7 pruebas OK · ✗ sobrevive",
+      "en": "F01 ✓ with a self-contradicting message · 7 tests OK · ✗ survives"
+    },
+    "assets": [],
+    "notas_animacion": "Resaltar en coral 'all of them web (0.0% of web)'. Es un hallazgo nuevo del revisor, no publicado todavía en el repo."
+  },
+  {
+    "id": "E19",
+    "inicio": "13:24",
+    "fin": "15:13",
+    "tipo": "diagrama",
+    "visual": "Kit de entrega: findings.md (8+ hallazgos, 5 campos + línea de checklist) · check_numbers.py propio (4+ chequeos) · copia corregida → exit 0 · 3 mutantes → exit 1 · preguntas numeradas + fases. Debajo, los 6 criterios de m32.crit como checklist.",
+    "texto_pantalla": {
+      "es": "Control positivo exit 0 · mutantes exit 1 · kill rate a la vista",
+      "en": "Positive control exit 0 · mutants exit 1 · kill rate in plain sight"
+    },
+    "assets": [],
+    "notas_animacion": "Texto de m32.hands[4], m32.crit y m32.top."
+  },
+  {
+    "id": "E20",
+    "inicio": "15:13",
+    "fin": "16:08",
+    "tipo": "quiz",
+    "visual": "Tres tarjetas de pregunta con opciones completas, pausa y respuesta marcada ✓.",
+    "texto_pantalla": {
+      "es": "1) \"Ventana semanal (20 ago – 27 sep)\": ¿qué haces?\n2) Pruebas de $0,2087, 67 % y P50 200–250 ms: ¿problema?\n3) \"!\" en F01 y F08: ¿qué quiere decir?",
+      "en": "1) \"Weekly window (20 Aug – 27 Sep)\": what do you do?\n2) Tests of $0.2087, 67% and P50 200–250 ms: the problem?\n3) \"!\" on F01 and F08: what does it mean?"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/quiz-28-35.json (m32, preguntas 1, 2 y 4)"
+    ],
+    "notas_animacion": "Opciones tal cual del banco."
+  },
+  {
+    "id": "E21",
+    "inicio": "16:08",
+    "fin": "16:45",
+    "tipo": "resumen",
+    "visual": "Tres tarjetas: lupa sobre el origen de la spec · calculadora con un mutante · puertas de fases. Tarjeta del siguiente módulo con ícono 🧪 y firma.",
+    "texto_pantalla": {
+      "es": "1. ¿De dónde salió la spec?\n2. Las cuentas en código, y prueba al revisor\n3. Preguntas numeradas y fases con puerta\nSiguiente: Controles, arnés y mutación numérica",
+      "en": "1. Where did the spec come from?\n2. The math in code, and test the reviewer\n3. Numbered questions and gated phases\nNext: Controls, harness and numerical mutation"
+    },
+    "assets": [],
+    "notas_animacion": "Firma: Cristian Guerra · QA · Medellín."
+  }
+]

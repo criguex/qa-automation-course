@@ -1,0 +1,333 @@
+[
+  {
+    "id": "E01",
+    "inicio": "00:00",
+    "fin": "00:42",
+    "tipo": "terminal",
+    "visual": "Terminal deep sobre navy. Se escribe el bucle y aparecen cinco líneas, una por repo, cada una con ✗ y la palabra false en coral. Arriba, cinco insignias CI verdes se ponen grises cuando aparece su línea.",
+    "texto_pantalla": {
+      "es": "5 repos · CI verde · main protegida: ✗ false",
+      "en": "5 repos · green CI · main protected: ✗ false"
+    },
+    "assets": [
+      "Comando: for r in civica-playwright-challenge qa-eval-lab restful-booker-quality-suite predictor-debugger war-paradigm; do echo \"$r protected=$(gh api repos/criguex/$r/branches/main --jq .protected)\"; done",
+      "Salida real del 26-oct-2026: civica-playwright-challenge protected=false · qa-eval-lab protected=false · restful-booker-quality-suite protected=false · predictor-debugger protected=false · war-paradigm protected=false",
+      "Comando base del curso: i18n/es/modules-01-14.json → m28.hands[2] (gh api repos/criguex/qa-eval-lab/branches/main --jq .protected)"
+    ],
+    "notas_animacion": "Ritmo seco: cada false entra con un golpe de sonido corto. Terminar con el botón 'Merge pull request' disponible en gris claro y una etiqueta ⚠ ojo en gold. Tiempos ES; los de EN están en guion.en.md."
+  },
+  {
+    "id": "E02",
+    "inicio": "00:42",
+    "fin": "01:06",
+    "tipo": "titulo",
+    "visual": "Tarjeta de título sobre navy con rejilla mint al 6 %, barra mint a la izquierda, icono de engranaje y la firma abajo.",
+    "texto_pantalla": {
+      "es": "Módulo 13 · CI/CD y Docker",
+      "en": "Module 13 · CI/CD and Docker"
+    },
+    "assets": [
+      "Firma: Cristian Guerra · QA · Medellín",
+      "Nivel ★★★★☆ · semana 15 (course.json, id m9)"
+    ],
+    "notas_animacion": "Entrada de la barra mint de abajo hacia arriba, título después. 4 a 6 s."
+  },
+  {
+    "id": "E03",
+    "inicio": "01:06",
+    "fin": "02:01",
+    "tipo": "analogia",
+    "visual": "Salón de clase ilustrado. Un robot lee hojas de tarea y prende una luz: verde (✓ pasa) o roja (✗ falla). En la segunda parte la profe recibe una hoja con luz roja y el robot queda gris. En la tercera, el robot recibe una caja de herramientas idéntica en casa y en el colegio.",
+    "texto_pantalla": {
+      "es": "Robot = CI · Luz roja = no entra · Caja de herramientas = contenedor",
+      "en": "Robot = CI · Red light = not merged · Toolbox = container"
+    },
+    "assets": [
+      "Analogía base: i18n/es/modules-01-14.json → m9.kid"
+    ],
+    "notas_animacion": "Tres viñetas encadenadas. Estados siempre con símbolo y palabra."
+  },
+  {
+    "id": "E04",
+    "inicio": "02:01",
+    "fin": "02:57",
+    "tipo": "diagrama",
+    "visual": "Diagrama de flujo: tres disparadores (push a main, pull_request, workflow_dispatch) → job test en ubuntu-24.04 (20 min) → fila de pasos: checkout, setup-node con caché, npm ci, Chromium, lint, typecheck, mock+a11y, mutation, audit, api, contract, performance, visual → tres cajas de artefactos. Un paso en coral corta la fila y los siguientes quedan grises.",
+    "texto_pantalla": {
+      "es": "Un paso con exit ≠ 0 corta el job",
+      "en": "One step exits ≠ 0 and the job stops"
+    },
+    "assets": [
+      "civica-playwright-challenge/.github/workflows/ci.yml (líneas 3-85)"
+    ],
+    "notas_animacion": "Flechas mint de izquierda a derecha. Al final, simular que lint falla: ✗ falla en coral y el resto de la fila se apaga."
+  },
+  {
+    "id": "E05",
+    "inicio": "02:57",
+    "fin": "03:52",
+    "tipo": "codigo",
+    "visual": "Editor con el YAML real; se resaltan en gold las líneas de npm ci y de if: ${{ !cancelled() }}.",
+    "texto_pantalla": {
+      "es": "npm ci falla si el lockfile no coincide · el reporte sube aunque falle",
+      "en": "npm ci fails on a lockfile mismatch · the report uploads even on failure"
+    },
+    "assets": [
+      "civica-playwright-challenge/.github/workflows/ci.yml líneas 26-27: - name: Install dependencies / run: npm ci",
+      "civica-playwright-challenge/.github/workflows/ci.yml líneas 59-65: - name: Upload HTML report / if: ${{ !cancelled() }} / uses: actions/upload-artifact@v4 / name: playwright-report / path: playwright-report/ / retention-days: 14",
+      "Artefacto real de la corrida 38665514760 (gh api repos/criguex/civica-playwright-challenge/actions/runs/38665514760/artifacts): playwright-report",
+      "Cita de npm: https://docs.npmjs.com/cli/v10/commands/npm-ci"
+    ],
+    "notas_animacion": "Mostrar la cita de npm en una tarjeta panel al lado del código, en inglés original con subtítulo."
+  },
+  {
+    "id": "E06",
+    "inicio": "03:52",
+    "fin": "04:54",
+    "tipo": "diagrama",
+    "visual": "Tres carriles horizontales: PR (smoke + suite crítica, rápido, bloquea), main (suite completa), nightly (regresión total + performance). Un reloj de 90 min sobre el carril PR hace que aparezca un botón 'admin override' en coral.",
+    "texto_pantalla": {
+      "es": "Gate antes del merge · después del deploy es autopsia",
+      "en": "Gate before the merge · after the deploy it's an autopsy"
+    },
+    "assets": [
+      "Banco de quiz: i18n/es/quiz-11-19.json → m9 preguntas 1, 8 y 9",
+      "Orden de gates de civica: civica-playwright-challenge/.github/workflows/ci.yml líneas 32-57"
+    ],
+    "notas_animacion": "El carril PR se dibuja en mint con ✓; el reloj de 90 min gira rápido y el botón coral aparece con ⚠ ojo."
+  },
+  {
+    "id": "E07",
+    "inicio": "04:54",
+    "fin": "05:56",
+    "tipo": "diagrama",
+    "visual": "Izquierda: un job que se multiplica en dos (Node 20, Node 24) y otro en cuatro rondas con fail-fast: false (una roja, las otras siguen). Derecha: una suite partida en cuatro shards; una prueba con flecha de dependencia a otra se pone coral al quedar en otro shard.",
+    "texto_pantalla": {
+      "es": "Matriz = mismo job, otros valores · Shard = la suite partida · requisito: pruebas independientes",
+      "en": "Matrix = same job, other values · Shard = split suite · needs independent tests"
+    },
+    "assets": [
+      "playwright-jev/.github/workflows/ci.yml job unit-matrix: matrix: node: [20, 24]",
+      "predictor-debugger/.github/workflows/verify.yml líneas 12-27: fail-fast: false, matrix.include con 4 rondas",
+      "civica-playwright-challenge/docs/GROWTH.md: npx playwright test --shard=1/4"
+    ],
+    "notas_animacion": "En la ronda roja mostrar ✗ falla y en las otras ✓ pasa para explicar fail-fast: false."
+  },
+  {
+    "id": "E08",
+    "inicio": "05:56",
+    "fin": "06:46",
+    "tipo": "codigo",
+    "visual": "Editor con el ci.yml de playwright-jev; se resaltan concurrency y strategy.matrix.",
+    "texto_pantalla": {
+      "es": "concurrency en PR ✓ · en release o evidencia ⚠",
+      "en": "concurrency on PRs ✓ · on release or evidence ⚠"
+    },
+    "assets": [
+      "playwright-jev/.github/workflows/ci.yml: concurrency: / group: ci-${{ github.ref }} / cancel-in-progress: true",
+      "playwright-jev/.github/workflows/ci.yml: unit-matrix: / name: Unit tests (Node ${{ matrix.node }}) / strategy: / matrix: / node: [20, 24]"
+    ],
+    "notas_animacion": "Animar dos pushes seguidos: la corrida vieja se tacha con 'cancelled' en gold."
+  },
+  {
+    "id": "E09",
+    "inicio": "06:46",
+    "fin": "07:49",
+    "tipo": "diagrama",
+    "visual": "Una prueba que falla, se reintenta y pasa: aparece la etiqueta 'flaky' en gold, no en verde. Flecha hacia una caja 'cuarentena + ticket'. Abajo, un runner de mutantes con 'retries: 0' y un candado.",
+    "texto_pantalla": {
+      "es": "Falló y pasó en el reintento = ⚠ flaky → cuarentena, no se borra",
+      "en": "Failed then passed on retry = ⚠ flaky → quarantine, never delete"
+    },
+    "assets": [
+      "civica-playwright-challenge/playwright.config.ts líneas 35-36: forbidOnly: isCi, / retries: isCi ? 2 : 0,",
+      "restful-booker-quality-suite/playwright.config.ts líneas 6-7: forbidOnly: Boolean(process.env.CI), / retries: process.env.CI ? 2 : 0,",
+      "war-paradigm/experiments/02-mutants/playwright.config.ts línea 10: retries: 0,",
+      "jev-ci-triage/README.es.md, Reglas en orden, regla 1"
+    ],
+    "notas_animacion": "La etiqueta flaky nunca usa mint."
+  },
+  {
+    "id": "E10",
+    "inicio": "07:49",
+    "fin": "08:46",
+    "tipo": "diagrama",
+    "visual": "Dos máquinas: laptop con Chromium versión A, runner con versión B, y un rayo coral entre las dos con '¿en mi máquina pasa?'. Luego las dos entran en la misma caja (imagen 1.63.0) y el rayo desaparece. Al lado, tres baselines: -linux.png ✓, -darwin.png ✗ ignorada por CI.",
+    "texto_pantalla": {
+      "es": "Imagen y paquete con la misma versión · baselines solo Linux",
+      "en": "Image and package on the same version · Linux-only baselines"
+    },
+    "assets": [
+      "civica-playwright-challenge/README.es.md, Tipos de prueba: Determinismo de la regresión visual",
+      "civica-playwright-challenge/tests/visual/pages.visual.spec.ts (comentario de cabecera)",
+      "Banco de quiz: i18n/es/quiz-11-19.json → m9 pregunta 10"
+    ],
+    "notas_animacion": "No mostrar números de versión distintos inventados: usar 'versión A' y 'versión B'."
+  },
+  {
+    "id": "E11",
+    "inicio": "08:46",
+    "fin": "09:28",
+    "tipo": "codigo",
+    "visual": "El Dockerfile completo en el editor; cada línea se ilumina cuando la voz la nombra.",
+    "texto_pantalla": {
+      "es": "Dockerfile de civica · 16 líneas",
+      "en": "civica's Dockerfile · 16 lines"
+    },
+    "assets": [
+      "civica-playwright-challenge/Dockerfile: FROM mcr.microsoft.com/playwright:v1.63.0-noble / WORKDIR /work / COPY package.json package-lock.json ./ / ENV PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 / RUN npm ci --ignore-scripts / COPY . . / CMD [\"npm\", \"test\"]",
+      "civica-playwright-challenge/package-lock.json: node_modules/@playwright/test version 1.63.0"
+    ],
+    "notas_animacion": "Ocultar los comentarios del Dockerfile o mostrarlos en muted; no traducirlos."
+  },
+  {
+    "id": "E12",
+    "inicio": "09:28",
+    "fin": "10:03",
+    "tipo": "terminal",
+    "visual": "Terminal con los tres comandos tecleados, sin salida.",
+    "texto_pantalla": {
+      "es": "Mismos navegadores y mismo sistema que el CI",
+      "en": "Same browsers and same OS as CI"
+    },
+    "assets": [
+      "civica-playwright-challenge/docs/MIGRATION.md, Run in Docker: docker build -t civica-pw .",
+      "civica-playwright-challenge/docs/MIGRATION.md: docker run --rm -v \"$PWD\":/work -w /work civica-pw npm test",
+      "civica-playwright-challenge/docs/MIGRATION.md: docker run --rm -v \"$PWD\":/work -w /work civica-pw npm run test:visual:update"
+    ],
+    "notas_animacion": "Solo comandos. No inventar salida: la de esta sesión no se grabó. Si se graba en producción, reemplazar por la salida real con su fecha."
+  },
+  {
+    "id": "E13",
+    "inicio": "10:03",
+    "fin": "10:54",
+    "tipo": "codigo",
+    "visual": "YAML de restful-booker con tres zonas resaltadas: clonado fijado al commit, docker compose up y el bucle de espera; abajo el paso if: failure().",
+    "texto_pantalla": {
+      "es": "El SUT también nace y muere en el runner",
+      "en": "The SUT is born and dies on the runner too"
+    },
+    "assets": [
+      "restful-booker-quality-suite/.github/workflows/tests.yml líneas 19-22: git clone https://github.com/mwinteringham/restful-booker.git sut / git -C sut checkout 0046115",
+      "restful-booker-quality-suite/.github/workflows/tests.yml línea 24: docker compose -f sut/docker-compose.yml up --build -d",
+      "restful-booker-quality-suite/.github/workflows/tests.yml líneas 27-32: for attempt in {1..30}; do curl --fail --silent http://127.0.0.1:3001/ping && exit 0; sleep 2; done; docker compose -f sut/docker-compose.yml logs; exit 1",
+      "restful-booker-quality-suite/.github/workflows/tests.yml líneas 45-47: if: failure() / run: docker compose -f sut/docker-compose.yml logs"
+    ],
+    "notas_animacion": "Contador de intentos 1..30 animado; no mostrar un número de intento concreto como real."
+  },
+  {
+    "id": "E14",
+    "inicio": "10:54",
+    "fin": "11:53",
+    "tipo": "codigo",
+    "visual": "eval-gate.yml con los dos jobs lado a lado. En llm-evals, el if de clave vacía se ilumina y aparece el notice. En ui-tests, la línea npm ci || npm install se marca con ⚠ ojo.",
+    "texto_pantalla": {
+      "es": "Sin clave: ⚠ aviso y verde · npm ci || npm install = plan B que deshace npm ci",
+      "en": "No key: ⚠ notice and green · npm ci || npm install = a fallback that undoes npm ci"
+    },
+    "assets": [
+      "qa-eval-lab/.github/workflows/eval-gate.yml línea 10: run: npm ci || npm install",
+      "qa-eval-lab/.github/workflows/eval-gate.yml líneas 15-21: OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }} / if: env.OPENAI_API_KEY == '' / echo \"::notice title=LLM eval skipped::OPENAI_API_KEY is not set, so the DeepEval and Promptfoo steps were skipped. Add the secret to run the LLM-as-judge gate.\"",
+      "qa-eval-lab/.github/workflows/eval-gate.yml líneas 25-32: pasos DeepEval y Promptfoo con if: env.OPENAI_API_KEY != ''"
+    ],
+    "notas_animacion": "El candado de secrets se dibuja con asteriscos enmascarados."
+  },
+  {
+    "id": "E15",
+    "inicio": "11:53",
+    "fin": "12:36",
+    "tipo": "navegador",
+    "visual": "Captura de la pestaña Actions de criguex/qa-eval-lab: corrida 40374138570 en success; se abre el log de llm-evals y se resalta la línea del notice. Al lado, el README §Límites.",
+    "texto_pantalla": {
+      "es": "✓ verde ≠ evaluado · abre el log",
+      "en": "✓ green ≠ graded · open the log"
+    },
+    "assets": [
+      "Comando: gh run list -R criguex/qa-eval-lab -w eval-gate -L 1 → completed success 'docs: historial de CI con la primera corrida en verde' eval-gate main push 40374138570 6m35s 2026-10-26T18:02:11Z",
+      "Comando: gh run view 40374138570 -R criguex/qa-eval-lab --log | grep \"LLM eval skipped\" → llm-evals ... ::notice title=LLM eval skipped::OPENAI_API_KEY is not set, so the DeepEval and Promptfoo steps were skipped. ...",
+      "URL: https://github.com/criguex/qa-eval-lab/actions/runs/40374138570",
+      "qa-eval-lab/README.es.md §Límites, primer punto"
+    ],
+    "notas_animacion": "Grabar la captura del navegador en producción; si la corrida ya no es la última, usar el enlace directo a 40374138570."
+  },
+  {
+    "id": "E16",
+    "inicio": "12:36",
+    "fin": "13:47",
+    "tipo": "diagrama",
+    "visual": "Checklist del laboratorio en dos columnas: Parte 1 (contenedor) y Parte 2 (workflow con los 4 criterios). Cada criterio con una casilla vacía. Abajo, los dos comandos de Allure tomados de GROWTH.md.",
+    "texto_pantalla": {
+      "es": "1 npm ci estricto · 2 matriz de 2 SO · 3 reporte también en rojo · 4 ::notice:: sin secreto",
+      "en": "1 strict npm ci · 2 two-OS matrix · 3 report on red too · 4 ::notice:: without a secret"
+    },
+    "assets": [
+      "Criterios: i18n/es/modules-01-14.json → m9.crit y m9.hands",
+      "civica-playwright-challenge/docs/GROWTH.md, Richer reporting (Allure): npm i -D allure-playwright / # add ['allure-playwright'] to the reporter array in playwright.config.ts",
+      "Comprobación: gh run list -R <tu-usuario>/<tu-repo> -L 1"
+    ],
+    "notas_animacion": "No mostrar un workflow de ejemplo escrito por nosotros como si fuera de un repo; esta escena es checklist."
+  },
+  {
+    "id": "E17",
+    "inicio": "13:47",
+    "fin": "14:34",
+    "tipo": "animacion",
+    "visual": "Mutación: una prueba se rompe a propósito (✗ falla). Escena A: rama sin protección, check rojo y botón de merge disponible, etiqueta SURVIVED en coral. Escena B: regla de protección con check requerido, mismo PR, botón bloqueado, etiqueta KILLED en mint.",
+    "texto_pantalla": {
+      "es": "Predicción primero · sin protección: ✗ se mergea · con check requerido: ✓ bloqueado",
+      "en": "Predict first · unprotected: ✗ it merges · required check: ✓ blocked"
+    },
+    "assets": [
+      "Mutación del módulo: i18n/es/modules-01-14.json → m9.mut",
+      "Ruta en GitHub: Settings → Rules o Branches (i18n/es/modules-01-14.json → m28.hands[4])"
+    ],
+    "notas_animacion": "Las interfaces de GitHub se dibujan esquemáticas con la paleta de marca; no imitar la UI de GitHub pixel a pixel."
+  },
+  {
+    "id": "E18",
+    "inicio": "14:34",
+    "fin": "15:11",
+    "tipo": "diagrama",
+    "visual": "Tarjeta de reto: entregable arriba, cuatro criterios verificables con su comprobación, y el nivel 'top' destacado en gold.",
+    "texto_pantalla": {
+      "es": "Entregable: CI en cada PR + reporte publicado · Top: PR roto bloqueado",
+      "en": "Deliverable: CI on every PR + published report · Top: broken PR blocked"
+    },
+    "assets": [
+      "i18n/es/modules-01-14.json → m9.deliver, m9.crit, m9.top"
+    ],
+    "notas_animacion": "Cada criterio entra con su casilla; ninguno se marca solo."
+  },
+  {
+    "id": "E19",
+    "inicio": "15:11",
+    "fin": "16:00",
+    "tipo": "quiz",
+    "visual": "Tres preguntas, una por pantalla, con cuatro opciones; pausa de 5 s con cuenta regresiva y después la correcta en mint con ✓ y su porqué.",
+    "texto_pantalla": {
+      "es": "1 ¿Gate bien puesto? · 2 ¿Flaky 1 de 10? · 3 ¿Dónde quedó el reporte?",
+      "en": "1 Well-placed gate? · 2 Flaky 1 in 10? · 3 Where did the report go?"
+    },
+    "assets": [
+      "i18n/es/quiz-11-19.json → m9[0], m9[1], m9[4]",
+      "i18n/en/quiz-11-19.json → m9[0], m9[1], m9[4] para la versión en inglés"
+    ],
+    "notas_animacion": "Las opciones incorrectas quedan en muted, nunca en coral, para no confundir con un fallo."
+  },
+  {
+    "id": "E20",
+    "inicio": "16:00",
+    "fin": "16:30",
+    "tipo": "resumen",
+    "visual": "Tres tarjetas con las ideas y una flecha mint al módulo siguiente (14 · Pipelines). Firma abajo.",
+    "texto_pantalla": {
+      "es": "Verde sin protección no bloquea · npm ci + contenedor · el reporte sube siempre → Módulo 14: Pipelines",
+      "en": "Green without protection doesn't block · npm ci + container · always upload the report → Module 14: Pipelines"
+    },
+    "assets": [
+      "Siguiente módulo: course.json posición 14, id m28",
+      "Firma: Cristian Guerra · QA · Medellín"
+    ],
+    "notas_animacion": "Salida en fundido a navy."
+  }
+]

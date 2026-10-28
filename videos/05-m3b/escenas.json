@@ -1,0 +1,314 @@
+[
+  {
+    "id": "E01",
+    "inicio": "00:00",
+    "fin": "00:38",
+    "tipo": "animacion",
+    "visual": "Pantalla dividida. Izquierda: un robot sin cuaderno escribe un test con 'role: user123', 'status: 200??' y datos de relleno (✗ coral, rótulo 'genérico'). Derecha: el mismo robot lee un cuaderno con el sello READ FIRST y escribe un escenario con 'editor@demo.io', '403', 'US-42/R-2' (✓ mint, rótulo 'con contexto').",
+    "texto_pantalla": {
+      "es": "Código limpio. Sintaxis correcta. No prueba nada que importe.\nCon el vault: roles, códigos y datos reales",
+      "en": "Clean code. Correct syntax. Tests nothing that matters.\nWith the vault: real roles, status codes and data"
+    },
+    "assets": [
+      "war-paradigm/experiments/03-second-brain/README.md (Specimen y párrafo 'The fix wasn't a better prompt')",
+      "vault/04 Sessions/2026-09-24 - mutants on DocFlow.md ('the scenarios came back with roles, status codes and data from the vault instead of placeholders')"
+    ],
+    "notas_animacion": "Los textos del lado izquierdo son ilustración de 'genérico', no salida real; marcarlos con 'ilustración' en muted. Los del lado derecho salen de story-US-42 y Test data - users."
+  },
+  {
+    "id": "E02",
+    "inicio": "00:38",
+    "fin": "00:48",
+    "tipo": "titulo",
+    "visual": "Título sobre navy con rejilla y barra mint. Icono 🧠, nivel ★★☆☆☆.",
+    "texto_pantalla": {
+      "es": "Módulo 05 · Obsidian — tu segundo cerebro (Fase 0 del método)\nCristian Guerra · QA · Medellín",
+      "en": "Module 05 · Obsidian — your second brain (Phase 0 of the method)\nCristian Guerra · QA · Medellín"
+    },
+    "assets": [
+      "course.json (m3b, posición 5, icono 🧠, nivel ★★☆☆☆)"
+    ],
+    "notas_animacion": "Entrada del título; firma en mint."
+  },
+  {
+    "id": "E03",
+    "inicio": "00:48",
+    "fin": "01:33",
+    "tipo": "analogia",
+    "visual": "Un salón de clase; un cuaderno abierto en la primera página con 'Reglas del juego'. Un niño nuevo (un robot pequeño) llega, lee y juega bien. Al día siguiente el robot llega 'nuevo' otra vez y vuelve a leer. Sin cuaderno, el robot adivina con un signo de interrogación coral.",
+    "texto_pantalla": {
+      "es": "El cuaderno de la clase\nLa IA llega nueva todos los días",
+      "en": "The class notebook\nThe AI shows up new every day"
+    },
+    "assets": [
+      "m3b.kid"
+    ],
+    "notas_animacion": "Un candado aparece sobre una de las reglas: 'esta no se la salta nadie' (anticipa el hook)."
+  },
+  {
+    "id": "E04",
+    "inicio": "01:33",
+    "fin": "02:58",
+    "tipo": "diagrama",
+    "visual": "Frase grande y luego el bucle de cinco pasos en círculo: vault (fuente de verdad) → READ FIRST + Golden rules → la IA diseña/escribe/hace triaje → Playwright corre + evidencia → nota de sesión → vuelve al vault. Al final, dos hojas: 'viva' (se actualiza en el PR) y 'muerta' (polvo, escrita para un auditor).",
+    "texto_pantalla": {
+      "es": "La IA sin contexto es un becario brillante con amnesia\nDocumentar ↔ la IA lee ↔ arranca con contexto",
+      "en": "AI without context is a brilliant intern with amnesia\nDocument ↔ AI reads ↔ starts with context"
+    },
+    "assets": [
+      "m3b.mentor",
+      "m3b.theory[0..1]",
+      "experiments/03-second-brain/README.md (The loop the vault supports, 5 pasos)",
+      "quiz-01-10.json m3b pregunta 9"
+    ],
+    "notas_animacion": "Las flechas del bucle en mint, girando una vuelta completa."
+  },
+  {
+    "id": "E05",
+    "inicio": "02:58",
+    "fin": "04:02",
+    "tipo": "diagrama",
+    "visual": "Tres capas apiladas: CLAUDE.md / AGENTS.md (reglas del proyecto), memoria persistente (hechos sobre ti), Obsidian (conocimiento profundo). Al lado de CLAUDE.md, un candado tachado sobre una llave: 'sin secretos'.",
+    "texto_pantalla": {
+      "es": "CLAUDE.md = cómo es el proyecto\nMemoria = quién eres tú\nObsidian = lo que sabe el equipo\n✗ Nunca secretos en CLAUDE.md",
+      "en": "CLAUDE.md = what the project is like\nMemory = who you are\nObsidian = what the team knows\n✗ Never secrets in CLAUDE.md"
+    },
+    "assets": [
+      "m3b.theory[2]",
+      "quiz-01-10.json m3b preguntas 2, 7 y 8"
+    ],
+    "notas_animacion": "Cada capa entra desde un lado distinto."
+  },
+  {
+    "id": "E06",
+    "inicio": "04:02",
+    "fin": "05:35",
+    "tipo": "diagrama",
+    "visual": "Embudo: el vault completo entra y se atasca (✗ 'ventana llena'); una flecha a una sola nota pasa limpia (✓). Luego el mapa READ FIRST con flechas a las notas. Después MCP como un enchufe que conecta navegador, base de datos y API al modelo. Al final, un reloj de 4 h que se convierte en una nota.",
+    "texto_pantalla": {
+      "es": "Da el contexto suficiente, no todo\nREAD FIRST = el mapa, no el territorio\nMCP = protocolo estándar para conectar herramientas y datos al modelo\n4 horas de bug → 1 nota → se pagan una vez",
+      "en": "Give enough context, not all of it\nREAD FIRST = the map, not the territory\nMCP = a standard protocol to connect tools and data to the model\n4 hours of bug → 1 note → paid once"
+    },
+    "assets": [
+      "m3b.theory[3]",
+      "vault/00 - READ FIRST.md ('The map, not the territory')",
+      "quiz-01-10.json m3b preguntas 1, 5, 6 y 10",
+      "https://modelcontextprotocol.io/"
+    ],
+    "notas_animacion": "El enchufe MCP con tres cables mint."
+  },
+  {
+    "id": "E07",
+    "inicio": "05:35",
+    "fin": "07:07",
+    "tipo": "codigo",
+    "visual": "Editor con .claude/settings.json real; luego un diagrama: comando Bash → PreToolUse → block-push-to-main.sh → exit 2 (bloquea) / exit 0 (pasa). Al lado, la regla 5 de Golden rules.",
+    "texto_pantalla": {
+      "es": "experiments/03-second-brain/.claude/settings.json\n{\n  \"hooks\": {\n    \"PreToolUse\": [\n      {\n        \"matcher\": \"Bash\",\n        \"hooks\": [\n          {\n            \"type\": \"command\",\n            \"command\": \"\\\"$CLAUDE_PROJECT_DIR\\\"/hooks/block-push-to-main.sh\"\n          }\n        ]\n      }\n    ]\n  }\n}\n5. Hard rules live in hooks.",
+      "en": "experiments/03-second-brain/.claude/settings.json\n{\n  \"hooks\": {\n    \"PreToolUse\": [\n      {\n        \"matcher\": \"Bash\",\n        \"hooks\": [\n          {\n            \"type\": \"command\",\n            \"command\": \"\\\"$CLAUDE_PROJECT_DIR\\\"/hooks/block-push-to-main.sh\"\n          }\n        ]\n      }\n    ]\n  }\n}\n5. Hard rules live in hooks."
+    },
+    "assets": [
+      "war-paradigm/experiments/03-second-brain/.claude/settings.json",
+      "vault/Golden rules.md regla 5",
+      "m3b.theory[4]",
+      "experiments/03-second-brain/README.md (los casos se prueban en repos de git temporales reales, en main y en una rama, con los tres parsers)",
+      "https://code.claude.com/docs"
+    ],
+    "notas_animacion": "La pregunta final '¿contexto, memoria o hook?' aparece como tres botones."
+  },
+  {
+    "id": "E08",
+    "inicio": "07:07",
+    "fin": "08:36",
+    "tipo": "navegador",
+    "visual": "Obsidian abierto con el vault del experimento 03: árbol de carpetas a la izquierda, la nota 00 - READ FIRST en el centro y la vista de grafo de fondo. Luego Golden rules con las reglas 4, 7 y 9 resaltadas. Después la plantilla Session note.",
+    "texto_pantalla": {
+      "es": "14 notas · 00 - READ FIRST · Golden rules (9)\n4. Do not invent · 7. Green three times, not once · 9. Close the session with a note\nSession note: Goal · What happened · Decisions · Next",
+      "en": "14 notes · 00 - READ FIRST · Golden rules (9)\n4. Do not invent · 7. Green three times, not once · 9. Close the session with a note\nSession note: Goal · What happened · Decisions · Next"
+    },
+    "assets": [
+      "war-paradigm/experiments/03-second-brain/vault/ (14 notas)",
+      "vault/00 - READ FIRST.md",
+      "vault/Golden rules.md",
+      "vault/99 Templates/Session note.md",
+      "https://obsidian.md"
+    ],
+    "notas_animacion": "Grabar Obsidian real con el vault; recuadros mint sobre la tabla 'Where things live'."
+  },
+  {
+    "id": "E09",
+    "inicio": "08:36",
+    "fin": "10:32",
+    "tipo": "codigo",
+    "visual": "Árbol del vault y, al lado, la nota Design scenarios with AI con su frontmatter. Luego la nota Definition of done for a story como checklist y la tabla 'Palabras difíciles' del README.",
+    "texto_pantalla": {
+      "es": "vault/\n├── 00 - READ FIRST.md\n├── Golden rules.md\n├── 01 QA process/\n├── 02 Workflows/\n├── 03 Knowledge/\n├── 04 Sessions/\n└── 99 Templates/\n---\ntype: workflow\nstatus: approved\ntags: [workflow, ai-assistant, scenarios]\n---\n… Do not invent roles or data: use [[Test data - users]].",
+      "en": "vault/\n├── 00 - READ FIRST.md\n├── Golden rules.md\n├── 01 QA process/\n├── 02 Workflows/\n├── 03 Knowledge/\n├── 04 Sessions/\n└── 99 Templates/\n---\ntype: workflow\nstatus: approved\ntags: [workflow, ai-assistant, scenarios]\n---\n… Do not invent roles or data: use [[Test data - users]]."
+    },
+    "assets": [
+      "experiments/03-second-brain/README.md (estructura del vault)",
+      "vault/02 Workflows/Design scenarios with AI.md",
+      "vault/01 QA process/Definition of done for a story.md",
+      "war-paradigm/README.es.md §Palabras difíciles / README.md §Hard words"
+    ],
+    "notas_animacion": "Los checkboxes de la definición de hecho se marcan con ✓ mint uno por uno."
+  },
+  {
+    "id": "E10",
+    "inicio": "10:32",
+    "fin": "11:48",
+    "tipo": "terminal",
+    "visual": "Terminal con la parte del vault de la corrida de test:03.",
+    "texto_pantalla": {
+      "es": "$ npm run test:03\n▶ the vault template\n  ✔ has the two notes the assistant reads first\n  ✔ has the five folders of the loop\n  ✔ every [[wikilink]] resolves to a note (Obsidian resolves by name across folders)\n  ✔ every note has frontmatter with a type\n  ✔ no note is an island: each one links out or is linked to\nℹ tests 45\nℹ pass 45\nℹ fail 0",
+      "en": "$ npm run test:03\n▶ the vault template\n  ✔ has the two notes the assistant reads first\n  ✔ has the five folders of the loop\n  ✔ every [[wikilink]] resolves to a note (Obsidian resolves by name across folders)\n  ✔ every note has frontmatter with a type\n  ✔ no note is an island: each one links out or is linked to\nℹ tests 45\nℹ pass 45\nℹ fail 0"
+    },
+    "assets": [
+      "Salida real de `npm run test:03` en el clon de war-paradigm, 26-oct-2026 (se omiten los tiempos por prueba)",
+      "experiments/03-second-brain/tests/vault-links.test.mjs"
+    ],
+    "notas_animacion": "Cada ✔ en mint."
+  },
+  {
+    "id": "E11",
+    "inicio": "11:48",
+    "fin": "12:22",
+    "tipo": "diagrama",
+    "visual": "Hoja con la forma de un CLAUDE.md de ejemplo: tres secciones y un enlace al READ FIRST. Rótulo 'ejemplo' arriba.",
+    "texto_pantalla": {
+      "es": "EJEMPLO · CLAUDE.md\nComandos: npm ci · npx playwright test · abrir el reporte\nConvenciones: conventional commits · una rama por cambio · dónde viven los tests\nProhibido: push a main · inventar datos · commitear .env\nTodo lo demás → vault/00 - READ FIRST",
+      "en": "EXAMPLE · CLAUDE.md\nCommands: npm ci · npx playwright test · open the report\nConventions: conventional commits · one branch per change · where tests live\nOff limits: push to main · inventing data · committing .env\nEverything else → vault/00 - READ FIRST"
+    },
+    "assets": [
+      "m3b.obj[1] y m3b.hands[1]",
+      "vault/Golden rules.md (reglas 4 y 5)"
+    ],
+    "notas_animacion": "Va como diagrama, no como código de repo: es una forma sugerida."
+  },
+  {
+    "id": "E12",
+    "inicio": "12:22",
+    "fin": "13:02",
+    "tipo": "diagrama",
+    "visual": "Vista de grafo: la nota 'Test data - users' en el centro con seis flechas entrantes. Nota de predicción al lado.",
+    "texto_pantalla": {
+      "es": "Borrar: 03 Knowledge/Test data - users.md\nLa enlazan 6 notas\nPredicción: el chequeo de enlaces falla y lista las 6",
+      "en": "Delete: 03 Knowledge/Test data - users.md\nLinked from 6 notes\nPrediction: the link check fails and lists all 6"
+    },
+    "assets": [
+      "m3b.mut",
+      "`grep -rl \"Test data - users\"` sobre el vault (6 archivos)"
+    ],
+    "notas_animacion": "La nota se desvanece; las seis flechas quedan colgando en coral."
+  },
+  {
+    "id": "E13",
+    "inicio": "13:02",
+    "fin": "13:27",
+    "tipo": "terminal",
+    "visual": "Terminal con la falla y la lista de enlaces rotos; luego la restauración.",
+    "texto_pantalla": {
+      "es": "$ npm run test:03\n  ✖ every [[wikilink]] resolves to a note (Obsidian resolves by name across folders)\nℹ tests 45\nℹ pass 44\nℹ fail 1\n  +   '00 - READ FIRST.md → [[Test data - users]]',\n  +   '01 QA process/Test strategy.md → [[Test data - users]]',\n  +   '02 Workflows/Design scenarios with AI.md → [[Test data - users]]',\n  +   '03 Knowledge/DEF-001 self-grant role.md → [[Test data - users]]',\n  +   '03 Knowledge/DocFlow - golden flow.md → [[Test data - users]]',\n  +   '99 Templates/Flow note.md → [[Test data - users]]'\n(nota restaurada)\nℹ tests 45\nℹ pass 45\nℹ fail 0",
+      "en": "$ npm run test:03\n  ✖ every [[wikilink]] resolves to a note (Obsidian resolves by name across folders)\nℹ tests 45\nℹ pass 44\nℹ fail 1\n  +   '00 - READ FIRST.md → [[Test data - users]]',\n  +   '01 QA process/Test strategy.md → [[Test data - users]]',\n  +   '02 Workflows/Design scenarios with AI.md → [[Test data - users]]',\n  +   '03 Knowledge/DEF-001 self-grant role.md → [[Test data - users]]',\n  +   '03 Knowledge/DocFlow - golden flow.md → [[Test data - users]]',\n  +   '99 Templates/Flow note.md → [[Test data - users]]'\n(note restored)\nℹ tests 45\nℹ pass 45\nℹ fail 0"
+    },
+    "assets": [
+      "Salida observada en copia local de war-paradigm con la nota movida fuera del vault y luego restaurada, 26-oct-2026"
+    ],
+    "notas_animacion": "Sello 'KILLED' en mint con ✓ sobre el ✖ del test (el guardia gritó)."
+  },
+  {
+    "id": "E14",
+    "inicio": "13:27",
+    "fin": "14:13",
+    "tipo": "diagrama",
+    "visual": "Balanza: a la izquierda 'enlace a nota futura = trabajo pendiente' (vault vivo); a la derecha 'enlace roto = error de build' (plantilla publicada). En el medio, una línea que el estudiante decide.",
+    "texto_pantalla": {
+      "es": "Vault vivo: enlace a nota futura = marcador de trabajo ⚠\nPlantilla publicada: enlace roto = error ✗\nTú decides la línea y la escribes en las reglas",
+      "en": "Living vault: link to a future note = work marker ⚠\nPublished template: broken link = error ✗\nYou decide the line and write it into the rules"
+    },
+    "assets": [
+      "quiz-01-10.json m3b pregunta 4",
+      "experiments/03-second-brain/tests/vault-links.test.mjs",
+      "m3b.crit[1]"
+    ],
+    "notas_animacion": "La línea del medio en gold."
+  },
+  {
+    "id": "E15",
+    "inicio": "14:13",
+    "fin": "15:02",
+    "tipo": "diagrama",
+    "visual": "Checklist del reto y rúbrica genérica de 4 niveles con el nivel 4 en gold.",
+    "texto_pantalla": {
+      "es": "☐ READ FIRST que enlaza a las demás\n☐ Sin notas aisladas ni enlaces rotos\n☐ CLAUDE.md / AGENTS.md sin secretos\nNivel 4: un test rompe el build con enlaces rotos o notas aisladas\nApruebas: reto nivel 3 + quiz 6 de 8",
+      "en": "☐ READ FIRST that links to the rest\n☐ No isolated notes, no broken links\n☐ CLAUDE.md / AGENTS.md without secrets\nLevel 4: a test breaks the build on broken links or isolated notes\nPass: challenge at level 3 + quiz 6 of 8"
+    },
+    "assets": [
+      "m3b.hands, m3b.crit, m3b.deliver, m3b.top",
+      "ui.json rubric.generic y module.evalNote",
+      "course.json qn = 8, qpass = 0.75"
+    ],
+    "notas_animacion": "Casillas con ✓ mint."
+  },
+  {
+    "id": "E16",
+    "inicio": "15:02",
+    "fin": "15:33",
+    "tipo": "quiz",
+    "visual": "Tarjeta de pregunta A–D con temporizador de 5 s.",
+    "texto_pantalla": {
+      "es": "Según las 3 capas de contexto, ¿dónde viven las reglas del PROYECTO?\nA · En la memoria persistente de la IA\nB · En CLAUDE.md ✓\nC · En una nota suelta de Obsidian\nD · En el prompt de cada día",
+      "en": "Under the 3 context layers, where do the PROJECT's rules live?\nA · In the AI's persistent memory\nB · In CLAUDE.md ✓\nC · In a loose Obsidian note\nD · In each day's prompt"
+    },
+    "assets": [
+      "quiz-01-10.json m3b pregunta 2 (a = 1)"
+    ],
+    "notas_animacion": "El ✓ aparece al terminar la pausa."
+  },
+  {
+    "id": "E17",
+    "inicio": "15:33",
+    "fin": "16:00",
+    "tipo": "quiz",
+    "visual": "Misma plantilla de quiz.",
+    "texto_pantalla": {
+      "es": "Quieres que algo ocurra SIEMPRE que pase X. Según el método eso es:\nA · Una nota-recordatorio en Obsidian\nB · Un hook ✓\nC · Pedírselo a la IA cada vez\nD · Disciplina personal",
+      "en": "You want something to happen EVERY time X happens. Under the method that's:\nA · A reminder note in Obsidian\nB · A hook ✓\nC · Asking the AI every time\nD · Personal discipline"
+    },
+    "assets": [
+      "quiz-01-10.json m3b pregunta 3 (a = 1)"
+    ],
+    "notas_animacion": "Temporizador de 5 s."
+  },
+  {
+    "id": "E18",
+    "inicio": "16:00",
+    "fin": "16:23",
+    "tipo": "quiz",
+    "visual": "Misma plantilla de quiz.",
+    "texto_pantalla": {
+      "es": "¿Qué NO debe ir jamás en el CLAUDE.md del repo?\nA · Los comandos frecuentes del proyecto\nB · Las convenciones de nombres\nC · Tokens, credenciales o secretos ✓\nD · Las reglas de estilo de los tests",
+      "en": "What should NEVER go in the repo's CLAUDE.md?\nA · Common project commands\nB · Naming conventions\nC · Tokens, credentials or secrets ✓\nD · Test style rules"
+    },
+    "assets": [
+      "quiz-01-10.json m3b pregunta 7 (a = 2)"
+    ],
+    "notas_animacion": "Temporizador de 5 s."
+  },
+  {
+    "id": "E19",
+    "inicio": "16:23",
+    "fin": "16:58",
+    "tipo": "resumen",
+    "visual": "Tres tarjetas de ideas y la tarjeta del siguiente módulo (06 · TypeScript para QA, icono 🔷).",
+    "texto_pantalla": {
+      "es": "1 · Documentar primero: la IA sin contexto es un becario con amnesia\n2 · Tres capas; contexto suficiente, no todo\n3 · Lo que pasa siempre es un hook; la documentación también se prueba\nSiguiente → 06 · TypeScript para QA\nCristian Guerra · QA · Medellín",
+      "en": "1 · Document first: AI without context is an intern with amnesia\n2 · Three layers; enough context, not all of it\n3 · What always happens is a hook; docs get tested too\nNext → 06 · TypeScript for QA\nCristian Guerra · QA · Medellín"
+    },
+    "assets": [
+      "course.json (posición 6 = m4)",
+      "https://criguex.github.io/qa-automation-course/#/m3b"
+    ],
+    "notas_animacion": "Las tarjetas entran con ✓ mint."
+  }
+]

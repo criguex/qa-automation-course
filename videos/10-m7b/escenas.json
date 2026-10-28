@@ -1,0 +1,385 @@
+[
+  {
+    "id": "E01",
+    "inicio": "00:00",
+    "fin": "00:36",
+    "tipo": "terminal",
+    "visual": "A la izquierda, la evidencia de la corrida con 43 pasan en mint. A la derecha, la tabla de defectos RB-001…RB-008 con tres filas High en coral. Un hilo gold une cada defecto con su chequeo de fallo esperado.",
+    "texto_pantalla": {
+      "es": "43 pasan ✓ · 8 defectos confirmados ✗\n¿Mentira? No: marcados como fallo esperado ⚠",
+      "en": "43 passed ✓ · 8 confirmed defects ✗\nA lie? No: marked as expected failures ⚠"
+    },
+    "assets": [
+      "brand/restful-booker-quality-suite/evidence/execution-2026-10-16.txt",
+      "brand/restful-booker-quality-suite/docs/EXECUTION_REPORT.md (tabla de defectos)"
+    ],
+    "notas_animacion": "Líneas reales: 'Total checks: 43' / 'Effective result: 43 passed, including 9 controlled expected-failure checks'. Severidades reales de EXECUTION_REPORT.md: RB-002, RB-003, RB-004 High."
+  },
+  {
+    "id": "E02",
+    "inicio": "00:36",
+    "fin": "00:54",
+    "tipo": "titulo",
+    "visual": "Tarjeta de título navy con ícono 🔁.",
+    "texto_pantalla": {
+      "es": "Módulo 7b · Ejecución disciplinada\nItera estrecho, confirma amplio\nCristian Guerra · QA · Medellín",
+      "en": "Module 7b · Disciplined execution\nIterate narrow, confirm wide\nCristian Guerra · QA · Medellín"
+    },
+    "assets": [],
+    "notas_animacion": "El lema aparece después del título, en muted."
+  },
+  {
+    "id": "E03",
+    "inicio": "00:54",
+    "fin": "01:36",
+    "tipo": "analogia",
+    "visual": "Caja de juguetes con un carrito rojo sin una rueda. Opción 1: lo esconden al fondo (✗). Opción 2: etiqueta 'roto, se le cae la rueda' (✓). Al arreglar la rueda, la etiqueta vibra y suena: '¡quítame!' (⚠).",
+    "texto_pantalla": {
+      "es": "Esconder ✗ · Etiquetar ✓\nArreglado → la etiqueta avisa ⚠",
+      "en": "Hide ✗ · Label ✓\nFixed → the label beeps ⚠"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/modules-01-14.json (m7b.kid)"
+    ],
+    "notas_animacion": "Ilustración simple; ondas de sonido en gold al final."
+  },
+  {
+    "id": "E04",
+    "inicio": "01:36",
+    "fin": "02:15",
+    "tipo": "diagrama",
+    "visual": "Línea de tiempo de ciclos: Ciclo 1 (120 corren, 7 ✗) → fix → Ciclo 2 (solo 7) → … → Cierre: regresión completa (120) una vez. Contraste tachado: '120 en cada vuelta'.",
+    "texto_pantalla": {
+      "es": "nuevos → fix → retest SOLO lo fallido → regresión completa (1 vez)",
+      "en": "new → fix → retest ONLY what failed → full regression (once)"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/quiz-01-10.json (m7b, preguntas 1 y 4)"
+    ],
+    "notas_animacion": "Los números 7/120 son del banco de preguntas (ejemplo), no de una corrida."
+  },
+  {
+    "id": "E05",
+    "inicio": "02:15",
+    "fin": "02:58",
+    "tipo": "diagrama",
+    "visual": "Dos lupas: retest '¿se arregló?' sobre un punto; regresión '¿qué rompió el arreglo?' sobre todo el mapa, donde aparecen 2 ✗ en otro módulo. Debajo, cita de la recomendación de spendwise.",
+    "texto_pantalla": {
+      "es": "Retest ≠ regresión\n“…completar su retest y regresión”",
+      "en": "Retest ≠ regression\n“…complete their retest and regression”"
+    },
+    "assets": [
+      "brand/spendwise-qa-assessment/evidence/final-execution-summary-2026-10-16.txt"
+    ],
+    "notas_animacion": "Cita real: 'Recomendación: NO GO condicionado hasta corregir o aceptar formalmente los riesgos de severidad alta y completar su retest y regresión.'"
+  },
+  {
+    "id": "E06",
+    "inicio": "02:58",
+    "fin": "03:13",
+    "tipo": "terminal",
+    "visual": "Terminal con el comando de Playwright para re-correr solo lo fallido y, al lado, el filtro por tags de Cucumber.",
+    "texto_pantalla": {
+      "es": "npx playwright test --last-failed",
+      "en": "npx playwright test --last-failed"
+    },
+    "assets": [
+      "https://playwright.dev/docs/test-cli"
+    ],
+    "notas_animacion": "Comando de la documentación oficial; no mostrar salida inventada."
+  },
+  {
+    "id": "E07",
+    "inicio": "03:13",
+    "fin": "04:01",
+    "tipo": "codigo",
+    "visual": "Árbol de la carpeta evidence/ de spendwise con un archivo por campaña, todos con fecha en el nombre.",
+    "texto_pantalla": {
+      "es": "Un registro por ciclo → la regresión final se puede demostrar",
+      "en": "One record per cycle → the final regression is provable"
+    },
+    "assets": [
+      "brand/spendwise-qa-assessment/evidence/README.md (Registros de ejecución)"
+    ],
+    "notas_animacion": "Nombres reales: test-run-2026-10-16.txt (Primera ejecución, 10 casos) · test-run-api-2026-10-16.txt · test-run-contract-integration-e2e-2026-10-16.txt · final-execution-summary-2026-10-16.txt (119 pruebas) · test-run-expanded-2026-10-16.txt · test-run-mutation-2026-10-16.txt · test-run-newman-2026-10-17.txt."
+  },
+  {
+    "id": "E08",
+    "inicio": "04:01",
+    "fin": "04:46",
+    "tipo": "animacion",
+    "visual": "Un ciclo intenta arrancar sin datos y se frena (⚠ 'sin data no se ejecuta nada'). Luego un registro dado de baja responde 204 vacío; la prueba grita bug (✗) hasta que aparece la ficha del dataset con el caveat y la prueba lo contempla (✓).",
+    "texto_pantalla": {
+      "es": "Sin data no se ejecuta nada\n204 de un registro dado de baja ≠ bug",
+      "en": "No data, no run\n204 from a deactivated record ≠ bug"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/modules-01-14.json (m7b.theory)"
+    ],
+    "notas_animacion": "El ejemplo del 204 es del texto del módulo; no hay un endpoint real asociado."
+  },
+  {
+    "id": "E09",
+    "inicio": "04:46",
+    "fin": "05:28",
+    "tipo": "codigo",
+    "visual": "La nota 'Test data · users' del vault renderizada como en Obsidian, con la línea del ttl resaltada en gold.",
+    "texto_pantalla": {
+      "es": "Dataset documentado: origen · uso · caveat (ttl: 0 → token vencido)",
+      "en": "Documented dataset: source · scope · caveat (ttl: 0 → expired token)"
+    },
+    "assets": [
+      "brand/war-paradigm/experiments/03-second-brain/vault/03 Knowledge/Test data - users.md"
+    ],
+    "notas_animacion": "Texto real: 'Seeded on every POST /api/_reset. Password for all of them: demo123. Local demo only; never reuse in a real environment.' · tabla u1–u4 · 'ttl: 0 produces an expired token on the next call.'"
+  },
+  {
+    "id": "E10",
+    "inicio": "05:28",
+    "fin": "06:33",
+    "tipo": "diagrama",
+    "visual": "Tres paneles: (1) el mismo false viaja en JSON (✓) y en XML (✗ llega true); (2) cardinalidad 0 / 1 / N con lo que rompe cada uno; (3) ambiente compartido: el usuario demo tenía 3 pedidos y hoy tiene 7.",
+    "texto_pantalla": {
+      "es": "Formato en el wire · cardinalidad 0/1/N · no asumas estado",
+      "en": "Wire format · cardinality 0/1/N · don't assume state"
+    },
+    "assets": [
+      "brand/restful-booker-quality-suite/docs/DEFECTS.md (RB-002)",
+      "brand/spendwise-qa-assessment/docs/02-estrategia-plan.md (datos y CI)",
+      "brand/qa-automation-course/i18n/es/quiz-01-10.json (m7b, preguntas 6 y 9)"
+    ],
+    "notas_animacion": "Spendwise real: 'Las pruebas que modifican políticas deben crearlas inactivas y eliminarlas en finally' y 'Un solo worker para integración/E2E evita interferencia en configuración compartida'."
+  },
+  {
+    "id": "E11",
+    "inicio": "06:33",
+    "fin": "07:22",
+    "tipo": "codigo",
+    "visual": "Escenario de ejemplo en un .feature con @IGNORE y un comentario; alrededor, tres etiquetas obligatorias: ticket Abierto, HU no cierra, condición de salida. Un @IGNORE sin nada se convierte en una lápida (✗).",
+    "texto_pantalla": {
+      "es": "@IGNORE válido = ticket abierto + HU abierta + condición de salida",
+      "en": "Valid @IGNORE = open ticket + open story + exit condition"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/modules-01-14.json (m7b.theory)"
+    ],
+    "notas_animacion": "El .feature es un ejemplo didáctico: rotular 'ejemplo'. Mantener el comentario en el .feature porque así lo pide el método (no es código de la app)."
+  },
+  {
+    "id": "E12",
+    "inicio": "07:22",
+    "fin": "07:44",
+    "tipo": "diagrama",
+    "visual": "Diagrama de estados de test.fail: falla → 'esperado' (✓); pasa → 'pase inesperado' y la corrida se pone roja (✗). Contraste con skip: la prueba no corre.",
+    "texto_pantalla": {
+      "es": "test.fail: la prueba SÍ corre\npasa un día → rojo: ¡quítame!",
+      "en": "test.fail: the test DOES run\npasses one day → red: remove me!"
+    },
+    "assets": [
+      "https://playwright.dev/docs/test-annotations"
+    ],
+    "notas_animacion": "Comportamiento de la documentación oficial y de DEFECTS.md ('When a defect is fixed, Playwright produces an unexpected pass')."
+  },
+  {
+    "id": "E13",
+    "inicio": "07:44",
+    "fin": "08:22",
+    "tipo": "codigo",
+    "visual": "known-defects.spec.ts: el describe con @known-defect, la prueba RB-002 y la línea test.fail resaltada; la aserción toBe(false) marcada como 'sin cambiar'.",
+    "texto_pantalla": {
+      "es": "ID en el mensaje · la aserción NO se cambia",
+      "en": "ID in the message · the assertion is NOT changed"
+    },
+    "assets": [
+      "brand/restful-booker-quality-suite/tests/api/known-defects.spec.ts"
+    ],
+    "notas_animacion": "Líneas reales: test.describe('Confirmed product defects @known-defect', …) · test('RB-002 XML false remains false after creation', …) · test.fail(true, 'Known defect RB-002: XML string false is coerced to boolean true'); · expect(body.booking.depositpaid).toBe(false); Omitir el comentario eslint-disable del archivo."
+  },
+  {
+    "id": "E14",
+    "inicio": "08:22",
+    "fin": "09:07",
+    "tipo": "codigo",
+    "visual": "Fragmento de la política de release de TEST_STRATEGY.md y, debajo, el párrafo de clasificación de war-paradigm/02 con MUTANT_LAB_STRICT.",
+    "texto_pantalla": {
+      "es": "Cuarentena = dueño + ticket + vencimiento\nRetries recogen evidencia, no redefinen el pase",
+      "en": "Quarantine = owner + ticket + expiry\nRetries gather evidence, they don't redefine a pass"
+    },
+    "assets": [
+      "brand/restful-booker-quality-suite/docs/TEST_STRATEGY.md (Release policy)",
+      "brand/war-paradigm/experiments/02-mutants/README.md (Evidence, classification and score gate)",
+      "brand/war-paradigm/experiments/02-mutants/tests/mutants.spec.ts"
+    ],
+    "notas_animacion": "Texto real: 'Quarantine only after proving environmental flakiness; every quarantine requires an owner, issue and expiry date. Retries gather evidence but do not redefine a pass.' Comando real: MUTANT_LAB_STRICT=1 npm run test:mutants."
+  },
+  {
+    "id": "E15",
+    "inicio": "09:07",
+    "fin": "10:25",
+    "tipo": "diagrama",
+    "visual": "Dos estrategias honestas lado a lado. Izquierda: restful-booker, 43 ✓ con 9 fallos esperados y recomendación no-go. Derecha: spendwise, 274 · 184 ✓ · 90 ✗ con el mapa failedByDefect y unmapped: [] vacío.",
+    "texto_pantalla": {
+      "es": "Verde ≠ software bien\nRojo explicado ✓ · verde que esconde ✗",
+      "en": "Green ≠ software is fine\nExplained red ✓ · green that hides ✗"
+    },
+    "assets": [
+      "brand/restful-booker-quality-suite/docs/EXECUTION_REPORT.md (Release decision)",
+      "brand/spendwise-qa-assessment/evidence/report/full-run.json"
+    ],
+    "notas_animacion": "Datos reales de full-run.json: startedAt 2026-10-17, total 274, passed 184, failed 90, unmapped []. Mostrar 2-3 entradas reales de failedByDefect, por ejemplo \"BUG-01\": [\"VAL-01\", \"MUT-EXP-07\"]."
+  },
+  {
+    "id": "E16",
+    "inicio": "10:25",
+    "fin": "11:04",
+    "tipo": "terminal",
+    "visual": "Terminal con npm run test:defects y el script que ejecuta; al lado, mapa de archivos con los IDs RB-001…RB-008 ubicados en sus dos specs, y la prueba positiva del año bisiesto en mint.",
+    "texto_pantalla": {
+      "es": "9 chequeos · 8 defectos · RB-005 = PUT + PATCH\n29-feb-2028 debe pasar ✓",
+      "en": "9 checks · 8 defects · RB-005 = PUT + PATCH\nFeb 29, 2028 must pass ✓"
+    },
+    "assets": [
+      "brand/restful-booker-quality-suite/package.json",
+      "brand/restful-booker-quality-suite/tests/api/known-defects.spec.ts",
+      "brand/restful-booker-quality-suite/tests/api/contracts-negative.spec.ts"
+    ],
+    "notas_animacion": "Script real: \"test:defects\": \"playwright test --project=api --grep @known-defect\". La salida de esta corrida concreta NO está registrada: no inventarla; grabarla en la producción o mostrar solo el comando."
+  },
+  {
+    "id": "E17",
+    "inicio": "11:04",
+    "fin": "11:43",
+    "tipo": "codigo",
+    "visual": "Dos pruebas enfrentadas: RB-008 con test.fail esperando 401/403 y la prueba de contrato que espera 200. Animación del 'día del arreglo': la primera da pase inesperado (✗ rojo) y la segunda falla (✗ rojo). Dos alarmas.",
+    "texto_pantalla": {
+      "es": "Arreglan RB-008 → 2 alarmas ⚠\nActualiza las dos y escribe por qué",
+      "en": "RB-008 gets fixed → 2 alarms ⚠\nUpdate both and write down why"
+    },
+    "assets": [
+      "brand/restful-booker-quality-suite/tests/api/known-defects.spec.ts",
+      "brand/restful-booker-quality-suite/tests/contract/booking.contract.spec.ts"
+    ],
+    "notas_animacion": "Líneas reales: test.fail(true, 'Known defect RB-008: invalid credentials return HTTP 200'); expect([401, 403]).toContain(response.status()); · test('failed authentication matches the error contract', …) expect(response.status()).toBe(200); El 'día del arreglo' es hipotético: rotularlo."
+  },
+  {
+    "id": "E18",
+    "inicio": "11:43",
+    "fin": "12:45",
+    "tipo": "terminal",
+    "visual": "Marcador de mutantes del README con los dos KNOWN SURVIVOR (self-grant, viewer-create) en coral; luego el diff de app/server.js y la nueva línea del marcador FIXED self-grant en mint.",
+    "texto_pantalla": {
+      "es": "KNOWN SURVIVOR → arreglo en tu copia → FIXED self-grant ✓\nLuego: quita el campo known",
+      "en": "KNOWN SURVIVOR → fix in your copy → FIXED self-grant ✓\nThen: remove the known field"
+    },
+    "assets": [
+      "brand/war-paradigm/experiments/02-mutants/README.md (What you will see, Kill it yourself)",
+      "brand/war-paradigm/experiments/02-mutants/app/server.js",
+      "brand/war-paradigm/experiments/02-mutants/tests/scenarios.ts"
+    ],
+    "notas_animacion": "Diff real del README: editMember: (actor, target) => actor.role === 'admin' || actor.id === target.id, → editMember: (actor) => actor.role === 'admin',. Línea del marcador antes: 'KNOWN SURVIVOR self-grant Mutation was accepted with HTTP 200.' Línea real del marcador después del arreglo (corrida local en war-paradigm a5386c8): 'FIXED self-grant Expected rejection HTTP 403 observed.' y '6/7 scored mutants killed · 1 survived · 0 excluded from score' (viewer-create sigue como KNOWN SURVIVOR)."
+  },
+  {
+    "id": "E19",
+    "inicio": "12:45",
+    "fin": "13:11",
+    "tipo": "codigo",
+    "visual": "La nota DEF-001 del vault renderizada, con status: open, esperado 403 / real 200 y la sección Status resaltada.",
+    "texto_pantalla": {
+      "es": "Ticket abierto + condición de salida + la cobertura sigue",
+      "en": "Open ticket + exit condition + coverage stays"
+    },
+    "assets": [
+      "brand/war-paradigm/experiments/03-second-brain/vault/03 Knowledge/DEF-001 self-grant role.md"
+    ],
+    "notas_animacion": "Texto real: 'Expected: 403 forbidden' · 'Actual: 200, the editor is now admin…' · 'Open. The self-grant mutant stays in the suite as a known finding until the fix lands.'"
+  },
+  {
+    "id": "E20",
+    "inicio": "13:11",
+    "fin": "14:11",
+    "tipo": "diagrama",
+    "visual": "Plantilla de nota de dataset con siete campos que se llenan uno a uno. Al final, la regla de oro 4 del vault.",
+    "texto_pantalla": {
+      "es": "Origen · dueño · credenciales fuera del repo · estados especiales · 0/1/N · lo que no se toca\n“Si falta algo, dilo y crea una tarea”",
+      "en": "Source · owner · creds outside the repo · special states · 0/1/N · hands-off data\n“If something is missing, say so and create a task”"
+    },
+    "assets": [
+      "brand/war-paradigm/experiments/03-second-brain/vault/Golden rules.md"
+    ],
+    "notas_animacion": "La plantilla es una propuesta didáctica. Regla real (Golden rules, 4): 'If something is missing, say so and create a task, do not fill the gap with a guess.'"
+  },
+  {
+    "id": "E21",
+    "inicio": "14:11",
+    "fin": "14:41",
+    "tipo": "animacion",
+    "visual": "Un known issue con etiqueta y nombre se representa como mutante sobreviviente. Se arregla en una copia: si la etiqueta suena (✓ la marca documenta); si no suena (✗ la marca escondía).",
+    "texto_pantalla": {
+      "es": "Known issue = mutante sobreviviente con nombre\nArreglado y nada suena → la marca escondía ✗",
+      "en": "Known issue = a surviving mutant with a name\nFixed and nothing beeps → the marker was hiding ✗"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/modules-01-14.json (m7b.mut)"
+    ],
+    "notas_animacion": "Mismo personaje de la analogía (E03) para cerrar el círculo."
+  },
+  {
+    "id": "E22",
+    "inicio": "14:41",
+    "fin": "15:32",
+    "tipo": "resumen",
+    "visual": "Checklist de la rúbrica y franja dorada con el ejemplo /ping → 201.",
+    "texto_pantalla": {
+      "es": "☐ defecto marcado; arreglado en copia → rojo\n☐ ticket abierto + condición escrita\n☐ regresión final 1 vez, al cierre\n⚠ Top: 2 observaciones raras → defecto o punto a aclarar (ej. /ping → 201)",
+      "en": "☐ defect marked; fixed in a copy → red\n☐ open ticket + written exit condition\n☐ final regression once, at the close\n⚠ Top: 2 odd observations → defect or clarification (e.g. /ping → 201)"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/modules-01-14.json (m7b.crit, m7b.top, m7b.deliver)",
+      "brand/restful-booker-quality-suite/docs/DEFECTS.md (criterio de clasificación)"
+    ],
+    "notas_animacion": "Casillas que se marcan con ✓."
+  },
+  {
+    "id": "E23",
+    "inicio": "15:32",
+    "fin": "16:04",
+    "tipo": "quiz",
+    "visual": "Pregunta 1 con opciones y pausa.",
+    "texto_pantalla": {
+      "es": "Fallaron 7 de 120. Llega el fix. ¿Qué corres en el ciclo 2?\nA los 120 · B solo los 7 + regresión completa al final · C los 7 + smoke diario · D nada",
+      "en": "7 of 120 failed. The fix lands. What runs in cycle 2?\nA all 120 · B only the 7 + full regression at the end · C the 7 + daily smoke · D nothing"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/quiz-01-10.json (m7b, pregunta 1)"
+    ],
+    "notas_animacion": "⏸ con cuenta regresiva."
+  },
+  {
+    "id": "E24",
+    "inicio": "16:04",
+    "fin": "16:38",
+    "tipo": "quiz",
+    "visual": "Revelación de la 1 y preguntas 2 y 3 con respuesta.",
+    "texto_pantalla": {
+      "es": "1 → B ✓\n2 Estado especial del dataset, documentado\n3 Ticket abierto + condición de salida + HU no cierra",
+      "en": "1 → B ✓\n2 A special dataset state, documented\n3 Open ticket + exit condition + story stays open"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/quiz-01-10.json (m7b, preguntas 2 y 3)"
+    ],
+    "notas_animacion": "Correcta con ✓ y la palabra pasa."
+  },
+  {
+    "id": "E25",
+    "inicio": "16:38",
+    "fin": "17:09",
+    "tipo": "resumen",
+    "visual": "Tres tarjetas y la tarjeta del módulo 8 con ícono 📊. Firma.",
+    "texto_pantalla": {
+      "es": "1 Retest estrecho, regresión amplia una vez\n2 Datos documentados con dueño y caveats\n3 Known issue con ID y condición de salida\nSiguiente: Módulo 8 · Reportes & trazabilidad\nCristian Guerra · QA · Medellín",
+      "en": "1 Narrow retest, wide regression once\n2 Documented data with owner and caveats\n3 Known issue with ID and exit condition\nNext: Module 8 · Reporting & traceability\nCristian Guerra · QA · Medellín"
+    },
+    "assets": [],
+    "notas_animacion": "Cierre con la URL del curso."
+  }
+]

@@ -1,0 +1,2 @@
+blocked by hook: block-push-to-main.sh — a push to 'main' is not allowed. Push a feature branch and open a pull request.
+2

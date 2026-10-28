@@ -1,0 +1,400 @@
+[
+  {
+    "id": "E01",
+    "inicio": "00:00",
+    "fin": "00:36",
+    "tipo": "terminal",
+    "visual": "Un contador enorme 274 · 184 · 90 en el centro; alrededor aparecen preguntas en gold: ¿cuáles?, ¿bug, prueba o ambiente?, ¿qué requisito?, ¿dónde está la prueba?",
+    "texto_pantalla": {
+      "es": "274 · 184 ✓ · 90 ✗\nUn contador no es evidencia ⚠",
+      "en": "274 · 184 ✓ · 90 ✗\nA counter isn't evidence ⚠"
+    },
+    "assets": [
+      "brand/spendwise-qa-assessment/evidence/report/full-run.json"
+    ],
+    "notas_animacion": "Valores reales de full-run.json (startedAt 2026-10-17T18:56:47Z): total 274, passed 184, failed 90."
+  },
+  {
+    "id": "E02",
+    "inicio": "00:36",
+    "fin": "00:58",
+    "tipo": "titulo",
+    "visual": "Tarjeta de título navy con ícono 📊.",
+    "texto_pantalla": {
+      "es": "Módulo 8 · Reportes & Trazabilidad\nEvidencia que se puede firmar\nCristian Guerra · QA · Medellín",
+      "en": "Module 8 · Reporting & Traceability\nEvidence you can sign off on\nCristian Guerra · QA · Medellín"
+    },
+    "assets": [],
+    "notas_animacion": "Cita del mentor en muted: 'Un test que pasa y nadie ve, no existe.'"
+  },
+  {
+    "id": "E03",
+    "inicio": "00:58",
+    "fin": "01:43",
+    "tipo": "analogia",
+    "visual": "Una hoja de tarea corregida con marcas ✓ y ✗; la pregunta 3 tiene su número y la corrección al lado. Luego la misma hoja sin números: la profe con cara de duda.",
+    "texto_pantalla": {
+      "es": "Reporte = foto de la tarea corregida\nTrazabilidad = el número de cada pregunta",
+      "en": "Report = photo of the graded homework\nTraceability = the number on each question"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/modules-01-14.json (m8.kid)"
+    ],
+    "notas_animacion": "Ilustración simple, sin texto largo."
+  },
+  {
+    "id": "E04",
+    "inicio": "01:43",
+    "fin": "02:20",
+    "tipo": "diagrama",
+    "visual": "Pirámide de tres niveles (estado general → detalle por caso → evidencia) y tres lectores conectados a su nivel: dev, líder/PO, manager.",
+    "texto_pantalla": {
+      "es": "Dev: fallo + evidencia · PO: estado por requisito · Manager: tendencia y riesgo",
+      "en": "Dev: failure + evidence · PO: status per requirement · Manager: trend and risk"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/quiz-11-19.json (m8, pregunta 10)"
+    ],
+    "notas_animacion": "Flechas mint de cada lector a su nivel."
+  },
+  {
+    "id": "E05",
+    "inicio": "02:20",
+    "fin": "03:00",
+    "tipo": "codigo",
+    "visual": "Bloque de reporters y de use de playwright.config.ts de civica; debajo, el reporter condicional de restful-booker.",
+    "texto_pantalla": {
+      "es": "list · html · junit · ledgers en ledger/\ntrace 1er retry · screenshot y video al fallar",
+      "en": "list · html · junit · ledgers in ledger/\ntrace on 1st retry · screenshot and video on failure"
+    },
+    "assets": [
+      "brand/civica-playwright-challenge/playwright.config.ts",
+      "brand/civica-playwright-challenge/src/support/mutationPaths.ts (INSIGHTS_PATH = 'ledger/mutation-insights.json', commit b240008)",
+      "brand/restful-booker-quality-suite/playwright.config.ts"
+    ],
+    "notas_animacion": "Líneas reales (civica): ['list'], ['html', { open: 'never', outputFolder: 'playwright-report' }], ['junit', { outputFile: 'test-results/junit.xml' }], ['./reporters/mutationInsightsReporter.ts'], ['./reporters/auditMutationInsightsReporter.ts'] · trace: 'on-first-retry', screenshot: 'only-on-failure', video: 'retain-on-failure'. (restful-booker): reporter: process.env.CI ? [['line'], ['html', { open: 'never' }], ['junit', { outputFile: 'test-results/junit.xml' }]] : [['list'], ['html', { open: 'never' }]] · trace: 'retain-on-failure'."
+  },
+  {
+    "id": "E06",
+    "inicio": "03:00",
+    "fin": "03:22",
+    "tipo": "navegador",
+    "visual": "Reporte HTML de Playwright real: lista de pruebas, una fallida abierta con error, pasos y adjuntos (screenshot, video, trace).",
+    "texto_pantalla": {
+      "es": "npx playwright show-report · npm run report",
+      "en": "npx playwright show-report · npm run report"
+    },
+    "assets": [
+      "https://playwright.dev/docs/test-reporters#html-reporter"
+    ],
+    "notas_animacion": "Grabar el reporte real de la corrida sembrada de E22 durante la producción. No reconstruir la UI con datos inventados."
+  },
+  {
+    "id": "E07",
+    "inicio": "03:22",
+    "fin": "04:04",
+    "tipo": "codigo",
+    "visual": "BUG-09.json formateado, con esperado y real resaltados, y una tira de las capturas por paso al lado.",
+    "texto_pantalla": {
+      "es": "Esperado: volver a /expenses · Real: /dashboard ✗",
+      "en": "Expected: back to /expenses · Actual: /dashboard ✗"
+    },
+    "assets": [
+      "brand/spendwise-qa-assessment/evidence/report/BUG-09/BUG-09.json",
+      "brand/spendwise-qa-assessment/evidence/README.md"
+    ],
+    "notas_animacion": "Campos reales: id, title 'Login desde ruta protegida no regresa a la ruta original', role 'Employee', url '/expenses', recordedAt '2026-10-17T05:18:07.863Z', reproduced true, expected, actual, steps[ {n:1, screenshot:'BUG-09-01.png'}, {n:2, …} ]. OCULTAR el campo user y el campo notes (contiene la URL del entorno del cliente)."
+  },
+  {
+    "id": "E08",
+    "inicio": "04:04",
+    "fin": "04:52",
+    "tipo": "diagrama",
+    "visual": "Balanza: capturar todo (reporte gigante ✗) vs nunca (fallo sin evidencia ✗) vs criterio probatorio (✓). Debajo, una petición con Authorization tachado y reemplazado por <TOKEN> y [REDACTED].",
+    "texto_pantalla": {
+      "es": "Captura en cada fallo + pasos clave\nAPI: curl + response + esperado vs recibido\nSin contraseñas ni tokens",
+      "en": "Capture every failure + key steps\nAPI: curl + response + expected vs actual\nNo passwords or tokens"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/quiz-11-19.json (m8, preguntas 4 y 9)",
+      "brand/spendwise-qa-assessment/README.md (Evidencia y seguridad)",
+      "brand/spendwise-qa-assessment/evidence/README.md"
+    ],
+    "notas_animacion": "Texto real de spendwise: 'las peticiones se guardan con [REDACTED] y <TOKEN> en su lugar' y 'En CI la suite corre sin trazas (--trace=off) porque las trazas de Playwright guardan cabeceras de autenticación'."
+  },
+  {
+    "id": "E09",
+    "inicio": "04:52",
+    "fin": "05:37",
+    "tipo": "navegador",
+    "visual": "El informe single-file de spendwise abierto en el navegador desde el disco, sin servidor. Desplazamiento por una ficha de defecto (captura, regla, solución, prueba) y por la sección de mejoras.",
+    "texto_pantalla": {
+      "es": "1 archivo · evidencia embebida · abre sin el repo\n47 defectos: 18 alta · 27 media · 2 baja · 8 mejoras",
+      "en": "1 file · evidence embedded · opens without the repo\n47 defects: 18 high · 27 medium · 2 low · 8 improvements"
+    },
+    "assets": [
+      "brand/spendwise-qa-assessment/docs/INFORME-QA-SpendWise.html",
+      "https://criguex.github.io/spendwise-qa-assessment/docs/INFORME-QA-SpendWise.html"
+    ],
+    "notas_animacion": "Cifras del README de spendwise (sección Resultado). Al grabar, no mostrar URLs ni datos del entorno del cliente que aparezcan dentro del informe."
+  },
+  {
+    "id": "E10",
+    "inicio": "05:37",
+    "fin": "06:38",
+    "tipo": "diagrama",
+    "visual": "Tres cubetas: bug del producto (coral) → reportar; prueba rota (gold) → arreglar suite; ambiente/datos (muted) → arreglar ambiente. E2E-06 cae en 'prueba rota'. Contadores reales al pie.",
+    "texto_pantalla": {
+      "es": "Producto · prueba · ambiente/datos\nE2E-06: prueba rota, no bug ⚠\nInfra 0 · sin clasificar 0",
+      "en": "Product · test · environment/data\nE2E-06: broken test, not a bug ⚠\nInfra 0 · unclassified 0"
+    },
+    "assets": [
+      "brand/spendwise-qa-assessment/evidence/final-execution-summary-2026-10-16.txt",
+      "brand/war-paradigm/experiments/03-second-brain/vault/Golden rules.md"
+    ],
+    "notas_animacion": "Texto real: 'E2E-06 fue descartado como defecto tras corregir sincronización y locator; el producto sí muestra access-denied.' · 'Errores de infraestructura: 0' · 'Fallos sin clasificar: 0'. Regla de oro 6 del vault."
+  },
+  {
+    "id": "E11",
+    "inicio": "06:38",
+    "fin": "07:26",
+    "tipo": "codigo",
+    "visual": "Ficha RB-003 de DEFECTS.md y luego el párrafo 'Likely cause' de RB-002 con la frase de la hipótesis resaltada en gold.",
+    "texto_pantalla": {
+      "es": "Severidad · por qué · esperado · real · impacto · curl\nHipótesis ≠ prueba ⚠",
+      "en": "Severity · why · expected · actual · impact · curl\nHypothesis ≠ proof ⚠"
+    },
+    "assets": [
+      "brand/restful-booker-quality-suite/docs/DEFECTS.md (RB-002, RB-003)"
+    ],
+    "notas_animacion": "Texto real: RB-003 'Severity / priority: High / P1' · 'Sent: 10.99; observed: 10' · RB-002 'this is an evidence-based hypothesis, not source-code proof.'"
+  },
+  {
+    "id": "E12",
+    "inicio": "07:26",
+    "fin": "07:48",
+    "tipo": "diagrama",
+    "visual": "Cadena de cuatro eslabones: requisito → caso → ejecución → evidencia, con flechas en ambos sentidos y dos preguntas: '¿qué cubre esta HU?' y '¿por qué existe esta prueba?'.",
+    "texto_pantalla": {
+      "es": "Trazabilidad bidireccional",
+      "en": "Two-way traceability"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/quiz-11-19.json (m8, pregunta 6)"
+    ],
+    "notas_animacion": "Eslabones deep con borde grid, flechas mint."
+  },
+  {
+    "id": "E13",
+    "inicio": "07:48",
+    "fin": "08:16",
+    "tipo": "codigo",
+    "visual": "Tabla 'Trazabilidad de requisitos' del README de civica con las filas 4, 5 y 6 resaltadas y sus enlaces a archivos.",
+    "texto_pantalla": {
+      "es": "Cada requisito → un archivo",
+      "en": "Every requirement → a file"
+    },
+    "assets": [
+      "brand/civica-playwright-challenge/README.es.md (Trazabilidad de requisitos)"
+    ],
+    "notas_animacion": "Filas reales: 4 'Sin XPath/CSS' → cada Page Object · 5 'TC1 — Buscar y validar película' → tests/mock/searchMovie.mock.spec.ts · tests/e2e/searchMovie.e2e.spec.ts · 6 'TC2 — Navegar Top 250' → tests/mock/top250.mock.spec.ts · tests/e2e/top250.e2e.spec.ts."
+  },
+  {
+    "id": "E14",
+    "inicio": "08:16",
+    "fin": "08:53",
+    "tipo": "codigo",
+    "visual": "Tabla de casos de spendwise con la fila VAL-01 resaltada; debajo, dos filas de la matriz de trazabilidad del plan.",
+    "texto_pantalla": {
+      "es": "26 casos base · ID → prueba → resultado → BUG",
+      "en": "26 base cases · ID → test → result → BUG"
+    },
+    "assets": [
+      "brand/spendwise-qa-assessment/docs/03-casos-prueba.md",
+      "brand/spendwise-qa-assessment/docs/02-estrategia-plan.md (Matriz de trazabilidad resumida)"
+    ],
+    "notas_animacion": "Fila real: | VAL-01 | P0 | Valor límite | Monto 0 se rechaza con 400 | `VAL-01` | Falla: BUG-01 |. Matriz real: | RN-20, Anexo E (recibo desde USD 25, umbral de USD 50) | `policy-rules.spec.ts` |."
+  },
+  {
+    "id": "E15",
+    "inicio": "08:53",
+    "fin": "09:19",
+    "tipo": "codigo",
+    "visual": "Fragmento de full-run.json con failedByDefect (BUG-01, BUG-02) y unmapped: [] resaltado en mint.",
+    "texto_pantalla": {
+      "es": "Cada rojo → su defecto · unmapped: [] ✓",
+      "en": "Every red → its defect · unmapped: [] ✓"
+    },
+    "assets": [
+      "brand/spendwise-qa-assessment/evidence/report/full-run.json"
+    ],
+    "notas_animacion": "Valores reales: \"BUG-01\": [\"VAL-01\", \"MUT-EXP-07\"], \"BUG-02\": [\"VAL-02\", \"VAL-03\", \"MUT-EXP-08\", \"MUT-EXP-09\"], \"unmapped\": []."
+  },
+  {
+    "id": "E16",
+    "inicio": "09:19",
+    "fin": "10:27",
+    "tipo": "diagrama",
+    "visual": "Cuatro cajas de gestores (Xray, TestRail, Zephyr, qTest) se intercambian sobre una misma cadena que no se mueve. Debajo, los formatos abiertos que viajan: HTML, JSON, JUnit XML, Cucumber JSON, imágenes, video.",
+    "texto_pantalla": {
+      "es": "Sobrevive: IDs estables · evidencia en formatos abiertos · enlaces",
+      "en": "Survives: stable IDs · evidence in open formats · links"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/modules-01-14.json (m8.theory)",
+      "brand/karate-api-testing/README.es.md (Reportes)"
+    ],
+    "notas_animacion": "Nombres de herramientas solo como texto."
+  },
+  {
+    "id": "E17",
+    "inicio": "10:27",
+    "fin": "11:54",
+    "tipo": "codigo",
+    "visual": "La receta de Allure de GROWTH.md y, al lado, el bucle del ledger de mutantes de civica (falló en las últimas 5 → nuevos → resto). Abajo, dos carpetas: test-results/ (se vacía al empezar, coral, rótulo «antes») y ledger/ (persiste, mint, rótulo «b240008»).",
+    "texto_pantalla": {
+      "es": "Allure: historial y tendencias\nLedger: memoria entre corridas, fuera de test-results/",
+      "en": "Allure: history and trends\nLedger: memory between runs, outside test-results/"
+    },
+    "assets": [
+      "brand/civica-playwright-challenge/docs/GROWTH.md (Richer reporting (Allure))",
+      "brand/civica-playwright-challenge/docs/MUTATION-TESTING.md (The learning loop; párrafo «The ledger lives in ledger/ (git-ignored), not in test-results/»)",
+      "Commit b240008 de civica-playwright-challenge"
+    ],
+    "notas_animacion": "Comandos reales: npm i -D allure-playwright · '# add ['allure-playwright'] to the reporter array in playwright.config.ts'. Texto real: 'Keeps history, trends and step-level detail across runs.' Ledger: 'failing → new → passing' (MUTATION-TESTING.md, diagrama del loop). Texto real del README: 'Playwright empties that folder at the start of every run, which is why, before this fix, runs never got past 1.'"
+  },
+  {
+    "id": "E18",
+    "inicio": "11:54",
+    "fin": "12:18",
+    "tipo": "codigo",
+    "visual": "Paso de upload del workflow de restful-booker con if: always() y retention-days: 14 resaltado; un calendario cuenta 14 días y el artefacto se desvanece.",
+    "texto_pantalla": {
+      "es": "Artefacto de CI = evidencia con fecha de vencimiento ⚠ 14 días",
+      "en": "CI artifact = evidence with an expiry date ⚠ 14 days"
+    },
+    "assets": [
+      "brand/restful-booker-quality-suite/.github/workflows/tests.yml"
+    ],
+    "notas_animacion": "Líneas reales: - name: Upload Playwright report · if: always() · uses: actions/upload-artifact@v4 · name: playwright-report · path: playwright-report/ · retention-days: 14."
+  },
+  {
+    "id": "E19",
+    "inicio": "12:18",
+    "fin": "12:50",
+    "tipo": "codigo",
+    "visual": "EXECUTION_REPORT.md de restful-booker con sus secciones colapsadas que se abren una a una; 'Deliberately excluded' resaltada.",
+    "texto_pantalla": {
+      "es": "Resumen · alcance · gates · decisión · lo excluido a propósito",
+      "en": "Summary · scope · gates · decision · deliberately excluded"
+    },
+    "assets": [
+      "brand/restful-booker-quality-suite/docs/EXECUTION_REPORT.md"
+    ],
+    "notas_animacion": "Datos reales: 'Automated checks: 43' · 'Confirmed defects: 8' · 'Release blockers: 3 when XML, decimal prices and date integrity are supported' · exclusiones: load/soak, injection and specialist security, browser UI and accessibility…"
+  },
+  {
+    "id": "E20",
+    "inicio": "12:50",
+    "fin": "13:37",
+    "tipo": "terminal",
+    "visual": "Terminal con npm run test:mutants y el marcador; luego un visor JSON con los campos documentados del mutant-evidence.json.",
+    "texto_pantalla": {
+      "es": "ID · esperado/observado · fase · razón · revisión Git · SHA-256 · randomSeed: null",
+      "en": "ID · expected/observed · phase · reason · Git revision · SHA-256 · randomSeed: null"
+    },
+    "assets": [
+      "brand/war-paradigm/experiments/02-mutants/README.md (Evidence, classification and score gate)",
+      "brand/war-paradigm/experiments/02-mutants/tests/mutant-reporter.ts"
+    ],
+    "notas_animacion": "El contenido exacto del JSON no está en el repo (se genera en test-results/): mostrar solo la lista de campos que documenta el README, o grabar una corrida real en la producción. Comandos reales: npm run test:mutants · npm run report."
+  },
+  {
+    "id": "E21",
+    "inicio": "13:37",
+    "fin": "15:12",
+    "tipo": "codigo",
+    "visual": "Workflow de civica con los tres pasos de subida (audit-reports después de su suite; playwright-report y mutation-insights al final) y la condición if: ${{ !cancelled() }} resaltada; al lado, una tabla de ejemplo ID → requisito.",
+    "texto_pantalla": {
+      "es": "Sube el reporte aunque falle · ID en el título · tabla ID → requisito",
+      "en": "Upload the report even on failure · ID in the title · ID → requirement table"
+    },
+    "assets": [
+      "brand/civica-playwright-challenge/.github/workflows/ci.yml"
+    ],
+    "notas_animacion": "Líneas reales: - name: Upload audit reports · if: ${{ !cancelled() }} · path: test-results/audit/ · retention-days: 14 (justo después de «Run audit POCs suite») · - name: Upload HTML report · path: playwright-report/ · retention-days: 14 · - name: Upload mutation insights ledgers · path: ledger/ · retention-days: 90. La tabla ID → requisito es un ejemplo: rotularla."
+  },
+  {
+    "id": "E22",
+    "inicio": "15:12",
+    "fin": "15:57",
+    "tipo": "animacion",
+    "visual": "Mano que cambia 'Inception' por otra palabra en la prueba (copia). La prueba se pone roja y en el reporte aparecen sus adjuntos: captura y video (✓ el reporte funciona). Variante: el fallo aparece sin captura (✗ hueco en el reporte).",
+    "texto_pantalla": {
+      "es": "Siembra un fallo → ¿aparece con su evidencia?",
+      "en": "Plant a failure → does it show up with its evidence?"
+    },
+    "assets": [
+      "brand/civica-playwright-challenge/tests/mock/searchMovie.mock.spec.ts"
+    ],
+    "notas_animacion": "La corrida sembrada no está registrada en el repo: grabarla al producir o mostrarla como animación ilustrativa. Línea a mutar: await expect(detailsPage.title).toHaveText('Inception');"
+  },
+  {
+    "id": "E23",
+    "inicio": "15:57",
+    "fin": "16:26",
+    "tipo": "resumen",
+    "visual": "Checklist de la rúbrica con franja dorada del nivel top.",
+    "texto_pantalla": {
+      "es": "☐ el reporte abre sin tu máquina\n☐ cada fallo trae captura o trace\n☐ cada caso enlaza su requisito\n⚠ Top: fallo sembrado visible con su evidencia",
+      "en": "☐ report opens without your machine\n☐ every failure has a screenshot or trace\n☐ every case links its requirement\n⚠ Top: planted failure visible with its evidence"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/modules-01-14.json (m8.crit, m8.top, m8.deliver)"
+    ],
+    "notas_animacion": "Casillas que se marcan con ✓."
+  },
+  {
+    "id": "E24",
+    "inicio": "16:26",
+    "fin": "16:52",
+    "tipo": "quiz",
+    "visual": "Pregunta 1 con opciones y pausa.",
+    "texto_pantalla": {
+      "es": "“512 passed, 3 failed” y nada más. ¿Qué le falta?\nA colores · B detalle por caso: pasos, evidencia, categoría y requisito · C gráfico de torta · D logo",
+      "en": "“512 passed, 3 failed” and nothing else. What's missing?\nA colors · B per-case detail: steps, evidence, category, requirement · C pie chart · D logo"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/quiz-11-19.json (m8, pregunta 5)"
+    ],
+    "notas_animacion": "⏸ con cuenta regresiva."
+  },
+  {
+    "id": "E25",
+    "inicio": "16:52",
+    "fin": "17:26",
+    "tipo": "quiz",
+    "visual": "Revelación de la 1 y preguntas 2 y 3 con respuesta.",
+    "texto_pantalla": {
+      "es": "1 → B ✓\n2 Xray → TestRail: la cadena no cambia\n3 Bidireccional: requisito ↔ prueba",
+      "en": "1 → B ✓\n2 Xray → TestRail: the chain doesn't change\n3 Two-way: requirement ↔ test"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/quiz-11-19.json (m8, preguntas 2 y 6)"
+    ],
+    "notas_animacion": "Correcta con ✓ y la palabra pasa."
+  },
+  {
+    "id": "E26",
+    "inicio": "17:26",
+    "fin": "17:54",
+    "tipo": "resumen",
+    "visual": "Tres tarjetas y la tarjeta del módulo 8b con ícono ✅. Firma.",
+    "texto_pantalla": {
+      "es": "1 Detalle por caso con evidencia\n2 Cada fallo clasificado\n3 La cadena es el estándar, no la herramienta\nSiguiente: Módulo 8b · Sign-off\nCristian Guerra · QA · Medellín",
+      "en": "1 Per-case detail with evidence\n2 Every failure classified\n3 The chain is the standard, not the tool\nNext: Module 8b · Sign-off\nCristian Guerra · QA · Medellín"
+    },
+    "assets": [],
+    "notas_animacion": "Cierre con la URL del curso."
+  }
+]

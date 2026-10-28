@@ -1,0 +1,245 @@
+[
+  {
+    "id": "E01",
+    "inicio": "00:00",
+    "fin": "00:38",
+    "tipo": "titulo",
+    "visual": "Cuatro cajas del flujo dorado (login → crear → aprobar → publicar) con ✓ mint. Por debajo, un muñeco \"editor\" se cambia la insignia a \"admin\"; aparece \"HTTP 200\" en coral y el muñeco aprueba y publica solo. Entra el título.",
+    "texto_pantalla": {
+      "es": "Flujo dorado ✓✓✓✓ · editor → admin: HTTP 200 ✗ · Mutation testing — kill rate, sobrevivientes y Stryker/PIT",
+      "en": "Golden flow ✓✓✓✓ · editor → admin: HTTP 200 ✗ · Mutation testing — kill rate, survivors, Stryker/PIT"
+    },
+    "assets": [
+      "war-paradigm/experiments/02-mutants/README.md §The finding: a user can grant themself a higher role",
+      "war-paradigm/docs/assets/explained.gif (referencia de estilo; ya muestra la historia del self-grant)"
+    ],
+    "notas_animacion": "Firma: Cristian Guerra · QA · Medellín. Tiempos EN: 00:00–00:38."
+  },
+  {
+    "id": "E02",
+    "inicio": "00:38",
+    "fin": "01:32",
+    "tipo": "analogia",
+    "visual": "Un guardia en la puerta de un colegio. Una silla cae (ruido a propósito). Versión A: el guardia grita → etiqueta mint \"✓ KILLED\". Versión B: el guardia dormido con \"zzz\" → etiqueta coral \"✗ SURVIVED\". Un cuaderno gold \"ledger\" anota el caso.",
+    "texto_pantalla": {
+      "es": "Ruido a propósito = mutante · grita ✓ KILLED · duerme ✗ SURVIVED · se anota en el ledger",
+      "en": "A noise on purpose = a mutant · shouts ✓ KILLED · sleeps ✗ SURVIVED · goes in the ledger"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/modules-15-23.json → m15.kid",
+      "war-paradigm/README.md §Explained like you're 8"
+    ],
+    "notas_animacion": "Mismo estilo de personajes que explained.gif de war-paradigm. Tiempos EN: 00:38–01:33."
+  },
+  {
+    "id": "E03",
+    "inicio": "01:32",
+    "fin": "02:48",
+    "tipo": "diagrama",
+    "visual": "Tabla animada de los cuatro pasos con dos columnas (simulación física / flujo funcional), fila por fila, y abajo los tres veredictos con símbolo + palabra.",
+    "texto_pantalla": {
+      "es": "1 Generar · 2 Mutar · 3 Auditar · 4 Validar → PASS ✓ · KILLED ✓ · SURVIVED ✗",
+      "en": "1 Generate · 2 Mutate · 3 Audit · 4 Validate → PASS ✓ · KILLED ✓ · SURVIVED ✗"
+    },
+    "assets": [
+      "war-paradigm/README.md §The paradigm in four steps (tabla: Snell con índices intercambiados / un viewer intenta aprobar; oráculo con tolerancia 10⁻⁶ congelada)"
+    ],
+    "notas_animacion": "KILLED se muestra en mint porque es la buena noticia (el check tiene dientes); SURVIVED en coral. Tiempos EN: 01:33–02:43."
+  },
+  {
+    "id": "E04",
+    "inicio": "02:48",
+    "fin": "03:52",
+    "tipo": "diagrama",
+    "visual": "Pipeline: reset → login → línea base → mutación (un paso). Si cualquiera de los tres primeros falla, la ficha cae a una bandeja gold \"fuera del puntaje\" con las etiquetas INCONCLUSIVE / línea base inválida. Una ficha con \"KILLED\" falso se tacha en coral.",
+    "texto_pantalla": {
+      "es": "Línea base primero · ⚠ 5xx o login caído ≠ KILLED",
+      "en": "Baseline first · ⚠ a 5xx or a broken login ≠ KILLED"
+    },
+    "assets": [
+      "m15.theory[1] y m15.crit[2]",
+      "war-paradigm/experiments/02-mutants/tests/scenario-runner.ts (executeScenario: reset, login y línea base antes de mutar)"
+    ],
+    "notas_animacion": "Mantener simple: los cinco estados detallados son del módulo siguiente (m29). Tiempos EN: 02:43–03:47."
+  },
+  {
+    "id": "E05",
+    "inicio": "03:52",
+    "fin": "05:04",
+    "tipo": "diagrama",
+    "visual": "Fórmula grande KILLED / (KILLED + SURVIVED). Dos contadores: experimento 02 (5 ✓ · 2 ✗ → 5/7 ≈ 71 %) y track físico (27 PASS aparte · 54 KILLED · 3 SURVIVED de 84 variantes). Dos banderas de host: macOS arm64 = Linux x86_64.",
+    "texto_pantalla": {
+      "es": "Kill rate = KILLED / (KILLED + SURVIVED) · 02: 5/7 ≈ 71 % · físico: 54 de 57, 27 PASS aparte",
+      "en": "Kill rate = KILLED / (KILLED + SURVIVED) · 02: 5/7 ≈ 71% · physical: 54 of 57, 27 PASS kept apart"
+    },
+    "assets": [
+      "war-paradigm/README.md §Two tracks (84 paired variants, 27 PASS · 54 KILLED · 3 SURVIVED, macOS arm64 y Linux x86_64)",
+      "scientific-qa-evidence/README.md líneas 50, 93, 153-155"
+    ],
+    "notas_animacion": "No mostrar porcentaje del track físico: el repo da conteos, no porcentaje. Tiempos EN: 03:47–04:49."
+  },
+  {
+    "id": "E06",
+    "inicio": "05:04",
+    "fin": "05:56",
+    "tipo": "diagrama",
+    "visual": "Dos mutantes acústicos con la misma curva de salida se funden en uno: 54 → 51 comportamientos. Luego, una línea de código iluminada por la cobertura (\"ejecutada ✓\") sin ningún assert; un mutante la cambia y nadie grita (\"verificada ✗\").",
+    "texto_pantalla": {
+      "es": "54 KILLED = 51 comportamientos distintos · Cobertura = qué se ejecutó · Mutantes = qué se verificó",
+      "en": "54 KILLED = 51 distinct behaviors · Coverage = what ran · Mutants = what got checked"
+    },
+    "assets": [
+      "scientific-qa-evidence/README.md línea 155",
+      "qa-automation-course/i18n/es/quiz-20-27.json → m15 pregunta 9"
+    ],
+    "notas_animacion": "La línea de código es genérica e ilustrativa; rotular \"ilustrativo\". Tiempos EN: 04:49–05:36."
+  },
+  {
+    "id": "E07",
+    "inicio": "05:56",
+    "fin": "07:04",
+    "tipo": "diagrama",
+    "visual": "Un mutante como tarjeta de datos con un solo campo resaltado (rol / estado / campo / orden). Una tarjeta con dos campos cambiados se marca gold \"⚠ dos cambios: ¿cuál lo mató?\". A la derecha, el ledger: causa, dueño, siguiente paso.",
+    "texto_pantalla": {
+      "es": "Un cambio por mutante · SURVIVED → ledger: causa, dueño, siguiente paso",
+      "en": "One change per mutant · SURVIVED → ledger: cause, owner, next step"
+    },
+    "assets": [
+      "m15.theory[3], m15.theory[4]",
+      "quiz-20-27.json → m15 preguntas 6 y 8"
+    ],
+    "notas_animacion": "Cerrar con dos logos de texto (sin marcas gráficas): \"Stryker · JS/TS\" y \"PIT · Java\". Tiempos EN: 05:36–06:38."
+  },
+  {
+    "id": "E08",
+    "inicio": "07:04",
+    "fin": "08:46",
+    "tipo": "terminal",
+    "visual": "Terminal con preparación y demo. Las líneas KILLED entran en mint y las dos de KNOWN SURVIVOR en coral, igual que la salida real con colores ANSI.",
+    "texto_pantalla": {
+      "es": "npm run demo:02 · 5/7 muertos · 2 sobrevivientes conocidos",
+      "en": "npm run demo:02 · 5/7 killed · 2 known survivors"
+    },
+    "assets": [
+      "Comandos (war-paradigm/README.md §Quickstart, m15.hands[0]):\n$ git clone https://github.com/criguex/war-paradigm.git && cd war-paradigm\n$ npm ci\n$ npx playwright install --with-deps chromium\n$ npm run demo:02",
+      "Salida real (war-paradigm 08438a2, corrida 2026-10-26; script `test:mutants` de experiments/02-mutants/package.json):\nRunning 7 tests using 1 worker\n\n  ✓  1 tests/mutants.spec.ts:11:3 › role-swap: expect 403\n  ✓  2 tests/mutants.spec.ts:11:3 › drop-input: expect 422\n  ✓  3 tests/mutants.spec.ts:11:3 › reorder: expect 409\n  ✓  4 tests/mutants.spec.ts:11:3 › stale-token: expect 401\n  ✓  5 tests/mutants.spec.ts:11:3 › boundary: expect 422\n  ✘  6 tests/mutants.spec.ts:11:3 › self-grant: expect 403\n  ✘  7 tests/mutants.spec.ts:11:3 › viewer-create: expect 403\n\n  7 passed\n\n  MUTANT SCENARIO EVIDENCE\n  KILLED            role-swap      Expected rejection HTTP 403 observed.\n  KILLED            drop-input     Expected rejection HTTP 422 observed.\n  KILLED            reorder        Expected rejection HTTP 409 observed.\n  KILLED            stale-token    Expected rejection HTTP 401 observed.\n  KILLED            boundary       Expected rejection HTTP 422 observed.\n  KNOWN SURVIVOR    self-grant     Mutation was accepted with HTTP 200.\n  KNOWN SURVIVOR    viewer-create  Mutation was accepted with HTTP 201.\n\n  5/7 scored mutants killed · 2 survived · 0 excluded from score\n  JSON evidence: test-results/mutant-evidence.json",
+      "Modo estricto, salida real (2026-10-26):\n$ npm run test:strict -w experiments/02-mutants\n  2 failed\n    tests/mutants.spec.ts:11:3 › self-grant: expect 403\n    tests/mutants.spec.ts:11:3 › viewer-create: expect 403\n  5 passed\n  ...\n  KNOWN SURVIVOR    self-grant     Mutation was accepted with HTTP 200.\n  KNOWN SURVIVOR    viewer-create  Mutation was accepted with HTTP 201.\n  5/7 scored mutants killed · 2 survived · 0 excluded from score\nnpm error Lifecycle script `test:strict` failed with error:\nnpm error code 1"
+    ],
+    "notas_animacion": "Omitir los ms por prueba; antes de Playwright se ven las 5 pruebas unitarias (✔ … ℹ tests 5 ℹ pass 5). Tiempos EN: 06:38–08:19."
+  },
+  {
+    "id": "E09",
+    "inicio": "08:46",
+    "fin": "10:11",
+    "tipo": "codigo",
+    "visual": "Editor con tests/scenarios.ts; cada mutante se resalta al nombrarlo. Luego salto a app/server.js, línea de editMember, con la parte `|| actor.id === target.id` subrayada en coral.",
+    "texto_pantalla": {
+      "es": "tests/scenarios.ts · app/server.js → editMember",
+      "en": "tests/scenarios.ts · app/server.js → editMember"
+    },
+    "assets": [
+      "war-paradigm/experiments/02-mutants/tests/scenarios.ts:\nexport const mutants: Mutant[] = [\n  { id: 'role-swap', name: 'role-swap', expect: 403, step: 'approve', as: 'viewer' },\n  { id: 'drop-input', name: 'drop-input', expect: 422, step: 'create', body: { owner: undefined } },\n  { id: 'reorder', name: 'reorder', expect: 409, step: 'publish', order: ['create', 'publish'] },\n  { id: 'stale-token', name: 'stale-token', expect: 401, step: 'approve', ttl: 0 },\n  { id: 'boundary', name: 'boundary', expect: 422, step: 'create', body: { title: 'x'.repeat(81) } },\n  {\n    id: 'self-grant', name: 'self-grant', expect: 403, step: 'grant', order: ['grant'],\n    body: { role: 'admin' }, postcondition: { kind: 'member-role', role: 'editor' },\n    known: 'privilege escalation — POST /api/members/:id/role lets a user change their own role',\n  },\n  {\n    id: 'viewer-create', name: 'viewer-create', expect: 403, step: 'create', as: 'viewer',\n    known: 'viewer can create drafts — POST /api/docs has no role check (the vault matrix says 403); found while preparing the course',\n  },\n];",
+      "war-paradigm/experiments/02-mutants/app/server.js línea 58:\n  editMember: (actor, target) => actor.role === 'admin' || actor.id === target.id,"
+    ],
+    "notas_animacion": "Quitar las líneas SPDX del encabezado para la toma. Tiempos EN: 08:19–09:36."
+  },
+  {
+    "id": "E10",
+    "inicio": "10:11",
+    "fin": "11:32",
+    "tipo": "codigo",
+    "visual": "Visor JSON plegable de test-results/mutant-evidence.json: primero `run` (gitSha, deterministic, randomSeed, inputSha256 con 7 entradas), luego `summary`, luego el escenario self-grant con observedState resaltado.",
+    "texto_pantalla": {
+      "es": "mutant-evidence.json · esperado 403 · observado 200 · rol admin (esperado editor)",
+      "en": "mutant-evidence.json · expected 403 · observed 200 · role admin (expected editor)"
+    },
+    "assets": [
+      "Archivo real generado por la corrida del 2026-10-26: war-paradigm/experiments/02-mutants/test-results/mutant-evidence.json. Extracto del escenario (sin el bloque run):\n{\"scenarioId\": \"self-grant\", \"expectedStatus\": 403, \"outcome\": \"SURVIVED\", \"phase\": \"mutation\", \"reason\": \"Mutation was accepted with HTTP 200.\", \"knownFinding\": \"privilege escalation — POST /api/members/:id/role lets a user change their own role\", \"observedStatus\": 200, \"observedState\": {\"memberId\": \"u2\", \"role\": \"admin\", \"expectedRole\": \"editor\"}, \"playwrightStatus\": \"failed\"}",
+      "Resumen real: {\"total\": 6, \"scored\": 6, \"excludedFromScore\": 0, \"counts\": {\"KILLED\": 5, \"SURVIVED\": 1, \"INCONCLUSIVE\": 0, \"INVALID_BASELINE\": 0, \"INFRA_ERROR\": 0}}",
+      "Lista de entradas con hash: tests/scenario-evidence.ts (const inputs)"
+    ],
+    "notas_animacion": "Los hashes y el gitSha cambian con cada commit; si se regrabará, tomar el JSON de esa corrida. Tiempos EN: 09:36–10:53."
+  },
+  {
+    "id": "E11",
+    "inicio": "11:32",
+    "fin": "12:55",
+    "tipo": "terminal",
+    "visual": "Dos terminales lado a lado, rotuladas \"Stryker (JS/TS)\" y \"PIT (Java + Maven)\", solo con los comandos (sin salida). Debajo, la tabla de estados de Stryker con su efecto en el puntaje (cuenta como detectado / excluido / no cuenta en contra).",
+    "texto_pantalla": {
+      "es": "Mutation score (Stryker) = detectados / válidos × 100 · compile/runtime error: fuera del puntaje",
+      "en": "Mutation score (Stryker) = detected / valid × 100 · compile/runtime errors: out of the score"
+    },
+    "assets": [
+      "Comandos de la documentación oficial (sin salida: no se corrieron en ningún repo de Cristian):\n$ npm init stryker@latest\n$ npx stryker run\n(fuente: https://stryker-mutator.io/docs/stryker-js/getting-started/)\n$ mvn test-compile org.pitest:pitest-maven:mutationCoverage\n(reporte en target/pit-reports/YYYYMMDDHHMI; fuente: https://pitest.org/quickstart/maven/)",
+      "Estados y fórmula: https://stryker-mutator.io/docs/mutation-testing-elements/mutant-states-and-metrics/"
+    ],
+    "notas_animacion": "Rótulo gold: \"⚠ comandos de la doc oficial, no corridos en este video\". Tiempos EN: 10:53–12:10."
+  },
+  {
+    "id": "E12",
+    "inicio": "12:55",
+    "fin": "14:30",
+    "tipo": "terminal",
+    "visual": "Tres momentos. (1) Nota del vault \"Roles and permissions\" con la fila \"create draft · viewer 403\" resaltada. (2) Terminal con el mutante nuevo y su marcador: SURVIVED viewer-create HTTP 201 en coral. (3) server.js con editMember arreglado y el marcador FIXED en mint.",
+    "texto_pantalla": {
+      "es": "Mutante nuevo: viewer-create → ✗ SURVIVED (201), hoy en el repo · Kill it yourself → ✓ FIXED self-grant · 6/7",
+      "en": "New mutant: viewer-create → ✗ SURVIVED (201), now in the repo · Kill it yourself → ✓ FIXED self-grant · 6/7"
+    },
+    "assets": [
+      "war-paradigm/experiments/03-second-brain/vault/03 Knowledge/Roles and permissions.md (fila «create draft | 403 | 201 | 201 | 201»)",
+      "Mutante agregado en una copia local (no en el repo), línea en tests/scenarios.ts:\n  { id: 'viewer-create', name: 'viewer-create', expect: 403, step: 'create', as: 'viewer' },",
+      "Salida real en la copia, 2026-10-26 (`npx playwright test tests/mutants.spec.ts` dentro de experiments/02-mutants):\n  MUTANT SCENARIO EVIDENCE\n  KILLED            role-swap      Expected rejection HTTP 403 observed.\n  KILLED            drop-input     Expected rejection HTTP 422 observed.\n  KILLED            reorder        Expected rejection HTTP 409 observed.\n  KILLED            stale-token    Expected rejection HTTP 401 observed.\n  KILLED            boundary       Expected rejection HTTP 422 observed.\n  SURVIVED          viewer-create  Mutation was accepted with HTTP 201.\n  KNOWN SURVIVOR    self-grant     Mutation was accepted with HTTP 200.\n\n  5/7 scored mutants killed · 2 survived · 0 excluded from score",
+      "Arreglo «Kill it yourself» (experiments/02-mutants/README.md): editMember: (actor) => actor.role === 'admin',",
+      "Salida real tras el arreglo de self-grant (copia local de war-paradigm a5386c8, 2026-10-26, revertido después):\n  KILLED            role-swap      Expected rejection HTTP 403 observed.\n  KILLED            drop-input     Expected rejection HTTP 422 observed.\n  KILLED            reorder        Expected rejection HTTP 409 observed.\n  KILLED            stale-token    Expected rejection HTTP 401 observed.\n  KILLED            boundary       Expected rejection HTTP 422 observed.\n  FIXED             self-grant     Expected rejection HTTP 403 observed.\n  KNOWN SURVIVOR    viewer-create  Mutation was accepted with HTTP 201.\n\n  6/7 scored mutants killed · 1 survived · 0 excluded from score\n(con MUTANT_LAB_STRICT=1 viewer-create sigue haciendo fallar la corrida: exit code 1)",
+      "Causa: POST /api/docs en app/server.js no llama a ninguna regla de rol antes de crear (solo valida título y owner)"
+    ],
+    "notas_animacion": "Rótulo pequeño: \"corrido por un asistente bajo mi dirección, en una copia local\". El hallazgo viewer-create NO está en el repo ni en su README. Tiempos EN: 12:10–13:40."
+  },
+  {
+    "id": "E13",
+    "inicio": "14:30",
+    "fin": "15:46",
+    "tipo": "resumen",
+    "visual": "Checklist del reto (3 tareas), entregable y 4 criterios; rúbrica genérica en cuatro columnas con el nivel 4 = Kill it yourself.",
+    "texto_pantalla": {
+      "es": "Entregable: catálogo de mutantes + marcador + kill rate + ledger · ≥ 5/6 muertos",
+      "en": "Deliverable: mutant catalog + scoreboard + kill rate + ledger · ≥ 5/6 killed"
+    },
+    "assets": [
+      "m15.hands, m15.crit, m15.deliver, m15.top",
+      "ui.json → rubric.generic"
+    ],
+    "notas_animacion": "Nivel 4 = texto de m15.top. Tiempos EN: 13:40–14:50."
+  },
+  {
+    "id": "E14",
+    "inicio": "15:46",
+    "fin": "16:47",
+    "tipo": "quiz",
+    "visual": "Tres tarjetas de pregunta con cuatro opciones y pausa de 5 s; la correcta se marca ✓ mint con su explicación.",
+    "texto_pantalla": {
+      "es": "1) 5 KILLED + 1 SURVIVED: ¿kill rate? · 2) La línea base falla: ¿qué haces? · 3) 95 % de cobertura: ¿qué añade mutation testing?",
+      "en": "1) 5 KILLED + 1 SURVIVED: kill rate? · 2) The baseline fails: what now? · 3) 95% coverage: what does mutation testing add?"
+    },
+    "assets": [
+      "quiz-20-27.json → m15 índices 1, 2 y 8"
+    ],
+    "notas_animacion": "Ícono ⏸ y texto \"pausa el video\". Tiempos EN: 14:50–15:50."
+  },
+  {
+    "id": "E15",
+    "inicio": "16:47",
+    "fin": "17:33",
+    "tipo": "resumen",
+    "visual": "Tres ideas en tarjetas y la tarjeta del siguiente módulo.",
+    "texto_pantalla": {
+      "es": "1 · Rompe a propósito y mira si grita · 2 · Kill rate sin línea base ni infra · 3 · Los sobrevivientes van al ledger · Siguiente: Ejecución de mutantes",
+      "en": "1 · Break it on purpose and see if it shouts · 2 · Kill rate without baseline or infra · 3 · Survivors go in the ledger · Next: Running mutants"
+    },
+    "assets": [
+      "https://criguex.github.io/qa-automation-course/#/m29"
+    ],
+    "notas_animacion": "Firma: Cristian Guerra · QA · Medellín. Tiempos EN: 15:50–16:35."
+  }
+]

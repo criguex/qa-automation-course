@@ -1,0 +1,290 @@
+[
+  {
+    "id": "E01",
+    "inicio": "00:00",
+    "fin": "00:10",
+    "tipo": "titulo",
+    "visual": "Título sobre navy con rejilla y barra mint. Icono espadas, nivel ★★☆☆☆.",
+    "texto_pantalla": {
+      "es": "Módulo 02, parte 2 · Manos a la obra — WAR Paradigm: probar al que prueba\nCristian Guerra · QA · Medellín",
+      "en": "Module 02, part 2 · Hands-on — WAR Paradigm: test the tester\nCristian Guerra · QA · Medellín"
+    },
+    "assets": [
+      "course.json (m30, posición 2, icono ⚔️, nivel ★★☆☆☆)"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E02",
+    "inicio": "00:10",
+    "fin": "00:42",
+    "tipo": "diagrama",
+    "visual": "Repaso de la parte 1: cuatro tarjetas unidas con flechas (generar, mutar, auditar, validar) con la definición de mutante como nota; luego los tres veredictos con estado y la regla «si sobrevive, se publica».",
+    "texto_pantalla": {
+      "es": "Repaso: un mutante en 4 pasos\nTres veredictos, siempre",
+      "en": "Recap: a mutant in 4 steps\nThree verdicts, always"
+    },
+    "assets": [
+      "02-m30-p1 (parte 1 del módulo)",
+      "m30.theory[1]",
+      "m30.theory[2]"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E03",
+    "inicio": "00:42",
+    "fin": "01:31",
+    "tipo": "terminal",
+    "visual": "Terminal con la preparación y el marcador real del experimento 02 dentro de npm test.",
+    "texto_pantalla": {
+      "es": "$ git clone https://github.com/criguex/war-paradigm.git && cd war-paradigm\n$ npm ci && npx playwright install --with-deps chromium\n$ npm test\n  MUTANT SCENARIO EVIDENCE\n  KILLED            role-swap      Expected rejection HTTP 403 observed.\n  KILLED            drop-input     Expected rejection HTTP 422 observed.\n  KILLED            reorder        Expected rejection HTTP 409 observed.\n  KILLED            stale-token    Expected rejection HTTP 401 observed.\n  KILLED            boundary       Expected rejection HTTP 422 observed.\n  KNOWN SURVIVOR    self-grant     Mutation was accepted with HTTP 200.\n  KNOWN SURVIVOR    viewer-create  Mutation was accepted with HTTP 201.\n  5/7 scored mutants killed · 2 survived · 0 excluded from score",
+      "en": "$ git clone https://github.com/criguex/war-paradigm.git && cd war-paradigm\n$ npm ci && npx playwright install --with-deps chromium\n$ npm test\n  MUTANT SCENARIO EVIDENCE\n  KILLED            role-swap      Expected rejection HTTP 403 observed.\n  KILLED            drop-input     Expected rejection HTTP 422 observed.\n  KILLED            reorder        Expected rejection HTTP 409 observed.\n  KILLED            stale-token    Expected rejection HTTP 401 observed.\n  KILLED            boundary       Expected rejection HTTP 422 observed.\n  KNOWN SURVIVOR    self-grant     Mutation was accepted with HTTP 200.\n  KNOWN SURVIVOR    viewer-create  Mutation was accepted with HTTP 201.\n  5/7 scored mutants killed · 2 survived · 0 excluded from score"
+    },
+    "assets": [
+      "Comandos: m30.hands[0]",
+      "Salida: render/salidas/npm_test.txt (render/salidas/capturas.sh sobre criguex/war-paradigm @ 08438a2 (27-oct-2026, Node v26.8.1))"
+    ],
+    "notas_animacion": "KILLED en mint ✓; KNOWN SURVIVOR en coral ✗ con la palabra."
+  },
+  {
+    "id": "E04",
+    "inicio": "01:31",
+    "fin": "02:41",
+    "tipo": "diagrama",
+    "visual": "Tabla de tres filas para leer el marcador (cuenta, no cuenta, conocidos) y dos tarjetas de la evidencia JSON con la huella SHA-256.",
+    "texto_pantalla": {
+      "es": "Cómo se lee el marcador\nEvidencia en un archivo JSON",
+      "en": "How to read the scoreboard\nEvidence in a JSON file"
+    },
+    "assets": [
+      "experiments/02-mutants/README.md §Evidence, classification and score gate",
+      "experiments/02-mutants/package.json (test:strict)",
+      "render/salidas/npm_test.txt (0 excluded from score · JSON evidence: test-results/mutant-evidence.json)"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E05",
+    "inicio": "02:41",
+    "fin": "03:06",
+    "tipo": "codigo",
+    "visual": "Editor con el diff real de una línea en app/server.js (la regla editMember) y la nota de predicción escrita antes de correr.",
+    "texto_pantalla": {
+      "es": "experiments/02-mutants/app/server.js\n- || actor.id === target.id\n+ actor.role === 'admin',\nPredicción: self-grant → FIXED · 403 esperado · 6 de 7 · viewer-create sigue",
+      "en": "experiments/02-mutants/app/server.js\n- || actor.id === target.id\n+ actor.role === 'admin',\nPrediction: self-grant → FIXED · expected 403 · 6 of 7 · viewer-create remains"
+    },
+    "assets": [
+      "experiments/02-mutants/README.md §Kill it yourself",
+      "render/salidas/arreglo.diff"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E06",
+    "inicio": "03:06",
+    "fin": "03:33",
+    "tipo": "terminal",
+    "visual": "Marcador del experimento 02 con el arreglo aplicado: FIXED self-grant en mint con ✓ arreglado, viewer-create sigue en coral con ✗.",
+    "texto_pantalla": {
+      "es": "$ npm run demo:02\n  MUTANT SCENARIO EVIDENCE\n  …\n  FIXED             self-grant     Expected rejection HTTP 403 observed.\n  KNOWN SURVIVOR    viewer-create  Mutation was accepted with HTTP 201.\n  6/7 scored mutants killed · 1 survived · 0 excluded from score",
+      "en": "$ npm run demo:02\n  MUTANT SCENARIO EVIDENCE\n  …\n  FIXED             self-grant     Expected rejection HTTP 403 observed.\n  KNOWN SURVIVOR    viewer-create  Mutation was accepted with HTTP 201.\n  6/7 scored mutants killed · 1 survived · 0 excluded from score"
+    },
+    "assets": [
+      "render/salidas/arreglo_demo02.txt (arreglo aplicado y revertido por capturas.sh; render/salidas/capturas.sh sobre criguex/war-paradigm @ 08438a2 (27-oct-2026, Node v26.8.1))"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E07",
+    "inicio": "03:33",
+    "fin": "04:25",
+    "tipo": "terminal",
+    "visual": "Resumen de test:03 y la demo del hook contra seis comandos: tres BLOCKED con rótulo mint «el guardia gritó» y tres allowed.",
+    "texto_pantalla": {
+      "es": "$ npm run test:03\nℹ tests 45\nℹ pass 45\nℹ fail 0\n$ npm run demo:03\n  $ git push origin main                     ✘ BLOCKED (exit 2)\n  $ git push --force origin HEAD:main        ✘ BLOCKED (exit 2)\n  $ npm test && git push origin master       ✘ BLOCKED (exit 2)\n  $ git push origin feature/mutants          ✓ allowed (exit 0)\n  $ git push -u origin feature/mutants       ✓ allowed (exit 0)\n  $ git pull origin main                     ✓ allowed (exit 0)",
+      "en": "$ npm run test:03\nℹ tests 45\nℹ pass 45\nℹ fail 0\n$ npm run demo:03\n  $ git push origin main                     ✘ BLOCKED (exit 2)\n  $ git push --force origin HEAD:main        ✘ BLOCKED (exit 2)\n  $ npm test && git push origin master       ✘ BLOCKED (exit 2)\n  $ git push origin feature/mutants          ✓ allowed (exit 0)\n  $ git push -u origin feature/mutants       ✓ allowed (exit 0)\n  $ git pull origin main                     ✓ allowed (exit 0)"
+    },
+    "assets": [
+      "render/salidas/test03.txt y render/salidas/demo03.txt (render/salidas/capturas.sh sobre criguex/war-paradigm @ 08438a2 (27-oct-2026, Node v26.8.1))",
+      "experiments/03-second-brain/tests/hook.test.mjs (6 casos «known limits: these get through»)"
+    ],
+    "notas_animacion": "BLOCKED significa que el guardia funcionó: el rótulo es mint ✓."
+  },
+  {
+    "id": "E08",
+    "inicio": "04:25",
+    "fin": "05:00",
+    "tipo": "terminal",
+    "visual": "Comando manual contra el hook con el JSON en una variable; sale el mensaje de bloqueo y el código 2.",
+    "texto_pantalla": {
+      "es": "$ cd experiments/03-second-brain\n$ J='{\"tool_input\":{\"command\":\"git push origin main\"}}'\n$ echo \"$J\" | ./hooks/block-push-to-main.sh; echo $?\nblocked by hook: block-push-to-main.sh — a push to 'main' is not allowed. …\n2",
+      "en": "$ cd experiments/03-second-brain\n$ J='{\"tool_input\":{\"command\":\"git push origin main\"}}'\n$ echo \"$J\" | ./hooks/block-push-to-main.sh; echo $?\nblocked by hook: block-push-to-main.sh — a push to 'main' is not allowed. …\n2"
+    },
+    "assets": [
+      "Comando: m30.hands[3] (el JSON va en la variable J para que la línea quepa en pantalla; misma entrada)",
+      "render/salidas/hook_manual.txt (render/salidas/capturas.sh sobre criguex/war-paradigm @ 08438a2 (27-oct-2026, Node v26.8.1))"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E09",
+    "inicio": "05:00",
+    "fin": "05:32",
+    "tipo": "terminal",
+    "visual": "Terminal con la pista física opcional en Python.",
+    "texto_pantalla": {
+      "es": "$ git clone https://github.com/criguex/scientific-qa-evidence.git\n$ cd scientific-qa-evidence/evidence/numerical/source\n$ python3 -m unittest test_runner\n.......\n----------------------------------------------------------------------\nRan 7 tests in 0.166s\nOK",
+      "en": "$ git clone https://github.com/criguex/scientific-qa-evidence.git\n$ cd scientific-qa-evidence/evidence/numerical/source\n$ python3 -m unittest test_runner\n.......\n----------------------------------------------------------------------\nRan 7 tests in 0.166s\nOK"
+    },
+    "assets": [
+      "Comando: m30.hands[4] y scientific-qa-evidence/README.es.md",
+      "render/salidas/sqe_unittest.txt (criguex/scientific-qa-evidence @ dbd7087, Python 3.9.6, 27-oct-2026)",
+      "test_runner.py: assertEqual(summary['counts'], {KILLED: 54, PASS: 27, SURVIVED: 3})"
+    ],
+    "notas_animacion": "El tiempo puede variar en otra máquina; se muestra tal cual salió."
+  },
+  {
+    "id": "E10",
+    "inicio": "05:32",
+    "fin": "06:28",
+    "tipo": "analogia",
+    "visual": "Dos tarjetas: lo que pide el curso y por qué (el mismo error de self-grant). Luego la profe del módulo 01 con dos hojas: el plan de la corrida 2 con el cambio (S-1, S-2, S-3, S-5, S-6) y la historia US-42 como hoja de respuestas; la lupa compara y S-2 (espera 200, la matriz dice 403) se marca ✗.",
+    "texto_pantalla": {
+      "es": "¿Por qué esta mutación?\nLa profe compara el plan con la historia",
+      "en": "Why this mutation?\nThe teacher checks the plan against the story"
+    },
+    "assets": [
+      "m30.mut",
+      "experiments/01-ai-verdict/fixtures/runs/pinned/run-2.json (S-1, S-3, S-5, S-6 tal cual; S-2 con actor editor tras la mutación)",
+      "experiments/01-ai-verdict/fixtures/story-US-42.json (permissions: create 201, approve solo approver/admin, publish)"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E11",
+    "inicio": "06:28",
+    "fin": "07:02",
+    "tipo": "codigo",
+    "visual": "Editor con el diff real de una línea en pinned/run-2.json (solo cambia el actor de S-2) y la nota de predicción.",
+    "texto_pantalla": {
+      "es": "experiments/01-ai-verdict/fixtures/runs/pinned/run-2.json\n- \"actor\": \"approver\"\n+ \"actor\": \"editor\"\nPredicción: AC-3 lo atrapa · corrida 2 → REJECTED · el set deja de ser STABLE",
+      "en": "experiments/01-ai-verdict/fixtures/runs/pinned/run-2.json\n- \"actor\": \"approver\"\n+ \"actor\": \"editor\"\nPrediction: AC-3 catches it · run 2 → REJECTED · the set stops being STABLE"
+    },
+    "assets": [
+      "m30.hands[2] y m30.mut",
+      "render/salidas/mutacion.diff"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E12",
+    "inicio": "07:02",
+    "fin": "07:40",
+    "tipo": "terminal",
+    "visual": "Salida de la demo con la mutación, resumen de la suite y la restauración en verde.",
+    "texto_pantalla": {
+      "es": "$ npm run demo:pinned -w experiments/01-ai-verdict\n    AC-3  must   ✘ failed   S-2: editor → approve expects 200 (matrix says forbidden → 403)\n    score 84/100 · gate 70 · verdict REJECTED · must failed: AC-3\n  run 1 approved 86  ·  run 2 REJECTED 84  ·  run 3 approved 87\n  verdict UNSTABLE → finding: verdict flipped …\n$ npm run test:01\n  3 failed\n  1 skipped\n  24 passed\n(archivo restaurado)\n  1 skipped\n  27 passed",
+      "en": "$ npm run demo:pinned -w experiments/01-ai-verdict\n    AC-3  must   ✘ failed   S-2: editor → approve expects 200 (matrix says forbidden → 403)\n    score 84/100 · gate 70 · verdict REJECTED · must failed: AC-3\n  run 1 approved 86  ·  run 2 REJECTED 84  ·  run 3 approved 87\n  verdict UNSTABLE → finding: verdict flipped …\n$ npm run test:01\n  3 failed\n  1 skipped\n  24 passed\n(archivo restaurado)\n  1 skipped\n  27 passed"
+    },
+    "assets": [
+      "render/salidas/mut_demo_pinned.txt, mut_test01.txt y restaurado_test01.txt (render/salidas/capturas.sh sobre criguex/war-paradigm @ 08438a2 (27-oct-2026, Node v26.8.1))"
+    ],
+    "notas_animacion": "Sello KILLED mint al aparecer REJECTED. «3 failed» en coral con ✗."
+  },
+  {
+    "id": "E13",
+    "inicio": "07:40",
+    "fin": "08:28",
+    "tipo": "diagrama",
+    "visual": "La tabla WAR con la fila de hoy (rompí, predije, guardia, veredicto ✓ KILLED). Luego la lista de los cuatro criterios con casillas.",
+    "texto_pantalla": {
+      "es": "Tu tabla WAR de la semana\nAl menos 3 mutaciones",
+      "en": "Your weekly WAR table\nAt least 3 mutations"
+    },
+    "assets": [
+      "m30.deliver",
+      "m30.crit",
+      "render/salidas/mut_demo_pinned.txt y mut_test01.txt (la fila de ejemplo)"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E14",
+    "inicio": "08:28",
+    "fin": "09:03",
+    "tipo": "diagrama",
+    "visual": "Rúbrica en tabla: las cuatro filas con su nivel 3 y la regla de aprobación.",
+    "texto_pantalla": {
+      "es": "Rúbrica: 4 filas · el nivel 3 aprueba",
+      "en": "Rubric: 4 rows · level 3 passes"
+    },
+    "assets": [
+      "m30.rubm (nivel 3 de cada fila)",
+      "ui.json rubric.levels y rubric.allRows",
+      "course.json qn = 8, qpass = 0.75"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E15",
+    "inicio": "09:03",
+    "fin": "09:42",
+    "tipo": "quiz",
+    "visual": "Tarjeta de pregunta A–D con temporizador de 5 s; la correcta se marca ✓ mint al revelar.",
+    "texto_pantalla": {
+      "es": "En WAR, ¿qué significa PASS?\nA · Que la mutación pasó sin ser vista\nB · Que la línea base sin mutar se comporta como dice la especificación ✓\nC · Que el kill rate es 100 %\nD · Que el CI está verde",
+      "en": "In WAR, what does PASS mean?\nA · The mutation slipped through unseen\nB · The unmutated baseline behaves as the spec says ✓\nC · The kill rate is 100%\nD · CI is green"
+    },
+    "assets": [
+      "quiz-01-10.json m30 pregunta 2 (a = 1)"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E16",
+    "inicio": "09:42",
+    "fin": "10:19",
+    "tipo": "quiz",
+    "visual": "Misma plantilla de quiz.",
+    "texto_pantalla": {
+      "es": "El mutante self-grant sobrevive en el experimento 02. ¿Qué tipo de hallazgo es?\nA · Punto ciego de la suite: falta una prueba\nB · Bug real del sistema: la app deja que un usuario se suba a admin ✓\nC · Error de infraestructura\nD · No es un hallazgo",
+      "en": "The self-grant mutant survives in experiment 02. What kind of finding is it?\nA · A blind spot in the suite: a missing test\nB · A real system bug: the app lets a user promote themself to admin ✓\nC · An infrastructure error\nD · Not a finding"
+    },
+    "assets": [
+      "quiz-01-10.json m30 pregunta 6 (a = 1)"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E17",
+    "inicio": "10:19",
+    "fin": "10:53",
+    "tipo": "quiz",
+    "visual": "Misma plantilla de quiz.",
+    "texto_pantalla": {
+      "es": "Un mutante numérico muy pequeño sobrevive con la tolerancia congelada en 10⁻⁶. ¿Qué haces?\nA · Lo reporto como SURVIVED y lo dejo visible, sin tocar la tolerancia ✓\nB · Bajo la tolerancia para matarlo\nC · Lo borro del catálogo\nD · Lo cuento como KILLED",
+      "en": "A tiny numerical mutant survives with the tolerance frozen at 10⁻⁶. What do you do?\nA · Report it as SURVIVED and leave it visible, tolerance untouched ✓\nB · Tighten the tolerance to kill it\nC · Drop it from the catalog\nD · Count it as KILLED"
+    },
+    "assets": [
+      "quiz-01-10.json m30 pregunta 7 (a = 0)"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E18",
+    "inicio": "10:53",
+    "fin": "11:47",
+    "tipo": "resumen",
+    "visual": "Tres tarjetas de ideas clave y la tarjeta del siguiente módulo. Firma al pie.",
+    "texto_pantalla": {
+      "es": "1 · Verde no dice despierto: rompe algo a propósito\n2 · Una sola cosa rota, predicción antes\n3 · PASS, KILLED, SURVIVED siempre; el que sobrevive se publica\nSiguiente → 03 · Diseño de pruebas & técnicas\nCristian Guerra · QA · Medellín",
+      "en": "1 · Green doesn't mean awake: break something on purpose\n2 · One broken thing, prediction first\n3 · PASS, KILLED, SURVIVED always; the survivor gets published\nNext → 03 · Test design & techniques\nCristian Guerra · QA · Medellín"
+    },
+    "assets": [
+      "course.json (posición 3 = m2)",
+      "https://criguex.github.io/qa-automation-course/#/m30"
+    ],
+    "notas_animacion": ""
+  }
+]

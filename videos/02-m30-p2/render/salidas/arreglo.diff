@@ -1,0 +1,13 @@
+diff --git a/experiments/02-mutants/app/server.js b/experiments/02-mutants/app/server.js
+index 7369d1e..f577c35 100644
+--- a/experiments/02-mutants/app/server.js
++++ b/experiments/02-mutants/app/server.js
+@@ -55,7 +55,7 @@ const authenticate = (req) => {
+ const can = {
+   approve: (u) => ['approver', 'admin'].includes(u.role),
+   publish: (u) => ['editor', 'approver', 'admin'].includes(u.role),
+-  editMember: (actor, target) => actor.role === 'admin' || actor.id === target.id,
++  editMember: (actor) => actor.role === 'admin',
+ };
+ 
+ const routes = [

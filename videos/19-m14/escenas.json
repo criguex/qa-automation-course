@@ -1,0 +1,221 @@
+[
+  {
+    "id": "E01",
+    "inicio": "00:00",
+    "fin": "00:44",
+    "tipo": "titulo",
+    "visual": "Fondo navy con rejilla. Una terminal deep escribe el comando `git -c core.x=y push origin main`; al lado, el hook responde con una etiqueta mint \"✓ allowed (exit 0)\" que se vuelve coral \"✗ debió bloquear\". Luego aparece el hash 1b01c66 y el título del módulo.",
+    "texto_pantalla": {
+      "es": "git -c core.x=y push origin main → exit 0 ✗ se coló · QA asistida por IA I — el asistente prueba, la persona firma",
+      "en": "git -c core.x=y push origin main → exit 0 ✗ slipped through · AI-assisted QA I — the assistant tests, the human signs off"
+    },
+    "assets": [
+      "war-paradigm: commit 1b01c66 (mensaje: «Lo encontró una mutación WAR: `git -c core.x=y push origin main` y `git --no-pager push origin main` pasaban con exit 0»)"
+    ],
+    "notas_animacion": "La etiqueta \"exit 0\" es la del hook ANTERIOR a 1b01c66 según el mensaje del commit; no se reprodujo en vivo. Firma abajo a la derecha: Cristian Guerra · QA · Medellín. Tiempos EN: 00:00–00:42."
+  },
+  {
+    "id": "E02",
+    "inicio": "00:44",
+    "fin": "01:48",
+    "tipo": "analogia",
+    "visual": "Ilustración plana: un robot ordenando un cuarto. Burbuja \"por favor no toques la caja\" (petición, gris). Se cambia por una reja con candado alrededor de la caja (regla, mint). Una mano empuja la reja y encuentra un hueco marcado en gold \"⚠ hueco\"; una curita mint lo tapa.",
+    "texto_pantalla": {
+      "es": "Petición ≠ regla · ⚠ una reja también puede tener huecos",
+      "en": "A request ≠ a rule · ⚠ a fence can have holes too"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/modules-15-23.json → m14.kid"
+    ],
+    "notas_animacion": "Personajes en SVG simple, paleta de marca. Al final, rótulos: robot = asistente, caja = main, reja = hook. Tiempos EN: 00:42–01:47."
+  },
+  {
+    "id": "E03",
+    "inicio": "01:48",
+    "fin": "03:26",
+    "tipo": "diagrama",
+    "visual": "Dos columnas. Izquierda \"Asistente\" con tres cajas: diseña → ejecuta → audita. Derecha \"Persona\" con dos cajas: decide → firma. Entre ambas, una puerta que solo se abre si llega una ficha con tres campos: comando, commit, exit code. Una ficha que solo dice \"todo pasó\" rebota en coral.",
+    "texto_pantalla": {
+      "es": "El asistente diseña, ejecuta y audita · La persona decide y firma · ✗ \"todo pasó\" no es evidencia",
+      "en": "The assistant designs, runs, audits · The human decides and signs · ✗ \"all passed\" isn't evidence"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/modules-15-23.json → m14.theory[0]",
+      "qa-automation-course/i18n/es/quiz-11-19.json → m14 pregunta 10 (relajar un assert)"
+    ],
+    "notas_animacion": "Al final, una tarjeta gold: \"⚠ relajar un assert = verde falso\". Tiempos EN: 01:47–03:20."
+  },
+  {
+    "id": "E04",
+    "inicio": "03:26",
+    "fin": "05:09",
+    "tipo": "diagrama",
+    "visual": "Línea de tiempo de una llamada a herramienta: Asistente → [PreToolUse hook] → Bash. Tres salidas del hook: exit 0 (mint, \"sigue\"), exit 2 (coral, \"bloquea; stderr al asistente\"), \"otro código, p. ej. 1\" (gold, \"error NO bloqueante: sigue\"). Debajo, segunda capa: servidor de GitHub con \"protección de rama: main\".",
+    "texto_pantalla": {
+      "es": "exit 0 ✓ sigue · exit 2 ✗ bloquea · exit 1 ⚠ NO bloquea · + protección de rama",
+      "en": "exit 0 ✓ goes ahead · exit 2 ✗ blocks · exit 1 ⚠ does NOT block · + branch protection"
+    },
+    "assets": [
+      "https://code.claude.com/docs/en/hooks (códigos de salida)"
+    ],
+    "notas_animacion": "Citar en pantalla, pequeño: \"If your hook is meant to enforce a policy, use exit 2\" — docs oficiales de Claude Code. Tiempos EN: 03:20–04:50."
+  },
+  {
+    "id": "E05",
+    "inicio": "05:09",
+    "fin": "06:39",
+    "tipo": "codigo",
+    "visual": "Editor con dos paneles. Panel 1: `.claude/settings.json`. Panel 2: extracto de `hooks/block-push-to-main.sh` con PROTECTED, la división por `&&`, `||`, `;`, `|` y la función block(). Resaltar en mint cada parte cuando la voz la nombra.",
+    "texto_pantalla": {
+      "es": "experiments/03-second-brain/.claude/settings.json · hooks/block-push-to-main.sh",
+      "en": "experiments/03-second-brain/.claude/settings.json · hooks/block-push-to-main.sh"
+    },
+    "assets": [
+      "war-paradigm/experiments/03-second-brain/.claude/settings.json:\n{\n  \"hooks\": {\n    \"PreToolUse\": [\n      {\n        \"matcher\": \"Bash\",\n        \"hooks\": [\n          {\n            \"type\": \"command\",\n            \"command\": \"\\\"$CLAUDE_PROJECT_DIR\\\"/hooks/block-push-to-main.sh\"\n          }\n        ]\n      }\n    ]\n  }\n}",
+      "war-paradigm/experiments/03-second-brain/hooks/block-push-to-main.sh (extracto):\nPROTECTED='^(main|master)$'\n...\nblock() {\n  echo \"blocked by hook: block-push-to-main.sh — a push to '$1' is not allowed. Push a feature branch and open a pull request.\" >&2\n  exit 2\n}\n...\ndone < <(printf '%s\\n' \"$cmd\" | sed -E 's/(&&|\\|\\||;|\\|)/\\n/g')"
+    ],
+    "notas_animacion": "Mostrar el orden jq → node → sed con tres fichas que se encienden una tras otra. Tiempos EN: 04:50–06:19."
+  },
+  {
+    "id": "E06",
+    "inicio": "06:39",
+    "fin": "08:17",
+    "tipo": "diagrama",
+    "visual": "Árbol del vault (`vault/`) con sus carpetas: 00 - READ FIRST, Golden rules, 01 QA process, 02 Workflows, 03 Knowledge, 04 Sessions, 99 Templates. A un lado, dos archivos: CLAUDE.md (Claude Code) y AGENTS.md (Codex) con tres secciones: comandos, convenciones, prohibido. Un candado coral tacha \"API key\".",
+    "texto_pantalla": {
+      "es": "CLAUDE.md · AGENTS.md → comandos, convenciones, lo prohibido · ✗ nunca secretos",
+      "en": "CLAUDE.md · AGENTS.md → commands, conventions, what's off limits · ✗ never secrets"
+    },
+    "assets": [
+      "war-paradigm/experiments/03-second-brain/README.md §Part 1 · the vault",
+      "war-paradigm/experiments/03-second-brain/vault/Golden rules.md (regla 5: «Hard rules live in hooks…»)"
+    ],
+    "notas_animacion": "Mostrar la regla 5 de Golden rules.md como cita textual en inglés con subtítulo traducido. Tiempos EN: 06:19–07:48."
+  },
+  {
+    "id": "E07",
+    "inicio": "08:17",
+    "fin": "09:40",
+    "tipo": "codigo",
+    "visual": "Fórmula grande: evidencia = comando + hash + exit code. Debajo, el extracto real del CI de agent-eval-jev con los pasos resaltados en orden; el paso `git diff --exit-code` se enciende en coral cuando el reporte difiere.",
+    "texto_pantalla": {
+      "es": "Evidencia = comando + hash + exit code · el CI falla si el reporte no sale del código de hoy",
+      "en": "Evidence = command + hash + exit code · CI fails if the report doesn't come from today's code"
+    },
+    "assets": [
+      "agent-eval-jev/.github/workflows/ci.yml (extracto):\n      - run: pytest -q\n      - name: Rebuild the report from recorded fixtures\n        run: python -m agenteval evaluate\n      - name: Report must match the committed one\n        run: git diff --exit-code -- results reports\n      - name: Quality gate\n        run: python -m agenteval gate --min-agreement 0.85",
+      "agent-eval-jev/README.md: «Fixtures are keyed by a hash of the exact request, so changing a question or a trace invalidates only the affected recordings.»"
+    ],
+    "notas_animacion": "Terminar con una línea de EVIDENCIA.md de ejemplo con columnas vacías (comando | commit | sha256 | exit code), sin valores inventados. Tiempos EN: 07:48–09:09."
+  },
+  {
+    "id": "E08",
+    "inicio": "09:40",
+    "fin": "10:55",
+    "tipo": "diagrama",
+    "visual": "Dos tarjetas. Tarjeta 1 \"Fail-safe\": un rombo \"¿el modelo respondió bien?\" con rama \"no\" que va a \"suite completa\" (mint) y una rama tachada \"saltar dudosas / poner verde\" (coral). Tarjeta 2 \"Autoría\": cita del README de predictor-debugger.",
+    "texto_pantalla": {
+      "es": "Ante la duda: suite completa · \"Lo ejecutó un asistente de IA bajo mi dirección, así que no es una revisión independiente.\"",
+      "en": "When in doubt: full suite · \"An AI assistant ran it under my direction, so it isn't an independent review.\""
+    },
+    "assets": [
+      "jev-test-impact/README.md: «Any Jev failure (network, HTTP error, malformed answer, missing answer) runs the full suite, and the error body is logged.»",
+      "predictor-debugger/README.md línea 62: «Lo ejecutó un asistente de IA bajo mi dirección, así que no es una revisión independiente.»"
+    ],
+    "notas_animacion": "La cita EN de predictor-debugger es traducción propia del README en español; marcarla como traducción. Tiempos EN: 09:09–10:22."
+  },
+  {
+    "id": "E09",
+    "inicio": "10:55",
+    "fin": "12:20",
+    "tipo": "terminal",
+    "visual": "Terminal deep a pantalla completa. Se teclean los comandos de preparación y luego el demo. Las líneas BLOCKED entran en coral con ✘ y las allowed en mint con ✓.",
+    "texto_pantalla": {
+      "es": "npm run demo:03 · 3 bloqueados ✗ · 3 permitidos ✓",
+      "en": "npm run demo:03 · 3 blocked ✗ · 3 allowed ✓"
+    },
+    "assets": [
+      "Comandos (war-paradigm/README.md §Quickstart y experiments/03-second-brain/README.md §Run it):\n$ git clone https://github.com/criguex/war-paradigm.git && cd war-paradigm\n$ npm ci\n$ npm run demo:03",
+      "Salida real de `npm run demo:03` (war-paradigm 5dc5e92, corrida 2026-10-26; fuente del script: experiments/03-second-brain/tests/demo.mjs):\n  hooks/block-push-to-main.sh · PreToolUse(Bash)\n\n  $ git push origin main                     ✘ BLOCKED (exit 2)\n      blocked by hook: block-push-to-main.sh — a push to 'main' is not allowed. Push a feature branch and open a pull request.\n  $ git push --force origin HEAD:main        ✘ BLOCKED (exit 2)\n      blocked by hook: block-push-to-main.sh — a push to 'main' is not allowed. Push a feature branch and open a pull request.\n  $ npm test && git push origin master       ✘ BLOCKED (exit 2)\n      blocked by hook: block-push-to-main.sh — a push to 'master' is not allowed. Push a feature branch and open a pull request.\n  $ git push origin feature/mutants          ✓ allowed (exit 0)\n  $ git push -u origin feature/mutants       ✓ allowed (exit 0)\n  $ git pull origin main                     ✓ allowed (exit 0)"
+    ],
+    "notas_animacion": "Pausa de 1 s en `git pull origin main` con una etiqueta gold: \"⚠ traer de main no es empujar a main\". Tiempos EN: 10:22–11:42."
+  },
+  {
+    "id": "E10",
+    "inicio": "12:20",
+    "fin": "14:03",
+    "tipo": "terminal",
+    "visual": "Terminal con la corrida de la suite. A la derecha, una tabla que se llena por grupos: Bloqueos (19), Permitidos (10), Límites conocidos (6, en gold), Robustez (3), Parsers de respaldo (2) = 40; Vault (5). Total 45.",
+    "texto_pantalla": {
+      "es": "45 pruebas · 40 del hook + 5 del vault · ✓ 45 pass",
+      "en": "45 tests · 40 on the hook + 5 on the vault · ✓ 45 pass"
+    },
+    "assets": [
+      "Comando: npm test -w experiments/03-second-brain  (equivale a `npm run test:03` en la raíz; script: `node --test tests/*.test.mjs`)",
+      "Salida real (cola), corrida 2026-10-26 sobre 08438a2:\n▶ the vault template\n  ✔ has the two notes the assistant reads first\n  ✔ has the five folders of the loop\n  ✔ every [[wikilink]] resolves to a note (Obsidian resolves by name across folders)\n  ✔ every note has frontmatter with a type\n  ✔ no note is an island: each one links out or is linked to\n✔ the vault template\nℹ tests 45\nℹ suites 6\nℹ pass 45\nℹ fail 0",
+      "Casos: war-paradigm/experiments/03-second-brain/tests/hook.test.mjs (líneas 50-117)"
+    ],
+    "notas_animacion": "Las duraciones en ms de la salida real se omiten en pantalla porque cambian en cada corrida. Tiempos EN: 11:42–13:24."
+  },
+  {
+    "id": "E11",
+    "inicio": "14:03",
+    "fin": "16:27",
+    "tipo": "terminal",
+    "visual": "Terminal con nueve intentos lanzados contra el hook actual. Cinco salen ✘ exit 2 (coral = bloqueado, aquí es bueno: usar símbolo + palabra \"bloqueado ✓\"), cuatro salen exit 0 y se marcan gold \"⚠ hueco\". Al final, un escudo \"protección de rama\" cubre los cuatro huecos.",
+    "texto_pantalla": {
+      "es": "9 intentos · 5 bloqueados ✓ · 4 huecos ⚠ ($B, sh -c, eval, \\git)\nHoy: \\git bloqueado ✓ · 6 límites conocidos fijados con pruebas ⚠",
+      "en": "9 attempts · 5 blocked ✓ · 4 holes ⚠ ($B, sh -c, eval, \\git)\nToday: \\git blocked ✓ · 6 known limits pinned by tests ⚠"
+    },
+    "assets": [
+      "Intentos corridos el 2026-10-26 contra war-paradigm/experiments/03-second-brain/hooks/block-push-to-main.sh (commit 5dc5e92), repo temporal en la rama feature/x, mismo JSON que manda Claude Code (tool_name Bash). Los corrió un asistente bajo dirección de Cristian:\nexit 2 :: git push origin :main\nexit 2 :: git push origin feature/x:refs/heads/main\nexit 0 :: B=main; git push origin $B\nexit 0 :: sh -c 'git push origin main'\nexit 0 :: eval \"git push origin main\"\nexit 2 :: env git push origin main\nexit 0 :: \\git push origin main\nexit 2 :: git push origin feature/x main\nexit 2 :: command git push origin main"
+    ],
+    "notas_animacion": "Ojo con los colores: aquí exit 2 es el resultado deseado. Etiquetar \"✓ bloqueado\" en mint y \"⚠ hueco (exit 0)\" en gold. Rótulo pequeño: \"corrido por un asistente bajo mi dirección\". Tiempos EN: 13:24–15:43."
+  },
+  {
+    "id": "E12",
+    "inicio": "16:27",
+    "fin": "17:56",
+    "tipo": "resumen",
+    "visual": "Checklist del reto con tres entregables y cuatro criterios; luego la rúbrica genérica en cuatro columnas (1 No cumple · 2 En camino · 3 Aprobado · 4 Sobresaliente).",
+    "texto_pantalla": {
+      "es": "Entregable: hook probado + 5 casos con diff revisado + EVIDENCIA.md · Aprobado = todos los criterios",
+      "en": "Deliverable: tested hook + 5 cases with reviewed diff + EVIDENCIA.md · Pass = every criterion"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/modules-15-23.json → m14.hands, m14.crit, m14.deliver, m14.top",
+      "qa-automation-course/i18n/es/ui.json → rubric.generic"
+    ],
+    "notas_animacion": "Nivel 4 con el texto de m14.top. Tiempos EN: 15:43–17:12."
+  },
+  {
+    "id": "E13",
+    "inicio": "17:56",
+    "fin": "19:09",
+    "tipo": "quiz",
+    "visual": "Tres tarjetas de pregunta, una por vez, con cuatro opciones y un temporizador de pausa de 5 s. La opción correcta se ilumina en mint con ✓ y una línea de explicación.",
+    "texto_pantalla": {
+      "es": "1) ¿Dónde vive la regla \"nunca push a main\"? · 2) \"Corrí la suite y todo pasó\": ¿qué firmas? · 3) El servicio de IA no responde: ¿qué corre?",
+      "en": "1) Where does \"never push to main\" live? · 2) \"I ran the suite, all passed\": what do you sign? · 3) The AI service is down: what runs?"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/quiz-11-19.json → m14 preguntas 1, 3 y 5 (índices 0, 2 y 4)"
+    ],
+    "notas_animacion": "Pausa visible con ícono ⏸ y el texto \"pausa el video\". Tiempos EN: 17:12–18:25."
+  },
+  {
+    "id": "E14",
+    "inicio": "19:09",
+    "fin": "20:01",
+    "tipo": "resumen",
+    "visual": "Tres ideas en tarjetas mint que entran una a una; al final, tarjeta del siguiente módulo y la firma.",
+    "texto_pantalla": {
+      "es": "1 · Firmas solo lo que puedes volver a correr · 2 · Reglas en hooks + CI, y la barrera se ataca · 3 · Evidencia = comando + hash + exit code · Siguiente: Mutation testing — kill rate, sobrevivientes y Stryker/PIT",
+      "en": "1 · Only sign what you can rerun · 2 · Rules in hooks + CI, and attack the guard rail · 3 · Evidence = command + hash + exit code · Next: Mutation testing — kill rate, survivors, Stryker/PIT"
+    },
+    "assets": [
+      "https://criguex.github.io/qa-automation-course/#/m15"
+    ],
+    "notas_animacion": "Firma: Cristian Guerra · QA · Medellín. Tiempos EN: 18:25–19:20."
+  }
+]

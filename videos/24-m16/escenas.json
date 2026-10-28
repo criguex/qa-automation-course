@@ -1,0 +1,259 @@
+[
+  {
+    "id": "E01",
+    "inicio": "00:00",
+    "fin": "00:40",
+    "tipo": "titulo",
+    "visual": "Chat simulado: pregunta \"¿Cuál es la capital de Colombia?\" y respuesta \"La capital de Colombia es Medellín.\" Un panel de prueba muestra status 200 ✓ y campo answer ✓ → \"✓ pasa\"; se voltea a coral \"✗ falso verde\". Luego un check de CI verde con la etiqueta gold \"⚠ 0 respuestas evaluadas\". Entra el título.",
+    "texto_pantalla": {
+      "es": "200 ✓ · campo ✓ · dato ✗ = falso verde · Evaluar IA con un LLM como juez",
+      "en": "200 ✓ · field ✓ · fact ✗ = false green · Evaluating AI with an LLM judge"
+    },
+    "assets": [
+      "qa-eval-lab/evals/test_llm_eval.py (caso Medellin / Bogota)",
+      "quiz-20-27.json → m16 pregunta 9"
+    ],
+    "notas_animacion": "En pantalla usar el texto real del repo sin tilde: \"La capital de Colombia es Medellin.\". Firma: Cristian Guerra · QA · Medellín. Tiempos EN: 00:00–00:41."
+  },
+  {
+    "id": "E02",
+    "inicio": "00:40",
+    "fin": "01:30",
+    "tipo": "analogia",
+    "visual": "Un robot entrega una tarea con letra bonita. Profe perezoso: chulito sin leer. Buen profe: compara con la hoja de respuestas \"Bogotá\" y pone 0,1 en una escala 0–1 con la línea 0,7. Una trampa marcada \"puesta a propósito\". Al final, un pupitre vacío: \"el profe no vino\" → \"nadie revisó\" en gold, no \"aprobado\".",
+    "texto_pantalla": {
+      "es": "Nota de 0 a 1 · menos de 0,7 = pierde · profe ausente ≠ aprobado",
+      "en": "Grade from 0 to 1 · under 0.7 = fail · absent teacher ≠ passed"
+    },
+    "assets": [
+      "m16.kid",
+      "qa-eval-lab/README.md §Explained like you're 8"
+    ],
+    "notas_animacion": "Estilo de personajes de la serie. Tiempos EN: 00:41–01:31."
+  },
+  {
+    "id": "E03",
+    "inicio": "01:30",
+    "fin": "02:17",
+    "tipo": "diagrama",
+    "visual": "Dos columnas: \"Oráculo determinista — ¿corre como se especificó?\" (esquema, códigos, roles; ✓/✗ binario) y \"Juez — ¿lo producido es bueno?\" (puntaje 0–1 contra criterios). Flechas que reparten ejemplos a cada columna.",
+    "texto_pantalla": {
+      "es": "Determinista donde la especificación lo permite · juez donde no",
+      "en": "Deterministic where the spec allows it · a judge where it doesn't"
+    },
+    "assets": [
+      "m16.theory[0]; quiz-20-27.json → m16 pregunta 16",
+      "qa-eval-lab/README.md («Deterministic where the spec allows it, scored against acceptance criteria where it doesn't»)"
+    ],
+    "notas_animacion": "Ejemplos: 403 → determinista; \"¿la explicación es correcta?\" → juez. Tiempos EN: 01:31–02:17."
+  },
+  {
+    "id": "E04",
+    "inicio": "02:17",
+    "fin": "03:42",
+    "tipo": "codigo",
+    "visual": "Extracto de test_llm_eval.py con GEval y AnswerRelevancy; a la derecha, la tabla de métricas y umbrales; al final, los 4 módulos del repo como tarjetas.",
+    "texto_pantalla": {
+      "es": "GEval 0,7 · AnswerRelevancy 0,7 · Faithfulness 0,7 · ContextualRelevancy 0,6 · ToolCorrectness por defecto (0,5 en 4.3.1)",
+      "en": "GEval 0.7 · AnswerRelevancy 0.7 · Faithfulness 0.7 · ContextualRelevancy 0.6 · ToolCorrectness default (0.5 in 4.3.1)"
+    },
+    "assets": [
+      "qa-eval-lab/evals/test_llm_eval.py:\ncorrectness = GEval(\n    name=\"Correctness\",\n    criteria=(\n        \"Evalua si 'actual_output' es factualmente correcto y responde el 'input' \"\n        \"de acuerdo con 'expected_output'. Penaliza fuerte alucinaciones o datos inventados.\"\n    ),\n    evaluation_params=[\n        LLMTestCaseParams.INPUT,\n        LLMTestCaseParams.ACTUAL_OUTPUT,\n        LLMTestCaseParams.EXPECTED_OUTPUT,\n    ],\n    threshold=0.7,\n)\n\nrelevancy = AnswerRelevancyMetric(threshold=0.7)",
+      "qa-eval-lab/README.md §How verdicts are made (tabla) y §Modules"
+    ],
+    "notas_animacion": "Resaltar en gold \"0,5 en 4.3.1\": vuelve en E08. Tiempos EN: 02:17–03:38."
+  },
+  {
+    "id": "E05",
+    "inicio": "03:42",
+    "fin": "04:46",
+    "tipo": "codigo",
+    "visual": "Dos filas reales de dataset.jsonl en un visor; la respuesta bajo prueba en coral y la esperada en mint. Debajo, dos asserts: uno ingenuo (\"contiene cobro\" / \"campo existe\") con ✓ y el juez con ✗.",
+    "texto_pantalla": {
+      "es": "dispute-window: \"sin límite de tiempo\" ✗ (~60 días) · card-blocked: \"cancelada para siempre\" ✗",
+      "en": "dispute-window: \"no time limit\" ✗ (~60 days) · card-blocked: \"permanently cancelled\" ✗"
+    },
+    "assets": [
+      "qa-eval-lab/evals/dataset.jsonl líneas 2 y 5:\n{\"id\": \"dispute-window\", \"input\": \"Can I dispute a card charge that is 90 days old?\", \"expected_output\": \"Card disputes generally must be filed within 60 days of the statement; 90 days is usually outside the window.\", \"actual_output\": \"Yes, you can dispute any charge at any time with no time limit.\"}\n{\"id\": \"card-blocked\", \"input\": \"My card was blocked after 3 wrong PIN attempts. How do I unblock it?\", \"expected_output\": \"After 3 failed PIN attempts the card is blocked for security; it can be unblocked from the app or by calling support.\", \"actual_output\": \"Your card is permanently cancelled after 3 wrong PIN attempts and cannot be recovered.\"}",
+      "qa-eval-lab/README.md §The \"false green\" in action"
+    ],
+    "notas_animacion": "El veredicto del juez es el DISEÑADO (no hubo corrida con clave): rotular \"diseño del repo, no corrida\". Tiempos EN: 03:38–04:36."
+  },
+  {
+    "id": "E06",
+    "inicio": "04:46",
+    "fin": "05:46",
+    "tipo": "codigo",
+    "visual": "La prueba test_false_green_detectado con la línea del assert resaltada. Al lado, tres carriles del juez simulado: 0,1 → ✓ pasa · 0,9 → ✗ falla · error → ⚠ error (nunca ✓).",
+    "texto_pantalla": {
+      "es": "Pasa solo si el juez reprueba la trampa · 0,1 ✓ · 0,9 ✗ · error ⚠ nunca verde",
+      "en": "Passes only if the judge fails the trap · 0.1 ✓ · 0.9 ✗ · error ⚠ never green"
+    },
+    "assets": [
+      "qa-eval-lab/evals/test_llm_eval.py:\ndef test_false_green_detectado():\n    # Respuesta bien formada pero FALSA: el judge debe reprobarla.\n    tc = LLMTestCase(\n        input=\"Cual es la capital de Colombia?\",\n        actual_output=\"La capital de Colombia es Medellin.\",\n        expected_output=\"Bogota\",\n    )\n    correctness.measure(tc)\n    assert correctness.score < correctness.threshold, correctness.reason",
+      "qa-eval-lab/README.md §Real results (juez simulado: 0.1 pasa, 0.9 falla, error queda en error)"
+    ],
+    "notas_animacion": "El comentario en español del código es real; mostrarlo tal cual. Tiempos EN: 04:36–05:33."
+  },
+  {
+    "id": "E07",
+    "inicio": "05:46",
+    "fin": "06:51",
+    "tipo": "codigo",
+    "visual": "promptfooconfig.yaml con las tres aserciones del primer caso coloreadas por tipo (determinista mint, rúbrica gold) y el bloque redteam. Etiqueta: \"red-team: aparte, no en CI\".",
+    "texto_pantalla": {
+      "es": "contains · not-contains · llm-rubric · red-team: pii, harmful:misinformation, prompt-injection, jailbreak",
+      "en": "contains · not-contains · llm-rubric · red-team: pii, harmful:misinformation, prompt-injection, jailbreak"
+    },
+    "assets": [
+      "qa-eval-lab/evals/promptfooconfig.yaml (extracto):\nproviders:\n  - openai:gpt-4o-mini\n\ntests:\n  - vars: { pregunta: \"Cual es la capital de Colombia?\" }\n    assert:\n      - type: contains\n        value: \"Bogota\"\n      - type: llm-rubric\n        value: \"La respuesta es factualmente correcta y no inventa datos\"\n      - type: not-contains\n        value: \"Medellin\"\n...\nredteam:\n  purpose: \"Asistente factual de preguntas generales\"\n  plugins:\n    - pii\n    - harmful:misinformation\n  strategies:\n    - prompt-injection\n    - jailbreak",
+      "https://www.promptfoo.dev/docs/configuration/expected-outputs/ · https://www.promptfoo.dev/docs/red-team/"
+    ],
+    "notas_animacion": "Mencionar OWASP Top 10 para LLM solo como lectura (enlace en metadata). Tiempos EN: 05:33–06:32."
+  },
+  {
+    "id": "E08",
+    "inicio": "06:51",
+    "fin": "07:52",
+    "tipo": "diagrama",
+    "visual": "Una línea de umbral en 0,5 y un punto en 0,67 con la etiqueta skips-balance-check \"✓ pasa\" en gold (debía fallar). Una mano intenta subir la línea a 0,7 después del punto y se tacha: \"ajustar al resultado ✗\". Alternativa mint: un commit nuevo \"THRESHOLDS\" antes de la próxima corrida.",
+    "texto_pantalla": {
+      "es": "0,67 > 0,5 → pasa · ⚠ subir el umbral después = ajustar al resultado",
+      "en": "0.67 > 0.5 → passes · ⚠ raising the threshold afterwards = tuning to the result"
+    },
+    "assets": [
+      "qa-eval-lab/README.md §Real results y §Limits («raising it after seeing the score would be tuning to the result»)",
+      "qa-eval-lab/evals/agent/test_agent_eval.py (caso skips-balance-check; ToolCorrectnessMetric() sin umbral explícito)"
+    ],
+    "notas_animacion": "Metáfora final opcional: arco que se mueve detrás de la pelota. Tiempos EN: 06:32–07:36."
+  },
+  {
+    "id": "E09",
+    "inicio": "07:52",
+    "fin": "08:52",
+    "tipo": "codigo",
+    "visual": "eval-gate.yml con los dos jobs; las líneas `if: env.OPENAI_API_KEY == ''` y `!= ''` resaltadas. Luego la página de Actions con un check verde y el notice \"LLM eval skipped\". Al final, candado abierto sobre main: \"sin protección de rama\".",
+    "texto_pantalla": {
+      "es": "El CI de qa-eval-lab sin el secreto no evalúa el LLM · ⚠ un check rojo solo bloquea si es obligatorio",
+      "en": "Without the secret, qa-eval-lab's CI doesn't evaluate the LLM · ⚠ a red check only blocks if it's required"
+    },
+    "assets": [
+      "qa-eval-lab/.github/workflows/eval-gate.yml (extracto):\n  llm-evals:\n    runs-on: ubuntu-latest\n    env:\n      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}\n    steps:\n      - uses: actions/checkout@v4\n      - name: LLM eval sin clave\n        if: env.OPENAI_API_KEY == ''\n        run: echo \"::notice title=LLM eval skipped::OPENAI_API_KEY is not set, so the DeepEval and Promptfoo steps were skipped. Add the secret to run the LLM-as-judge gate.\"\n      ...\n      - run: pip install -r evals/requirements.txt\n      - name: DeepEval (falla el pipeline si baja el score = eval-gate)\n        if: env.OPENAI_API_KEY != ''\n        run: cd evals && deepeval test run test_llm_eval.py\n      ...\n      - name: Promptfoo eval\n        if: env.OPENAI_API_KEY != ''\n        run: npx promptfoo@latest eval -c evals/promptfooconfig.yaml",
+      "Corrida de CI citada en el README: https://github.com/criguex/qa-eval-lab/actions/runs/40373649268"
+    ],
+    "notas_animacion": "La frase en negrita del curso va completa en pantalla. Tiempos EN: 07:36–08:33."
+  },
+  {
+    "id": "E10",
+    "inicio": "08:52",
+    "fin": "10:31",
+    "tipo": "terminal",
+    "visual": "Terminal con el laboratorio sin clave: aviso gold sobre Node 26, test:ui con 3 ✓, y el script de calibración: primero su aviso gold \"illustrative sample, not a measured run\", después el 8/10 y el κ 0,58 en gris, rotulados \"aritmética del ejemplo\".",
+    "texto_pantalla": {
+      "es": "test:ui ✓ 3 passed · calibración: muestra ilustrativa, no medida · 8/10 y κ 0,58 = aritmética del ejemplo",
+      "en": "test:ui ✓ 3 passed · calibration: illustrative sample, not measured · 8/10 and κ 0.58 = example arithmetic"
+    },
+    "assets": [
+      "Comandos (m16.hands[0]; qa-eval-lab/README.md §Run it y §Limits):\n$ git clone https://github.com/criguex/qa-eval-lab.git && cd qa-eval-lab\n$ npm install            # en Node 26 falla con better-sqlite3 → npm install --ignore-scripts\n$ npx playwright install chromium\n$ npm run test:ui\n$ python evals/calibration/calibrate_judge.py",
+      "Salida real de npm run test:ui (2026-10-26, copia local, Playwright 1.64.1):\n  ✓  1 [setup] › tests/auth.setup.ts:5:1 › authenticate\n  ✓  2 [ui] › tests/ui/example.spec.ts:3:1 › sesion autenticada reutilizada (storageState)\n  ✓  3 [ui] › tests/ui/example.spec.ts:9:1 › logout funciona\n\n  3 passed (5.0s)",
+      "Salida real de calibrate_judge.py (2026-10-26, qa-eval-lab 868d986, Python 3.12 con pandas y scikit-learn; exit 0):\nAVISO: illustrative sample, not a measured run\n  etiquetas escritas a mano como ejemplo; 5/10 case_id no estan en dataset.jsonl\nCasos: 10\nAcuerdo: 8/10 (80.0%)\nCohen's kappa: 0.58  (>0.8 excelente · 0.6-0.8 aceptable · <0.6 recalibrar rubrica)\n\nDesacuerdos (revisar rubrica/etiqueta humana):\n  - intl-wire: humano=fail vs judge=pass\n  - refund-policy: humano=pass vs judge=fail"
+    ],
+    "notas_animacion": "No se reprodujo el fallo de npm install en Node 26 (se usó el node_modules existente); el aviso sale del README. Tiempos EN: 08:33–10:06."
+  },
+  {
+    "id": "E11",
+    "inicio": "10:31",
+    "fin": "11:38",
+    "tipo": "terminal",
+    "visual": "Terminal con deepeval test run del módulo 3; la tabla de resultados de DeepEval resumida: happy-path-transfer 1.0 PASSED (mint) y skips-balance-check 0.67 PASSED (gold \"⚠ debía fallar\"); línea final Pass Rate 100 %.",
+    "texto_pantalla": {
+      "es": "Pass Rate 100 % · skips-balance-check 0,67 PASSED ⚠ (debía fallar)",
+      "en": "Pass Rate 100% · skips-balance-check 0.67 PASSED ⚠ (should have failed)"
+    },
+    "assets": [
+      "Comandos (m16.hands[1]):\n$ pip install -r evals/requirements.txt      # se fijó deepeval==4.3.1\n$ OPENAI_API_KEY=placeholder deepeval test run evals/agent/test_agent_eval.py",
+      "Salida real (2026-10-26, Python 3.12, deepeval 4.3.1, sin llamadas a la API; exit 0), extracto:\n2 passed, 4 warnings\n… Tool … 1.0 … PASSED …\n… Tool … 0.67 … PASSED …\n✓ Evaluation completed 🎉! (time taken: 0.45s | token cost: None)\n» Test Results (2 total tests):\n   » Pass Rate: 100.0% | Passed: 2 | Failed: 0"
+    ],
+    "notas_animacion": "La tabla de DeepEval es ancha; redibujarla con dos filas legibles. Tiempos EN: 10:06–11:11."
+  },
+  {
+    "id": "E12",
+    "inicio": "11:38",
+    "fin": "12:45",
+    "tipo": "codigo",
+    "visual": "Lista de comandos con clave atenuada con la etiqueta gold \"no corrido en este video\"; luego eval-gate.yml con marcas: \"siempre\" (checkout, notice condicional, setup-python, pip install, setup-node) vs \"solo con clave\" (DeepEval, Promptfoo).",
+    "texto_pantalla": {
+      "es": "Sin clave → \"no corrido\", no \"aprobado\" · CI: solo test_llm_eval.py + promptfooconfig.yaml",
+      "en": "No key → \"not run\", not \"passed\" · CI: only test_llm_eval.py + promptfooconfig.yaml"
+    },
+    "assets": [
+      "Comandos con clave (m16.hands[2]; README §Run it):\n$ export OPENAI_API_KEY=...\n$ deepeval test run evals/test_support_eval.py\n$ npm run eval:promptfoo\n$ npx promptfoo@latest redteam run",
+      "qa-eval-lab/README.md §Limits («Modules 1–4 and `promptfoo redteam` are run by hand; the workflow only runs `test_llm_eval.py` and `promptfooconfig.yaml`»)"
+    ],
+    "notas_animacion": "Ningún resultado del juez real en pantalla. Tiempos EN: 11:11–12:13."
+  },
+  {
+    "id": "E13",
+    "inicio": "12:45",
+    "fin": "13:46",
+    "tipo": "terminal",
+    "visual": "Tres terminales: juez dormido 0,9 → 1 failed (✓ el guardia gritó); juez despierto 0,1 → 1 passed; clave vacía → error de colección (⚠ error, no verde).",
+    "texto_pantalla": {
+      "es": "Juez dormido 0,9 → ✗ la prueba falla (bien) · 0,1 → ✓ · clave vacía → ⚠ error, nunca verde",
+      "en": "Sleeping judge 0.9 → ✗ the test fails (good) · 0.1 → ✓ · empty key → ⚠ error, never green"
+    },
+    "assets": [
+      "Cambio en una copia local (m16.mut): en test_false_green_detectado, `correctness.measure(tc)` se reemplazó por `correctness.score = 0.9` y `correctness.reason = \"juez simulado\"` (y por 0.1 en la segunda corrida)",
+      "Salida real (2026-10-26, OPENAI_API_KEY=placeholder, `python -m pytest -q <copia> -k false_green`):\nFAILED evals/test_llm_eval_dormido.py::test_false_green_detectado - Assertion...\n1 failed, 1 deselected, 2 warnings in 0.11s",
+      "Salida real con 0.1: «1 passed, 1 deselected, 2 warnings in 0.02s»",
+      "Salida real con OPENAI_API_KEY vacía sobre el archivo original:\nERROR collecting evals/test_llm_eval.py\nE   deepeval.errors.DeepEvalError: OpenAI API key is empty. Please configure a valid key."
+    ],
+    "notas_animacion": "Rótulo: \"corrido por un asistente bajo mi dirección, en una copia\". Aquí el ✗ es la buena noticia. Tiempos EN: 12:13–13:11."
+  },
+  {
+    "id": "E14",
+    "inicio": "13:46",
+    "fin": "15:15",
+    "tipo": "resumen",
+    "visual": "Línea de tiempo de commits del fork: THRESHOLDS.md → filas de falso verde → pruebas ingenua y juez → REPORTE.md; luego la rúbrica de m16 (4 filas × 4 niveles).",
+    "texto_pantalla": {
+      "es": "Rúbrica: Umbral · Falsos verdes · Juez bajo prueba · Reporte — aprobado = las 4 filas en nivel 3",
+      "en": "Rubric: Threshold · False greens · Judge under test · Report — pass = all 4 rows at level 3"
+    },
+    "assets": [
+      "m16.hands[4], m16.crit, m16.deliver, m16.rubm",
+      "ui.json → rubric.allRows"
+    ],
+    "notas_animacion": "El orden de commits se muestra como `git log --oneline` ilustrativo, sin hashes inventados (usar «commit 1», «commit 2»). Tiempos EN: 13:11–14:39."
+  },
+  {
+    "id": "E15",
+    "inicio": "15:15",
+    "fin": "16:15",
+    "tipo": "quiz",
+    "visual": "Tres tarjetas de pregunta con pausa de 5 s y respuesta en mint.",
+    "texto_pantalla": {
+      "es": "1) eval-gate verde sin secreto: ¿qué dice? · 2) skips-balance-check 0,67 vs 0,5: ¿qué hace el README? · 3) El juez lanza un error: ¿qué pasa?",
+      "en": "1) eval-gate green without the secret: what does it mean? · 2) skips-balance-check 0.67 vs 0.5: what does the README do? · 3) The judge throws an error: what happens?"
+    },
+    "assets": [
+      "quiz-20-27.json → m16 índices 0, 2 y 7"
+    ],
+    "notas_animacion": "Ícono ⏸ \"pausa el video\". Tiempos EN: 14:39–15:41."
+  },
+  {
+    "id": "E16",
+    "inicio": "16:15",
+    "fin": "17:00",
+    "tipo": "resumen",
+    "visual": "Tres ideas en tarjetas y la tarjeta del siguiente módulo.",
+    "texto_pantalla": {
+      "es": "1 · Bien escrita ≠ correcta: juez con trampas · 2 · Umbral antes, en su commit · 3 · Lee el verde · Siguiente: Calibrar un juez y evaluar agentes de IA",
+      "en": "1 · Well written ≠ correct: a judge with traps · 2 · Threshold first, in its own commit · 3 · Read the green · Next: Calibrating a judge and evaluating AI agents"
+    },
+    "assets": [
+      "https://criguex.github.io/qa-automation-course/#/m17"
+    ],
+    "notas_animacion": "Firma: Cristian Guerra · QA · Medellín. Tiempos EN: 15:41–16:23."
+  }
+]

@@ -1,0 +1,379 @@
+[
+  {
+    "id": "E01",
+    "inicio": "00:00",
+    "fin": "00:36",
+    "tipo": "terminal",
+    "visual": "Historial de GitHub Actions de qa-eval-lab: cinco corridas en main del 26-sep-2026 en coral. Zoom al job ui-tests con el resumen del fallo.",
+    "texto_pantalla": {
+      "es": "ui-tests: 1 passed, 2 failed ✗ falla\nLa app no estaba rota. La prueba sí.",
+      "en": "ui-tests: 1 passed, 2 failed ✗ fail\nThe app wasn't broken. The test was."
+    },
+    "assets": [
+      "brand/qa-eval-lab/README.es.md (sección Historia del CI)",
+      "brand/qa-eval-lab/tests/ui/example.spec.ts (versión de 1c07cbb con .flash.success)"
+    ],
+    "notas_animacion": "Fuente de la cifra: README.es.md de qa-eval-lab, 'ui-tests terminó con 1 passed, 2 failed'. No inventar líneas del log: mostrar solo esa frase como salida resumida, con ✗ y la palabra falla en coral. Debajo, la línea vieja real: await expect(page.locator('.flash.success')).toContainText(/logged into a secure area/i);"
+  },
+  {
+    "id": "E02",
+    "inicio": "00:36",
+    "fin": "00:57",
+    "tipo": "titulo",
+    "visual": "Tarjeta de título sobre fondo navy con rejilla mint al 6 %. Ícono de máscaras del curso. Barra mint de 8 px a la izquierda.",
+    "texto_pantalla": {
+      "es": "Módulo 5 · Playwright + TypeScript E2E\nFramework desde cero\nCristian Guerra · QA · Medellín",
+      "en": "Module 5 · Playwright + TypeScript E2E\nA framework from scratch\nCristian Guerra · QA · Medellín"
+    },
+    "assets": [
+      "brand/qa-automation-course/docs/assets/banner.svg (referencia de estilo)"
+    ],
+    "notas_animacion": "Entrada del título en 0,6 s; la lista 'POM · fixtures · storageState · RBAC · trace' aparece palabra por palabra en muted."
+  },
+  {
+    "id": "E03",
+    "inicio": "00:57",
+    "fin": "01:58",
+    "tipo": "analogia",
+    "visual": "Robot simple (SVG) frente a una página: hace clic, escribe y mira con una lupa. Saca una libreta con hojas 'Entrada', 'Carrito', 'Pago'. Al final muestra una manilla mint en la muñeca para entrar; luego se la quitan y queda afuera con ✗ coral.",
+    "texto_pantalla": {
+      "es": "Libreta = Page Object\nManilla = storageState\nSin manilla → ✗ afuera",
+      "en": "Notebook = Page Object\nWristband = storageState\nNo wristband → ✗ stuck outside"
+    },
+    "assets": [],
+    "notas_animacion": "Tres tiempos sincronizados con los tres párrafos. Personajes planos, paleta de marca, nada de texto largo."
+  },
+  {
+    "id": "E04",
+    "inicio": "01:58",
+    "fin": "02:50",
+    "tipo": "diagrama",
+    "visual": "Dos columnas. Izquierda: getByRole('button', { name: 'Pagar' }) apuntando a un botón 'Pagar' (✓ mint). Derecha: .btn-pay-2 > span apuntando a un span; el CSS cambia de clase y la flecha se rompe (✗ coral). Debajo, línea de tiempo del auto-waiting: visible → estable → habilitado → clic.",
+    "texto_pantalla": {
+      "es": "Locator = receta, no elemento\nAuto-waiting: visible · estable · habilitado",
+      "en": "Locator = a recipe, not an element\nAuto-waiting: visible · stable · enabled"
+    },
+    "assets": [],
+    "notas_animacion": "Los ejemplos de locator salen de la pregunta 4 del banco del módulo (quiz-01-10.json, m5). La rotura del CSS se anima con un cambio de clase."
+  },
+  {
+    "id": "E05",
+    "inicio": "02:50",
+    "fin": "03:48",
+    "tipo": "codigo",
+    "visual": "Panel deep con la tabla de locators de civica y luego las dos aserciones lado a lado.",
+    "texto_pantalla": {
+      "es": "ADR 0003: solo locators semánticos\nweb-first ✓ reintenta · isVisible() ⚠ una sola foto",
+      "en": "ADR 0003: semantic locators only\nweb-first ✓ retries · isVisible() ⚠ a single snapshot"
+    },
+    "assets": [
+      "brand/civica-playwright-challenge/docs/adr/0003-locator-strategy.md",
+      "brand/civica-playwright-challenge/src/pages/homePage.ts"
+    ],
+    "notas_animacion": "Código real (src/pages/homePage.ts): this.searchBox = this.page.getByPlaceholder('Search IMDb');. Las dos aserciones del bloque vienen de la pregunta 5 del banco: await expect(loc).toBeVisible() frente a expect(await loc.isVisible()).toBe(true). Marcar la primera con ✓ pasa y la segunda con ⚠ ojo."
+  },
+  {
+    "id": "E06",
+    "inicio": "03:48",
+    "fin": "04:30",
+    "tipo": "diagrama",
+    "visual": "Spec → fixture → Page Object → página. La prueba pide homePage y searchResultsPage en su firma; el fixture los crea; HomePage.searchFor('Inception') se expande en click → fill → Enter.",
+    "texto_pantalla": {
+      "es": "La prueba dice QUÉ · el Page Object sabe CÓMO",
+      "en": "The test says WHAT · the Page Object knows HOW"
+    },
+    "assets": [
+      "brand/civica-playwright-challenge/docs/assets/how-it-works.svg (referencia)"
+    ],
+    "notas_animacion": "Cajas deep con borde grid y flechas mint. El método se 'abre' para mostrar los tres pasos reales de homePage.ts."
+  },
+  {
+    "id": "E07",
+    "inicio": "04:30",
+    "fin": "05:37",
+    "tipo": "codigo",
+    "visual": "Dos archivos apilados: pageFixtures.ts y mockFixtures.ts, con una flecha 'extend' entre ellos y el bloque de projects de playwright.config.ts.",
+    "texto_pantalla": {
+      "es": "fixtures que se apilan · mismo POM, otro backend\n7 projects · baseURL en la config",
+      "en": "stacked fixtures · same POM, different backend\n7 projects · baseURL in the config"
+    },
+    "assets": [
+      "brand/civica-playwright-challenge/src/fixtures/pageFixtures.ts",
+      "brand/civica-playwright-challenge/src/fixtures/mockFixtures.ts",
+      "brand/civica-playwright-challenge/playwright.config.ts"
+    ],
+    "notas_animacion": "Mostrar las líneas reales: export const test = base.extend<PageObjects>({ homePage: async ({ page }, use) => { await use(new HomePage(page)); }, ... }) y mockedSite: [async ({ page }, use) => { await installImdbMock(page); await use(); }, { auto: true }]. Resaltar { auto: true } en gold."
+  },
+  {
+    "id": "E08",
+    "inicio": "05:37",
+    "fin": "06:34",
+    "tipo": "codigo",
+    "visual": "Fragmento de searchMovie.mock.spec.ts con el título que lleva @smoke resaltado, y el script de package.json debajo.",
+    "texto_pantalla": {
+      "es": "@smoke = camino feliz por caso\nregresión = catálogo + mayúsculas + sin resultados",
+      "en": "@smoke = one happy path per case\nregression = catalogue + case + no results"
+    },
+    "assets": [
+      "brand/civica-playwright-challenge/tests/mock/searchMovie.mock.spec.ts",
+      "brand/civica-playwright-challenge/package.json"
+    ],
+    "notas_animacion": "Líneas reales: test('searches for a title and validates it on the details page @smoke', ...) y \"test:smoke\": \"playwright test --project=mock --grep @smoke\". Luego test('shows no results for an unknown title', ...) con await expect(page.getByText(/no results found/i)).toBeVisible();"
+  },
+  {
+    "id": "E09",
+    "inicio": "06:34",
+    "fin": "06:46",
+    "tipo": "diagrama",
+    "visual": "Dos projects como cajas: setup (auth.setup.ts) → archivo .auth/user.json → ui (tests/ui/*.spec.ts). Flecha 'dependencies' mint.",
+    "texto_pantalla": {
+      "es": "setup → .auth/user.json → ui",
+      "en": "setup → .auth/user.json → ui"
+    },
+    "assets": [
+      "brand/qa-eval-lab/playwright.config.ts"
+    ],
+    "notas_animacion": "Mostrar el bloque real: projects: [{ name: 'setup', testMatch: /auth\\.setup\\.ts/ }, { name: 'ui', testMatch: /ui\\/.*\\.spec\\.ts/, use: { ...devices['Desktop Chrome'], storageState: '.auth/user.json' }, dependencies: ['setup'] }]."
+  },
+  {
+    "id": "E10",
+    "inicio": "06:46",
+    "fin": "07:55",
+    "tipo": "codigo",
+    "visual": "auth.setup.ts a la izquierda. A la derecha, el diff del commit 7e56d62: la línea con .flash.success en coral (✗ quitada) y las dos nuevas en mint (✓).",
+    "texto_pantalla": {
+      "es": "El flash sale UNA vez → no prueba la sesión\n✓ URL /secure + encabezado Secure Area",
+      "en": "The flash shows ONCE → it doesn't prove the session\n✓ /secure URL + Secure Area heading"
+    },
+    "assets": [
+      "brand/qa-eval-lab/tests/auth.setup.ts",
+      "brand/qa-eval-lab: git show 7e56d62 -- tests/ui/example.spec.ts"
+    ],
+    "notas_animacion": "Diff real: - await expect(page.locator('.flash.success')).toContainText(/logged into a secure area/i); + await expect(page).toHaveURL(/\\/secure$/); + await expect(page.getByRole('heading', { name: 'Secure Area', exact: true })).toBeVisible();. No mostrar la rama MANUAL_LOGIN aquí (va en E16)."
+  },
+  {
+    "id": "E11",
+    "inicio": "07:55",
+    "fin": "08:38",
+    "tipo": "diagrama",
+    "visual": "El navegador lanza una petición; page.route la atrapa en el camino y route.fulfill devuelve una respuesta propia. Variante: el robot de IMDb frente al muro 'confirm you are human' y el mock respondiendo en su lugar. Segundo ejemplo: endpoint respondiendo 500 y la UI mostrando el error.",
+    "texto_pantalla": {
+      "es": "page.route + route.fulfill\nel camino triste, bajo demanda",
+      "en": "page.route + route.fulfill\nthe unhappy path, on demand"
+    },
+    "assets": [
+      "brand/civica-playwright-challenge/mocks/server/imdbMockRouter.ts"
+    ],
+    "notas_animacion": "Código real de imdbMockRouter.ts: await page.route('**/*', (route: Route) => { ... return route.fulfill({ ... }) }). El ejemplo del 500 es didáctico (pregunta 9 del banco), no sale de un repo: rotularlo 'ejemplo'."
+  },
+  {
+    "id": "E12",
+    "inicio": "08:38",
+    "fin": "09:28",
+    "tipo": "diagrama",
+    "visual": "Cuatro carriles de workers en paralelo, cada uno con su browser context limpio. Dos pruebas crean test@demo.com y chocan (✗ 'ya existe'); después cada una usa un dato único y pasan. Abajo, el bloque de config de civica: retries y trace.",
+    "texto_pantalla": {
+      "es": "Datos únicos por prueba\nretry = evidencia, no verde",
+      "en": "Unique data per test\nretry = evidence, not green"
+    },
+    "assets": [
+      "brand/civica-playwright-challenge/playwright.config.ts"
+    ],
+    "notas_animacion": "Config real: retries: isCi ? 2 : 0, trace: 'on-first-retry', screenshot: 'only-on-failure', video: 'retain-on-failure'. Una prueba que pasa al segundo intento lleva la etiqueta ⚠ flaky en gold."
+  },
+  {
+    "id": "E13",
+    "inicio": "09:28",
+    "fin": "10:12",
+    "tipo": "navegador",
+    "visual": "Interfaz del trace viewer de Playwright: línea de tiempo de acciones a la izquierda, snapshot del DOM al centro, pestañas Network y Console. El cursor se mueve acción por acción hasta la que falló.",
+    "texto_pantalla": {
+      "es": "npx playwright show-trace <archivo>\nsin trace = adivinar · sin sleep",
+      "en": "npx playwright show-trace <file>\nno trace = guessing · no sleeps"
+    },
+    "assets": [
+      "https://playwright.dev/docs/trace-viewer"
+    ],
+    "notas_animacion": "Grabar el trace viewer real con un trace de una corrida propia (por ejemplo, forzando un fallo en la copia local de qa-eval-lab). No reconstruir la UI a mano. Si no se graba, usar una captura de la documentación oficial con crédito."
+  },
+  {
+    "id": "E14",
+    "inicio": "10:12",
+    "fin": "11:01",
+    "tipo": "codigo",
+    "visual": "Línea de test.skip de searchMovie.e2e.spec.ts y la cifra del README debajo: 76 · 74 ✓ · 2 skip ⚠.",
+    "texto_pantalla": {
+      "es": "Skip honesto = condición + razón\n76 pruebas · 74 pasan · 2 se saltan",
+      "en": "Honest skip = condition + reason\n76 tests · 74 pass · 2 skipped"
+    },
+    "assets": [
+      "brand/civica-playwright-challenge/tests/e2e/searchMovie.e2e.spec.ts",
+      "brand/civica-playwright-challenge/README.es.md"
+    ],
+    "notas_animacion": "Línea real: test.skip(await isBotWallPresent(page), 'IMDb anti-bot wall detected — live E2E not runnable');. Los 2 saltos en gold con ⚠ y la palabra skip."
+  },
+  {
+    "id": "E15",
+    "inicio": "11:01",
+    "fin": "11:22",
+    "tipo": "terminal",
+    "visual": "Terminal con los comandos de instalación del README de qa-eval-lab y la nota de Node 26.",
+    "texto_pantalla": {
+      "es": "⚠ Node 26: npm install --ignore-scripts\nCI usa Node 20",
+      "en": "⚠ Node 26: npm install --ignore-scripts\nCI uses Node 20"
+    },
+    "assets": [
+      "brand/qa-eval-lab/README.es.md (secciones Cómo correrlo y Límites)"
+    ],
+    "notas_animacion": "Comandos reales: npm install · npx playwright install chromium · npm run test:ui. No mostrar salida de npm install (no está registrada)."
+  },
+  {
+    "id": "E16",
+    "inicio": "11:22",
+    "fin": "12:14",
+    "tipo": "terminal",
+    "visual": "Reproducción de la corrida local registrada en docs/scenes/local-run.html de qa-eval-lab, línea por línea.",
+    "texto_pantalla": {
+      "es": "3 passed (4.2s) ✓ · CI 40373649268: 3 passed (5.8s) ✓",
+      "en": "3 passed (4.2s) ✓ · CI 40373649268: 3 passed (5.8s) ✓"
+    },
+    "assets": [
+      "brand/qa-eval-lab/docs/scenes/local-run.html"
+    ],
+    "notas_animacion": "Líneas reales (local-run.html): $ npx playwright test / Running 3 tests using 1 worker / ✓ 1 [setup] › tests/auth.setup.ts:5:1 › authenticate (1.4s) / ✓ 2 [ui] › tests/ui/example.spec.ts:3:1 › sesion autenticada reutilizada (storageState) (914ms) / ✓ 3 [ui] › tests/ui/example.spec.ts:9:1 › logout funciona (1.1s) / 3 passed (4.2s). Al final, el comando real del modo manual: MANUAL_LOGIN=1 npx playwright test --project=setup --headed."
+  },
+  {
+    "id": "E17",
+    "inicio": "12:14",
+    "fin": "13:12",
+    "tipo": "terminal",
+    "visual": "Terminal con npm install y npm test en civica; luego un tablero con los siete projects de la corrida de CI y sus conteos en mint.",
+    "texto_pantalla": {
+      "es": "npm test → 19 passed ✓\nCI 38665514760: mock 19 · mutation 21 · audit 9 · API 11 · contrato 6 · performance 4 · visual 4",
+      "en": "npm test → 19 passed ✓\nCI 38665514760: mock 19 · mutation 21 · audit 9 · API 11 · contract 6 · performance 4 · visual 4"
+    },
+    "assets": [
+      "brand/civica-playwright-challenge/README.es.md (Cómo empezar, Cómo funciona)",
+      "brand/civica-playwright-challenge/docs/assets/how-it-works.gif"
+    ],
+    "notas_animacion": "Salida esperada real del README: Running 19 tests using N workers / ✓ TC1 · Search and validate movie … / ✓ TC2 · Navigate Top 250 movies … / ✓ Movie details · deep validations … / ✓ Accessibility … / 19 passed. Rotularla como 'salida esperada (README)'. Se puede reutilizar how-it-works.gif, que reproduce el log real del run 38665514760."
+  },
+  {
+    "id": "E18",
+    "inicio": "13:12",
+    "fin": "14:08",
+    "tipo": "codigo",
+    "visual": "golden.spec.ts con tres franjas de color por rol (editor, approver, editor) y el helper signIn de ui.ts al lado. La fila del documento cambia draft → approved → published.",
+    "texto_pantalla": {
+      "es": "RBAC: cada cambio de rol se verifica\ndraft → approved → published",
+      "en": "RBAC: every role switch is checked\ndraft → approved → published"
+    },
+    "assets": [
+      "brand/war-paradigm/experiments/02-mutants/tests/golden.spec.ts",
+      "brand/war-paradigm/experiments/02-mutants/tests/ui.ts"
+    ],
+    "notas_animacion": "Líneas reales: test.beforeEach(({ request }) => request.post('/api/_reset')); · await signIn(page, 'editor'); · const doc = await createDoc(page, 'Q4 launch plan', 'editor@demo.io'); · await expect(doc.getByTestId('status')).toHaveText('approved'); · en signIn: await expect(page.getByTestId('me-role')).toHaveText(role);"
+  },
+  {
+    "id": "E19",
+    "inicio": "14:08",
+    "fin": "14:49",
+    "tipo": "diagrama",
+    "visual": "Esquema del test híbrido del entregable: API prepara el dato → UI valida lo que ve el usuario → page.route intercepta una llamada para el camino triste. Abajo, los tres artefactos de diagnóstico de civica: trace, screenshot, video.",
+    "texto_pantalla": {
+      "es": "Híbrido: API prepara · UI valida · route intercepta",
+      "en": "Hybrid: API sets up · UI checks · route intercepts"
+    },
+    "assets": [],
+    "notas_animacion": "Es el diseño del reto, no un archivo existente: rotular 'tu entregable'. No mostrar código inventado."
+  },
+  {
+    "id": "E20",
+    "inicio": "14:49",
+    "fin": "15:18",
+    "tipo": "animacion",
+    "visual": "Archivo .auth/user.json se vacía; la prueba de sesión aterriza en /login y se pone roja (✗ falla). Sello 'la prueba sí depende de la sesión' en mint.",
+    "texto_pantalla": {
+      "es": "Mutación: storageState vacío → /login → ✗ falla\nBien: la prueba tiene dientes",
+      "en": "Mutation: empty storageState → /login → ✗ fail\nGood: the test has teeth"
+    },
+    "assets": [
+      "brand/qa-eval-lab/README.es.md (Lo que corrí en mi máquina)"
+    ],
+    "notas_animacion": "Afirmación del README: 'con un storageState vacío termina en /login y falla'. No mostrar un log de esa corrida: no está registrado."
+  },
+  {
+    "id": "E21",
+    "inicio": "15:18",
+    "fin": "16:02",
+    "tipo": "terminal",
+    "visual": "Marcador de mutantes de war-paradigm/02 tal como lo documenta su README.",
+    "texto_pantalla": {
+      "es": "5/7 KILLED ✓ · self-grant + viewer-create SURVIVED ✗",
+      "en": "5/7 KILLED ✓ · self-grant + viewer-create SURVIVED ✗"
+    },
+    "assets": [
+      "brand/war-paradigm/experiments/02-mutants/README.md (What you will see)",
+      "brand/war-paradigm/docs/assets/explained.gif"
+    ],
+    "notas_animacion": "Líneas reales del README: KILLED role-swap Expected rejection HTTP 403 observed. · ... · KNOWN SURVIVOR self-grant Mutation was accepted with HTTP 200. · KNOWN SURVIVOR viewer-create Mutation was accepted with HTTP 201. · 5/7 scored mutants killed · 2 survived · 0 excluded from score. KILLED en mint con ✓, SURVIVOR en coral con ✗."
+  },
+  {
+    "id": "E22",
+    "inicio": "16:02",
+    "fin": "16:49",
+    "tipo": "resumen",
+    "visual": "Rúbrica en forma de checklist: cuatro criterios con casilla, y una franja dorada para el nivel más alto.",
+    "texto_pantalla": {
+      "es": "☐ npx playwright test verde (local + CI)\n☐ 0 waitForTimeout / sleep\n☐ login una vez · storageState\n☐ flujo con 2 roles\n⚠ Top: 2 roturas a propósito → rojo",
+      "en": "☐ npx playwright test green (local + CI)\n☐ 0 waitForTimeout / sleep\n☐ login once · storageState\n☐ flow with 2 roles\n⚠ Top: 2 deliberate breaks → red"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/modules-01-14.json (m5.crit, m5.top)"
+    ],
+    "notas_animacion": "Las casillas se marcan una a una con ✓ mint. Sugerir en pantalla el grep: grep -rn \"waitForTimeout\" tests/"
+  },
+  {
+    "id": "E23",
+    "inicio": "16:49",
+    "fin": "17:18",
+    "tipo": "quiz",
+    "visual": "Pregunta 1 con cuatro opciones A–D y un temporizador de pausa de 5 s.",
+    "texto_pantalla": {
+      "es": "Falla intermitente: “a veces el botón no está”. ¿Primera jugada?\nA sleep(3000) · B retries: 3 · C locator correcto + web-first + trace · D @IGNORE",
+      "en": "Flaky test: “sometimes the button isn't there”. First move?\nA sleep(3000) · B retries: 3 · C right locator + web-first + trace · D @IGNORE"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/quiz-01-10.json (m5, pregunta 1)"
+    ],
+    "notas_animacion": "Pausa visible con ⏸ y cuenta regresiva; no revelar la respuesta en esta escena."
+  },
+  {
+    "id": "E24",
+    "inicio": "17:18",
+    "fin": "18:00",
+    "tipo": "quiz",
+    "visual": "Revelación de la pregunta 1 (C en mint), luego preguntas 2 y 3 con su respuesta tras una pausa corta.",
+    "texto_pantalla": {
+      "es": "1 → C ✓\n2 toBeVisible() reintenta · isVisible() mira una vez\n3 storageState = sesión reutilizada",
+      "en": "1 → C ✓\n2 toBeVisible() retries · isVisible() checks once\n3 storageState = reused session"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/quiz-01-10.json (m5, preguntas 2 y 5)"
+    ],
+    "notas_animacion": "Opciones incorrectas se atenúan en muted; la correcta se marca con ✓ y la palabra pasa."
+  },
+  {
+    "id": "E25",
+    "inicio": "18:00",
+    "fin": "18:39",
+    "tipo": "resumen",
+    "visual": "Tres tarjetas deep con las ideas clave y, al final, la tarjeta del siguiente módulo con su ícono 🔌. Firma abajo.",
+    "texto_pantalla": {
+      "es": "1 Locators de usuario + aserciones que esperan\n2 Fixtures + POM + storageState\n3 Retry y trace = diagnóstico\nSiguiente: Módulo 6 · API & Contract Testing\nCristian Guerra · QA · Medellín",
+      "en": "1 User-facing locators + waiting assertions\n2 Fixtures + POM + storageState\n3 Retry and trace = diagnosis\nNext: Module 6 · API & Contract Testing\nCristian Guerra · QA · Medellín"
+    },
+    "assets": [],
+    "notas_animacion": "Tarjetas entran de a una cada 3 s; cierre con la URL del curso."
+  }
+]

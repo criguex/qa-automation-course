@@ -1,0 +1,1479 @@
+{
+ "etiqueta": "Módulo 01 · Mentalidad QA",
+ "firma": "Cristian Guerra · QA · Medellín",
+ "laboratorio": "criguex/war-paradigm @ 08438a2 (HEAD de main el 26-oct-2026), Node v26.8.1, capturado con render/salidas/capturas.sh. fuentes.md cita 5dc5e92: 08438a2 va 2 commits por delante y ninguno toca experiments/01-ai-verdict (gh api compare 5dc5e92...08438a2), así que las salidas del experimento 01 son las mismas en los dos.",
+ "escenas": {
+  "E01": {
+   "titulo_terminal": "bash — war-paradigm",
+   "capturas": [
+    {
+     "cmd": "npm run demo:01",
+     "archivo": "salidas/demo01.txt"
+    }
+   ],
+   "ritmo": 0.6,
+   "recuadros": [
+    {
+     "busca": "76/100",
+     "estado": "ojo",
+     "dice": [
+      "76"
+     ]
+    },
+    {
+     "busca": "gate 70",
+     "estado": "ojo",
+     "dice": [
+      "70"
+     ]
+    }
+   ],
+   "cierre": {
+    "busca": "verdict REJECTED",
+    "antes": 6
+   }
+  },
+  "E02": {
+   "icono": "cerebro",
+   "nivel": "★☆☆☆☆"
+  },
+  "E03": {
+   "pasos": [
+    {
+     "peso": 1.3,
+     "titulo": 0,
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "ico": "grupos",
+         "titulo": "App de documentos",
+         "texto": "viewer mira · editor escribe · approver aprueba · admin todo",
+         "dice": [
+          "roles"
+         ]
+        },
+        {
+         "ico": "lapiz",
+         "titulo": "Historia US‑42",
+         "texto": "aprobar y publicar un documento · reglas R‑1 a R‑6",
+         "dice": [
+          "historia"
+         ]
+        },
+        {
+         "ico": "cerebro",
+         "titulo": "Agente de IA",
+         "texto": "lee la historia y escribe el plan: S‑1, S‑2, S‑3…",
+         "dice": [
+          "agente"
+         ]
+        },
+        {
+         "ico": "lupa",
+         "titulo": "Scorer",
+         "texto": "código que califica el plan",
+         "dice": [
+          "scorer"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 1.0,
+     "titulo": 1,
+     "dice": [
+      "codigos"
+     ],
+     "bloques": [
+      {
+       "tipo": "tabla",
+       "progresiva": true,
+       "dice": [
+        [
+         "permiso",
+         "salio"
+        ],
+        [
+         "403"
+        ],
+        [
+         "409"
+        ],
+        [
+         "422"
+        ]
+       ],
+       "filas": [
+        [
+         "200",
+         "el rol tenía permiso y la acción salió bien (201 al crear)",
+         "✓ ok",
+         "pasa"
+        ],
+        [
+         "403",
+         "ese rol no tiene permiso",
+         "R‑2 · R‑4",
+         "falla"
+        ],
+        [
+         "409",
+         "publicar un documento que nadie aprobó",
+         "R‑3",
+         "falla"
+        ],
+        [
+         "422",
+         "borrador mal hecho: título de 2 letras o sin dueño",
+         "R‑6 · B‑1",
+         "falla"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 1.0,
+     "titulo": 2,
+     "dice": [
+      "pregunta"
+     ],
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "num": "1",
+         "titulo": "Qué es un oráculo",
+         "texto": "lo que decide si una prueba pasa",
+         "dice": [
+          "oraculo"
+         ]
+        },
+        {
+         "num": "2",
+         "titulo": "Criterios medibles",
+         "texto": "de «me parece bueno» a un puntaje con evidencia",
+         "dice": [
+          "criterios"
+         ]
+        },
+        {
+         "num": "3",
+         "titulo": "La firma es tuya",
+         "texto": "la IA propone, tú certificas",
+         "dice": [
+          "firma"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E04": {
+   "pasos": [
+    {
+     "titulo": 0,
+     "bloques": [
+      {
+       "tipo": "hojas",
+       "tarea": "Tarea",
+       "respuestas": "Hoja de respuestas",
+       "filas": [
+        {},
+        {},
+        {
+         "tarea": "14",
+         "hoja": "12"
+        },
+        {},
+        {}
+       ],
+       "falla_rotulo": "pregunta 3",
+       "oraculo": "oráculo",
+       "titulo_final": 1,
+       "dice_profe": [
+        "profe"
+       ],
+       "dice_tarea": [
+        "llena"
+       ],
+       "dice_respuestas": [
+        "respuestas"
+       ],
+       "dice_falla": [
+        "catorce",
+        "doce"
+       ],
+       "dice_oraculo": [
+        "oraculo"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E05": {
+   "pasos": [
+    {
+     "titulo": 0,
+     "bloques": [
+      {
+       "tipo": "flujo",
+       "de": "teclear",
+       "a": "decidir"
+      },
+      {
+       "tipo": "tarjetas",
+       "flujo": true,
+       "items": [
+        {
+         "ico": "lapiz",
+         "titulo": "Crear",
+         "texto": "plan de US-42: 11–12 escenarios",
+         "barra": 0.9,
+         "dice": [
+          "crear"
+         ]
+        },
+        {
+         "ico": "play",
+         "titulo": "Ejecutar",
+         "texto": "test:01 · 27 ✓ en 1,3 s",
+         "barra": 0.9,
+         "dice": [
+          "ejecutar"
+         ]
+        },
+        {
+         "ico": "lupa",
+         "titulo": "Validar",
+         "texto": "scorer: 8 criterios con evidencia",
+         "barra": 0.55,
+         "dice": [
+          "validar"
+         ]
+        },
+        {
+         "ico": "mano",
+         "titulo": "Certificar",
+         "texto": "corrida 3: no sale · firmo yo",
+         "barra": 0,
+         "estado": "ojo",
+         "rotulo": "humano",
+         "dice": [
+          "certificar"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E06": {
+   "pasos": [
+    {
+     "peso": 1,
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "num": "Q1",
+         "titulo": "¿corre como se especificó?",
+         "texto": "binaria: pasa o falla",
+         "chips": [
+          {
+           "estado": "pasa",
+           "rotulo": "pasa"
+          },
+          {
+           "estado": "falla",
+           "rotulo": "falla"
+          }
+         ],
+         "archivos": [
+          "src/checks.ts"
+         ],
+         "dice": [
+          "primera",
+          "binaria"
+         ]
+        },
+        {
+         "num": "Q2",
+         "titulo": "¿es bueno?",
+         "texto": "puntaje contra criterios acordados antes",
+         "chips": [
+          {
+           "estado": "neutro",
+           "rotulo": "puntaje 0–100"
+          }
+         ],
+         "archivos": [
+          "src/criteria.ts",
+          "src/scorer.ts"
+         ],
+         "dice": [
+          "segunda"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 1.5,
+     "titulo": "must bloquea · should suma",
+     "dice": [
+      "ocho",
+      "criterios"
+     ],
+     "bloques": [
+      {
+       "tipo": "tabla",
+       "filas": [
+        [
+         "AC-1",
+         "cada escenario cita su fuente en la historia",
+         "must",
+         "falla",
+         "candado"
+        ],
+        [
+         "AC-2",
+         "cada requisito obligatorio queda cubierto",
+         "must",
+         "falla",
+         "candado"
+        ],
+        [
+         "AC-3",
+         "ningún rol prohibido espera éxito",
+         "must",
+         "falla",
+         "candado"
+        ],
+        [
+         "AC-4",
+         "un 403 por cada acción protegida",
+         "30",
+         "pasa"
+        ],
+        [
+         "AC-5",
+         "fronteras de la historia",
+         "28",
+         "pasa"
+        ],
+        [
+         "AC-6",
+         "plantilla del equipo",
+         "20",
+         "pasa"
+        ],
+        [
+         "AC-7",
+         "riesgos y supuestos",
+         "12",
+         "pasa"
+        ],
+        [
+         "AC-8",
+         "sin escenarios repetidos",
+         "10",
+         "pasa"
+        ]
+       ]
+      },
+      {
+       "tipo": "apilada",
+       "gate": 70,
+       "morph": true,
+       "dice": [
+        "cien"
+       ],
+       "segmentos": [
+        {
+         "v": 30,
+         "etiqueta": "30"
+        },
+        {
+         "v": 28,
+         "etiqueta": "28"
+        },
+        {
+         "v": 20,
+         "etiqueta": "20"
+        },
+        {
+         "v": 12,
+         "etiqueta": "12"
+        },
+        {
+         "v": 10,
+         "etiqueta": "10"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 1.1,
+     "titulo": 2,
+     "dice": [
+      "bloquean"
+     ],
+     "bloques": [
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "un must falla, saque el puntaje que saque →",
+         "estado": "falla",
+         "rotulo": "REJECTED",
+         "dice": [
+          "rechazado"
+         ]
+        },
+        {
+         "si": "todos los must pasan y el puntaje < 70 →",
+         "estado": "falla",
+         "rotulo": "REJECTED",
+         "dice": [
+          "debajo"
+         ]
+        },
+        {
+         "si": "todos los must pasan y el puntaje ≥ 70 →",
+         "estado": "pasa",
+         "rotulo": "APPROVED",
+         "dice": [
+          "aprobado"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E07": {
+   "pasos": [
+    {
+     "peso": 1.6,
+     "titulo": 0,
+     "bloques": [
+      {
+       "tipo": "hojas",
+       "tarea": "Plan del agente · corrida 3 sin pins",
+       "respuestas": "Historia US-42",
+       "anchos": [
+        620,
+        330
+       ],
+       "filas": [
+        {
+         "n": "S-2",
+         "que": "approver aprueba",
+         "tarea": "200",
+         "hoja": "200",
+         "dice": [
+          "s-2"
+         ]
+        },
+        {
+         "n": "S-3",
+         "que": "editor aprueba lo suyo",
+         "tarea": "200",
+         "hoja": "403",
+         "dice": [
+          "s-3"
+         ]
+        },
+        {
+         "n": "S-5",
+         "que": "publica sin aprobar",
+         "tarea": "409",
+         "hoja": "409",
+         "dice": [
+          "s-5"
+         ]
+        },
+        {
+         "n": "S-6",
+         "que": "viewer publica",
+         "tarea": "403",
+         "hoja": "403",
+         "dice": [
+          "s-6"
+         ]
+        },
+        {
+         "n": "S-7",
+         "que": "viewer aprueba",
+         "tarea": "403",
+         "hoja": "403",
+         "dice": [
+          "s-7"
+         ]
+        }
+       ],
+       "falla_rotulo": "S-3",
+       "oraculo": "oráculo",
+       "dice_profe": [
+        "profe"
+       ],
+       "dice_tarea": [
+        "plan"
+       ],
+       "dice_respuestas": [
+        "respuestas"
+       ],
+       "dice_oraculo": [
+        "tambien"
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 0.6,
+     "titulo": 1,
+     "dice": [
+      "supuestos"
+     ],
+     "fantasma": false,
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "num": "supuesto del plan · corrida 3",
+         "titulo": "“Editors may approve their own work when no approver is available”",
+         "estado": "ojo",
+         "rotulo": "no está en la historia",
+         "dice": [
+          "confiesa"
+         ]
+        },
+        {
+         "num": "historia US-42 · R-2",
+         "titulo": "“Only approvers and admins can approve a draft; anyone else gets 403”",
+         "estado": "pasa",
+         "rotulo": "oráculo",
+         "dice": [
+          "r-2"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 1,
+     "titulo": 2,
+     "dice": [
+      "maneras"
+     ],
+     "bloques": [
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "Q1 falla · el actor “superuser” no existe en la historia",
+         "estado": "falla",
+         "rotulo": "REJECTED · 0",
+         "dice": [
+          "superuser"
+         ]
+        },
+        {
+         "si": "must falla · corrida 3: S-3 contra la matriz, S-4 y S-6 sin fuente",
+         "estado": "falla",
+         "rotulo": "REJECTED · 76",
+         "dice": [
+          "76"
+         ]
+        },
+        {
+         "si": "puntaje < 70 · todos los must ✓, pero sin fronteras ni riesgos",
+         "estado": "falla",
+         "rotulo": "REJECTED · 40",
+         "dice": [
+          "40"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E08": {
+   "pasos": [
+    {
+     "peso": 1.6,
+     "titulo": 0,
+     "nota": "Así lo enuncia el temario del curso: «Los 7 principios del testing (ISTQB)»",
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "num": "1",
+         "ico": "infinito",
+         "titulo": "Exhaustivo imposible",
+         "texto": "título de 3 a 80 → pruebas 2 · 3 · 80 · 81",
+         "dice": [
+          "exhaustivo"
+         ]
+        },
+        {
+         "num": "2",
+         "ico": "reloj",
+         "titulo": "Temprano ahorra",
+         "texto": "S-3 cazado leyendo el plan, antes de ejecutar",
+         "dice": [
+          "temprano"
+         ]
+        },
+        {
+         "num": "3",
+         "ico": "grupos",
+         "titulo": "Defectos agrupados",
+         "texto": "los 2 mutantes que sobreviven: permisos",
+         "dice": [
+          "agrupan"
+         ]
+        },
+        {
+         "num": "4",
+         "ico": "bicho",
+         "titulo": "Paradoja del pesticida",
+         "texto": "flujo feliz en verde con DEF-001 abierto",
+         "dice": [
+          "pesticida"
+         ]
+        },
+        {
+         "num": "5",
+         "ico": "falacia",
+         "titulo": "Falacia de ausencia de errores",
+         "texto": "sin bugs ≠ resuelve el problema",
+         "etiqueta": "hipotético",
+         "dice": [
+          "falacia"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 1,
+     "dice": [
+      "pares"
+     ],
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "filas": [
+        2,
+        2
+       ],
+       "items": [
+        {
+         "titulo": "Verificación",
+         "texto": "¿bien construido? publicar sin aprobar → 409 (R-3)",
+         "dice": [
+          "verificacion"
+         ]
+        },
+        {
+         "titulo": "Validación",
+         "texto": "¿producto correcto? ¿al equipo le sirve el flujo?",
+         "etiqueta": "se pregunta",
+         "dice": [
+          "validacion"
+         ]
+        },
+        {
+         "titulo": "QC",
+         "texto": "encuentra: el scorer caza a S-3",
+         "dice": [
+          "encuentra"
+         ]
+        },
+        {
+         "titulo": "QA",
+         "texto": "evita: modelo fijo, temperatura 0, prompt v3",
+         "dice": [
+          "nazca"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E09": {
+   "pasos": [
+    {
+     "peso": 1.3,
+     "titulo": 0,
+     "nota": "Ejemplo de cómo razono con US-42, no una medición",
+     "bloques": [
+      {
+       "tipo": "matriz",
+       "dice": [
+        "probabilidad"
+       ],
+       "ejes": {
+        "x": "impacto →",
+        "y": "probabilidad →"
+       },
+       "puntos": [
+        {
+         "x": 0.9,
+         "y": 0.84,
+         "texto": "Rol prohibido aprueba · R-2",
+         "estado": "ojo",
+         "rotulo": "primero",
+         "izquierda": true,
+         "dice": [
+          "uno"
+         ]
+        },
+        {
+         "x": 0.8,
+         "y": 0.42,
+         "texto": "Publicar sin aprobar → 409 · R-3",
+         "estado": "neutro",
+         "izquierda": true,
+         "dice": [
+          "dos"
+         ]
+        },
+        {
+         "x": 0.22,
+         "y": 0.66,
+         "texto": "Título 3–80 · B-1…B-4",
+         "estado": "neutro",
+         "dice": [
+          "tres"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 1,
+     "titulo": 1,
+     "dice": [
+      "fronteras"
+     ],
+     "bloques": [
+      {
+       "tipo": "tabla",
+       "progresiva": true,
+       "cols": "150px 1fr 430px",
+       "dice": [
+        [
+         "2"
+        ],
+        [
+         "3"
+        ],
+        [
+         "80"
+        ],
+        [
+         "81"
+        ]
+       ],
+       "filas": [
+        [
+         "B-1",
+         "título de 2 caracteres → 422",
+         "✓ cubierto · S-11",
+         "pasa"
+        ],
+        [
+         "B-2",
+         "título de 3 caracteres → 201",
+         "✗ falta",
+         "falla"
+        ],
+        [
+         "B-3",
+         "título de 80 caracteres → 201",
+         "✗ falta",
+         "falla"
+        ],
+        [
+         "B-4",
+         "título de 81 caracteres → 422",
+         "✓ cubierto · S-10",
+         "pasa"
+        ]
+       ]
+      },
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "antes: nadie mandaba 80 · máximo bajado a 79 →",
+         "estado": "falla",
+         "rotulo": "suite en verde",
+         "dice": [
+          "verde"
+         ]
+        },
+        {
+         "si": "hoy: golden.spec.ts manda 80 · máximo en 79 →",
+         "estado": "pasa",
+         "rotulo": "falla con 422",
+         "dice": [
+          "hoy"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E10": {
+   "pasos": [
+    {
+     "peso": 1.6,
+     "titulo": 0,
+     "nota": "Ejemplo armado con lo que ya tiene el laboratorio",
+     "bloques": [
+      {
+       "tipo": "tabla",
+       "progresiva": true,
+       "cols": "350px 1fr 340px",
+       "dice": [
+        [
+         "riesgos"
+        ],
+        [
+         "alcance"
+        ],
+        [
+         "niveles"
+        ],
+        [
+         "automatizo"
+        ],
+        [
+         "pantalla"
+        ]
+       ],
+       "filas": [
+        [
+         "Riesgos",
+         "rol prohibido aprueba · publicar sin aprobar · título 3 a 80",
+         "prob × impacto",
+         "ojo"
+        ],
+        [
+         "Alcance",
+         "crear, aprobar y publicar × 4 roles · cambiar roles queda fuera",
+         "historia US-42"
+        ],
+        [
+         "Niveles",
+         "API primero (Playwright request) + flujo dorado en el navegador (page)",
+         "API = contrato"
+        ],
+        [
+         "Se automatiza",
+         "matriz completa: 4 roles × 3 acciones = 12 casos, cada uno con su código",
+         "✓ la matriz",
+         "pasa"
+        ],
+        [
+         "No se automatiza",
+         "primera revisión de la pantalla de aprobación → sesión exploratoria",
+         "⚠ charter + matriz",
+         "ojo"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 1,
+     "titulo": 1,
+     "dice": [
+      "shift-left"
+     ],
+     "bloques": [
+      {
+       "tipo": "tiempo",
+       "sdlc": "SDLC",
+       "stlc": "STLC ← shift-left",
+       "dice": [
+        "sdlc"
+       ],
+       "dice_stlc": [
+        "stlc"
+       ],
+       "fases": [
+        "historia de usuario",
+        "diseño",
+        "código",
+        "pruebas",
+        "release"
+       ],
+       "desde": [
+        3,
+        4
+       ],
+       "hasta": [
+        0,
+        4
+       ]
+      },
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "S-3 se cazó leyendo el plan, antes de ejecutar nada →",
+         "estado": "pasa",
+         "rotulo": "shift-left",
+         "dice": [
+          "s-3"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E11": {
+   "pasos": [
+    {
+     "peso": 1.4,
+     "titulo": "Charter de la sesión",
+     "bloques": [
+      {
+       "tipo": "charter",
+       "titulo": "Charter",
+       "etiqueta": "ejemplo",
+       "dice": [
+        "charter"
+       ],
+       "dice_notas": [
+        "notas"
+       ],
+       "campos": [
+        {
+         "k": "misión",
+         "v": "explorar crear y aprobar con los 4 roles"
+        },
+        {
+         "k": "foco",
+         "v": "respuestas que no coinciden con la matriz"
+        },
+        {
+         "k": "tiempo",
+         "v": "60 min"
+        },
+        {
+         "k": "oráculo",
+         "v": "la matriz de permisos"
+        }
+       ],
+       "notas": [
+        "✗ hallazgo: un viewer crea un borrador → 201; la matriz dice 403",
+        "⚠ pregunta: ¿un approver puede aprobar su propio borrador?"
+       ],
+       "notas_largas": true,
+       "dice_cada": [
+        [
+         "primera"
+        ],
+        [
+         "segunda"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 1,
+     "titulo": 1,
+     "dice": [
+      "paso"
+     ],
+     "nota": "Con el formato de la plantilla de defectos del vault",
+     "bloques": [
+      {
+       "tipo": "tabla",
+       "progresiva": true,
+       "cols": "230px 1fr 440px",
+       "dice": [
+        [
+         "uno"
+        ],
+        [
+         "dos"
+        ],
+        [
+         "esperado"
+        ],
+        [
+         "obtenido"
+        ],
+        [
+         "causa"
+        ]
+       ],
+       "filas": [
+        [
+         "1",
+         "entras como viewer@demo.io",
+         "POST /api/auth/login"
+        ],
+        [
+         "2",
+         "creas un borrador con título y dueño",
+         "POST /api/docs"
+        ],
+        [
+         "Esperado",
+         "la matriz dice que un viewer no crea",
+         "403"
+        ],
+        [
+         "Obtenido",
+         "la app crea el borrador",
+         "✗ 201",
+         "falla"
+        ],
+        [
+         "Causa",
+         "POST /api/docs no revisa el rol",
+         "viewer-create",
+         "ojo"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 0.8,
+     "titulo": 2,
+     "dice": [
+      "perfil"
+     ],
+     "bloques": [
+      {
+       "tipo": "escalera",
+       "peldanos": [
+        "ejecuta casos",
+        "diseña oráculos, decide riesgo, firma"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E12": {
+   "titulo_terminal": "bash — ~",
+   "capturas": [
+    {
+     "cmd": "npm run test:01",
+     "archivo": "salidas/test01.txt"
+    }
+   ],
+   "anotaciones": [
+    {
+     "busca": "npm ci",
+     "estado": "neutro",
+     "rotulo": "⏩ instalación acelerada"
+    },
+    {
+     "busca": "skipped",
+     "estado": "ojo",
+     "rotulo": "agente en vivo"
+    },
+    {
+     "busca": "passed",
+     "estado": "pasa",
+     "rotulo": "pasan"
+    }
+   ]
+  },
+  "E13": {
+   "titulo_terminal": "bash — war-paradigm",
+   "capturas": [
+    {
+     "cmd": "npm run demo:01",
+     "archivo": "salidas/demo01.txt"
+    }
+   ],
+   "recuadros": [
+    {
+     "busca": "AC-5",
+     "estado": "ojo",
+     "linea": true,
+     "dice": [
+      "ac-5"
+     ]
+    }
+   ]
+  },
+  "E14": {
+   "titulo_terminal": "bash — war-paradigm",
+   "capturas": [
+    {
+     "cmd": "npm run demo:01",
+     "archivo": "salidas/demo01.txt"
+    }
+   ],
+   "recuerda": {
+    "escena": "E01",
+    "titulo": "corrida 3 sin pins (E01)",
+    "busca": [
+     "AC-1",
+     "AC-3"
+    ]
+   }
+  },
+  "E15": {
+   "paginas": [
+    {
+     "url": "https://github.com/criguex/war-paradigm/blob/main/experiments/03-second-brain/vault/01%20QA%20process/Test%20strategy.md",
+     "pie": "Estrategia de 1 pantalla",
+     "peso": 1,
+     "zoom": 1,
+     "recuadros": [
+      {
+       "seccion": "Layers",
+       "rotulo": "capas",
+       "dice": [
+        "capas"
+       ]
+      },
+      {
+       "seccion": "Principles",
+       "rotulo": "principios",
+       "dice": [
+        "principios"
+       ]
+      }
+     ]
+    },
+    {
+     "url": "https://github.com/criguex/war-paradigm/blob/main/experiments/03-second-brain/vault/04%20Sessions/2026-09-24%20-%20mutants%20on%20DocFlow.md",
+     "pie": "Nota de sesión: objetivo, qué pasó, decisiones, siguiente",
+     "peso": 1.25,
+     "zoom": 1,
+     "dice": [
+      "sessions"
+     ],
+     "recuadros": [
+      {
+       "seccion": "Goal",
+       "rotulo": "objetivo",
+       "dice": [
+        "objetivo"
+       ]
+      },
+      {
+       "seccion": "What happened",
+       "rotulo": "qué pasó",
+       "dice": [
+        "paso"
+       ]
+      },
+      {
+       "seccion": "Decisions",
+       "rotulo": "decisiones",
+       "dice": [
+        "decisiones"
+       ]
+      },
+      {
+       "seccion": "Next",
+       "rotulo": "siguiente",
+       "dice": [
+        "siguiente"
+       ]
+      },
+      {
+       "texto": "5 killed, 1 survived",
+       "estado": "ojo",
+       "rotulo": "próximo módulo",
+       "rotulo2": "hoy: 5 de 7 · viewer-create",
+       "dice": [
+        "atrapados"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E16": {
+   "capturas": [
+    {
+     "cmd": "git diff",
+     "archivo": "salidas/mutacion.diff"
+    }
+   ],
+   "dice_nuevo": [
+    "comillas",
+    "vacias"
+   ]
+  },
+  "E17": {
+   "titulo_terminal": "bash — war-paradigm (mutación aplicada)",
+   "capturas": [
+    {
+     "cmd": "npm run demo:pinned -w experiments/01-ai-verdict",
+     "archivo": "salidas/mut_demo_pinned.txt"
+    },
+    {
+     "cmd": "npm run test:01",
+     "archivo": "salidas/mut_test01.txt"
+    },
+    {
+     "cmd": "npm run test:01 (restaurado)",
+     "archivo": "salidas/restaurado_test01.txt"
+    }
+   ],
+   "agrega": [
+    {
+     "despues": "run 1 REJECTED 86",
+     "busca": "verdict UNSTABLE"
+    }
+   ],
+   "sello": {
+    "busca": "verdict REJECTED",
+    "texto": "✓ KILLED",
+    "estado": "pasa",
+    "dice": [
+     "killed"
+    ]
+   },
+   "anotaciones": [
+    {
+     "busca": "6 failed",
+     "estado": "falla",
+     "rotulo": "6 fallan"
+    },
+    {
+     "busca": "21 passed",
+     "estado": "ojo",
+     "rotulo": "con la mutación"
+    },
+    {
+     "busca": "27 passed",
+     "estado": "pasa",
+     "rotulo": "restaurado"
+    },
+    {
+     "busca": "1 skipped",
+     "estado": "ojo",
+     "rotulo": "agente en vivo"
+    }
+   ]
+  },
+  "E18": {
+   "pasos": [
+    {
+     "peso": 1.2,
+     "bloques": [
+      {
+       "tipo": "lista",
+       "check": true,
+       "marca_tras": 1.5,
+       "items": [
+        {
+         "texto": 0,
+         "dice": [
+          "pagina",
+          "riesgos"
+         ]
+        },
+        {
+         "texto": 1,
+         "dice": [
+          "oraculo"
+         ]
+        },
+        {
+         "texto": 2,
+         "dice": [
+          "notas",
+          "charter"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 0.7,
+     "titulo": "Criterio 2 con un caso",
+     "dice": [
+      "caso"
+     ],
+     "bloques": [
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "“Probar que aprobar funciona” · no dice qué decide si pasa",
+         "estado": "falla",
+         "rotulo": "sin oráculo",
+         "dice": [
+          "funciona"
+         ]
+        },
+        {
+         "si": "viewer → POST /api/docs/:id/approve · espera 403 · oráculo: la matriz (R-2)",
+         "estado": "pasa",
+         "rotulo": "con oráculo",
+         "dice": [
+          "viewer"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 1,
+     "dice": [
+      "rubrica"
+     ],
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "flujo": true,
+       "items": [
+        {
+         "num": "Nivel 1",
+         "titulo": "no cumple",
+         "texto": "falta el entregable",
+         "dice": [
+          "entregable"
+         ]
+        },
+        {
+         "num": "Nivel 2",
+         "titulo": "en camino",
+         "texto": "falla un criterio",
+         "dice": [
+          "falla"
+         ]
+        },
+        {
+         "num": "Nivel 3",
+         "titulo": "aprobado",
+         "texto": "cumple los tres",
+         "estado": "pasa",
+         "rotulo": "aprobado",
+         "dice": [
+          "aprobado"
+         ]
+        },
+        {
+         "num": "Nivel 4",
+         "titulo": "sobresaliente",
+         "texto": "+ 3 must y 3 should con peso, y un scorer en código",
+         "estado": "ojo",
+         "rotulo": "top",
+         "dice": [
+          "cuatro"
+         ]
+        }
+       ]
+      },
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": 3,
+         "estado": "pasa",
+         "rotulo": "apruebas",
+         "dice": [
+          "quiz"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E19": {
+   "pausa": 5
+  },
+  "E20": {
+   "pausa": 5
+  },
+  "E21": {
+   "pausa": 5
+  },
+  "E22": {
+   "pasos": [
+    {
+     "reparto": 0.7,
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "num": "✓ 1",
+         "titulo": "Decides qué probar, con qué riesgo y si cumple el contrato",
+         "dice": [
+          "una"
+         ]
+        },
+        {
+         "num": "✓ 2",
+         "titulo": "Cada prueba tiene oráculo: must bloquea, should suma",
+         "dice": [
+          "dos"
+         ]
+        },
+        {
+         "num": "✓ 3",
+         "titulo": "Si nunca viste fallar a tu guardia, no sabes si está despierto",
+         "dice": [
+          "tres"
+         ]
+        }
+       ]
+      },
+      {
+       "tipo": "siguiente",
+       "ico": "espadas",
+       "texto": "Siguiente → 02 · WAR Paradigm",
+       "brilla_antes": 8,
+       "dice": [
+        "siguiente"
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

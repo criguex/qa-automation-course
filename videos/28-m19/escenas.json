@@ -1,0 +1,305 @@
+[
+  {
+    "id": "E01",
+    "inicio": "00:00",
+    "fin": "00:42",
+    "tipo": "animacion",
+    "visual": "Un sobre sellado con 'H14 · ρ ≥ 0.7' se abre. Una barra sube hasta 0.635 y se queda corta de la línea 0.7 (gold). Una mano intenta bajar la línea a 0.6; aparece un candado y la mano se retira. Sello coral '✗ FALLA · publicada'. Al final, una terminal muestra 'H14 … FAIL' y 'exit=0' con un signo de interrogación.",
+    "texto_pantalla": {
+      "es": "Faltaron 0.065. No toqué nada.",
+      "en": "Missed by 0.065. I didn't touch a thing."
+    },
+    "assets": [],
+    "notas_animacion": "El signo de interrogación sobre exit=0 se resuelve en E12."
+  },
+  {
+    "id": "E02",
+    "inicio": "00:42",
+    "fin": "01:01",
+    "tipo": "titulo",
+    "visual": "Tarjeta de título con ícono 🔏 y chip criguex/predictor-debugger. Subtítulo: 'Lo que se prueba es el depurador'. Firma.",
+    "texto_pantalla": {
+      "es": "Módulo 28 · Prerregistro y reproducibilidad\nCristian Guerra · QA · Medellín",
+      "en": "Module 28 · Preregistration and reproducibility\nCristian Guerra · QA · Medellín"
+    },
+    "assets": [],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E03",
+    "inicio": "01:01",
+    "fin": "01:46",
+    "tipo": "analogia",
+    "visual": "Niño escribe 'gana el azul' en un papel, lo mete en un sobre y se lo da a un adulto antes del partido. Después, el primo en otra casa hace la misma cuenta en su computador y aparece el mismo número en las dos pantallas.",
+    "texto_pantalla": {
+      "es": "Sobre cerrado = prerregistro · mismo número = huella",
+      "en": "Sealed envelope = preregistration · same number = fingerprint"
+    },
+    "assets": [
+      "predictor-debugger/docs/assets/explained.gif (referencia de estilo)"
+    ],
+    "notas_animacion": "Basada en m19.kid de i18n/es/modules-24-29.json."
+  },
+  {
+    "id": "E04",
+    "inicio": "01:46",
+    "fin": "02:52",
+    "tipo": "diagrama",
+    "visual": "Línea de tiempo: commit DESIGN.md → enmiendas 1-5 (24-oct, 'antes de cualquier dato') → datos → validación → test (evaluado una vez). Una zona coral después de 'test' con el letrero 'sin enmiendas'. Zoom a la enmienda 1: float32 ε ≈ 1.2e-7 vs divergencia float64 ≈ 1e-15 → nuevo control P0f32 + H1b.",
+    "texto_pantalla": {
+      "es": "\"Written before any dataset, model or prediction exists\"",
+      "en": "\"Written before any dataset, model or prediction exists\""
+    },
+    "assets": [
+      "predictor-debugger/DESIGN.md"
+    ],
+    "notas_animacion": "Cita literal de la primera línea de DESIGN.md."
+  },
+  {
+    "id": "E05",
+    "inicio": "02:52",
+    "fin": "03:25",
+    "tipo": "diagrama",
+    "visual": "Dos objetos en una mesa de laboratorio: una red neuronal (gris, 'puede salir mala') y un depurador con tres sensores D1 D2 D3 (bajo la lupa, 'esto es lo que se prueba').",
+    "texto_pantalla": {
+      "es": "\"A poor network is an acceptable result; a debugger that cannot tell the controls apart is a failure\"",
+      "en": "\"A poor network is an acceptable result; a debugger that cannot tell the controls apart is a failure\""
+    },
+    "assets": [
+      "predictor-debugger/DESIGN.md (§Question)"
+    ],
+    "notas_animacion": "En la versión ES, la cita en inglés se subtitula."
+  },
+  {
+    "id": "E06",
+    "inicio": "03:25",
+    "fin": "04:12",
+    "tipo": "diagrama",
+    "visual": "Tabla de cuatro filas que se arma: P0 (solver exacto) → ninguno debe gritar → H1 ✓ · P3a (+∇φ, 5 % de ‖u‖) → D1 → H2 · P3b (×1.05) → D2 → H3 · P1 (persistencia) → D3 → H4. Cada sensor se enciende coral cuando atrapa su control.",
+    "texto_pantalla": {
+      "es": "Cada hipótesis = un control + el chequeo que debe gritar",
+      "en": "Each hypothesis = a control + the check that should scream"
+    },
+    "assets": [
+      "predictor-debugger/DESIGN.md (§Predictors, §Hypotheses)"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E07",
+    "inicio": "04:12",
+    "fin": "04:43",
+    "tipo": "codigo",
+    "visual": "Extracto real de predictor-debugger/thresholds.json:\n\"rule\": \"tau = 10 x max over validation one-step steps of the statistic, floor 1e-12; flagged if value > tau or non-finite\",\n\"thresholds\": {\n  \"D1\": 8.320117051685382e-07,\n  \"D2\": 0.0033139113713079316,\n  \"D3\": 0.08350147140648448\n}\nUn NaN cae en un embudo y sale con '✗ marcado'.",
+    "texto_pantalla": {
+      "es": "τ = 10 × máx(P0, P0f32) en validación · un NaN nunca pasa",
+      "en": "τ = 10 × max(P0, P0f32) on validation · a NaN never passes"
+    },
+    "assets": [
+      "predictor-debugger/thresholds.json"
+    ],
+    "notas_animacion": "No mostrar el bloque 'environment' (trae el hostname de la máquina)."
+  },
+  {
+    "id": "E08",
+    "inicio": "04:43",
+    "fin": "05:24",
+    "tipo": "diagrama",
+    "visual": "Tabla 2×2: criterio cumple / no cumple × comparador cumple / no cumple. Celdas: PASS (criterio sí, comparador no) mint · NON-DISCRIMINATIVE (ambos sí) gold · FAIL (criterio no) coral. Nota al pie: 'Ronda 2: H8 pasó, pero D3 también ordenó ese conjunto'.",
+    "texto_pantalla": {
+      "es": "Un verde que no discrimina ⚠ se reporta como tal",
+      "en": "A green that doesn't discriminate ⚠ gets reported as such"
+    },
+    "assets": [],
+    "notas_animacion": "Contenido de m19.theory[4]."
+  },
+  {
+    "id": "E09",
+    "inicio": "05:24",
+    "fin": "06:42",
+    "tipo": "diagrama",
+    "visual": "Gráfico de barras con IC: P2s0 0.800 [0.657; …] · P2s1 0.815 [0.692; …] · P2ge4 0.747 [0.535; …] · P2gbest 0.635 [0.413; 0.795]. Línea de criterio en 0.7 y línea de IC inferior en 0.5. P2gbest en coral. Al lado, ΣD3: 0.785 · 0.851 · 0.810 · 0.654 ('cumple en 3 de 4'). Debajo, una curva de ρ que baja de 0.99 en el paso 1 a 0.45–0.73 en el paso 20. Flecha final: 'Ronda 4 · H17 ✓ en las cuatro redes'.",
+    "texto_pantalla": {
+      "es": "H14 ✗ FALLA · no se cambió nada · de ahí salió H17",
+      "en": "H14 ✗ FAIL · nothing changed · that's where H17 came from"
+    },
+    "assets": [
+      "predictor-debugger/round3/RESULTS.md (fila H14)",
+      "predictor-debugger/docs/assets/rondas.svg"
+    ],
+    "notas_animacion": "Cifras literales de round3/RESULTS.md línea 38 y README.md línea 15."
+  },
+  {
+    "id": "E10",
+    "inicio": "06:42",
+    "fin": "07:26",
+    "tipo": "diagrama",
+    "visual": "Un JSON ordenado se arma con piezas: numpy version · solver sha256 · pd/*.py sha256 · thresholds.json sha256 · inputs sha256 · resumen de veredictos → SHA-256 → recorte a 12 caracteres → EEC9-09E0-F77D.",
+    "texto_pantalla": {
+      "es": "Cambia un byte de cualquier pieza → cambia la huella",
+      "en": "Change one byte of any piece → the fingerprint changes"
+    },
+    "assets": [
+      "predictor-debugger/verify.py"
+    ],
+    "notas_animacion": "Contenido de m19.theory[6]."
+  },
+  {
+    "id": "E11",
+    "inicio": "07:26",
+    "fin": "08:15",
+    "tipo": "terminal",
+    "visual": "Salida real (copia de predictor-debugger-docs, commit 36836d4, 2026-10-26):\n$ git clone https://github.com/criguex/predictor-debugger.git && cd predictor-debugger\n$ uv run --locked verify.py --saved mac; echo \"exit=$?\"\npredictor-debugger verify · Darwin arm64 · Python 3.9.6 · numpy 1.26.4\n  H1   P0     any     0/400  share <= 0.05   PASS\n  H1b  P0f32  any     0/400  share <= 0.05   PASS\n  H2   P3a    D1    400/400  share >= 0.95   PASS\n  H3   P3b    D2    400/400  share >= 0.95   PASS\n  H4   P1     D3    400/400  share >= 0.95   PASS\n  verdicts equal to saved results/mac/verdicts.json: True\n  fingerprint: EEC9-09E0-F77D\nexit=0",
+    "texto_pantalla": {
+      "es": "✓ 5/5 · True · EEC9-09E0-F77D",
+      "en": "✓ 5/5 · True · EEC9-09E0-F77D"
+    },
+    "assets": [],
+    "notas_animacion": "uv descargó numpy 1.26.4 la primera vez (líneas 'Downloading numpy' omitidas)."
+  },
+  {
+    "id": "E12",
+    "inicio": "08:15",
+    "fin": "09:16",
+    "tipo": "terminal",
+    "visual": "Salidas reales resumidas:\n$ uv run --locked verify.py --saved war|guerra|linux\n  verdicts equal to saved results/<máquina>/verdicts.json: True\n  fingerprint: EEC9-09E0-F77D   (×3)\n$ uv run --locked round2/verify.py --saved mac → 9 PASS · fingerprint: D506-F58F-3838\n$ uv run --locked round3/verify.py --saved mac\n  H14  mean over steps of within-step Spe P2s0=0.800[0.657]/C=0.785 P2s1=0.815[0.692]/C=0.851 P2ge4=0.747[0.535]/C=0.810 P2gbest=0.635[0.413]/C=0.654  FAIL\n  verdicts equal to saved round3/results/mac/verdicts.json: True\n  fingerprint: 6319-537B-7167\n(exit 0)\n$ uv run --locked round4/verify.py --saved mac → 18 PASS (incluye H17) · fingerprint: 681D-143B-64A3",
+    "texto_pantalla": {
+      "es": "H14 ✗ FAIL + True + exit 0 = reproduces lo publicado",
+      "en": "H14 ✗ FAIL + True + exit 0 = you reproduced what was published"
+    },
+    "assets": [
+      "predictor-debugger/README.md (tabla de rondas)"
+    ],
+    "notas_animacion": "La ronda 3 imprime dos RuntimeWarning de numpy (invalid value encountered in divide) antes de la tabla; se omiten en pantalla y se mencionan en fuentes.md."
+  },
+  {
+    "id": "E13",
+    "inicio": "09:16",
+    "fin": "10:10",
+    "tipo": "diagrama",
+    "visual": "Mapa de entornos: Mac · WAR · GUERRA · Linux (CI de GitHub ubuntu-24.04 y WSL2), todos con la misma huella. Debajo, el workflow .github/workflows/verify.yml: matriz de 4 rondas → por máquina mac/war/guerra: `grep -q \"fingerprint: …\"`. A la derecha, dos libretas: discrepancias (0 entradas) y falsos positivos (126 · D2 sobre P0/P0f32 · split ood · todas 'open'). Sello gold: 'Las tres máquinas son mías: no es independiente'.",
+    "texto_pantalla": {
+      "es": "0 discrepancias · 126 falsos positivos open · ⚠ no independiente",
+      "en": "0 discrepancies · 126 false positives open · ⚠ not independent"
+    },
+    "assets": [
+      "predictor-debugger/.github/workflows/verify.yml",
+      "predictor-debugger/ledgers/discrepancies.jsonl",
+      "predictor-debugger/ledgers/false_positives.jsonl",
+      "predictor-debugger/docs/assets/reproduccion.svg"
+    ],
+    "notas_animacion": "Conteo real: wc -l ledgers/*.jsonl → 0 y 126; 63 P0 + 63 P0f32, todas status open."
+  },
+  {
+    "id": "E14",
+    "inicio": "10:10",
+    "fin": "10:49",
+    "tipo": "diagrama",
+    "visual": "Dos archivos lado a lado (Mac y WAR) con un diff que muestra un número que difiere en la última cifra; etiqueta '8.9e-16'. Debajo, las dos huellas idénticas con ✓.",
+    "texto_pantalla": {
+      "es": "Bits distintos (8.9e-16) · veredictos y huella ✓ iguales",
+      "en": "Different bits (8.9e-16) · verdicts and fingerprint ✓ equal"
+    },
+    "assets": [
+      "predictor-debugger/RESULTS.md"
+    ],
+    "notas_animacion": "El número del diff es ilustrativo; la cifra 8.9e-16 es la del README."
+  },
+  {
+    "id": "E15",
+    "inicio": "10:49",
+    "fin": "11:29",
+    "tipo": "codigo",
+    "visual": "Código real de predictor-debugger/round2/evaluate.py:\nBOOTSTRAP, BOOTSTRAP_SEED = 2000, 20261024\n...\ndef cluster_bootstrap(rows, x, y=\"D4\"):\n    by = {}\n    for r in rows:\n        by.setdefault(r[\"trajectory\"], []).append((r[x], r[y]))\n    names = sorted(by)\n    rng = np.random.default_rng(BOOTSTRAP_SEED)\n    values = []\n    for _ in range(BOOTSTRAP):\n        pairs = [p for i in rng.integers(0, len(names), len(names)) for p in by[names[i]]]\n        ...\n    low, high = np.nanpercentile(values, [2.5, 97.5])",
+    "texto_pantalla": {
+      "es": "Remuestrea trayectorias, no pasos",
+      "en": "Resample trajectories, not steps"
+    },
+    "assets": [
+      "predictor-debugger/round2/evaluate.py (líneas 18 y 38-52)"
+    ],
+    "notas_animacion": "Resaltar `by[names[i]]`: entra la trayectoria completa."
+  },
+  {
+    "id": "E16",
+    "inicio": "11:29",
+    "fin": "12:09",
+    "tipo": "terminal",
+    "visual": "Ejemplo sintético del laboratorio (script propio, no está en el repo), corrido con el entorno de uv del repo:\nrng = np.random.default_rng(20261024)\ntraj = rng.normal(0, 1, 10)\ndata = [[t + rng.normal(0, 0.1) for _ in range(10)] for t in traj]   # 10 trayectorias × 10 pasos\nB = 2000 réplicas, misma semilla para los dos métodos\nSalida real:\nmedia -0.093\nIC95 remuestreando pasos:        [-0.213, 0.034]  ancho 0.247\nIC95 remuestreando trayectorias: [-0.471, 0.280]  ancho 0.750",
+    "texto_pantalla": {
+      "es": "Pasos: ancho 0.247 ⚠ · trayectorias: ancho 0.750",
+      "en": "Steps: width 0.247 ⚠ · trajectories: width 0.750"
+    },
+    "assets": [],
+    "notas_animacion": "Etiqueta visible 'ejemplo sintético del laboratorio'. Dos barras de intervalo superpuestas para comparar el ancho."
+  },
+  {
+    "id": "E17",
+    "inicio": "12:09",
+    "fin": "12:34",
+    "tipo": "codigo",
+    "visual": "thresholds.json abierto en una copia; el cursor cambia una sola letra dentro del valor de \"hostname\" (bloque environment). Ningún número cambia. Libreta: 'veredictos: ___ · verdicts equal: ___ · exit: ___'.",
+    "texto_pantalla": {
+      "es": "Mutación WAR: un byte que no es un número",
+      "en": "WAR mutation: a byte that isn't a number"
+    },
+    "assets": [],
+    "notas_animacion": "No mostrar el hostname completo en pantalla: difuminar el valor y resaltar solo la letra cambiada."
+  },
+  {
+    "id": "E18",
+    "inicio": "12:34",
+    "fin": "13:40",
+    "tipo": "terminal",
+    "visual": "Salidas reales (copia de trabajo, revertida después):\n# 1) una letra del hostname\n$ uv run --locked verify.py --saved mac; echo \"exit=$?\"\n  H1 … H4   PASS (los cinco)\n  verdicts equal to saved results/mac/verdicts.json: True\n  changed thresholds.json\n  fingerprint: 5D3E-4B95-DD6A\nexit=1\n# 2) \"D1\": 8.320117051685382e-07 → \"D1\": 1.0\n  H2   P3a    D1      0/400  share >= 0.95   FAIL\n  verdicts equal to saved results/mac/verdicts.json: False\n  changed thresholds.json\n  fingerprint: 6BC7-901B-5FB1\nexit=1",
+    "texto_pantalla": {
+      "es": "Byte inocente: ✗ exit 1 · D1 = 1.0: ✗ H2 cae y exit 1",
+      "en": "Harmless byte: ✗ exit 1 · D1 = 1.0: ✗ H2 drops, exit 1"
+    },
+    "assets": [
+      "predictor-debugger/verify.py"
+    ],
+    "notas_animacion": "Mutación de m19.mut."
+  },
+  {
+    "id": "E19",
+    "inicio": "13:40",
+    "fin": "15:28",
+    "tipo": "diagrama",
+    "visual": "Repo del estudiante con la línea de commits: PREREGISTRO.md + thresholds.json → datos → resultados → huella.py → CI con matriz de 2 SO (verde) y un commit de prueba que cambia un byte de thresholds.json (rojo). Checklist de los 7 criterios de m19.crit.",
+    "texto_pantalla": {
+      "es": "Prerregistro → datos → huella en 2 SO → IC por clusters",
+      "en": "Preregistration → data → fingerprint on 2 OSes → cluster CI"
+    },
+    "assets": [],
+    "notas_animacion": "Texto de m19.hands[5], m19.crit y m19.top."
+  },
+  {
+    "id": "E20",
+    "inicio": "15:28",
+    "fin": "16:13",
+    "tipo": "quiz",
+    "visual": "Tres tarjetas de pregunta con opciones completas, pausa y respuesta marcada ✓.",
+    "texto_pantalla": {
+      "es": "1) Umbral mal escrito, ya con datos: ¿qué cambio es legítimo?\n2) H14 FAIL y exit 0: ¿por qué está bien?\n3) ¿Por qué remuestrear trayectorias y no pasos?",
+      "en": "1) A threshold written wrong, data in hand: what change is legitimate?\n2) H14 FAIL and exit 0: why is that fine?\n3) Why resample trajectories, not steps?"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/quiz-28-35.json (m19, preguntas 1, 5 y 7)"
+    ],
+    "notas_animacion": "Opciones tal cual del banco."
+  },
+  {
+    "id": "E21",
+    "inicio": "16:13",
+    "fin": "16:45",
+    "tipo": "resumen",
+    "visual": "Tres tarjetas: sobre sellado · sello 'FALLA publicada' · dos pantallas con la misma huella. Tarjeta del siguiente módulo con ícono 📐 y firma.",
+    "texto_pantalla": {
+      "es": "1. Umbrales en un commit antes de los datos\n2. Publica lo que falla\n3. Compara veredictos y huellas, no bits\nSiguiente: QA de requisitos",
+      "en": "1. Thresholds in a commit before the data\n2. Publish what fails\n3. Compare verdicts and fingerprints, not bits\nNext: Requirements QA"
+    },
+    "assets": [],
+    "notas_animacion": "Firma: Cristian Guerra · QA · Medellín."
+  }
+]

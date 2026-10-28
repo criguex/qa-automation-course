@@ -1,0 +1,262 @@
+[
+  {
+    "id": "E01",
+    "inicio": "00:00",
+    "fin": "00:33",
+    "tipo": "terminal",
+    "visual": "Terminal deep con el marcador real de mutantes del experimento 02. KILLED en mint con ✓; las dos líneas KNOWN SURVIVOR en coral con ✗ y la palabra; recuadro coral en self-grant.",
+    "texto_pantalla": {
+      "es": "$ npm run demo:02\n  MUTANT SCENARIO EVIDENCE\n  KILLED            role-swap      Expected rejection HTTP 403 observed.\n  …\n  KNOWN SURVIVOR    self-grant     Mutation was accepted with HTTP 200.\n  KNOWN SURVIVOR    viewer-create  Mutation was accepted with HTTP 201.\n  5/7 scored mutants killed · 2 survived · 0 excluded from score",
+      "en": "$ npm run demo:02\n  MUTANT SCENARIO EVIDENCE\n  KILLED            role-swap      Expected rejection HTTP 403 observed.\n  …\n  KNOWN SURVIVOR    self-grant     Mutation was accepted with HTTP 200.\n  KNOWN SURVIVOR    viewer-create  Mutation was accepted with HTTP 201.\n  5/7 scored mutants killed · 2 survived · 0 excluded from score"
+    },
+    "assets": [
+      "render/salidas/demo02.txt (npm run demo:02 en war-paradigm @ 08438a2, 27-oct-2026, capturas.sh)"
+    ],
+    "notas_animacion": "Callout de la línea self-grant cuando la voz la nombra; cierre en el 5/7."
+  },
+  {
+    "id": "E02",
+    "inicio": "00:33",
+    "fin": "00:42",
+    "tipo": "titulo",
+    "visual": "Título sobre navy con rejilla y barra mint. Icono espadas, nivel ★★☆☆☆.",
+    "texto_pantalla": {
+      "es": "Módulo 02, parte 1 · ¿Qué es un mutante? — WAR Paradigm: probar al que prueba\nCristian Guerra · QA · Medellín",
+      "en": "Module 02, part 1 · What is a mutant? — WAR Paradigm: test the tester\nCristian Guerra · QA · Medellín"
+    },
+    "assets": [
+      "course.json (m30, posición 2, icono ⚔️, nivel ★★☆☆☆)"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E03",
+    "inicio": "00:42",
+    "fin": "01:48",
+    "tipo": "diagrama",
+    "visual": "Contexto del laboratorio: cuatro tarjetas (war-paradigm, DocFlow con sus 4 roles, flujo dorado, guardias); luego la tabla de los cinco códigos HTTP que se oyen en las dos partes; al final, las tres cosas que vas a aprender.",
+    "texto_pantalla": {
+      "es": "El laboratorio de este módulo\nLos 5 códigos que vas a oír\nLo que vas a aprender",
+      "en": "This module's lab\nThe 5 status codes you'll hear\nWhat you'll learn"
+    },
+    "assets": [
+      "war-paradigm/README.es.md (3 experimentos)",
+      "experiments/02-mutants/app/server.js (ROLES, seedMembers, códigos 200/201/401/403/409/422)",
+      "experiments/02-mutants/README.md (flujo dorado login → create → approve → publish)"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E04",
+    "inicio": "01:48",
+    "fin": "02:34",
+    "tipo": "analogia",
+    "visual": "Dos escudos idénticos en verde con «meses sin gritar»; regla gold «desde afuera se ven igualitos». Luego el flujo: escondes algo roto → miras al guardia, y tres reglas: grita ✓, callado ✗, WAR = romper a propósito.",
+    "texto_pantalla": {
+      "es": "Un guardia que nunca grita: ¿despierto o dormido?\nRompe algo a propósito y mira",
+      "en": "A guard who never shouts: awake or asleep?\nBreak something on purpose and watch"
+    },
+    "assets": [
+      "m30.kid",
+      "war-paradigm/README.es.md §Explicado para un niño de 8 años y nota sobre el nombre"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E05",
+    "inicio": "02:34",
+    "fin": "03:35",
+    "tipo": "analogia",
+    "visual": "Simulacro de incendio en tres tarjetas con flechas (colegio normal → humo a propósito → ¿suena la alarma?). Luego un mutante real de DocFlow en tabla: qué entra normal, qué cambia, qué debería salir y qué sale. Al final las reglas KILLED ✓ y SURVIVED ✗.",
+    "texto_pantalla": {
+      "es": "Un simulacro de incendio\nUn mutante real de la app\nKILLED o SURVIVED",
+      "en": "A fire drill\nA real mutant of the app\nKILLED or SURVIVED"
+    },
+    "assets": [
+      "experiments/02-mutants/tests/scenarios.ts (role-swap: step approve, as viewer, expect 403)",
+      "render/salidas/demo02.txt (KILLED role-swap · Expected rejection HTTP 403 observed)",
+      "experiments/02-mutants/app/server.js (approve devuelve 200 al approver)"
+    ],
+    "notas_animacion": "El simulacro es analogía, no dato. La tabla usa el mutante real role-swap."
+  },
+  {
+    "id": "E06",
+    "inicio": "03:35",
+    "fin": "04:21",
+    "tipo": "diagrama",
+    "visual": "Cuatro tarjetas de guardias (Playwright, oráculo numérico, verificador formal, juez de IA), cada una con chip ✓ verde. Luego dos reglas: verde ≠ despierto, y rompes algo para saberlo.",
+    "texto_pantalla": {
+      "es": "No probamos el software. Probamos al que prueba.\nVerde no quiere decir despierto",
+      "en": "We don't test the software. We test the tester.\nGreen doesn't mean awake"
+    },
+    "assets": [
+      "war-paradigm/README.es.md §La idea",
+      "m30.theory[0]"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E07",
+    "inicio": "04:21",
+    "fin": "04:59",
+    "tipo": "diagrama",
+    "visual": "Cuatro tarjetas numeradas unidas con flechas: Generar, Mutar, Auditar, Validar, cada una con su paso del simulacro.",
+    "texto_pantalla": {
+      "es": "4 pasos: generar → mutar → auditar → validar",
+      "en": "4 steps: generate → mutate → audit → validate"
+    },
+    "assets": [
+      "war-paradigm/README.es.md §El paradigma en cuatro pasos",
+      "m30.theory[1]"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E08",
+    "inicio": "04:59",
+    "fin": "05:54",
+    "tipo": "diagrama",
+    "visual": "Tres tarjetas: lápiz en un vaso que parece quebrado, la luz se dobla, cada material con su índice. Luego la tabla de los cuatro pasos en dos columnas (física con Snell, flujo con DocFlow).",
+    "texto_pantalla": {
+      "es": "La luz se dobla: ley de Snell\nMismo método, dos mundos",
+      "en": "Light bends: Snell's law\nSame method, two worlds"
+    },
+    "assets": [
+      "war-paradigm/README.es.md §El paradigma en cuatro pasos (tabla Simulación física / Flujo funcional)",
+      "m30.theory[1]"
+    ],
+    "notas_animacion": "El lápiz en el vaso es la analogía de la refracción, no un dato del laboratorio."
+  },
+  {
+    "id": "E09",
+    "inicio": "05:54",
+    "fin": "06:42",
+    "tipo": "diagrama",
+    "visual": "Tres tarjetas con estado: PASS ✓, KILLED ✓, SURVIVED ✗. Luego SURVIVED se abre en dos: bug real del sistema y punto ciego del guardia, con la regla ⚠ queda visible.",
+    "texto_pantalla": {
+      "es": "PASS · KILLED · SURVIVED: siempre los tres\nUn SURVIVED puede ser dos cosas",
+      "en": "PASS · KILLED · SURVIVED: always all three\nA SURVIVED can be two things"
+    },
+    "assets": [
+      "m30.theory[2]",
+      "war-paradigm/README.es.md §El paradigma en cuatro pasos"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E10",
+    "inicio": "06:42",
+    "fin": "07:30",
+    "tipo": "animacion",
+    "visual": "Tres números grandes: 27 PASS ✓, 54 KILLED ✓ (51 comportamientos distintos), 3 SURVIVED ✗; regla macOS arm64 = Linux x86_64. Luego los 3 SURVIVED: cambio de RC diminuto, visible a propósito, sin tocar la tolerancia.",
+    "texto_pantalla": {
+      "es": "Pista física · 9 modelos sintéticos · 84 variantes\n3 SURVIVED: un cambio diminuto, visible a propósito",
+      "en": "Physics track · 9 synthetic models · 84 variants\n3 SURVIVED: a tiny change, left visible on purpose"
+    },
+    "assets": [
+      "scientific-qa-evidence/README.es.md líneas 50, 93 y 155",
+      "war-paradigm/README.es.md §Pista 1 (nueve modelos)",
+      "m30.theory[3]"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E11",
+    "inicio": "07:30",
+    "fin": "08:22",
+    "tipo": "animacion",
+    "visual": "Tabla de los siete mutantes de DocFlow, una fila por mutante: id, qué cambia y «espera → sale» con ✓ o ✗. Luego tres tarjetas: tests/scenarios.ts (un mutante por línea), 5 mueren, 2 sobreviven.",
+    "texto_pantalla": {
+      "es": "Experimento 02: 7 mutantes sobre el flujo dorado\nLos mutantes son datos, no scripts",
+      "en": "Experiment 02: 7 mutants on the golden flow\nMutants are data, not scripts"
+    },
+    "assets": [
+      "experiments/02-mutants/tests/scenarios.ts",
+      "render/salidas/demo02.txt (códigos observados)",
+      "experiments/02-mutants/README.md §Mutants are data, not scripts"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E12",
+    "inicio": "08:22",
+    "fin": "09:14",
+    "tipo": "diagrama",
+    "visual": "La regla real editMember de app/server.js y dos reglas: ¿eres admin? ✓, ¿eres tú? ✗ hueco. Luego una escalera editor → admin con la nota del boletín. Al final las dos tarjetas de bugs reales (self-grant, viewer-create) y la regla ⚠ impresos en rojo.",
+    "texto_pantalla": {
+      "es": "La regla de la app\nEl editor se sube solo a admin\nUn bug real, no un punto ciego",
+      "en": "The app's rule\nThe editor promotes themself to admin\nA real bug, not a blind spot"
+    },
+    "assets": [
+      "experiments/02-mutants/app/server.js línea 58 (editMember)",
+      "experiments/02-mutants/README.md §The finding y §The second finding",
+      "render/salidas/demo02.txt (HTTP 200 y 201)"
+    ],
+    "notas_animacion": "El boletín es analogía."
+  },
+  {
+    "id": "E13",
+    "inicio": "09:14",
+    "fin": "10:18",
+    "tipo": "diagrama",
+    "visual": "Agente → juez. Luego tres tarjetas sin pins: 83 ✓, 74 ✓, 76 ✗ y la regla UNSTABLE. Después con pins: 86, 84, 87 ✓ y la regla STABLE con la nota de la receta.",
+    "texto_pantalla": {
+      "es": "Experimento 01: el juez de IA\nSin pins: misma entrada, veredictos distintos\nCon pins: el veredicto no se mueve",
+      "en": "Experiment 01: the AI judge\nUnpinned: same input, different verdicts\nPinned: the verdict holds"
+    },
+    "assets": [
+      "01-m1/render/salidas/demo01.txt (corridas sin pins 83/74/76 y con pins 86/84/87, pins de cada set)",
+      "m30.theory[5]",
+      "experiments/01-ai-verdict/README.md §5"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E14",
+    "inicio": "10:18",
+    "fin": "11:18",
+    "tipo": "diagrama",
+    "visual": "Dos tarjetas: prompt = letrero (⚠ se puede ignorar) y hook = portero (✓ bloquea siempre). Luego cuatro reglas: push a main bloqueado, git -c y git --no-pager se colaban, arreglados en 1b01c66, reglas duras en hooks.",
+    "texto_pantalla": {
+      "es": "Experimento 03: un portero para git push a main\nEl portero también se prueba",
+      "en": "Experiment 03: a bouncer for git push to main\nThe bouncer gets tested too"
+    },
+    "assets": [
+      "m30.theory[6]",
+      "experiments/03-second-brain/README.md §Part 2",
+      "git log de war-paradigm: 1b01c66 fix(03): el hook bloquea push a main con opciones globales de git (-c, --no-pager, --git-dir)"
+    ],
+    "notas_animacion": "Letrero y portero son analogía."
+  },
+  {
+    "id": "E15",
+    "inicio": "11:18",
+    "fin": "12:04",
+    "tipo": "diagrama",
+    "visual": "Checklist de las cuatro reglas de una buena mutación con casillas que se marcan. Luego tres reglas gold/mint sobre lo que WAR no dice.",
+    "texto_pantalla": {
+      "es": "4 reglas de una buena mutación\nLo que WAR no dice",
+      "en": "4 rules of a good mutation\nWhat WAR doesn't say"
+    },
+    "assets": [
+      "m30.theory[8]",
+      "m30.theory[9]"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E16",
+    "inicio": "12:04",
+    "fin": "12:52",
+    "tipo": "resumen",
+    "visual": "Tres tarjetas de ideas clave y la tarjeta de la parte 2 (Manos a la obra). Firma al pie.",
+    "texto_pantalla": {
+      "es": "1 · Un guardia que nunca grita puede estar dormido\n2 · Generar → mutar → auditar → validar\n3 · PASS, KILLED y SURVIVED, siempre\nSiguiente → Parte 2 · Manos a la obra\nCristian Guerra · QA · Medellín",
+      "en": "1 · A guard who never shouts may be asleep\n2 · Generate → mutate → audit → validate\n3 · PASS, KILLED and SURVIVED, always\nNext → Part 2 · Hands-on\nCristian Guerra · QA · Medellín"
+    },
+    "assets": [
+      "02-m30-p2 (parte 2 del módulo)"
+    ],
+    "notas_animacion": ""
+  }
+]

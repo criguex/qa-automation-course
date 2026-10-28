@@ -1,0 +1,302 @@
+[
+  {
+    "id": "E01",
+    "inicio": "00:00",
+    "fin": "00:41",
+    "tipo": "animacion",
+    "visual": "Una reja con el letrero 'main'. Un comando se acerca: `git push origin main` choca y rebota (✗ bloqueado, exit 2). Luego `git -c core.x=y push origin main` y `git --no-pager push origin main` pasan por un hueco de la reja con un ✓ coral irónico: 'exit 0'. Contador arriba: 'pruebas en verde'.",
+    "texto_pantalla": {
+      "es": "Pruebas en verde… y main abierto",
+      "en": "Tests green… and main wide open"
+    },
+    "assets": [],
+    "notas_animacion": "Los dos comandos son los del mensaje del commit 1b01c66 de war-paradigm. El hueco se cierra en E09."
+  },
+  {
+    "id": "E02",
+    "inicio": "00:41",
+    "fin": "01:05",
+    "tipo": "titulo",
+    "visual": "Tarjeta de título con ícono 📜 y chips: war-paradigm/03 · scientific-qa-evidence. Firma.",
+    "texto_pantalla": {
+      "es": "Módulo 27 · QA asistida por IA II\nEl asistente diseña, ejecuta y audita; una persona firma\nCristian Guerra · QA · Medellín",
+      "en": "Module 27 · AI-assisted QA II\nThe assistant designs, runs and audits; a person signs off\nCristian Guerra · QA · Medellín"
+    },
+    "assets": [],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E03",
+    "inicio": "01:05",
+    "fin": "01:54",
+    "tipo": "analogia",
+    "visual": "Ilustración: un robot frente a un cartel 'por favor no toques' (se distrae y lo toca) y luego frente a una reja (no puede). Segunda parte: un amigo hace un experimento mientras un niño anota pasos en una libreta; otra niña repite los pasos y obtiene lo mismo. Al final, el niño firma la hoja.",
+    "texto_pantalla": {
+      "es": "Petición ≠ regla · anota cada paso · la firma es tuya",
+      "en": "Request ≠ rule · write down every step · you sign"
+    },
+    "assets": [],
+    "notas_animacion": "Basada en m23.kid de i18n/es/modules-24-29.json."
+  },
+  {
+    "id": "E04",
+    "inicio": "01:54",
+    "fin": "02:50",
+    "tipo": "diagrama",
+    "visual": "Dos columnas: Asistente (diseña · ejecuta · audita) y Persona (elige preguntas · decide qué es evidencia · firma). Debajo, la cita del README de scientific-qa-evidence, sección 'Cómo se usó la IA', y un commit de ejemplo con el trailer 'Co-Authored-By'.",
+    "texto_pantalla": {
+      "es": "\"…eligió las preguntas, congeló los contratos, decidió qué cuenta como evidencia y responde por cada afirmación\"",
+      "en": "\"…chose the questions, froze the contracts, decided what counts as evidence and is responsible for every claim\""
+    },
+    "assets": [
+      "scientific-qa-evidence/README.es.md (Cómo se usó la IA)",
+      "scientific-qa-evidence/AUTHORSHIP.md"
+    ],
+    "notas_animacion": "La cita va tal cual del README; la versión EN, del README.md en inglés."
+  },
+  {
+    "id": "E05",
+    "inicio": "02:50",
+    "fin": "03:47",
+    "tipo": "diagrama",
+    "visual": "Flujo: asistente quiere correr Bash → Claude Code envía JSON {tool_name, tool_input.command} al hook PreToolUse → el hook decide: exit 2 (✗ bloqueado, el motivo vuelve al asistente) o exit 0 (✓ pasa). Al lado, un archivo CLAUDE.md con 'nunca hagas push a main' tachado con la etiqueta '⚠ petición'.",
+    "texto_pantalla": {
+      "es": "Las reglas duras viven en el código, no en los prompts",
+      "en": "Hard rules live in code, not in prompts"
+    },
+    "assets": [
+      "criguex/README.es.md (Cómo trabajo)"
+    ],
+    "notas_animacion": "Cita del perfil de criguex, línea 79."
+  },
+  {
+    "id": "E06",
+    "inicio": "03:47",
+    "fin": "04:32",
+    "tipo": "codigo",
+    "visual": "Código real. Primero war-paradigm/experiments/03-second-brain/.claude/settings.json:\n{\"hooks\": {\"PreToolUse\": [{\"matcher\": \"Bash\", \"hooks\": [{\"type\": \"command\", \"command\": \"\\\"$CLAUDE_PROJECT_DIR\\\"/hooks/block-push-to-main.sh\"}]}]}}\nLuego la cabecera de hooks/block-push-to-main.sh:\n#   exit 2  → the tool call is BLOCKED and stderr is shown to the assistant\n#   exit 0  → the tool call goes through\n#\n# A prompt can be ignored. This can't.\nY el bloque que parte la línea: sed -E 's/(&&|\\|\\||;|\\|)/\\n/g'",
+    "texto_pantalla": {
+      "es": "jq → node → sed · cada comando de la cadena",
+      "en": "jq → node → sed · every command in the chain"
+    },
+    "assets": [
+      "war-paradigm/experiments/03-second-brain/.claude/settings.json",
+      "war-paradigm/experiments/03-second-brain/hooks/block-push-to-main.sh"
+    ],
+    "notas_animacion": "settings.json se muestra formateado en varias líneas como en el repo."
+  },
+  {
+    "id": "E07",
+    "inicio": "04:32",
+    "fin": "05:29",
+    "tipo": "terminal",
+    "visual": "Salidas reales (war-paradigm, commit 08438a2, 2026-10-26):\n$ cd experiments/03-second-brain\n$ npm test\nℹ tests 45\nℹ suites 6\nℹ pass 45\nℹ fail 0\n$ npm run demo\n  hooks/block-push-to-main.sh · PreToolUse(Bash)\n  $ git push origin main                     ✘ BLOCKED (exit 2)\n  $ git push --force origin HEAD:main        ✘ BLOCKED (exit 2)\n  $ npm test && git push origin master       ✘ BLOCKED (exit 2)\n  $ git push origin feature/mutants          ✓ allowed (exit 0)\n  $ git push -u origin feature/mutants       ✓ allowed (exit 0)\n  $ git pull origin main                     ✓ allowed (exit 0)",
+    "texto_pantalla": {
+      "es": "✓ 45/45 · el README ya dice 45 (antes decía 33)",
+      "en": "✓ 45/45 · the README now says 45 (it used to say 33)"
+    },
+    "assets": [
+      "war-paradigm/experiments/03-second-brain/tests/demo.mjs"
+    ],
+    "notas_animacion": "Se omiten las líneas 'blocked by hook: …' bajo cada bloqueo por espacio; mostrar una sola completa."
+  },
+  {
+    "id": "E08",
+    "inicio": "05:29",
+    "fin": "06:14",
+    "tipo": "diagrama",
+    "visual": "El hook dibujado como un guardia. Alrededor, flechas de ataque etiquetadas: HEAD:main · --force · a && b · git -C · git push (en main). Tres puertas al fondo: jq · node · sed. Dos escenarios: 'en main' y 'en una rama'.",
+    "texto_pantalla": {
+      "es": "El guardia también se prueba",
+      "en": "The guard gets tested too"
+    },
+    "assets": [
+      "war-paradigm/experiments/03-second-brain/tests/hook.test.mjs"
+    ],
+    "notas_animacion": "Los describe del archivo: blocks a push to main/master · lets everything else through · is robust to what Claude Code may send · works without jq (node fallback) and without jq or node (sed fallback)."
+  },
+  {
+    "id": "E09",
+    "inicio": "06:14",
+    "fin": "06:52",
+    "tipo": "terminal",
+    "visual": "Ejecución real en la copia (2026-10-26):\n$ git show 1b01c66~1:experiments/03-second-brain/hooks/block-push-to-main.sh > old-hook.sh\n$ printf '{\"tool_name\":\"Bash\",\"tool_input\":{\"command\":\"git -c core.x=y push origin main\"}}' | ./old-hook.sh; echo $?\n0\n(mismo JSON) | ./hooks/block-push-to-main.sh; echo $?\n2\n'git --no-pager push origin main' → viejo 0 · actual 2\n'git push origin feature/x' → viejo 0 · actual 0",
+    "texto_pantalla": {
+      "es": "Antes ✗ exit 0 · después ✓ exit 2 · lo legítimo sigue en 0",
+      "en": "Before ✗ exit 0 · after ✓ exit 2 · legit pushes still 0"
+    },
+    "assets": [],
+    "notas_animacion": "Tabla 3×2 que se llena celda por celda."
+  },
+  {
+    "id": "E10",
+    "inicio": "06:52",
+    "fin": "07:48",
+    "tipo": "codigo",
+    "visual": "Diff real del commit 1b01c66 en hooks/block-push-to-main.sh:\n> GIT_OPTS='([[:space:]]+(-[Cc]|--git-dir|--work-tree|--namespace|--config-env)[[:space:]]+[^[:space:]]+|[[:space:]]+-[^[:space:]]+)*'\n<   [[ \"$segment\" =~ (^|[[:space:]])git([[:space:]]+-C[[:space:]]+[^[:space:]]+)?[[:space:]]+push([[:space:]]|$) ]] || continue\n>   push_re=\"(^|[[:space:]])git${GIT_OPTS}[[:space:]]+push([[:space:]]|$)\"\nY las 5 pruebas añadidas en tests/hook.test.mjs:\n+  test('git -c key=value push', () => blocked('git -c core.x=y push origin main', onFeature));\n+  test('git --no-pager push', () => blocked('git --no-pager push origin main', onFeature));\n+  test('git --git-dir <dir> push', () => blocked('git --git-dir /tmp/r/.git push origin main', onFeature));\n+  test('git --work-tree=<dir> -c k=v push', () => blocked('git --work-tree=/tmp/r -c a.b=c push origin master', onFeature));\n+  test('git -c key=value push to a feature branch', () => allowed('git -c core.x=y push origin feature/mutants', onMain));",
+    "texto_pantalla": {
+      "es": "Primero la prueba que falla, después el arreglo",
+      "en": "Failing test first, then the fix"
+    },
+    "assets": [],
+    "notas_animacion": "Fuente: git show 1b01c66 en war-paradigm."
+  },
+  {
+    "id": "E11",
+    "inicio": "07:48",
+    "fin": "08:50",
+    "tipo": "navegador",
+    "visual": "Obsidian (o el navegador de GitHub) con la carpeta vault/: 00 - READ FIRST.md · Golden rules.md · 01 QA process · 02 Workflows · 03 Knowledge · 04 Sessions · 99 Templates. Vista de grafo con enlaces; una nota aislada parpadea en coral y aparece '✗ vault-links.test.mjs'.",
+    "texto_pantalla": {
+      "es": "Contexto antes que prompt · el vault también se prueba",
+      "en": "Context before prompts · the vault gets tested too"
+    },
+    "assets": [
+      "war-paradigm/experiments/03-second-brain/vault/",
+      "war-paradigm/experiments/03-second-brain/tests/vault-links.test.mjs"
+    ],
+    "notas_animacion": "La nota aislada es ilustrativa: el test real falla si hay enlace roto, falta frontmatter o una nota queda isla."
+  },
+  {
+    "id": "E12",
+    "inicio": "08:50",
+    "fin": "09:37",
+    "tipo": "diagrama",
+    "visual": "Ecuación visual: comando + versión + SHA-256 + exit code = evidencia. Debajo, dos rutas de verificación: `shasum -a 256 -c evidence/SHA256SUMS.txt` y `python verificar.py` → 6 × OK/FALLA + huella.",
+    "texto_pantalla": {
+      "es": "\"Funcionó\" no es evidencia",
+      "en": "\"It worked\" isn't evidence"
+    },
+    "assets": [],
+    "notas_animacion": "Comandos de scientific-qa-evidence/README.es.md, 'Verifícalo tú mismo'."
+  },
+  {
+    "id": "E13",
+    "inicio": "09:37",
+    "fin": "10:40",
+    "tipo": "terminal",
+    "visual": "Salida real en una copia de scientific-qa-evidence (commit c02e623, 2026-10-26):\n$ python3 verificar.py\nVerificación de scientific-qa-evidence\nVersión de los datos: 26791fe6546f   Sistema: Darwin arm64   Python 3.9.6\n  1/6  [OK]  Archivos intactos (SHA-256)  (0.1 s)\n  2/6  [OK]  Corridas numéricas guardadas, iguales entre Mac y Linux  (0.0 s)\n  3/6  [OK]  Volver a correr las 84 variantes numéricas  (0.3 s)\n  4/6  [OK]  README, CLAIMS y registros dicen lo mismo  (0.0 s)\n  5/6  [OK]  Recibos de los controles Mathlib  (0.0 s)\n  6/6  [OK]  Comprobación de recibos en los paquetes publicados  (0.1 s)\nResultado: las 6 comprobaciones salieron OK en tu computador.\nTu huella: C5F0-F1A8-2F4D\n$ shasum -a 256 -c evidence/SHA256SUMS.txt | tail -1\n.github/ISSUE_TEMPLATE/reproduccion.yml: OK",
+    "texto_pantalla": {
+      "es": "✓ 6/6 · huella C5F0-F1A8-2F4D",
+      "en": "✓ 6/6 · fingerprint C5F0-F1A8-2F4D"
+    },
+    "assets": [
+      "scientific-qa-evidence/verificar.py",
+      "scientific-qa-evidence/evidence/SHA256SUMS.txt"
+    ],
+    "notas_animacion": "Se limpian las líneas de progreso '...' que el script imprime antes de cada [OK]. La huella se resalta en mint."
+  },
+  {
+    "id": "E14",
+    "inicio": "10:40",
+    "fin": "11:50",
+    "tipo": "navegador",
+    "visual": "GitHub: scientific-qa-evidence/docs/CODEX_WORK_LOG.md. Scroll: 'How this log was built' (213 sesiones, 470 entradas, 19 del estudio) → tabla con filas 14-16 resaltadas (jd_tts_a, jd_tts_b, tts_safety_fix) → 'What was not executed: the \"auto-fix\" scenarios' con la frase 'None of that was ever run.' resaltada → 'Session files (SHA-256 …)'.",
+    "texto_pantalla": {
+      "es": "19 sesiones · 2 jueces ciegos · 1 corrector · lo que no se ejecutó",
+      "en": "19 sessions · 2 blind judges · 1 fixer · what was not executed"
+    },
+    "assets": [
+      "scientific-qa-evidence/docs/CODEX_WORK_LOG.md"
+    ],
+    "notas_animacion": "No mostrar los hashes completos de sesión en grande; basta con la cabecera de la sección."
+  },
+  {
+    "id": "E15",
+    "inicio": "11:50",
+    "fin": "12:47",
+    "tipo": "diagrama",
+    "visual": "Izquierda: sello gold '⚠ No es independiente' sobre la recompilación del 23-oct, con flecha a docs/INDEPENDENT_REPRODUCTION.md. Derecha: tabla de FINDINGS.md con 8 filas; las filas 1, 3 y 8 se marcan 'error propio · corregido en público'.",
+    "texto_pantalla": {
+      "es": "Hallazgos 1, 3 y 8: defectos del propio estudio",
+      "en": "Findings 1, 3 and 8: defects in the study itself"
+    },
+    "assets": [
+      "scientific-qa-evidence/FINDINGS.md",
+      "scientific-qa-evidence/evidence/lean-cloud-2026-10-23/README.md"
+    ],
+    "notas_animacion": "Texto resumido de las filas 1, 3 y 8 tal cual el guion."
+  },
+  {
+    "id": "E16",
+    "inicio": "12:47",
+    "fin": "13:33",
+    "tipo": "terminal",
+    "visual": "Ejecución real en la copia (luego revertida con git checkout):\n$ printf ' ' >> REPRODUCE.md\n$ shasum -a 256 -c evidence/SHA256SUMS.txt | grep -v ': OK$'\nREPRODUCE.md: FAILED\nshasum: WARNING: 1 computed checksum did NOT match\n$ echo $?   # exit de shasum\n1\n$ python3 verificar.py\n  1/6  [FALLA]  Archivos intactos (SHA-256)  (0.1 s)\n  2/6 … 6/6  [OK]\nResultado: 1 de 6 comprobaciones FALLARON. Ese dato también es valioso: repórtalo.\nTu huella: 57F4-7AFB-1B9E\n(exit 1)",
+    "texto_pantalla": {
+      "es": "Un espacio: ✗ FAILED · exit 1 · huella C5F0… → 57F4…",
+      "en": "One space: ✗ FAILED · exit 1 · fingerprint C5F0… → 57F4…"
+    },
+    "assets": [],
+    "notas_animacion": "El exit de shasum se tomó del primer elemento del pipe (pipestatus en zsh)."
+  },
+  {
+    "id": "E17",
+    "inicio": "13:33",
+    "fin": "14:40",
+    "tipo": "terminal",
+    "visual": "Ejecución real contra el hook actual (commit 5dc5e92), en una rama feature, pasando cada comando como JSON:\nexit 2 :: git push origin main\nexit 0 :: git -c alias.p=push p origin main\nexit 0 :: G=push; git $G origin main\nexit 0 :: eval \"git push origin main\"\nexit 0 :: bash -c \"git push origin main\"\nexit 2 :: git push origin refs/heads/main\nexit 2 :: git push origin feature:main\nexit 2 :: git<TAB>push origin main\nexit 2 :: git push --repo=origin main",
+    "texto_pantalla": {
+      "es": "5 ✓ bloqueados · 4 ✗ agujeros (alias, variable, eval, bash -c) → límites conocidos con prueba",
+      "en": "5 ✓ blocked · 4 ✗ holes (alias, variable, eval, bash -c) → known limits with a test"
+    },
+    "assets": [
+      "war-paradigm/experiments/03-second-brain/hooks/block-push-to-main.sh"
+    ],
+    "notas_animacion": "Las líneas exit 0 en coral con ✗, las exit 2 en mint con ✓. Mostrar primero la libreta con la predicción en blanco."
+  },
+  {
+    "id": "E18",
+    "inicio": "14:40",
+    "fin": "15:50",
+    "tipo": "diagrama",
+    "visual": "Ciclo: agujero encontrado → prueba que falla → arreglo → prueba que se queda. Al lado, una reja con la etiqueta 'una capa, no la única puerta'.",
+    "texto_pantalla": {
+      "es": "Un agujero encontrado se publica, no se esconde",
+      "en": "A hole you find gets published, not hidden"
+    },
+    "assets": [],
+    "notas_animacion": "Frase de m23.mut."
+  },
+  {
+    "id": "E19",
+    "inicio": "15:50",
+    "fin": "17:23",
+    "tipo": "diagrama",
+    "visual": "Paquete de entrega como una caja con 5 compartimentos: EVIDENCIA.md · 2 revisiones ciegas + síntesis · Qué no se ejecutó · hook + suite de ataques · Co-Authored-By. Debajo, rúbrica 4×4 (Reglas en código, Evidencia, Revisión, Honestidad) con la columna 3 resaltada.",
+    "texto_pantalla": {
+      "es": "Otro lo repite con tu paquete y obtiene los mismos exit codes y hashes",
+      "en": "Someone else repeats it from your package and gets the same exit codes and hashes"
+    },
+    "assets": [],
+    "notas_animacion": "Texto de m23.hands[4], m23.crit y m23.rubm."
+  },
+  {
+    "id": "E20",
+    "inicio": "17:23",
+    "fin": "18:28",
+    "tipo": "quiz",
+    "visual": "Tres tarjetas de pregunta con opciones completas, pausa y respuesta marcada ✓.",
+    "texto_pantalla": {
+      "es": "1) \"Nunca hagas push a main\" en CLAUDE.md: ¿por qué no basta?\n2) ¿Qué separa \"What was not executed\"?\n3) Cambias un byte de un archivo listado: ¿qué hace shasum -c?",
+      "en": "1) \"Never push to main\" in CLAUDE.md: why isn't it enough?\n2) What does \"What was not executed\" separate?\n3) One byte changed in a listed file: what does shasum -c do?"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/quiz-20-27.json (m23, preguntas 1, 4 y 7)"
+    ],
+    "notas_animacion": "Opciones tal cual del banco."
+  },
+  {
+    "id": "E21",
+    "inicio": "18:28",
+    "fin": "19:11",
+    "tipo": "resumen",
+    "visual": "Tres tarjetas: reja (reglas en código) · recibo con hash (evidencia) · hoja firmada (honestidad). Tarjeta del siguiente módulo con ícono 🔏 y firma.",
+    "texto_pantalla": {
+      "es": "1. Reglas en hooks y CI, y ataca el hook\n2. Comando + hash + exit code\n3. Di lo que no se ejecutó\nSiguiente: Prerregistro y reproducibilidad",
+      "en": "1. Rules in hooks and CI, and attack the hook\n2. Command + hash + exit code\n3. Say what wasn't executed\nNext: Preregistration and reproducibility"
+    },
+    "assets": [],
+    "notas_animacion": "Firma: Cristian Guerra · QA · Medellín."
+  }
+]

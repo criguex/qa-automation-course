@@ -1,0 +1,332 @@
+[
+  {
+    "id": "E01",
+    "inicio": "00:00",
+    "fin": "00:43",
+    "tipo": "terminal",
+    "visual": "Terminal con el historial real de Actions de restful-booker-quality-suite (15 y 16 de octubre). Se abre el log de la corrida roja y se resalta en gold la línea de Prettier y en coral el exit code 1. Después aparece la corrida verde del commit 'Exclude cloned target from quality gates'.",
+    "texto_pantalla": {
+      "es": "✗ rojo en format:check · ninguna prueba corrió · el gate barato lo atrapó primero",
+      "en": "✗ red at format:check · no test ran · the cheap gate caught it first"
+    },
+    "assets": [
+      "gh run list -R criguex/restful-booker-quality-suite → 38799648617 2026-10-15T20:09:18Z failure 'Elevate framework with contracts performance and visual docs' · 38800010314 2026-10-15T20:12:03Z success 'Exclude cloned target from quality gates' · 38968048737 2026-10-16T21:15:06Z failure 'docs: expand defect rationale and curl evidence'",
+      "gh run view 38799648617 --log-failed → [warn] Code style issues found in 112 files. Run Prettier with --write to fix. / ##[error]Process completed with exit code 1.",
+      "gh run view 38968048737 --log-failed → [warn] Code style issues found in 2 files. Run Prettier with --write to fix. / ##[error]Process completed with exit code 1.",
+      "Commit 1c52442 (corrida 38800010314): .prettierignore +1, eslint.config.js +1-1 (gh api repos/criguex/restful-booker-quality-suite/commits/1c52442e56d25138d3029cd6973ed50e691c0ad1)",
+      "restful-booker-quality-suite/.github/workflows/tests.yml líneas 19-22 y 34"
+    ],
+    "notas_animacion": "Mostrar las tres corridas como una línea de tiempo: rojo, verde, rojo. Tiempos ES; los de EN están en guion.en.md."
+  },
+  {
+    "id": "E02",
+    "inicio": "00:43",
+    "fin": "00:59",
+    "tipo": "titulo",
+    "visual": "Tarjeta de título navy con rejilla mint, icono de vía férrea y firma.",
+    "texto_pantalla": {
+      "es": "Módulo 14 · Pipelines: anatomía, gates y qué significa un verde",
+      "en": "Module 14 · Pipelines: anatomy, gates and what a green means"
+    },
+    "assets": [
+      "Firma: Cristian Guerra · QA · Medellín",
+      "course.json posición 14, id m28, ★★★★☆, semana 16"
+    ],
+    "notas_animacion": "4 a 6 s."
+  },
+  {
+    "id": "E03",
+    "inicio": "00:59",
+    "fin": "01:55",
+    "tipo": "analogia",
+    "visual": "Entrada de estadio con tres porteros en fila. El primero levanta la mano (✗ no pasa) y los otros dos quedan grises. En la segunda viñeta un niño recibe un sello verde mientras un portero está ausente con un letrero 'almorzando'. En la tercera, una puerta lateral abierta y vacía.",
+    "texto_pantalla": {
+      "es": "Fila de porteros = gates · Sello verde = pasaste los que estaban · Puerta abierta = rama sin protección",
+      "en": "Gatekeepers = gates · Green stamp = you passed the ones on duty · Open door = unprotected branch"
+    },
+    "assets": [
+      "Analogía base: i18n/es/modules-01-14.json → m28.kid"
+    ],
+    "notas_animacion": "El sello verde lleva ✓ y la palabra 'pasa'; el portero ausente se marca con ⚠ ojo. Cierre de la escena: alguien mira el sello y luego la fila y el candado de la puerta lateral."
+  },
+  {
+    "id": "E04",
+    "inicio": "01:55",
+    "fin": "02:42",
+    "tipo": "diagrama",
+    "visual": "Tres capas apiladas: on (push, pull_request, workflow_dispatch, schedule, tags) → jobs (cada uno en un runner nuevo) → steps (exit ≠ 0 corta el job). Abajo, dos tarjetas: verify.yml (push, PR, manual) y reproduce.yml (manual o tag v*).",
+    "texto_pantalla": {
+      "es": "on → jobs → steps · verify barato en cada push · reproduce caro a mano o con tag v*",
+      "en": "on → jobs → steps · cheap verify on every push · expensive reproduce by hand or v* tag"
+    },
+    "assets": [
+      "predictor-debugger/.github/workflows/verify.yml líneas 3-6: on: push / pull_request / workflow_dispatch",
+      "predictor-debugger/.github/workflows/reproduce.yml líneas 3-6: on: workflow_dispatch / push: tags: [\"v*\"]",
+      "Clon: predictor-debugger-docs (36836d4)"
+    ],
+    "notas_animacion": "Cada capa entra con una flecha mint."
+  },
+  {
+    "id": "E05",
+    "inicio": "02:42",
+    "fin": "03:34",
+    "tipo": "codigo",
+    "visual": "verify.yml completo. Se resaltan fail-fast: false, el include de la ronda 1 y el bucle con grep -q.",
+    "texto_pantalla": {
+      "es": "grep -q \"fingerprint: …\" = el gate",
+      "en": "grep -q \"fingerprint: …\" = the gate"
+    },
+    "assets": [
+      "predictor-debugger/.github/workflows/verify.yml líneas 12-27: strategy: fail-fast: false / matrix: include: script verify.py fingerprint EEC9-09E0-F77D tests tests/test_checks.py · round2/verify.py D506-F58F-3838 · round3/verify.py 6319-537B-7167 · round4/verify.py 681D-143B-64A3",
+      "predictor-debugger/.github/workflows/verify.yml líneas 35-40: for machine in mac war guerra; do uv run --locked ${{ matrix.script }} --saved \"$machine\" | tee \"out-$machine.txt\"; grep -q \"fingerprint: ${{ matrix.fingerprint }}\" \"out-$machine.txt\"; done"
+    ],
+    "notas_animacion": "Animar la ronda 3 en rojo con fail-fast: false: las otras siguen con ✓."
+  },
+  {
+    "id": "E06",
+    "inicio": "03:34",
+    "fin": "04:40",
+    "tipo": "diagrama",
+    "visual": "Izquierda: eval-gate con ui-tests y llm-evals en paralelo; ui-tests falla y llm-evals sigue. Derecha: a → b con needs; a falla y b queda gris 'skipped'. Abajo: un solo job largo con pasos en fila (civica, restful-booker, war-paradigm).",
+    "texto_pantalla": {
+      "es": "Sin needs: corren igual · con needs: se saltan · casos reales: 0 needs, 0 concurrency (26-oct-2026)",
+      "en": "No needs: they run anyway · with needs: skipped · real cases: 0 needs, 0 concurrency (Oct 26, 2026)"
+    },
+    "assets": [
+      "qa-eval-lab/.github/workflows/eval-gate.yml (jobs ui-tests y llm-evals, sin needs)",
+      "Revisión de needs/concurrency: i18n/es/modules-01-14.json → m28.theory[2]; confirmada con grep sobre civica ci.yml, eval-gate.yml, tests.yml, verify.yml, reproduce.yml y war-paradigm ci.yml"
+    ],
+    "notas_animacion": "Skipped en gris con la palabra 'skipped', nunca en verde."
+  },
+  {
+    "id": "E07",
+    "inicio": "04:40",
+    "fin": "05:47",
+    "tipo": "diagrama",
+    "visual": "Dos cajas: Caché (rayo, 'acelera', se puede borrar → mismo resultado) y Artefacto (archivo con candado, 'evidencia', 14 días; el ledger de civica con 90 días y una flecha circular «la corrida siguiente de main lo descarga»). Una flecha 'borrar caché cambia el resultado' termina en ⚠ hallazgo.",
+    "texto_pantalla": {
+      "es": "Caché = velocidad desechable · Artefacto = evidencia con retención (14 días; ledger de civica 90)",
+      "en": "Cache = disposable speed · Artifact = evidence with retention (14 days; civica's ledger 90)"
+    },
+    "assets": [
+      "civica-playwright-challenge/.github/workflows/ci.yml (b240008): línea 28 (cache: npm); 45-55 (Restore mutation ledgers from the latest main run); 66-101 (3 uploads: audit-reports y playwright-report con retention-days: 14, mutation-insights con retention-days: 90)",
+      "restful-booker-quality-suite/.github/workflows/tests.yml líneas 15-18 y 38-44",
+      "war-paradigm/.github/workflows/ci.yml líneas 17-20 y 40-47"
+    ],
+    "notas_animacion": "Nombres de artefactos reales: playwright-report, mutation-insights, audit-reports, playwright-report-02-mutants."
+  },
+  {
+    "id": "E08",
+    "inicio": "05:47",
+    "fin": "06:39",
+    "tipo": "codigo",
+    "visual": "Tres fragmentos lado a lado: el env y los if de eval-gate; los tres tipos de if para evidencia (always, !cancelled, failure) con el repo de cada uno.",
+    "texto_pantalla": {
+      "es": "Secreto ausente = cadena vacía, nada falla · always() · !cancelled() · failure()",
+      "en": "Missing secret = empty string, nothing fails · always() · !cancelled() · failure()"
+    },
+    "assets": [
+      "qa-eval-lab/.github/workflows/eval-gate.yml líneas 15-32: env: OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }} · if: env.OPENAI_API_KEY == '' · if: env.OPENAI_API_KEY != ''",
+      "war-paradigm/.github/workflows/ci.yml línea 41: if: always()",
+      "restful-booker-quality-suite/.github/workflows/tests.yml línea 39: if: always() · línea 46: if: failure()",
+      "civica-playwright-challenge/.github/workflows/ci.yml línea 60: if: ${{ !cancelled() }}"
+    ],
+    "notas_animacion": "El valor del secreto siempre se dibuja como ***."
+  },
+  {
+    "id": "E09",
+    "inicio": "06:39",
+    "fin": "07:12",
+    "tipo": "diagrama",
+    "visual": "Dos pushes seguidos al mismo PR: la corrida vieja se tacha (cancelled, gold). Al lado, un pipeline de evidencia cortado a la mitad con un documento roto y ✗.",
+    "texto_pantalla": {
+      "es": "concurrency: ✓ en PR · ✗ en release o evidencia",
+      "en": "concurrency: ✓ on PRs · ✗ on release or evidence"
+    },
+    "assets": [
+      "i18n/es/modules-01-14.json → m28.theory (concurrency): group: ${{ github.workflow }}-${{ github.ref }} / cancel-in-progress: true",
+      "Ejemplo real: playwright-jev/.github/workflows/ci.yml (group: ci-${{ github.ref }}, cancel-in-progress: true)"
+    ],
+    "notas_animacion": "Breve, 20 a 30 s."
+  },
+  {
+    "id": "E10",
+    "inicio": "07:12",
+    "fin": "08:20",
+    "tipo": "terminal",
+    "visual": "Ecuación visual: check requerido + rama protegida = gate. Luego la terminal con las cinco consultas y sus false. Al lado, la cita del README de qa-eval-lab.",
+    "texto_pantalla": {
+      "es": "Gate = check requerido + rama protegida · 5 repos: main protegida ✗ false",
+      "en": "Gate = required check + protected branch · 5 repos: main protected ✗ false"
+    },
+    "assets": [
+      "gh api repos/criguex/<repo>/branches/main --jq .protected → false para civica-playwright-challenge, qa-eval-lab, restful-booker-quality-suite, predictor-debugger y war-paradigm (26-oct-2026)",
+      "qa-eval-lab/README.es.md §Límites: 'Un check en rojo solo bloquea el merge si eval-gate es un check obligatorio; main todavía no tiene protección de rama.'",
+      "Settings → Rules o Branches: i18n/es/modules-01-14.json → m28.hands[4]"
+    ],
+    "notas_animacion": "La palabra 'requerido' y la palabra 'protegida' se iluminan por separado."
+  },
+  {
+    "id": "E11",
+    "inicio": "08:20",
+    "fin": "09:08",
+    "tipo": "terminal",
+    "visual": "Terminal: gh run list y gh run view con grep; aparece el notice. Luego zoom a la línea npm ci || npm install con ⚠.",
+    "texto_pantalla": {
+      "es": "✓ verde = los pasos que corrieron salieron con 0 · nada más",
+      "en": "✓ green = the steps that ran exited 0 · nothing more"
+    },
+    "assets": [
+      "gh run list -R criguex/qa-eval-lab -w eval-gate -L 1 → completed success ... 40374138570 6m35s 2026-10-26T18:02:11Z",
+      "gh run view 40374138570 -R criguex/qa-eval-lab --log | grep \"LLM eval skipped\" → llm-evals ... echo \"::notice title=LLM eval skipped::OPENAI_API_KEY is not set, so the DeepEval and Promptfoo steps were skipped. Add the secret to run the LLM-as-judge gate.\"",
+      "qa-eval-lab/.github/workflows/eval-gate.yml línea 10: run: npm ci || npm install"
+    ],
+    "notas_animacion": "Comandos tal cual de m28.hands[1]."
+  },
+  {
+    "id": "E12",
+    "inicio": "09:08",
+    "fin": "10:12",
+    "tipo": "diagrama",
+    "visual": "Tres puertas: fail-closed (ante la duda, ✗ rojo), fail-open (ante la duda, ✓ verde, en gold de alerta), fail-safe (ante la duda, suite completa). Debajo de cada una, sus ejemplos reales.",
+    "texto_pantalla": {
+      "es": "Gate de merge = fail-closed, o al menos ⚠ warning + job summary",
+      "en": "Merge gate = fail-closed, or at least ⚠ warning + job summary"
+    },
+    "assets": [
+      "civica-playwright-challenge/src/support/mutationInsights.ts (b240008) líneas 45-64: readLedger() devuelve un ledger vacío con `warning: ... is unreadable (...); running without learned order`; antes de b240008, loadInsights() devolvía {} en el catch sin avisar",
+      "civica-playwright-challenge/tests/mutation/searchMutants.mutation.spec.ts líneas 22-24 (logger.warn y anotación ledger-warning)",
+      "jev-test-impact/README.es.md: modo replay, 'Si falta una, Jev no puede responder y corre la suite completa'",
+      "i18n/es/modules-01-14.json → m28.theory (Fail-closed frente a fail-open)"
+    ],
+    "notas_animacion": "Fail-open nunca se pinta en mint aunque sea 'verde': va con ⚠ ojo. Para civica, mostrar antes (silencio) y después (⚠ + ledger-warning + .corrupt)."
+  },
+  {
+    "id": "E13",
+    "inicio": "10:12",
+    "fin": "11:25",
+    "tipo": "diagrama",
+    "visual": "Dos filas de gates en orden (restful-booker y civica). Luego la tabla del benchmark de jev-test-impact con tres filas resaltadas: suite completa, determinista insegura (4 de 15 escapadas, coral) y determinista + Jev (0 de 15). Al final, un embudo de triaje: reglas → Jev → persona.",
+    "texto_pantalla": {
+      "es": "Lo barato primero · ahorro válido solo con 0 fallas escapadas",
+      "en": "Cheap first · savings only count with 0 escaped failures"
+    },
+    "assets": [
+      "restful-booker-quality-suite/.github/workflows/tests.yml líneas 34-37: format:check → lint → typecheck → npm test",
+      "civica-playwright-challenge/.github/workflows/ci.yml líneas 32-57",
+      "jev-test-impact/README.es.md §Resultados medidos: Suite completa 1311 pruebas, 0 de 15 · Solo determinista insegura 301, 4 de 15 · Determinista + Jev 395 (69.9 % saltadas), 0 de 15; 20 commits, 15 pruebas rotas",
+      "jev-ci-triage/README.es.md §Reglas, en orden"
+    ],
+    "notas_animacion": "Usar los números de la tabla tal cual; no redondear 69.9 % en pantalla."
+  },
+  {
+    "id": "E14",
+    "inicio": "11:25",
+    "fin": "11:52",
+    "tipo": "codigo",
+    "visual": "Tres fragmentos de playwright.config.ts: civica, restful-booker y war-paradigm 02-mutants. Etiqueta flaky en gold.",
+    "texto_pantalla": {
+      "es": "retries: 2 + reporte flaky → cuarentena · mutantes: retries: 0",
+      "en": "retries: 2 + flaky label → quarantine · mutants: retries: 0"
+    },
+    "assets": [
+      "civica-playwright-challenge/playwright.config.ts líneas 35-36",
+      "restful-booker-quality-suite/playwright.config.ts líneas 6-7",
+      "war-paradigm/experiments/02-mutants/playwright.config.ts línea 10: retries: 0,"
+    ],
+    "notas_animacion": "Breve."
+  },
+  {
+    "id": "E15",
+    "inicio": "11:52",
+    "fin": "13:16",
+    "tipo": "codigo",
+    "visual": "reproduce.yml, job round1 completo; se resaltan fetch_data.py y los dos grep -q. A un lado, tarjeta con los tiempos de la corrida 40267731741.",
+    "texto_pantalla": {
+      "es": "Pipeline de evidencia: runner limpio · datos verificados · mismos veredictos · misma huella",
+      "en": "Evidence pipeline: clean runner · verified data · same verdicts · same fingerprint"
+    },
+    "assets": [
+      "predictor-debugger/.github/workflows/reproduce.yml líneas 13-29: runs-on: ubuntu-24.04 / uv run --locked tools/fetch_data.py --rounds r1 / uv run --locked verify.py | tee out.txt / grep -q \"verdicts equal to saved results/mac/verdicts.json: True\" out.txt / grep -q \"fingerprint: EEC9-09E0-F77D\" out.txt",
+      "predictor-debugger/.github/workflows/reproduce.yml líneas 31-48 (round2, fingerprint D506-F58F-3838)",
+      "predictor-debugger-docs/README.md §Reproducir (b): corrida 40267731741, ronda 1 6 min 33 s, ronda 2 17 min 47 s, mismas huellas"
+    ],
+    "notas_animacion": "Mostrar que no hay ningún upload-artifact en el archivo: la evidencia es log + exit code."
+  },
+  {
+    "id": "E16",
+    "inicio": "13:16",
+    "fin": "14:35",
+    "tipo": "diagrama",
+    "visual": "Checklist en seis pasos. Paso 4 dibujado como tres cajas static → api → ui unidas por needs, cada una con un artefacto y su SHA256SUMS.",
+    "texto_pantalla": {
+      "es": "Leer 5 workflows · comprobar un verde · ¿bloquea? · 3 gates con needs · proteger main · secretos con aviso",
+      "en": "Read 5 workflows · check a green · does it block? · 3 gates with needs · protect main · secrets with a warning"
+    },
+    "assets": [
+      "i18n/es/modules-01-14.json → m28.hands (comandos: gh run list -R criguex/qa-eval-lab -w eval-gate -L 1 · gh run view <id> -R criguex/qa-eval-lab --log | grep \"LLM eval skipped\" · gh api repos/criguex/qa-eval-lab/branches/main --jq .protected · find playwright-report -type f -exec sha256sum {} + > SHA256SUMS)"
+    ],
+    "notas_animacion": "Los comandos se muestran tal cual del módulo; el workflow del alumno no se muestra como código porque no existe en ningún repo."
+  },
+  {
+    "id": "E17",
+    "inicio": "14:35",
+    "fin": "15:25",
+    "tipo": "animacion",
+    "visual": "Tabla de cuatro rupturas que se llena fila por fila: ruptura, predicción, gate que la notó, enlace. La fila de '|| true' muestra un check verde con pruebas rojas dentro del log (✗ escondido). Las celdas 'nadie' en coral con la palabra HALLAZGO.",
+    "texto_pantalla": {
+      "es": "1 quitar needs · 2 || true · 3 borrar un secreto · 4 quitar la protección",
+      "en": "1 drop a needs · 2 || true · 3 delete a secret · 4 remove protection"
+    },
+    "assets": [
+      "i18n/es/modules-01-14.json → m28.mut"
+    ],
+    "notas_animacion": "Las predicciones aparecen antes que los resultados."
+  },
+  {
+    "id": "E18",
+    "inicio": "15:25",
+    "fin": "16:18",
+    "tipo": "diagrama",
+    "visual": "Tarjeta de reto con entregable, cinco criterios y la rúbrica de cuatro filas en una matriz 4×4, con el nivel más alto de cada fila en gold.",
+    "texto_pantalla": {
+      "es": "Rúbrica: lectura de un verde · gates y bloqueo · artefactos y evidencia · mutación del pipeline",
+      "en": "Rubric: reading a green · gates and blocking · artifacts and evidence · pipeline mutation"
+    },
+    "assets": [
+      "i18n/es/modules-01-14.json → m28.deliver, m28.crit, m28.rubm"
+    ],
+    "notas_animacion": "Mostrar la matriz completa 2 s y luego hacer zoom fila por fila."
+  },
+  {
+    "id": "E19",
+    "inicio": "16:18",
+    "fin": "17:10",
+    "tipo": "quiz",
+    "visual": "Tres preguntas con cuatro opciones, pausa de 5 s, respuesta en mint con ✓ y su porqué.",
+    "texto_pantalla": {
+      "es": "1 ¿lint falla sin needs? · 2 ¿npm test || true? · 3 ¿verify vs reproduce?",
+      "en": "1 lint fails, no needs? · 2 npm test || true? · 3 verify vs reproduce?"
+    },
+    "assets": [
+      "i18n/es/quiz-11-19.json → m28[0], m28[4], m28[7]",
+      "i18n/en/quiz-11-19.json → m28[0], m28[4], m28[7]"
+    ],
+    "notas_animacion": "Opciones incorrectas en muted."
+  },
+  {
+    "id": "E20",
+    "inicio": "17:10",
+    "fin": "17:37",
+    "tipo": "resumen",
+    "visual": "Tres tarjetas de ideas y flecha mint al módulo 15 (contenedores efímeros). Firma.",
+    "texto_pantalla": {
+      "es": "Verde = exit 0 de lo que corrió · gate = requerido + protegida · evidencia siempre → Módulo 15",
+      "en": "Green = exit 0 of what ran · gate = required + protected · always keep evidence → Module 15"
+    },
+    "assets": [
+      "Siguiente módulo: course.json posición 15, id m27"
+    ],
+    "notas_animacion": "Fundido a navy."
+  }
+]

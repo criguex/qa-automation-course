@@ -1,0 +1,52 @@
+
+> war-paradigm@1.0.0 test:01
+> npm test -w experiments/01-ai-verdict
+
+
+> @mutant-lab/01-ai-verdict@1.0.0 test
+> playwright test
+
+
+Running 28 tests using 5 workers
+
+(node:73203) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:73199) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:73202) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:73201) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:73200) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/checks.spec.ts:14:5 › schema: pinned/run-3 is a valid artifact (3ms)
+  ✓   2 tests/checks.spec.ts:14:5 › schema: pinned/run-2 is a valid artifact (3ms)
+  ✓   4 tests/checks.spec.ts:14:5 › schema: unpinned/run-1 is a valid artifact (3ms)
+  ✓   3 tests/checks.spec.ts:14:5 › schema: pinned/run-1 is a valid artifact (3ms)
+  ✓   6 tests/checks.spec.ts:14:5 › schema: unpinned/run-3 is a valid artifact (3ms)
+  ✓   7 tests/checks.spec.ts:23:1 › schema: a non-object is rejected (3ms)
+  ✓   5 tests/checks.spec.ts:14:5 › schema: unpinned/run-2 is a valid artifact (3ms)
+  ✓   9 tests/checks.spec.ts:40:1 › contract: unknown role, unknown action and bad status code are rejected (4ms)
+  ✓   8 tests/checks.spec.ts:29:1 › schema: missing meta, scenarios, risks and assumptions are all reported (3ms)
+  ✓  12 tests/checks.spec.ts:52:1 › references: covers must point to requirement or boundary ids that exist (5ms)
+  ✓  11 tests/checks.spec.ts:59:1 › references: duplicate scenario ids and a wrong story id are rejected (4ms)
+  ✓  10 tests/checks.spec.ts:69:1 › pins: a pinned run has no warnings, an unpinned run has three (4ms)
+  ✓  13 tests/generator.spec.ts:12:1 › recorded is the default generator, a command takes over when the env var is set (0ms)
+  ✓  17 tests/scorer.spec.ts:13:1 › the gate is a number the team agreed on (1ms)
+  ✓  16 tests/generator.spec.ts:33:1 › command generator: a non-zero exit is an error, not a verdict (10ms)
+  ✓  15 tests/generator.spec.ts:38:1 › command generator: output that is not JSON is an error, not a verdict (10ms)
+  ✓  18 tests/scorer.spec.ts:19:1 › pinned runs: the output changes, the verdict does not (3ms)
+  ✓  19 tests/scorer.spec.ts:32:1 › every criterion carries evidence computed by code (4ms)
+  ✓  20 tests/scorer.spec.ts:70:1 › a score below the gate rejects even when every must is met (1ms)
+  ✓  21 tests/scorer.spec.ts:46:1 › a failed must rejects the artifact no matter the score (4ms)
+  ✓  22 tests/scorer.spec.ts:57:1 › a forbidden role expecting success breaks the role contract (3ms)
+  ✓  23 tests/scorer.spec.ts:84:1 › an artifact that fails Q1 is rejected before scoring (2ms)
+  ✓  24 tests/stability.spec.ts:19:1 › pinned agent: 3/3 runs agree → trust the verdict (2ms)
+  ✓  25 tests/stability.spec.ts:39:1 › the flip is a must failure, not a score below the gate (2ms)
+  ✓  26 tests/stability.spec.ts:28:1 › unpinned agent: the verdict flips on run 3 → logged as a finding (3ms)
+  ✓  27 tests/stability.spec.ts:46:1 › stability of a single run is trivially stable (1ms)
+  -  28 tests/stability.spec.ts:52:1 › live agent: same check against MUTANT_LAB_GENERATOR_CMD
+  ✓  14 tests/generator.spec.ts:22:1 › command generator: story in on stdin, artifact out on stdout, RUN in the environment (147ms)
+
+  1 skipped
+  27 passed (429ms)

@@ -1,0 +1,409 @@
+[
+  {
+    "id": "E01",
+    "inicio": "00:00",
+    "fin": "01:10",
+    "tipo": "terminal",
+    "visual": "Terminal dividida: arriba «hook anterior», abajo «hook actual». Los mismos tres comandos; arriba dos salen con exit=0 en coral («✗ se coló»), abajo los tres con exit=2 en mint («✓ bloqueado»).",
+    "texto_pantalla": {
+      "es": "# hook anterior (1b01c66^)\ngit push origin main               exit=2\ngit -c core.x=y push origin main   exit=0\ngit --no-pager push origin main    exit=0\n# hook actual (1b01c66)\ngit push origin main               exit=2\ngit -c core.x=y push origin main   exit=2\ngit --no-pager push origin main    exit=2",
+      "en": "# previous hook (1b01c66^)\ngit push origin main               exit=2\ngit -c core.x=y push origin main   exit=0\ngit --no-pager push origin main    exit=0\n# current hook (1b01c66)\ngit push origin main               exit=2\ngit -c core.x=y push origin main   exit=2\ngit --no-pager push origin main    exit=2"
+    },
+    "assets": [
+      "war-paradigm/experiments/03-second-brain/hooks/block-push-to-main.sh en 1b01c66^ y 1b01c66",
+      "corrida propia (fuentes.md)"
+    ],
+    "notas_animacion": "Formato condensado de la corrida: comando y exit. Firma abajo a la izquierda: Cristian Guerra · QA · Medellín."
+  },
+  {
+    "id": "E02",
+    "inicio": "01:10",
+    "fin": "01:49",
+    "tipo": "animacion",
+    "visual": "Una laptop con todo en verde (✓ CI, ✓ tests) y una flecha que dice «no basta». Al lado, una caja nueva y vacía (entorno limpio) donde otra persona corre un solo comando; aparece la misma huella en mint.",
+    "texto_pantalla": {
+      "es": "Verde en tu máquina ≠ aprobado · Otra persona · entorno limpio · un comando · la misma huella",
+      "en": "Green on your machine ≠ passed · Someone else · clean environment · one command · the same fingerprint"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/modules-30-35.json (m12.mentor)",
+      "pages.json (eval.s02)"
+    ],
+    "notas_animacion": "La caja limpia es el símbolo del capstone; reaparece en el laboratorio."
+  },
+  {
+    "id": "E03",
+    "inicio": "01:49",
+    "fin": "02:26",
+    "tipo": "analogia",
+    "visual": "Ilustración: un inspector con casco revisa a tres guardias (un perro guardián, un semáforo, una alarma). Rompe una ventana de juguete: los guardias que gritan reciben ✓, uno que duerme recibe ✗. Un robot le pasa herramientas, pero el inspector firma la hoja. Al final, un amigo abre una caja nueva, repite todo y le sale la misma carita.",
+    "texto_pantalla": {
+      "es": "Inspector de guardias · El robot ayuda, tú firmas · Un amigo repite todo en una caja nueva",
+      "en": "Guard inspector · The robot helps, you sign · A friend repeats it all in a new box"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/modules-30-35.json (m12.kid)"
+    ],
+    "notas_animacion": "Personajes simples; la firma del inspector usa el mint de la marca."
+  },
+  {
+    "id": "E04",
+    "inicio": "02:26",
+    "fin": "03:00",
+    "tipo": "diagrama",
+    "visual": "Tres columnas que se unen en un solo paquete: Eje A «QA asistida por IA: el asistente ejecuta, una persona firma» · Eje B «Ejecución de mutantes: generar, correr, clasificar, kill rate» · Eje C «WAR Paradigm: todo guardia se prueba rompiendo algo».",
+    "texto_pantalla": {
+      "es": "Eje A · QA asistida por IA · Eje B · ejecución de mutantes · Eje C · WAR Paradigm: prueba al que prueba",
+      "en": "Axis A · AI-assisted QA · Axis B · mutant execution · Axis C · WAR Paradigm: test the tester"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/modules-30-35.json (m12.theory, «Los tres ejes»)"
+    ],
+    "notas_animacion": "Cada eje con un ícono simple: robot con pluma, cajita con mutante, escudo con grieta."
+  },
+  {
+    "id": "E05",
+    "inicio": "03:00",
+    "fin": "03:48",
+    "tipo": "codigo",
+    "visual": "Archivo .claude/settings.json con el registro del hook PreToolUse sobre Bash; al lado, un diagrama: el asistente intenta un comando → el hook lee el JSON → exit 2 bloquea (coral) / exit 0 deja pasar (mint).",
+    "texto_pantalla": {
+      "es": "// war-paradigm/experiments/03-second-brain/.claude/settings.json\n{\n  \"hooks\": {\n    \"PreToolUse\": [\n      {\n        \"matcher\": \"Bash\",\n        \"hooks\": [\n          { \"type\": \"command\", \"command\": \"\\\"$CLAUDE_PROJECT_DIR\\\"/hooks/block-push-to-main.sh\" }\n        ]\n      }\n    ]\n  }\n}",
+      "en": "// war-paradigm/experiments/03-second-brain/.claude/settings.json\n{\n  \"hooks\": {\n    \"PreToolUse\": [\n      {\n        \"matcher\": \"Bash\",\n        \"hooks\": [\n          { \"type\": \"command\", \"command\": \"\\\"$CLAUDE_PROJECT_DIR\\\"/hooks/block-push-to-main.sh\" }\n        ]\n      }\n    ]\n  }\n}"
+    },
+    "assets": [
+      "war-paradigm/experiments/03-second-brain/.claude/settings.json",
+      "experiments/03-second-brain/README.md (Part 2)"
+    ],
+    "notas_animacion": "Archivo compactado en una línea por hook; el contenido es el mismo del repo. La línea de comentario es un rótulo de escena."
+  },
+  {
+    "id": "E06",
+    "inicio": "03:48",
+    "fin": "04:33",
+    "tipo": "diagrama",
+    "visual": "Tabla de 19 filas que se despliega (sesión, rol, llamadas a herramientas); se resaltan las filas jd_tts_a, jd_tts_b y tts_safety_fix. Debajo, un recuadro coral: «What was not executed».",
+    "texto_pantalla": {
+      "es": "CODEX_WORK_LOG.md · 19 sesiones · llamadas, commits y SHA-256 de cada archivo de sesión · «What was not executed» · revisión doble ciega: jd_tts_a + jd_tts_b + tts_safety_fix",
+      "en": "CODEX_WORK_LOG.md · 19 sessions · tool calls, commits and SHA-256 of each session file · \"What was not executed\" · blind double review: jd_tts_a + jd_tts_b + tts_safety_fix"
+    },
+    "assets": [
+      "scientific-qa-evidence/docs/CODEX_WORK_LOG.md"
+    ],
+    "notas_animacion": "Solo se muestran ids recortados de sesión y roles; nada de contenido privado."
+  },
+  {
+    "id": "E07",
+    "inicio": "04:33",
+    "fin": "05:19",
+    "tipo": "diagrama",
+    "visual": "Golden flow: login → crear → aprobar → publicar (mint). Siete mutantes como fichas de datos, cada una cambiando un solo paso. Puerta de validación «reset · login · línea base» antes de mutar. Clasificador: KILLED y SURVIVED entran al puntaje; INCONCLUSIVE, INVALID_BASELINE e INFRA_ERROR se ven pero quedan fuera.",
+    "texto_pantalla": {
+      "es": "Solo KILLED y SURVIVED puntúan · INCONCLUSIVE, INVALID_BASELINE, INFRA_ERROR: visibles, fuera del puntaje · 5/7 killed · 2 sobrevivientes: self-grant, viewer-create",
+      "en": "Only KILLED and SURVIVED score · INCONCLUSIVE, INVALID_BASELINE, INFRA_ERROR: visible, not scored · 5/7 killed · 2 survivors: self-grant, viewer-create"
+    },
+    "assets": [
+      "war-paradigm/experiments/02-mutants/README.md («Mutants are data, not scripts»",
+      "«Evidence, classification and score gate»)"
+    ],
+    "notas_animacion": "El sobreviviente se pinta en coral y se queda en pantalla."
+  },
+  {
+    "id": "E08",
+    "inicio": "05:19",
+    "fin": "06:02",
+    "tipo": "codigo",
+    "visual": "Dos fragmentos reales: el contrato del mutante self-grant en scenarios.ts y la regla editMember de app/server.js, con «actor.id === target.id» resaltado en coral.",
+    "texto_pantalla": {
+      "es": "// tests/scenarios.ts (extracto del README)\n{ id: 'self-grant', name: 'self-grant', expect: 403, step: 'grant', order: ['grant'], body: { role: 'admin' },\n  postcondition: { kind: 'member-role', role: 'editor' }, known: '...' },\n// app/server.js\neditMember: (actor, target) => actor.role === 'admin' || actor.id === target.id,",
+      "en": "// tests/scenarios.ts (excerpt from the README)\n{ id: 'self-grant', name: 'self-grant', expect: 403, step: 'grant', order: ['grant'], body: { role: 'admin' },\n  postcondition: { kind: 'member-role', role: 'editor' }, known: '...' },\n// app/server.js\neditMember: (actor, target) => actor.role === 'admin' || actor.id === target.id,"
+    },
+    "assets": [
+      "war-paradigm/experiments/02-mutants/README.md («Mutants are data, not scripts»",
+      "«The finding»)"
+    ],
+    "notas_animacion": "Las líneas de comentario son rótulos de escena."
+  },
+  {
+    "id": "E09",
+    "inicio": "06:02",
+    "fin": "06:45",
+    "tipo": "diagrama",
+    "visual": "Tres paquetes: limpio (✓ en todo), recibo con log ausente (P6 ✗, hash ✗), log viejo con el nombre correcto (P6 ✓ en coral «no lo ve», hash ✗). Un sello: «tu paquete tiene que aguantar el mismo ataque».",
+    "texto_pantalla": {
+      "es": "Log ausente: P6 ✗ y hash ✗ · Log viejo con el nombre correcto: P6 ✓ (no lo ve) y hash ✗ · Tu paquete tiene que aguantar el mismo ataque",
+      "en": "Missing log: P6 ✗ and hash ✗ · Stale log, right name: P6 ✓ (misses it) and hash ✗ · Your package has to survive the same attack"
+    },
+    "assets": [
+      "scientific-qa-evidence/experiments/receipt-check/RESULTS.md y RESULTS2.md"
+    ],
+    "notas_animacion": "Reutiliza la tabla del módulo anterior (m26, E11) con otro color de acento."
+  },
+  {
+    "id": "E10",
+    "inicio": "06:45",
+    "fin": "07:25",
+    "tipo": "codigo",
+    "visual": "Workflow verify de predictor-debugger: runner ubuntu-24.04, setup-uv, uv run --locked y el bucle con grep -q de la huella para mac, war y guerra. A la derecha, el workflow reproduce con «ronda 1: 6 min 33 s con la descarga incluida».",
+    "texto_pantalla": {
+      "es": "# predictor-debugger/.github/workflows/verify.yml (extracto)\n    runs-on: ubuntu-24.04\n      - uses: astral-sh/setup-uv@v6\n          for machine in mac war guerra; do\n            uv run --locked ${{ matrix.script }} --saved \"$machine\" | tee \"out-$machine.txt\"\n            grep -q \"fingerprint: ${{ matrix.fingerprint }}\" \"out-$machine.txt\"\n          done\n# workflow reproduce · ronda 1: 6 min 33 s con la descarga incluida",
+      "en": "# predictor-debugger/.github/workflows/verify.yml (excerpt)\n    runs-on: ubuntu-24.04\n      - uses: astral-sh/setup-uv@v6\n          for machine in mac war guerra; do\n            uv run --locked ${{ matrix.script }} --saved \"$machine\" | tee \"out-$machine.txt\"\n            grep -q \"fingerprint: ${{ matrix.fingerprint }}\" \"out-$machine.txt\"\n          done\n# reproduce workflow · round 1: 6 min 33 s including the download"
+    },
+    "assets": [
+      "predictor-debugger/.github/workflows/verify.yml",
+      "predictor-debugger/.github/workflows/reproduce.yml",
+      "predictor-debugger/README.md (Reproducir, nivel b)"
+    ],
+    "notas_animacion": "Extracto con sangría original; las líneas con # son rótulos."
+  },
+  {
+    "id": "E11",
+    "inicio": "07:25",
+    "fin": "08:01",
+    "tipo": "diagrama",
+    "visual": "Tres tarjetas: «mi máquina» (gris), «otra máquina mía o un asistente bajo mi dirección» (gold: reproducido) y «otra persona, entorno limpio» (mint: reproducido por un tercero). Cita en gold: «No es independiente».",
+    "texto_pantalla": {
+      "es": "Tu otra máquina o un asistente = «reproducido» · Otra persona en limpio = «reproducido por un tercero» · «No es independiente» se escribe en Límites",
+      "en": "Your other machine or an assistant = \"reproduced\" · Someone else, clean = \"third-party reproduced\" · \"Not independent\" goes in Limits"
+    },
+    "assets": [
+      "scientific-qa-evidence/evidence/lean-cloud-2026-10-23/README.md",
+      "predictor-debugger/README.md (Límites)",
+      "qa-automation-course/i18n/es/pages.json (eval.s03)"
+    ],
+    "notas_animacion": "La cita «No es independiente» aparece como recorte del README real."
+  },
+  {
+    "id": "E12",
+    "inicio": "08:01",
+    "fin": "08:38",
+    "tipo": "diagrama",
+    "visual": "Un README con cinco encabezados que se iluminan: Medido · Lo que esto dice y lo que no · Límites · Qué me contradiría · Qué no se ejecutó. Cada número del texto lleva una etiqueta pequeña «comando + exit code».",
+    "texto_pantalla": {
+      "es": "Medido · Lo que esto dice y lo que no · Límites · Qué me contradiría · Qué no se ejecutó",
+      "en": "Measured · What this says and what it doesn't · Limits · What would prove me wrong · What wasn't run"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/modules-30-35.json (m12.theory, «Reporte honesto»)"
+    ],
+    "notas_animacion": "Encabezados en español en la versión ES y en inglés en la EN."
+  },
+  {
+    "id": "E13",
+    "inicio": "08:38",
+    "fin": "09:21",
+    "tipo": "terminal",
+    "visual": "Terminal con los comandos del paso 1 y el marcador de mutantes que publica el README; las dos filas KNOWN SURVIVOR en coral. Debajo, la corrida estricta con exit=1 en coral.",
+    "texto_pantalla": {
+      "es": "$ git clone https://github.com/criguex/war-paradigm.git && cd war-paradigm\n$ npm ci && npx playwright install --with-deps chromium\n$ npm run demo:02\n  KILLED            role-swap      Expected rejection HTTP 403 observed.\n  KILLED            drop-input     Expected rejection HTTP 422 observed.\n  KILLED            reorder        Expected rejection HTTP 409 observed.\n  KILLED            stale-token    Expected rejection HTTP 401 observed.\n  KILLED            boundary       Expected rejection HTTP 422 observed.\n  KNOWN SURVIVOR    self-grant     Mutation was accepted with HTTP 200.\n  KNOWN SURVIVOR    viewer-create  Mutation was accepted with HTTP 201.\n  5/7 scored mutants killed · 2 survived · 0 excluded from score\n$ npm run test:strict -w experiments/02-mutants; echo \"exit=$?\"\nexit=1",
+      "en": "$ git clone https://github.com/criguex/war-paradigm.git && cd war-paradigm\n$ npm ci && npx playwright install --with-deps chromium\n$ npm run demo:02\n  KILLED            role-swap      Expected rejection HTTP 403 observed.\n  KILLED            drop-input     Expected rejection HTTP 422 observed.\n  KILLED            reorder        Expected rejection HTTP 409 observed.\n  KILLED            stale-token    Expected rejection HTTP 401 observed.\n  KILLED            boundary       Expected rejection HTTP 422 observed.\n  KNOWN SURVIVOR    self-grant     Mutation was accepted with HTTP 200.\n  KNOWN SURVIVOR    viewer-create  Mutation was accepted with HTTP 201.\n  5/7 scored mutants killed · 2 survived · 0 excluded from score\n$ npm run test:strict -w experiments/02-mutants; echo \"exit=$?\"\nexit=1"
+    },
+    "assets": [
+      "Comandos: qa-automation-course m12.hands paso 1",
+      "marcador: war-paradigm/experiments/02-mutants/README.md («What you will see»)",
+      "exit=1 del modo estricto: m12.hands paso 1"
+    ],
+    "notas_animacion": "Salida del marcador copiada del README del experimento, no de una corrida de este paquete (ver fuentes.md)."
+  },
+  {
+    "id": "E14",
+    "inicio": "09:21",
+    "fin": "10:10",
+    "tipo": "terminal",
+    "visual": "Terminal con la salida real de npm run demo:03: los tres bloqueos en coral con ✘ y exit 2, los tres permitidos en mint con ✓ y exit 0. Al final, «tests 40 · pass 40» de la suite del hook, con «6 límites conocidos» en gold.",
+    "texto_pantalla": {
+      "es": "$ npm run demo:03\n  $ git push origin main                     ✘ BLOCKED (exit 2)\n      blocked by hook: block-push-to-main.sh — a push to 'main' is not allowed. Push a feature branch and open a pull request.\n  $ git push --force origin HEAD:main        ✘ BLOCKED (exit 2)\n  $ npm test && git push origin master       ✘ BLOCKED (exit 2)\n  $ git push origin feature/mutants          ✓ allowed (exit 0)\n  $ git push -u origin feature/mutants       ✓ allowed (exit 0)\n  $ git pull origin main                     ✓ allowed (exit 0)\n$ node --test tests/hook.test.mjs\nℹ tests 40\nℹ pass 40\nℹ fail 0",
+      "en": "$ npm run demo:03\n  $ git push origin main                     ✘ BLOCKED (exit 2)\n      blocked by hook: block-push-to-main.sh — a push to 'main' is not allowed. Push a feature branch and open a pull request.\n  $ git push --force origin HEAD:main        ✘ BLOCKED (exit 2)\n  $ npm test && git push origin master       ✘ BLOCKED (exit 2)\n  $ git push origin feature/mutants          ✓ allowed (exit 0)\n  $ git push -u origin feature/mutants       ✓ allowed (exit 0)\n  $ git pull origin main                     ✓ allowed (exit 0)\n$ node --test tests/hook.test.mjs\nℹ tests 40\nℹ pass 40\nℹ fail 0"
+    },
+    "assets": [
+      "Corrida propia en el clon de war-paradigm @ 5dc5e92 (experiments/03-second-brain/tests/demo.mjs y tests/hook.test.mjs)",
+      "ver fuentes.md"
+    ],
+    "notas_animacion": "Se omiten las líneas «blocked by hook…» de los dos bloqueos siguientes para que quepa; son iguales salvo la rama."
+  },
+  {
+    "id": "E15",
+    "inicio": "10:10",
+    "fin": "10:52",
+    "tipo": "terminal",
+    "visual": "Terminal: docker run efímero sobre el clon de scientific-qa-evidence; seis [OK] y la huella. A un lado, la misma huella obtenida en macOS; las dos se superponen en mint.",
+    "texto_pantalla": {
+      "es": "$ git clone https://github.com/criguex/scientific-qa-evidence.git sqe\n$ docker run --rm -v \"$PWD/sqe\":/w -w /w python:3.12-slim python3 verificar.py; echo \"exit=$?\"\nVersión de los datos: 26791fe6546f   Sistema: Linux aarch64   Python 3.12.15\n  1/6  [OK]  Archivos intactos (SHA-256)  (0.8 s)\n  …\n  6/6  [OK]  Comprobación de recibos en los paquetes publicados  (0.2 s)\nResultado: las 6 comprobaciones salieron OK en tu computador.\nTu huella: C5F0-F1A8-2F4D\nexit=0\n# mismo commit (c02e623) en macOS, Python 3.9.6: Tu huella: C5F0-F1A8-2F4D",
+      "en": "$ git clone https://github.com/criguex/scientific-qa-evidence.git sqe\n$ docker run --rm -v \"$PWD/sqe\":/w -w /w python:3.12-slim python3 verificar.py; echo \"exit=$?\"\nVersión de los datos: 26791fe6546f   Sistema: Linux aarch64   Python 3.12.15\n  1/6  [OK]  Archivos intactos (SHA-256)  (0.8 s)\n  …\n  6/6  [OK]  Comprobación de recibos en los paquetes publicados  (0.2 s)\nResultado: las 6 comprobaciones salieron OK en tu computador.\nTu huella: C5F0-F1A8-2F4D\nexit=0\n# same commit (c02e623) on macOS, Python 3.9.6: Tu huella: C5F0-F1A8-2F4D"
+    },
+    "assets": [
+      "Corridas propias en clones de scientific-qa-evidence @ c02e623 (ver fuentes.md)",
+      "comando del curso: m12.hands paso 2 y pages.json eval.s04"
+    ],
+    "notas_animacion": "Las filas 2/6 a 5/6 se omiten con «…» solo por espacio; todas salieron [OK]."
+  },
+  {
+    "id": "E16",
+    "inicio": "10:52",
+    "fin": "11:38",
+    "tipo": "diagrama",
+    "visual": "Árbol de archivos del paquete que se arma pieza por pieza; cada archivo con una etiqueta de su eje (A, B, C o evidencia): PREREGISTRO.md, thresholds.json, scenarios.*, ledger.jsonl, receipts.jsonl, verify, lockfile, .github/workflows/verify.yml, REPRODUCE.md, LOG-IA.md, README.md.",
+    "texto_pantalla": {
+      "es": "PREREGISTRO.md · thresholds.json · scenarios.* · ledger.jsonl · receipts.jsonl · verify (huella) · lockfile · verify.yml con grep -q · REPRODUCE.md (un comando) · LOG-IA.md · README.md",
+      "en": "PREREGISTRO.md · thresholds.json · scenarios.* · ledger.jsonl · receipts.jsonl · verify (fingerprint) · lockfile · verify.yml with grep -q · REPRODUCE.md (one command) · LOG-IA.md · README.md"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/modules-30-35.json (m12.hands, paso 3)"
+    ],
+    "notas_animacion": "Los nombres de archivo se dejan como los pide el curso, también en la versión EN."
+  },
+  {
+    "id": "E17",
+    "inicio": "11:38",
+    "fin": "12:18",
+    "tipo": "diagrama",
+    "visual": "Flujo: el asistente corre la auditoría → cada paso escribe una línea en receipts.jsonl → el diff llega a una persona que lo revisa (lupa) → merge con trailer Co-Authored-By. El hook vigila desde arriba, con su suite de ataques al lado.",
+    "texto_pantalla": {
+      "es": "Hook propio + suite de ataques · el asistente corre y anota receipts.jsonl · revisas el diff antes de cada merge · trailer Co-Authored-By",
+      "en": "Your own hook + attack suite · the assistant runs and logs receipts.jsonl · you review the diff before every merge · Co-Authored-By trailer"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/modules-30-35.json (m12.hands, paso 4)",
+      "war-paradigm/experiments/03-second-brain/hooks/block-push-to-main.sh"
+    ],
+    "notas_animacion": "La persona con la lupa es quien firma; el asistente nunca toca el botón de merge."
+  },
+  {
+    "id": "E18",
+    "inicio": "12:18",
+    "fin": "13:00",
+    "tipo": "navegador",
+    "visual": "Navegador con docs/INDEPENDENT_REPRODUCTION.md; se resaltan las partes del reporte. Luego una plantilla REPRODUCCION-<nombre>.md vacía que se llena: quién, fecha UTC, máquina, commit, versiones, tabla de pasos, huella, diferencias.",
+    "texto_pantalla": {
+      "es": "REPRODUCCION-<nombre>.md: quién · fecha UTC · máquina · commit · versiones · pasos con comando, inicio, fin y exit code · huella · diferencias · se publica tal cual",
+      "en": "REPRODUCCION-<name>.md: who · UTC date · machine · commit · versions · steps with command, start, end and exit code · fingerprint · differences · published as is"
+    },
+    "assets": [
+      "https://github.com/criguex/scientific-qa-evidence/blob/main/docs/INDEPENDENT_REPRODUCTION.md",
+      "m12.hands paso 5"
+    ],
+    "notas_animacion": "Captura del navegador real con zoom en la sección de pasos."
+  },
+  {
+    "id": "E19",
+    "inicio": "13:00",
+    "fin": "13:34",
+    "tipo": "animacion",
+    "visual": "Una sala con una persona que no escribió el código; en pantalla, el README con una afirmación resaltada y una terminal que corre su comando en vivo. Un reloj marca 30–45 min.",
+    "texto_pantalla": {
+      "es": "Defensa · 30–45 min · ante alguien que no escribió el código · cada afirmación se defiende corriendo su comando en vivo",
+      "en": "Defense · 30–45 min · in front of someone who didn't write the code · every claim is defended by running its command live"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/modules-30-35.json (m12.hands, paso 6)"
+    ],
+    "notas_animacion": "Ilustración, sin rostros reconocibles."
+  },
+  {
+    "id": "E20",
+    "inicio": "13:34",
+    "fin": "14:19",
+    "tipo": "animacion",
+    "visual": "Tu paquete en el centro. Tres ataques entran uno por uno: (1) un log borrado, (2) un log reemplazado por uno viejo con el mismo nombre, (3) un byte cambiado en thresholds.json. Para cada uno, verify debe salir distinto de 0 (✗ en coral = el guardia gritó). El paquete limpio sale con 0 (✓ mint). Si el ataque 2 pasa, aparece un sello gold: «se comporta como P6 → se publica como hallazgo».",
+    "texto_pantalla": {
+      "es": "Ataque 1: borra un log · Ataque 2: log viejo, mismo nombre · Ataque 3: un byte de thresholds.json · verify ≠ 0 en los tres, 0 en limpio",
+      "en": "Attack 1: delete a log · Attack 2: stale log, same name · Attack 3: one byte of thresholds.json · verify ≠ 0 on all three, 0 when clean"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/modules-30-35.json (m12.mut)",
+      "scientific-qa-evidence/experiments/receipt-check/RESULTS2.md"
+    ],
+    "notas_animacion": "Esta escena es conceptual: los comandos dependen del paquete de cada estudiante."
+  },
+  {
+    "id": "E21",
+    "inicio": "14:19",
+    "fin": "15:08",
+    "tipo": "diagrama",
+    "visual": "Lista de siete criterios con ✓: orden en git log --reverse · reproducción de otra persona con exit 0 y misma huella · kill rate recalculable = KILLED / (KILLED + SURVIVED) · hook con suite de ataques en CI · dos corridas que fallan (byte de thresholds, log viejo) · README con las cinco secciones y uso de IA · rúbrica en nivel 3.",
+    "texto_pantalla": {
+      "es": "Entregable: repo público con el paquete + REPRODUCCION-<nombre>.md de otra persona + defensa de 30–45 min",
+      "en": "Deliverable: public repo with the package + someone else's REPRODUCCION-<name>.md + a 30–45 min defense"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/modules-30-35.json (m12.crit, m12.deliver)"
+    ],
+    "notas_animacion": "La fórmula del kill rate se escribe en monoespaciada."
+  },
+  {
+    "id": "E22",
+    "inicio": "15:08",
+    "fin": "15:59",
+    "tipo": "diagrama",
+    "visual": "Rúbrica integrada: cuatro filas (QA asistida por IA · Ejecución de mutantes · WAR Paradigm · Evidencia y reproducción) por cuatro niveles. Se ilumina el nivel 3 de cada fila en mint y luego el 4 en gold.",
+    "texto_pantalla": {
+      "es": "Aprobado = las 4 filas al menos en nivel 3 · Nivel 4: revisión doble ciega · ronda a ciegas con compromiso por hash · un guardia que falló publicado · reproductor sin relación, otro sistema operativo",
+      "en": "Pass = all 4 rows at level 3 or above · Level 4: blind double review · blind round with a hash commitment · a failed guard published · unrelated reproducer, different OS"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/modules-30-35.json (m12.rubm)",
+      "pages.json (eval.s02, eval.s06)"
+    ],
+    "notas_animacion": "Tabla de 4×4 con texto corto en cada celda; el texto completo está en el curso."
+  },
+  {
+    "id": "E23",
+    "inicio": "15:59",
+    "fin": "16:36",
+    "tipo": "quiz",
+    "visual": "Tarjeta de pregunta con cuatro opciones; cuenta regresiva gold de 5 segundos; la correcta en mint con ✓.",
+    "texto_pantalla": {
+      "es": "Tu auditoría está en verde en tu laptop y en tu CI, pero quien la reprodujo no logró la misma huella. ¿Está aprobada? · A) Sí, a ti te funciona · B) No: otra persona tiene que reproducirla en limpio con la misma huella; su reporte se publica y la diferencia se investiga · C) Sí, si el CI está verde · D) Sí, si la diferencia es pequeña → ✓ B",
+      "en": "Your audit is green on your laptop and in CI, but the person reproducing it didn't get the same fingerprint. Does it pass? · A) Yes, it works for you · B) No: someone else has to reproduce it from clean with the same fingerprint; their report gets published and the difference investigated · C) Yes, if CI is green · D) Yes, if the difference is small → ✓ B"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/quiz-28-35.json (m12, pregunta 1)"
+    ],
+    "notas_animacion": "Pausa de 5 s antes de revelar."
+  },
+  {
+    "id": "E24",
+    "inicio": "16:36",
+    "fin": "17:05",
+    "tipo": "quiz",
+    "visual": "Misma tarjeta, segunda pregunta; tras revelar, la fórmula 4 / (4 + 1) en monoespaciada.",
+    "texto_pantalla": {
+      "es": "Tu corrida da 4 KILLED, 1 SURVIVED y 2 INFRA_ERROR. ¿Cuál es el kill rate? · A) 4/7 · B) 4/5 · C) 6/7 · D) 5/7 → ✓ B",
+      "en": "Your run gives 4 KILLED, 1 SURVIVED and 2 INFRA_ERROR. What's the kill rate? · A) 4/7 · B) 4/5 · C) 6/7 · D) 5/7 → ✓ B"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/quiz-28-35.json (m12, pregunta 3)"
+    ],
+    "notas_animacion": "Pausa de 5 s antes de revelar."
+  },
+  {
+    "id": "E25",
+    "inicio": "17:05",
+    "fin": "17:43",
+    "tipo": "quiz",
+    "visual": "Misma tarjeta, tercera pregunta.",
+    "texto_pantalla": {
+      "es": "Tu verify detecta un log borrado pero deja pasar un log viejo con el mismo nombre. ¿Qué tienes? · A) Un verificador completo · B) Un chequeo que se comporta como P6: hay que atar cada recibo al hash registrado al correr el paso · C) Un problema del sistema de archivos · D) Nada grave → ✓ B",
+      "en": "Your verify catches a deleted log but lets a stale log with the same name through. What do you have? · A) A complete verifier · B) A check that behaves like P6: you need to bind each receipt to the hash recorded when the step ran · C) A filesystem problem · D) Nothing serious → ✓ B"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/quiz-28-35.json (m12, pregunta 6)"
+    ],
+    "notas_animacion": "Pausa de 5 s antes de revelar."
+  },
+  {
+    "id": "E26",
+    "inicio": "17:43",
+    "fin": "18:30",
+    "tipo": "resumen",
+    "visual": "Tres tarjetas: «Las reglas duras viven en el código» · «El sobreviviente es el hallazgo» · «Aprobado = otra persona, misma huella». Luego la tarjeta del último módulo y la firma.",
+    "texto_pantalla": {
+      "es": "1 · Reglas en código, y el código se ataca · 2 · El sobreviviente es el hallazgo · 3 · Otra persona, entorno limpio, misma huella · Siguiente: tu carrera QA+IA",
+      "en": "1 · Rules in code, and the code gets attacked · 2 · The survivor is the finding · 3 · Someone else, clean environment, same fingerprint · Next: your QA+AI career"
+    },
+    "assets": [
+      "qa-automation-course/course.json (orden: m12 posición 34, m13 posición 35)"
+    ],
+    "notas_animacion": "Firma final: Cristian Guerra · QA · Medellín. Enlace al módulo en pantalla."
+  }
+]

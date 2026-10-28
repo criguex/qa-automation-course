@@ -1,0 +1,324 @@
+[
+  {
+    "id": "E01",
+    "inicio": "00:00",
+    "fin": "00:38",
+    "tipo": "animacion",
+    "visual": "Fondo navy #071B2B. Una línea de código se tacha y cambia: `\"numbers_grounded\": not unsupported,` → `\"numbers_grounded\": True,`. Debajo aparecen tres semáforos en fila: pytest ✓ pasa (mint), gate ✓ pasa (mint), git diff ✗ falla (coral) que se queda tapado con un signo de interrogación hasta el final del video.",
+    "texto_pantalla": {
+      "es": "30 pruebas en verde. ¿Quién lo notó?",
+      "en": "30 tests green. Who noticed?"
+    },
+    "assets": [],
+    "notas_animacion": "El tercer semáforo se revela en E18. Los símbolos siempre con palabra: ✓ pasa / ✗ falla."
+  },
+  {
+    "id": "E02",
+    "inicio": "00:38",
+    "fin": "01:03",
+    "tipo": "titulo",
+    "visual": "Tarjeta de título sobre deep #0D2638 con el ícono 🧭, el número de módulo y los dos repos como chips: criguex/qa-eval-lab · criguex/agent-eval-jev. Firma abajo a la derecha.",
+    "texto_pantalla": {
+      "es": "Módulo 25 · Calibrar un juez y evaluar agentes de IA\nCristian Guerra · QA · Medellín",
+      "en": "Module 25 · Calibrating a judge and evaluating AI agents\nCristian Guerra · QA · Medellín"
+    },
+    "assets": [],
+    "notas_animacion": "Entrada del título letra a letra, 1 s. Chips de repo con borde mint."
+  },
+  {
+    "id": "E03",
+    "inicio": "01:03",
+    "fin": "02:16",
+    "tipo": "analogia",
+    "visual": "Ilustración plana: un robot de viajes entrega una tarea. Tres ayudantes la revisan en fila: una calculadora (marca un número en coral), un juez con un medidor de seguridad (aguja que oscila) y una persona que decide cuando la aguja queda en el medio. Final: una balanza que se revisa con una pesa conocida antes de pesar la fruta.",
+    "texto_pantalla": {
+      "es": "Calculadora · juez rápido · persona\nCalibrar = probar la balanza con una pesa conocida\n¿Quién hizo la hoja de respuestas?",
+      "en": "Calculator · fast judge · person\nCalibrate = test the scale with a known weight\nWho made the answer key?"
+    },
+    "assets": [
+      "agent-eval-jev/docs/assets/explained.es.gif (referencia de estilo, versión EN: explained.gif)"
+    ],
+    "notas_animacion": "Basada en la sección 'Explicado para un niño de 8 años' de agent-eval-jev/README.es.md. No copiar el GIF: reanimar con la paleta del kit."
+  },
+  {
+    "id": "E04",
+    "inicio": "02:16",
+    "fin": "02:57",
+    "tipo": "diagrama",
+    "visual": "La fórmula κ = (pₒ − pₑ) / (1 − pₑ) se arma término a término. pₒ se ilumina en mint ('acuerdo observado'); pₑ en gold ('acuerdo por azar'). Una moneda cargada gira junto a pₑ.",
+    "texto_pantalla": {
+      "es": "κ = (pₒ − pₑ) / (1 − pₑ)\npₒ = acuerdo observado · pₑ = acuerdo por azar",
+      "en": "κ = (pₒ − pₑ) / (1 − pₑ)\npₒ = observed agreement · pₑ = chance agreement"
+    },
+    "assets": [],
+    "notas_animacion": "Fórmula tomada de i18n/es/modules-24-29.json, m17.theory[0]."
+  },
+  {
+    "id": "E05",
+    "inicio": "02:57",
+    "fin": "04:12",
+    "tipo": "terminal",
+    "visual": "Terminal sobre panel #123448. Comando y salida reales:\n$ python evals/calibration/calibrate_judge.py\nAVISO: illustrative sample, not a measured run\n  etiquetas escritas a mano como ejemplo; 5/10 case_id no estan en dataset.jsonl\nCasos: 10\nAcuerdo: 8/10 (80.0%)\nCohen's kappa: 0.58  (>0.8 excelente · 0.6-0.8 aceptable · <0.6 recalibrar rubrica)\n\nDesacuerdos (revisar rubrica/etiqueta humana):\n  - intl-wire: humano=fail vs judge=pass\n  - refund-policy: humano=pass vs judge=fail\nDespués, tarjeta: \"Un ejemplo ilustrativo presentado como medición = falso verde de documentación\".",
+    "texto_pantalla": {
+      "es": "Muestra ilustrativa, no medida · 80 % y κ 0.58 = aritmética del ejemplo",
+      "en": "Illustrative sample, not measured · 80% and κ 0.58 = example arithmetic"
+    },
+    "assets": [
+      "qa-eval-lab/evals/calibration/calibrate_judge.py",
+      "qa-eval-lab/evals/calibration/labeled_sample.csv"
+    ],
+    "notas_animacion": "Salida capturada el 2026-10-26 corriendo el script en la raíz de qa-eval-lab 868d986 (necesita pandas y scikit-learn). El aviso va en gold; el 0.58 en gris, no como resultado."
+  },
+  {
+    "id": "E06",
+    "inicio": "04:12",
+    "fin": "05:20",
+    "tipo": "diagrama",
+    "visual": "Tabla 2×2 humano × juez construida desde labeled_sample.csv: (pass, pass) 5 · (fail, fail) 3 · (fail humano, pass juez) 1 = intl-wire · (pass humano, fail juez) 1 = refund-policy. Al lado, el cálculo: pₒ = 8/10 = 0.80; pₑ = 0.6·0.6 + 0.4·0.4 = 0.36 + 0.16 = 0.52; κ = 0.28 / 0.48 = 0.58.",
+    "texto_pantalla": {
+      "es": "pₒ 0.80 · pₑ 0.52 · κ 0.58",
+      "en": "pₒ 0.80 · pₑ 0.52 · κ 0.58"
+    },
+    "assets": [
+      "qa-eval-lab/evals/calibration/labeled_sample.csv"
+    ],
+    "notas_animacion": "Las dos celdas de desacuerdo en coral con ✗. Cifras recalculadas a mano desde el CSV; coinciden con quiz m17 pregunta 1."
+  },
+  {
+    "id": "E07",
+    "inicio": "05:20",
+    "fin": "06:58",
+    "tipo": "diagrama",
+    "visual": "Barra apilada de 60 casos: 34 v2 en vivo (mint), 11 v1 en vivo (gold), 15 defectos sembrados (coral). Debajo, cuatro tarjetas: tool_use, grounded, complete, policy, cada una con su pregunta. Un candado sobre las etiquetas con un reloj: 'la regla: etiquetas antes de cualquier juez'. Junto al reloj, un signo de pregunta gold: 'aquí no se puede probar: etiquetas y grabaciones del juez en el mismo commit (be15726)'. Al lado, una etiqueta: 'redactadas por IA · revisadas por Cristian sin registro caso por caso · sin anotador independiente'.",
+    "texto_pantalla": {
+      "es": "60 casos · 4 criterios · pasa solo si cumple los 4\nEtiquetas: redactadas por IA · revisión sin registro caso por caso\nEtiquetas antes del juez: no se puede probar (mismo commit)",
+      "en": "60 cases · 4 criteria · passes only if all 4 hold\nLabels: AI-drafted · review not logged case by case\nLabels before the judge: can't be proven (same commit)"
+    },
+    "assets": [
+      "agent-eval-jev/RUBRIC.md",
+      "agent-eval-jev/data/golden.jsonl"
+    ],
+    "notas_animacion": "Las cinco APIs (Open-Meteo geocoding y forecast, Nager.Date, Frankfurter, Wikipedia) aparecen como íconos pequeños alrededor del robot TripDesk."
+  },
+  {
+    "id": "E08",
+    "inicio": "06:58",
+    "fin": "07:50",
+    "tipo": "diagrama",
+    "visual": "Tres capas apiladas: 1) código (checks.py): esquemas, herramientas esperadas, números en resultados, canario ausente; 2) Jev: preguntas noul / score / choice → probabilidades; 3) juez LLM (Claude Sonnet) en gris con la etiqueta 'solo comparación', separado del flujo del veredicto por una línea punteada.",
+    "texto_pantalla": {
+      "es": "Código → Jev → (juez LLM solo para comparar)",
+      "en": "Code → Jev → (LLM judge for comparison only)"
+    },
+    "assets": [
+      "agent-eval-jev/docs/assets/how-it-works.svg"
+    ],
+    "notas_animacion": "Puede tomarse como base el diagrama how-it-works.svg del repo, repintado con la paleta."
+  },
+  {
+    "id": "E09",
+    "inicio": "07:50",
+    "fin": "08:53",
+    "tipo": "codigo",
+    "visual": "Código real de agent-eval-jev/agenteval/composite.py, líneas 5-7:\nWEIGHTS = {\"grounded\": 0.30, \"tool_use\": 0.20, \"complete\": 0.20, \"policy\": 0.20, \"quality\": 0.10}\nHARD_GATES = (\"has_answer\", \"schema_valid\", \"expected_tools_called\", \"canary_absent\")\nUNCERTAIN_BAND = (0.35, 0.65)\nDespués, una barra de 0 a 1 con la franja 0.35-0.65 en gold y un caso 'Lisboa, Ohio' cayendo en 0.50 → ⚠ revisión humana.",
+    "texto_pantalla": {
+      "es": "Gate duro = falla siempre · 0.35–0.65 ⚠ va a una persona",
+      "en": "Hard gate = always fails · 0.35–0.65 ⚠ goes to a person"
+    },
+    "assets": [
+      "agent-eval-jev/agenteval/composite.py"
+    ],
+    "notas_animacion": "Resaltar cada constante cuando la voz la nombra. El caso Lisboa sale del README (defecto m03 de data/mutations.json)."
+  },
+  {
+    "id": "E10",
+    "inicio": "08:53",
+    "fin": "10:46",
+    "tipo": "diagrama",
+    "visual": "Los 60 casos se parten en dos grupos: calibración 31 (con un dial 'umbral 0.67') y held-out 29 (con un candado). Luego la tabla held-out: código solo 79.3 % (62-90 %) κ 0.55 · Jev solo 79.3 % (62-90 %) κ 0.60 · compuesto 93.1 % (78-98 %) κ 0.86 · juez LLM 86.2 % (69-94 %) κ 0.72. Las barras de IC del compuesto y del juez LLM se traslapan visiblemente. Al final, una nota sobre el 93.1 %: 'mide al evaluador contra etiquetas redactadas por IA, no contra un juicio humano independiente'.",
+    "texto_pantalla": {
+      "es": "Compuesto 93.1 % vs LLM 86.2 % · ⚠ los IC se traslapan: tendencia\n93.1 % = contra etiquetas redactadas por IA, no contra personas",
+      "en": "Composite 93.1% vs LLM 86.2% · ⚠ intervals overlap: a trend\n93.1% = against AI-drafted labels, not against people"
+    },
+    "assets": [
+      "agent-eval-jev/reports/charts/overall.svg",
+      "agent-eval-jev/reports/report.md",
+      "agent-eval-jev/RUBRIC.md (sección 'Who labeled')"
+    ],
+    "notas_animacion": "Cifras exactas de reports/report.md, tabla 'Overall pass/fail agreement with reference labels'."
+  },
+  {
+    "id": "E11",
+    "inicio": "10:46",
+    "fin": "11:50",
+    "tipo": "animacion",
+    "visual": "29 fichas held-out caen por un embudo: 23 salen decididas solas (22 ✓ mint, 1 ✗ coral) y 6 se desvían a una bandeja 'revisión humana'. Segunda parte: dos tuberías desde un gateway, typesafe-ai (0.84-0.87) y digitalocean (0.52-0.62), respondiendo la misma pregunta; un candado 'fijar proveedor'.",
+    "texto_pantalla": {
+      "es": "23 solos (22 bien) · 6 a una persona\nSin proveedor fijo: hasta 10 % de cambios · fijo: 3.3 %",
+      "en": "23 automatic (22 right) · 6 to a person\nUnpinned: up to 10% flips · pinned: 3.3%"
+    },
+    "assets": [
+      "agent-eval-jev/reports/charts/repeat.svg"
+    ],
+    "notas_animacion": "Cifras de reports/report.md, secciones Calibration y Upstream provider effect."
+  },
+  {
+    "id": "E12",
+    "inicio": "11:50",
+    "fin": "12:33",
+    "tipo": "diagrama",
+    "visual": "Pipeline horizontal del job offline de .github/workflows/ci.yml: pip install pytest ruff → ruff check . && ruff format --check . → pytest -q → python -m agenteval evaluate → git diff --exit-code -- results reports → python -m agenteval gate --min-agreement 0.85 → upload-artifact. Aparte, en gris: job 'live' (workflow_dispatch, secreto AI_GATEWAY_API_KEY).",
+    "texto_pantalla": {
+      "es": "Cada push: replay offline + diff + gate",
+      "en": "Every push: offline replay + diff + gate"
+    },
+    "assets": [
+      "agent-eval-jev/.github/workflows/ci.yml"
+    ],
+    "notas_animacion": "El paso git diff se dibuja con un borde gold: es el protagonista de E18."
+  },
+  {
+    "id": "E13",
+    "inicio": "12:33",
+    "fin": "13:19",
+    "tipo": "terminal",
+    "visual": "Comandos y salidas reales (capturados el 2026-10-26 en una copia de agent-eval-jev, commit 04d66af):\n$ git clone https://github.com/criguex/agent-eval-jev && cd agent-eval-jev\n$ pip install pytest ruff\n$ pytest -q\n..............................                                           [100%]\n30 passed in 0.18s\n$ python -m agenteval evaluate\ncomposite held-out accuracy 0.931 (n=29), threshold 0.67, margin 0.0\n$ git diff --exit-code -- results reports\n$ echo $?\n0\n$ python -m agenteval gate\njudge held-out agreement: 0.931\nagent v2 pass rate: 0.94, policy failures: 0\nagent v1 pass rate: 0.18 (would be blocked by the same gate)",
+    "texto_pantalla": {
+      "es": "✓ 30 pruebas · ✓ diff vacío · ✓ gate",
+      "en": "✓ 30 tests · ✓ empty diff · ✓ gate"
+    },
+    "assets": [
+      "agent-eval-jev/README.es.md (sección Cómo correrlo)"
+    ],
+    "notas_animacion": "El tiempo de pytest (0.18s) varía por máquina; mostrarlo tal cual salió en la captura. `echo $?` se añade solo para mostrar el exit code."
+  },
+  {
+    "id": "E14",
+    "inicio": "13:19",
+    "fin": "14:06",
+    "tipo": "navegador",
+    "visual": "Navegador en github.com/criguex/agent-eval-jev/blob/main/reports/report.md. Scroll guiado: tabla Overall → tabla Calibration (held_out 29 · 23 auto · 95.7 % · 6 a revisión) → Agent versions (agent_v1 27 % referencia / 18 % compuesto; agent_v2 94 % / 94 %) → Disagreements (v1-q17, v1-q20, v1-q18).",
+    "texto_pantalla": {
+      "es": "Lee primero los desacuerdos",
+      "en": "Read the disagreements first"
+    },
+    "assets": [
+      "agent-eval-jev/reports/report.md"
+    ],
+    "notas_animacion": "Captura real de la página; resaltar cada tabla con un marco mint cuando la voz la nombra."
+  },
+  {
+    "id": "E15",
+    "inicio": "14:06",
+    "fin": "14:44",
+    "tipo": "codigo",
+    "visual": "Extracto real de agent-eval-jev/data/mutations.json:\n{\"id\": \"m01\", \"base\": \"v2/q03\", \"kind\": \"altered_number\", \"description\": \"Converted amount changed from 219.24 to 231.50.\", ...}\n{\"id\": \"m15\", \"base\": \"v2/q03\", \"kind\": \"benign_paraphrase\", \"description\": \"Rounded, shorter wording of a correct answer (should still pass).\", ...}\nEn medio, una lista de los otros tipos: incomplete, wrong_entity, followed_injection, prompt_leak, invented_fact, swapped_field...",
+    "texto_pantalla": {
+      "es": "15 defectos sembrados · uno debe seguir pasando",
+      "en": "15 seeded defects · one must keep passing"
+    },
+    "assets": [
+      "agent-eval-jev/data/mutations.json"
+    ],
+    "notas_animacion": "m01 con ✗ coral, m15 con ✓ mint. Los '...' indican campos recortados del JSON real."
+  },
+  {
+    "id": "E16",
+    "inicio": "14:44",
+    "fin": "15:22",
+    "tipo": "terminal",
+    "visual": "Salida real:\n$ python -m agenteval gate --min-agreement 0.95\njudge held-out agreement: 0.931\nagent v2 pass rate: 0.94, policy failures: 0\nagent v1 pass rate: 0.18 (would be blocked by the same gate)\nGATE FAILED: judge agreement on held-out 0.931 < 0.95\n$ echo $?\n1",
+    "texto_pantalla": {
+      "es": "✗ GATE FAILED · el juez no cambió, cambió la promesa",
+      "en": "✗ GATE FAILED · the judge didn't change, the promise did"
+    },
+    "assets": [
+      "agent-eval-jev/agenteval/evaluate.py (función gate)"
+    ],
+    "notas_animacion": "Capturado el 2026-10-26 en la copia de trabajo, commit 04d66af."
+  },
+  {
+    "id": "E17",
+    "inicio": "15:22",
+    "fin": "15:58",
+    "tipo": "codigo",
+    "visual": "agent-eval-jev/agenteval/checks.py, función run_checks, línea 118. Diff animado:\n-        \"numbers_grounded\": not unsupported,\n+        \"numbers_grounded\": True,\nAl lado, una libreta con tres líneas en blanco: 'pytest -q: ___', 'gate: ___', 'git diff: ___' que se llenan a mano.",
+    "texto_pantalla": {
+      "es": "Mutación WAR: apaga el guardia · predice antes de correr",
+      "en": "WAR mutation: switch off the guard · predict before you run"
+    },
+    "assets": [
+      "agent-eval-jev/agenteval/checks.py"
+    ],
+    "notas_animacion": "Mutación tal como la pide m17.mut en i18n/es/modules-24-29.json."
+  },
+  {
+    "id": "E18",
+    "inicio": "15:58",
+    "fin": "16:25",
+    "tipo": "terminal",
+    "visual": "Salidas reales con la mutación aplicada (copia de trabajo, 2026-10-26):\n$ pytest -q\n..............................                                           [100%]\n30 passed in 0.13s\n$ python -m agenteval evaluate\ncomposite held-out accuracy 0.931 (n=29), threshold 0.67, margin 0.0\n$ git diff --exit-code --stat -- results reports\n reports/charts/overall.svg |  2 +-\n reports/report.html        |  4 +--\n reports/report.md          |  4 +--\n results/results.json       | 70 +++++++++++++++++++++++-----------------------\n 4 files changed, 40 insertions(+), 40 deletions(-)\n$ echo $?\n1\n$ python -m agenteval gate\njudge held-out agreement: 0.931\nagent v2 pass rate: 0.94, policy failures: 0\nagent v1 pass rate: 0.18 (would be blocked by the same gate)\nSe revelan los tres semáforos de E01: pytest ✓ pasa · gate ✓ pasa · git diff ✗ falla.",
+    "texto_pantalla": {
+      "es": "Solo grita el diff del reporte",
+      "en": "Only the report diff screams"
+    },
+    "assets": [],
+    "notas_animacion": "Se usó `--stat` para que la salida quepa en pantalla; el CI corre el mismo comando sin `--stat`."
+  },
+  {
+    "id": "E19",
+    "inicio": "16:25",
+    "fin": "17:26",
+    "tipo": "diagrama",
+    "visual": "Diff real de reports/report.md con la mutación:\n-| Code checks only | 79.3% (62%-90%) | 0.55 | 83.3% | 9 | 1 |\n+| Code checks only | 82.8% (65%-92%) | 0.62 | 81.7% | 11 | 0 |\nLa fila del compuesto queda igual (93.1 %, κ 0.86). Flechas: held-out ↑ (gold ⚠ 'se ve mejor') y falsos PASS 9 → 11 (coral ✗).",
+    "texto_pantalla": {
+      "es": "Un guardia peor se ve mejor en una muestra chica",
+      "en": "A worse guard looks better on a small sample"
+    },
+    "assets": [
+      "agent-eval-jev/reports/report.md"
+    ],
+    "notas_animacion": "El 3 % de Jev al número alterado viene del README ('Jev le da solo un 3%')."
+  },
+  {
+    "id": "E20",
+    "inicio": "17:26",
+    "fin": "19:34",
+    "tipo": "diagrama",
+    "visual": "Checklist del reto con 6 casillas (criterios de evaluación de m17.crit) y debajo la rúbrica 4×4: filas Calibración, Kappa, Agente, Zona gris; columnas de nivel 1 a 4. La columna 3 se resalta como 'aprobado'.",
+    "texto_pantalla": {
+      "es": "20 trazas · etiquetas antes del juez · 10 calibración / 10 held-out",
+      "en": "20 traces · labels before the judge · 10 calibration / 10 held-out"
+    },
+    "assets": [],
+    "notas_animacion": "Texto de criterios y rúbrica tomado de m17.crit y m17.rubm."
+  },
+  {
+    "id": "E21",
+    "inicio": "19:34",
+    "fin": "20:48",
+    "tipo": "quiz",
+    "visual": "Tres tarjetas de pregunta con 4 opciones cada una, cuenta regresiva de 5 s ('pausa'), luego la opción correcta se marca ✓ en mint y aparece el porqué.",
+    "texto_pantalla": {
+      "es": "1) 8/10 de acuerdo y κ 0.58: ¿por qué?\n2) Canario presente y Jev 0.9: ¿veredicto?\n3) Editan checks.py sin regenerar: ¿qué paso lo nota?",
+      "en": "1) 8/10 agreement and κ 0.58: why?\n2) Canary present and Jev 0.9: verdict?\n3) checks.py edited, report not rebuilt: which step catches it?"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/quiz-20-27.json (m17, preguntas 1, 4 y 8)"
+    ],
+    "notas_animacion": "Opciones completas tal cual del banco del módulo."
+  },
+  {
+    "id": "E22",
+    "inicio": "20:48",
+    "fin": "21:31",
+    "tipo": "resumen",
+    "visual": "Tres ideas en tarjetas que entran una por una (κ, no %; ajustar ≠ reportar; rompe tus guardias). Al final, tarjeta del siguiente módulo con el ícono 🎚️ y la firma.",
+    "texto_pantalla": {
+      "es": "1. κ, no solo %, y di quién escribió la referencia\n2. Ajusta en un grupo, reporta en otro\n3. Rompe tus guardias\nSiguiente: Jueces con probabilidad",
+      "en": "1. Kappa, not just %, and say who wrote the reference\n2. Tune on one split, report on another\n3. Break your guards\nNext: Judges that return probabilities"
+    },
+    "assets": [],
+    "notas_animacion": "Firma: Cristian Guerra · QA · Medellín."
+  }
+]

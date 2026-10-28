@@ -1,0 +1,395 @@
+[
+  {
+    "id": "E01",
+    "inicio": "00:00",
+    "fin": "00:38",
+    "tipo": "titulo",
+    "visual": "Fondo navy con rejilla. Un cubo de fluido animado (flechas mint girando). Sobre él aparece una tarjeta coral: «P0 · solver exacto · ✗ marcado por D2». Contador que sube de 0 a 21 sobre «de 210 pasos».",
+    "texto_pantalla": {
+      "es": "✗ El solver exacto, marcado 21 de 210 veces",
+      "en": "✗ The exact solver, flagged 21 times out of 210"
+    },
+    "assets": [
+      "predictor-debugger/RESULTS.md (sección Out of distribution)"
+    ],
+    "notas_animacion": "El cubo es decorativo; el número 21/210 entra con un golpe seco. Firma abajo a la izquierda: Cristian Guerra · QA · Medellín."
+  },
+  {
+    "id": "E02",
+    "inicio": "00:38",
+    "fin": "01:18",
+    "tipo": "animacion",
+    "visual": "Dos columnas. Izquierda: «la red P2» con un sello coral «✗ 100 % de pasos marcados». Derecha: un gráfico de dispersión D3 contra D4 sin forma, con la etiqueta «ρ = −0,185». Luego una balanza gold con «¿diferencia o ruido?».",
+    "texto_pantalla": {
+      "es": "✗ La red falla en todos los pasos · ⚠ pero D3 no dice cuáles son peores (ρ = −0,185)",
+      "en": "✗ The network fails every step · ⚠ but D3 can't tell which steps are worse (ρ = −0.185)"
+    },
+    "assets": [
+      "predictor-debugger/RESULTS.md (E1, test split)"
+    ],
+    "notas_animacion": "Los puntos del gráfico son ilustrativos (nube sin tendencia); el valor de ρ es el real de la semilla 0."
+  },
+  {
+    "id": "E03",
+    "inicio": "01:18",
+    "fin": "02:05",
+    "tipo": "analogia",
+    "visual": "Ilustración simple: un globo de agua que no se deja apretar (se deforma pero no se achica), una pelota que rueda y se va frenando, y un árbitro con tres tarjetas mint con las letras D1, D2 y D3. El árbitro levanta D1 cuando alguien aprieta el globo y D2 cuando la pelota acelera sola.",
+    "texto_pantalla": {
+      "es": "El agua no se deja apretar · La energía no aparece de la nada · El árbitro conoce el reglamento",
+      "en": "Water won't be squeezed · Energy doesn't come from nowhere · The referee knows the rules"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/modules-30-35.json (m25.kid)"
+    ],
+    "notas_animacion": "Personajes en SVG plano, paleta de marca. Cada regla entra con su tarjeta y su símbolo: ✓ cuando se respeta, ✗ cuando no."
+  },
+  {
+    "id": "E04",
+    "inicio": "02:05",
+    "fin": "02:50",
+    "tipo": "diagrama",
+    "visual": "Diagrama de la caja periódica 32³ con el par (u₀ → u₁) y una flecha «Δ = 0,1 = 10 pasos de 0,01». Debajo, tres tarjetas deep: D1 incompresibilidad ‖div u₁‖/‖∇u₁‖ · D2 balance de energía · D3 residuo de momento.",
+    "texto_pantalla": {
+      "es": "Caja periódica 32³ · ν = 0,05 · Δ = 0,1 · D1 div u = 0 · D2 energía · D3 momento",
+      "en": "32³ periodic box · ν = 0.05 · Δ = 0.1 · D1 div u = 0 · D2 energy · D3 momentum"
+    },
+    "assets": [
+      "predictor-debugger/DESIGN.md (System",
+      "Debugger checks)"
+    ],
+    "notas_animacion": "Las fórmulas aparecen una por una, con la palabra antes que el símbolo."
+  },
+  {
+    "id": "E05",
+    "inicio": "02:50",
+    "fin": "03:37",
+    "tipo": "diagrama",
+    "visual": "Curva de energía cinética E(t) que baja; el área bajo «2ν·enstrofía» se rellena en mint. Aparece la regla dura en gold: «si E(u₁) > E(u₀) → ✗». Luego la tarjeta D3: «(u₁ − u₀)/Δ contra ½ (N(u₀) + N(u₁))».",
+    "texto_pantalla": {
+      "es": "D2 · la energía solo baja por viscosidad · regla dura: E₁ > E₀ es ✗ · D3 · residuo de Navier–Stokes",
+      "en": "D2 · energy only drops through viscosity · hard rule: E₁ > E₀ is ✗ · D3 · Navier–Stokes residual"
+    },
+    "assets": [
+      "predictor-debugger/DESIGN.md (Debugger checks",
+      "amendment 5, Checks)",
+      "predictor-debugger/pd/checks.py"
+    ],
+    "notas_animacion": "El trapecio de D2 se dibuja como dos barras en los extremos del paso."
+  },
+  {
+    "id": "E06",
+    "inicio": "03:37",
+    "fin": "04:20",
+    "tipo": "diagrama",
+    "visual": "Dos niveles. Arriba, el depurador (D1, D2, D3) mirando la predicción sin referencia. Abajo, separado por una línea gold, D4 con una lupa comparando u₁ contra u₁ de referencia y una etiqueta «solo para juzgar al depurador».",
+    "texto_pantalla": {
+      "es": "D4 = error contra la referencia · ⚠ no es un chequeo del depurador",
+      "en": "D4 = error against the reference · ⚠ not a debugger check"
+    },
+    "assets": [
+      "predictor-debugger/DESIGN.md (Debugger checks, fila D4)"
+    ],
+    "notas_animacion": "La línea gold separa lo que existe en uso real (arriba) de lo que solo existe en el experimento (abajo)."
+  },
+  {
+    "id": "E07",
+    "inicio": "04:20",
+    "fin": "05:04",
+    "tipo": "diagrama",
+    "visual": "Seis tarjetas en fila: P0 (✓ debe pasar), P0f32 (✓ debe pasar), P1 persistencia (✗ debe fallar en D3), P2 la FNO (bajo estudio), P3a gradiente (✗ debe fallar en D1), P3b ×1,05 (✗ debe fallar en D2).",
+    "texto_pantalla": {
+      "es": "P0 exacto · P0f32 redondeado · P1 persistencia · P2 FNO · P3a rompe div u · P3b inyecta energía",
+      "en": "P0 exact · P0f32 rounded · P1 persistence · P2 FNO · P3a breaks div u · P3b injects energy"
+    },
+    "assets": [
+      "predictor-debugger/DESIGN.md (Predictors",
+      "amendment 1)"
+    ],
+    "notas_animacion": "Cada tarjeta lleva su veredicto esperado con símbolo y palabra."
+  },
+  {
+    "id": "E08",
+    "inicio": "05:04",
+    "fin": "05:52",
+    "tipo": "diagrama",
+    "visual": "Tabla animada con los umbrales: τ D1 8,32e-7 · τ D2 3,31e-3 · τ D3 8,35e-2. Debajo, la fila de hipótesis H1, H1b, H2, H3, H4 llenándose con «0/400 ✓» y «400/400 ✓». Al final, la frase «se prueba al depurador, no a la red».",
+    "texto_pantalla": {
+      "es": "τ = 10 × máximo de P0 y P0f32 en validación · H1–H4 ✓ en las tres máquinas · huella EEC9-09E0-F77D",
+      "en": "τ = 10 × the validation max of P0 and P0f32 · H1–H4 ✓ on all three machines · fingerprint EEC9-09E0-F77D"
+    },
+    "assets": [
+      "predictor-debugger/DESIGN.md (Threshold rule)",
+      "predictor-debugger/RESULTS.md (Pre-registered hypotheses)",
+      "predictor-debugger/thresholds.json"
+    ],
+    "notas_animacion": "Los números entran en monoespaciada. La huella se resalta en mint."
+  },
+  {
+    "id": "E09",
+    "inicio": "05:52",
+    "fin": "06:36",
+    "tipo": "diagrama",
+    "visual": "Dos carriles. Arriba «one-step»: en cada paso la red recibe el estado de referencia (flechas mint desde la verdad). Abajo «rollout»: la red recibe su propia salida anterior; una sombra coral se va abriendo. Barra de D4 que sube de 1,05 % a 4,8 % mientras D1 y D3 se quedan planos.",
+    "texto_pantalla": {
+      "es": "One-step: arranca de la verdad · Rollout: usa sus propias respuestas · D4 1,05 % → 4,8 % en 10 pasos",
+      "en": "One-step: starts from the truth · Rollout: feeds on its own answers · D4 1.05% → 4.8% over 10 steps"
+    },
+    "assets": [
+      "predictor-debugger/DESIGN.md (amendment 4)",
+      "predictor-debugger/RESULTS.md (E2)"
+    ],
+    "notas_animacion": "La sombra coral representa el error acumulado; las barras de D1 y D3 no se mueven."
+  },
+  {
+    "id": "E10",
+    "inicio": "06:36",
+    "fin": "07:23",
+    "tipo": "diagrama",
+    "visual": "Tarjeta coral «Ronda 3 · H14 ✗ FALLA» con el valor 0,635 de P2gbest bajo la línea del 0,7. Al lado, tarjeta mint «Ronda 4 · H17 ✓ pasa en las cuatro redes».",
+    "texto_pantalla": {
+      "es": "Ronda 3 · H14 ✗ sumar tamaños no ordenó el error · Ronda 4 · H17 ✓ transportar la dirección sí",
+      "en": "Round 3 · H14 ✗ adding up sizes didn't rank the error · Round 4 · H17 ✓ carrying the direction did"
+    },
+    "assets": [
+      "predictor-debugger/README.md (Rondas)",
+      "predictor-debugger/round3/RESULTS.md (H14)",
+      "predictor-debugger/round4/RESULTS.md (H17)"
+    ],
+    "notas_animacion": "El ✗ de H14 se queda visible en pantalla hasta el final del bloque: es una hipótesis fallida publicada."
+  },
+  {
+    "id": "E11",
+    "inicio": "07:23",
+    "fin": "08:09",
+    "tipo": "diagrama",
+    "visual": "Dos filas de pasos ordenadas por D3 y por D4, con líneas que conectan los rangos. Cuando las líneas se cruzan sin patrón, aparece «ρ ≈ 0». Cuando son paralelas, «ρ ≈ 1».",
+    "texto_pantalla": {
+      "es": "Spearman = ¿se ordenan igual? · rangos, no valores",
+      "en": "Spearman = do they rank the same? · ranks, not values"
+    },
+    "assets": [
+      "predictor-debugger/DESIGN.md (amendment 5, Spearman ρ)",
+      "SciPy spearmanr"
+    ],
+    "notas_animacion": "Mostrar primero los valores y luego reemplazarlos por su posición (1.º, 2.º, 3.º…)."
+  },
+  {
+    "id": "E12",
+    "inicio": "08:09",
+    "fin": "08:54",
+    "tipo": "diagrama",
+    "visual": "Cuarenta racimos de diez puntos (trayectorias). Primero se remuestrean puntos sueltos: el intervalo sale angosto. Luego se remuestrean racimos completos: el intervalo se abre. Al final, una barra con «27/29 = 93,1 % · Wilson 78–98 %».",
+    "texto_pantalla": {
+      "es": "Remuestrea la unidad independiente: trayectorias, no pasos · 27/29 = 93,1 % (Wilson 78–98 %)",
+      "en": "Resample the independent unit: trajectories, not steps · 27/29 = 93.1% (Wilson 78–98%)"
+    },
+    "assets": [
+      "predictor-debugger/round3/RESULTS.md (IC = bootstrap por trayectoria)",
+      "agent-eval-jev/README.es.md",
+      "agent-eval-jev/agenteval/metrics.py"
+    ],
+    "notas_animacion": "El intervalo angosto se dibuja en coral con la palabra «engañoso»."
+  },
+  {
+    "id": "E13",
+    "inicio": "08:54",
+    "fin": "09:37",
+    "tipo": "terminal",
+    "visual": "Terminal deep con prompt mint. Se escriben los comandos y aparece la salida real línea por línea; la huella se resalta en mint.",
+    "texto_pantalla": {
+      "es": "$ git clone https://github.com/criguex/predictor-debugger.git && cd predictor-debugger\n$ uv run --locked verify.py --saved linux\npredictor-debugger verify · Linux x86_64 · Python 3.9.25 · numpy 1.26.4\n  H1   P0     any     0/400  share <= 0.05   PASS\n  H1b  P0f32  any     0/400  share <= 0.05   PASS\n  H2   P3a    D1    400/400  share >= 0.95   PASS\n  H3   P3b    D2    400/400  share >= 0.95   PASS\n  H4   P1     D3    400/400  share >= 0.95   PASS\n  verdicts equal to saved results/linux/verdicts.json: True\n  fingerprint: EEC9-09E0-F77D",
+      "en": "$ git clone https://github.com/criguex/predictor-debugger.git && cd predictor-debugger\n$ uv run --locked verify.py --saved linux\npredictor-debugger verify · Linux x86_64 · Python 3.9.25 · numpy 1.26.4\n  H1   P0     any     0/400  share <= 0.05   PASS\n  H1b  P0f32  any     0/400  share <= 0.05   PASS\n  H2   P3a    D1    400/400  share >= 0.95   PASS\n  H3   P3b    D2    400/400  share >= 0.95   PASS\n  H4   P1     D3    400/400  share >= 0.95   PASS\n  verdicts equal to saved results/linux/verdicts.json: True\n  fingerprint: EEC9-09E0-F77D"
+    },
+    "assets": [
+      "predictor-debugger/README.md (Reproducir, nivel a)",
+      "salida: predictor-debugger/logs/linux/verify_saved.log"
+    ],
+    "notas_animacion": "Salida copiada tal cual del log. Rótulo de fuente en la esquina: logs/linux/verify_saved.log."
+  },
+  {
+    "id": "E14",
+    "inicio": "09:37",
+    "fin": "10:24",
+    "tipo": "codigo",
+    "visual": "Editor de código con pd/checks.py; se iluminan una por una las líneas de D1, D2 y D3 y luego la regla de energía dentro de flags().",
+    "texto_pantalla": {
+      "es": "# predictor-debugger/pd/checks.py\n\"D1\": norm(np.sum(flow.k * h1, axis=0)) / np.sqrt(np.sum(flow.k2 * np.abs(h1) ** 2)),\n\"D2\": abs(e1 - e0 + NU * DELTA * (z0 + z1)) / e0,\n\"D3\": norm((h1 - h0) / DELTA - 0.5 * (n0 + n1)) / norm(n0),\n\"D4\": norm(u1 - reference) / norm(reference),\n...\nout[\"D2\"] = out[\"D2\"] or not finite[\"E0\"] or not finite[\"E1\"] or stats[\"E1\"] > stats[\"E0\"]",
+      "en": "# predictor-debugger/pd/checks.py\n\"D1\": norm(np.sum(flow.k * h1, axis=0)) / np.sqrt(np.sum(flow.k2 * np.abs(h1) ** 2)),\n\"D2\": abs(e1 - e0 + NU * DELTA * (z0 + z1)) / e0,\n\"D3\": norm((h1 - h0) / DELTA - 0.5 * (n0 + n1)) / norm(n0),\n\"D4\": norm(u1 - reference) / norm(reference),\n...\nout[\"D2\"] = out[\"D2\"] or not finite[\"E0\"] or not finite[\"E1\"] or stats[\"E1\"] > stats[\"E0\"]"
+    },
+    "assets": [
+      "predictor-debugger/pd/checks.py (statistics y flags)"
+    ],
+    "notas_animacion": "Líneas copiadas del archivo; los puntos suspensivos marcan líneas omitidas."
+  },
+  {
+    "id": "E15",
+    "inicio": "10:24",
+    "fin": "11:09",
+    "tipo": "terminal",
+    "visual": "Terminal: se crea predicciones.txt, se imprime su contenido y su hash. Un sello de hora aparece arriba a la derecha.",
+    "texto_pantalla": {
+      "es": "$ cat predicciones.txt\nexacto            ninguno\nenergia x1.05     D2 (seguro), D3 (probable)\ngradiente 5%      D1 (seguro), D3 (probable)\nfase corrida      D3 (solo D3)\n2026-10-26T20:57:23Z\n$ shasum -a 256 predicciones.txt\nb6a8f193335d081ee17eebc9d1cb9967f50e6f6258c26c93623251e434cdd210  predicciones.txt",
+      "en": "$ cat predicciones.txt\nexacto            ninguno\nenergia x1.05     D2 (seguro), D3 (probable)\ngradiente 5%      D1 (seguro), D3 (probable)\nfase corrida      D3 (solo D3)\n2026-10-26T20:57:23Z\n$ shasum -a 256 predicciones.txt\nb6a8f193335d081ee17eebc9d1cb9967f50e6f6258c26c93623251e434cdd210  predicciones.txt"
+    },
+    "assets": [
+      "Corrida del laboratorio del módulo en un clon de predictor-debugger@03223f7 (ver fuentes.md, «Corridas de laboratorio»)"
+    ],
+    "notas_animacion": "En la versión en inglés se subtitula la columna de predicciones; el archivo se deja en español porque es el que se corrió."
+  },
+  {
+    "id": "E16",
+    "inicio": "11:09",
+    "fin": "11:54",
+    "tipo": "terminal",
+    "visual": "Terminal con la salida real de sabotajes.py. Cada fila se colorea por su veredicto: «ninguno» en mint con ✓, las marcas en coral con ✗. La cifra D2 = 2,48e-03 del gradiente parpadea en gold.",
+    "texto_pantalla": {
+      "es": "$ uv run --locked python sabotajes.py\ntau {'D1': '8.32e-07', 'D2': '0.00331', 'D3': '0.0835'}\nexacto         D1=6.81e-16 D2=2.34e-04 D3=6.20e-03 D4=0.00e+00  marcado por: ninguno\nenergia x1.05  D1=6.99e-16 D2=9.72e-02 D3=5.34e-01 D4=5.00e-02  marcado por: D2, D3\ngradiente 5%   D1=6.11e-02 D2=2.48e-03 D3=5.21e-01 D4=5.00e-02  marcado por: D1, D3\nfase corrida   D1=6.80e-16 D2=2.34e-04 D3=3.99e+00 D4=3.71e-01  marcado por: D3",
+      "en": "$ uv run --locked python sabotajes.py\ntau {'D1': '8.32e-07', 'D2': '0.00331', 'D3': '0.0835'}\nexacto         D1=6.81e-16 D2=2.34e-04 D3=6.20e-03 D4=0.00e+00  marcado por: ninguno\nenergia x1.05  D1=6.99e-16 D2=9.72e-02 D3=5.34e-01 D4=5.00e-02  marcado por: D2, D3\ngradiente 5%   D1=6.11e-02 D2=2.48e-03 D3=5.21e-01 D4=5.00e-02  marcado por: D1, D3\nfase corrida   D1=6.80e-16 D2=2.34e-04 D3=3.99e+00 D4=3.71e-01  marcado por: D3"
+    },
+    "assets": [
+      "Script y salida en fuentes.md («Corridas de laboratorio · sabotajes.py»)",
+      "usa pd.checks.statistics, pd.checks.flags y thresholds.json del repo"
+    ],
+    "notas_animacion": "Salida copiada tal cual. Subtítulos EN: exacto = exact, energia = energy, gradiente = gradient, fase corrida = phase shift, marcado por = flagged by, ninguno = none."
+  },
+  {
+    "id": "E17",
+    "inicio": "11:54",
+    "fin": "12:38",
+    "tipo": "terminal",
+    "visual": "Terminal con dos intervalos dibujados como barras: la de pasos angosta en coral («engañoso»), la de trayectorias ancha en mint. Debajo, el cálculo de Wilson con la función del repo.",
+    "texto_pantalla": {
+      "es": "$ uv run --locked python bootstrap_demo.py\nmedia -0.172\nbootstrap por pasos        [-0.264; -0.081]  ancho 0.183\nbootstrap por trayectorias [-0.458; 0.111]  ancho 0.569\n$ python3 -c \"from agenteval.metrics import wilson_interval; print(wilson_interval(27, 29))\"\n(0.7803505240414808, 0.9808791359020055)",
+      "en": "$ uv run --locked python bootstrap_demo.py\nmedia -0.172\nbootstrap por pasos        [-0.264; -0.081]  ancho 0.183\nbootstrap por trayectorias [-0.458; 0.111]  ancho 0.569\n$ python3 -c \"from agenteval.metrics import wilson_interval; print(wilson_interval(27, 29))\"\n(0.7803505240414808, 0.9808791359020055)"
+    },
+    "assets": [
+      "bootstrap_demo.py en fuentes.md («Corridas de laboratorio»)",
+      "agent-eval-jev/agenteval/metrics.py (wilson_interval), corrido desde la raíz de agent-eval-jev@1a4e3b0"
+    ],
+    "notas_animacion": "Los datos del bootstrap son sintéticos (40 trayectorias × 10 pasos con un nivel propio por trayectoria); se dice en pantalla."
+  },
+  {
+    "id": "E18",
+    "inicio": "12:38",
+    "fin": "13:24",
+    "tipo": "terminal",
+    "visual": "Una perilla gold que baja la magnitud del sabotaje de energía: ×1,05 → ×1,01 → ×1,001 → ×1,0001. Cada paso deja una fila en la terminal real; las dos últimas quedan en coral con «escapa».",
+    "texto_pantalla": {
+      "es": "$ uv run --locked python piso.py\nenergia x1.0001  D2=4.23e-04 E1>E0=False  marcado=False\nenergia x1.001   D2=2.13e-03 E1>E0=False  marcado=False\nenergia x1.01    D2=1.92e-02 E1>E0=False  marcado=True\nenergia x1.05    D2=9.72e-02 E1>E0=False  marcado=True",
+      "en": "$ uv run --locked python piso.py\nenergia x1.0001  D2=4.23e-04 E1>E0=False  marcado=False\nenergia x1.001   D2=2.13e-03 E1>E0=False  marcado=False\nenergia x1.01    D2=1.92e-02 E1>E0=False  marcado=True\nenergia x1.05    D2=9.72e-02 E1>E0=False  marcado=True"
+    },
+    "assets": [
+      "piso.py en fuentes.md («Corridas de laboratorio»)",
+      "predictor-debugger/round3/RESULTS.md (Debilidad 1: el piso de sensibilidad)"
+    ],
+    "notas_animacion": "Subtítulo EN: marcado = flagged. Las filas marcado=False se pintan en coral con «✗ escapa», las True en mint con «✓ detectada»."
+  },
+  {
+    "id": "E19",
+    "inicio": "13:24",
+    "fin": "14:28",
+    "tipo": "diagrama",
+    "visual": "Escalera logarítmica de magnitudes con tres marcas: D2 de la ronda 1 (piso 3,2e-3), D2′ de la ronda 2 (3,2e-4) y D2″ de la ronda 3 (3,2e-6), en r3test. Un sello gold: «lo que queda debajo se reporta como no detectado».",
+    "texto_pantalla": {
+      "es": "Piso en distribución: D2 3,2e-3 · D2′ 3,2e-4 · D2″ 3,2e-6 · ⚠ lo de abajo se reporta, no se esconde",
+      "en": "In-distribution floor: D2 3.2e-3 · D2′ 3.2e-4 · D2″ 3.2e-6 · ⚠ what's below gets reported, not hidden"
+    },
+    "assets": [
+      "predictor-debugger/round3/RESULTS.md (tabla de pisos, fila r3test +)",
+      "predictor-debugger/round5/KIT.md (Lo que se va a reportar)"
+    ],
+    "notas_animacion": "Escala logarítmica con décadas marcadas en la rejilla."
+  },
+  {
+    "id": "E20",
+    "inicio": "14:28",
+    "fin": "15:12",
+    "tipo": "diagrama",
+    "visual": "Lista de chequeo animada con cuatro casillas que se marcan con ✓: predicciones antes de correr · D4 no es chequeo · Wilson 27/29 ≈ 78–98 % · conclusiones con intervalos.",
+    "texto_pantalla": {
+      "es": "Entregable: predicciones D1/D2/D3 verificadas + demo de bootstrap por clusters + Wilson recalculado",
+      "en": "Deliverable: D1/D2/D3 predictions, verified + cluster bootstrap demo + Wilson, recomputed"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/modules-30-35.json (m25.crit, m25.deliver)"
+    ],
+    "notas_animacion": "Cada casilla se marca cuando la voz la nombra."
+  },
+  {
+    "id": "E21",
+    "inicio": "15:12",
+    "fin": "15:51",
+    "tipo": "diagrama",
+    "visual": "Rúbrica de cuatro niveles como escalera: 1 No cumple · 2 En camino · 3 Aprobado · 4 Sobresaliente. El nivel 4 se ilumina con el extra del módulo.",
+    "texto_pantalla": {
+      "es": "Apruebas con quiz ≥ 6/8 y reto en nivel 3 · Nivel 4: «A es mejor que B» con intervalos por clusters en tu propio proyecto",
+      "en": "You pass with quiz ≥ 6/8 and the challenge at level 3 · Level 4: \"A beats B\" with cluster intervals on your own project"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/pages.json (eval, s02 y s05)",
+      "qa-automation-course/i18n/es/modules-30-35.json (m25.top)"
+    ],
+    "notas_animacion": "Escalera en paneles deep; el nivel 3 con borde mint, el 4 con borde gold."
+  },
+  {
+    "id": "E22",
+    "inicio": "15:51",
+    "fin": "16:20",
+    "tipo": "quiz",
+    "visual": "Tarjeta de pregunta con cuatro opciones; cuenta regresiva de 5 segundos en gold; luego se ilumina la correcta en mint con ✓ y la explicación.",
+    "texto_pantalla": {
+      "es": "¿Por qué D4 no es un chequeo del depurador? · A) Porque es lento · B) Porque compara contra la referencia exacta, que en uso real no existe · C) Porque falla siempre · D) Sí lo es → ✓ B",
+      "en": "Why isn't D4 a debugger check? · A) It's slow · B) It compares against the exact reference, which doesn't exist in real use · C) It always fails · D) It is one → ✓ B"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/quiz-28-35.json (m25, pregunta 3)"
+    ],
+    "notas_animacion": "Pausa de 5 s antes de revelar."
+  },
+  {
+    "id": "E23",
+    "inicio": "16:20",
+    "fin": "16:48",
+    "tipo": "quiz",
+    "visual": "Misma tarjeta de quiz, segunda pregunta.",
+    "texto_pantalla": {
+      "es": "¿Por qué bootstrap por trayectorias y no por pasos? · A) Es más rápido · B) Los pasos de una trayectoria dependen entre sí; remuestrear pasos da intervalos más estrechos y engañosos · C) Por moda · D) No hay diferencia → ✓ B",
+      "en": "Why bootstrap by trajectory and not by step? · A) It's faster · B) Steps in a trajectory depend on each other; resampling steps gives narrower, misleading intervals · C) It's trendy · D) There's no difference → ✓ B"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/quiz-28-35.json (m25, pregunta 7)"
+    ],
+    "notas_animacion": "Pausa de 5 s antes de revelar."
+  },
+  {
+    "id": "E24",
+    "inicio": "16:48",
+    "fin": "17:15",
+    "tipo": "quiz",
+    "visual": "Misma tarjeta de quiz, tercera pregunta.",
+    "texto_pantalla": {
+      "es": "27 aciertos de 29. ¿Cómo lo reportas? · A) 93 % · B) 93,1 % con intervalo de Wilson de 78–98 % · C) 100 % · D) Casi todo → ✓ B",
+      "en": "27 correct out of 29. How do you report it? · A) 93% · B) 93.1% with a Wilson interval of 78–98% · C) 100% · D) Nearly all → ✓ B"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/quiz-28-35.json (m25, pregunta 8)"
+    ],
+    "notas_animacion": "Pausa de 5 s antes de revelar."
+  },
+  {
+    "id": "E25",
+    "inicio": "17:15",
+    "fin": "18:00",
+    "tipo": "resumen",
+    "visual": "Tres tarjetas que entran una por una: «Cada chequeo vigila una ley» · «D4 juzga al juez» · «Intervalos, no puntos». Al final, la tarjeta del siguiente módulo y la firma.",
+    "texto_pantalla": {
+      "es": "1 · Cada chequeo vigila una ley · 2 · D4 juzga al juez, no decide · 3 · Intervalos con la unidad correcta · Siguiente: verificar una prueba formal sin ser matemático",
+      "en": "1 · Each check guards one law · 2 · D4 judges the judge, it doesn't decide · 3 · Intervals with the right unit · Next: checking a formal proof without being a mathematician"
+    },
+    "assets": [
+      "qa-automation-course/course.json (orden: m25 posición 31, m26 posición 32)"
+    ],
+    "notas_animacion": "Firma final: Cristian Guerra · QA · Medellín. Enlace al módulo en pantalla."
+  }
+]

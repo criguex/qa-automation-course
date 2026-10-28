@@ -1,0 +1,13 @@
+diff --git a/experiments/01-ai-verdict/fixtures/runs/pinned/run-1.json b/experiments/01-ai-verdict/fixtures/runs/pinned/run-1.json
+index 414f30a..58d1dd1 100644
+--- a/experiments/01-ai-verdict/fixtures/runs/pinned/run-1.json
++++ b/experiments/01-ai-verdict/fixtures/runs/pinned/run-1.json
+@@ -2,7 +2,7 @@
+   "story": "US-42",
+   "meta": { "model": "planner-agent@2026.06", "temperature": 0, "promptVersion": "test-plan@v3", "traceId": "tr_pin_0001" },
+   "scenarios": [
+-    { "id": "S-1", "title": "Editor creates a draft with title and owner", "actor": "editor", "action": "create", "covers": ["R-1"], "source": "US-42/R-1",
++    { "id": "S-1", "title": "Editor creates a draft with title and owner", "actor": "editor", "action": "create", "covers": ["R-1"], "source": "",
+       "steps": ["Sign in as editor", "POST /api/docs with title 'Q4 launch plan' and owner editor@demo.io"], "expected": { "status": 201 } },
+     { "id": "S-2", "title": "Approver approves a draft", "actor": "approver", "action": "approve", "covers": ["R-2"], "source": "US-42/R-2",
+       "steps": ["Editor creates a draft", "Sign in as approver", "POST /api/docs/:id/approve"], "expected": { "status": 200 } },

@@ -112,6 +112,10 @@ Three ways through it: the full route from zero (about 37 weeks at 10–12 h a w
 
 The 12-week route is on the [How you are graded](evaluacion.html) page.
 
+## Videos
+
+Every module also becomes animated videos in Spanish. The scripts (ES and EN), scenes, chart data and the real terminal outputs shown on screen are in [`videos/`](videos/README.md). Module 01 is live: [Mentalidad QA](https://youtu.be/s9gIMUDvWE0).
+
 ## Run it
 
 ```bash

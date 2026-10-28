@@ -1,0 +1,292 @@
+[
+  {
+    "id": "E01",
+    "inicio": "00:00",
+    "fin": "00:53",
+    "tipo": "terminal",
+    "visual": "Flujo dorado (login → crear → aprobar → publicar) todo en ✓. Luego la terminal imprime el marcador de mutantes: cinco KILLED en mint, self-grant en coral 'Mutation was accepted with HTTP 200' y viewer-create en coral 'Mutation was accepted with HTTP 201'. Un editor se pone una corona de admin.",
+    "texto_pantalla": {
+      "es": "Camino feliz ✓ · 5 KILLED · 2 SURVIVED: un editor se hace admin (200), un viewer crea (201)",
+      "en": "Happy path ✓ · 5 KILLED · 2 SURVIVED: an editor makes themself admin (200), a viewer creates (201)"
+    },
+    "assets": [
+      "war-paradigm/experiments/02-mutants/README.md §What you will see: ✓ golden: create → approve → publish · KILLED role-swap 403 · KILLED drop-input 422 · KILLED reorder 409 · KILLED stale-token 401 · KILLED boundary 422 · KNOWN SURVIVOR self-grant 'Mutation was accepted with HTTP 200.' · KNOWN SURVIVOR viewer-create 'Mutation was accepted with HTTP 201.' · '5/7 scored mutants killed · 2 survived · 0 excluded from score'",
+      "Comando: npm run demo:02 (war-paradigm/package.json → npm run test:mutants -w experiments/02-mutants)",
+      "war-paradigm/README.es.md §Por qué: 'Cuando el código y sus pruebas salen del mismo lugar, una corrida en verde demuestra menos de lo que parece.'"
+    ],
+    "notas_animacion": "La salida es la que documenta el README del experimento; rotular la fuente. Tiempos ES; los de EN están en guion.en.md."
+  },
+  {
+    "id": "E02",
+    "inicio": "00:53",
+    "fin": "01:14",
+    "tipo": "titulo",
+    "visual": "Tarjeta de título navy, icono de robot, firma.",
+    "texto_pantalla": {
+      "es": "Módulo 18 · QA aumentado con IA",
+      "en": "Module 18 · AI-augmented QA"
+    },
+    "assets": [
+      "course.json posición 18, id m11, ★★★★★, semana 20",
+      "Firma: Cristian Guerra · QA · Medellín"
+    ],
+    "notas_animacion": "4 a 6 s."
+  },
+  {
+    "id": "E03",
+    "inicio": "01:14",
+    "fin": "02:10",
+    "tipo": "analogia",
+    "visual": "Un ayudante robot entrega hojas de sumas en un segundo. Dos hojas: una bien y una mal, ambas con la misma cara sonriente del robot. Una niña revisa cada hoja con lápiz rojo antes de entregarla.",
+    "texto_pantalla": {
+      "es": "Rápido, pero se equivoca muy seguro · tú revisas · error escondido a propósito = mutante",
+      "en": "Fast, but confidently wrong · you check · a planted mistake = mutant"
+    },
+    "assets": [
+      "Analogía base: i18n/es/modules-15-23.json → m11.kid"
+    ],
+    "notas_animacion": "La hoja mal lleva ✗ solo cuando la niña la revisa. Tercera viñeta: la profe esconde un error en una hoja buena; si la niña lo encuentra aparece KILLED en mint, si no, SURVIVED en coral."
+  },
+  {
+    "id": "E04",
+    "inicio": "02:10",
+    "fin": "02:52",
+    "tipo": "diagrama",
+    "visual": "Tres roles conectados: IA directora (contexto + plan) → IA del IDE (ejecución pegada al código) → Tú (criterio, revisa cada diff). La flecha de vuelta del diff a 'Tú' en gold.",
+    "texto_pantalla": {
+      "es": "Directora planea · IDE ejecuta · tú decides",
+      "en": "Director plans · IDE executes · you decide"
+    },
+    "assets": [
+      "i18n/es/modules-15-23.json → m11.theory[0] y m11.theory[1]",
+      "i18n/es/quiz-11-19.json → m11[0]"
+    ],
+    "notas_animacion": "Nombres de herramientas como texto plano (Claude Code, Copilot, Cursor), sin logos."
+  },
+  {
+    "id": "E05",
+    "inicio": "02:52",
+    "fin": "03:37",
+    "tipo": "codigo",
+    "visual": "Árbol de archivos con .github/copilot-instructions.md resaltado y la etiqueta 'el CLAUDE.md del IDE'. Debajo, tres capas apiladas: CLAUDE.md (reglas), memoria persistente (hechos sobre ti), Obsidian (conocimiento).",
+    "texto_pantalla": {
+      "es": "Contexto antes que prompt · 3 capas de contexto",
+      "en": "Context before prompt · 3 layers of context"
+    },
+    "assets": [
+      "Documentación de GitHub Copilot: 'These are specified in a copilot-instructions.md file in the .github directory of the repository.' (https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions)",
+      "i18n/es/modules-15-23.json → m11.theory[2], [4] y [6]"
+    ],
+    "notas_animacion": "No mostrar contenido inventado dentro del archivo de instrucciones; solo su ruta."
+  },
+  {
+    "id": "E06",
+    "inicio": "03:37",
+    "fin": "05:12",
+    "tipo": "codigo",
+    "visual": "Árbol de la bóveda del experimento 03 y, al lado, la regla de oro 4 resaltada. Abajo, un verificador de enlaces que pone ✗ a un enlace roto.",
+    "texto_pantalla": {
+      "es": "No fue un mejor prompt: fue contexto escrito · regla 4: no inventar",
+      "en": "Not a better prompt: written context · rule 4: don't invent"
+    },
+    "assets": [
+      "war-paradigm/experiments/03-second-brain/README.md: Specimen ('Clean code, correct syntax, tests nothing that matters.') y árbol vault/ (00 - READ FIRST.md, Golden rules.md, 01 QA process/, 02 Workflows/, 03 Knowledge/, 04 Sessions/, 99 Templates/)",
+      "war-paradigm/experiments/03-second-brain/vault/Golden rules.md regla 4: 'Do not invent. No test data, roles, status codes or requirements that are not in 03 Knowledge/. ...'",
+      "war-paradigm/experiments/03-second-brain/README.md: 'Structure beats volume.' · 'One note, one question' · tests/vault-links.test.mjs"
+    ],
+    "notas_animacion": "Textos de la bóveda en inglés original con subtítulos."
+  },
+  {
+    "id": "E07",
+    "inicio": "05:12",
+    "fin": "06:38",
+    "tipo": "diagrama",
+    "visual": "Los cinco bloques del prompt como piezas de un tren; sobre cada vagón, el fragmento correspondiente del pedido real de la nota 'Design scenarios with AI'. Al final, 'mismo pedido × 3: si el veredicto cambia → hallazgo'.",
+    "texto_pantalla": {
+      "es": "Contexto · Insumo · Instrucción · Restricciones · Salida esperada",
+      "en": "Context · Input · Instruction · Constraints · Expected output"
+    },
+    "assets": [
+      "i18n/es/modules-15-23.json → m11.theory[3]; i18n/es/quiz-11-19.json → m11[3]",
+      "war-paradigm/experiments/03-second-brain/vault/02 Workflows/Design scenarios with AI.md §Before asking, §The ask ('Design scenarios for US-42 from its acceptance criteria. For every scenario give: id S-n, title, actor, action, expected status, steps, and the source US-42/R-n. ...') y §After the answer"
+    ],
+    "notas_animacion": "El mapeo del pedido a los 5 bloques es interpretación del guion; rotular 'leído con los 5 bloques'."
+  },
+  {
+    "id": "E08",
+    "inicio": "06:38",
+    "fin": "07:19",
+    "tipo": "diagrama",
+    "visual": "Tarjeta de receta con huecos <historia>, <contrato>, <rol> resaltados en gold; un cronómetro baja de 10 a 1 min. Al lado, un checklist enganchado a la receta.",
+    "texto_pantalla": {
+      "es": "Prompt pack = receta con huecos <…> + checklist de revisión",
+      "en": "Prompt pack = recipe with <…> gaps + review checklist"
+    },
+    "assets": [
+      "i18n/es/modules-15-23.json → m11.theory[5]; i18n/es/quiz-11-19.json → m11[4]"
+    ],
+    "notas_animacion": "Los huecos son ejemplos genéricos, no un pack real."
+  },
+  {
+    "id": "E09",
+    "inicio": "07:19",
+    "fin": "08:42",
+    "tipo": "diagrama",
+    "visual": "Un diff generado por IA con tres marcas gold: expect(true).toBe(true), un esquema que acepta cualquier cosa y un selector frágil. Luego una prueba contra POST /users/validate y el contrato al lado sin ese endpoint (✗ alucinación). Pie: reglas de oro 6 y 7.",
+    "texto_pantalla": {
+      "es": "Se equivoca con seguridad · aserciones débiles · esquemas relajados · selectores frágiles",
+      "en": "Confidently wrong · weak assertions · loose schemas · brittle selectors"
+    },
+    "assets": [
+      "i18n/es/quiz-11-19.json → m11[2], m11[5] (POST /users/validate) y m11[9] (tres vicios)",
+      "war-paradigm/experiments/03-second-brain/vault/Golden rules.md reglas 6 y 7"
+    ],
+    "notas_animacion": "El diff es ilustrativo, rotular 'ejemplo'."
+  },
+  {
+    "id": "E10",
+    "inicio": "08:42",
+    "fin": "09:30",
+    "tipo": "diagrama",
+    "visual": "Cuatro preguntas como un embudo; cuatro tareas caen por él: steps desde OpenAPI ✓ delegable, Page Object por convención ✓, formatear reporte ✓, decidir si un mismatch bloquea el release ✗ humano.",
+    "texto_pantalla": {
+      "es": "¿Mía? ¿Criterio de riesgo? ¿Irreversible? ¿Mecánico? → delegar o no",
+      "en": "Mine? Risk judgment? Irreversible? Mechanical? → delegate or not"
+    },
+    "assets": [
+      "i18n/es/modules-15-23.json → m11.theory[8]",
+      "i18n/es/quiz-11-19.json → m11[1] y m11[7]"
+    ],
+    "notas_animacion": "La tarea humana se marca con ⚠ y la palabra 'tú'."
+  },
+  {
+    "id": "E11",
+    "inicio": "09:30",
+    "fin": "11:18",
+    "tipo": "codigo",
+    "visual": "settings.json del experimento 03 y una terminal con los seis casos del README (tres BLOCKED en coral, tres allowed en mint). Contador '40 casos', con '6 límites conocidos' en gold.",
+    "texto_pantalla": {
+      "es": "Un prompt se ignora · un hook no se olvida · exit 2 = bloqueado",
+      "en": "A prompt gets ignored · a hook doesn't forget · exit 2 = blocked"
+    },
+    "assets": [
+      "war-paradigm/experiments/03-second-brain/.claude/settings.json: { \"hooks\": { \"PreToolUse\": [ { \"matcher\": \"Bash\", \"hooks\": [ { \"type\": \"command\", \"command\": \"\\\"$CLAUDE_PROJECT_DIR\\\"/hooks/block-push-to-main.sh\" } ] } ] } }",
+      "war-paradigm/experiments/03-second-brain/README.md: $ git push origin main ✘ BLOCKED (exit 2) · $ git push --force origin HEAD:main ✘ BLOCKED (exit 2) · $ npm test && git push origin master ✘ BLOCKED (exit 2) · $ git push origin feature/mutants ✓ allowed (exit 0) · $ git push -u origin feature/mutants ✓ allowed (exit 0) · $ git pull origin main ✓ allowed (exit 0)",
+      "Claude Code hooks (https://code.claude.com/docs/en/hooks): PreToolUse con exit 2 'Blocks the tool call'; el stderr acompaña el bloqueo",
+      "war-paradigm/README.es.md: '40 casos' y 'Seis límites conocidos'; Golden rules.md regla 5"
+    ],
+    "notas_animacion": "Los seis casos se muestran como los documenta el README (npm run demo del experimento)."
+  },
+  {
+    "id": "E12",
+    "inicio": "11:18",
+    "fin": "12:55",
+    "tipo": "terminal",
+    "visual": "Salida de npm run demo del experimento 01 en dos bloques: pinned (STABLE, mint) y unpinned (UNSTABLE, coral, con las dos advertencias gold). Zoom a 'run 3 REJECTED 76'. Etiqueta lateral: 'corridas grabadas a mano · el código que califica es real'.",
+    "texto_pantalla": {
+      "es": "Los puntajes se mueven · el veredicto no · must bloquea aunque el puntaje pase",
+      "en": "Scores move · the verdict can't · a must blocks even when the score passes"
+    },
+    "assets": [
+      "war-paradigm/experiments/01-ai-verdict/README.md §5: '── set: pinned ── pins model planner-agent@2026.06 · temperature 0 · prompt test-plan@v3 · run 1 approved 86 · run 2 approved 84 · run 3 approved 87 · verdict STABLE · 3/3 runs agree' / '── set: unpinned ── pins model planner-agent · temperature 1 · prompt latest · ⚠ temperature is 1 (pinned runs use 0) · ⚠ promptVersion \"latest\" is a moving target, tag it · run 1 approved 83 · run 2 approved 74 · run 3 REJECTED 76 · verdict UNSTABLE → finding: verdict flipped approved → rejected on run 3 ...'",
+      "Mismo README: gate 70; must bloquea; §What is real, what is recorded",
+      "Comando: npm run demo:01 (war-paradigm/package.json)"
+    ],
+    "notas_animacion": "Mostrar la etiqueta de fixtures grabados durante toda la escena."
+  },
+  {
+    "id": "E13",
+    "inicio": "12:55",
+    "fin": "13:37",
+    "tipo": "diagrama",
+    "visual": "Asistente ↔ MCP ↔ navegador real: el asistente abre un flujo, lee el DOM y verifica. Al lado, una balanza 'oráculo = contrato + criterios + tu revisión'.",
+    "texto_pantalla": {
+      "es": "MCP conecta herramientas · el navegador no es el oráculo",
+      "en": "MCP connects tools · the browser isn't the oracle"
+    },
+    "assets": [
+      "i18n/es/modules-15-23.json → m11.theory[9]",
+      "i18n/es/quiz-11-19.json → m11[8]",
+      "https://modelcontextprotocol.io/ · https://github.com/microsoft/playwright-mcp"
+    ],
+    "notas_animacion": "Sin capturas de productos de terceros."
+  },
+  {
+    "id": "E14",
+    "inicio": "13:37",
+    "fin": "14:38",
+    "tipo": "diagrama",
+    "visual": "Checklist en tres pasos y los tres criterios del curso con casillas.",
+    "texto_pantalla": {
+      "es": "Generar con diff revisado · correr todo · prompt pack + checklist que atrape 1 error real",
+      "en": "Generate with reviewed diff · run it all · prompt pack + checklist that catches 1 real error"
+    },
+    "assets": [
+      "i18n/es/modules-15-23.json → m11.hands y m11.crit"
+    ],
+    "notas_animacion": "Sin código de ejemplo."
+  },
+  {
+    "id": "E15",
+    "inicio": "14:38",
+    "fin": "15:52",
+    "tipo": "codigo",
+    "visual": "La regla de server.js antes y después del arreglo; el marcador pasa de KNOWN SURVIVOR self-grant a FIXED self-grant (403). Al lado, la nota DEF-001 con la causa raíz.",
+    "texto_pantalla": {
+      "es": "Muta el producto: si las pruebas generadas siguen en verde, no tienen dientes",
+      "en": "Mutate the product: if the generated tests stay green, they have no teeth"
+    },
+    "assets": [
+      "war-paradigm/experiments/02-mutants/README.md: editMember: (actor, target) => actor.role === 'admin' || actor.id === target.id, → editMember: (actor) => actor.role === 'admin', · 'the scoreboard shows FIXED self-grant' · 'MUTANT_LAB_STRICT=1 npm run test:mutants makes an actual known survivor fail the run.'",
+      "war-paradigm/experiments/03-second-brain/vault/03 Knowledge/DEF-001 self-grant role.md (Root cause, found-by: mutant self-grant)",
+      "i18n/es/modules-15-23.json → m11.mut y m11.top"
+    ],
+    "notas_animacion": "El 'después' es el arreglo que propone el README, no un cambio aplicado en el repo."
+  },
+  {
+    "id": "E16",
+    "inicio": "15:52",
+    "fin": "16:13",
+    "tipo": "diagrama",
+    "visual": "Tarjeta de reto con el entregable y el nivel top en gold.",
+    "texto_pantalla": {
+      "es": "Top: mutas el producto y los tests generados se ponen rojos",
+      "en": "Top: mutate the product and the generated tests turn red"
+    },
+    "assets": [
+      "i18n/es/modules-15-23.json → m11.deliver, m11.top"
+    ],
+    "notas_animacion": "Breve."
+  },
+  {
+    "id": "E17",
+    "inicio": "16:13",
+    "fin": "17:03",
+    "tipo": "quiz",
+    "visual": "Tres preguntas con cuatro opciones, pausa de 5 s, respuesta en mint.",
+    "texto_pantalla": {
+      "es": "1 ¿Qué no delegas? · 2 ¿'Se equivoca con seguridad'? · 3 ¿Endpoint inventado?",
+      "en": "1 What don't you delegate? · 2 'Confidently wrong'? · 3 Invented endpoint?"
+    },
+    "assets": [
+      "i18n/es/quiz-11-19.json → m11[1], m11[2], m11[5]",
+      "i18n/en/quiz-11-19.json → m11[1], m11[2], m11[5]"
+    ],
+    "notas_animacion": "Opciones incorrectas en muted."
+  },
+  {
+    "id": "E18",
+    "inicio": "17:03",
+    "fin": "17:31",
+    "tipo": "resumen",
+    "visual": "Tres tarjetas y flecha al módulo 19 (QA asistida por IA I). Firma.",
+    "texto_pantalla": {
+      "es": "Directora · IDE · tú · contexto y hooks · muta el producto → Módulo 19: el asistente prueba, la persona firma",
+      "en": "Director · IDE · you · context and hooks · mutate the product → Module 19: the assistant tests, the person signs"
+    },
+    "assets": [
+      "Siguiente módulo: course.json posición 19, id m14 ('QA asistida por IA I — el asistente prueba, la persona firma')"
+    ],
+    "notas_animacion": "Fundido a navy."
+  }
+]

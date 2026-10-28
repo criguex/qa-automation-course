@@ -1,0 +1,375 @@
+[
+  {
+    "id": "E01",
+    "inicio": "00:00",
+    "fin": "00:42",
+    "tipo": "animacion",
+    "visual": "Dos burbujas de chat enviadas a un stakeholder. Izquierda (coral, ✗): «Mi test de contrato está fallando, ¿pueden cambiar el servicio para que pase?». Derecha (mint, ✓): un bloque con curl, la respuesta con «Content-Type: text/html» y una línea «impacto: SDKs y gateways estrictos pueden rechazar el cuerpo».",
+    "texto_pantalla": {
+      "es": "✗ «Cambien el servicio para que pase mi test» · ✓ cURL + response + impacto en el consumidor",
+      "en": "✗ \"Change the service so my test passes\" · ✓ cURL + response + impact on the consumer"
+    },
+    "assets": [
+      "restful-booker-quality-suite/docs/DEFECTS.md (RB-001)",
+      "qa-automation-course/i18n/es/modules-30-35.json (m13.theory)"
+    ],
+    "notas_animacion": "Firma abajo a la izquierda: Cristian Guerra · QA · Medellín."
+  },
+  {
+    "id": "E02",
+    "inicio": "00:42",
+    "fin": "01:19",
+    "tipo": "animacion",
+    "visual": "Dos tarjetas de presentación. Izquierda: «Sé Playwright y Selenium · aprendo rápido» con adjetivos en gris. Derecha: «Diseño estrategia y superviso pruebas generadas por IA» con tres números en mint, cada uno con su comando debajo en monoespaciada.",
+    "texto_pantalla": {
+      "es": "Un número sin comando es un adjetivo",
+      "en": "A number without a command is just an adjective"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/modules-30-35.json (m13.mut, m13.crit)",
+      "quiz-28-35.json (m13, pregunta 1)"
+    ],
+    "notas_animacion": "La frase de pantalla entra sola, centrada, al final del bloque."
+  },
+  {
+    "id": "E03",
+    "inicio": "01:19",
+    "fin": "01:55",
+    "tipo": "analogia",
+    "visual": "Ilustración: un niño dice en una burbuja «¡dibujo muy bien!» y nadie voltea. Otro niño levanta su dibujo y todos se acercan con un ✓. Debajo, el dibujo tiene una etiqueta pequeña: «hecho con estos colores» (la receta).",
+    "texto_pantalla": {
+      "es": "No digas «dibujo bien»: enseña el dibujo",
+      "en": "Don't say \"I draw well\": show the drawing"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/modules-30-35.json (m13.kid)"
+    ],
+    "notas_animacion": "Personajes simples, paleta de marca."
+  },
+  {
+    "id": "E04",
+    "inicio": "01:55",
+    "fin": "02:38",
+    "tipo": "diagrama",
+    "visual": "Escalera de tres peldaños: QA manual → Quality Engineering → «AI QA Engineer». En cada peldaño cambia la pregunta: «¿funciona?» → «¿cómo lo pruebo bien y siempre?» → «¿qué estrategia sigo y cómo superviso lo que la IA prueba?».",
+    "texto_pantalla": {
+      "es": "QA manual → Quality Engineering → «AI QA Engineer» · de escribir tests a diseñar estrategia y supervisar pruebas generadas por IA",
+      "en": "Manual QA → Quality Engineering → \"AI QA Engineer\" · from writing tests to designing strategy and supervising AI-generated tests"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/modules-30-35.json (m13.mentor, m13.theory)"
+    ],
+    "notas_animacion": "Las tres preguntas son el texto que da vida a la escalera; no son citas."
+  },
+  {
+    "id": "E05",
+    "inicio": "02:38",
+    "fin": "03:18",
+    "tipo": "diagrama",
+    "visual": "Un asistente (Claude Code, Codex) al centro conectado por cables MCP a herramientas: navegador, base de datos, tracker de bugs, CI. Encima, una persona con una pluma: «la firma sigue siendo humana». A un lado, el hook del capstone como candado.",
+    "texto_pantalla": {
+      "es": "Agentic testing: asistentes que diseñan, corren y auditan pruebas · MCP: el enchufe a tus herramientas · la firma sigue siendo humana",
+      "en": "Agentic testing: assistants that design, run and audit tests · MCP: the plug into your tools · the signature stays human"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/modules-30-35.json (m13.theory)",
+      "https://modelcontextprotocol.io/"
+    ],
+    "notas_animacion": "Nombres de herramientas solo como texto; sin logos."
+  },
+  {
+    "id": "E06",
+    "inicio": "03:18",
+    "fin": "04:00",
+    "tipo": "diagrama",
+    "visual": "Una lupa (la suite) apunta a un problema; una flecha larga va de ese problema a una persona usuaria (el consumidor). La lupa se atenúa y la persona se ilumina. Texto: «la automatización es el detector, no la razón».",
+    "texto_pantalla": {
+      "es": "«La automatización es el detector, no la razón; el beneficiario es el consumidor»",
+      "en": "\"Automation is the detector, not the reason; the beneficiary is the consumer\""
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/modules-30-35.json (m13.theory)",
+      "quiz-28-35.json (m13, pregunta 3)"
+    ],
+    "notas_animacion": "La cita se muestra entre comillas, en español en ES y traducida en EN."
+  },
+  {
+    "id": "E07",
+    "inicio": "04:00",
+    "fin": "04:40",
+    "tipo": "diagrama",
+    "visual": "Plantilla de reporte en tres bloques que se llenan: Evidencia (cURL + response) · Impacto en el consumidor · Opciones de resolución. Arriba, tachada en coral: «cambien el servicio para que pase mi test».",
+    "texto_pantalla": {
+      "es": "Evidencia (cURL + response) · impacto en el consumidor · opciones de resolución · ✗ nunca «cambien el servicio para que pase mi test»",
+      "en": "Evidence (cURL + response) · impact on the consumer · resolution options · ✗ never \"change the service so my test passes\""
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/modules-30-35.json (m13.theory)",
+      "quiz-28-35.json (m13, pregunta 2)"
+    ],
+    "notas_animacion": "Los tres bloques se reutilizan en la escena del laboratorio (E15)."
+  },
+  {
+    "id": "E08",
+    "inicio": "04:40",
+    "fin": "05:22",
+    "tipo": "diagrama",
+    "visual": "Tres tarjetas: «kill rate» · «acuerdo del juez con etiquetas de referencia (¿quién las escribió?)» · «huella reproducible». Debajo de cada una, un espacio en monoespaciada que dice «comando: …» y se llena en el laboratorio.",
+    "texto_pantalla": {
+      "es": "Tu diferencial medible: kill rate · acuerdo de tu juez con etiquetas de referencia (y quién las escribió) · huellas reproducibles · números que salen de un comando, no de un adjetivo",
+      "en": "Your measurable edge: kill rate · your judge's agreement with reference labels (and who wrote them) · reproducible fingerprints · numbers from a command, not an adjective"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/modules-30-35.json (m13.obj, m13.mut)"
+    ],
+    "notas_animacion": "Las tarjetas quedan vacías a propósito; se llenan en E13."
+  },
+  {
+    "id": "E09",
+    "inicio": "05:22",
+    "fin": "06:05",
+    "tipo": "diagrama",
+    "visual": "Un portafolio con 2–3 repos; cada README tiene un bloque «por qué esta capa / este trade-off» y una insignia de CI en verde. Al lado, una cronología de historia de bug en cinco pasos: contexto → detección → causa → impacto → prevención.",
+    "texto_pantalla": {
+      "es": "2–3 repos con README de decisiones + pipeline verde visible · Historia de un bug: contexto → evidencia → causa → impacto → qué cambiaste",
+      "en": "2–3 repos with decision READMEs + visible green pipeline · A bug story: context → evidence → cause → impact → what you changed"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/quiz-28-35.json (m13, preguntas 4 y 5)"
+    ],
+    "notas_animacion": "La cronología del bug se anima de izquierda a derecha."
+  },
+  {
+    "id": "E10",
+    "inicio": "06:05",
+    "fin": "06:51",
+    "tipo": "diagrama",
+    "visual": "Tres tarjetas de pregunta de entrevista: «¿Buscas el 100 % de cobertura?» → «cobertura de riesgo»; «¿QA Automation o SDET?» → «pregunta por el trabajo real»; «Primeros 90 días» → «contexto antes que cambios grandes». Al final, una cuarta: «mantente vigente: práctica + comunidad + proyectos pequeños».",
+    "texto_pantalla": {
+      "es": "100 % de cobertura → cobertura de RIESGO · QA vs SDET → pregunta por el trabajo real · 90 días → contexto primero · vigencia: TAU, MoT y proyectos pequeños",
+      "en": "100% coverage → RISK coverage · QA vs SDET → ask about the real work · 90 days → context first · staying current: TAU, MoT and small projects"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/quiz-28-35.json (m13, preguntas 6, 8, 9 y 10)"
+    ],
+    "notas_animacion": "MoT = Ministry of Testing; se escribe completo en pantalla la primera vez."
+  },
+  {
+    "id": "E11",
+    "inicio": "06:51",
+    "fin": "07:32",
+    "tipo": "diagrama",
+    "visual": "Tres titulares de perfil profesional uno debajo del otro; los dos primeros se atenúan en gris y el tercero se ilumina en mint con dos etiquetas: «especialidad» y «prueba».",
+    "texto_pantalla": {
+      "es": "✗ «QA Engineer» · ✗ «QA Automation | busco oportunidades» · ✓ «QA Automation / SDET · Contract Testing & AI-Augmented QA · [tu proyecto]»",
+      "en": "✗ \"QA Engineer\" · ✗ \"QA Automation | open to work\" · ✓ \"QA Automation / SDET · Contract Testing & AI-Augmented QA · [your project]\""
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/quiz-28-35.json (m13, pregunta 7)"
+    ],
+    "notas_animacion": "El corchete «[tu proyecto]» se reemplaza en pantalla por un enlace de ejemplo genérico, no por un perfil real."
+  },
+  {
+    "id": "E12",
+    "inicio": "07:32",
+    "fin": "08:21",
+    "tipo": "diagrama",
+    "visual": "Cronómetro de 2:00 en gold. Cuatro bloques del pitch que se llenan: Quién soy en una frase · Qué hago distinto · La prueba (repo + número + comando) · Qué busco. Debajo, un ejemplo con los repos públicos de Cristian.",
+    "texto_pantalla": {
+      "es": "Pitch ≤ 2 min: 1 · quién soy · 2 · qué hago distinto · 3 · la prueba: repo + número + comando · 4 · qué busco",
+      "en": "Pitch ≤ 2 min: 1 · who I am · 2 · what I do differently · 3 · the proof: repo + number + command · 4 · what I'm looking for"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/modules-30-35.json (m13.hands, m13.crit)"
+    ],
+    "notas_animacion": "La estructura de cuatro bloques es una propuesta del guion, no un requisito del curso; el requisito es ≤ 2 min y un proyecto con enlace."
+  },
+  {
+    "id": "E13",
+    "inicio": "08:21",
+    "fin": "09:29",
+    "tipo": "terminal",
+    "visual": "Terminal con tres bloques, uno por número: kill rate (war-paradigm), acuerdo del juez (agent-eval-jev, corrida real) y huella (predictor-debugger, log). Las tarjetas vacías de E08 se llenan con cada número.",
+    "texto_pantalla": {
+      "es": "# war-paradigm · kill rate (README de experiments/02-mutants)\n$ npm run demo:02\n  5/7 scored mutants killed · 2 survived · 0 excluded from score\n# agent-eval-jev · acuerdo del juez con etiquetas de referencia (redactadas por IA)\n$ python -m agenteval evaluate\ncomposite held-out accuracy 0.931 (n=29), threshold 0.67, margin 0.0\n$ python -m agenteval gate\njudge held-out agreement: 0.931\nagent v2 pass rate: 0.94, policy failures: 0\nagent v1 pass rate: 0.18 (would be blocked by the same gate)\n# predictor-debugger · huella\n$ uv run --locked verify.py --saved linux\n  fingerprint: EEC9-09E0-F77D",
+      "en": "# war-paradigm · kill rate (experiments/02-mutants README)\n$ npm run demo:02\n  5/7 scored mutants killed · 2 survived · 0 excluded from score\n# agent-eval-jev · judge agreement with reference labels (AI-drafted)\n$ python -m agenteval evaluate\ncomposite held-out accuracy 0.931 (n=29), threshold 0.67, margin 0.0\n$ python -m agenteval gate\njudge held-out agreement: 0.931\nagent v2 pass rate: 0.94, policy failures: 0\nagent v1 pass rate: 0.18 (would be blocked by the same gate)\n# predictor-debugger · fingerprint\n$ uv run --locked verify.py --saved linux\n  fingerprint: EEC9-09E0-F77D"
+    },
+    "assets": [
+      "war-paradigm/experiments/02-mutants/README.md",
+      "corrida propia de agent-eval-jev @ 1a4e3b0 (fuentes.md)",
+      "predictor-debugger/logs/linux/verify_saved.log"
+    ],
+    "notas_animacion": "Las líneas con # son rótulos. Solo se muestra la línea final de cada salida."
+  },
+  {
+    "id": "E14",
+    "inicio": "09:29",
+    "fin": "10:11",
+    "tipo": "terminal",
+    "visual": "Terminal con los dos comandos de RB-001 tal como están en DEFECTS.md y la línea de lo observado; la cabecera «Content-Type: text/html; charset=utf-8» se resalta en coral.",
+    "texto_pantalla": {
+      "es": "$ BASE_URL=http://127.0.0.1:3001\n$ BOOKING_ID=$(curl -s \"$BASE_URL/booking\" | jq -r '.[0].bookingid')\n$ curl -si -H 'Accept: application/xml' \"$BASE_URL/booking/$BOOKING_ID\"\n# Observed: Content-Type: text/html; charset=utf-8, followed by <booking>...</booking>",
+      "en": "$ BASE_URL=http://127.0.0.1:3001\n$ BOOKING_ID=$(curl -s \"$BASE_URL/booking\" | jq -r '.[0].bookingid')\n$ curl -si -H 'Accept: application/xml' \"$BASE_URL/booking/$BOOKING_ID\"\n# Observed: Content-Type: text/html; charset=utf-8, followed by <booking>...</booking>"
+    },
+    "assets": [
+      "restful-booker-quality-suite/docs/DEFECTS.md (RB-001",
+      "verificado el 16-oct-2026 contra el Docker local)"
+    ],
+    "notas_animacion": "Comandos y observación copiados del documento; no se corrieron para este paquete (ver fuentes.md)."
+  },
+  {
+    "id": "E15",
+    "inicio": "10:11",
+    "fin": "10:50",
+    "tipo": "codigo",
+    "visual": "Documento de reporte al stakeholder en un panel deep, con los bloques de E07 llenos. «Impacto» y «Opciones» resaltados en mint; «Severidad / prioridad» en gold.",
+    "texto_pantalla": {
+      "es": "RB-001 · La respuesta XML declara un media type equivocado\nSeveridad / prioridad: Media / P1\nEsperado: 200 + cuerpo XML + Content-Type: application/xml\nObservado: 200 + cuerpo XML + Content-Type: text/html; charset=utf-8\nEvidencia: curl -si -H 'Accept: application/xml' \"$BASE_URL/booking/$BOOKING_ID\"\nImpacto: SDKs, gateways y validadores de esquema estrictos pueden rechazar o interpretar mal el cuerpo\nOpciones: corregir el Content-Type · o, si es intencional, documentarlo en el contrato",
+      "en": "RB-001 · XML response declares the wrong media type\nSeverity / priority: Medium / P1\nExpected: 200 + XML body + Content-Type: application/xml\nActual: 200 + XML body + Content-Type: text/html; charset=utf-8\nEvidence: curl -si -H 'Accept: application/xml' \"$BASE_URL/booking/$BOOKING_ID\"\nImpact: Strict SDKs, gateways and schema validators can reject or incorrectly parse the body\nOptions: fix the Content-Type · or, if intentional, document it in the contract"
+    },
+    "assets": [
+      "restful-booker-quality-suite/docs/DEFECTS.md (RB-001)",
+      "la línea «Opciones» es del guion, no del documento"
+    ],
+    "notas_animacion": "Formato de tarjeta; la versión EN usa el texto original en inglés de DEFECTS.md."
+  },
+  {
+    "id": "E16",
+    "inicio": "10:50",
+    "fin": "11:33",
+    "tipo": "diagrama",
+    "visual": "Un mismo documento en dos columnas: la doc del repo separa «defecto» de «punto de aclaración» (/ping devuelve 201, media types no soportados devuelven 418). Etiqueta gold: «una respuesta rara no es automáticamente un defecto».",
+    "texto_pantalla": {
+      "es": "Defecto = viola el contrato, HTTP, negociación de contenido, seguridad de la entrada o integridad · ⚠ Respuesta rara ≠ defecto: /ping → 201 y 418 quedan como aclaración",
+      "en": "Defect = violates the contract, HTTP semantics, content negotiation, input safety or integrity · ⚠ Odd response ≠ defect: /ping → 201 and 418 stay as clarification points"
+    },
+    "assets": [
+      "restful-booker-quality-suite/docs/DEFECTS.md («Defect classification criteria»)"
+    ],
+    "notas_animacion": "La columna de aclaraciones en gold, no en coral."
+  },
+  {
+    "id": "E17",
+    "inicio": "11:33",
+    "fin": "12:21",
+    "tipo": "diagrama",
+    "visual": "Cronología de cinco pasos para el defecto RB-002: contexto (reserva en XML con depositpaid=false) → detección (la revisión compara lo enviado con lo guardado) → causa probable (Boolean(\"false\"), marcada en gold como hipótesis) → impacto (reserva tratada como pagada, en coral) → prevención (fallo esperado que se pone rojo cuando lo arreglen).",
+    "texto_pantalla": {
+      "es": "RB-002 · enviado: depositpaid false · guardado: true · causa probable: Boolean() (hipótesis) · impacto: una reserva sin depósito se trata como pagada",
+      "en": "RB-002 · sent: depositpaid false · stored: true · likely cause: Boolean() (hypothesis) · impact: an unpaid booking is treated as paid"
+    },
+    "assets": [
+      "restful-booker-quality-suite/docs/DEFECTS.md (RB-002)",
+      "restful-booker-quality-suite/README.es.md («Un ejemplo real»)"
+    ],
+    "notas_animacion": "La palabra «hipótesis» se queda visible junto a la causa durante todo el bloque."
+  },
+  {
+    "id": "E18",
+    "inicio": "12:21",
+    "fin": "13:06",
+    "tipo": "navegador",
+    "visual": "Navegador con dos README reales de GitHub. Primero predictor-debugger, con zoom en la sección «Límites». Luego agent-eval-jev, con zoom en la animación y en la frase que dice de qué salida real viene.",
+    "texto_pantalla": {
+      "es": "Límites escritos por ti · una animación que sale de un log real, con su fuente en docs/scenes/",
+      "en": "Limits written by you · an animation built from a real log, with its source in docs/scenes/"
+    },
+    "assets": [
+      "https://github.com/criguex/predictor-debugger (README, «Límites»)",
+      "https://github.com/criguex/agent-eval-jev (README.es.md, «Cómo funciona»)"
+    ],
+    "notas_animacion": "Captura del navegador real; solo zoom sobre las secciones nombradas."
+  },
+  {
+    "id": "E19",
+    "inicio": "13:06",
+    "fin": "13:50",
+    "tipo": "animacion",
+    "visual": "El texto del pitch en pantalla. Un marcador coral recorre los adjetivos («robusta», «sólida», «experto») y los tacha. Cada número sin comando se apaga. Cada número con comando se queda en mint, con un enlace debajo.",
+    "texto_pantalla": {
+      "es": "Muta tu pitch: tacha cada adjetivo · cada número sin comando se va · pídele a alguien que corra tu comando",
+      "en": "Mutate your pitch: strike every adjective · every number without a command goes · ask someone to run your command"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/modules-30-35.json (m13.mut, m13.crit)"
+    ],
+    "notas_animacion": "Los adjetivos tachados son ejemplos genéricos, no citas."
+  },
+  {
+    "id": "E20",
+    "inicio": "13:50",
+    "fin": "14:32",
+    "tipo": "diagrama",
+    "visual": "Lista de criterios con ✓: pitch ≤ 2 min con un proyecto tuyo y su enlace · reporte con curl + response + impacto en el consumidor · cada número del pitch sale de un comando. Debajo, la escalera de la rúbrica con el nivel 4: README bilingüe con límites y animación desde un log real.",
+    "texto_pantalla": {
+      "es": "Entregable: pitch de posicionamiento + un reporte de hallazgo a stakeholder · Nivel 4: README bilingüe con límites y una animación desde un log real",
+      "en": "Deliverable: positioning pitch + one finding report for a stakeholder · Level 4: bilingual README with limits and an animation built from a real log"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/modules-30-35.json (m13.crit, m13.deliver, m13.top)",
+      "pages.json (eval.s05)"
+    ],
+    "notas_animacion": "El nivel 4 con borde gold."
+  },
+  {
+    "id": "E21",
+    "inicio": "14:32",
+    "fin": "15:04",
+    "tipo": "quiz",
+    "visual": "Tarjeta de pregunta con cuatro opciones; cuenta regresiva gold de 5 segundos; la correcta en mint con ✓.",
+    "texto_pantalla": {
+      "es": "¿Cuál pitch posiciona el perfil QA+IA? · A) «Sé Playwright y Selenium» · B) «Diseño estrategia de calidad y superviso pruebas generadas por IA; este repo lo demuestra» · C) «Tengo la certificación ISTQB» · D) «Aprendo rápido cualquier herramienta» → ✓ B",
+      "en": "Which pitch positions a QA+AI profile? · A) \"I know Playwright and Selenium\" · B) \"I design quality strategy and supervise AI-generated tests; this repo proves it\" · C) \"I have the ISTQB certification\" · D) \"I learn any tool fast\" → ✓ B"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/quiz-28-35.json (m13, pregunta 1)"
+    ],
+    "notas_animacion": "Pausa de 5 s antes de revelar."
+  },
+  {
+    "id": "E22",
+    "inicio": "15:04",
+    "fin": "15:32",
+    "tipo": "quiz",
+    "visual": "Misma tarjeta, segunda pregunta.",
+    "texto_pantalla": {
+      "es": "¿Cómo escalas un contract mismatch a un stakeholder? · A) «Cambien el servicio para que pase mi test» · B) Evidencia (cURL + response) + impacto en el consumidor + opciones de resolución · C) Un pantallazo del test en rojo · D) Esperar al daily → ✓ B",
+      "en": "How do you escalate a contract mismatch to a stakeholder? · A) \"Change the service so my test passes\" · B) Evidence (cURL + response) + impact on the consumer + resolution options · C) A screenshot of the red test · D) Wait for the daily standup → ✓ B"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/quiz-28-35.json (m13, pregunta 2)"
+    ],
+    "notas_animacion": "Pausa de 5 s antes de revelar."
+  },
+  {
+    "id": "E23",
+    "inicio": "15:32",
+    "fin": "16:06",
+    "tipo": "quiz",
+    "visual": "Misma tarjeta, tercera pregunta.",
+    "texto_pantalla": {
+      "es": "Entrevista trampa: «¿buscas el 100 % de cobertura?» · A) «Sí, siempre» · B) «No: la cobertura de líneas no es la meta; priorizo cobertura de riesgo y puedo mostrar cómo la decido» · C) «Depende del presupuesto» · D) «El 100 % no existe» (sin más) → ✓ B",
+      "en": "Trick interview question: \"do you aim for 100% coverage?\" · A) \"Yes, always\" · B) \"No: line coverage isn't the goal; I prioritize risk coverage and can show how I decide it\" · C) \"Depends on the budget\" · D) \"100% doesn't exist\" (full stop) → ✓ B"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/quiz-28-35.json (m13, pregunta 6)"
+    ],
+    "notas_animacion": "Pausa de 5 s antes de revelar."
+  },
+  {
+    "id": "E24",
+    "inicio": "16:06",
+    "fin": "16:47",
+    "tipo": "resumen",
+    "visual": "Tres tarjetas: «Muestra, no digas» · «El consumidor es el centro» · «Un número, un comando». Luego una tarjeta final: «Examen final · 26 preguntas · 80 %» y «Capstone: otra persona, misma huella». Firma grande al cierre.",
+    "texto_pantalla": {
+      "es": "1 · Muestra, no digas · 2 · El consumidor es el centro · 3 · Un número, un comando · Lo que sigue: examen final (26 preguntas, 80 %) y tu capstone",
+      "en": "1 · Show, don't tell · 2 · The consumer is the center · 3 · One number, one command · What's next: final exam (26 questions, 80%) and your capstone"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/pages.json (eval.s02)",
+      "qa-automation-course/i18n/es/exam.json (final, 26 preguntas)"
+    ],
+    "notas_animacion": "Firma final: Cristian Guerra · QA · Medellín. Enlace al curso en pantalla."
+  }
+]

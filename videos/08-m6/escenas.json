@@ -1,0 +1,409 @@
+[
+  {
+    "id": "E01",
+    "inicio": "00:00",
+    "fin": "00:38",
+    "tipo": "terminal",
+    "visual": "Terminal con el curl real de RB-002: se envía depositpaid false en XML, la respuesta trae \"depositpaid\":true. El 200 aparece en mint y el true en coral.",
+    "texto_pantalla": {
+      "es": "Enviado: false · Guardado: true ✗ falla\nUn 200 que miente",
+      "en": "Sent: false · Stored: true ✗ fail\nA 200 that lies"
+    },
+    "assets": [
+      "brand/restful-booker-quality-suite/docs/DEFECTS.md (RB-002)"
+    ],
+    "notas_animacion": "Comando real: curl -si -X POST \"$BASE_URL/booking\" -H 'Content-Type: application/xml' -H 'Accept: application/json' --data '<booking>…<depositpaid>false</depositpaid>…</booking>'. Salida documentada: '# Sent: false; observed: \"depositpaid\":true'. No mostrar un cuerpo completo inventado."
+  },
+  {
+    "id": "E02",
+    "inicio": "00:38",
+    "fin": "00:57",
+    "tipo": "titulo",
+    "visual": "Tarjeta de título navy con ícono 🔌 y rejilla mint.",
+    "texto_pantalla": {
+      "es": "Módulo 6 · API & Contract Testing\nCristian Guerra · QA · Medellín",
+      "en": "Module 6 · API & Contract Testing\nCristian Guerra · QA · Medellín"
+    },
+    "assets": [],
+    "notas_animacion": "Subtítulo palabra por palabra: contrato · esquema · datos propios · limpieza."
+  },
+  {
+    "id": "E03",
+    "inicio": "00:57",
+    "fin": "01:46",
+    "tipo": "analogia",
+    "visual": "Una receta de arepa con queso. Llega una arepa sin queso. Una mano intenta tachar 'con queso' en la receta (✗ coral) y otra levanta la mano para avisar (✓ mint). Al final, la receta tiene un sello 'versión más nueva'.",
+    "texto_pantalla": {
+      "es": "Receta = contrato\nNo cambies la receta: avisa ✓",
+      "en": "Recipe = contract\nDon't rewrite the recipe: speak up ✓"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/modules-01-14.json (m6.kid)"
+    ],
+    "notas_animacion": "En la versión EN la ilustración es un sándwich de queso en lugar de arepa; el resto igual."
+  },
+  {
+    "id": "E04",
+    "inicio": "01:46",
+    "fin": "02:27",
+    "tipo": "diagrama",
+    "visual": "Flecha gruesa Contrato → Prueba (mint). Un robot de IA intenta invertir la flecha Respuesta → Esquema y aparece el sello PROHIBIDO en coral. Ejemplo: z.string() se convierte en z.string().or(z.number()) y se tacha.",
+    "texto_pantalla": {
+      "es": "Valida contra el contrato\nNO adaptes el test a la respuesta",
+      "en": "Validate against the contract\nDON'T bend the test to the response"
+    },
+    "assets": [],
+    "notas_animacion": "El fragmento z.string().or(z.number()) es un ejemplo didáctico, no sale de un repo: rotular 'antipatrón'."
+  },
+  {
+    "id": "E05",
+    "inicio": "02:27",
+    "fin": "03:30",
+    "tipo": "diagrama",
+    "visual": "Dos carriles. Alinear: contrato v2 cambia → prueba se actualiza (✓ mint). Enmascarar: contrato igual, respuesta distinta → prueba se relaja (✗ coral). Arriba, una pila de versiones del contrato con la más nueva resaltada: 'revalidar antes de reportar'.",
+    "texto_pantalla": {
+      "es": "Alinear ✓ · Enmascarar ✗\nAuditoría de contrato = paso humano",
+      "en": "Align ✓ · Mask ✗\nContract audit = a human step"
+    },
+    "assets": [],
+    "notas_animacion": "Sin datos numéricos; solo el concepto del módulo (m6.theory)."
+  },
+  {
+    "id": "E06",
+    "inicio": "03:30",
+    "fin": "03:57",
+    "tipo": "codigo",
+    "visual": "Encabezado de movieApiSchemas.ts con el comentario resaltado y la fila 'Contrato' de la tabla del README.",
+    "texto_pantalla": {
+      "es": "“un drift se reporta, nunca se adapta el test”",
+      "en": "“drift gets reported, the test never gets adapted”"
+    },
+    "assets": [
+      "brand/civica-playwright-challenge/src/contracts/movieApiSchemas.ts",
+      "brand/civica-playwright-challenge/README.es.md (Tipos de prueba)"
+    ],
+    "notas_animacion": "Texto real del comentario: 'Contract tests validate every response against these schemas, never the other way around — a schema only changes when the API contract changes on purpose, not to make a test pass against whatever the service happens to return.'"
+  },
+  {
+    "id": "E07",
+    "inicio": "03:57",
+    "fin": "05:00",
+    "tipo": "codigo",
+    "visual": "bookingSchemas.ts completo con tres resaltados: el refine de la fecha, depositpaid: z.boolean() y el .strict() del token.",
+    "texto_pantalla": {
+      "es": "El esquema ES el contrato\n30 de febrero ✗ · campo extra en strict ✗",
+      "en": "The schema IS the contract\nFeb 30 ✗ · extra field in strict ✗"
+    },
+    "assets": [
+      "brand/restful-booker-quality-suite/src/contracts/bookingSchemas.ts"
+    ],
+    "notas_animacion": "Líneas reales: .refine((value) => { … }, 'Invalid calendar date') · depositpaid: z.boolean() · export const authSuccessSchema = z.object({ token: z.string().regex(/^[a-f0-9]{15}$/) }).strict();"
+  },
+  {
+    "id": "E08",
+    "inicio": "05:00",
+    "fin": "05:32",
+    "tipo": "codigo",
+    "visual": "expectSchema.ts a la izquierda y el matcher toMatchSchema de civica a la derecha.",
+    "texto_pantalla": {
+      "es": "safeParse + prettifyError = error campo por campo",
+      "en": "safeParse + prettifyError = field-by-field errors"
+    },
+    "assets": [
+      "brand/restful-booker-quality-suite/src/support/expectSchema.ts",
+      "brand/civica-playwright-challenge/src/support/customMatchers.ts"
+    ],
+    "notas_animacion": "Líneas reales: const result = schema.safeParse(value); · `Contract violations:\\n${z.prettifyError(result.error)}` · y en civica: `  ${issue.path.join('.') || '<root>'}: ${issue.message}`. No inventar una salida de error concreta."
+  },
+  {
+    "id": "E09",
+    "inicio": "05:32",
+    "fin": "06:10",
+    "tipo": "diagrama",
+    "visual": "Dos puertas: 401 '¿quién eres?' y 403 'sé quién eres, no puedes'. Debajo, PUT enviado tres veces → mismo estado final; PATCH cambia una sola casilla.",
+    "texto_pantalla": {
+      "es": "401 autenticación · 403 autorización\nPUT idempotente · PATCH parcial",
+      "en": "401 authentication · 403 authorization\nPUT idempotent · PATCH partial"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/quiz-01-10.json (m6, preguntas 4, 5 y 6)"
+    ],
+    "notas_animacion": "Iconos simples; estados con símbolo + palabra."
+  },
+  {
+    "id": "E10",
+    "inicio": "06:10",
+    "fin": "07:16",
+    "tipo": "codigo",
+    "visual": "Tres fragmentos: el PATCH parcial de booking-crud.spec.ts, el 403 sin credenciales de contracts-negative.spec.ts y la prueba del contrato de error de civica. Al final, checklist de paginación.",
+    "texto_pantalla": {
+      "es": "PATCH conserva lo omitido ✓ · sin credenciales → 403 ✓ · el error también tiene contrato",
+      "en": "PATCH keeps omitted fields ✓ · no credentials → 403 ✓ · errors have contracts too"
+    },
+    "assets": [
+      "brand/restful-booker-quality-suite/tests/api/booking-crud.spec.ts",
+      "brand/restful-booker-quality-suite/tests/api/contracts-negative.spec.ts",
+      "brand/civica-playwright-challenge/tests/api/movies.contract.spec.ts"
+    ],
+    "notas_animacion": "Líneas reales: data: { additionalneeds: 'Late checkout' } · expect(await response.json()).toEqual({ ...created.payload, additionalneeds: 'Late checkout' }); · expect(response.status()).toBe(403); · const response = await apiContext.get('/api/movies/tt0000000'); expect(await body(response)).toMatchSchema(errorResponseSchema);"
+  },
+  {
+    "id": "E11",
+    "inicio": "07:16",
+    "fin": "08:18",
+    "tipo": "codigo",
+    "visual": "Molde create → try → asserts → finally delete, con una aserción que explota en la mitad y el finally que igual limpia. Al lado, helpers.ts con booking() y deleteBooking().",
+    "texto_pantalla": {
+      "es": "Tus datos, tu limpieza: finally ✓\n201/405 solo en teardown",
+      "en": "Your data, your cleanup: finally ✓\n201/405 only in teardown"
+    },
+    "assets": [
+      "brand/restful-booker-quality-suite/tests/api/booking-crud.spec.ts",
+      "brand/restful-booker-quality-suite/tests/api/helpers.ts",
+      "brand/restful-booker-quality-suite/docs/TEST_STRATEGY.md (Test data and isolation)"
+    ],
+    "notas_animacion": "Líneas reales: firstname: `Cristian-${suffix}` · if (![201, 405].includes(response.status())) { throw new Error(`Unexpected cleanup status ${response.status()} for booking ${id}`); } · '} finally { await deleteBooking(request, created.id); }'."
+  },
+  {
+    "id": "E12",
+    "inicio": "08:18",
+    "fin": "08:36",
+    "tipo": "diagrama",
+    "visual": "Escalera de tres peldaños: Postman/Newman → RestAssured → Karate. Encima, una franja fija: contrato · negativos · datos propios · limpieza.",
+    "texto_pantalla": {
+      "es": "La herramienta cambia · el método no",
+      "en": "Tools change · the method doesn't"
+    },
+    "assets": [],
+    "notas_animacion": "Logos solo como texto (sin marcas registradas en grande)."
+  },
+  {
+    "id": "E13",
+    "inicio": "08:36",
+    "fin": "09:02",
+    "tipo": "codigo",
+    "visual": "brand.feature completo con los bloques @positive y @negative y la tabla Examples.",
+    "texto_pantalla": {
+      "es": "Scenario Outline · 3 filas · esquema con #number / #string",
+      "en": "Scenario Outline · 3 rows · schema with #number / #string"
+    },
+    "assets": [
+      "brand/karate-api-testing/src/test/java/features/brand.feature"
+    ],
+    "notas_animacion": "Líneas reales: Given params { brand: \"<brand>\" } · Then status 200 · And match jsonResponse contains responseJson200 · And match jsonResponse[0].brand contains \"<brand>\" · Then status 404 · And match response contains \"<html>\"."
+  },
+  {
+    "id": "E14",
+    "inicio": "09:02",
+    "fin": "09:20",
+    "tipo": "terminal",
+    "visual": "Resumen de Karate del run 36095563876 tal como está en el README.",
+    "texto_pantalla": {
+      "es": "30 escenarios · 30 pasan ✓ · BUILD SUCCESS",
+      "en": "30 scenarios · 30 passed ✓ · BUILD SUCCESS"
+    },
+    "assets": [
+      "brand/karate-api-testing/README.es.md (Último resultado de CI)",
+      "brand/karate-api-testing/src/test/java/runner/ApiSuiteTest.java",
+      "brand/karate-api-testing/docs/assets/how-it-works.gif"
+    ],
+    "notas_animacion": "Bloque real: Karate version: 1.3.1 / elapsed: 3.57 | threads: 5 | thread time: 7.38 / features: 5 | skipped: 0 | efficiency: 0.41 / scenarios: 30 | passed: 30 | failed: 0 / [INFO] BUILD SUCCESS. Antes, el comando real: mvn clean test."
+  },
+  {
+    "id": "E15",
+    "inicio": "09:20",
+    "fin": "09:46",
+    "tipo": "animacion",
+    "visual": "Etiqueta 'Karate 1.3.1' frente a una tarjeta 'Karate 2 · abr-2026' con cuatro viñetas. Señal ⚠ gold: 'migración v1 → v2 antes de subir'.",
+    "texto_pantalla": {
+      "es": "Karate 2: Java 21+ · CLI propia · auth declarativa · soft assertions\n⚠ guía de migración primero",
+      "en": "Karate 2: Java 21+ · own CLI · declarative auth · soft assertions\n⚠ migration guide first"
+    },
+    "assets": [
+      "https://docs.karatelabs.io/getting-started/whats-new-v2"
+    ],
+    "notas_animacion": "Datos del texto del módulo (m6.theory) y de la página oficial de Karate 2."
+  },
+  {
+    "id": "E16",
+    "inicio": "09:46",
+    "fin": "10:28",
+    "tipo": "terminal",
+    "visual": "Resumen de Newman del archivo de ejecución final de spendwise.",
+    "texto_pantalla": {
+      "es": "Newman: 15 peticiones · 25 aserciones · 20 ✓ · 5 ✗\n“no se modificó para ocultar el defecto”",
+      "en": "Newman: 15 requests · 25 assertions · 20 ✓ · 5 ✗\n“not changed to hide the defect”"
+    },
+    "assets": [
+      "brand/spendwise-qa-assessment/evidence/final-execution-summary-2026-10-16.txt"
+    ],
+    "notas_animacion": "Líneas reales: Requests: 15 / 0 request errors · Test scripts: 15 / 0 script errors · Assertions: 25 total / 20 pass / 5 fail. No mostrar la URL del entorno del cliente."
+  },
+  {
+    "id": "E17",
+    "inicio": "10:28",
+    "fin": "10:49",
+    "tipo": "terminal",
+    "visual": "Dos pestañas de terminal: restful-booker (docker compose) y restful-booker-quality-suite (npm ci, npm run quality).",
+    "texto_pantalla": {
+      "es": "SUT fijado en Docker → 127.0.0.1:3001",
+      "en": "Pinned SUT in Docker → 127.0.0.1:3001"
+    },
+    "assets": [
+      "brand/restful-booker-quality-suite/README.es.md (Correrlo en local)"
+    ],
+    "notas_animacion": "Comandos reales: git clone https://github.com/mwinteringham/restful-booker.git · cd restful-booker · docker compose up --build -d · npm ci · npm run quality."
+  },
+  {
+    "id": "E18",
+    "inicio": "10:49",
+    "fin": "11:30",
+    "tipo": "terminal",
+    "visual": "El archivo de evidencia mostrado como salida de terminal, con los fallos esperados en gold.",
+    "texto_pantalla": {
+      "es": "43 pasan ✓ (9 fallos esperados ⚠) · 2,0 s\nCI 38966648020: success · 53 s",
+      "en": "43 passed ✓ (9 expected failures ⚠) · 2.0 s\nCI 38966648020: success · 53 s"
+    },
+    "assets": [
+      "brand/restful-booker-quality-suite/evidence/execution-2026-10-16.txt",
+      "brand/restful-booker-quality-suite/docs/assets/how-it-works.gif"
+    ],
+    "notas_animacion": "Líneas reales: Prettier: PASS / ESLint: PASS / TypeScript: PASS / Total checks: 43 / Effective result: 43 passed, including 9 controlled expected-failure checks / Duration: 2.0 seconds / Run ID: 38966648020 / Conclusion: success / Duration: 53 seconds. Rotular 'evidencia registrada', no 'salida de consola'."
+  },
+  {
+    "id": "E19",
+    "inicio": "11:30",
+    "fin": "11:58",
+    "tipo": "codigo",
+    "visual": "Prueba 'POST /booking matches the creation contract' con dos resaltados: expectSchema y toEqual(payload).",
+    "texto_pantalla": {
+      "es": "Esquema = forma ✓ · toEqual = valores ✓",
+      "en": "Schema = shape ✓ · toEqual = values ✓"
+    },
+    "assets": [
+      "brand/restful-booker-quality-suite/tests/contract/booking.contract.spec.ts"
+    ],
+    "notas_animacion": "Comando real arriba: npm run test:contract. Líneas reales: const body = expectSchema(createdBookingSchema, await response.json()); expect(body.booking).toEqual(payload);"
+  },
+  {
+    "id": "E20",
+    "inicio": "11:58",
+    "fin": "12:36",
+    "tipo": "terminal",
+    "visual": "Ficha de defecto RB-008 con el curl y lo observado; a la derecha, esperado vs real.",
+    "texto_pantalla": {
+      "es": "Esperado 401 · Real 200 ✗\ncurl + respuesta = reproducible",
+      "en": "Expected 401 · Actual 200 ✗\ncurl + response = reproducible"
+    },
+    "assets": [
+      "brand/restful-booker-quality-suite/docs/DEFECTS.md (RB-008)"
+    ],
+    "notas_animacion": "Líneas reales: curl -si -X POST \"$BASE_URL/auth\" -H 'Content-Type: application/json' --data '{\"username\":\"admin\",\"password\":\"wrong-password\"}' / # Observed: HTTP 200 OK / # {\"reason\":\"Bad credentials\"}."
+  },
+  {
+    "id": "E21",
+    "inicio": "12:36",
+    "fin": "14:09",
+    "tipo": "diagrama",
+    "visual": "Embudo de clasificación: observación rara → ¿viola contrato, HTTP, negociación, seguridad de entrada o integridad? Sí → defecto (coral). No/depende → punto a aclarar (gold). Ejemplos: /ping 201 y 418 en gold.",
+    "texto_pantalla": {
+      "es": "Raro ≠ defecto\n/ping → 201 ⚠ aclarar · Accept no soportado → 418 ⚠ aclarar",
+      "en": "Odd ≠ defect\n/ping → 201 ⚠ clarify · unsupported Accept → 418 ⚠ clarify"
+    },
+    "assets": [
+      "brand/restful-booker-quality-suite/docs/DEFECTS.md (Defect classification criteria)",
+      "brand/restful-booker-quality-suite/docs/EXECUTION_REPORT.md (Additional observations)",
+      "brand/restful-booker-quality-suite/tests/api/health-auth.spec.ts"
+    ],
+    "notas_animacion": "Línea real de la prueba de salud: expect(response.status()).toBe(201); expect(await response.text()).toBe('Created');"
+  },
+  {
+    "id": "E22",
+    "inicio": "14:09",
+    "fin": "14:59",
+    "tipo": "codigo",
+    "visual": "Diff en movies.ts: year: '2010' → year: 2010 (coral). Luego el comando npm run test:contract y una tarjeta 'esperado: rojo con la ruta year'.",
+    "texto_pantalla": {
+      "es": "Mutación: year texto → número\nEsperado: ✗ falla con mensaje legible",
+      "en": "Mutation: year string → number\nExpected: ✗ fails with a readable message"
+    },
+    "assets": [
+      "brand/civica-playwright-challenge/mocks/data/movies.ts",
+      "brand/civica-playwright-challenge/src/contracts/movieApiSchemas.ts"
+    ],
+    "notas_animacion": "La salida concreta de esta mutación NO está registrada en el repo: no inventar el log. Mostrar solo el formato que produce el matcher (ruta: mensaje) rotulado 'formato del mensaje', o grabar la corrida real cuando se produzca el video."
+  },
+  {
+    "id": "E23",
+    "inicio": "14:59",
+    "fin": "15:26",
+    "tipo": "animacion",
+    "visual": "Cinco mutantes como fichas: campo faltante, tipo cambiado, regex rota, array vacío, campo extra en estricto. Cada uno choca con el esquema y cae con KILLED ✓; el quinto queda con ⚠ 'explica si sobrevive'.",
+    "texto_pantalla": {
+      "es": "5 mutaciones del payload → 5 KILLED, o explicas la que sobrevive",
+      "en": "5 payload mutations → 5 KILLED, or explain the survivor"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/modules-01-14.json (m6.crit)"
+    ],
+    "notas_animacion": "Ilustrativo: no representa una corrida concreta."
+  },
+  {
+    "id": "E24",
+    "inicio": "15:26",
+    "fin": "16:03",
+    "tipo": "resumen",
+    "visual": "Checklist de la rúbrica con la franja dorada del nivel top.",
+    "texto_pantalla": {
+      "es": "☐ 5 mutaciones → 5 mueren (o explicas)\n☐ base igual antes y después, aun con fallo forzado\n☐ ningún esquema relajado\n⚠ Top: cada incumplimiento con su curl",
+      "en": "☐ 5 mutations → 5 killed (or explained)\n☐ DB unchanged before/after, even with a forced failure\n☐ no schema loosened\n⚠ Top: every violation has its curl"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/modules-01-14.json (m6.crit, m6.top, m6.deliver)"
+    ],
+    "notas_animacion": "Casillas que se marcan con ✓ mint."
+  },
+  {
+    "id": "E25",
+    "inicio": "16:03",
+    "fin": "16:27",
+    "tipo": "quiz",
+    "visual": "Pregunta 1 con opciones A–D y pausa de 5 s.",
+    "texto_pantalla": {
+      "es": "La API responde user_name; el contrato dice username. ¿Qué haces?\nA cambio el esquema · B oneOf · C revalido y reporto con cURL + response · D @IGNORE",
+      "en": "The API returns user_name; the contract says username. What now?\nA change the schema · B oneOf · C re-check and report with cURL + response · D @IGNORE"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/quiz-01-10.json (m6, pregunta 1)"
+    ],
+    "notas_animacion": "⏸ visible con cuenta regresiva."
+  },
+  {
+    "id": "E26",
+    "inicio": "16:27",
+    "fin": "16:58",
+    "tipo": "quiz",
+    "visual": "Revelación de la 1 y preguntas 2 y 3 con respuesta.",
+    "texto_pantalla": {
+      "es": "1 → C ✓\n2 Zod valida TODO el esquema en runtime\n3 Otro usuario → 403",
+      "en": "1 → C ✓\n2 Zod validates the WHOLE schema at runtime\n3 Another user's resource → 403"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/quiz-01-10.json (m6, preguntas 3 y 4)"
+    ],
+    "notas_animacion": "Respuesta correcta con ✓ y la palabra pasa."
+  },
+  {
+    "id": "E27",
+    "inicio": "16:58",
+    "fin": "17:30",
+    "tipo": "resumen",
+    "visual": "Tres tarjetas y la tarjeta del módulo 7 con el ícono 🥒. Firma.",
+    "texto_pantalla": {
+      "es": "1 El contrato manda\n2 Esquema estricto + error legible\n3 Datos propios, limpieza en finally\nSiguiente: Módulo 7 · BDD\nCristian Guerra · QA · Medellín",
+      "en": "1 The contract wins\n2 Strict schema + readable errors\n3 Own your data, clean up in finally\nNext: Module 7 · BDD\nCristian Guerra · QA · Medellín"
+    },
+    "assets": [],
+    "notas_animacion": "Cierre con la URL del curso."
+  }
+]

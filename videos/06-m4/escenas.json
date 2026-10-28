@@ -1,0 +1,287 @@
+[
+  {
+    "id": "E01",
+    "inicio": "00:00",
+    "fin": "00:34",
+    "tipo": "terminal",
+    "visual": "Izquierda: terminal con tsc en verde (exit 0). Derecha: la demo con 'schema invalid' en coral. Entre las dos, un JSON al que le falta 'expected'.",
+    "texto_pantalla": {
+      "es": "$ npx tsc -p experiments/01-ai-verdict; echo \"tsc exit=$?\"\ntsc exit=0\n\n$ npm run demo:pinned -w experiments/01-ai-verdict\n  run 1  trace -\n    schema invalid:\n      · scenarios[0].expected.status: must be an HTTP status code\n    score 0/100 · gate 70 · verdict REJECTED · schema: scenarios[0].expected.status: must be an HTTP status code",
+      "en": "$ npx tsc -p experiments/01-ai-verdict; echo \"tsc exit=$?\"\ntsc exit=0\n\n$ npm run demo:pinned -w experiments/01-ai-verdict\n  run 1  trace -\n    schema invalid:\n      · scenarios[0].expected.status: must be an HTTP status code\n    score 0/100 · gate 70 · verdict REJECTED · schema: scenarios[0].expected.status: must be an HTTP status code"
+    },
+    "assets": [
+      "Salida observada en copia local de war-paradigm sin el campo `expected` en scenarios[0] de fixtures/runs/pinned/run-1.json, 26-oct-2026; revertido después"
+    ],
+    "notas_animacion": "'tsc exit=0' en mint con un ⚠ gold 'no ve datos'; 'REJECTED' en coral con ✗ y rótulo mint '✓ el validador gritó'."
+  },
+  {
+    "id": "E02",
+    "inicio": "00:34",
+    "fin": "00:41",
+    "tipo": "titulo",
+    "visual": "Título sobre navy con rejilla y barra mint. Icono 🔷, nivel ★★★☆☆.",
+    "texto_pantalla": {
+      "es": "Módulo 06 · TypeScript para QA\nCristian Guerra · QA · Medellín",
+      "en": "Module 06 · TypeScript for QA\nCristian Guerra · QA · Medellín"
+    },
+    "assets": [
+      "course.json (m4, posición 6, icono 🔷, nivel ★★★☆☆)"
+    ],
+    "notas_animacion": "Entrada del título; firma en mint."
+  },
+  {
+    "id": "E03",
+    "inicio": "00:41",
+    "fin": "01:26",
+    "tipo": "analogia",
+    "visual": "Cocina con un molde redondo; una mano intenta meter un cuadrado y aparece un aviso (✗ coral 'no cabe') antes del horno. Luego un vecino pasa masa por la ventana: el compilador mira para otro lado; en la puerta, un revisor con lupa la inspecciona (✓ mint).",
+    "texto_pantalla": {
+      "es": "Tipo = molde (lo revisa el compilador)\nDatos de afuera = revisión en la puerta (runtime)",
+      "en": "Type = mold (the compiler checks it)\nOutside data = check at the door (runtime)"
+    },
+    "assets": [
+      "m4.kid"
+    ],
+    "notas_animacion": "Dos guardias: compilador y validador, cada uno con su etiqueta."
+  },
+  {
+    "id": "E04",
+    "inicio": "01:26",
+    "fin": "03:12",
+    "tipo": "codigo",
+    "visual": "Editor con fragmentos reales de src/types.ts y la unión discriminada de src/checks.ts. Un typo 'shuold' se subraya en coral.",
+    "texto_pantalla": {
+      "es": "src/types.ts\nexport type Priority = 'must' | 'should';\nexport type Verdict = 'approved' | 'rejected';\nexport type Scenario = {\n  id: string;\n  title: string;\n  actor: string;\n  action: string;\n  covers: string[];\n  source: string;\n  steps: string[];\n  expected: { status: number };\n};\npermissions: Record<string, { allowed: string[]; ok: number }>;\n\nsrc/checks.ts\nexport type ValidationResult = { ok: true; artifact: Artifact; errors: [] } | { ok: false; artifact?: undefined; errors: string[] };",
+      "en": "src/types.ts\nexport type Priority = 'must' | 'should';\nexport type Verdict = 'approved' | 'rejected';\nexport type Scenario = {\n  id: string;\n  title: string;\n  actor: string;\n  action: string;\n  covers: string[];\n  source: string;\n  steps: string[];\n  expected: { status: number };\n};\npermissions: Record<string, { allowed: string[]; ok: number }>;\n\nsrc/checks.ts\nexport type ValidationResult = { ok: true; artifact: Artifact; errors: [] } | { ok: false; artifact?: undefined; errors: string[] };"
+    },
+    "assets": [
+      "war-paradigm/experiments/01-ai-verdict/src/types.ts (se omiten los comentarios /** */ del original)",
+      "war-paradigm/experiments/01-ai-verdict/src/checks.ts línea 16",
+      "quiz-01-10.json m4 preguntas 7 y 10"
+    ],
+    "notas_animacion": "El 'shuold' es una ilustración del error, no está en el repo; marcarlo como 'ejemplo'."
+  },
+  {
+    "id": "E05",
+    "inicio": "03:12",
+    "fin": "04:44",
+    "tipo": "diagrama",
+    "visual": "Línea de tiempo: un test sin await termina en verde (✓ falso, gold) mientras la acción sigue y falla después (✗ coral). Luego tres barras de 300 ms en serie (900) vs en paralelo con Promise.all (≈300). Al final, la firma de loadStory y del CommandGenerator.",
+    "texto_pantalla": {
+      "es": "Sin await → verde falso (Promise flotante) · lint: no-floating-promises\nawait a(); await b(); await c(); ≈ 900 ms\nawait Promise.all([a(), b(), c()]) ≈ 300 ms\nexport async function loadStory(id = 'US-42'): Promise<Story>",
+      "en": "No await → false green (floating promise) · lint: no-floating-promises\nawait a(); await b(); await c(); ≈ 900 ms\nawait Promise.all([a(), b(), c()]) ≈ 300 ms\nexport async function loadStory(id = 'US-42'): Promise<Story>"
+    },
+    "assets": [
+      "m4.theory[1]",
+      "quiz-01-10.json m4 preguntas 1, 5 y 9",
+      "war-paradigm/experiments/01-ai-verdict/src/generator.ts líneas 44–53 y 62",
+      "tests/generator.spec.ts (pruebas de exit distinto de cero y salida no JSON)"
+    ],
+    "notas_animacion": "Las cifras de 300/900 ms son el ejemplo del banco de preguntas, no una medición."
+  },
+  {
+    "id": "E06",
+    "inicio": "04:44",
+    "fin": "06:30",
+    "tipo": "diagrama",
+    "visual": "Dos puertas: 'any' (abierta de par en par, todo pasa, ✗ coral) y 'unknown' (con guardia que pide verificar, ✓ mint). Debajo, el narrowing con typeof. Luego un generic <User> con la palabra 'se borra al compilar'. Al final, una frontera de confianza: story (fixture del repo, confiada) vs salida del agente (unknown).",
+    "texto_pantalla": {
+      "es": "any = apaga el type-checker\nunknown = te obliga a validar\nif (typeof x === \"string\") { x.toUpperCase() }\napi.get<User>(…) → tipado estático, NO valida en runtime",
+      "en": "any = switches the type checker off\nunknown = forces you to validate\nif (typeof x === \"string\") { x.toUpperCase() }\napi.get<User>(…) → static typing, NO runtime validation"
+    },
+    "assets": [
+      "quiz-01-10.json m4 preguntas 2, 4 y 8",
+      "war-paradigm/experiments/01-ai-verdict/src/generator.ts (loadStory hace JSON.parse sin validar; generate devuelve Promise<unknown>)"
+    ],
+    "notas_animacion": "La frontera de confianza como una línea gold punteada."
+  },
+  {
+    "id": "E07",
+    "inicio": "06:30",
+    "fin": "08:28",
+    "tipo": "diagrama",
+    "visual": "Tarjeta 'TypeScript 7 (ago-2026)' con los cambios de defaults; las opciones que ya son error tachadas en coral. Luego el builder de ejemplo, rotulado 'ejemplo'.",
+    "texto_pantalla": {
+      "es": "TS 7: strict = true por defecto · types arranca vacío → \"types\": [\"node\"]\n✗ moduleResolution: node · ✗ baseUrl · ✗ target: es5\n✓ moduleResolution: bundler | nodenext · paths relativos a la raíz\nEJEMPLO · scenario(overrides: Partial<Scenario> = {}): Scenario",
+      "en": "TS 7: strict = true by default · types starts empty → \"types\": [\"node\"]\n✗ moduleResolution: node · ✗ baseUrl · ✗ target: es5\n✓ moduleResolution: bundler | nodenext · paths relative to the root\nEXAMPLE · scenario(overrides: Partial<Scenario> = {}): Scenario"
+    },
+    "assets": [
+      "m4.theory[2..4]",
+      "quiz-01-10.json m4 preguntas 3 y 6",
+      "https://www.typescriptlang.org/docs/"
+    ],
+    "notas_animacion": "El builder va como diagrama porque no es código de un repo."
+  },
+  {
+    "id": "E08",
+    "inicio": "08:28",
+    "fin": "09:37",
+    "tipo": "terminal",
+    "visual": "tsconfig.json real y la terminal con el typecheck y la versión del compilador.",
+    "texto_pantalla": {
+      "es": "experiments/01-ai-verdict/tsconfig.json\n  \"target\": \"ES2022\",\n  \"module\": \"ESNext\",\n  \"moduleResolution\": \"Bundler\",\n  \"strict\": true,\n  \"noEmit\": true,\n  \"skipLibCheck\": true,\n  \"resolveJsonModule\": true,\n  \"types\": [\"node\"]\n\n$ npm run typecheck\n> war-paradigm@1.0.0 typecheck\n> tsc -p experiments/01-ai-verdict && tsc -p experiments/02-mutants\n(exit code 0)\n$ npx tsc --version\nVersion 5.9.3",
+      "en": "experiments/01-ai-verdict/tsconfig.json\n  \"target\": \"ES2022\",\n  \"module\": \"ESNext\",\n  \"moduleResolution\": \"Bundler\",\n  \"strict\": true,\n  \"noEmit\": true,\n  \"skipLibCheck\": true,\n  \"resolveJsonModule\": true,\n  \"types\": [\"node\"]\n\n$ npm run typecheck\n> war-paradigm@1.0.0 typecheck\n> tsc -p experiments/01-ai-verdict && tsc -p experiments/02-mutants\n(exit code 0)\n$ npx tsc --version\nVersion 5.9.3"
+    },
+    "assets": [
+      "war-paradigm/experiments/01-ai-verdict/tsconfig.json",
+      "Salidas reales en la copia local, 26-oct-2026"
+    ],
+    "notas_animacion": "Marcar con ✓ mint las tres opciones alineadas con TS 7 (strict, types, Bundler) y con ⚠ gold 'compilado con 5.9.3'."
+  },
+  {
+    "id": "E09",
+    "inicio": "09:37",
+    "fin": "11:00",
+    "tipo": "codigo",
+    "visual": "Fragmentos reales de generator.ts y checks.ts: la firma con Promise<unknown>, los tres type guards y el return final con el cast después de validar.",
+    "texto_pantalla": {
+      "es": "src/generator.ts\n  generate(story: Story, run: number): Promise<unknown>;\n\nsrc/checks.ts\nconst isObject = (v: unknown): v is Record<string, unknown> => typeof v === 'object' && v !== null && !Array.isArray(v);\nconst isStringArray = (v: unknown): v is string[] => Array.isArray(v) && v.every((x) => typeof x === 'string');\nconst isHttpStatus = (n: unknown): n is number => Number.isInteger(n) && (n as number) >= 100 && (n as number) <= 599;\nexport function validateArtifact(raw: unknown, story: Story): ValidationResult {\n  …\n  return errors.length ? { ok: false, errors } : { ok: true, artifact: raw as unknown as Artifact, errors: [] };\n}",
+      "en": "src/generator.ts\n  generate(story: Story, run: number): Promise<unknown>;\n\nsrc/checks.ts\nconst isObject = (v: unknown): v is Record<string, unknown> => typeof v === 'object' && v !== null && !Array.isArray(v);\nconst isStringArray = (v: unknown): v is string[] => Array.isArray(v) && v.every((x) => typeof x === 'string');\nconst isHttpStatus = (n: unknown): n is number => Number.isInteger(n) && (n as number) >= 100 && (n as number) <= 599;\nexport function validateArtifact(raw: unknown, story: Story): ValidationResult {\n  …\n  return errors.length ? { ok: false, errors } : { ok: true, artifact: raw as unknown as Artifact, errors: [] };\n}"
+    },
+    "assets": [
+      "war-paradigm/experiments/01-ai-verdict/src/generator.ts línea 18",
+      "war-paradigm/experiments/01-ai-verdict/src/checks.ts líneas 12–18 y 59"
+    ],
+    "notas_animacion": "Resaltar 'v !== null && !Array.isArray(v)' en gold y el 'as' final en mint con rótulo 'después de validar'."
+  },
+  {
+    "id": "E10",
+    "inicio": "11:00",
+    "fin": "12:09",
+    "tipo": "codigo",
+    "visual": "El cast de las pruebas resaltado y, al lado, la lista de tareas del laboratorio.",
+    "texto_pantalla": {
+      "es": "tests/checks.spec.ts\nconst load = async (set: string, run: number) => (await new RecordedGenerator(set).generate(await loadStory(), run)) as Artifact;\n\nLaboratorio: builders sin any · validar una API pública con mensajes claros · npx tsc --noEmit",
+      "en": "tests/checks.spec.ts\nconst load = async (set: string, run: number) => (await new RecordedGenerator(set).generate(await loadStory(), run)) as Artifact;\n\nLab: builders without any · validate a public API with clear messages · npx tsc --noEmit"
+    },
+    "assets": [
+      "war-paradigm/experiments/01-ai-verdict/tests/checks.spec.ts línea 10",
+      "m4.hands"
+    ],
+    "notas_animacion": "'as Artifact' en gold con la pregunta '¿quién verifica que sea verdad?'."
+  },
+  {
+    "id": "E11",
+    "inicio": "12:09",
+    "fin": "12:34",
+    "tipo": "codigo",
+    "visual": "Diff de una línea en tests/stability.spec.ts (se quita gate: 70) y nota de predicción.",
+    "texto_pantalla": {
+      "es": "tests/stability.spec.ts:47\n- const report: Report = { verdict: 'approved', score: 90, gate: 70, reasons: [], schemaErrors: [], pinWarnings: [], criteria: [] };\n+ const report: Report = { verdict: 'approved', score: 90, reasons: [], schemaErrors: [], pinWarnings: [], criteria: [] };\nPredicción: tsc falla, falta 'gate'",
+      "en": "tests/stability.spec.ts:47\n- const report: Report = { verdict: 'approved', score: 90, gate: 70, reasons: [], schemaErrors: [], pinWarnings: [], criteria: [] };\n+ const report: Report = { verdict: 'approved', score: 90, reasons: [], schemaErrors: [], pinWarnings: [], criteria: [] };\nPrediction: tsc fails, 'gate' is missing"
+    },
+    "assets": [
+      "war-paradigm/experiments/01-ai-verdict/tests/stability.spec.ts línea 47",
+      "m4.mut"
+    ],
+    "notas_animacion": "La predicción aparece primero."
+  },
+  {
+    "id": "E12",
+    "inicio": "12:34",
+    "fin": "12:58",
+    "tipo": "terminal",
+    "visual": "Los dos errores del compilador, uno tras otro, y la restauración.",
+    "texto_pantalla": {
+      "es": "$ npm run typecheck\nexperiments/01-ai-verdict/tests/stability.spec.ts(47,9): error TS2741: Property 'gate' is missing in type '{ verdict: \"approved\"; score: number; reasons: never[]; schemaErrors: never[]; pinWarnings: never[]; criteria: never[]; }' but required in type 'Report'.\n(exit code 2)\n\n$ npx tsc -p experiments/01-ai-verdict\nexperiments/01-ai-verdict/tests/scorer.spec.ts(60,27): error TS2345: Argument of type '{ id: string; title: string; actor: string; action: string; covers: string[]; steps: string[]; expected: { status: number; }; }' is not assignable to parameter of type 'Scenario'.\n  Property 'source' is missing in type '{ … }' but required in type 'Scenario'.\n(archivos restaurados) → exit code 0",
+      "en": "$ npm run typecheck\nexperiments/01-ai-verdict/tests/stability.spec.ts(47,9): error TS2741: Property 'gate' is missing in type '{ verdict: \"approved\"; score: number; reasons: never[]; schemaErrors: never[]; pinWarnings: never[]; criteria: never[]; }' but required in type 'Report'.\n(exit code 2)\n\n$ npx tsc -p experiments/01-ai-verdict\nexperiments/01-ai-verdict/tests/scorer.spec.ts(60,27): error TS2345: Argument of type '{ id: string; title: string; actor: string; action: string; covers: string[]; steps: string[]; expected: { status: number; }; }' is not assignable to parameter of type 'Scenario'.\n  Property 'source' is missing in type '{ … }' but required in type 'Scenario'.\n(files restored) → exit code 0"
+    },
+    "assets": [
+      "Salidas observadas en copia local con cada mutación aplicada y revertida, 26-oct-2026 (en la segunda línea del TS2345 se abrevió con '…' el tipo repetido)"
+    ],
+    "notas_animacion": "Sello 'KILLED' mint ✓ después de cada error."
+  },
+  {
+    "id": "E13",
+    "inicio": "12:58",
+    "fin": "14:38",
+    "tipo": "terminal",
+    "visual": "La mutación del fixture: tsc en silencio, la demo y las pruebas de checks. Al final, la tabla de dos filas.",
+    "texto_pantalla": {
+      "es": "fixtures/runs/pinned/run-1.json · scenarios[0]: sin \"expected\"\n$ npx tsc -p experiments/01-ai-verdict → tsc exit=0  (compilador: SURVIVED)\n$ npm run demo:pinned -w experiments/01-ai-verdict\n    schema invalid:\n      · scenarios[0].expected.status: must be an HTTP status code\n    score 0/100 · gate 70 · verdict REJECTED\n$ npx playwright test checks\n  ✘   3 tests/checks.spec.ts:14:5 › schema: pinned/run-1 is a valid artifact\n  ✘   8 tests/checks.spec.ts:52:1 › references: covers must point to requirement or boundary ids that exist\n  2 failed\n  10 passed\n\nCampo faltante en código → compilador ✓ · en datos de afuera → validación en runtime ✓",
+      "en": "fixtures/runs/pinned/run-1.json · scenarios[0]: no \"expected\"\n$ npx tsc -p experiments/01-ai-verdict → tsc exit=0  (compiler: SURVIVED)\n$ npm run demo:pinned -w experiments/01-ai-verdict\n    schema invalid:\n      · scenarios[0].expected.status: must be an HTTP status code\n    score 0/100 · gate 70 · verdict REJECTED\n$ npx playwright test checks\n  ✘   3 tests/checks.spec.ts:14:5 › schema: pinned/run-1 is a valid artifact\n  ✘   8 tests/checks.spec.ts:52:1 › references: covers must point to requirement or boundary ids that exist\n  2 failed\n  10 passed\n\nMissing field in code → compiler ✓ · in outside data → runtime validation ✓"
+    },
+    "assets": [
+      "Salidas observadas en copia local con el campo borrado del fixture y luego restaurado (restaurado: 1 skipped, 27 passed), 26-oct-2026"
+    ],
+    "notas_animacion": "'SURVIVED' del compilador en coral con ✗; 'REJECTED' del validador con sello mint 'KILLED'."
+  },
+  {
+    "id": "E14",
+    "inicio": "14:38",
+    "fin": "15:18",
+    "tipo": "diagrama",
+    "visual": "Checklist del reto y rúbrica genérica de 4 niveles con el nivel 4 en gold.",
+    "texto_pantalla": {
+      "es": "☐ npx tsc --noEmit → exit 0 en TypeScript 7\n☐ Builders sin any\n☐ La validación falla con mensaje claro si falta un campo\nNivel 4: un bug que el compilador atrapó y que habría sido flaky\nApruebas: reto nivel 3 + quiz 6 de 8",
+      "en": "☐ npx tsc --noEmit → exit 0 on TypeScript 7\n☐ Builders without any\n☐ Validation fails with a clear message when a field is missing\nLevel 4: a bug the compiler caught that would have been flaky\nPass: challenge at level 3 + quiz 6 of 8"
+    },
+    "assets": [
+      "m4.hands, m4.crit, m4.deliver, m4.top",
+      "ui.json rubric.generic y module.evalNote",
+      "course.json qn = 8, qpass = 0.75"
+    ],
+    "notas_animacion": "Casillas con ✓ mint."
+  },
+  {
+    "id": "E15",
+    "inicio": "15:18",
+    "fin": "15:47",
+    "tipo": "quiz",
+    "visual": "Tarjeta de pregunta A–D con temporizador de 5 s.",
+    "texto_pantalla": {
+      "es": "¿Por qué async/await es crítico en Playwright?\nA · Hace los tests más rápidos\nB · Casi toda la API devuelve Promises: sin await tienes falsos verdes ✓\nC · Es un requisito del compilador de TS\nD · Reemplaza a los fixtures",
+      "en": "Why are async/await critical in Playwright?\nA · They make tests faster\nB · Almost the whole API returns Promises: without await you get false greens ✓\nC · The TS compiler requires it\nD · They replace fixtures"
+    },
+    "assets": [
+      "quiz-01-10.json m4 pregunta 1 (a = 1)"
+    ],
+    "notas_animacion": "El ✓ aparece al terminar la pausa."
+  },
+  {
+    "id": "E16",
+    "inicio": "15:47",
+    "fin": "16:18",
+    "tipo": "quiz",
+    "visual": "Misma plantilla de quiz.",
+    "texto_pantalla": {
+      "es": "const r = await api.get<User>(\"/user/1\"). ¿Qué te da el generic <User>?\nA · Valida la respuesta en runtime\nB · Tipado estático (autocompletado y errores al compilar), pero NO valida runtime ✓\nC · Convierte el JSON en una clase User\nD · Lanza error si el servicio omite un campo",
+      "en": "const r = await api.get<User>(\"/user/1\"). What does the <User> generic give you?\nA · Runtime validation of the response\nB · Static typing (autocomplete, compile errors), but NO runtime validation ✓\nC · It turns the JSON into a User class\nD · It throws if the service omits a field"
+    },
+    "assets": [
+      "quiz-01-10.json m4 pregunta 2 (a = 1)"
+    ],
+    "notas_animacion": "Temporizador de 5 s."
+  },
+  {
+    "id": "E17",
+    "inicio": "16:18",
+    "fin": "16:44",
+    "tipo": "quiz",
+    "visual": "Misma plantilla de quiz.",
+    "texto_pantalla": {
+      "es": "Recibes un JSON externo. ¿“any” o “unknown”, y por qué?\nA · any: es más flexible\nB · unknown: te OBLIGA a validar antes de usarlo; any apaga el type-checker ✓\nC · Da igual, son sinónimos\nD · never, porque no confías en él",
+      "en": "You receive external JSON. “any” or “unknown”, and why?\nA · any: it's more flexible\nB · unknown: it FORCES you to validate first; any switches the checker off ✓\nC · Doesn't matter, they're the same\nD · never, because you don't trust it"
+    },
+    "assets": [
+      "quiz-01-10.json m4 pregunta 4 (a = 1)"
+    ],
+    "notas_animacion": "Temporizador de 5 s."
+  },
+  {
+    "id": "E18",
+    "inicio": "16:44",
+    "fin": "17:11",
+    "tipo": "resumen",
+    "visual": "Tres tarjetas de ideas y la tarjeta del siguiente módulo (07 · Playwright + TypeScript E2E, icono 🎭).",
+    "texto_pantalla": {
+      "es": "1 · Los tipos son tu primer test: uniones y strict\n2 · Todo await cuenta: una Promise flotante es un verde falso\n3 · Lo de afuera es unknown hasta que lo validas en runtime\nSiguiente → 07 · Playwright + TypeScript E2E\nCristian Guerra · QA · Medellín",
+      "en": "1 · Types are your first test: unions and strict\n2 · Every await counts: a floating promise is a false green\n3 · Outside data is unknown until you validate it at runtime\nNext → 07 · Playwright + TypeScript E2E\nCristian Guerra · QA · Medellín"
+    },
+    "assets": [
+      "course.json (posición 7 = m5)",
+      "https://criguex.github.io/qa-automation-course/#/m4"
+    ],
+    "notas_animacion": "Las tarjetas entran con ✓ mint."
+  }
+]

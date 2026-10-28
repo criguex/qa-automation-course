@@ -1,0 +1,408 @@
+[
+  {
+    "id": "E01",
+    "inicio": "00:00",
+    "fin": "00:41",
+    "tipo": "titulo",
+    "visual": "Barra de progreso de una compilación que llega a «exit 0» en mint. Debajo, una carpeta .lake/packages se abre y aparecen siete cajitas gold con la etiqueta «precompilado · Reservoir». El sello mint «limpia» se agrieta.",
+    "texto_pantalla": {
+      "es": "B3 · exit 0 · log limpio · ⚠ 7 dependencias precompiladas que el log no mostró",
+      "en": "B3 · exit 0 · clean log · ⚠ 7 prebuilt dependencies the log never showed"
+    },
+    "assets": [
+      "scientific-qa-evidence/FINDINGS.md (hallazgo 1)",
+      "scientific-qa-evidence/evidence/formal/cd-validation/README.md (B3)"
+    ],
+    "notas_animacion": "Firma abajo a la izquierda: Cristian Guerra · QA · Medellín."
+  },
+  {
+    "id": "E02",
+    "inicio": "00:41",
+    "fin": "01:23",
+    "tipo": "animacion",
+    "visual": "Dos líneas de código lado a lado: «n < p» y «n + 1 ≤ p». Un signo «≡ por definición» en mint entre ellas. Encima, el sello de Comparator cae en coral: «✗ rechazado».",
+    "texto_pantalla": {
+      "es": "«n + 1 ≤ p» es lo mismo que «n < p» para Lean · Comparator: ✗ rechazado",
+      "en": "\"n + 1 ≤ p\" is the same as \"n < p\" to Lean · Comparator: ✗ rejected"
+    },
+    "assets": [
+      "scientific-qa-evidence/README.es.md (Controles con Mathlib)"
+    ],
+    "notas_animacion": "El sello coral cae justo cuando la voz dice «rechazado»."
+  },
+  {
+    "id": "E03",
+    "inicio": "01:23",
+    "fin": "02:01",
+    "tipo": "analogia",
+    "visual": "Salón de clase ilustrado: un profe con lápiz rojo revisa cuentas en una hoja (✓ en cada línea). A un lado, un niño con lupa mira tres cosas: el enunciado de la tarea pegado en el tablero, una huella de «copiado» en la hoja y una pregunta cambiada a la que el profe le pone ✗.",
+    "texto_pantalla": {
+      "es": "El profe revisa las cuentas · Tú revisas la pregunta, el origen y que el profe sí ponga mala nota",
+      "en": "The teacher checks the math · You check the question, where it came from, and that the teacher can still fail it"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/modules-30-35.json (m26.kid)"
+    ],
+    "notas_animacion": "Personajes simples en SVG, paleta de marca."
+  },
+  {
+    "id": "E04",
+    "inicio": "02:01",
+    "fin": "02:44",
+    "tipo": "diagrama",
+    "visual": "Un círculo mint grande «Lean: cada paso es válido ✓». Alrededor, cuatro huecos gold: 1 cómo se compiló · 2 si el enunciado es el pretendido · 3 si coincide con el texto de Clay · 4 si la evidencia publicada es la que se produjo. De cada hueco sale una flecha a su paso del protocolo.",
+    "texto_pantalla": {
+      "es": "Lean ✓ pasos · ⚠ compilación · ⚠ enunciado · ⚠ texto de Clay · ⚠ evidencia",
+      "en": "Lean ✓ steps · ⚠ build · ⚠ statement · ⚠ Clay's text · ⚠ evidence"
+    },
+    "assets": [
+      "scientific-qa-evidence/README.es.md (El método: QA con rigor científico, «Cómo complementa a Lean»)"
+    ],
+    "notas_animacion": "Cada hueco se ilumina cuando se nombra; al final se conectan con: recompilar, mutar el enunciado, puentes a Clay, recibos con hash."
+  },
+  {
+    "id": "E05",
+    "inicio": "02:44",
+    "fin": "03:29",
+    "tipo": "diagrama",
+    "visual": "Línea de tiempo con cinco compilaciones B1 a B5. B2 con etiqueta «caché de Mathlib». B3 con las siete cajitas gold. B4 y B5 en mint con «lake --no-cache build · exit 0 · 11.424 jobs» y sus tiempos 1 h 29 min y 1 h 16 min.",
+    "texto_pantalla": {
+      "es": "5 compilaciones · B4 y B5: lake --no-cache build · exit 0 · 11.424 jobs · 1 h 29 min y 1 h 16 min",
+      "en": "5 builds · B4 and B5: lake --no-cache build · exit 0 · 11,424 jobs · 1 h 29 min and 1 h 16 min"
+    },
+    "assets": [
+      "scientific-qa-evidence/README.es.md (Resultados en resumen, fila «¿Compila desde la fuente?»)",
+      "evidence/formal/cd-validation/README.md (tabla de compilaciones)"
+    ],
+    "notas_animacion": "Las fechas de los .olean se dibujan como relojitos; en B3 algunos relojes marcan antes del inicio."
+  },
+  {
+    "id": "E06",
+    "inicio": "03:29",
+    "fin": "04:10",
+    "tipo": "diagrama",
+    "visual": "Comparator al centro con dos kernels conectados: «kernel de Lean» y «nanoda». Una lista de axiomas permitidos en mint: propext, Quot.sound, Classical.choice. A un lado, leanchecker --fresh con una flecha punteada al kernel de Lean («no es una tercera implementación»). lean4lean tachado en gold: «no compiló para Lean 4.34».",
+    "texto_pantalla": {
+      "es": "Comparator: teorema exacto + axiomas permitidos · 2 kernels: Lean y nanoda · leanchecker --fresh usa el kernel de Lean",
+      "en": "Comparator: exact theorem + allowed axioms · 2 kernels: Lean and nanoda · leanchecker --fresh uses Lean's kernel"
+    },
+    "assets": [
+      "scientific-qa-evidence/README.es.md (Parte A",
+      "Limitaciones conocidas)"
+    ],
+    "notas_animacion": "La flecha punteada debe dejar claro que leanchecker comparte kernel con Lean."
+  },
+  {
+    "id": "E07",
+    "inicio": "04:10",
+    "fin": "04:49",
+    "tipo": "diagrama",
+    "visual": "Dos escudos mint (Lean y nanoda) frente a una prueba falsa con cara de zorro. En julio de 2026, los dos escudos tienen una grieta distinta y el zorro pasa por las dos. Texto gold: «dos kernels que aceptan no dicen nada sobre bugs que nadie conoce».",
+    "texto_pantalla": {
+      "es": "Julio de 2026: un bug de Lean y otro distinto de nanoda dejaron pasar la misma prueba falsa",
+      "en": "July 2026: one Lean bug and a different nanoda bug let the same false proof through"
+    },
+    "assets": [
+      "scientific-qa-evidence/README.es.md (Limitaciones conocidas, «Solo bugs de kernel conocidos»)"
+    ],
+    "notas_animacion": "El zorro es ilustrativo; no representa ninguna prueba concreta."
+  },
+  {
+    "id": "E08",
+    "inicio": "04:49",
+    "fin": "05:32",
+    "tipo": "codigo",
+    "visual": "Diff real del mutante «add f = 0» sobre el desafío de Navier–Stokes; la línea añadida en coral. Debajo, una tabla de siete filas: seis mutantes ✗ KILLED y el control de solo comentario ✓ CONTROL_ACCEPTED.",
+    "texto_pantalla": {
+      "es": "# evidence/formal/cd-validation/mutants/force_zero_R3.diff\n theorem navier_stokes_breakdown_R3 (nu : ℝ) (hnu : nu > 0) :\n     ∃ (u₀ : ℝ³ → ℝ³) (f : ℝ³ → ℝ → ℝ³),\n-    InitialVelocityConditionDecay u₀ ∧ ForceConditionDecay f ∧\n+    InitialVelocityConditionDecay u₀ ∧ ForceConditionDecay f ∧ f = 0 ∧\nuncaught exception: Challenge and solution theorem statement do not match: 'NavierStokes.Comparator.navier_stokes_breakdown_R3'\n6 mutantes ✗ KILLED · control de solo comentario ✓ CONTROL_ACCEPTED",
+      "en": "# evidence/formal/cd-validation/mutants/force_zero_R3.diff\n theorem navier_stokes_breakdown_R3 (nu : ℝ) (hnu : nu > 0) :\n     ∃ (u₀ : ℝ³ → ℝ³) (f : ℝ³ → ℝ → ℝ³),\n-    InitialVelocityConditionDecay u₀ ∧ ForceConditionDecay f ∧\n+    InitialVelocityConditionDecay u₀ ∧ ForceConditionDecay f ∧ f = 0 ∧\nuncaught exception: Challenge and solution theorem statement do not match: 'NavierStokes.Comparator.navier_stokes_breakdown_R3'\n6 mutants ✗ KILLED · comment-only control ✓ CONTROL_ACCEPTED"
+    },
+    "assets": [
+      "scientific-qa-evidence/evidence/formal/cd-validation/mutants/force_zero_R3.diff",
+      "evidence/formal/cd-validation/README.md (tabla de chequeos, filas 17–23)"
+    ],
+    "notas_animacion": "Diff recortado a las líneas mostradas; el mensaje de rechazo es el de la tabla de cd-validation."
+  },
+  {
+    "id": "E09",
+    "inicio": "05:32",
+    "fin": "06:14",
+    "tipo": "diagrama",
+    "visual": "Tabla de los 11 casos Mathlib (primos, Cauchy–Schwarz, convergencia dominada). Columna «Comparator» con ✓ aceptado o ✗ rechazado. Columna «segunda vía» que se llena después con: equivalente (mint), más débil (gold), falso (coral).",
+    "texto_pantalla": {
+      "es": "3 teoremas · 8 enunciados cambiados · 8 ✗ rechazados · 4 eran equivalentes · la segunda vía decide la clase",
+      "en": "3 theorems · 8 changed statements · 8 ✗ rejected · 4 were equivalent · the second route decides the class"
+    },
+    "assets": [
+      "scientific-qa-evidence/README.es.md (Controles con Mathlib, tabla)",
+      "experiments/mathlib-controls/RESULTS.md"
+    ],
+    "notas_animacion": "Primero se ve solo la columna de Comparator; la columna de clase se llena después, para que el contraste se note."
+  },
+  {
+    "id": "E10",
+    "inicio": "06:14",
+    "fin": "06:58",
+    "tipo": "diagrama",
+    "visual": "Un árbol de dependencias que se expande desde «primes_reform_equiv»: 1.485 nodos se recorren en mint y ninguno es el teorema bajo prueba (✓). Luego «primes_reform_equiv_cheat»: el recorrido encuentra Nat.exists_infinite_primes y se pinta en coral (✗).",
+    "texto_pantalla": {
+      "es": "guard: QAControls.SecondRoute.primes_reform_equiv uses none of the theorems under test (1485 constants checked)\nerror: guard: QAControls.SecondRoute.primes_reform_equiv_cheat depends on Nat.exists_infinite_primes",
+      "en": "guard: QAControls.SecondRoute.primes_reform_equiv uses none of the theorems under test (1485 constants checked)\nerror: guard: QAControls.SecondRoute.primes_reform_equiv_cheat depends on Nat.exists_infinite_primes"
+    },
+    "assets": [
+      "scientific-qa-evidence/README.es.md (Controles con Mathlib, «La guarda»)"
+    ],
+    "notas_animacion": "Salida copiada del README; el contador de constantes sube hasta 1485."
+  },
+  {
+    "id": "E11",
+    "inicio": "06:58",
+    "fin": "07:40",
+    "tipo": "diagrama",
+    "visual": "Tabla de tres filas: limpio, log ausente, log viejo con el nombre correcto. Tres columnas: procedimiento publicado (exit 0 en las tres), P6 existencia (✓, ✗, ✓ en coral «no lo ve»), chequeo por hash (✓, ✗, ✗).",
+    "texto_pantalla": {
+      "es": "Log ausente: P6 ✗ lo ve · Log viejo con el nombre correcto: P6 ✓ lo deja pasar · Hash ✗ ve los dos",
+      "en": "Missing log: P6 ✗ catches it · Stale log, right name: P6 ✓ lets it through · Hash ✗ catches both"
+    },
+    "assets": [
+      "scientific-qa-evidence/experiments/receipt-check/RESULTS.md",
+      "experiments/receipt-check/RESULTS2.md"
+    ],
+    "notas_animacion": "La celda coral de P6 en la tercera fila es el foco del bloque."
+  },
+  {
+    "id": "E12",
+    "inicio": "07:40",
+    "fin": "08:26",
+    "tipo": "diagrama",
+    "visual": "Logos de texto plano (sin marcas) «in-toto» y «SLSA» con una etiqueta gold «práctica establecida, no técnica nueva». Debajo, un candado con una nota: «el hash no autentica el origen si alguien cambia el archivo y también el hash registrado».",
+    "texto_pantalla": {
+      "es": "No es nuevo: in-toto y SLSA ya lo hacen · ⚠ Límite: no autentica el origen si cambian archivo y hash · Alcance: «no se encontró un defecto en este alcance»",
+      "en": "Not new: in-toto and SLSA already do this · ⚠ Limit: it doesn't authenticate origin if both file and hash change · Scope: \"no defect found within this scope\""
+    },
+    "assets": [
+      "scientific-qa-evidence/README.es.md («No es una técnica nueva»",
+      "«Cómo complementa a Lean»)",
+      "experiments/receipt-check/RESULTS2.md"
+    ],
+    "notas_animacion": "Solo texto para in-toto y SLSA; no usar logos de terceros."
+  },
+  {
+    "id": "E13",
+    "inicio": "08:26",
+    "fin": "09:14",
+    "tipo": "terminal",
+    "visual": "Terminal deep. Se ejecuta verificar.py y van apareciendo las seis comprobaciones con [OK] en mint; la huella aparece resaltada.",
+    "texto_pantalla": {
+      "es": "$ git clone https://github.com/criguex/scientific-qa-evidence.git\n$ cd scientific-qa-evidence\n$ python3 verificar.py; echo \"exit=$?\"\nVerificación de scientific-qa-evidence\nVersión de los datos: 26791fe6546f   Sistema: Darwin arm64   Python 3.9.6\n  1/6  [OK]  Archivos intactos (SHA-256)  (0.2 s)\n  2/6  [OK]  Corridas numéricas guardadas, iguales entre Mac y Linux  (0.0 s)\n  3/6  [OK]  Volver a correr las 84 variantes numéricas  (0.2 s)\n  4/6  [OK]  README, CLAIMS y registros dicen lo mismo  (0.0 s)\n  5/6  [OK]  Recibos de los controles Mathlib  (0.0 s)\n  6/6  [OK]  Comprobación de recibos en los paquetes publicados  (0.1 s)\nResultado: las 6 comprobaciones salieron OK en tu computador.\nTu huella: C5F0-F1A8-2F4D\nexit=0",
+      "en": "$ git clone https://github.com/criguex/scientific-qa-evidence.git\n$ cd scientific-qa-evidence\n$ python3 verificar.py; echo \"exit=$?\"\nVerificación de scientific-qa-evidence\nVersión de los datos: 26791fe6546f   Sistema: Darwin arm64   Python 3.9.6\n  1/6  [OK]  Archivos intactos (SHA-256)  (0.2 s)\n  2/6  [OK]  Corridas numéricas guardadas, iguales entre Mac y Linux  (0.0 s)\n  3/6  [OK]  Volver a correr las 84 variantes numéricas  (0.2 s)\n  4/6  [OK]  README, CLAIMS y registros dicen lo mismo  (0.0 s)\n  5/6  [OK]  Recibos de los controles Mathlib  (0.0 s)\n  6/6  [OK]  Comprobación de recibos en los paquetes publicados  (0.1 s)\nResultado: las 6 comprobaciones salieron OK en tu computador.\nTu huella: C5F0-F1A8-2F4D\nexit=0"
+    },
+    "assets": [
+      "Corrida en un clon de scientific-qa-evidence @ c02e623 (ver fuentes.md)",
+      "script: scientific-qa-evidence/verificar.py"
+    ],
+    "notas_animacion": "La salida del script está en español en ambas versiones; subtítulos EN para la versión inglesa. Se omiten las líneas de progreso intermedias que el script sobrescribe con \\r."
+  },
+  {
+    "id": "E14",
+    "inicio": "09:14",
+    "fin": "09:59",
+    "tipo": "terminal",
+    "visual": "Terminal con los seis comandos uno debajo del otro; al lado de cada uno, una etiqueta: «verificado por hash» (gold) o «recalculado» (mint).",
+    "texto_pantalla": {
+      "es": "$ shasum -a 256 -c evidence/SHA256SUMS.txt                           # verificado por hash\n$ python3 evidence/verify_numerical.py\n$ (cd evidence/numerical/source && python3 -m unittest test_runner)  # recalculado: 84 variantes\n$ python3 evidence/test_consistency.py\n$ python3 experiments/mathlib-controls/verify.py                     # recibos + clases; no corre Lean\n$ (cd experiments/receipt-check && python3 -m unittest test_results)  # recalcula X1 y X2 sobre los paquetes",
+      "en": "$ shasum -a 256 -c evidence/SHA256SUMS.txt                           # verified by hash\n$ python3 evidence/verify_numerical.py\n$ (cd evidence/numerical/source && python3 -m unittest test_runner)  # recomputed: 84 variants\n$ python3 evidence/test_consistency.py\n$ python3 experiments/mathlib-controls/verify.py                     # receipts + classes; doesn't run Lean\n$ (cd experiments/receipt-check && python3 -m unittest test_results)  # recomputes X1 and X2 on the bundles"
+    },
+    "assets": [
+      "scientific-qa-evidence/README.es.md (Verifícalo tú mismo)",
+      "REPRODUCE.md (tabla «Recomputed or verified?»)",
+      "experiments/receipt-check/RESULTS2.md (Notes)"
+    ],
+    "notas_animacion": "Los comentarios al final de cada línea son rótulos de la escena, no parte del comando."
+  },
+  {
+    "id": "E15",
+    "inicio": "09:59",
+    "fin": "10:44",
+    "tipo": "terminal",
+    "visual": "Terminal: se imprime la primera línea de receipts.jsonl; luego la escena la «despliega» como tarjetas: command, inputs (3 hashes), stdout_sha256, stderr_sha256, exit_code, started, finished.",
+    "texto_pantalla": {
+      "es": "$ head -n 1 experiments/mathlib-controls/results/receipts.jsonl\n{\"step\": \"comparator\", \"case\": \"PrimesOrig\", \"command\": \"lake env comparator QAControls/configs/PrimesOrig.json\", \"inputs\": {\"QAControls/Challenge/PrimesOrig.lean\": \"1355369c…0b074753\", \"QAControls/Solution/Primes.lean\": \"2906cfba…e8fb9591\", \"QAControls/configs/PrimesOrig.json\": \"33fb503a…e2bcad\"}, \"stdout_sha256\": \"bfac1fa7…808a7faf\", \"stderr_sha256\": \"e3b0c442…7852b855\", \"exit_code\": 0, \"started\": \"2026-10-21T23:14:27Z\", \"finished\": \"2026-10-21T23:15:07Z\"}",
+      "en": "$ head -n 1 experiments/mathlib-controls/results/receipts.jsonl\n{\"step\": \"comparator\", \"case\": \"PrimesOrig\", \"command\": \"lake env comparator QAControls/configs/PrimesOrig.json\", \"inputs\": {\"QAControls/Challenge/PrimesOrig.lean\": \"1355369c…0b074753\", \"QAControls/Solution/Primes.lean\": \"2906cfba…e8fb9591\", \"QAControls/configs/PrimesOrig.json\": \"33fb503a…e2bcad\"}, \"stdout_sha256\": \"bfac1fa7…808a7faf\", \"stderr_sha256\": \"e3b0c442…7852b855\", \"exit_code\": 0, \"started\": \"2026-10-21T23:14:27Z\", \"finished\": \"2026-10-21T23:15:07Z\"}"
+    },
+    "assets": [
+      "scientific-qa-evidence/experiments/mathlib-controls/results/receipts.jsonl (línea 1)",
+      "los hashes completos están en fuentes.md"
+    ],
+    "notas_animacion": "Hashes recortados con «…» solo para que quepan en pantalla; en fuentes.md van completos."
+  },
+  {
+    "id": "E16",
+    "inicio": "10:44",
+    "fin": "11:29",
+    "tipo": "terminal",
+    "visual": "Terminal: cat del log de error del mutante PrimesSwap. La última línea en coral. Al lado, el enunciado mutado «∃ p, ∀ n, n < p ∧ p.Prime» con los cuantificadores resaltados.",
+    "texto_pantalla": {
+      "es": "$ cat experiments/mathlib-controls/results/comparator/PrimesSwap.stderr.log\nuncaught exception: Challenge and solution theorem statement do not match: 'QAControls.primes_infinite'",
+      "en": "$ cat experiments/mathlib-controls/results/comparator/PrimesSwap.stderr.log\nuncaught exception: Challenge and solution theorem statement do not match: 'QAControls.primes_infinite'"
+    },
+    "assets": [
+      "scientific-qa-evidence/experiments/mathlib-controls/results/comparator/PrimesSwap.stderr.log"
+    ],
+    "notas_animacion": "El mensaje está en stderr.log, no en stdout.log (stdout termina en la línea «Exporting #[…]»). Ver la nota en fuentes.md."
+  },
+  {
+    "id": "E17",
+    "inicio": "11:29",
+    "fin": "12:12",
+    "tipo": "terminal",
+    "visual": "Terminal con la salida real de verify.py: once filas que se pintan con su clase (mint aceptado, mint equivalente, gold más débil, coral falso), la línea de la guarda y el PASS final.",
+    "texto_pantalla": {
+      "es": "$ python3 experiments/mathlib-controls/verify.py\nprimes/orig      ACCEPTED            ACCEPTED_BY_CHECKER    OK\nprimes/defeq     REJECTED_STATEMENT  CHANGED_EQUIVALENT     OK\nprimes/reform    REJECTED_STATEMENT  CHANGED_EQUIVALENT     OK\nprimes/bounded   REJECTED_STATEMENT  CHANGED_WEAKER         OK\nprimes/swap      REJECTED_STATEMENT  CHANGED_FALSE          OK\ncs/orig          ACCEPTED            ACCEPTED_BY_CHECKER    OK\ncs/reform        REJECTED_STATEMENT  CHANGED_EQUIVALENT     OK\ncs/strict        REJECTED_STATEMENT  CHANGED_FALSE          OK\ndct/orig         ACCEPTED            ACCEPTED_BY_CHECKER    OK\ndct/reform       REJECTED_STATEMENT  CHANGED_EQUIVALENT     OK\ndct/nodom        REJECTED_STATEMENT  CHANGED_FALSE          OK\nguard built: OK; cheat rejected by the guard: OK; signed-bound refutation: OK\nPASS: 11 cases match the pre-registered classes; controls as registered. This checks the published records against their receipts; it does not rerun Lean.",
+      "en": "$ python3 experiments/mathlib-controls/verify.py\nprimes/orig      ACCEPTED            ACCEPTED_BY_CHECKER    OK\nprimes/defeq     REJECTED_STATEMENT  CHANGED_EQUIVALENT     OK\nprimes/reform    REJECTED_STATEMENT  CHANGED_EQUIVALENT     OK\nprimes/bounded   REJECTED_STATEMENT  CHANGED_WEAKER         OK\nprimes/swap      REJECTED_STATEMENT  CHANGED_FALSE          OK\ncs/orig          ACCEPTED            ACCEPTED_BY_CHECKER    OK\ncs/reform        REJECTED_STATEMENT  CHANGED_EQUIVALENT     OK\ncs/strict        REJECTED_STATEMENT  CHANGED_FALSE          OK\ndct/orig         ACCEPTED            ACCEPTED_BY_CHECKER    OK\ndct/reform       REJECTED_STATEMENT  CHANGED_EQUIVALENT     OK\ndct/nodom        REJECTED_STATEMENT  CHANGED_FALSE          OK\nguard built: OK; cheat rejected by the guard: OK; signed-bound refutation: OK\nPASS: 11 cases match the pre-registered classes; controls as registered. This checks the published records against their receipts; it does not rerun Lean."
+    },
+    "assets": [
+      "Corrida en el clon de scientific-qa-evidence @ c02e623",
+      "script: experiments/mathlib-controls/verify.py"
+    ],
+    "notas_animacion": "La última frase («it does not rerun Lean») se subraya en gold."
+  },
+  {
+    "id": "E18",
+    "inicio": "12:12",
+    "fin": "12:58",
+    "tipo": "navegador",
+    "visual": "Navegador con docs/INDEPENDENT_REPRODUCTION.md en GitHub; se resaltan la tabla «What is fixed», el bloque de la función step() y la línea de lake --no-cache build.",
+    "texto_pantalla": {
+      "es": "Opcional: recompilar en Linux · ~30 GB de disco · 16 GB de RAM · nuestra compilación: 1 h 15 min en 12 núcleos · un resultado distinto también se publica",
+      "en": "Optional: rebuild on Linux · ~30 GB of disk · 16 GB of RAM · our build: 1 h 15 min on 12 cores · a different result gets published too"
+    },
+    "assets": [
+      "https://github.com/criguex/scientific-qa-evidence/blob/main/docs/INDEPENDENT_REPRODUCTION.md"
+    ],
+    "notas_animacion": "Captura del navegador real; solo se hace zoom sobre las secciones nombradas."
+  },
+  {
+    "id": "E19",
+    "inicio": "12:58",
+    "fin": "13:40",
+    "tipo": "terminal",
+    "visual": "Terminal en una copia del repo. Se ejecuta el cp del log de PrimesOrig sobre el de PrimesSwap; verify.py cae con AssertionError en coral y exit=1.",
+    "texto_pantalla": {
+      "es": "$ cp experiments/mathlib-controls/results/comparator/PrimesOrig.stdout.log experiments/mathlib-controls/results/comparator/PrimesSwap.stdout.log\n$ python3 experiments/mathlib-controls/verify.py; echo \"exit=$?\"\n    assert sha256(res / folder / f\"{r['case']}.stdout.log\") == r[\"stdout_sha256\"], f\"stdout hash mismatch: {r['case']}\"\nAssertionError: stdout hash mismatch: PrimesSwap\nexit=1",
+      "en": "$ cp experiments/mathlib-controls/results/comparator/PrimesOrig.stdout.log experiments/mathlib-controls/results/comparator/PrimesSwap.stdout.log\n$ python3 experiments/mathlib-controls/verify.py; echo \"exit=$?\"\n    assert sha256(res / folder / f\"{r['case']}.stdout.log\") == r[\"stdout_sha256\"], f\"stdout hash mismatch: {r['case']}\"\nAssertionError: stdout hash mismatch: PrimesSwap\nexit=1"
+    },
+    "assets": [
+      "Corrida en una copia temporal de scientific-qa-evidence @ c02e623 (ver fuentes.md)",
+      "experiments/mathlib-controls/verify.py, línea 35"
+    ],
+    "notas_animacion": "Solo se muestran las dos últimas líneas del traceback. Rótulo: «en una copia, nunca en tu clon de trabajo»."
+  },
+  {
+    "id": "E20",
+    "inicio": "13:40",
+    "fin": "14:20",
+    "tipo": "terminal",
+    "visual": "Terminal: git checkout . restaura; luego se edita el exit_code del recibo de Comparator de PrimesSwap de 1 a 0. verify.py sale con 1; verificar.py marca [FALLA] en 1/6 y 5/6 y muestra otra huella.",
+    "texto_pantalla": {
+      "es": "$ git checkout .\n$ (editar results/receipts.jsonl: recibo de Comparator de PrimesSwap, \"exit_code\": 1 → 0)\n$ python3 experiments/mathlib-controls/verify.py; echo \"exit=$?\"\nAssertionError\nexit=1\n$ python3 verificar.py\n  1/6  [FALLA]  Archivos intactos (SHA-256)  (0.2 s)\n  2/6  [OK]  Corridas numéricas guardadas, iguales entre Mac y Linux  (0.1 s)\n  3/6  [OK]  Volver a correr las 84 variantes numéricas  (0.4 s)\n  4/6  [OK]  README, CLAIMS y registros dicen lo mismo  (0.0 s)\n  5/6  [FALLA]  Recibos de los controles Mathlib  (0.0 s)\n  6/6  [OK]  Comprobación de recibos en los paquetes publicados  (0.1 s)\nResultado: 2 de 6 comprobaciones FALLARON. Ese dato también es valioso: repórtalo.\nTu huella: A287-AA93-4FAD",
+      "en": "$ git checkout .\n$ (edit results/receipts.jsonl: PrimesSwap's Comparator receipt, \"exit_code\": 1 → 0)\n$ python3 experiments/mathlib-controls/verify.py; echo \"exit=$?\"\nAssertionError\nexit=1\n$ python3 verificar.py\n  1/6  [FALLA]  Archivos intactos (SHA-256)  (0.2 s)\n  2/6  [OK]  Corridas numéricas guardadas, iguales entre Mac y Linux  (0.1 s)\n  3/6  [OK]  Volver a correr las 84 variantes numéricas  (0.4 s)\n  4/6  [OK]  README, CLAIMS y registros dicen lo mismo  (0.0 s)\n  5/6  [FALLA]  Recibos de los controles Mathlib  (0.0 s)\n  6/6  [OK]  Comprobación de recibos en los paquetes publicados  (0.1 s)\nResultado: 2 de 6 comprobaciones FALLARON. Ese dato también es valioso: repórtalo.\nTu huella: A287-AA93-4FAD"
+    },
+    "assets": [
+      "Corrida en una copia temporal de scientific-qa-evidence @ c02e623 (ver fuentes.md, incluido cómo se hizo la edición)"
+    ],
+    "notas_animacion": "La línea entre paréntesis es una descripción de la edición, no un comando. Las dos [FALLA] en coral con ✗."
+  },
+  {
+    "id": "E21",
+    "inicio": "14:20",
+    "fin": "15:10",
+    "tipo": "diagrama",
+    "visual": "Tres tarjetas: recibos.jsonl con tres pasos de un CI; verificar_recibos.py con 1 control (✓ exit 0) y 3 mutantes (✗ exit 1: log borrado, log viejo, recibo sin exit code); tabla de 11 casos Mathlib.",
+    "texto_pantalla": {
+      "es": "Pista A (sin Lean, obligatoria): recibos.jsonl + verificar_recibos.py · 1 control + 3 mutantes · tabla de los 11 casos",
+      "en": "Track A (no Lean, required): recibos.jsonl + verificar_recibos.py · 1 control + 3 mutants · table of the 11 cases"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/modules-30-35.json (m26.hands, ejercicio verificable",
+      "m26.deliver)"
+    ],
+    "notas_animacion": "Los tres mutantes se dibujan como tres archivos con una cinta coral distinta."
+  },
+  {
+    "id": "E22",
+    "inicio": "15:10",
+    "fin": "16:02",
+    "tipo": "diagrama",
+    "visual": "Lista de criterios que se marcan con ✓. Abajo, la escalera de la rúbrica 1–4; el nivel 4 se ilumina con «Pista B: 4 mutantes en Lean con su clase · #print axioms sin sorryAx · fechas de .olean».",
+    "texto_pantalla": {
+      "es": "Criterios: 6 [OK] y exit 0 · tu script: 0 en limpio, 1 en cada mutante · el log viejo también da 1 · ninguna frase dice «falso» o «probado» por un veredicto de Comparator",
+      "en": "Criteria: 6 [OK] and exit 0 · your script: 0 on clean, 1 on each mutant · the stale log also gives 1 · no sentence says \"false\" or \"proven\" from a Comparator verdict"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/modules-30-35.json (m26.crit, m26.top)",
+      "qa-automation-course/i18n/es/pages.json (eval.s05)"
+    ],
+    "notas_animacion": "El criterio del log viejo se resalta en gold: es el que separa un chequeo por hash de un P6."
+  },
+  {
+    "id": "E23",
+    "inicio": "16:02",
+    "fin": "16:37",
+    "tipo": "quiz",
+    "visual": "Tarjeta de pregunta con cuatro opciones; cuenta regresiva gold de 5 segundos; luego la correcta en mint con ✓.",
+    "texto_pantalla": {
+      "es": "Comparator rechazó «n + 1 ≤ p» en lugar de «n < p». ¿Qué significa? · A) Que el teorema nuevo es falso · B) Que el enunciado cambió de forma; saber si es equivalente, más débil o falso pide una segunda vía · C) Que Comparator tiene un bug · D) Que la prueba original está mal → ✓ B",
+      "en": "Comparator rejected \"n + 1 ≤ p\" instead of \"n < p\". What does it mean? · A) The new theorem is false · B) The statement changed form; telling equivalent, weaker or false apart takes a second route · C) Comparator has a bug · D) The original proof is wrong → ✓ B"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/quiz-28-35.json (m26, pregunta 2)"
+    ],
+    "notas_animacion": "Pausa de 5 s antes de revelar."
+  },
+  {
+    "id": "E24",
+    "inicio": "16:37",
+    "fin": "17:06",
+    "tipo": "quiz",
+    "visual": "Misma tarjeta, segunda pregunta.",
+    "texto_pantalla": {
+      "es": "Un recibo nombra un log que existe, pero es de otra corrida. ¿Qué chequeo lo detecta? · A) P6, que comprueba que el log exista · B) Volver a correr el procedimiento publicado · C) Comparar el log con el hash registrado al correr el paso · D) Ninguno → ✓ C",
+      "en": "A receipt names a log that exists, but it's from another run. Which check catches it? · A) P6, which checks the log exists · B) Rerunning the published procedure · C) Comparing the log with the hash recorded when the step ran · D) None → ✓ C"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/quiz-28-35.json (m26, pregunta 6)"
+    ],
+    "notas_animacion": "Pausa de 5 s antes de revelar."
+  },
+  {
+    "id": "E25",
+    "inicio": "17:06",
+    "fin": "17:37",
+    "tipo": "quiz",
+    "visual": "Misma tarjeta, tercera pregunta.",
+    "texto_pantalla": {
+      "es": "verify.py imprime «PASS: 11 cases match the pre-registered classes». ¿Qué acabas de comprobar? · A) Que Lean recompiló los 11 casos · B) Que los registros coinciden con sus recibos y las clases recalculadas son las prerregistradas · C) Que los 11 teoremas son verdaderos · D) Que Comparator no tiene bugs → ✓ B",
+      "en": "verify.py prints \"PASS: 11 cases match the pre-registered classes\". What did you just check? · A) Lean rebuilt the 11 cases · B) The records match their receipts and the recomputed classes are the pre-registered ones · C) The 11 theorems are true · D) Comparator has no bugs → ✓ B"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/quiz-28-35.json (m26, pregunta 8)"
+    ],
+    "notas_animacion": "Pausa de 5 s antes de revelar."
+  },
+  {
+    "id": "E26",
+    "inicio": "17:37",
+    "fin": "18:26",
+    "tipo": "resumen",
+    "visual": "Tres tarjetas: «Lean revisa pasos; QA revisa todo lo demás» · «Rechazado = cambió, no falso» · «Recibo + hash, no solo existencia». Luego tarjeta del siguiente módulo y firma.",
+    "texto_pantalla": {
+      "es": "1 · Lean revisa pasos; los 4 huecos son QA · 2 · Rechazado = cambió, no falso · 3 · Recibo atado a un hash · Siguiente: prueba a ciegas con compromiso por hash",
+      "en": "1 · Lean checks steps; the 4 gaps are QA · 2 · Rejected = changed, not false · 3 · Receipts bound to a hash · Next: blind testing with a hash commitment"
+    },
+    "assets": [
+      "qa-automation-course/course.json (orden: m26 posición 32, m31 posición 33)"
+    ],
+    "notas_animacion": "Firma final: Cristian Guerra · QA · Medellín. Enlace al módulo en pantalla."
+  }
+]

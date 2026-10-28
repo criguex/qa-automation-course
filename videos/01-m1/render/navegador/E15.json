@@ -1,0 +1,70 @@
+[
+ {
+  "url": "https://github.com/criguex/war-paradigm/blob/main/experiments/03-second-brain/vault/01%20QA%20process/Test%20strategy.md",
+  "img": "E15-0.jpg",
+  "w": 737,
+  "h": 1015.96875,
+  "capturada": "2026-10-26 20:52",
+  "recuadros": [
+   {
+    "x": 28,
+    "y": 353.59375,
+    "w": 681,
+    "h": 350.1875,
+    "rotulo": "capas"
+   },
+   {
+    "x": 28,
+    "y": 713.78125,
+    "w": 681,
+    "h": 252.1875,
+    "rotulo": "principios"
+   }
+  ]
+ },
+ {
+  "url": "https://github.com/criguex/war-paradigm/blob/main/experiments/03-second-brain/vault/04%20Sessions/2026-09-24%20-%20mutants%20on%20DocFlow.md",
+  "img": "E15-1.jpg",
+  "w": 737,
+  "h": 938.34375,
+  "capturada": "2026-10-26 20:52",
+  "recuadros": [
+   {
+    "x": 28,
+    "y": 289.59375,
+    "w": 681,
+    "h": 92.1875,
+    "rotulo": "objetivo"
+   },
+   {
+    "x": 28,
+    "y": 391.78125,
+    "w": 681,
+    "h": 196.1875,
+    "rotulo": "qué pasó"
+   },
+   {
+    "x": 28,
+    "y": 597.96875,
+    "w": 681,
+    "h": 144.1875,
+    "rotulo": "decisiones"
+   },
+   {
+    "x": 28,
+    "y": 752.15625,
+    "w": 681,
+    "h": 136.1875,
+    "rotulo": "siguiente"
+   },
+   {
+    "x": 266.828125,
+    "y": 448.96875,
+    "w": 132.859375,
+    "h": 18,
+    "estado": "ojo",
+    "rotulo": "próximo módulo"
+   }
+  ]
+ }
+]

@@ -1,0 +1,254 @@
+[
+  {
+    "id": "E01",
+    "inicio": "00:00",
+    "fin": "00:41",
+    "tipo": "titulo",
+    "visual": "Un cuaderno \"ledger\" escribe \"failures: 1\" junto a un mutante. Corte a la corrida siguiente: el mutante no va primero; el cuaderno se borra solo y vuelve a \"0\". Etiqueta coral \"✗ olvidó\". Entra el título.",
+    "texto_pantalla": {
+      "es": "failures: 1 → siguiente corrida → failures: 0 ✗ · Mutantes que aprenden",
+      "en": "failures: 1 → next run → failures: 0 ✗ · Mutants that learn"
+    },
+    "assets": [
+      "Observación propia en copia local de civica (ver las escenas de la mutación WAR y fuentes.md)"
+    ],
+    "notas_animacion": "Firma: Cristian Guerra · QA · Medellín. Tiempos EN: 00:00–00:42."
+  },
+  {
+    "id": "E02",
+    "inicio": "00:41",
+    "fin": "01:35",
+    "tipo": "analogia",
+    "visual": "Portero en un arco. Libreta del entrenador con \"izquierda ✗\". Tiros en orden: izquierda (primero), zonas nuevas, derecha (al final). Un gol se marca igual en cualquier orden. Al final alguien bota la libreta a la caneca: gold \"⚠ empieza de cero\".",
+    "texto_pantalla": {
+      "es": "Primero donde falló · luego lo nuevo · al final lo de siempre · un gol es un gol",
+      "en": "Where it failed first · then what's new · then the usual · a goal is a goal"
+    },
+    "assets": [
+      "m21.kid"
+    ],
+    "notas_animacion": "Mismo estilo de personajes que el resto de la serie. Tiempos EN: 00:42–01:36."
+  },
+  {
+    "id": "E03",
+    "inicio": "01:35",
+    "fin": "02:38",
+    "tipo": "diagrama",
+    "visual": "Diagrama del loop de MUTATION-TESTING.md: Golden flow → Generate mutants (equivalent / boundary / negative) → Prioritize (failing → new → passing) ← Insights ledger; Prioritize → Run → Mutation reporter → ledger. Flechas mint.",
+    "texto_pantalla": {
+      "es": "Foto → película · prioridad: falló antes → nunca visto → siempre pasa",
+      "en": "Snapshot → movie · priority: failed before → never seen → always passes"
+    },
+    "assets": [
+      "civica-playwright-challenge/docs/MUTATION-TESTING.md §The learning loop (diagrama mermaid)",
+      "civica-playwright-challenge/src/support/mutations.ts"
+    ],
+    "notas_animacion": "Redibujar el mermaid con la paleta de marca; no usar emojis del original. Tiempos EN: 01:36–02:38."
+  },
+  {
+    "id": "E04",
+    "inicio": "02:38",
+    "fin": "04:28",
+    "tipo": "codigo",
+    "visual": "Extracto del reporter (onTestEnd y onEnd) y de recordRun; al lado, una entrada real del ledger con runs, history, failures y timeouts. Debajo, dos carpetas: test-results/ (se vacía al empezar, en coral) y ledger/ (persiste, en mint). Al final, el ciclo de CI: descargar el artefacto de main → mutantes → subir (90 días).",
+    "texto_pantalla": {
+      "es": "Ledger: runs (siempre) · history (últimas 5) · failures y timeouts (dentro de esas 5) · vive en ledger/, no en test-results/",
+      "en": "Ledger: runs (ever) · history (last 5) · failures and timeouts (inside those 5) · lives in ledger/, not test-results/"
+    },
+    "assets": [
+      "civica-playwright-challenge/reporters/mutationInsightsReporter.ts (extracto, b240008):\n  onTestEnd(test: TestCase, result: TestResult): void {\n    if (!test.title.includes(this.tag)) {\n      return;\n    }\n    const id = test.title.split(' ')[0];\n    this.current.set(id, { status: result.status, durationMs: result.duration });\n  }\n\n  onEnd(): void {\n    ...\n    const loaded = readLedger(this.path, this.legacyPath);\n    ...\n    writeLedger(this.path, recordRun(loaded.ledger, this.current), loaded);\n  }",
+      "civica-playwright-challenge/src/support/mutationInsights.ts (recordRun, b240008):\n    const history = [...previousHistory, result.status].slice(-HISTORY_WINDOW);\n    next[id] = {\n      id,\n      status: result.status,\n      durationMs: result.durationMs,\n      runs: (previous?.runs ?? 0) + 1,\n      failures: history.filter((status) => status === 'failed').length,\n      timeouts: history.filter((status) => status === 'timedOut').length,\n      history,\n    };",
+      "Entrada real del ledger (ledger/mutation-insights.json, corrida local 2026-10-26, civica b240008): {\"id\": \"inception--exact\", \"status\": \"passed\", \"durationMs\": 317, \"runs\": 1, \"failures\": 0, \"timeouts\": 0, \"history\": [\"passed\"]}",
+      "civica-playwright-challenge/src/support/mutationPaths.ts: INSIGHTS_PATH = 'ledger/mutation-insights.json'; LEGACY_INSIGHTS_PATH = 'test-results/mutation-insights.json'",
+      "civica-playwright-challenge/.github/workflows/ci.yml (b240008): paso «Restore mutation ledgers from the latest main run» (gh run download … --name mutation-insights --dir ledger) y «Upload mutation insights ledgers» (path: ledger/, retention-days: 90)"
+    ],
+    "notas_animacion": "durationMs cambia en cada corrida; mostrarlo atenuado. El vaciado de test-results/ se anima aquí solo como anticipo; la historia completa va en E11. Tiempos EN: 02:38–04:26."
+  },
+  {
+    "id": "E05",
+    "inicio": "04:28",
+    "fin": "05:26",
+    "tipo": "diagrama",
+    "visual": "Dos filas con los mismos 7 mutantes en distinto orden; debajo de cada mutante, su veredicto, idéntico en ambas filas (✓ mint). Luego un contraejemplo hipotético: un veredicto cambia con el orden y aparece la etiqueta coral \"estado compartido = bug del arnés\".",
+    "texto_pantalla": {
+      "es": "Cambia el orden, nunca el veredicto · si el orden cambia un veredicto → bug del arnés",
+      "en": "The order changes, never the verdict · if order changes a verdict → harness bug"
+    },
+    "assets": [
+      "civica-playwright-challenge/src/support/mutationInsights.ts (prioritize: sort estable con desempate por índice)",
+      "quiz-20-27.json → m21 pregunta 3"
+    ],
+    "notas_animacion": "El contraejemplo se rotula \"hipotético\". Tiempos EN: 04:26–05:23."
+  },
+  {
+    "id": "E06",
+    "inicio": "05:26",
+    "fin": "07:12",
+    "tipo": "diagrama",
+    "visual": "Línea base endurecida (respuesta segura + manifiesto Android) en el centro; seis mutantes la rodean, cada uno con un solo defecto, y un séptimo atenuado con la etiqueta gold «equivalente». Abajo, el control del POC 1: flujo vulnerable 16 hallazgos (3 críticos · 3 altos · 8 medios · 2 bajos) vs respuesta segura 0.",
+    "texto_pantalla": {
+      "es": "Un defecto por mutante · 6 + 1 equivalente · control: respuesta segura = 0 hallazgos",
+      "en": "One defect per mutant · 6 + 1 equivalent · control: secure response = 0 findings"
+    },
+    "assets": [
+      "civica-playwright-challenge/docs/AUDIT-POC.md §POC 1 (16 hallazgos; cero en /api/account/safe y en safe_session) y §POC 3 (tabla de mutantes, con la fila «missing-header (eq.) · X-Frame-Options stripped — equivalent»)",
+      "civica-playwright-challenge/src/audit/securityMutations.ts (generateSecurityMutants: seis mutantes + missingHeaderMutant('x-frame-options', <razón>))"
+    ],
+    "notas_animacion": "Severidades con símbolo + palabra, no solo color. Tiempos EN: 05:23–07:02."
+  },
+  {
+    "id": "E07",
+    "inicio": "07:12",
+    "fin": "08:48",
+    "tipo": "diagrama",
+    "visual": "Dos búsquedas en el mock: \"The\" → 4 tarjetas (Shawshank, Godfather, Dark Knight, Lord of the Rings); \"The Dark Knight\" → 1 tarjeta. Diagrama de conjuntos: el círculo del prefijo contiene al de X. Arriba, la frase del roadmap actual en mint; debajo, la versión vieja tachada en gold con la etiqueta «antes de b240008».",
+    "texto_pantalla": {
+      "es": "Roadmap hoy: resultados(prefijo de X) ⊇ resultados(X) ✓ · antes decía lo contrario ⚠",
+      "en": "Roadmap now: results(prefix of X) ⊇ results(X) ✓ · it used to say the opposite ⚠"
+    },
+    "assets": [
+      "civica-playwright-challenge/docs/MUTATION-TESTING.md §Roadmap (b240008): «Metamorphic relations — assert invariants across mutants. With the mock's case-insensitive substring search, results for a prefix of `X` ⊇ results for `X` (searching `The` returns 4 titles, `The Dark Knight` returns 1), not the other way round.»",
+      "Versión anterior (civica d4f1db9, docs/MUTATION-TESTING.md §Roadmap): «results for `X` ⊇ results for a prefix of `X`»",
+      "civica-playwright-challenge/mocks/server/pageTemplates.ts (findPage: `movie.title.toLowerCase().includes(q.toLowerCase())`)",
+      "civica-playwright-challenge/mocks/data/movies.ts (searchableMovies: Inception, The Shawshank Redemption, The Godfather, The Dark Knight, The Lord of the Rings: The Return of the King, Pulp Fiction)",
+      "Chen et al., Metamorphic Testing: A Review of Challenges and Opportunities, ACM CSUR 2018 — https://doi.org/10.1145/3143561"
+    ],
+    "notas_animacion": "El conteo 4 vs 1 lo cita el propio roadmap y sale del código del mock; rotular \"según el roadmap y el código del mock\". Tiempos EN: 07:02–08:36."
+  },
+  {
+    "id": "E08",
+    "inicio": "08:48",
+    "fin": "09:58",
+    "tipo": "terminal",
+    "visual": "Terminal: clonar, npm ci, --list (21 tests), tres corridas de npm run test:mutation con un contador runs 1 → 2 → 3 sobre el JSON; editor del JSON con history[-1] = failed y failures: 1; --list otra vez con inception--gibberish subiendo al primer lugar.",
+    "texto_pantalla": {
+      "es": "runs 1 → 2 → 3 ✓ · failures: 1 · --list: gibberish 7.º → 1.º ✓",
+      "en": "runs 1 → 2 → 3 ✓ · failures: 1 · --list: gibberish 7th → 1st ✓"
+    },
+    "assets": [
+      "Comandos (civica README; m21.hands[0]):\n$ git clone https://github.com/criguex/civica-playwright-challenge.git && cd civica-playwright-challenge\n$ npm ci\n$ npx playwright test --project=mutation --list\n$ npm run test:mutation\n$ cat ledger/mutation-insights.json",
+      "Salida real (2026-10-26, civica b240008, Playwright 1.63.0): «Total: 21 tests in 1 file» y «21 passed (2.4s)»; ledger con 21 entradas; tras tres corridas seguidas, runs = 1, 2 y 3 en las 21",
+      "Salida real de --list tras poner history[-1] = \"failed\" y failures: 1 en inception--gibberish (2026-10-26, b240008): «Mutant search · Inception › inception--gibberish [negative] → notFound @mutant» en primer lugar, seguido de inception--exact, --upper, --lower, --padded, --prefix y --garbage-suffix"
+    ],
+    "notas_animacion": "Recortar rutas largas con …. Tiempos EN: 08:36–09:46."
+  },
+  {
+    "id": "E09",
+    "inicio": "09:58",
+    "fin": "11:02",
+    "tipo": "terminal",
+    "visual": "Terminal con la corrida del auditor (7 ✓: seis @auditMutant y un @auditEquivalent) y la línea del kill rate; visor del JSON con los Killed y la entrada Equivalent: missing-header.",
+    "texto_pantalla": {
+      "es": "kill rate 6/6 (100%), 1 equivalent excluded · mide el catálogo, no todo",
+      "en": "kill rate 6/6 (100%), 1 equivalent excluded · measures the catalog, not everything"
+    },
+    "assets": [
+      "Comando: npm run test:audit -- securityMutants (m21.hands[2])",
+      "Salida real (2026-10-26, civica b240008): «ℹ Security mutant kill rate: 6/6 (100%), 1 equivalent excluded» y «7 passed (267ms)»; --list: «Total: 7 tests in 1 file», el último «security-mutant--missing-header-x-frame-options [missing-header] equivalent @auditEquivalent»",
+      "test-results/audit/security-mutants.json (real, 2026-10-26, civica b240008, extracto):\n  \"subject\": \"Security mutants — kill rate 6/6 (100%), 1 equivalent excluded\",\n  {\"title\": \"Killed: pii-leak\", \"evidence\": \"detected by the auditor\"}, … (6 Killed)\n  {\"title\": \"Equivalent: missing-header\", \"evidence\": \"equivalent, not counted in the kill rate: The hardened baseline never sends X-Frame-Options: its CSP already carries frame-ancestors 'none', so stripping the header changes nothing the auditor can observe.\"}",
+      "Mismo resultado en CI: run 40407770636 y run 40407982223 de civica, paso «Run audit POCs suite»: «Security mutant kill rate: 6/6 (100%), 1 equivalent excluded»"
+    ],
+    "notas_animacion": "Omitir los ms. Tiempos EN: 09:46–10:50."
+  },
+  {
+    "id": "E10",
+    "inicio": "11:02",
+    "fin": "12:49",
+    "tipo": "codigo",
+    "visual": "Primero, la prueba que hice antes del arreglo: diff que agrega missingHeaderMutant('x-frame-options') y terminal con 1 ✘ y «kill rate 6/7 (86%)». Luego zoom a SECURE_RESPONSE_HEADERS (cuatro headers, sin X-Frame-Options) y a checkFrameAncestors (CSP frame-ancestors O X-Frame-Options). Al final, el estado actual: el mutante con su razón de equivalente, la prueba @auditEquivalent ✓ y «6/6, 1 equivalent excluded».",
+    "texto_pantalla": {
+      "es": "X-Frame-Options: no sembró nada → equivalente, fuera del kill rate · @auditEquivalent lo vigila ✓",
+      "en": "X-Frame-Options planted nothing → equivalent, out of the kill rate · @auditEquivalent keeps watch ✓"
+    },
+    "assets": [
+      "Prueba previa en copia local (civica d4f1db9, 2026-10-26), src/audit/securityMutations.ts:\n    missingHeaderMutant('x-content-type-options'),\n+   missingHeaderMutant('x-frame-options'),\n  Salida real: «1 failed · 6 passed» · subject «Security mutants — kill rate 6/7 (86%)» · exit 1",
+      "civica-playwright-challenge/mocks/data/accountApp.ts:\nexport const SECURE_RESPONSE_HEADERS = {\n  'content-type': 'application/json; charset=utf-8',\n  'content-security-policy': \"default-src 'none'; frame-ancestors 'none'\",\n  'strict-transport-security': 'max-age=63072000; includeSubDomains; preload',\n  'x-content-type-options': 'nosniff',\n};",
+      "civica-playwright-challenge/src/audit/securityHeaders.ts (checkFrameAncestors: `if (hasFrameAncestors || hasXFrameOptions) return [];`)",
+      "civica-playwright-challenge/src/audit/securityMutations.ts (b240008):\n    missingHeaderMutant(\n      'x-frame-options',\n      'The hardened baseline never sends X-Frame-Options: its CSP already carries ' +\n        \"frame-ancestors 'none', so stripping the header changes nothing the auditor can observe.\",\n    ),",
+      "tests/audit/securityMutants.audit.spec.ts (b240008): test(`${mutant.id} [${mutant.kind}] equivalent @auditEquivalent`) → expect(mutant.equivalent?.holds(), mutant.equivalent?.reason).toBe(true)"
+    ],
+    "notas_animacion": "La parte 6/7 se rotula «antes del arreglo, copia local». El ✗ de entonces no era culpa del auditor: usar gold para esa conclusión y mint para el estado actual. Tiempos EN: 10:50–12:35."
+  },
+  {
+    "id": "E11",
+    "inicio": "12:49",
+    "fin": "14:12",
+    "tipo": "terminal",
+    "visual": "Rótulo «antes de b240008». Tres pasos con el JSON del ledger visible: (1) mutador gibberish roto → 3 ✘ y ledger {status: failed, runs: 1, failures: 1}; (2) se revierte y se corre con 1 worker → la primera prueba es inception--exact, ledger {runs: 1, failures: 0}; (3) animación de la carpeta test-results vaciándose al arrancar Playwright, con el ledger dentro.",
+    "texto_pantalla": {
+      "es": "Antes: falló → failures: 1 · siguiente corrida: orden declarado y failures: 0 ✗ · test-results/ se vaciaba al empezar",
+      "en": "Before: failed → failures: 1 · next run: declared order and failures: 0 ✗ · test-results/ was emptied on start"
+    },
+    "assets": [
+      "Cambio temporal en la copia local (civica d4f1db9, src/support/mutations.ts): mutate: () => 'zzqxw404movie'  →  mutate: (title) => title",
+      "Salida real (copia local, 2026-10-26): `npx playwright test --project=mutation --workers=1` → exit 1, 3 pruebas ✘ (las tres gibberish); ledger: {\"id\": \"inception--gibberish\", \"status\": \"failed\", \"durationMs\": 10454, \"runs\": 1, \"failures\": 1}",
+      "Corrida siguiente, código original (copia local): primeras líneas «Inception › inception--exact [equivalent] → found @mutant», «Inception › inception--upper [equivalent] → found @mutant»; ledger: {\"id\": \"inception--gibberish\", \"status\": \"passed\", \"durationMs\": 252, \"runs\": 1, \"failures\": 0}",
+      "Causa (civica d4f1db9): src/support/mutationPaths.ts → INSIGHTS_PATH = 'test-results/mutation-insights.json'; Playwright 1.63.0 vacía el outputDir al iniciar (node_modules/playwright/lib/runner/index.js: removeFolders([outputDir]))"
+    ],
+    "notas_animacion": "Rótulo pequeño: \"corrido por un asistente bajo mi dirección, Playwright 1.63.0, código anterior al arreglo\". Tiempos EN: 12:35–14:01."
+  },
+  {
+    "id": "E12",
+    "inicio": "14:12",
+    "fin": "15:50",
+    "tipo": "codigo",
+    "visual": "Commit b240008 como tarjeta; cinco casillas que se marcan en mint: 1) ledger/ fuera de test-results/ (+ migración del archivo viejo), 2) ventana de 5 corridas, 3) timeouts aparte, 4) ledger corrupto → ⚠ + ledger-warning + .corrupt, 5) CI descarga y sube (90 días). Debajo, dos evidencias: terminal con el ⚠ real y log de CI «Restored ledgers from run 40407770636». Cierre con «7 passed» del proyecto unit.",
+    "texto_pantalla": {
+      "es": "b240008: ledger/ · olvida tras 5 · timeouts aparte · ⚠ si está corrupto · CI restaura (90 días) ✓",
+      "en": "b240008: ledger/ · forgets after 5 · timeouts apart · ⚠ when corrupt · CI restores (90 days) ✓"
+    },
+    "assets": [
+      "Commit b240008 de civica-playwright-challenge: «fix(mutation): ledger persistente entre corridas, olvido, timeouts aparte y mutante equivalente»",
+      "Salida real con el ledger roto a propósito (`{ not json`, 2026-10-26, b240008): «⚠ mutation ledger ledger/mutation-insights.json is unreadable (Expected property name or '}' in JSON at position 2 (line 1 column 3)); running without learned order»; queda ledger/mutation-insights.json.corrupt con el contenido roto",
+      "CI de civica (GitHub Actions): run 40407770636 (push de b240008) → «No previous ledger artifact found; starting a fresh ledger»; run 40407982223 (workflow_dispatch) → «Restored ledgers from run 40407770636», ls con audit-mutation-insights.json y mutation-insights.json; artefacto mutation-insights de 40407982223: runs = 2 en los 21 mutantes y en los 6 de seguridad; «retention-days: 90»",
+      "Salida real: `npm run test:unit` → «7 passed (293ms)» (tests/unit/mutationInsights.unit.spec.ts: orden, olvido, timeouts, migración de una entrada vieja, lectura de la ruta vieja, archivo corrupto y archivo inexistente)"
+    ],
+    "notas_animacion": "Mostrar el aviso ⚠ en gold y los checks en mint. No mostrar código del CI más allá de los dos pasos; los IDs de run en tamaño pequeño. Tiempos EN: 14:01–15:39."
+  },
+  {
+    "id": "E13",
+    "inicio": "15:50",
+    "fin": "17:28",
+    "tipo": "resumen",
+    "visual": "Checklist del reto (3 tareas), entregable, 4 criterios y rúbrica genérica; extra: la mutación WAR del ledger (escribirle basura y ver el ⚠); nivel 4 = relación metamórfica de la hoja de ruta.",
+    "texto_pantalla": {
+      "es": "Entregable: ledger de 2 corridas (runs 1 → 2) + priorización + mutante de seguridad con predicción y veredicto",
+      "en": "Deliverable: 2-run ledger (runs 1 → 2) + prioritization + security mutant with prediction and verdict"
+    },
+    "assets": [
+      "m21.hands, m21.crit, m21.deliver, m21.top (qa-automation-course, commit del 26-oct que refleja civica b240008)",
+      "ui.json → rubric.generic"
+    ],
+    "notas_animacion": "El mutante sugerido (quitar solo frame-ancestors de la CSP) no se corrió: presentarlo como predicción por escribir, sin veredicto en pantalla. Tiempos EN: 15:39–17:11."
+  },
+  {
+    "id": "E14",
+    "inicio": "17:28",
+    "fin": "18:31",
+    "tipo": "quiz",
+    "visual": "Tres tarjetas de pregunta con pausa de 5 s y respuesta en mint.",
+    "texto_pantalla": {
+      "es": "1) ¿Reordenar cambia un veredicto? · 2) Ledger en .gitignore: ¿cómo aprende en CI? · 3) «6/6, 1 equivalent excluded»: ¿qué afirmas?",
+      "en": "1) Can reordering change a verdict? · 2) Ledger in .gitignore: how does it learn in CI? · 3) “6/6, 1 equivalent excluded”: what do you claim?"
+    },
+    "assets": [
+      "quiz-20-27.json → m21 índices 2, 1 y 7"
+    ],
+    "notas_animacion": "Ícono ⏸ \"pausa el video\". Tiempos EN: 17:11–18:14."
+  },
+  {
+    "id": "E15",
+    "inicio": "18:31",
+    "fin": "19:25",
+    "tipo": "resumen",
+    "visual": "Tres ideas en tarjetas y la tarjeta del siguiente módulo.",
+    "texto_pantalla": {
+      "es": "1 · La memoria también se prueba · 2 · Orden ≠ veredicto · 3 · Antes de culpar al auditor, mira si el mutante sembró algo · Siguiente: Triaje de fallos de CI y selección por impacto",
+      "en": "1 · Memory gets tested too · 2 · Order ≠ verdict · 3 · Before blaming the auditor, check the mutant planted something · Next: CI failure triage and test impact selection"
+    },
+    "assets": [
+      "https://criguex.github.io/qa-automation-course/#/m18"
+    ],
+    "notas_animacion": "Firma: Cristian Guerra · QA · Medellín. Tiempos EN: 18:14–19:10."
+  }
+]

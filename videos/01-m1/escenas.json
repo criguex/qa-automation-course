@@ -1,0 +1,365 @@
+[
+  {
+    "id": "E01",
+    "inicio": "00:00",
+    "fin": "00:44",
+    "tipo": "terminal",
+    "visual": "Fondo navy #071B2B. Tarjeta de terminal deep #0D2638 con la línea final de la corrida 3 del set sin pins. El 76 crece grande en gold #FFC56E; al lado aparece 'gate 70'. Luego la palabra REJECTED entra en coral #FB8176 con ✗.",
+    "texto_pantalla": {
+      "es": "$ npm run demo:01\n  run 3  trace tr_unpin_0003\n    AC-1  must   ✘ failed   S-4 has no valid source (source=\"\", covers=[R-3])\n                              S-6 has no valid source (source=\"chat\", covers=[R-4])\n    AC-3  must   ✘ failed   S-3: editor → approve expects 200 (matrix says forbidden → 403)\n    score 76/100 · gate 70 · verdict REJECTED · must failed: AC-1, AC-3",
+      "en": "$ npm run demo:01\n  run 3  trace tr_unpin_0003\n    AC-1  must   ✘ failed   S-4 has no valid source (source=\"\", covers=[R-3])\n                              S-6 has no valid source (source=\"chat\", covers=[R-4])\n    AC-3  must   ✘ failed   S-3: editor → approve expects 200 (matrix says forbidden → 403)\n    score 76/100 · gate 70 · verdict REJECTED · must failed: AC-1, AC-3"
+    },
+    "assets": [
+      "Salida real de `npm run demo:01` en war-paradigm (raíz del repo), corrida local 26-oct-2026; las mismas cifras están en war-paradigm/experiments/01-ai-verdict/README.md §5"
+    ],
+    "notas_animacion": "Escribir las líneas tipo máquina de escribir (0,6 s por línea). Resaltar '76/100' y 'gate 70' con un recuadro gold; 'REJECTED' con ✗ coral y la palabra completa, nunca solo color. Las líneas AC-2 y AC-4…AC-8 se omiten por espacio y se indican con '…' en muted #ABC0C8."
+  },
+  {
+    "id": "E02",
+    "inicio": "00:44",
+    "fin": "00:57",
+    "tipo": "titulo",
+    "visual": "Título del módulo sobre navy con rejilla grid #214456 al 6 %. Barra mint #55DFBD de 8 px a la izquierda. Icono 🧠 y nivel ★☆☆☆☆.",
+    "texto_pantalla": {
+      "es": "Módulo 01 · Mentalidad QA — de Dev a Tester\nCristian Guerra · QA · Medellín",
+      "en": "Module 01 · QA Mindset — from Dev to Tester\nCristian Guerra · QA · Medellín"
+    },
+    "assets": [
+      "course.json (m1: icono 🧠, nivel ★☆☆☆☆, semana 1)"
+    ],
+    "notas_animacion": "Entrada del título con desplazamiento suave desde la izquierda; firma en mint pequeña abajo a la derecha."
+  },
+  {
+    "id": "E03",
+    "inicio": "00:57",
+    "fin": "02:32",
+    "tipo": "diagrama",
+    "visual": "Contexto del laboratorio: cuatro tarjetas (app con 4 roles, historia US-42, agente de IA, scorer), luego la tabla de los cuatro códigos HTTP que se oyen en el video y al final las tres cosas que vas a aprender.",
+    "texto_pantalla": {
+      "es": "El laboratorio de este módulo\nLos 4 códigos que vas a oír\nLa pregunta del módulo",
+      "en": "This module's lab\nThe 4 status codes you'll hear\nThe question of this module"
+    },
+    "assets": [
+      "mutant-lab/experiments/01-ai-verdict/fixtures/story-US-42.json (roles, permissions, R-1…R-6, B-1…B-4)"
+    ],
+    "notas_animacion": "Cada tarjeta entra cuando la voz la nombra; la tabla aparece fila a fila con el código."
+  },
+  {
+    "id": "E04",
+    "inicio": "02:32",
+    "fin": "03:21",
+    "tipo": "analogia",
+    "visual": "Ilustración plana: una profe con gafas, una hoja de tarea llena y una 'hoja de respuestas'. Compara la pregunta 3: la tarea dice 14, la hoja dice 12. Aparece ✗ coral en la 3 y ✓ mint en las demás. Al final la hoja de respuestas se etiqueta 'oráculo'.",
+    "texto_pantalla": {
+      "es": "Hoja llena ≠ tarea bien\nHoja de respuestas = oráculo",
+      "en": "Filled-in sheet ≠ right answers\nAnswer key = oracle"
+    },
+    "assets": [
+      "qa-automation-course i18n/es/modules-01-14.json → m1.kid"
+    ],
+    "notas_animacion": "Personajes en SVG simple con la paleta de marca. La comparación pregunta por pregunta se anima con una lupa que baja por la hoja."
+  },
+  {
+    "id": "E05",
+    "inicio": "03:21",
+    "fin": "04:38",
+    "tipo": "diagrama",
+    "visual": "Flecha de 'teclear' a 'decidir'. Debajo, cuatro tarjetas deep: Crear, Ejecutar, Validar, Certificar, cada una con el artefacto real del laboratorio y su barra de autonomía IA (alta, alta, media, firma humana).",
+    "texto_pantalla": {
+      "es": "Mueve tu tiempo de teclear a decidir\nCrear · plan de US-42: 11–12 escenarios | Ejecutar · npm run test:01: 27 ✓ en 1,3 s | Validar · scorer: AC-1…AC-8 con evidencia | Certificar · corrida 3: no sale, firmo yo",
+      "en": "Move your time from typing to deciding\nCreate · US-42 plan: 11–12 scenarios | Execute · npm run test:01: 27 ✓ in 1.3 s | Validate · scorer: AC-1…AC-8 with evidence | Certify · run 3 does not ship, I sign"
+    },
+    "assets": [
+      "m1.mentor y m1.theory[0..1] en i18n/es/modules-01-14.json",
+      "war-paradigm/experiments/01-ai-verdict/fixtures/runs/*/run-*.json (11 o 12 escenarios por corrida)",
+      "render/salidas/test01.txt (27 passed en 1.3s)",
+      "war-paradigm/experiments/01-ai-verdict/src/criteria.ts"
+    ],
+    "notas_animacion": "Las barras se llenan en mint; la de Certificar no se llena: aparece un ⚠ gold con 'humano'."
+  },
+  {
+    "id": "E06",
+    "inicio": "04:38",
+    "fin": "06:24",
+    "tipo": "diagrama",
+    "visual": "Dos columnas. Izquierda Q1 '¿funciona como se especificó?' → pasa/falla (src/checks.ts). Derecha Q2 '¿lo que produjo es bueno?' → puntaje (src/criteria.ts, src/scorer.ts). Debajo, tabla AC-1…AC-8: tres must con candado, cinco should con pesos 30, 28, 20, 12, 10. Regla del gate: must falla → REJECTED; puntaje < 70 → REJECTED; si no → APPROVED.",
+    "texto_pantalla": {
+      "es": "Q1 · ¿corre como se especificó? → ✓ / ✗\nQ2 · ¿es bueno? → puntaje contra criterios\nmust bloquea · should suma · gate 70",
+      "en": "Q1 · does it run as specified? → ✓ / ✗\nQ2 · is it any good? → score against criteria\nmust blocks · should adds · gate 70"
+    },
+    "assets": [
+      "war-paradigm/experiments/01-ai-verdict/README.md §1, §3 y §4 (tabla de criterios y regla del gate)",
+      "war-paradigm/experiments/01-ai-verdict/src/criteria.ts (GATE = 70, pesos)"
+    ],
+    "notas_animacion": "Los pesos se apilan en una barra hasta 100. Los candados de los must se cierran con un clic; un must en coral tumba el veredicto aunque la barra pase de 70."
+  },
+  {
+    "id": "E07",
+    "inicio": "06:24",
+    "fin": "08:13",
+    "tipo": "diagrama",
+    "visual": "Vuelve la profe del E04 con dos hojas: el plan del agente de la corrida 3 sin pins (S-2, S-3, S-5, S-6, S-7 con su código esperado) y la historia US-42 como hoja de respuestas. La lupa compara fila por fila; S-3 (espera 200, la matriz dice 403) se marca ✗. Luego el supuesto del plan contra la regla R-2. Al final, tres reglas: tres maneras reales de rechazar un plan (Q1 → 0, must → 76, gate → 40).",
+    "texto_pantalla": {
+      "es": "El oráculo en acción: S-3 contra la historia\n¿De dónde salió el 200 de S-3?\nTres maneras de rechazar un plan",
+      "en": "The oracle at work: S-3 against the story\nWhere did S-3's 200 come from?\nThree ways to reject a plan"
+    },
+    "assets": [
+      "war-paradigm/experiments/01-ai-verdict/fixtures/runs/unpinned/run-3.json (S-2, S-3, S-5, S-6, S-7 y assumptions)",
+      "war-paradigm/experiments/01-ai-verdict/fixtures/story-US-42.json (permissions, R-2, R-3)",
+      "war-paradigm/experiments/01-ai-verdict/tests/checks.spec.ts \"contract: unknown role…\" (actor superuser) y src/scorer.ts (Q1 falla → score 0)",
+      "war-paradigm/experiments/01-ai-verdict/tests/scorer.spec.ts \"a score below the gate rejects even when every must is met\" (score 40 below gate 70)",
+      "render/salidas/demo01.txt (corrida 3: 76, REJECTED, must failed: AC-1, AC-3)"
+    ],
+    "notas_animacion": "Las filas se marcan cuando la voz nombra cada escenario. El supuesto lleva ⚠ y el rótulo 'no está en la historia'; los tres rechazos llevan ✗ con la palabra REJECTED y la cifra."
+  },
+  {
+    "id": "E08",
+    "inicio": "08:13",
+    "fin": "10:40",
+    "tipo": "animacion",
+    "visual": "Cinco tarjetas que entran una a una, cada principio con su caso del laboratorio: fronteras 2 · 3 · 80 · 81, S-3 cazado en el plan, los dos sobrevivientes en permisos, flujo feliz verde con DEF-001 abierto y la falacia como caso hipotético. Luego dos pares con su caso: verificación/validación y QC/QA.",
+    "texto_pantalla": {
+      "es": "5 de los 7 principios ISTQB, con casos del laboratorio\nVerificación: ¿producto bien construido?\nValidación: ¿producto correcto?\nQC encuentra el defecto · QA evita que nazca",
+      "en": "5 of the 7 ISTQB principles, with lab cases\nVerification: built right?\nValidation: the right product?\nQC finds the defect · QA stops it being born"
+    },
+    "assets": [
+      "m1.theory[2..3]",
+      "quiz-01-10.json m1 (preguntas de pesticida, clustering, exhaustivo, shift-left, falacia, QA vs QC)",
+      "https://istqb.org/certifications/certified-tester-foundation-level-ctfl-v4-0/",
+      "war-paradigm/experiments/01-ai-verdict/fixtures/story-US-42.json (B-1…B-4, R-3)",
+      "war-paradigm/experiments/03-second-brain/vault/03 Knowledge/DEF-001 self-grant role.md §Evidence",
+      "war-paradigm/experiments/03-second-brain/vault/04 Sessions/2026-09-24 - mutants on DocFlow.md §Next",
+      "war-paradigm/experiments/02-mutants/README.md (commit a5386c8: self-grant y viewer-create)"
+    ],
+    "notas_animacion": "La tarjeta de la falacia lleva la etiqueta 'hipotético'; la de validación, 'se pregunta'."
+  },
+  {
+    "id": "E09",
+    "inicio": "10:40",
+    "fin": "12:09",
+    "tipo": "diagrama",
+    "visual": "Matriz probabilidad × impacto con los tres riesgos de US-42 (rol prohibido aprueba arriba a la derecha, publicar sin aprobar, título 3–80). Luego la tabla de las cuatro fronteras B-1…B-4 contra lo que cubrió la corrida 1 del set fijado: B-1 y B-4 ✓, B-2 y B-3 ✗ faltan. Debajo, la prueba real del título de 80 caracteres.",
+    "texto_pantalla": {
+      "es": "Riesgo = probabilidad × impacto\nRiesgo 3 en pruebas: 4 fronteras",
+      "en": "Risk = probability × impact\nRisk 3 as tests: 4 boundaries"
+    },
+    "assets": [
+      "m1.theory[4]",
+      "war-paradigm/experiments/01-ai-verdict/fixtures/story-US-42.json (R-2, R-3, B-1…B-4)",
+      "war-paradigm/experiments/01-ai-verdict/fixtures/runs/pinned/run-1.json (S-10 cubre B-4, S-11 cubre B-1) y render/salidas/demo01.txt (AC-5 missing: B-2, B-3)",
+      "war-paradigm/experiments/02-mutants/tests/golden.spec.ts \"boundary: a title of exactly 80 chars…\" y README (commit a5386c8: con TITLE_MAX = 79 falla con 422)"
+    ],
+    "notas_animacion": "Los tres riesgos se rotulan 'ejemplo' en la nota del paso, para que no se lean como medición."
+  },
+  {
+    "id": "E10",
+    "inicio": "12:09",
+    "fin": "13:50",
+    "tipo": "diagrama",
+    "visual": "Estrategia v0 de US-42 llena, en una tabla de cinco filas (riesgos, alcance, niveles, se automatiza, no se automatiza), cada una con su oráculo en la última columna. Rótulo 'ejemplo'. Luego la línea de tiempo SDLC con el STLC deslizándose hasta la historia de usuario (shift-left).",
+    "texto_pantalla": {
+      "es": "Estrategia v0 · US-42 · 1 página\nShift-left",
+      "en": "Strategy v0 · US-42 · 1 page\nShift-left"
+    },
+    "assets": [
+      "m1.theory[5]",
+      "war-paradigm/experiments/01-ai-verdict/fixtures/story-US-42.json (permissions: create, approve, publish × 4 roles)",
+      "war-paradigm/experiments/03-second-brain/vault/01 QA process/Test strategy.md (Layers: API-first con Playwright request, golden flow con page)",
+      "war-paradigm/experiments/03-second-brain/vault/03 Knowledge/Roles and permissions.md (\"The UI hides buttons; the API is the contract\"; la fila de cambio de rol no es de US-42)"
+    ],
+    "notas_animacion": "La fila 'No se automatiza' es una decisión del ejemplo, no un dato del laboratorio: va con ⚠."
+  },
+  {
+    "id": "E11",
+    "inicio": "13:50",
+    "fin": "15:42",
+    "tipo": "diagrama",
+    "visual": "Tarjeta de charter (misión, foco, tiempo 60 min, oráculo) con cronómetro y una libreta con dos notas reales: el hallazgo viewer-create y una pregunta abierta. Luego el hallazgo paso a paso con el formato de la plantilla de defectos del vault. Al final la escalera 'ejecuta casos' → 'diseña oráculos, decide riesgo, firma'.",
+    "texto_pantalla": {
+      "es": "Charter: explorar crear y aprobar con los 4 roles · 60 min · oráculo: la matriz\nUn hallazgo, paso a paso\nQuality Engineering / AI QA Engineer",
+      "en": "Charter: explore create and approve with all 4 roles · 60 min · oracle: the matrix\nOne finding, step by step\nQuality Engineering / AI QA Engineer"
+    },
+    "assets": [
+      "m1.theory[6]",
+      "quiz-01-10.json m1 pregunta del charter",
+      "war-paradigm/experiments/03-second-brain/vault/03 Knowledge/Roles and permissions.md (matriz de 4 roles)",
+      "war-paradigm commit a5386c8 (mutante viewer-create: POST /api/docs sin revisión de rol, 201 en vez de 403)",
+      "war-paradigm/experiments/03-second-brain/vault/99 Templates/Defect note.md (pasos, esperado, obtenido, causa)",
+      "war-paradigm/experiments/03-second-brain/vault/03 Knowledge/Test data - users.md (viewer@demo.io) y DocFlow - golden flow.md (POST /api/auth/login)",
+      "war-paradigm/experiments/01-ai-verdict/fixtures/story-US-42.json (approver puede crear y aprobar; R-2 no habla del borrador propio)"
+    ],
+    "notas_animacion": "El charter es un ejemplo de redacción ('ejemplo' en muted); las dos notas son reales."
+  },
+  {
+    "id": "E12",
+    "inicio": "15:42",
+    "fin": "16:35",
+    "tipo": "terminal",
+    "visual": "Terminal deep con los comandos de preparación y el resumen de la corrida del experimento 01.",
+    "texto_pantalla": {
+      "es": "$ git clone https://github.com/criguex/war-paradigm.git && cd war-paradigm\n$ npm ci && npx playwright install --with-deps chromium\n$ npm run test:01\n  1 skipped\n  27 passed",
+      "en": "$ git clone https://github.com/criguex/war-paradigm.git && cd war-paradigm\n$ npm ci && npx playwright install --with-deps chromium\n$ npm run test:01\n  1 skipped\n  27 passed"
+    },
+    "assets": [
+      "Comandos: war-paradigm/README.es.md §La idea y package.json (script test:01)",
+      "Resultado '1 skipped · 27 passed': corrida local de `npx playwright test` en experiments/01-ai-verdict, 26-oct-2026; README del experimento: '27 checks … (+1 live-agent check, skipped without an agent)'"
+    ],
+    "notas_animacion": "Acelerar la instalación (no mostrar el log completo de npm). El '27 passed' en mint con ✓; '1 skipped' en gold con ⚠ y rótulo 'agente en vivo'."
+  },
+  {
+    "id": "E13",
+    "inicio": "16:35",
+    "fin": "17:30",
+    "tipo": "terminal",
+    "visual": "Salida del set pinned: pins, las tres corridas y el veredicto. Zoom a la línea AC-5 de la corrida 1.",
+    "texto_pantalla": {
+      "es": "── set: pinned ──\n  pins   model planner-agent@2026.06 · temperature 0 · prompt test-plan@v3\n    AC-5  should ◐ partial  2/4 boundaries covered · missing: B-2, B-3\n    score 86/100 · gate 70 · verdict APPROVED\n  run 1 approved 86  ·  run 2 approved 84  ·  run 3 approved 87\n  verdict STABLE · 3/3 runs agree",
+      "en": "── set: pinned ──\n  pins   model planner-agent@2026.06 · temperature 0 · prompt test-plan@v3\n    AC-5  should ◐ partial  2/4 boundaries covered · missing: B-2, B-3\n    score 86/100 · gate 70 · verdict APPROVED\n  run 1 approved 86  ·  run 2 approved 84  ·  run 3 approved 87\n  verdict STABLE · 3/3 runs agree"
+    },
+    "assets": [
+      "Salida real de `npm run demo:01`, corrida local 26-oct-2026 (líneas seleccionadas de la corrida 1 del set pinned)"
+    ],
+    "notas_animacion": "STABLE en mint con ✓. Las tres cifras 86/84/87 se dibujan como puntos que se mueven poco dentro de una franja 'APPROVED'."
+  },
+  {
+    "id": "E14",
+    "inicio": "17:30",
+    "fin": "18:29",
+    "tipo": "terminal",
+    "visual": "Salida del set unpinned: advertencias de pins, resumen de corridas y veredicto UNSTABLE.",
+    "texto_pantalla": {
+      "es": "── set: unpinned ──\n  pins   model planner-agent · temperature 1 · prompt latest\n         ⚠ temperature is 1 (pinned runs use 0)\n         ⚠ promptVersion \"latest\" is a moving target, tag it\n         ⚠ model \"planner-agent\" has no version tag (expected name@version)\n  run 1 approved 83  ·  run 2 approved 74  ·  run 3 REJECTED 76\n  verdict UNSTABLE → finding: verdict flipped approved → rejected on run 3 …",
+      "en": "── set: unpinned ──\n  pins   model planner-agent · temperature 1 · prompt latest\n         ⚠ temperature is 1 (pinned runs use 0)\n         ⚠ promptVersion \"latest\" is a moving target, tag it\n         ⚠ model \"planner-agent\" has no version tag (expected name@version)\n  run 1 approved 83  ·  run 2 approved 74  ·  run 3 REJECTED 76\n  verdict UNSTABLE → finding: verdict flipped approved → rejected on run 3 …"
+    },
+    "assets": [
+      "Salida real de `npm run demo:01`, corrida local 26-oct-2026; coincide con war-paradigm/experiments/01-ai-verdict/README.md §5"
+    ],
+    "notas_animacion": "Las advertencias en gold con ⚠. UNSTABLE en coral con ✗. Volver un segundo a las líneas AC-1 y AC-3 de E01."
+  },
+  {
+    "id": "E15",
+    "inicio": "18:29",
+    "fin": "19:44",
+    "tipo": "navegador",
+    "visual": "Navegador con GitHub abierto en la nota 'Test strategy' del vault (tabla de capas y principios). Luego la nota de sesión '2026-09-24 - mutants on DocFlow' con sus secciones Goal, What happened, Decisions, Next.",
+    "texto_pantalla": {
+      "es": "Estrategia de 1 pantalla · Nota de sesión: objetivo, qué pasó, decisiones, siguiente",
+      "en": "One-screen strategy · Session note: goal, what happened, decisions, next"
+    },
+    "assets": [
+      "https://github.com/criguex/war-paradigm/blob/main/experiments/03-second-brain/vault/01%20QA%20process/Test%20strategy.md",
+      "https://github.com/criguex/war-paradigm/blob/main/experiments/03-second-brain/vault/04%20Sessions/2026-09-24%20-%20mutants%20on%20DocFlow.md"
+    ],
+    "notas_animacion": "Grabar el navegador real; resaltar con recuadro mint las cuatro secciones de la nota de sesión. Resaltar '5 killed, 1 survived' con ⚠ gold y rótulo 'próximo módulo'."
+  },
+  {
+    "id": "E16",
+    "inicio": "19:44",
+    "fin": "20:25",
+    "tipo": "codigo",
+    "visual": "Editor con el diff de una sola línea en fixtures/runs/pinned/run-1.json y, al lado, una nota amarilla 'Predicción' escrita antes de correr.",
+    "texto_pantalla": {
+      "es": "experiments/01-ai-verdict/fixtures/runs/pinned/run-1.json\n- \"source\": \"US-42/R-1\"\n+ \"source\": \"\"\nPredicción: AC-1 falla · corrida 1 → REJECTED · puntaje igual (AC-1 es must)",
+      "en": "experiments/01-ai-verdict/fixtures/runs/pinned/run-1.json\n- \"source\": \"US-42/R-1\"\n+ \"source\": \"\"\nPrediction: AC-1 fails · run 1 → REJECTED · score unchanged (AC-1 is a must)"
+    },
+    "assets": [
+      "Campo real del escenario S-1 en war-paradigm/experiments/01-ai-verdict/fixtures/runs/pinned/run-1.json",
+      "Mutación equivalente a la prueba 'a failed must rejects the artifact no matter the score' en tests/scorer.spec.ts (allí sobre S-4)"
+    ],
+    "notas_animacion": "La línea quitada en coral, la nueva en mint. La nota de predicción aparece primero, con hora; el diff después."
+  },
+  {
+    "id": "E17",
+    "inicio": "20:25",
+    "fin": "21:11",
+    "tipo": "terminal",
+    "visual": "Resultado de la mutación en la demo y en la suite; luego la restauración en verde.",
+    "texto_pantalla": {
+      "es": "$ npm run demo:pinned -w experiments/01-ai-verdict\n    AC-1  must   ✘ failed   S-1 has no valid source (source=\"\", covers=[R-1])\n    score 86/100 · gate 70 · verdict REJECTED · must failed: AC-1\n  run 1 REJECTED 86  ·  run 2 approved 84  ·  run 3 approved 87\n$ npm run test:01\n  6 failed\n  …\n  1 skipped\n  21 passed\n(archivo restaurado)\n  1 skipped\n  27 passed",
+      "en": "$ npm run demo:pinned -w experiments/01-ai-verdict\n    AC-1  must   ✘ failed   S-1 has no valid source (source=\"\", covers=[R-1])\n    score 86/100 · gate 70 · verdict REJECTED · must failed: AC-1\n  run 1 REJECTED 86  ·  run 2 approved 84  ·  run 3 approved 87\n$ npm run test:01\n  6 failed\n  …\n  1 skipped\n  21 passed\n(file restored)\n  1 skipped\n  27 passed"
+    },
+    "assets": [
+      "Salida observada en una copia local de war-paradigm con la mutación aplicada, 26-oct-2026 (ver fuentes.md §Mutación)"
+    ],
+    "notas_animacion": "Sello grande 'KILLED' en mint con ✓ cuando aparece REJECTED. '6 failed' en coral con ✗; tras restaurar, '27 passed' en mint."
+  },
+  {
+    "id": "E18",
+    "inicio": "21:11",
+    "fin": "22:53",
+    "tipo": "diagrama",
+    "visual": "Checklist de tres criterios con casillas y la rúbrica de cuatro niveles (1 no cumple, 2 en camino, 3 aprobado, 4 sobresaliente). Después, el criterio 2 con un caso: una prueba sin oráculo (✗) frente a una con oráculo (✓, S-3 de la corrida 1 fijada). Debajo, la regla de aprobación: reto nivel 3 + quiz 6/8.",
+    "texto_pantalla": {
+      "es": "☐ Estrategia ≤ 1 pág con ≥ 3 riesgos (prob × impacto)\n☐ Cada prueba nombra su oráculo\n☐ Notas: charter, duración, ≥ 1 hallazgo o pregunta\nApruebas: reto en nivel 3 + quiz 6 de 8",
+      "en": "☐ Strategy ≤ 1 page with ≥ 3 risks (prob × impact)\n☐ Every test names its oracle\n☐ Notes: charter, duration, ≥ 1 finding or question\nPass: challenge at level 3 + quiz 6 of 8"
+    },
+    "assets": [
+      "m1.hands, m1.crit, m1.deliver, m1.top",
+      "ui.json rubric.generic y module.evalNote",
+      "course.json qn = 8, qpass = 0.75",
+      "war-paradigm/experiments/01-ai-verdict/fixtures/runs/pinned/run-1.json (S-3: viewer → approve, espera 403, fuente US-42/R-2)"
+    ],
+    "notas_animacion": "Las casillas se marcan con ✓ mint una a una. El nivel 4 se resalta en gold con el texto del 'top'."
+  },
+  {
+    "id": "E19",
+    "inicio": "22:53",
+    "fin": "23:32",
+    "tipo": "quiz",
+    "visual": "Tarjeta de pregunta con cuatro opciones A–D y un temporizador circular de 5 s. Al revelar, la correcta se marca ✓ mint y las demás se atenúan.",
+    "texto_pantalla": {
+      "es": "Tu suite corre 1.200 tests y toda está verde. ¿Qué puedes afirmar con certeza?\nA · El software está bien\nB · Que tus tests, como están escritos, no encontraron nada ✓\nC · Puedes certificar todas las HUs del sprint\nD · El riesgo residual es cero",
+      "en": "Your suite runs 1,200 tests and it's all green. What can you say for certain?\nA · The software is fine\nB · Your tests, as written, didn't find anything ✓\nC · You can certify every story in the sprint\nD · Residual risk is zero"
+    },
+    "assets": [
+      "quiz-01-10.json m1 pregunta 1 (a = 1)"
+    ],
+    "notas_animacion": "El ✓ solo aparece al terminar la pausa."
+  },
+  {
+    "id": "E20",
+    "inicio": "23:32",
+    "fin": "24:07",
+    "tipo": "quiz",
+    "visual": "Misma plantilla de quiz.",
+    "texto_pantalla": {
+      "es": "Riesgo = probabilidad × impacto. Con una tarde disponible, ¿qué pruebas PRIMERO?\nA · El flujo de pago que usa el 90 % de los clientes ✓\nB · Un tooltip mal alineado en el admin\nC · Una pantalla de configuración que se usa una vez al año\nD · El orden alfabético de un listado",
+      "en": "Risk = probability × impact. One afternoon. What do you test FIRST?\nA · The payment flow 90% of customers use ✓\nB · A misaligned tooltip in the admin panel\nC · A settings screen used once a year\nD · The alphabetical order of a list"
+    },
+    "assets": [
+      "quiz-01-10.json m1 pregunta 2 (a = 0)"
+    ],
+    "notas_animacion": "Temporizador de 5 s."
+  },
+  {
+    "id": "E21",
+    "inicio": "24:07",
+    "fin": "24:40",
+    "tipo": "quiz",
+    "visual": "Misma plantilla de quiz.",
+    "texto_pantalla": {
+      "es": "0 bugs reportados en 3 meses, pero los usuarios abandonan la app porque no resuelve su problema. ¿Qué principio aplica?\nA · Paradoja del pesticida\nB · Defect clustering\nC · La falacia de la ausencia de errores ✓\nD · Testing temprano",
+      "en": "0 reported bugs in 3 months, but users leave because the app doesn't solve their problem. Which principle?\nA · Pesticide paradox\nB · Defect clustering\nC · Absence-of-errors fallacy ✓\nD · Early testing"
+    },
+    "assets": [
+      "quiz-01-10.json m1 pregunta 9 (a = 2)"
+    ],
+    "notas_animacion": "Temporizador de 5 s."
+  },
+  {
+    "id": "E22",
+    "inicio": "24:40",
+    "fin": "25:19",
+    "tipo": "resumen",
+    "visual": "Tres tarjetas con las ideas clave y, abajo, la tarjeta del siguiente módulo (02 · WAR Paradigm, icono ⚔️). Firma al pie.",
+    "texto_pantalla": {
+      "es": "1 · Decides qué probar, con qué riesgo y si cumple el contrato\n2 · Cada prueba tiene oráculo: must bloquea, should suma\n3 · Si nunca viste fallar a tu guardia, no sabes si está despierto\nSiguiente → 02 · WAR Paradigm\nCristian Guerra · QA · Medellín",
+      "en": "1 · You decide what to test, at what risk, and if it meets the contract\n2 · Every test has an oracle: must blocks, should adds\n3 · If you never saw your guard fail, you don't know it's awake\nNext → 02 · WAR Paradigm\nCristian Guerra · QA · Medellín"
+    },
+    "assets": [
+      "course.json (posición 2 = m30)",
+      "https://criguex.github.io/qa-automation-course/#/m1"
+    ],
+    "notas_animacion": "Las tres tarjetas entran con ✓ mint. La tarjeta del siguiente módulo se ilumina al final."
+  }
+]

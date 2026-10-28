@@ -1,0 +1,356 @@
+[
+  {
+    "id": "E01",
+    "inicio": "00:00",
+    "fin": "00:34",
+    "tipo": "terminal",
+    "visual": "Arriba, una línea de código con el número cambiado en gold. Abajo, la terminal con la suite completa en verde y el marcador de siempre. Un muñeco con un título de 80 caracteres choca contra una puerta.",
+    "texto_pantalla": {
+      "es": "# war-paradigm 5dc5e92 · antes de este módulo\napp/server.js\n- const TITLE_MAX = 80;\n+ const TITLE_MAX = 79;\n\n  ✓  1 tests/golden.spec.ts:8:1 › golden: create → approve → publish\n  ✓  2 … role-swap: expect 403\n  ✓  3 … drop-input: expect 422\n  ✓  4 … reorder: expect 409\n  ✓  5 … stale-token: expect 401\n  ✓  6 … boundary: expect 422\n  ✘  7 … self-grant: expect 403\n  7 passed\n  5/6 scored mutants killed · 1 survived · 0 excluded from score",
+      "en": "# war-paradigm 5dc5e92 · before this module\napp/server.js\n- const TITLE_MAX = 80;\n+ const TITLE_MAX = 79;\n\n  ✓  1 tests/golden.spec.ts:8:1 › golden: create → approve → publish\n  ✓  2 … role-swap: expect 403\n  ✓  3 … drop-input: expect 422\n  ✓  4 … reorder: expect 409\n  ✓  5 … stale-token: expect 401\n  ✓  6 … boundary: expect 422\n  ✘  7 … self-grant: expect 403\n  7 passed\n  5/6 scored mutants killed · 1 survived · 0 excluded from score"
+    },
+    "assets": [
+      "Salida observada en copia local de war-paradigm/experiments/02-mutants con TITLE_MAX = 79 (`npx playwright test`), 26-oct-2026; revertido después"
+    ],
+    "notas_animacion": "El ✘ de self-grant es el fallo esperado conocido (Playwright lo cuenta como passed); añadir rótulo gold '⚠ conocido'. '7 passed' en mint con un signo de interrogación gold encima: 'nadie lo notó'."
+  },
+  {
+    "id": "E02",
+    "inicio": "00:34",
+    "fin": "00:42",
+    "tipo": "titulo",
+    "visual": "Título sobre navy con rejilla y barra mint. Icono 🎯, nivel ★★☆☆☆.",
+    "texto_pantalla": {
+      "es": "Módulo 03 · Diseño de pruebas & técnicas\nCristian Guerra · QA · Medellín",
+      "en": "Module 03 · Test design & techniques\nCristian Guerra · QA · Medellín"
+    },
+    "assets": [
+      "course.json (m2, posición 3, icono 🎯, nivel ★★☆☆☆)"
+    ],
+    "notas_animacion": "Entrada del título; firma en mint."
+  },
+  {
+    "id": "E03",
+    "inicio": "00:42",
+    "fin": "01:29",
+    "tipo": "analogia",
+    "visual": "Entrada de un juego con un letrero '8 a 12 años'. Llegan cuatro niños con camisetas 7, 8, 12 y 13. 7 y 13 rebotan (✓ correcto rechazo); 8 y 12 entran. Luego una versión con el error '> 8': el niño de 8 queda afuera con ✗ coral.",
+    "texto_pantalla": {
+      "es": "Prueba 7 · 8 · 12 · 13\nLos errores viven en la puerta",
+      "en": "Test 7 · 8 · 12 · 13\nBugs live at the door"
+    },
+    "assets": [
+      "m2.kid"
+    ],
+    "notas_animacion": "Símbolo + palabra: 'entra ✓', 'no entra ✓', 'error ✗'."
+  },
+  {
+    "id": "E04",
+    "inicio": "01:29",
+    "fin": "02:29",
+    "tipo": "diagrama",
+    "visual": "Dos ejes: niveles (unitario, integración, sistema, aceptación) como cajas que crecen; tipos (funcional, regresión, smoke, sanity) como etiquetas. Luego la anatomía de un caso: precondición, datos, pasos, esperado observable.",
+    "texto_pantalla": {
+      "es": "Niveles: unit · integración · sistema · aceptación\nTipos: funcional · regresión · smoke · sanity\nCaso = precondición + datos + pasos + esperado observable",
+      "en": "Levels: unit · integration · system · acceptance\nTypes: functional · regression · smoke · sanity\nCase = precondition + data + steps + observable expected result"
+    },
+    "assets": [
+      "m2.theory[0]",
+      "quiz-01-10.json m2 pregunta 9"
+    ],
+    "notas_animacion": "La frase 'si otro no lo ejecuta sin preguntarte, es una intención' aparece en gold."
+  },
+  {
+    "id": "E05",
+    "inicio": "02:29",
+    "fin": "04:05",
+    "tipo": "diagrama",
+    "visual": "Recta numérica del largo del título con tres zonas: < 3 (coral), 3–80 (mint), > 80 (coral), y una caja aparte 'no es texto → \"\"'. Ejemplo animado: '  ab  ' pierde los espacios y cae en '< 3'. Debajo, tres cajas para el dueño: miembro existente (mint), vacío (coral), correo desconocido (coral).",
+    "texto_pantalla": {
+      "es": "Título: < 3 ✗ · 3–80 ✓ · > 80 ✗ · no-texto ✗\n'  ab  ' → trim → 'ab' → 422\nDueño: miembro ✓ · vacío ✗ · desconocido ✗ (422)",
+      "en": "Title: < 3 ✗ · 3–80 ✓ · > 80 ✗ · not text ✗\n'  ab  ' → trim → 'ab' → 422\nOwner: member ✓ · empty ✗ · unknown ✗ (422)"
+    },
+    "assets": [
+      "war-paradigm/experiments/02-mutants/app/server.js líneas 90–93",
+      "Respuesta observada: título '  ab  ' → HTTP 422 (copia local, 26-oct-2026)",
+      "quiz-01-10.json m2 pregunta 7"
+    ],
+    "notas_animacion": "Los espacios se 'evaporan' antes de medir."
+  },
+  {
+    "id": "E06",
+    "inicio": "04:05",
+    "fin": "05:10",
+    "tipo": "diagrama",
+    "visual": "Cuatro marcas sobre la recta: 2 (422), 3 (201), 80 (201), 81 (422), con las etiquetas B-1…B-4. Luego una linterna que solo ilumina el 81: 'la suite solo prueba este lado'.",
+    "texto_pantalla": {
+      "es": "B-1 2 → 422 · B-2 3 → 201 · B-3 80 → 201 · B-4 81 → 422\nLa suite de 02 solo prueba 81",
+      "en": "B-1 2 → 422 · B-2 3 → 201 · B-3 80 → 201 · B-4 81 → 422\nThe 02 suite only tests 81"
+    },
+    "assets": [
+      "war-paradigm/experiments/01-ai-verdict/fixtures/story-US-42.json (boundaries)",
+      "war-paradigm/experiments/02-mutants/tests/scenarios.ts (boundary: 'x'.repeat(81))",
+      "Respuestas observadas 2→422, 3→201, 80→201, 81→422 (copia local, 26-oct-2026)"
+    ],
+    "notas_animacion": "El 80 parpadea en gold con ⚠: nadie lo prueba."
+  },
+  {
+    "id": "E07",
+    "inicio": "05:10",
+    "fin": "07:30",
+    "tipo": "diagrama",
+    "visual": "Matriz 4 roles × 4 acciones de la nota del vault, celda por celda. Luego la tabla de decisión de crear con 8 columnas (rol puede / título válido / dueño válido). Al final, la celda 'viewer · crear' se voltea: esperado 403, observado 201 en coral.",
+    "texto_pantalla": {
+      "es": "crear: viewer 403 · editor 201 · approver 201 · admin 201\naprobar: 403 · 403 · 200 · 200\npublicar: 403 · 200 · 200 · 200\ncambiar rol: 403 · 403 · 403 · 200\nPrecedencia: 403 antes de 422 antes de 409\nObservado: viewer crea → 201 ✗ · viewer con título de 2 → 422 ✗",
+      "en": "create: viewer 403 · editor 201 · approver 201 · admin 201\napprove: 403 · 403 · 200 · 200\npublish: 403 · 200 · 200 · 200\nchange role: 403 · 403 · 403 · 200\nPrecedence: 403 before 422 before 409\nObserved: viewer creates → 201 ✗ · viewer with 2-char title → 422 ✗"
+    },
+    "assets": [
+      "war-paradigm/experiments/03-second-brain/vault/03 Knowledge/Roles and permissions.md",
+      "war-paradigm/experiments/02-mutants/app/server.js (ruta POST /api/docs sin chequeo de rol)",
+      "Respuestas observadas con curl contra la app en copia local, 26-oct-2026 (ver fuentes.md)",
+      "quiz-01-10.json m2 pregunta 2 (2³ combinaciones)"
+    ],
+    "notas_animacion": "La celda observada en coral con ✗ y la palabra 'observado'; la esperada en muted. No llamarlo 'bug confirmado por el repo': es un hallazgo de esta preparación."
+  },
+  {
+    "id": "E08",
+    "inicio": "07:30",
+    "fin": "08:15",
+    "tipo": "diagrama",
+    "visual": "Diagrama de estados: draft → approved → published con flechas mint. Flechas punteadas coral para las transiciones inválidas: draft → published (409), approved/published → approve (409).",
+    "texto_pantalla": {
+      "es": "draft → approved → published\npublicar un borrador → 409 \"document must be approved before publishing\"\naprobar algo que no es borrador → 409",
+      "en": "draft → approved → published\npublish a draft → 409 \"document must be approved before publishing\"\napprove a non-draft → 409"
+    },
+    "assets": [
+      "war-paradigm/experiments/02-mutants/app/server.js líneas 103 y 113",
+      "Respuesta observada: publicar un borrador → 409 (copia local, 26-oct-2026)",
+      "tests/scenarios.ts (reorder: expect 409)"
+    ],
+    "notas_animacion": "Las transiciones inválidas rebotan con ✓ mint 'rechazada'."
+  },
+  {
+    "id": "E09",
+    "inicio": "08:15",
+    "fin": "09:38",
+    "tipo": "diagrama",
+    "visual": "Cubo de 81 combinaciones que se reduce a un puñado de filas que cubren todas las parejas. Luego la regla 'mínimo = producto de los dos parámetros más grandes' con rol (4) × acción (3) = 12. Después una lupa sobre DEF-001 para error guessing.",
+    "texto_pantalla": {
+      "es": "4 parámetros × 3 valores = 81 combinaciones → pairwise ≈ 9–12\nMínimo pairwise ≥ 4 × 3 = 12 (rol × acción)\nError guessing: \"es mío\" abre una puerta que no debía (DEF-001)",
+      "en": "4 parameters × 3 values = 81 combinations → pairwise ≈ 9–12\nPairwise minimum ≥ 4 × 3 = 12 (role × action)\nError guessing: \"it's mine\" opens a door it shouldn't (DEF-001)"
+    },
+    "assets": [
+      "quiz-01-10.json m2 pregunta 5 (81 → ~9-12)",
+      "quiz-01-10.json m2 pregunta 8 (error guessing)",
+      "https://github.com/microsoft/pict (recurso del módulo)",
+      "vault/03 Knowledge/DEF-001 self-grant role.md"
+    ],
+    "notas_animacion": "El '≥ 12' es aritmética (cada pareja rol-acción debe aparecer al menos una vez); mostrarlo como regla, no como salida de PICT."
+  },
+  {
+    "id": "E10",
+    "inicio": "09:38",
+    "fin": "10:31",
+    "tipo": "diagrama",
+    "visual": "Ficha de reporte de defecto con las secciones de DEF-001: regla rota, pasos, esperado 403, real 200, causa raíz, evidencia. Al lado, dos ejes cruzados: severidad y prioridad, con el typo de la home en 'baja / alta'.",
+    "texto_pantalla": {
+      "es": "Reporte = pasos + esperado vs real + ambiente + evidencia\nSeveridad ≠ prioridad",
+      "en": "Report = steps + expected vs actual + environment + evidence\nSeverity ≠ priority"
+    },
+    "assets": [
+      "m2.theory[2..3]",
+      "vault/03 Knowledge/DEF-001 self-grant role.md",
+      "quiz-01-10.json m2 preguntas 3 y 6"
+    ],
+    "notas_animacion": "'El formulario falla a veces' aparece tachado en coral."
+  },
+  {
+    "id": "E11",
+    "inicio": "10:31",
+    "fin": "11:01",
+    "tipo": "codigo",
+    "visual": "Editor con dos archivos: server.js (constante y ruta de crear) y story-US-42.json (fronteras).",
+    "texto_pantalla": {
+      "es": "experiments/02-mutants/app/server.js\nconst TITLE_MAX = 80;\n…\n  ['POST', /^\\/api\\/docs$/, async (req, auth) => {\n    const { title, owner } = await readBody(req);\n    const clean = typeof title === 'string' ? title.trim() : '';\n    if (clean.length < 3 || clean.length > TITLE_MAX) return [422, { error: `title must be 3-${TITLE_MAX} chars` }];\n    if (!owner || !state.members.some((m) => m.email === owner)) return [422, { error: 'owner is required' }];\n\nexperiments/01-ai-verdict/fixtures/story-US-42.json\n{ \"id\": \"B-1\", \"text\": \"title with 2 characters is rejected (422)\" },\n{ \"id\": \"B-2\", \"text\": \"title with 3 characters is accepted (201)\" },\n{ \"id\": \"B-3\", \"text\": \"title with 80 characters is accepted (201)\" },\n{ \"id\": \"B-4\", \"text\": \"title with 81 characters is rejected (422)\" }",
+      "en": "experiments/02-mutants/app/server.js\nconst TITLE_MAX = 80;\n…\n  ['POST', /^\\/api\\/docs$/, async (req, auth) => {\n    const { title, owner } = await readBody(req);\n    const clean = typeof title === 'string' ? title.trim() : '';\n    if (clean.length < 3 || clean.length > TITLE_MAX) return [422, { error: `title must be 3-${TITLE_MAX} chars` }];\n    if (!owner || !state.members.some((m) => m.email === owner)) return [422, { error: 'owner is required' }];\n\nexperiments/01-ai-verdict/fixtures/story-US-42.json\n{ \"id\": \"B-1\", \"text\": \"title with 2 characters is rejected (422)\" },\n{ \"id\": \"B-2\", \"text\": \"title with 3 characters is accepted (201)\" },\n{ \"id\": \"B-3\", \"text\": \"title with 80 characters is accepted (201)\" },\n{ \"id\": \"B-4\", \"text\": \"title with 81 characters is rejected (422)\" }"
+    },
+    "assets": [
+      "war-paradigm/experiments/02-mutants/app/server.js líneas 12 y 89–93",
+      "war-paradigm/experiments/01-ai-verdict/fixtures/story-US-42.json"
+    ],
+    "notas_animacion": "Resaltar en gold el hueco: no hay ninguna línea con el rol en la ruta de crear."
+  },
+  {
+    "id": "E12",
+    "inicio": "11:01",
+    "fin": "11:33",
+    "tipo": "navegador",
+    "visual": "Terminal pequeña con `npm run app` y, al lado, el navegador en http://localhost:4310 con la app DocFlow: inicio de sesión como editor, crear borrador, aprobar como approver.",
+    "texto_pantalla": {
+      "es": "$ npm run app\nhttp://localhost:4310 · viewer@demo.io · editor@demo.io · approver@demo.io · admin@demo.io · clave demo123\nLa UI esconde botones. La API es el contrato.",
+      "en": "$ npm run app\nhttp://localhost:4310 · viewer@demo.io · editor@demo.io · approver@demo.io · admin@demo.io · password demo123\nThe UI hides buttons. The API is the contract."
+    },
+    "assets": [
+      "war-paradigm/experiments/02-mutants/README.md §Run it (npm run app, usuarios y clave)",
+      "vault/03 Knowledge/Roles and permissions.md ('The UI hides buttons; the API is the contract')"
+    ],
+    "notas_animacion": "Grabar la app real (sus colores propios se respetan; la marca va solo en el marco). No afirmar qué muestra la UI al viewer sin haberlo grabado."
+  },
+  {
+    "id": "E13",
+    "inicio": "11:33",
+    "fin": "12:55",
+    "tipo": "terminal",
+    "visual": "Terminal con el marcador de mutantes y, debajo, la línea del mutante boundary en scenarios.ts.",
+    "texto_pantalla": {
+      "es": "$ npm run test:mutants\n  KILLED            role-swap      Expected rejection HTTP 403 observed.\n  KILLED            drop-input     Expected rejection HTTP 422 observed.\n  KILLED            reorder        Expected rejection HTTP 409 observed.\n  KILLED            stale-token    Expected rejection HTTP 401 observed.\n  KILLED            boundary       Expected rejection HTTP 422 observed.\n  KNOWN SURVIVOR    self-grant     Mutation was accepted with HTTP 200.\n  KNOWN SURVIVOR    viewer-create  Mutation was accepted with HTTP 201.\n\ntests/scenarios.ts\n  { id: 'boundary', name: 'boundary', expect: 422, step: 'create', body: { title: 'x'.repeat(81) } },",
+      "en": "$ npm run test:mutants\n  KILLED            role-swap      Expected rejection HTTP 403 observed.\n  KILLED            drop-input     Expected rejection HTTP 422 observed.\n  KILLED            reorder        Expected rejection HTTP 409 observed.\n  KILLED            stale-token    Expected rejection HTTP 401 observed.\n  KILLED            boundary       Expected rejection HTTP 422 observed.\n  KNOWN SURVIVOR    self-grant     Mutation was accepted with HTTP 200.\n  KNOWN SURVIVOR    viewer-create  Mutation was accepted with HTTP 201.\n\ntests/scenarios.ts\n  { id: 'boundary', name: 'boundary', expect: 422, step: 'create', body: { title: 'x'.repeat(81) } },"
+    },
+    "assets": [
+      "Corrida local de `npm run test:mutants`, 26-oct-2026",
+      "war-paradigm/experiments/02-mutants/tests/scenarios.ts"
+    ],
+    "notas_animacion": "Subrayar 'repeat(81)' en gold."
+  },
+  {
+    "id": "E14",
+    "inicio": "12:55",
+    "fin": "13:22",
+    "tipo": "navegador",
+    "visual": "GitHub abierto en la nota DEF-001 del vault y luego en la plantilla Defect note.",
+    "texto_pantalla": {
+      "es": "DEF-001 · a user can grant themself a higher role\nExpected: 403 forbidden · Actual: 200\nPlantilla: 99 Templates/Defect note",
+      "en": "DEF-001 · a user can grant themself a higher role\nExpected: 403 forbidden · Actual: 200\nTemplate: 99 Templates/Defect note"
+    },
+    "assets": [
+      "https://github.com/criguex/war-paradigm/blob/main/experiments/03-second-brain/vault/03%20Knowledge/DEF-001%20self-grant%20role.md",
+      "https://github.com/criguex/war-paradigm/blob/main/experiments/03-second-brain/vault/99%20Templates/Defect%20note.md"
+    ],
+    "notas_animacion": "Recuadros mint sobre Steps, Expected, Actual, Root cause, Evidence."
+  },
+  {
+    "id": "E15",
+    "inicio": "13:22",
+    "fin": "13:51",
+    "tipo": "codigo",
+    "visual": "Diff de una línea y nota de predicción.",
+    "texto_pantalla": {
+      "es": "app/server.js\n- const TITLE_MAX = 80;\n+ const TITLE_MAX = 81;\nPredicción: boundary (81) ahora da 201 → la suite se pone roja",
+      "en": "app/server.js\n- const TITLE_MAX = 80;\n+ const TITLE_MAX = 81;\nPrediction: boundary (81) now gets 201 → the suite goes red"
+    },
+    "assets": [
+      "m2.mut",
+      "war-paradigm/experiments/02-mutants/app/server.js línea 12"
+    ],
+    "notas_animacion": "La predicción aparece antes del diff."
+  },
+  {
+    "id": "E16",
+    "inicio": "13:51",
+    "fin": "14:15",
+    "tipo": "terminal",
+    "visual": "Salida de la suite con TITLE_MAX = 81.",
+    "texto_pantalla": {
+      "es": "  1 failed\n    tests/mutants.spec.ts:11:3 › boundary: expect 422\n  8 passed (1.5s)\n\n  MUTANT SCENARIO EVIDENCE\n  KILLED            role-swap      Expected rejection HTTP 403 observed.\n  KILLED            drop-input     Expected rejection HTTP 422 observed.\n  KILLED            reorder        Expected rejection HTTP 409 observed.\n  KILLED            stale-token    Expected rejection HTTP 401 observed.\n  SURVIVED          boundary       Mutation was accepted with HTTP 201.\n  KNOWN SURVIVOR    self-grant     Mutation was accepted with HTTP 200.\n  KNOWN SURVIVOR    viewer-create  Mutation was accepted with HTTP 201.\n\n  4/7 scored mutants killed · 3 survived · 0 excluded from score",
+      "en": "  1 failed\n    tests/mutants.spec.ts:11:3 › boundary: expect 422\n  8 passed (1.5s)\n\n  MUTANT SCENARIO EVIDENCE\n  KILLED            role-swap      Expected rejection HTTP 403 observed.\n  KILLED            drop-input     Expected rejection HTTP 422 observed.\n  KILLED            reorder        Expected rejection HTTP 409 observed.\n  KILLED            stale-token    Expected rejection HTTP 401 observed.\n  SURVIVED          boundary       Mutation was accepted with HTTP 201.\n  KNOWN SURVIVOR    self-grant     Mutation was accepted with HTTP 200.\n  KNOWN SURVIVOR    viewer-create  Mutation was accepted with HTTP 201.\n\n  4/7 scored mutants killed · 3 survived · 0 excluded from score"
+    },
+    "assets": [
+      "Salida observada en copia local con TITLE_MAX = 81 (`npx playwright test`), 26-oct-2026; revertido después"
+    ],
+    "notas_animacion": "Dos capas de lectura: en el marcador 'SURVIVED boundary' (coral); encima, un sello mint '✓ KILLED · mi mutación del servidor'."
+  },
+  {
+    "id": "E17",
+    "inicio": "14:15",
+    "fin": "15:21",
+    "tipo": "terminal",
+    "visual": "Vuelve la salida del gancho (TITLE_MAX = 79) con la tabla WAR al lado.",
+    "texto_pantalla": {
+      "es": "TITLE_MAX = 79 (5dc5e92)\n  7 passed\n  5/6 scored mutants killed · 1 survived · 0 excluded from score\n\nTabla WAR\n80→81 · predicción: roja · guardia: boundary · KILLED ✓\n80→79 · predicción: nadie lo nota · guardia: — · SURVIVED ✗ (punto ciego: falta B-3, 80 → 201)\n\nHoy (a5386c8): golden.spec.ts manda 80 → con 79 recibe 422 · KILLED ✓",
+      "en": "TITLE_MAX = 79 (5dc5e92)\n  7 passed\n  5/6 scored mutants killed · 1 survived · 0 excluded from score\n\nWAR table\n80→81 · prediction: red · guard: boundary · KILLED ✓\n80→79 · prediction: nobody notices · guard: — · SURVIVED ✗ (blind spot: B-3 missing, 80 → 201)\n\nToday (a5386c8): golden.spec.ts sends 80 → with 79 it gets 422 · KILLED ✓"
+    },
+    "assets": [
+      "Salida observada en copia local con TITLE_MAX = 79, 26-oct-2026",
+      "story-US-42.json B-3"
+    ],
+    "notas_animacion": "La fila SURVIVED queda visible en coral con ✗ y la causa en gold."
+  },
+  {
+    "id": "E18",
+    "inicio": "15:21",
+    "fin": "16:08",
+    "tipo": "diagrama",
+    "visual": "Checklist de criterios y rúbrica genérica de 4 niveles con el nivel 4 (PICT) en gold.",
+    "texto_pantalla": {
+      "es": "☐ Cada técnica con sus casos y su porqué\n☐ Límites: borde + vecino de cada lado\n☐ 3 defectos reproducibles solo con lo escrito\nNivel 4: pairwise con PICT y casos ahorrados\nApruebas: reto nivel 3 + quiz 6 de 8",
+      "en": "☐ Every technique with its cases and its why\n☐ Boundaries: edge + neighbor on each side\n☐ 3 defects reproducible from the text alone\nLevel 4: pairwise with PICT and cases saved\nPass: challenge at level 3 + quiz 6 of 8"
+    },
+    "assets": [
+      "m2.hands, m2.crit, m2.deliver, m2.top",
+      "ui.json rubric.generic y module.evalNote",
+      "course.json qn = 8, qpass = 0.75"
+    ],
+    "notas_animacion": "Casillas que se marcan con ✓ mint."
+  },
+  {
+    "id": "E19",
+    "inicio": "16:08",
+    "fin": "16:41",
+    "tipo": "quiz",
+    "visual": "Tarjeta de pregunta A–D con temporizador de 5 s.",
+    "texto_pantalla": {
+      "es": "Un campo acepta enteros de 1 a 100. ¿Qué conjunto aplica MEJOR análisis de valores límite?\nA · 1, 50, 100\nB · 0, 1, 100, 101 ✓\nC · 2, 99\nD · -5, 500",
+      "en": "A field accepts integers from 1 to 100. Which set applies boundary analysis BEST?\nA · 1, 50, 100\nB · 0, 1, 100, 101 ✓\nC · 2, 99\nD · -5, 500"
+    },
+    "assets": [
+      "quiz-01-10.json m2 pregunta 1 (a = 1)"
+    ],
+    "notas_animacion": "El ✓ aparece al terminar la pausa."
+  },
+  {
+    "id": "E20",
+    "inicio": "16:41",
+    "fin": "17:15",
+    "tipo": "quiz",
+    "visual": "Misma plantilla de quiz.",
+    "texto_pantalla": {
+      "es": "Un pedido pasa por DRAFT → PAID → SHIPPED. ¿Qué aporta la transición de estados que otras técnicas no ven?\nA · El happy path completo\nB · Las transiciones INVÁLIDAS: SHIPPED→DRAFT o pagar dos veces ✓\nC · Los límites del monto\nD · El formato de la fecha",
+      "en": "An order goes DRAFT → PAID → SHIPPED. What does state transition testing add?\nA · The full happy path\nB · The INVALID transitions: SHIPPED→DRAFT or paying twice ✓\nC · The amount limits\nD · The date format"
+    },
+    "assets": [
+      "quiz-01-10.json m2 pregunta 4 (a = 1)"
+    ],
+    "notas_animacion": "Temporizador de 5 s."
+  },
+  {
+    "id": "E21",
+    "inicio": "17:15",
+    "fin": "17:39",
+    "tipo": "quiz",
+    "visual": "Misma plantilla de quiz.",
+    "texto_pantalla": {
+      "es": "Un typo en el título de la home: “Bienvenidoss”. ¿Severidad y prioridad?\nA · Severidad alta, prioridad alta\nB · Severidad baja, prioridad alta ✓\nC · Severidad alta, prioridad baja\nD · Severidad baja, prioridad baja",
+      "en": "A typo in the homepage title: “Welcomee”. Severity and priority?\nA · High severity, high priority\nB · Low severity, high priority ✓\nC · High severity, low priority\nD · Low severity, low priority"
+    },
+    "assets": [
+      "quiz-01-10.json m2 pregunta 6 (a = 1); el ejemplo en inglés se adaptó de 'Bienvenidoss'"
+    ],
+    "notas_animacion": "Temporizador de 5 s."
+  },
+  {
+    "id": "E22",
+    "inicio": "17:39",
+    "fin": "18:16",
+    "tipo": "resumen",
+    "visual": "Tres tarjetas de ideas y la tarjeta del siguiente módulo (04 · Setup día 0, icono 🛠️).",
+    "texto_pantalla": {
+      "es": "1 · Prueba donde están los errores: borde + dos vecinos\n2 · Tablas y estados muestran lo que nadie escribió\n3 · Mueve un límite en 1: si nadie grita, falta un caso\nSiguiente → 04 · Setup día 0 — el entorno\nCristian Guerra · QA · Medellín",
+      "en": "1 · Test where the bugs are: edge + both neighbors\n2 · Tables and states show what nobody wrote down\n3 · Move a boundary by 1: if nobody shouts, a case is missing\nNext → 04 · Day 0 setup — the environment\nCristian Guerra · QA · Medellín"
+    },
+    "assets": [
+      "course.json (posición 4 = m3)",
+      "https://criguex.github.io/qa-automation-course/#/m2"
+    ],
+    "notas_animacion": "Las tarjetas entran con ✓ mint."
+  }
+]

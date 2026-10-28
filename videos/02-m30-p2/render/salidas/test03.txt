@@ -1,0 +1,73 @@
+
+> war-paradigm@1.0.0 test:03
+> npm test -w experiments/03-second-brain
+
+
+> @mutant-lab/03-second-brain@1.0.0 test
+> node --test tests/*.test.mjs
+
+▶ blocks a push to main/master
+  ✔ explicit branch (14.347958ms)
+  ✔ explicit branch with -u (12.9555ms)
+  ✔ master (12.4305ms)
+  ✔ force push (12.617041ms)
+  ✔ HEAD:main refspec (12.769459ms)
+  ✔ feature:master refspec (12.665958ms)
+  ✔ full ref (12.498125ms)
+  ✔ forced full ref (12.890833ms)
+  ✔ bare `git push` while on main (24.575125ms)
+  ✔ `git push origin` while on main (23.921084ms)
+  ✔ `git push origin HEAD` while on main (23.734208ms)
+  ✔ chained after other commands (12.682542ms)
+  ✔ chained with ; (12.797042ms)
+  ✔ git -C <dir> push (12.51125ms)
+  ✔ git -c key=value push (12.449625ms)
+  ✔ git --no-pager push (12.876542ms)
+  ✔ git --git-dir <dir> push (12.663833ms)
+  ✔ git --work-tree=<dir> -c k=v push (12.696458ms)
+  ✔ \git push (skips shell aliases) (12.59825ms)
+✔ blocks a push to main/master (277.559167ms)
+▶ known limits: these get through
+  ✔ branch in a variable (12.677291ms)
+  ✔ subcommand in a variable (10.109416ms)
+  ✔ git alias for push (10.329292ms)
+  ✔ sh -c (9.982208ms)
+  ✔ bash -c (10.65625ms)
+  ✔ eval (10.248292ms)
+✔ known limits: these get through (64.163875ms)
+▶ lets everything else through
+  ✔ feature branch (12.698083ms)
+  ✔ feature branch with -u (12.696917ms)
+  ✔ force-with-lease to a feature branch (12.54075ms)
+  ✔ bare `git push` on a feature branch (25.186459ms)
+  ✔ `git push origin HEAD` on a feature branch (26.169667ms)
+  ✔ git pull from main is fine (10.323833ms)
+  ✔ git status (9.990083ms)
+  ✔ git -c key=value push to a feature branch (12.52375ms)
+  ✔ unrelated command mentioning main (10.001416ms)
+  ✔ npm test (9.834916ms)
+✔ lets everything else through (142.237625ms)
+▶ is robust to what Claude Code may send
+  ✔ empty stdin (4.372917ms)
+  ✔ not JSON (7.444042ms)
+  ✔ a tool without a command (7.503875ms)
+✔ is robust to what Claude Code may send (19.405875ms)
+▶ works without jq (node fallback) and without jq or node (sed fallback)
+  ✔ node fallback (301.878792ms)
+  ✔ sed fallback (79.595583ms)
+✔ works without jq (node fallback) and without jq or node (sed fallback) (381.562375ms)
+▶ the vault template
+  ✔ has the two notes the assistant reads first (0.349542ms)
+  ✔ has the five folders of the loop (0.185875ms)
+  ✔ every [[wikilink]] resolves to a note (Obsidian resolves by name across folders) (0.925458ms)
+  ✔ every note has frontmatter with a type (0.435166ms)
+  ✔ no note is an island: each one links out or is linked to (0.635375ms)
+✔ the vault template (3.118792ms)
+ℹ tests 45
+ℹ suites 6
+ℹ pass 45
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1000.059

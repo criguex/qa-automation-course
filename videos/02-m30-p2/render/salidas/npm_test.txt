@@ -1,0 +1,178 @@
+
+> war-paradigm@1.0.0 test
+> npm test --workspaces
+
+
+> @mutant-lab/01-ai-verdict@1.0.0 test
+> playwright test
+
+
+Running 28 tests using 5 workers
+
+(node:68758) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:68761) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:68760) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:68759) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:68762) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/checks.spec.ts:14:5 › schema: pinned/run-1 is a valid artifact (5ms)
+  ✓   2 tests/checks.spec.ts:14:5 › schema: pinned/run-3 is a valid artifact (6ms)
+  ✓   3 tests/checks.spec.ts:14:5 › schema: unpinned/run-1 is a valid artifact (5ms)
+  ✓   4 tests/checks.spec.ts:14:5 › schema: unpinned/run-2 is a valid artifact (6ms)
+  ✓   6 tests/checks.spec.ts:14:5 › schema: unpinned/run-3 is a valid artifact (9ms)
+  ✓   7 tests/checks.spec.ts:23:1 › schema: a non-object is rejected (5ms)
+  ✓   8 tests/checks.spec.ts:29:1 › schema: missing meta, scenarios, risks and assumptions are all reported (3ms)
+  ✓   5 tests/checks.spec.ts:14:5 › schema: pinned/run-2 is a valid artifact (4ms)
+  ✓   9 tests/checks.spec.ts:52:1 › references: covers must point to requirement or boundary ids that exist (2ms)
+  ✓  10 tests/checks.spec.ts:40:1 › contract: unknown role, unknown action and bad status code are rejected (2ms)
+  ✓  11 tests/checks.spec.ts:59:1 › references: duplicate scenario ids and a wrong story id are rejected (2ms)
+  ✓  12 tests/checks.spec.ts:69:1 › pins: a pinned run has no warnings, an unpinned run has three (3ms)
+  ✓  13 tests/generator.spec.ts:12:1 › recorded is the default generator, a command takes over when the env var is set (6ms)
+  ✓  17 tests/scorer.spec.ts:13:1 › the gate is a number the team agreed on (0ms)
+  ✓  16 tests/generator.spec.ts:38:1 › command generator: output that is not JSON is an error, not a verdict (16ms)
+  ✓  15 tests/generator.spec.ts:33:1 › command generator: a non-zero exit is an error, not a verdict (14ms)
+  ✓  18 tests/scorer.spec.ts:19:1 › pinned runs: the output changes, the verdict does not (10ms)
+  ✓  19 tests/scorer.spec.ts:32:1 › every criterion carries evidence computed by code (7ms)
+  ✓  20 tests/scorer.spec.ts:57:1 › a forbidden role expecting success breaks the role contract (1ms)
+  ✓  21 tests/scorer.spec.ts:70:1 › a score below the gate rejects even when every must is met (5ms)
+  ✓  22 tests/scorer.spec.ts:46:1 › a failed must rejects the artifact no matter the score (2ms)
+  ✓  23 tests/scorer.spec.ts:84:1 › an artifact that fails Q1 is rejected before scoring (4ms)
+  ✓  24 tests/stability.spec.ts:19:1 › pinned agent: 3/3 runs agree → trust the verdict (2ms)
+  ✓  25 tests/stability.spec.ts:28:1 › unpinned agent: the verdict flips on run 3 → logged as a finding (3ms)
+  ✓  26 tests/stability.spec.ts:39:1 › the flip is a must failure, not a score below the gate (2ms)
+  -  27 tests/stability.spec.ts:52:1 › live agent: same check against MUTANT_LAB_GENERATOR_CMD
+  ✓  28 tests/stability.spec.ts:46:1 › stability of a single run is trivially stable (2ms)
+  ✓  14 tests/generator.spec.ts:22:1 › command generator: story in on stdin, artifact out on stdout, RUN in the environment (135ms)
+
+  1 skipped
+  27 passed (486ms)
+
+> @mutant-lab/02-mutants@1.0.0 test
+> npm run test:unit && playwright test
+
+
+> @mutant-lab/02-mutants@1.0.0 test:unit
+> node --import tsx --test tests/unit/scenario-evidence.test.ts
+
+✔ expected rejection kills only when the configured 4xx status matches (0.379875ms)
+✔ accepted mutation survives, but server errors are inconclusive (0.059416ms)
+✔ baseline failures are kept out of the mutation score (0.052583ms)
+✔ a skipped or interrupted scenario without attached evidence is infrastructure, not a survivor (0.059083ms)
+✔ known finding annotation is reserved for a real survivor and a killed known case is fixed (0.06025ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 64.0685
+[WebServer] (node:68839) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+✔ expected rejection kills only when the configured 4xx status matches (0.44875ms)
+✔ accepted mutation survives, but server errors are inconclusive (0.06475ms)
+✔ baseline failures are kept out of the mutation score (0.057542ms)
+✔ a skipped or interrupted scenario without attached evidence is infrastructure, not a survivor (0.067ms)
+✔ known finding annotation is reserved for a real survivor and a killed known case is fixed (0.053375ms)
+
+Running 9 tests using 1 worker
+
+(node:68866) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/golden.spec.ts:9:1 › golden: create → approve → publish (753ms)
+  ✓  2 tests/golden.spec.ts:26:1 › boundary: a title of exactly 80 chars is accepted and listed (13ms)
+  ✓  3 tests/mutants.spec.ts:11:3 › role-swap: expect 403 (10ms)
+  ✓  4 tests/mutants.spec.ts:11:3 › drop-input: expect 422 (7ms)
+  ✓  5 tests/mutants.spec.ts:11:3 › reorder: expect 409 (6ms)
+  ✓  6 tests/mutants.spec.ts:11:3 › stale-token: expect 401 (8ms)
+  ✓  7 tests/mutants.spec.ts:11:3 › boundary: expect 422 (4ms)
+  ✘  8 tests/mutants.spec.ts:11:3 › self-grant: expect 403 (8ms)
+  ✘  9 tests/mutants.spec.ts:11:3 › viewer-create: expect 403 (4ms)
+
+  9 passed (1.5s)
+
+[1m  MUTANT SCENARIO EVIDENCE[0m
+[32m  KILLED            role-swap      Expected rejection HTTP 403 observed.[0m
+[32m  KILLED            drop-input     Expected rejection HTTP 422 observed.[0m
+[32m  KILLED            reorder        Expected rejection HTTP 409 observed.[0m
+[32m  KILLED            stale-token    Expected rejection HTTP 401 observed.[0m
+[32m  KILLED            boundary       Expected rejection HTTP 422 observed.[0m
+[31m  KNOWN SURVIVOR    self-grant     Mutation was accepted with HTTP 200.[0m
+[31m  KNOWN SURVIVOR    viewer-create  Mutation was accepted with HTTP 201.[0m
+
+  5/7 scored mutants killed · 2 survived · 0 excluded from score
+  JSON evidence: test-results/mutant-evidence.json
+
+
+> @mutant-lab/03-second-brain@1.0.0 test
+> node --test tests/*.test.mjs
+
+▶ blocks a push to main/master
+  ✔ explicit branch (17.4125ms)
+  ✔ explicit branch with -u (13.349875ms)
+  ✔ master (12.862042ms)
+  ✔ force push (12.77325ms)
+  ✔ HEAD:main refspec (12.792583ms)
+  ✔ feature:master refspec (12.810667ms)
+  ✔ full ref (12.562416ms)
+  ✔ forced full ref (12.558375ms)
+  ✔ bare `git push` while on main (25.233083ms)
+  ✔ `git push origin` while on main (24.003ms)
+  ✔ `git push origin HEAD` while on main (23.732334ms)
+  ✔ chained after other commands (12.6755ms)
+  ✔ chained with ; (12.71175ms)
+  ✔ git -C <dir> push (12.280667ms)
+  ✔ git -c key=value push (12.833541ms)
+  ✔ git --no-pager push (12.778667ms)
+  ✔ git --git-dir <dir> push (12.610792ms)
+  ✔ git --work-tree=<dir> -c k=v push (12.748167ms)
+  ✔ \git push (skips shell aliases) (12.519667ms)
+✔ blocks a push to main/master (282.176833ms)
+▶ known limits: these get through
+  ✔ branch in a variable (12.758209ms)
+  ✔ subcommand in a variable (9.973666ms)
+  ✔ git alias for push (10.673167ms)
+  ✔ sh -c (10.587459ms)
+  ✔ bash -c (10.285792ms)
+  ✔ eval (9.955792ms)
+✔ known limits: these get through (64.380542ms)
+▶ lets everything else through
+  ✔ feature branch (13.00025ms)
+  ✔ feature branch with -u (14.127291ms)
+  ✔ force-with-lease to a feature branch (14.356458ms)
+  ✔ bare `git push` on a feature branch (26.935916ms)
+  ✔ `git push origin HEAD` on a feature branch (26.996791ms)
+  ✔ git pull from main is fine (11.437625ms)
+  ✔ git status (11.899084ms)
+  ✔ git -c key=value push to a feature branch (14.103708ms)
+  ✔ unrelated command mentioning main (11.366709ms)
+  ✔ npm test (11.389583ms)
+✔ lets everything else through (155.93975ms)
+▶ is robust to what Claude Code may send
+  ✔ empty stdin (5.198833ms)
+  ✔ not JSON (9.081792ms)
+  ✔ a tool without a command (8.440667ms)
+✔ is robust to what Claude Code may send (22.842125ms)
+▶ works without jq (node fallback) and without jq or node (sed fallback)
+  ✔ node fallback (313.490291ms)
+  ✔ sed fallback (79.117208ms)
+✔ works without jq (node fallback) and without jq or node (sed fallback) (392.69375ms)
+▶ the vault template
+  ✔ has the two notes the assistant reads first (0.352375ms)
+  ✔ has the five folders of the loop (0.175042ms)
+  ✔ every [[wikilink]] resolves to a note (Obsidian resolves by name across folders) (1.054583ms)
+  ✔ every note has frontmatter with a type (0.449042ms)
+  ✔ no note is an island: each one links out or is linked to (0.609ms)
+✔ the vault template (3.218ms)
+ℹ tests 45
+ℹ suites 6
+ℹ pass 45
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1035.474291

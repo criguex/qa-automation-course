@@ -108,6 +108,10 @@ Tres formas de recorrerla: la ruta completa desde cero (unas 37 semanas a 10–1
 
 La de 12 semanas está en la página [Cómo te evalúas](evaluacion.html).
 
+## Videos
+
+Cada módulo también se convierte en videos animados en español. Los guiones (ES y EN), las escenas, los datos de cada gráfico y las salidas reales de terminal que salen en pantalla están en [`videos/`](videos/README.md). El módulo 01 ya está publicado: [Mentalidad QA](https://youtu.be/s9gIMUDvWE0).
+
 ## Cómo correrlo
 
 ```bash

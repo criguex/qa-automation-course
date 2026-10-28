@@ -1,0 +1,737 @@
+{
+ "etiqueta": "Módulo 02 · Parte 2 · WAR Paradigm",
+ "firma": "Cristian Guerra · QA · Medellín",
+ "laboratorio": "criguex/war-paradigm @ 08438a2 (HEAD de main el 27-oct-2026), Node v26.8.1; criguex/scientific-qa-evidence @ dbd7087, Python 3.9.6. Capturado con render/salidas/capturas.sh.",
+ "escenas": {
+  "E01": {
+   "icono": "espadas",
+   "nivel": "★★☆☆☆"
+  },
+  "E02": {
+   "pasos": [
+    {
+     "peso": 1.1,
+     "titulo": 0,
+     "nota": "Mutante = una copia de la realidad con UNA sola cosa rota a propósito",
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "flujo": true,
+       "items": [
+        {
+         "num": "1",
+         "titulo": "Generar",
+         "texto": "la realidad normal",
+         "dice": [
+          "generar"
+         ]
+        },
+        {
+         "num": "2",
+         "titulo": "Mutar",
+         "texto": "una sola regla",
+         "dice": [
+          "mutar"
+         ]
+        },
+        {
+         "num": "3",
+         "titulo": "Auditar",
+         "texto": "frente al guardia",
+         "dice": [
+          "auditar"
+         ]
+        },
+        {
+         "num": "4",
+         "titulo": "Validar",
+         "texto": "lees el veredicto",
+         "dice": [
+          "validar"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 1,
+     "titulo": 1,
+     "dice": [
+      "veredictos"
+     ],
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "titulo": "PASS",
+         "texto": "la realidad normal pasa",
+         "estado": "pasa",
+         "rotulo": "línea base",
+         "dice": [
+          "pass"
+         ]
+        },
+        {
+         "titulo": "KILLED",
+         "texto": "el guardia lo atrapó",
+         "estado": "pasa",
+         "rotulo": "atrapado",
+         "dice": [
+          "killed"
+         ]
+        },
+        {
+         "titulo": "SURVIVED",
+         "texto": "se le escapó",
+         "estado": "falla",
+         "rotulo": "se escapó",
+         "dice": [
+          "survived"
+         ]
+        }
+       ]
+      },
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "si sobrevive →",
+         "estado": "ojo",
+         "rotulo": "se publica, no se esconde",
+         "dice": [
+          "publica"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E03": {
+   "titulo_terminal": "bash — ~",
+   "capturas": [
+    {
+     "cmd": "npm test",
+     "archivo": "salidas/npm_test.txt"
+    }
+   ],
+   "ritmo": 0.2,
+   "anotaciones": [
+    {
+     "busca": "KNOWN SURVIVOR",
+     "estado": "falla",
+     "rotulo": "conocido"
+    },
+    {
+     "busca": "KILLED",
+     "estado": "pasa",
+     "rotulo": "atrapado"
+    },
+    {
+     "busca": "npm ci",
+     "estado": "neutro",
+     "rotulo": "⏩ instalación acelerada"
+    }
+   ],
+   "cierre": {
+    "busca": "5/7",
+    "antes": 5
+   }
+  },
+  "E04": {
+   "pasos": [
+    {
+     "peso": 1.3,
+     "titulo": 0,
+     "bloques": [
+      {
+       "tipo": "tabla",
+       "cols": "250px 1fr 400px",
+       "dice": [
+        [
+         "puntaje"
+        ],
+        [
+         "culpa"
+        ],
+        [
+         "raro"
+        ]
+       ],
+       "filas": [
+        [
+         "cuenta",
+         "KILLED y SURVIVED",
+         "✓ 5 de 7 atrapados",
+         "pasa"
+        ],
+        [
+         "no cuenta",
+         "INVALID_BASELINE · INCONCLUSIVE · INFRA_ERROR",
+         "⚠ 0 excluidos",
+         "ojo"
+        ],
+        [
+         "conocidos",
+         "KNOWN SURVIVOR: se imprime en rojo y la corrida sigue verde",
+         "test:strict la tumba",
+         "falla"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 1,
+     "titulo": 1,
+     "dice": [
+      "evidencia"
+     ],
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "ico": "lapiz",
+         "titulo": "test-results/mutant-evidence.json",
+         "texto": "código esperado · observado · versión de git · SHA-256",
+         "dice": [
+          "json"
+         ]
+        },
+        {
+         "ico": "lupa",
+         "titulo": "Huella SHA-256",
+         "texto": "cambia si cambia una sola letra del archivo",
+         "dice": [
+          "huella"
+         ]
+        }
+       ]
+      },
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "¿con qué versión salió el veredicto? →",
+         "estado": "pasa",
+         "rotulo": "está en el archivo",
+         "dice": [
+          "memoria"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E05": {
+   "capturas": [
+    {
+     "cmd": "git diff",
+     "archivo": "salidas/arreglo.diff"
+    }
+   ],
+   "dice_nuevo": [
+    "roles"
+   ]
+  },
+  "E06": {
+   "titulo_terminal": "bash — war-paradigm (arreglo aplicado)",
+   "capturas": [
+    {
+     "cmd": "npm run demo:02",
+     "archivo": "salidas/arreglo_demo02.txt"
+    }
+   ],
+   "anotaciones": [
+    {
+     "busca": "FIXED",
+     "estado": "pasa",
+     "rotulo": "arreglado"
+    },
+    {
+     "busca": "KNOWN SURVIVOR",
+     "estado": "falla",
+     "rotulo": "sigue abierto"
+    }
+   ]
+  },
+  "E07": {
+   "titulo_terminal": "bash — war-paradigm",
+   "capturas": [
+    {
+     "cmd": "npm run test:03",
+     "archivo": "salidas/test03.txt"
+    },
+    {
+     "cmd": "npm run demo:03",
+     "archivo": "salidas/demo03.txt"
+    }
+   ],
+   "anotaciones": [
+    {
+     "busca": "BLOCKED",
+     "estado": "pasa",
+     "rotulo": "el guardia gritó"
+    },
+    {
+     "busca": "pass 45",
+     "estado": "pasa",
+     "rotulo": "45 pasan"
+    }
+   ]
+  },
+  "E08": {
+   "titulo_terminal": "bash — war-paradigm",
+   "capturas": [
+    {
+     "cmd": "echo \"$J\" | ./hooks/block-push-to-main.sh; echo $?",
+     "archivo": "salidas/hook_manual.txt"
+    }
+   ],
+   "anotaciones": [
+    {
+     "busca": "blocked by hook",
+     "estado": "pasa",
+     "rotulo": "bloqueado"
+    }
+   ]
+  },
+  "E09": {
+   "titulo_terminal": "bash — ~",
+   "capturas": [
+    {
+     "cmd": "python3 -m unittest test_runner",
+     "archivo": "salidas/sqe_unittest.txt"
+    }
+   ],
+   "anotaciones": [
+    {
+     "busca": "OK",
+     "estado": "pasa",
+     "rotulo": "7 pruebas pasan"
+    }
+   ]
+  },
+  "E10": {
+   "pasos": [
+    {
+     "peso": 0.55,
+     "titulo": 0,
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "ico": "lapiz",
+         "titulo": "Lo que pide el curso",
+         "texto": "un editor que aprueba con 200",
+         "dice": [
+          "curso"
+         ]
+        },
+        {
+         "ico": "bicho",
+         "titulo": "El mismo error de self-grant",
+         "texto": "un editor que termina aprobando",
+         "estado": "falla",
+         "rotulo": "bug real",
+         "dice": [
+          "self-grant"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 1.6,
+     "titulo": 1,
+     "dice": [
+      "profe"
+     ],
+     "fantasma": false,
+     "bloques": [
+      {
+       "tipo": "hojas",
+       "tarea": "Plan del agente · corrida 2 con pins, ya mutada",
+       "respuestas": "Historia US-42",
+       "anchos": [
+        640,
+        330
+       ],
+       "filas": [
+        {
+         "n": "S-1",
+         "que": "editor crea",
+         "tarea": "201",
+         "hoja": "201",
+         "dice": [
+          "s-1"
+         ]
+        },
+        {
+         "n": "S-2",
+         "que": "editor aprueba",
+         "tarea": "200",
+         "hoja": "403",
+         "dice": [
+          "s-2"
+         ]
+        },
+        {
+         "n": "S-3",
+         "que": "viewer aprueba",
+         "tarea": "403",
+         "hoja": "403",
+         "dice": [
+          "s-3"
+         ]
+        },
+        {
+         "n": "S-5",
+         "que": "publica sin aprobar",
+         "tarea": "409",
+         "hoja": "409",
+         "dice": [
+          "s-5"
+         ]
+        },
+        {
+         "n": "S-6",
+         "que": "viewer publica",
+         "tarea": "403",
+         "hoja": "403",
+         "dice": [
+          "s-6"
+         ]
+        }
+       ],
+       "falla_rotulo": "S-2",
+       "oraculo": "oráculo",
+       "dice_profe": [
+        "profe"
+       ],
+       "dice_tarea": [
+        "plan"
+       ],
+       "dice_respuestas": [
+        "respuestas"
+       ],
+       "dice_oraculo": [
+        "saltar"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E11": {
+   "capturas": [
+    {
+     "cmd": "git diff",
+     "archivo": "salidas/mutacion.diff"
+    }
+   ],
+   "dice_nuevo": [
+    "editor"
+   ]
+  },
+  "E12": {
+   "titulo_terminal": "bash — war-paradigm (mutación aplicada)",
+   "capturas": [
+    {
+     "cmd": "npm run demo:pinned -w experiments/01-ai-verdict",
+     "archivo": "salidas/mut_demo_pinned.txt"
+    },
+    {
+     "cmd": "npm run test:01",
+     "archivo": "salidas/mut_test01.txt"
+    },
+    {
+     "cmd": "npm run test:01 (restaurado)",
+     "archivo": "salidas/restaurado_test01.txt"
+    }
+   ],
+   "sello": {
+    "busca": "verdict REJECTED",
+    "texto": "✓ KILLED",
+    "estado": "pasa",
+    "dice": [
+     "killed"
+    ]
+   },
+   "anotaciones": [
+    {
+     "busca": "3 failed",
+     "estado": "falla",
+     "rotulo": "3 fallan"
+    },
+    {
+     "busca": "24 passed",
+     "estado": "ojo",
+     "rotulo": "con la mutación"
+    },
+    {
+     "busca": "27 passed",
+     "estado": "pasa",
+     "rotulo": "restaurado"
+    },
+    {
+     "busca": "1 skipped",
+     "estado": "ojo",
+     "rotulo": "saltada"
+    }
+   ]
+  },
+  "E13": {
+   "pasos": [
+    {
+     "peso": 1.1,
+     "titulo": 0,
+     "nota": "La fila de hoy, con la mutación de la semana",
+     "bloques": [
+      {
+       "tipo": "tabla",
+       "cols": "250px 1fr 330px",
+       "dice": [
+        [
+         "rompi"
+        ],
+        [
+         "predije"
+        ],
+        [
+         "fue"
+        ],
+        [
+         "killed"
+        ]
+       ],
+       "filas": [
+        [
+         "rompí",
+         "S-2 · actor: approver → editor",
+         "una sola cosa",
+         "ojo"
+        ],
+        [
+         "predije",
+         "AC-3 lo atrapa · corrida 2 → REJECTED",
+         "commit antes"
+        ],
+        [
+         "guardia",
+         "el juez de IA del experimento 01",
+         "AC-3"
+        ],
+        [
+         "veredicto",
+         "AC-3 failed · 3 pruebas fallan",
+         "✓ KILLED",
+         "pasa"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 1,
+     "titulo": 1,
+     "dice": [
+      "necesitas"
+     ],
+     "bloques": [
+      {
+       "tipo": "lista",
+       "check": true,
+       "marca_tras": 1.5,
+       "items": [
+        {
+         "texto": "Una respuesta de IA (experimento 01)",
+         "dice": [
+          "respuesta"
+         ]
+        },
+        {
+         "texto": "Un comando contra el hook, con su JSON y su exit code",
+         "dice": [
+          "comando"
+         ]
+        },
+        {
+         "texto": "Una de tu propio trabajo",
+         "dice": [
+          "propio"
+         ]
+        },
+        {
+         "texto": "Ningún SURVIVED se borra ni se ajusta",
+         "dice": [
+          "borra"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E14": {
+   "pasos": [
+    {
+     "titulo": 0,
+     "nota": "Cada fila tiene 4 niveles: 1 no cumple · 2 en camino · 3 aprobado · 4 sobresaliente",
+     "bloques": [
+      {
+       "tipo": "tabla",
+       "progresiva": true,
+       "cols": "470px 1fr 190px",
+       "dice": [
+        [
+         "prediccion"
+        ],
+        [
+         "veredictos"
+        ],
+        [
+         "distintos"
+        ],
+        [
+         "honestidad"
+        ]
+       ],
+       "filas": [
+        [
+         "Una mutación, una predicción",
+         "una sola cosa y la predicción en un commit anterior",
+         "nivel 3",
+         "pasa"
+        ],
+        [
+         "Veredictos",
+         "PASS de la línea base, KILLED y SURVIVED en cada mutación",
+         "nivel 3",
+         "pasa"
+        ],
+        [
+         "Guardias distintos",
+         "juez de IA, hook y uno propio",
+         "nivel 3",
+         "pasa"
+        ],
+        [
+         "Honestidad del reporte",
+         "el que sobrevive queda visible, con causa y siguiente paso",
+         "nivel 3",
+         "pasa"
+        ]
+       ]
+      },
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "las 4 filas en nivel ≥ 3 + quiz 6 de 8 →",
+         "estado": "pasa",
+         "rotulo": "apruebas",
+         "dice": [
+          "apruebas"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E15": {
+   "pausa": 5
+  },
+  "E16": {
+   "pausa": 5
+  },
+  "E17": {
+   "pausa": 5
+  },
+  "E18": {
+   "pasos": [
+    {
+     "reparto": 0.65,
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "num": "✓ 1",
+         "titulo": "Verde no dice despierto: rompe algo a propósito",
+         "dice": [
+          "una"
+         ]
+        },
+        {
+         "num": "✓ 2",
+         "titulo": "Una sola cosa rota, predicción antes",
+         "dice": [
+          "dos"
+         ]
+        },
+        {
+         "num": "✓ 3",
+         "titulo": "PASS, KILLED, SURVIVED siempre; el que sobrevive se publica",
+         "dice": [
+          "tres"
+         ]
+        }
+       ]
+      },
+      {
+       "tipo": "siguiente",
+       "ico": "lupa",
+       "texto": "Siguiente → 03 · Diseño de pruebas & técnicas",
+       "brilla_antes": 8,
+       "dice": [
+        "siguiente"
+       ]
+      }
+     ]
+    },
+    {
+     "reparto": 0.35,
+     "titulo": "Antes de irte",
+     "dice": [
+      "suscribete"
+     ],
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "ico": "campana",
+         "titulo": "Suscríbete y activa la campanita",
+         "texto": "para no perderte el próximo módulo",
+         "dice": [
+          "suscribete"
+         ]
+        },
+        {
+         "ico": "lapiz",
+         "titulo": "¿Dudas? Déjalas en los comentarios",
+         "texto": "las leo todas y te respondo",
+         "dice": [
+          "comentarios"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

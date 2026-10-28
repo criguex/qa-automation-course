@@ -1,0 +1,13 @@
+diff --git a/experiments/01-ai-verdict/fixtures/runs/pinned/run-2.json b/experiments/01-ai-verdict/fixtures/runs/pinned/run-2.json
+index e96f00b..f5a266c 100644
+--- a/experiments/01-ai-verdict/fixtures/runs/pinned/run-2.json
++++ b/experiments/01-ai-verdict/fixtures/runs/pinned/run-2.json
+@@ -4,7 +4,7 @@
+   "scenarios": [
+     { "id": "S-1", "title": "Create a draft as editor", "actor": "editor", "action": "create", "covers": ["R-1"], "source": "US-42/R-1",
+       "steps": ["Sign in as editor", "POST /api/docs with title 'Q4 launch plan' and owner editor@demo.io", "Response body has status 'draft'"], "expected": { "status": 201 } },
+-    { "id": "S-2", "title": "Approve a draft as approver", "actor": "approver", "action": "approve", "covers": ["R-2"], "source": "US-42/R-2",
++    { "id": "S-2", "title": "Approve a draft as approver", "actor": "editor", "action": "approve", "covers": ["R-2"], "source": "US-42/R-2",
+       "steps": ["Editor creates a draft", "Sign in as approver", "POST /api/docs/:id/approve"], "expected": { "status": 200 } },
+     { "id": "S-3", "title": "Approve a draft as viewer is forbidden", "actor": "viewer", "action": "approve", "covers": ["R-2"], "source": "US-42/R-2",
+       "steps": ["Editor creates a draft", "Sign in as viewer", "POST /api/docs/:id/approve"], "expected": { "status": 403 } },

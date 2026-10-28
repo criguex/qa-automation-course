@@ -1,0 +1,275 @@
+[
+  {
+    "id": "E01",
+    "inicio": "00:00",
+    "fin": "00:39",
+    "tipo": "animacion",
+    "visual": "Un tablero de mutantes con 54 casillas. Un oráculo con forma de balanza muestra '— NaN —'. Aun así, 48 casillas se pintan 'KILLED ✓' con una etiqueta 'oracle_valid: true'. Las casillas parpadean y cambian a coral 'falso'. Abajo, una ficha de FINDINGS.md con el número 8.",
+    "texto_pantalla": {
+      "es": "48 mutantes \"muertos\" con un oráculo NaN",
+      "en": "48 \"killed\" mutants with a NaN oracle"
+    },
+    "assets": [],
+    "notas_animacion": "Cifra de la ejecución real de E15 (runner sin guardia, NaN solo en mutantes)."
+  },
+  {
+    "id": "E02",
+    "inicio": "00:39",
+    "fin": "00:59",
+    "tipo": "titulo",
+    "visual": "Tarjeta con ícono 🧪 y chips: scientific-qa-evidence · war-paradigm (pista 1). Subtítulo 'Antes de confiar en un experimento, pruebo el experimento'. Firma.",
+    "texto_pantalla": {
+      "es": "Módulo 30 · Controles, arnés y mutación numérica\nCristian Guerra · QA · Medellín",
+      "en": "Module 30 · Controls, harness and numerical mutation\nCristian Guerra · QA · Medellín"
+    },
+    "assets": [],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E03",
+    "inicio": "00:59",
+    "fin": "01:40",
+    "tipo": "analogia",
+    "visual": "Una balanza de cocina: primero un paquete de arroz de 1 kg (marca 1 kg ✓). Luego la misma balanza marca 3 kg con el mismo paquete (✗ 'el problema es la balanza'). Al final, una piedra y la pantalla muestra solo '—' (⚠ 'sin veredicto').",
+    "texto_pantalla": {
+      "es": "Pesa algo conocido antes de pesar lo desconocido",
+      "en": "Weigh something known before weighing the unknown"
+    },
+    "assets": [],
+    "notas_animacion": "Basada en m24.kid de i18n/es/modules-30-35.json."
+  },
+  {
+    "id": "E04",
+    "inicio": "01:40",
+    "fin": "02:14",
+    "tipo": "diagrama",
+    "visual": "Dos columnas: Control positivo (solver exacto, caso limpio → debe pasar ✓ · 'no grita en falso') y Control negativo (saboteado, uno de cada tipo → debe fallar ✗ · 'sí detecta'). En el centro, una suite con un signo de interrogación: '¿perfecta o dormida?'.",
+    "texto_pantalla": {
+      "es": "Sin control negativo no sabes si la suite duerme",
+      "en": "Without a negative control you can't tell if the suite is asleep"
+    },
+    "assets": [],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E05",
+    "inicio": "02:14",
+    "fin": "02:50",
+    "tipo": "diagrama",
+    "visual": "El arnés dibujado como una máquina con tres sellos: 'baseline inválida → bloquea a sus mutantes' · 'NaN ≠ PASS' · 'excepción del oráculo ≠ mutante muerto'.",
+    "texto_pantalla": {
+      "es": "Un mutante muerto es una detección, no un accidente",
+      "en": "A killed mutant is a detection, not an accident"
+    },
+    "assets": [],
+    "notas_animacion": "Las tres propiedades de m24.theory[1]."
+  },
+  {
+    "id": "E06",
+    "inicio": "02:50",
+    "fin": "03:28",
+    "tipo": "navegador",
+    "visual": "GitHub: scientific-qa-evidence/FINDINGS.md. Resaltar la fila 8: 'The numerical runner reported `oracle_valid: true` when the oracle had raised an exception or returned NaN' · 'Testing the test harness: injected oracle and simulator failures'. Luego el párrafo 'Findings 1, 3 and 8 were defects in this study's own earlier work…'.",
+    "texto_pantalla": {
+      "es": "Hallazgo 8: el arnés reportaba éxito con el oráculo caído",
+      "en": "Finding 8: the harness reported success with the oracle down"
+    },
+    "assets": [
+      "scientific-qa-evidence/FINDINGS.md"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E07",
+    "inicio": "03:28",
+    "fin": "04:57",
+    "tipo": "codigo",
+    "visual": "Dos paneles con código real. Izquierda, scientific-qa-evidence/evidence/numerical/source/oracles.py (RC, forma cerrada):\n    if m == \"rc\":\n        tau = p[\"r\"] * p[\"c\"]\n        return [p[\"vin\"] + (p[\"v0\"] - p[\"vin\"]) * math.exp(-end * q / tau) for q in (0.25, 0.5, 0.75, 1.0)]\nDerecha, sut.py (RC integrado con RK4; línea 25):\n            tau = p[\"r\"] * p[\"c\"] * (2 if variant == \"tau_double\" else 1 + 5e-8 if variant == \"tau_tiny\" else 1)\nArriba, sello del contrato: 'tolerance 1e-6 · frozen'.",
+    "texto_pantalla": {
+      "es": "Tolerancia 10⁻⁶ congelada · el oráculo no comparte solver",
+      "en": "Tolerance 10⁻⁶ frozen · the oracle shares no solver"
+    },
+    "assets": [
+      "scientific-qa-evidence/evidence/numerical/source/CONTRACT.md",
+      "scientific-qa-evidence/evidence/numerical/source/oracles.py",
+      "scientific-qa-evidence/evidence/numerical/source/sut.py"
+    ],
+    "notas_animacion": "Lista lateral de reglas de determinismo del contrato: sin semilla, solo stdlib, carpeta nueva o abortar, SHA-256 de todo, sin hostnames ni IPs."
+  },
+  {
+    "id": "E08",
+    "inicio": "04:57",
+    "fin": "05:52",
+    "tipo": "codigo",
+    "visual": "Código real de runner.py:\ndef classify_variant(is_baseline, baseline_status, valid, error):\n    if is_baseline:\n        return \"PASS\" if valid and math.isfinite(error) and error <= TOLERANCE else \"BASELINE_INVALID\"\n    if baseline_status != \"PASS\":\n        return \"BLOCKED_BASELINE\"\n    return \"SURVIVED\" if valid and math.isfinite(error) and error <= TOLERANCE else \"KILLED\"\nDebajo, en una franja: 'oráculo no finito o largo distinto → INCONCLUSIVE, nunca KILLED'.",
+    "texto_pantalla": {
+      "es": "\"Never force a mutant to die\"",
+      "en": "\"Never force a mutant to die\""
+    },
+    "assets": [
+      "scientific-qa-evidence/evidence/numerical/source/runner.py (líneas 56-61)"
+    ],
+    "notas_animacion": "Cita del contrato: 'never force a mutant to die'."
+  },
+  {
+    "id": "E09",
+    "inicio": "05:52",
+    "fin": "07:14",
+    "tipo": "diagrama",
+    "visual": "Rejilla de 9 modelos (RC, enfriamiento, química 2º orden, Beer–Lambert, logística, Snell, lente delgada, interfaz acústica, Fechner) × 3 configuraciones × (baseline + 2 mutantes) = 81, + 3 calibraciones RC = 84. Dos columnas idénticas: macOS arm64 y Linux x86_64 → 27 PASS · 54 KILLED · 3 SURVIVED; Δ máx 1.11e-16. Tarjeta de invariantes: RC monótono y acotado · concentración positiva no creciente · acústica R² + (Z₁/Z₂)T² = 1.",
+    "texto_pantalla": {
+      "es": "84 variantes pareadas, no 168 casos",
+      "en": "84 paired variants, not 168 cases"
+    },
+    "assets": [
+      "scientific-qa-evidence/evidence/numerical/multidomain_derived.json",
+      "scientific-qa-evidence/docs/assets/campaign-preview.gif"
+    ],
+    "notas_animacion": "Cifras de README.es.md Parte B y multidomain_derived.json (per_host, paired_host_comparison)."
+  },
+  {
+    "id": "E10",
+    "inicio": "07:14",
+    "fin": "08:35",
+    "tipo": "diagrama",
+    "visual": "Tres tarjetas. 1) 54 KILLED → dos fichas acústicas (pressure_boundary_sign, impedance_swap) se funden en una → 51 comportamientos. 2) 3 SURVIVED: RC tau_tiny (5e-8) contra tolerancia 1e-6, en gold '⚠ visible a propósito'; kill rate 54/57 ≈ 95 %. 3) 18 valores no finitos: rhs_sign en química de 2º orden → KILLED tras baseline PASS ('respuesta esperada del mutante').",
+    "texto_pantalla": {
+      "es": "54 casos = 51 comportamientos · 3 sobrevivientes a la vista",
+      "en": "54 cases = 51 behaviors · 3 survivors in plain view"
+    },
+    "assets": [
+      "scientific-qa-evidence/CLAIMS.md (fila de 84 variantes)",
+      "scientific-qa-evidence/docs/assets/rc-mutation.gif"
+    ],
+    "notas_animacion": "NaN en la salida del SUT mata al mutante; NaN en el oráculo invalida la medición: mostrar las dos flechas en paralelo."
+  },
+  {
+    "id": "E11",
+    "inicio": "08:35",
+    "fin": "09:45",
+    "tipo": "terminal",
+    "visual": "Salida real (copia de scientific-qa-evidence, commit c02e623, 2026-10-26):\n$ cd evidence/numerical/source\n$ python3 -m unittest -v test_runner\ntest_mutant_exception_is_inconclusive_not_killed (test_runner.RunnerExceptionTests) ... ok\ntest_nan_oracle_alone_is_inconclusive_and_oracle_invalid (test_runner.RunnerExceptionTests) ... ok\ntest_nan_oracle_with_sut_exception_is_inconclusive_and_oracle_invalid (test_runner.RunnerExceptionTests) ... ok\ntest_oracle_exception_marks_oracle_invalid (test_runner.RunnerExceptionTests) ... ok\ntest_sut_exception_keeps_oracle_valid (test_runner.RunnerExceptionTests) ... ok\ntest_oracle_failure_during_export_marks_collection_incomplete (test_runner.RunnerExportTests) ... ok\ntest_rerun_reproduces_saved_campaign (test_runner.RunnerRegressionTests) ... ok\nRan 7 tests in 0.184s\nOK\nAl lado, de summary.mac.json: command \"python3 runner.py --out <NEW_OUTPUT_DIR>\" · process_invocations 1 · variant_evaluations 84 · duration_seconds 0.042.",
+    "texto_pantalla": {
+      "es": "✓ 7/7 · la comprobación 3 de verificar.py es esta suite",
+      "en": "✓ 7/7 · verificar.py check 3 is this suite"
+    },
+    "assets": [
+      "scientific-qa-evidence/evidence/numerical/source/test_runner.py",
+      "scientific-qa-evidence/evidence/numerical/summary.mac.json",
+      "scientific-qa-evidence/verificar.py (línea 64)"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E12",
+    "inicio": "09:45",
+    "fin": "10:34",
+    "tipo": "codigo",
+    "visual": "Código real de test_runner.py:\n    def test_nan_oracle_alone_is_inconclusive_and_oracle_invalid(self):\n        with mock.patch.object(oracles, \"evaluate\", lambda case, n: [float(\"nan\")] * 4):\n            result = runner.run_variant(CASES[0], \"baseline\")\n        self.assertEqual(result[\"status\"], \"INCONCLUSIVE\")\n        self.assertFalse(result[\"oracle_valid\"])\nAl lado, checklist de las tres pruebas que pide el curso: NaN ✓ · excepción del oráculo ✓ · baseline inválida bloquea ⚠ 'sin prueba dedicada en el repo'.",
+    "texto_pantalla": {
+      "es": "⚠ Falta una prueba: baseline inválida bloquea a sus mutantes",
+      "en": "⚠ One test is missing: invalid baseline blocks its mutants"
+    },
+    "assets": [
+      "scientific-qa-evidence/evidence/numerical/source/test_runner.py (líneas 49-53)"
+    ],
+    "notas_animacion": "La regla sí está en runner.py (classify_variant y el bloque posterior de run_variant); lo que falta es la prueba."
+  },
+  {
+    "id": "E13",
+    "inicio": "10:34",
+    "fin": "11:36",
+    "tipo": "terminal",
+    "visual": "Script propio del laboratorio (no está en el repo), corrido desde evidence/numerical/source:\nimport collections, sys\nfrom unittest import mock\nsys.path.insert(0, sys.argv[1])\nimport oracles, runner\nfrom suite import CASES, MUTANTS\n\ndef campaign():\n    counts = collections.Counter()\n    for case in CASES:\n        base = runner.run_variant(case, \"baseline\")\n        counts[base[\"status\"]] += 1\n        for m in MUTANTS[case[\"model\"]]:\n            counts[runner.run_variant(case, m, baseline_status=base[\"status\"])[\"status\"]] += 1\n    return dict(counts)\n\nprint(\"oráculo real:\", campaign())\nwith mock.patch.object(oracles, \"evaluate\", lambda case, n: [float(\"nan\")] * 4):\n    print(\"oráculo NaN: \", campaign())\nSalida real:\noráculo real: {'PASS': 27, 'KILLED': 54}\noráculo NaN:  {'INCONCLUSIVE': 27, 'BLOCKED_BASELINE': 54}",
+    "texto_pantalla": {
+      "es": "Oráculo NaN: ✓ 0 PASS · ✓ 0 KILLED",
+      "en": "NaN oracle: ✓ 0 PASS · ✓ 0 KILLED"
+    },
+    "assets": [],
+    "notas_animacion": "Etiqueta visible 'script del laboratorio'. 81 variantes: no incluye las 3 calibraciones tau_tiny del RC."
+  },
+  {
+    "id": "E14",
+    "inicio": "11:36",
+    "fin": "12:14",
+    "tipo": "codigo",
+    "visual": "Diff de la mutación en runner.py (función run_variant), en una copia:\n-            if not finite(expected):\n-                oracle_invalid = True\n-            if len(got) != len(expected) or not finite(expected):\n+            if len(got) != len(expected):\nLibreta: 'pruebas del arnés: ___ · NaN en todo: ___ · NaN solo en mutantes: ___'.",
+    "texto_pantalla": {
+      "es": "Mutación WAR: quita la guardia del oráculo",
+      "en": "WAR mutation: remove the oracle guard"
+    },
+    "assets": [
+      "scientific-qa-evidence/evidence/numerical/source/runner.py"
+    ],
+    "notas_animacion": "Mutación propuesta para este video a partir de m24.mut (que pide inyectar un oráculo NaN)."
+  },
+  {
+    "id": "E15",
+    "inicio": "12:14",
+    "fin": "13:13",
+    "tipo": "terminal",
+    "visual": "Salidas reales con la mutación (copia, revertida después):\n$ python3 -m unittest test_runner\nFAIL: test_nan_oracle_alone_is_inconclusive_and_oracle_invalid (test_runner.RunnerExceptionTests)\nFAIL: test_nan_oracle_with_sut_exception_is_inconclusive_and_oracle_invalid (test_runner.RunnerExceptionTests)\nRan 7 tests in 0.182s\nFAILED (failures=2)\n# NaN en toda la campaña\noráculo NaN:  {'BASELINE_INVALID': 24, 'BLOCKED_BASELINE': 54, 'INCONCLUSIVE': 3}\n# NaN solo en mutantes (baselines con oráculo real)\nrunner original:    {'baseline PASS': 27, 'mutante INCONCLUSIVE': 54}\nrunner sin guardia: {'baseline PASS': 27, 'mutante KILLED oracle_valid': 48, 'mutante INCONCLUSIVE': 6}",
+    "texto_pantalla": {
+      "es": "✓ 2 pruebas en rojo · ✗ 48 KILLED falsos con oracle_valid true",
+      "en": "✓ 2 tests red · ✗ 48 fake KILLED with oracle_valid true"
+    },
+    "assets": [],
+    "notas_animacion": "Los 6 INCONCLUSIVE son los mutantes acústicos: devuelven 8 valores y el oráculo falso 4 (shape mismatch)."
+  },
+  {
+    "id": "E16",
+    "inicio": "13:13",
+    "fin": "14:42",
+    "tipo": "diagrama",
+    "visual": "Dos capas de defensa como muros: 'baseline inválida bloquea' (aguanta con NaN en todo) y 'guardia del oráculo' (la única que aguanta con NaN solo en mutantes). Al lado, una ficha de la versión 1.1 del contrato: CSV v1 720 filas → v2 756 filas por máquina; 84 clasificaciones idénticas.",
+    "texto_pantalla": {
+      "es": "Antes de celebrar un 95 %, pregunta si el oráculo estaba vivo",
+      "en": "Before celebrating 95%, ask whether the oracle was alive"
+    },
+    "assets": [
+      "scientific-qa-evidence/evidence/numerical/multidomain_derived.json (version_history)"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E17",
+    "inicio": "14:42",
+    "fin": "15:50",
+    "tipo": "diagrama",
+    "visual": "Plano del décimo modelo: caída libre con arrastre lineal. SUT integra paso a paso; oráculo con la solución cerrada (independiente). Dos mutantes conocidos + uno cerca del umbral. Checklist de los 4 criterios de m24.crit; la casilla 'baseline inválida' resaltada en gold 'escríbela tú'.",
+    "texto_pantalla": {
+      "es": "Décimo modelo + 3 pruebas del arnés + tabla de veredictos",
+      "en": "Tenth model + 3 harness tests + verdict table"
+    },
+    "assets": [],
+    "notas_animacion": "Texto de m24.hands, m24.crit y m24.top. No se dan valores numéricos del décimo modelo: los define el estudiante."
+  },
+  {
+    "id": "E18",
+    "inicio": "15:50",
+    "fin": "16:25",
+    "tipo": "quiz",
+    "visual": "Tres tarjetas de pregunta con opciones completas, pausa y respuesta marcada ✓.",
+    "texto_pantalla": {
+      "es": "1) El oráculo devuelve NaN: ¿veredicto?\n2) Excepción del oráculo en un mutante: ¿KILLED?\n3) 27 PASS, 54 KILLED, 3 SURVIVED: ¿kill rate?",
+      "en": "1) The oracle returns NaN: verdict?\n2) Oracle exception on a mutant: KILLED?\n3) 27 PASS, 54 KILLED, 3 SURVIVED: kill rate?"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/quiz-28-35.json (m24, preguntas 3, 4 y 8)"
+    ],
+    "notas_animacion": "Opciones tal cual del banco."
+  },
+  {
+    "id": "E19",
+    "inicio": "16:25",
+    "fin": "17:02",
+    "tipo": "resumen",
+    "visual": "Tres tarjetas: balanza con pesa conocida · arnés con sus tres sellos · candado sobre '1e-6'. Tarjeta del siguiente módulo con ícono 🌊 y firma.",
+    "texto_pantalla": {
+      "es": "1. Control que pasa + controles que fallan\n2. Prueba el arnés\n3. Tolerancia congelada, oráculo independiente\nSiguiente: Física de fluidos y estadística para el depurador",
+      "en": "1. A control that passes + controls that fail\n2. Test the harness\n3. Frozen tolerance, independent oracle\nNext: Fluid physics and statistics for the debugger"
+    },
+    "assets": [],
+    "notas_animacion": "Firma: Cristian Guerra · QA · Medellín."
+  }
+]

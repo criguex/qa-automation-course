@@ -1,0 +1,204 @@
+
+> war-paradigm@1.0.0 test:01
+> npm test -w experiments/01-ai-verdict
+
+
+> @mutant-lab/01-ai-verdict@1.0.0 test
+> playwright test
+
+
+Running 28 tests using 5 workers
+
+(node:97961) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:97958) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:97957) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:97959) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:97960) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/checks.spec.ts:14:5 › schema: unpinned/run-1 is a valid artifact (5ms)
+  ✓   4 tests/checks.spec.ts:14:5 › schema: unpinned/run-3 is a valid artifact (5ms)
+  ✓   2 tests/checks.spec.ts:14:5 › schema: pinned/run-1 is a valid artifact (8ms)
+  ✓   7 tests/checks.spec.ts:23:1 › schema: a non-object is rejected (1ms)
+  ✓   8 tests/checks.spec.ts:29:1 › schema: missing meta, scenarios, risks and assumptions are all reported (5ms)
+  ✓   9 tests/checks.spec.ts:40:1 › contract: unknown role, unknown action and bad status code are rejected (1ms)
+  ✓   5 tests/checks.spec.ts:14:5 › schema: pinned/run-2 is a valid artifact (6ms)
+  ✓   6 tests/checks.spec.ts:14:5 › schema: unpinned/run-2 is a valid artifact (13ms)
+  ✓  10 tests/checks.spec.ts:52:1 › references: covers must point to requirement or boundary ids that exist (1ms)
+  ✓   3 tests/checks.spec.ts:14:5 › schema: pinned/run-3 is a valid artifact (21ms)
+  ✓  11 tests/checks.spec.ts:69:1 › pins: a pinned run has no warnings, an unpinned run has three (7ms)
+  ✓  12 tests/checks.spec.ts:59:1 › references: duplicate scenario ids and a wrong story id are rejected (1ms)
+  ✓  14 tests/generator.spec.ts:12:1 › recorded is the default generator, a command takes over when the env var is set (0ms)
+  ✓  18 tests/scorer.spec.ts:13:1 › the gate is a number the team agreed on (0ms)
+  ✓  15 tests/generator.spec.ts:33:1 › command generator: a non-zero exit is an error, not a verdict (15ms)
+  ✓  16 tests/generator.spec.ts:38:1 › command generator: output that is not JSON is an error, not a verdict (10ms)
+  ✘  17 tests/scorer.spec.ts:19:1 › pinned runs: the output changes, the verdict does not (3ms)
+  ✓  19 tests/scorer.spec.ts:32:1 › every criterion carries evidence computed by code (6ms)
+  ✓  21 tests/scorer.spec.ts:84:1 › an artifact that fails Q1 is rejected before scoring (3ms)
+  ✘  20 tests/scorer.spec.ts:46:1 › a failed must rejects the artifact no matter the score (6ms)
+  ✘  22 tests/scorer.spec.ts:57:1 › a forbidden role expecting success breaks the role contract (14ms)
+  ✘  23 tests/stability.spec.ts:19:1 › pinned agent: 3/3 runs agree → trust the verdict (8ms)
+  ✘  13 tests/generator.spec.ts:22:1 › command generator: story in on stdin, artifact out on stdout, RUN in the environment (77ms)
+(node:97968) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:97970) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:97969) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:97972) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  24 tests/stability.spec.ts:39:1 › the flip is a must failure, not a score below the gate (6ms)
+(node:97971) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  25 tests/scorer.spec.ts:70:1 › a score below the gate rejects even when every must is met (8ms)
+  ✓  26 tests/stability.spec.ts:28:1 › unpinned agent: the verdict flips on run 3 → logged as a finding (6ms)
+  -  27 tests/stability.spec.ts:52:1 › live agent: same check against MUTANT_LAB_GENERATOR_CMD
+  ✓  28 tests/stability.spec.ts:46:1 › stability of a single run is trivially stable (2ms)
+
+
+  1) tests/generator.spec.ts:22:1 › command generator: story in on stdin, artifact out on stdout, RUN in the environment 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: "approved"
+    Received: "rejected"
+
+      27 |     const fromCommand = await live.generate(story, run);
+      28 |     expect(fromCommand).toEqual(await recorded.generate(story, run));
+    > 29 |     expect(evaluate(fromCommand, story).verdict).toBe('approved');
+         |                                                  ^
+      30 |   }
+      31 | });
+      32 |
+        at /private/tmp/claude-501/-Users-cris/32180061-b1f8-461c-ada7-03edd843dd86/scratchpad/war-paradigm/experiments/01-ai-verdict/tests/generator.spec.ts:29:50
+
+    Error Context: test-results/generator-command-generato-aeda0-dout-RUN-in-the-environment/error-context.md
+
+  2) tests/scorer.spec.ts:19:1 › pinned runs: the output changes, the verdict does not ─────────────
+
+    Error: run 1
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "approved"
+    Received: "rejected"
+
+      22 |   for (const run of [1, 2, 3]) {
+      23 |     const report = evaluate(await load('pinned', run), story);
+    > 24 |     expect(report.verdict, `run ${run}`).toBe('approved');
+         |                                          ^
+      25 |     expect(report.reasons).toEqual([]);
+      26 |     expect(report.pinWarnings).toEqual([]);
+      27 |     scores.push(report.score);
+        at /private/tmp/claude-501/-Users-cris/32180061-b1f8-461c-ada7-03edd843dd86/scratchpad/war-paradigm/experiments/01-ai-verdict/tests/scorer.spec.ts:24:42
+
+    Error Context: test-results/scorer-pinned-runs-the-output-changes-the-verdict-does-not/error-context.md
+
+  3) tests/scorer.spec.ts:46:1 › a failed must rejects the artifact no matter the score ────────────
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 1
+
+      Array [
+    +   "S-1 has no valid source (source=\"\", covers=[R-1])",
+        "S-4 has no valid source (source=\"\", covers=[R-3])",
+      ]
+
+      52 |   expect(report.verdict).toBe('rejected');
+      53 |   expect(report.reasons).toEqual(['must failed: AC-1']);
+    > 54 |   expect(report.criteria[0].evidence).toEqual(['S-4 has no valid source (source="", covers=[R-3])']);
+         |                                       ^
+      55 | });
+      56 |
+      57 | test('a forbidden role expecting success breaks the role contract', async () => {
+        at /private/tmp/claude-501/-Users-cris/32180061-b1f8-461c-ada7-03edd843dd86/scratchpad/war-paradigm/experiments/01-ai-verdict/tests/scorer.spec.ts:54:39
+
+    Error Context: test-results/scorer-a-failed-must-rejec-1a34a-rtifact-no-matter-the-score/error-context.md
+
+  4) tests/scorer.spec.ts:57:1 › a forbidden role expecting success breaks the role contract ───────
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+    -   "must failed: AC-3",
+    +   "must failed: AC-1, AC-3",
+      ]
+
+      64 |   const report = evaluate(artifact, story);
+      65 |   expect(report.verdict).toBe('rejected');
+    > 66 |   expect(report.reasons).toEqual(['must failed: AC-3']);
+         |                          ^
+      67 |   expect(report.criteria.find((c) => c.id === 'AC-3')!.evidence).toEqual(['S-12: viewer → approve expects 200 (matrix says forbidden → 403)']);
+      68 | });
+      69 |
+        at /private/tmp/claude-501/-Users-cris/32180061-b1f8-461c-ada7-03edd843dd86/scratchpad/war-paradigm/experiments/01-ai-verdict/tests/scorer.spec.ts:66:26
+
+    Error Context: test-results/scorer-a-forbidden-role-ex-a5095-ss-breaks-the-role-contract/error-context.md
+
+  5) tests/scorer.spec.ts:70:1 › a score below the gate rejects even when every must is met ────────
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      76 |   artifact.assumptions = [];
+      77 |   const report = evaluate(artifact, story);
+    > 78 |   expect(report.criteria.filter((c) => c.priority === 'must').every((c) => c.status === 'met')).toBe(true);
+         |                                                                                                 ^
+      79 |   expect(report.score).toBe(40);
+      80 |   expect(report.verdict).toBe('rejected');
+      81 |   expect(report.reasons).toEqual(['score 40 below gate 70']);
+        at /private/tmp/claude-501/-Users-cris/32180061-b1f8-461c-ada7-03edd843dd86/scratchpad/war-paradigm/experiments/01-ai-verdict/tests/scorer.spec.ts:78:97
+
+    Error Context: test-results/scorer-a-score-below-the-g-cc0cf-even-when-every-must-is-met/error-context.md
+
+  6) tests/stability.spec.ts:19:1 › pinned agent: 3/3 runs agree → trust the verdict ───────────────
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+    -   "approved",
+    +   "rejected",
+        "approved",
+        "approved",
+      ]
+
+      19 | test('pinned agent: 3/3 runs agree → trust the verdict', async () => {
+      20 |   const s = await runSet('pinned');
+    > 21 |   expect(s.verdicts).toEqual(['approved', 'approved', 'approved']);
+         |                      ^
+      22 |   expect(s.scores).toEqual([86, 84, 87]);
+      23 |   expect(s.stable).toBe(true);
+      24 |   expect(s.flips).toEqual([]);
+        at /private/tmp/claude-501/-Users-cris/32180061-b1f8-461c-ada7-03edd843dd86/scratchpad/war-paradigm/experiments/01-ai-verdict/tests/stability.spec.ts:21:22
+
+    Error Context: test-results/stability-pinned-agent-3-3-runs-agree-→-trust-the-verdict/error-context.md
+
+  6 failed
+    tests/generator.spec.ts:22:1 › command generator: story in on stdin, artifact out on stdout, RUN in the environment 
+    tests/scorer.spec.ts:19:1 › pinned runs: the output changes, the verdict does not ──────────────
+    tests/scorer.spec.ts:46:1 › a failed must rejects the artifact no matter the score ─────────────
+    tests/scorer.spec.ts:57:1 › a forbidden role expecting success breaks the role contract ────────
+    tests/scorer.spec.ts:70:1 › a score below the gate rejects even when every must is met ─────────
+    tests/stability.spec.ts:19:1 › pinned agent: 3/3 runs agree → trust the verdict ────────────────
+  1 skipped
+  21 passed (865ms)
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /private/tmp/claude-501/-Users-cris/***/scratchpad/war-paradigm/experiments/01-ai-verdict
+npm error workspace @mutant-lab/01-ai-verdict@1.0.0
+npm error location /private/tmp/claude-501/-Users-cris/***/scratchpad/war-paradigm/experiments/01-ai-verdict
+npm error command failed
+npm error command sh -c playwright test

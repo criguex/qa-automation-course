@@ -1,0 +1,21 @@
+
+> war-paradigm@1.0.0 demo:03
+> npm run demo -w experiments/03-second-brain
+
+
+> @mutant-lab/03-second-brain@1.0.0 demo
+> node tests/demo.mjs
+
+
+  hooks/block-push-to-main.sh · PreToolUse(Bash)
+
+  $ git push origin main                     ✘ BLOCKED (exit 2)
+      blocked by hook: block-push-to-main.sh — a push to 'main' is not allowed. Push a feature branch and open a pull request.
+  $ git push --force origin HEAD:main        ✘ BLOCKED (exit 2)
+      blocked by hook: block-push-to-main.sh — a push to 'main' is not allowed. Push a feature branch and open a pull request.
+  $ npm test && git push origin master       ✘ BLOCKED (exit 2)
+      blocked by hook: block-push-to-main.sh — a push to 'master' is not allowed. Push a feature branch and open a pull request.
+  $ git push origin feature/mutants          ✓ allowed (exit 0)
+  $ git push -u origin feature/mutants       ✓ allowed (exit 0)
+  $ git pull origin main                     ✓ allowed (exit 0)
+

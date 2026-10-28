@@ -1,0 +1,1467 @@
+{
+ "etiqueta": "Módulo 02 · Parte 1 · WAR Paradigm",
+ "firma": "Cristian Guerra · QA · Medellín",
+ "laboratorio": "criguex/war-paradigm @ 08438a2 (HEAD de main el 27-oct-2026), Node v26.8.1, capturado con render/salidas/capturas.sh.",
+ "escenas": {
+  "E01": {
+   "titulo_terminal": "bash — war-paradigm",
+   "capturas": [
+    {
+     "cmd": "npm run demo:02",
+     "archivo": "salidas/demo02.txt"
+    }
+   ],
+   "anotaciones": [
+    {
+     "busca": "KNOWN SURVIVOR",
+     "estado": "falla",
+     "rotulo": "sobrevivió"
+    },
+    {
+     "busca": "KILLED",
+     "estado": "pasa",
+     "rotulo": "atrapado"
+    }
+   ],
+   "recuadros": [
+    {
+     "busca": "self-grant",
+     "estado": "falla",
+     "dice": [
+      "self-grant"
+     ]
+    }
+   ],
+   "cierre": {
+    "busca": "5/7",
+    "antes": 5
+   }
+  },
+  "E02": {
+   "icono": "espadas",
+   "nivel": "★★☆☆☆"
+  },
+  "E03": {
+   "pasos": [
+    {
+     "peso": 1.5,
+     "titulo": 0,
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "ico": "espadas",
+         "titulo": "war‑paradigm",
+         "texto": "repo público · 3 experimentos",
+         "dice": [
+          "war-paradigm"
+         ]
+        },
+        {
+         "ico": "grupos",
+         "titulo": "DocFlow",
+         "texto": "viewer mira · editor escribe · approver aprueba · admin todo",
+         "dice": [
+          "docflow"
+         ]
+        },
+        {
+         "ico": "play",
+         "titulo": "Flujo dorado",
+         "texto": "login → crear → aprobar → publicar",
+         "dice": [
+          "dorado"
+         ]
+        },
+        {
+         "ico": "escudo",
+         "titulo": "Guardias",
+         "texto": "las pruebas que vigilan el camino",
+         "dice": [
+          "guardias"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 1.3,
+     "titulo": 1,
+     "dice": [
+      "codigos"
+     ],
+     "bloques": [
+      {
+       "tipo": "tabla",
+       "progresiva": true,
+       "cols": "220px 1fr 300px",
+       "dice": [
+        [
+         "200"
+        ],
+        [
+         "401"
+        ],
+        [
+         "403"
+        ],
+        [
+         "409"
+        ],
+        [
+         "422"
+        ]
+       ],
+       "filas": [
+        [
+         "200 · 201",
+         "todo salió bien",
+         "✓ bien",
+         "pasa"
+        ],
+        [
+         "401",
+         "tu sesión venció",
+         "✗ sesión",
+         "falla"
+        ],
+        [
+         "403",
+         "no tienes permiso",
+         "✗ permiso",
+         "falla"
+        ],
+        [
+         "409",
+         "pasos en desorden: publicar antes de aprobar",
+         "✗ orden",
+         "falla"
+        ],
+        [
+         "422",
+         "dato mal hecho: un título demasiado largo",
+         "✗ dato",
+         "falla"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 0.9,
+     "titulo": 2,
+     "dice": [
+      "final"
+     ],
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "num": "1",
+         "titulo": "Qué es un mutante",
+         "texto": "una sola cosa rota a propósito",
+         "dice": [
+          "mutante"
+         ]
+        },
+        {
+         "num": "2",
+         "titulo": "Los 4 pasos",
+         "texto": "generar · mutar · auditar · validar",
+         "dice": [
+          "pasos"
+         ]
+        },
+        {
+         "num": "3",
+         "titulo": "Los 3 veredictos",
+         "texto": "PASS · KILLED · SURVIVED",
+         "dice": [
+          "veredictos"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E04": {
+   "pasos": [
+    {
+     "peso": 1,
+     "titulo": 0,
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "ico": "escudo",
+         "titulo": "Guardia A",
+         "texto": "meses sin gritar",
+         "chips": [
+          {
+           "estado": "pasa",
+           "rotulo": "verde"
+          }
+         ],
+         "dice": [
+          "mejor"
+         ]
+        },
+        {
+         "ico": "escudo",
+         "titulo": "Guardia B",
+         "texto": "meses sin gritar",
+         "chips": [
+          {
+           "estado": "pasa",
+           "rotulo": "verde"
+          }
+         ],
+         "dice": [
+          "dormido"
+         ]
+        }
+       ]
+      },
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "desde afuera se ven igualitos →",
+         "estado": "ojo",
+         "rotulo": "¿cuál sirve?",
+         "dice": [
+          "igualitos"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 1.4,
+     "titulo": 1,
+     "dice": [
+      "escondes"
+     ],
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "flujo": true,
+       "items": [
+        {
+         "ico": "mano",
+         "titulo": "Escondes algo roto",
+         "texto": "algo que tú sabes que está mal",
+         "dice": [
+          "proposito"
+         ]
+        },
+        {
+         "ico": "lupa",
+         "titulo": "Miras al guardia",
+         "texto": "¿grita o se queda callado?",
+         "dice": [
+          "miras"
+         ]
+        }
+       ]
+      },
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "si grita →",
+         "estado": "pasa",
+         "rotulo": "despierto · sirve",
+         "dice": [
+          "grita"
+         ]
+        },
+        {
+         "si": "si se queda callado →",
+         "estado": "falla",
+         "rotulo": "encontraste un problema",
+         "dice": [
+          "callado"
+         ]
+        },
+        {
+         "si": "WAR = romper a propósito y mirar al guardia",
+         "estado": "ojo",
+         "rotulo": "Guerra",
+         "dice": [
+          "apellido"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E05": {
+   "pasos": [
+    {
+     "peso": 0.9,
+     "titulo": 0,
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "flujo": true,
+       "items": [
+        {
+         "num": "1",
+         "titulo": "Colegio normal",
+         "texto": "nadie quema nada",
+         "dice": [
+          "quema"
+         ]
+        },
+        {
+         "num": "2",
+         "titulo": "Humo a propósito",
+         "texto": "una máquina de humo",
+         "estado": "ojo",
+         "rotulo": "a propósito",
+         "dice": [
+          "humo"
+         ]
+        },
+        {
+         "ico": "campana",
+         "titulo": "¿Suena la alarma?",
+         "texto": "todos miran",
+         "dice": [
+          "alarma"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 1.4,
+     "titulo": 1,
+     "dice": [
+      "real"
+     ],
+     "nota": "Mutante = una copia de la realidad con UNA sola cosa rota a propósito",
+     "bloques": [
+      {
+       "tipo": "tabla",
+       "progresiva": true,
+       "cols": "300px 1fr 470px",
+       "dice": [
+        [
+         "normal"
+        ],
+        [
+         "viewer"
+        ],
+        [
+         "deberia"
+        ],
+        [
+         "sale"
+        ]
+       ],
+       "filas": [
+        [
+         "Normal",
+         "el approver aprueba un borrador",
+         "✓ 200",
+         "pasa"
+        ],
+        [
+         "Mutante",
+         "ahora aprueba el viewer: cambia solo quién",
+         "una sola cosa",
+         "ojo"
+        ],
+        [
+         "Debería salir",
+         "403: el viewer no tiene permiso",
+         "403"
+        ],
+        [
+         "Sale",
+         "la app responde",
+         "✓ 403 · la alarma sonó",
+         "pasa"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 1.1,
+     "titulo": 2,
+     "dice": [
+      "murio"
+     ],
+     "bloques": [
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "alguna prueba nota el cambio y avisa →",
+         "estado": "pasa",
+         "rotulo": "KILLED · murió",
+         "dice": [
+          "killed"
+         ]
+        },
+        {
+         "si": "todas las pruebas siguen en verde →",
+         "estado": "falla",
+         "rotulo": "SURVIVED · sobrevivió",
+         "dice": [
+          "survived"
+         ]
+        },
+        {
+         "si": "mutante = un error de mentiras, puesto por ti",
+         "estado": "ojo",
+         "rotulo": "resumen",
+         "dice": [
+          "mentiras"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E06": {
+   "pasos": [
+    {
+     "peso": 1.6,
+     "titulo": 0,
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "ico": "play",
+         "titulo": "Suite de Playwright",
+         "texto": "repite los clics de un usuario",
+         "chips": [
+          {
+           "estado": "pasa",
+           "rotulo": "verde"
+          }
+         ],
+         "dice": [
+          "playwright"
+         ]
+        },
+        {
+         "ico": "lupa",
+         "titulo": "Oráculo numérico",
+         "texto": "decide si un número está bien",
+         "chips": [
+          {
+           "estado": "pasa",
+           "rotulo": "verde"
+          }
+         ],
+         "dice": [
+          "oraculo"
+         ]
+        },
+        {
+         "ico": "candado",
+         "titulo": "Verificador formal",
+         "texto": "revisa demostraciones",
+         "chips": [
+          {
+           "estado": "pasa",
+           "rotulo": "verde"
+          }
+         ],
+         "dice": [
+          "verificador"
+         ]
+        },
+        {
+         "ico": "cerebro",
+         "titulo": "Juez de IA",
+         "texto": "califica a otro modelo",
+         "chips": [
+          {
+           "estado": "pasa",
+           "rotulo": "verde"
+          }
+         ],
+         "dice": [
+          "juez"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 0.8,
+     "titulo": 1,
+     "dice": [
+      "problema"
+     ],
+     "bloques": [
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "en verde ≠ despierto →",
+         "estado": "ojo",
+         "rotulo": "no basta",
+         "dice": [
+          "despiertos"
+         ]
+        },
+        {
+         "si": "rompes tú algo y miras si lo notan →",
+         "estado": "pasa",
+         "rotulo": "así se sabe",
+         "dice": [
+          "romper"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E07": {
+   "pasos": [
+    {
+     "titulo": 0,
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "flujo": true,
+       "items": [
+        {
+         "num": "1",
+         "titulo": "Generar",
+         "texto": "colegio sin humo: la alarma no suena",
+         "dice": [
+          "generar"
+         ]
+        },
+        {
+         "num": "2",
+         "titulo": "Mutar",
+         "texto": "una sola regla: prendes el humo",
+         "dice": [
+          "mutar"
+         ]
+        },
+        {
+         "num": "3",
+         "titulo": "Auditar",
+         "texto": "el mundo roto frente al guardia",
+         "dice": [
+          "auditar"
+         ]
+        },
+        {
+         "num": "4",
+         "titulo": "Validar",
+         "texto": "lees el veredicto: ¿sonó?",
+         "dice": [
+          "validar"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E08": {
+   "pasos": [
+    {
+     "peso": 0.45,
+     "titulo": 0,
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "flujo": true,
+       "items": [
+        {
+         "ico": "lapiz",
+         "titulo": "Lápiz en un vaso",
+         "texto": "parece quebrado",
+         "dice": [
+          "lapiz"
+         ]
+        },
+        {
+         "titulo": "La luz se dobla",
+         "texto": "al cambiar de material",
+         "dice": [
+          "dobla"
+         ]
+        },
+        {
+         "titulo": "Índice de refracción",
+         "texto": "cada material tiene su número",
+         "dice": [
+          "indice"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 1.0,
+     "titulo": 1,
+     "dice": [
+      "generas"
+     ],
+     "bloques": [
+      {
+       "tipo": "tabla",
+       "progresiva": true,
+       "cols": "230px 1fr 1fr",
+       "dice": [
+        [
+         "generas"
+        ],
+        [
+         "reales"
+        ],
+        [
+         "intercambias"
+        ],
+        [
+         "independiente"
+        ],
+        [
+         "validas"
+        ]
+       ],
+       "filas": [
+        [
+         "",
+         "FÍSICA · la luz",
+         "FLUJO · DocFlow"
+        ],
+        [
+         "1 Generar",
+         "refracción con los índices reales",
+         "el flujo dorado"
+        ],
+        [
+         "2 Mutar",
+         "intercambias los dos índices",
+         "solo lectura intenta aprobar"
+        ],
+        [
+         "3 Auditar",
+         "oráculo independiente · tolerancia 10⁻⁶",
+         "Playwright contra la API"
+        ],
+        [
+         "4 Validar",
+         "✓ KILLED",
+         "✓ KILLED · 403",
+         "pasa"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E09": {
+   "pasos": [
+    {
+     "peso": 1.1,
+     "titulo": 0,
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "titulo": "PASS",
+         "texto": "el mundo sin mutar cumple: sin falsas alarmas",
+         "estado": "pasa",
+         "rotulo": "línea base",
+         "dice": [
+          "pass"
+         ]
+        },
+        {
+         "titulo": "KILLED",
+         "texto": "el guardia atrapó la mutación: tiene dientes",
+         "estado": "pasa",
+         "rotulo": "atrapado",
+         "dice": [
+          "killed"
+         ]
+        },
+        {
+         "titulo": "SURVIVED",
+         "texto": "el guardia no la vio",
+         "estado": "falla",
+         "rotulo": "se escapó",
+         "dice": [
+          "survived"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 1,
+     "titulo": 1,
+     "dice": [
+      "importante"
+     ],
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "ico": "bicho",
+         "titulo": "Bug real del sistema",
+         "texto": "la app hace algo mal",
+         "dice": [
+          "bug"
+         ]
+        },
+        {
+         "ico": "lupa",
+         "titulo": "Punto ciego del guardia",
+         "texto": "la prueba no sabe mirar ahí",
+         "dice": [
+          "ciego"
+         ]
+        }
+       ]
+      },
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "en los dos casos →",
+         "estado": "ojo",
+         "rotulo": "queda visible",
+         "dice": [
+          "visible"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E10": {
+   "pasos": [
+    {
+     "peso": 1.4,
+     "titulo": 0,
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "num": "27",
+         "titulo": "PASS",
+         "texto": "las variantes correctas pasan",
+         "estado": "pasa",
+         "rotulo": "PASS",
+         "dice": [
+          "27"
+         ]
+        },
+        {
+         "num": "54",
+         "titulo": "KILLED",
+         "texto": "51 comportamientos distintos",
+         "estado": "pasa",
+         "rotulo": "KILLED",
+         "dice": [
+          "54"
+         ]
+        },
+        {
+         "num": "3",
+         "titulo": "SURVIVED",
+         "texto": "un cambio diminuto del circuito",
+         "estado": "falla",
+         "rotulo": "SURVIVED",
+         "dice": [
+          "3"
+         ]
+        }
+       ]
+      },
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "macOS arm64 = Linux x86_64 →",
+         "estado": "pasa",
+         "rotulo": "idéntica",
+         "dice": [
+          "linux"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 0.8,
+     "titulo": 1,
+     "dice": [
+      "diminuta"
+     ],
+     "bloques": [
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "3 SURVIVED · cambio de RC diminuto →",
+         "estado": "ojo",
+         "rotulo": "visible a propósito",
+         "dice": [
+          "visible"
+         ]
+        },
+        {
+         "si": "¿bajar la tolerancia para matarla? →",
+         "estado": "falla",
+         "rotulo": "nunca",
+         "dice": [
+          "tolerancia"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E11": {
+   "pasos": [
+    {
+     "peso": 2.1,
+     "titulo": 0,
+     "nota": "espera → sale",
+     "bloques": [
+      {
+       "tipo": "tabla",
+       "progresiva": true,
+       "cols": "280px 1fr 300px",
+       "dice": [
+        [
+         "role-swap"
+        ],
+        [
+         "drop-input"
+        ],
+        [
+         "reorder"
+        ],
+        [
+         "stale-token"
+        ],
+        [
+         "boundary"
+        ],
+        [
+         "self-grant"
+        ],
+        [
+         "viewer-create"
+        ]
+       ],
+       "filas": [
+        [
+         "role-swap",
+         "un viewer intenta aprobar",
+         "403 → 403 ✓",
+         "pasa"
+        ],
+        [
+         "drop-input",
+         "crear sin dueño",
+         "422 → 422 ✓",
+         "pasa"
+        ],
+        [
+         "reorder",
+         "publicar antes de aprobar",
+         "409 → 409 ✓",
+         "pasa"
+        ],
+        [
+         "stale-token",
+         "aprobar con la sesión vencida",
+         "401 → 401 ✓",
+         "pasa"
+        ],
+        [
+         "boundary",
+         "un título de 81 letras",
+         "422 → 422 ✓",
+         "pasa"
+        ],
+        [
+         "self-grant",
+         "un editor se sube a admin",
+         "403 → 200 ✗",
+         "falla"
+        ],
+        [
+         "viewer-create",
+         "un viewer crea un borrador",
+         "403 → 201 ✗",
+         "falla"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 0.8,
+     "titulo": 1,
+     "dice": [
+      "datos"
+     ],
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "ico": "lapiz",
+         "titulo": "tests/scenarios.ts",
+         "texto": "un mutante por línea",
+         "dice": [
+          "archivo"
+         ]
+        },
+        {
+         "num": "5",
+         "titulo": "mueren",
+         "estado": "pasa",
+         "rotulo": "KILLED",
+         "dice": [
+          "mueren"
+         ]
+        },
+        {
+         "num": "2",
+         "titulo": "sobreviven",
+         "estado": "falla",
+         "rotulo": "SURVIVED",
+         "dice": [
+          "sobreviven"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E12": {
+   "pasos": [
+    {
+     "peso": 1.2,
+     "titulo": 0,
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "etiqueta": "app/server.js · línea 58",
+         "titulo": "editMember: (actor, target) => actor.role === 'admin' || actor.id === target.id",
+         "dice": [
+          "regla"
+         ]
+        }
+       ]
+      },
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "¿eres admin? →",
+         "estado": "pasa",
+         "rotulo": "puedes cambiar roles",
+         "dice": [
+          "admin"
+         ]
+        },
+        {
+         "si": "¿ese alguien eres tú? →",
+         "estado": "falla",
+         "rotulo": "también puedes: hueco",
+         "dice": [
+          "alguien"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 1,
+     "titulo": 1,
+     "dice": [
+      "entonces"
+     ],
+     "nota": "Como si cada estudiante escribiera su propia nota en el boletín",
+     "bloques": [
+      {
+       "tipo": "escalera",
+       "peldanos": [
+        "editor",
+        "admin · aprueba y publica solo"
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 1.2,
+     "titulo": 2,
+     "dice": [
+      "ciego"
+     ],
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "titulo": "self-grant",
+         "texto": "el editor se pone admin · HTTP 200",
+         "estado": "falla",
+         "rotulo": "bug real",
+         "dice": [
+          "real"
+         ]
+        },
+        {
+         "titulo": "viewer-create",
+         "texto": "un viewer crea un borrador · HTTP 201",
+         "etiqueta": "hallado al preparar el curso",
+         "estado": "falla",
+         "rotulo": "bug real",
+         "dice": [
+          "viewer-create"
+         ]
+        }
+       ]
+      },
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "conocidos · impresos en rojo en cada corrida →",
+         "estado": "ojo",
+         "rotulo": "visibles",
+         "dice": [
+          "rojo"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E13": {
+   "pasos": [
+    {
+     "peso": 0.8,
+     "titulo": 0,
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "flujo": true,
+       "items": [
+        {
+         "ico": "cerebro",
+         "titulo": "Agente de IA",
+         "texto": "escribe un plan de pruebas",
+         "dice": [
+          "agente"
+         ]
+        },
+        {
+         "ico": "lupa",
+         "titulo": "Juez",
+         "texto": "califica de 0 a 100 · aprueba con 70 y los criterios obligatorios",
+         "dice": [
+          "juez"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 1.2,
+     "titulo": 1,
+     "dice": [
+      "pins"
+     ],
+     "nota": "sin pins = modelo sin versión · temperatura 1 · el prompt más reciente",
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "num": "83",
+         "titulo": "corrida 1",
+         "estado": "pasa",
+         "rotulo": "aprobado",
+         "dice": [
+          "83"
+         ]
+        },
+        {
+         "num": "74",
+         "titulo": "corrida 2",
+         "estado": "pasa",
+         "rotulo": "aprobado",
+         "dice": [
+          "74"
+         ]
+        },
+        {
+         "num": "76",
+         "titulo": "corrida 3",
+         "texto": "2 escenarios sin fuente · un editor aprueba con 200",
+         "estado": "falla",
+         "rotulo": "rechazado",
+         "dice": [
+          "76"
+         ]
+        }
+       ]
+      },
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "misma entrada, veredictos distintos →",
+         "estado": "falla",
+         "rotulo": "UNSTABLE",
+         "dice": [
+          "unstable"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 1,
+     "titulo": 2,
+     "dice": [
+      "cero"
+     ],
+     "nota": "con pins = modelo con versión · temperatura 0 · prompt con versión",
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "num": "86",
+         "titulo": "corrida 1",
+         "estado": "pasa",
+         "rotulo": "aprobado",
+         "dice": [
+          "86"
+         ]
+        },
+        {
+         "num": "84",
+         "titulo": "corrida 2",
+         "estado": "pasa",
+         "rotulo": "aprobado",
+         "dice": [
+          "84"
+         ]
+        },
+        {
+         "num": "87",
+         "titulo": "corrida 3",
+         "estado": "pasa",
+         "rotulo": "aprobado",
+         "dice": [
+          "87"
+         ]
+        }
+       ]
+      },
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "misma receta, mismo horno, misma temperatura →",
+         "estado": "pasa",
+         "rotulo": "STABLE",
+         "dice": [
+          "stable"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E14": {
+   "pasos": [
+    {
+     "peso": 1.3,
+     "titulo": 0,
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "ico": "lapiz",
+         "titulo": "Prompt = letrero",
+         "texto": "«por favor, no hagas push a main»",
+         "estado": "ojo",
+         "rotulo": "se puede ignorar",
+         "dice": [
+          "letrero"
+         ]
+        },
+        {
+         "ico": "candado",
+         "titulo": "Hook = portero",
+         "texto": "revisa cada comando antes de que corra · exit 2 = bloqueado",
+         "estado": "pasa",
+         "rotulo": "bloquea siempre",
+         "dice": [
+          "portero"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 1,
+     "titulo": 1,
+     "dice": [
+      "prueba"
+     ],
+     "bloques": [
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "git push origin main →",
+         "estado": "pasa",
+         "rotulo": "exit 2 · bloqueado",
+         "dice": [
+          "colarse"
+         ]
+        },
+        {
+         "si": "git -c … push · git --no-pager push →",
+         "estado": "falla",
+         "rotulo": "se colaban",
+         "dice": [
+          "agujeros"
+         ]
+        },
+        {
+         "si": "arreglados en el commit 1b01c66 →",
+         "estado": "pasa",
+         "rotulo": "cerrado",
+         "dice": [
+          "1b01c66"
+         ]
+        },
+        {
+         "si": "las reglas duras viven en hooks, no en prompts",
+         "estado": "ojo",
+         "rotulo": "resumen",
+         "dice": [
+          "duras"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E15": {
+   "pasos": [
+    {
+     "peso": 1.5,
+     "titulo": 0,
+     "bloques": [
+      {
+       "tipo": "lista",
+       "check": true,
+       "marca_tras": 1.5,
+       "items": [
+        {
+         "texto": "Cambia una sola cosa",
+         "dice": [
+          "sola"
+         ]
+        },
+        {
+         "texto": "Escribe la predicción antes de correr",
+         "dice": [
+          "prediccion"
+         ]
+        },
+        {
+         "texto": "Corre la línea base primero",
+         "dice": [
+          "base"
+         ]
+        },
+        {
+         "texto": "Si sobrevive, no se ajusta: se publica",
+         "dice": [
+          "publica"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 0.9,
+     "titulo": 1,
+     "dice": [
+      "kill"
+     ],
+     "bloques": [
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "kill rate alto = muchos mutantes mueren →",
+         "estado": "ojo",
+         "rotulo": "solo los que se te ocurrieron",
+         "dice": [
+          "porcentaje"
+         ]
+        },
+        {
+         "si": "tu lista de mutantes tiene tus sesgos →",
+         "estado": "ojo",
+         "rotulo": "límite",
+         "dice": [
+          "sesgos"
+         ]
+        },
+        {
+         "si": "los mejores mutantes los siembra otra persona",
+         "estado": "pasa",
+         "rotulo": "a ciegas",
+         "dice": [
+          "siembra"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E16": {
+   "pasos": [
+    {
+     "reparto": 0.65,
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "num": "✓ 1",
+         "titulo": "Un guardia que nunca grita puede estar dormido",
+         "dice": [
+          "una"
+         ]
+        },
+        {
+         "num": "✓ 2",
+         "titulo": "Generar → mutar → auditar → validar",
+         "dice": [
+          "dos"
+         ]
+        },
+        {
+         "num": "✓ 3",
+         "titulo": "PASS, KILLED y SURVIVED, siempre",
+         "dice": [
+          "tres"
+         ]
+        }
+       ]
+      },
+      {
+       "tipo": "siguiente",
+       "ico": "espadas",
+       "texto": "Siguiente → Parte 2 · Manos a la obra",
+       "brilla_antes": 8,
+       "dice": [
+        "ensuciamos"
+       ]
+      }
+     ]
+    },
+    {
+     "reparto": 0.35,
+     "titulo": "Antes de irte",
+     "dice": [
+      "suscribete"
+     ],
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "ico": "campana",
+         "titulo": "Suscríbete y activa la campanita",
+         "texto": "para no perderte la parte 2",
+         "dice": [
+          "suscribete"
+         ]
+        },
+        {
+         "ico": "lapiz",
+         "titulo": "¿Dudas? Déjalas en los comentarios",
+         "texto": "las leo todas y te respondo",
+         "dice": [
+          "comentarios"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

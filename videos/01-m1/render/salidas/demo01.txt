@@ -1,0 +1,100 @@
+
+> war-paradigm@1.0.0 demo:01
+> npm run demo -w experiments/01-ai-verdict
+
+
+> @mutant-lab/01-ai-verdict@1.0.0 demo
+> tsx src/cli.ts
+
+
+  THE MUTANT LAB · Experiment #01 · AI output changes every run. Your verdict can't.
+  story US-42 · Approve and publish a document · 3 runs per set
+
+── set: pinned ─────────────────────────────────────────────
+  pins   model planner-agent@2026.06 · temperature 0 · prompt test-plan@v3
+
+  run 1  trace tr_pin_0001
+    AC-1  must   ✔ met      11/11 scenarios cite US-42/R-n
+    AC-2  must   ✔ met      all 4 must-requirements covered: R-1, R-2, R-3, R-4
+    AC-3  must   ✔ met      11 scenarios agree with the permission matrix
+    AC-4  should ✔ met      3/3 actions have a forbidden-role scenario
+    AC-5  should ◐ partial  2/4 boundaries covered · missing: B-2, B-3
+    AC-6  should ✔ met      11/11 scenarios follow the template (id, title, ≥ 2 steps, expected)
+    AC-7  should ✔ met      2 risks
+                              2 assumptions
+    AC-8  should ✔ met      11 distinct scenarios
+    score 86/100 · gate 70 · verdict APPROVED
+
+  run 2  trace tr_pin_0002
+    AC-1  must   ✔ met      12/12 scenarios cite US-42/R-n
+    AC-2  must   ✔ met      all 4 must-requirements covered: R-1, R-2, R-3, R-4
+    AC-3  must   ✔ met      12 scenarios agree with the permission matrix
+    AC-4  should ◐ partial  2/3 actions have a forbidden-role scenario · missing: create
+    AC-5  should ✔ met      4/4 boundaries covered
+    AC-6  should ✔ met      12/12 scenarios follow the template (id, title, ≥ 2 steps, expected)
+    AC-7  should ◐ partial  2 risks
+                              0 assumptions
+    AC-8  should ✔ met      12 distinct scenarios
+    score 84/100 · gate 70 · verdict APPROVED
+
+  run 3  trace tr_pin_0003
+    AC-1  must   ✔ met      12/12 scenarios cite US-42/R-n
+    AC-2  must   ✔ met      all 4 must-requirements covered: R-1, R-2, R-3, R-4
+    AC-3  must   ✔ met      12 scenarios agree with the permission matrix
+    AC-4  should ✔ met      3/3 actions have a forbidden-role scenario
+    AC-5  should ◐ partial  3/4 boundaries covered · missing: B-3
+    AC-6  should ✔ met      12/12 scenarios follow the template (id, title, ≥ 2 steps, expected)
+    AC-7  should ◐ partial  2 risks
+                              0 assumptions
+    AC-8  should ✔ met      12 distinct scenarios
+    score 87/100 · gate 70 · verdict APPROVED
+
+  run 1 approved 86  ·  run 2 approved 84  ·  run 3 approved 87
+  verdict STABLE · 3/3 runs agree
+
+── set: unpinned ───────────────────────────────────────────
+  pins   model planner-agent · temperature 1 · prompt latest
+         ⚠ temperature is 1 (pinned runs use 0)
+         ⚠ promptVersion "latest" is a moving target, tag it
+         ⚠ model "planner-agent" has no version tag (expected name@version)
+
+  run 1  trace tr_unpin_0001
+    AC-1  must   ✔ met      11/11 scenarios cite US-42/R-n
+    AC-2  must   ✔ met      all 4 must-requirements covered: R-1, R-2, R-3, R-4
+    AC-3  must   ✔ met      11 scenarios agree with the permission matrix
+    AC-4  should ◐ partial  2/3 actions have a forbidden-role scenario · missing: create
+    AC-5  should ◐ partial  3/4 boundaries covered · missing: B-3
+    AC-6  should ✔ met      11/11 scenarios follow the template (id, title, ≥ 2 steps, expected)
+    AC-7  should ✔ met      1 risks
+                              1 assumptions
+    AC-8  should ✔ met      11 distinct scenarios
+    score 83/100 · gate 70 · verdict APPROVED
+
+  run 2  trace tr_unpin_0002
+    AC-1  must   ✔ met      11/11 scenarios cite US-42/R-n
+    AC-2  must   ✔ met      all 4 must-requirements covered: R-1, R-2, R-3, R-4
+    AC-3  must   ✔ met      11 scenarios agree with the permission matrix
+    AC-4  should ◐ partial  1/3 actions have a forbidden-role scenario · missing: create, publish
+    AC-5  should ✔ met      4/4 boundaries covered
+    AC-6  should ✔ met      11/11 scenarios follow the template (id, title, ≥ 2 steps, expected)
+    AC-7  should ◐ partial  1 risks
+                              0 assumptions
+    AC-8  should ✔ met      11 distinct scenarios
+    score 74/100 · gate 70 · verdict APPROVED
+
+  run 3  trace tr_unpin_0003
+    AC-1  must   ✘ failed   S-4 has no valid source (source="", covers=[R-3])
+                              S-6 has no valid source (source="chat", covers=[R-4])
+    AC-2  must   ✔ met      all 4 must-requirements covered: R-1, R-2, R-3, R-4
+    AC-3  must   ✘ failed   S-3: editor → approve expects 200 (matrix says forbidden → 403)
+    AC-4  should ◐ partial  2/3 actions have a forbidden-role scenario · missing: create
+    AC-5  should ◐ partial  2/4 boundaries covered · missing: B-2, B-3
+    AC-6  should ✔ met      11/11 scenarios follow the template (id, title, ≥ 2 steps, expected)
+    AC-7  should ✔ met      1 risks
+                              1 assumptions
+    AC-8  should ✔ met      11 distinct scenarios
+    score 76/100 · gate 70 · verdict REJECTED · must failed: AC-1, AC-3
+
+  run 1 approved 83  ·  run 2 approved 74  ·  run 3 REJECTED 76
+  verdict UNSTABLE → finding: verdict flipped approved → rejected on run 3 (scores 83 / 74 / 76) · run was not pinned: temperature is 1 (pinned runs use 0); promptVersion "latest" is a moving target, tag it; model "planner-agent" has no version tag (expected name@version)
+

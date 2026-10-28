@@ -1,0 +1,331 @@
+[
+  {
+    "id": "E01",
+    "inicio": "00:00",
+    "fin": "00:44",
+    "tipo": "animacion",
+    "visual": "Una línea horizontal de umbral en 0.75 (gold). Cuatro puntos caen uno por uno sobre el eje: 0.69, 0.71 (debajo, se quedan como 'unknown → persona') y 0.78, 0.84 (encima, se pintan coral con la etiqueta 'flaky ✗ incorrecto'). Arriba, una tarjeta fija: 'misma prueba · misma clase · otra confianza'.",
+    "texto_pantalla": {
+      "es": "Misma entrada: 0.69 · 0.71 · 0.78 · 0.84 — umbral 0.75",
+      "en": "Same input: 0.69 · 0.71 · 0.78 · 0.84 — threshold 0.75"
+    },
+    "assets": [],
+    "notas_animacion": "Valores de jev-ci-triage/README.es.md (sección de límites). Los puntos sobre el umbral se marcan ✗ falla con la palabra."
+  },
+  {
+    "id": "E02",
+    "inicio": "00:44",
+    "fin": "01:05",
+    "tipo": "titulo",
+    "visual": "Tarjeta de título con ícono 🎚️ y cuatro chips de repo: playwright-jev · jev-ci-triage · war-paradigm/01 · laya-server. Firma abajo.",
+    "texto_pantalla": {
+      "es": "Módulo 26 · Jueces con probabilidad\nCristian Guerra · QA · Medellín",
+      "en": "Module 26 · Judges that return probabilities\nCristian Guerra · QA · Medellín"
+    },
+    "assets": [],
+    "notas_animacion": "Subtítulo: 'La confianza enruta, no aprueba' / 'Confidence routes, it doesn't approve'."
+  },
+  {
+    "id": "E03",
+    "inicio": "01:05",
+    "fin": "01:55",
+    "tipo": "analogia",
+    "visual": "Cancha de fútbol plana. 1) Árbitro con signo de pregunta hace el gesto de la pantalla: aparece una TV con la repetición. 2) Árbitro nuevo en la tribuna con una libreta anotando, junto a un marcador que compara sus notas con lo que pasó; cuando el marcador llega a un número, baja a la cancha.",
+    "texto_pantalla": {
+      "es": "Si duda, pide la repetición.\nEl árbitro nuevo primero mira desde la tribuna.",
+      "en": "Unsure? Ask for the replay.\nThe new referee watches from the stands first."
+    },
+    "assets": [],
+    "notas_animacion": "Basada en m22.kid de i18n/es/modules-24-29.json."
+  },
+  {
+    "id": "E04",
+    "inicio": "01:55",
+    "fin": "02:51",
+    "tipo": "diagrama",
+    "visual": "Tres columnas con el mismo ícono de juez caído (⚠): Aserción → fail-closed → prueba ✗ no pasa (playwright-jev). Triaje → fail-open → 'unknown · unverified' (jev-ci-triage). Selección → fail-safe → suite completa (jev-test-impact).",
+    "texto_pantalla": {
+      "es": "closed · open · safe — según el uso",
+      "en": "closed · open · safe — depending on the use"
+    },
+    "assets": [],
+    "notas_animacion": "Las tres políticas salen de m22.theory[0]."
+  },
+  {
+    "id": "E05",
+    "inicio": "02:51",
+    "fin": "03:40",
+    "tipo": "codigo",
+    "visual": "Extracto real de playwright-jev/docs/adr/0001-three-valued-verdicts-fail-closed.md (sección Decision):\n- Every noul answer maps to `yes` (p ≥ threshold), `no` (p ≤ 1 − threshold) or `ambiguous`. Default threshold 0.8.\n- `onUnverified`: `fail` (default) or `skip` (skips the test with a warning; optional `failOnUnverified` at run level). Nothing unverified ever passes.\nAl lado, una barra 0-1 con tres zonas: no (≤0.2) · ambiguous · yes (≥0.8).",
+    "texto_pantalla": {
+      "es": "Nada sin verificar pasa nunca",
+      "en": "Nothing unverified ever passes"
+    },
+    "assets": [
+      "playwright-jev/docs/adr/0001-three-valued-verdicts-fail-closed.md"
+    ],
+    "notas_animacion": "Texto del ADR en inglés tal cual; en la versión ES se subtitula."
+  },
+  {
+    "id": "E06",
+    "inicio": "03:40",
+    "fin": "04:30",
+    "tipo": "diagrama",
+    "visual": "Flujo de jev-ci-triage: fallo de CI → reglas → (ambiguo) → Jev → confianza ≥ 0.75 → clase; < 0.75 → unknown + 'Jev se inclinaba por…' → persona; Jev caído → 'unknown · unverified' + HTTP guardado. Contador: 17 / 126 llamadas con éxito.",
+    "texto_pantalla": {
+      "es": "Jev caído ≠ adivinar: unknown · unverified\n17 de 126 llamadas con éxito ese día",
+      "en": "Jev down ≠ guessing: unknown · unverified\n17 of 126 calls succeeded that day"
+    },
+    "assets": [
+      "jev-ci-triage/docs/assets/banner.svg"
+    ],
+    "notas_animacion": "Las cinco clases (regression, flaky, environment, test-data, unknown) como chips."
+  },
+  {
+    "id": "E07",
+    "inicio": "04:30",
+    "fin": "05:18",
+    "tipo": "diagrama",
+    "visual": "Flujo de jev-test-impact: git diff → reglas → Jev para lo ambiguo → pruebas seleccionadas. Rama de error (Jev lento, caído o raro) → 'suite completa' en mint. Luna pequeña: 'batería completa cada noche'.",
+    "texto_pantalla": {
+      "es": "Ante la duda, nunca se salta nada",
+      "en": "When in doubt, nothing gets skipped"
+    },
+    "assets": [
+      "jev-test-impact/docs/assets/how-it-works.svg"
+    ],
+    "notas_animacion": "Frase de jev-test-impact/README.es.md, 'La regla de oro'."
+  },
+  {
+    "id": "E08",
+    "inicio": "05:18",
+    "fin": "06:13",
+    "tipo": "diagrama",
+    "visual": "Dos filas de puntos sobre la línea 0.75: 'funcionalidad que falta' 0.69 · 0.71 · 0.78 · 0.84 y 'regresión de accesibilidad' 0.61 · 0.62 · 0.91. La etiqueta de clase encima de cada fila no cambia; solo cambia de qué lado del umbral cae cada punto.",
+    "texto_pantalla": {
+      "es": "⚠ Cerca del umbral = inestable",
+      "en": "⚠ Near the threshold = unstable"
+    },
+    "assets": [],
+    "notas_animacion": "Cifras de jev-ci-triage/README.es.md, 'Misma entrada, confianza distinta'."
+  },
+  {
+    "id": "E09",
+    "inicio": "06:13",
+    "fin": "06:53",
+    "tipo": "diagrama",
+    "visual": "Definición animada: flip rate = decisiones que cambian / decisiones comparadas entre corridas idénticas. Tres candados: modelo@versión · temperatura · versión del prompt. Pie de tarjeta: 'reporta n casos × k repeticiones'.",
+    "texto_pantalla": {
+      "es": "Flip rate + n casos + k repeticiones",
+      "en": "Flip rate + n cases + k repetitions"
+    },
+    "assets": [],
+    "notas_animacion": "Definición de m22.theory[2]."
+  },
+  {
+    "id": "E10",
+    "inicio": "06:53",
+    "fin": "07:50",
+    "tipo": "terminal",
+    "visual": "Salida real (resumen de líneas, capturada el 2026-10-26 en una copia de war-paradigm, commit 5dc5e92):\n$ npm run demo:01\n── set: pinned ──\n  pins   model planner-agent@2026.06 · temperature 0 · prompt test-plan@v3\n  run 1 approved 86  ·  run 2 approved 84  ·  run 3 approved 87\n  verdict STABLE · 3/3 runs agree\n── set: unpinned ──\n  pins   model planner-agent · temperature 1 · prompt latest\n         ⚠ temperature is 1 (pinned runs use 0)\n         ⚠ promptVersion \"latest\" is a moving target, tag it\n         ⚠ model \"planner-agent\" has no version tag (expected name@version)\n  run 1 approved 83  ·  run 2 approved 74  ·  run 3 REJECTED 76\n  verdict UNSTABLE → finding: verdict flipped approved → rejected on run 3 (scores 83 / 74 / 76) ...",
+    "texto_pantalla": {
+      "es": "Con pins ✓ STABLE · sin pins ✗ UNSTABLE",
+      "en": "Pinned ✓ STABLE · unpinned ✗ UNSTABLE"
+    },
+    "assets": [
+      "war-paradigm/experiments/01-ai-verdict/src/cli.ts",
+      "war-paradigm/experiments/01-ai-verdict/fixtures/runs/"
+    ],
+    "notas_animacion": "Se omiten las líneas AC-1…AC-8 de cada run por espacio; aparecen en E11 para el run 3."
+  },
+  {
+    "id": "E11",
+    "inicio": "07:50",
+    "fin": "08:46",
+    "tipo": "codigo",
+    "visual": "Líneas reales del run 3 sin pins:\n    AC-1  must   ✘ failed   S-4 has no valid source (source=\"\", covers=[R-3])\n                              S-6 has no valid source (source=\"chat\", covers=[R-4])\n    AC-3  must   ✘ failed   S-3: editor → approve expects 200 (matrix says forbidden → 403)\n    score 76/100 · gate 70 · verdict REJECTED · must failed: AC-1, AC-3\nDebajo, el comentario de experiments/01-ai-verdict/src/stability.ts:\n * Same input, N runs. Scores may move; the VERDICT may not.",
+    "texto_pantalla": {
+      "es": "76 > gate 70 y aun así ✗ REJECTED: un must falló",
+      "en": "76 > gate 70 and still ✗ REJECTED: a must failed"
+    },
+    "assets": [
+      "war-paradigm/experiments/01-ai-verdict/src/stability.ts",
+      "war-paradigm/experiments/01-ai-verdict/README.md"
+    ],
+    "notas_animacion": "Sello pequeño ⚠ 'fixtures grabados a mano' (README, sección What is real, what is recorded)."
+  },
+  {
+    "id": "E12",
+    "inicio": "08:46",
+    "fin": "09:28",
+    "tipo": "codigo",
+    "visual": "Código real de jev-ci-triage/src/redact.ts (lista RULES, 7 reglas): Bearer/Basic · api_key|token|secret|password · prefijos sk|pk|vck|ghp|gho|xox · JWT eyJ… · correo · (?:\\d[ -]?){13,19} · /(Users|home)/… Cada regla se ilumina al nombrarla.",
+    "texto_pantalla": {
+      "es": "Redacta antes de enviar",
+      "en": "Redact before you send"
+    },
+    "assets": [
+      "jev-ci-triage/src/redact.ts"
+    ],
+    "notas_animacion": "Mostrar el archivo completo en panel #123448."
+  },
+  {
+    "id": "E13",
+    "inicio": "09:28",
+    "fin": "10:14",
+    "tipo": "terminal",
+    "visual": "Ejecución real en jev-ci-triage (entrada copiada de tests/text.test.ts):\n$ npx tsx -e \"import { redact } from './src/redact.ts'; console.log(redact('Authorization: Bearer abc.def.ghijklmnop user=ana@example.com card 4111 1111 1111 1111 at /Users/ana/app/x.ts token=s3cr3tvalue'))\"\nAuthorization: Bearer [redacted] user=[redacted-email] card [redacted-number]at /Users/[user]/app/x.ts token=[redacted]\n$ npx vitest run tests/text.test.ts\n Test Files  1 passed (1)\n      Tests  4 passed (4)",
+    "texto_pantalla": {
+      "es": "✓ nada sensible sale · ⚠ '[redacted-number]at' sin espacio",
+      "en": "✓ nothing sensitive leaks · ⚠ '[redacted-number]at' lost its space"
+    },
+    "assets": [
+      "jev-ci-triage/tests/text.test.ts"
+    ],
+    "notas_animacion": "Zoom con círculo gold sobre '[redacted-number]at'."
+  },
+  {
+    "id": "E14",
+    "inicio": "10:14",
+    "fin": "11:00",
+    "tipo": "diagrama",
+    "visual": "Cascada de laya-server: estado → ¿> 1500 caracteres? sí → Jev (nube). no → Laya local (CPU, ~2 GB RAM) → ¿confianza mínima ≥ 0.8? sí → responde Laya. no → Jev. Jev con error o sin CASCADE_URL → 'escalate: true' → persona.",
+    "texto_pantalla": {
+      "es": "Barato delante, caro detrás, persona al final",
+      "en": "Cheap in front, expensive behind, a person last"
+    },
+    "assets": [
+      "laya-server/docs/assets/how-it-works.svg"
+    ],
+    "notas_animacion": "Repintar how-it-works.svg con la paleta del kit."
+  },
+  {
+    "id": "E15",
+    "inicio": "11:00",
+    "fin": "11:39",
+    "tipo": "codigo",
+    "visual": "Código real de laya-server/src/policy.mjs, función route():\nexport function route({ state, localAnswers, threshold, maxLocalChars, cascadeAvailable }) {\n  if (stateLength(state) > maxLocalChars) {\n    return cascadeAvailable ? { decider: \"jev\", reason: \"long_state\" } : { decider: \"laya\", reason: \"long_state_truncated\", escalate: true };\n  }\n  if (!localAnswers) return { decider: \"laya\", reason: \"pending\" };\n  const min = minConfidence(localAnswers);\n  if (min >= threshold) return { decider: \"laya\", reason: \"confident\", min };\n  return cascadeAvailable ? { decider: \"jev\", reason: \"low_confidence\", min } : { decider: \"laya\", reason: \"low_confidence\", min, escalate: true };\n}\nY de src/server.mjs, línea 64: reason: `${r.reason}+upstream_error`, escalate: true",
+    "texto_pantalla": {
+      "es": "'>' estricto: 1500 se queda en local",
+      "en": "Strict '>': 1500 stays local"
+    },
+    "assets": [
+      "laya-server/src/policy.mjs",
+      "laya-server/src/server.mjs"
+    ],
+    "notas_animacion": "Resaltar el operador '>' en gold."
+  },
+  {
+    "id": "E16",
+    "inicio": "11:39",
+    "fin": "12:07",
+    "tipo": "terminal",
+    "visual": "Salida real en laya-server (commit bf88c61):\n$ npm test\n✔ noul confidence is distance from 0.5 both ways\n✔ choice uses confidence or max probability\n✔ confident local answers stay local\n✔ low confidence cascades to jev when available\n✔ low confidence without cascade escalates to human\n✔ long state goes straight to jev\n✔ gateway boolean/probability normalized to noul\nℹ tests 7\nℹ pass 7\nℹ fail 0",
+    "texto_pantalla": {
+      "es": "✓ 7 de 7 · no cargan el modelo",
+      "en": "✓ 7 of 7 · the model isn't loaded"
+    },
+    "assets": [
+      "laya-server/test/policy.test.mjs"
+    ],
+    "notas_animacion": "Se quitan los tiempos en ms de cada línea por legibilidad."
+  },
+  {
+    "id": "E17",
+    "inicio": "12:07",
+    "fin": "13:11",
+    "tipo": "codigo",
+    "visual": "Dos pruebas nuevas escritas en una copia de laya-server (no están en el repo):\ntest(\"state of exactly 1500 chars stays with laya\", () => {\n  const r = route({ state: \"x\".repeat(1500), localAnswers: { x: { type: \"noul\", noul: 0.05 } }, threshold: 0.8, maxLocalChars: 1500, cascadeAvailable: true });\n  assert.deepEqual([r.decider, r.reason], [\"laya\", \"confident\"]);\n});\ntest(\"long state without cascade escalates to a person\", () => {\n  const r = route({ state: \"x\".repeat(1501), localAnswers: null, threshold: 0.8, maxLocalChars: 1500, cascadeAvailable: false });\n  assert.deepEqual([r.decider, r.reason, r.escalate], [\"laya\", \"long_state_truncated\", true]);\n});\nLuego la salida real: ℹ tests 9 · ℹ pass 9 · ℹ fail 0",
+    "texto_pantalla": {
+      "es": "Borde escrito: 1500 ✓ local · 1501 sin nube ⚠ persona",
+      "en": "Boundary written: 1500 ✓ local · 1501 no cloud ⚠ person"
+    },
+    "assets": [],
+    "notas_animacion": "Etiqueta visible 'ejemplo del laboratorio, no está en el repo'. El caso CASCADE_URL caído queda como pendiente (vive en server.mjs)."
+  },
+  {
+    "id": "E18",
+    "inicio": "13:11",
+    "fin": "13:51",
+    "tipo": "navegador",
+    "visual": "Navegador en github.com/criguex/laya-server, README.es.md, sección 'Un ejemplo real', con la frase resaltada: 'Nadie ha medido todavía la calidad de Laya en español: esa medición va antes de confiar en ella.' Luego la raíz del repo en GitHub: no hay carpeta .github/workflows.",
+    "texto_pantalla": {
+      "es": "Modo sombra · sin CI todavía",
+      "en": "Shadow mode · no CI yet"
+    },
+    "assets": [
+      "laya-server/README.es.md"
+    ],
+    "notas_animacion": "No mostrar IPs ni nombres de máquinas fuera de lo que ya dice el README."
+  },
+  {
+    "id": "E19",
+    "inicio": "13:51",
+    "fin": "14:14",
+    "tipo": "codigo",
+    "visual": "Diff de la mutación en experiments/01-ai-verdict/fixtures/runs/pinned/run-1.json (línea 3):\n-  \"meta\": { \"model\": \"planner-agent@2026.06\", \"temperature\": 0, \"promptVersion\": \"test-plan@v3\", \"traceId\": \"tr_pin_0001\" },\n+  \"meta\": { \"model\": \"planner-agent@2026.06\", \"temperature\": 1, \"promptVersion\": \"test-plan@v3\", \"traceId\": \"tr_pin_0001\" },\nLibreta: 'estabilidad: ___' · 'pruebas: ___'.",
+    "texto_pantalla": {
+      "es": "Mutación WAR: quita un pin",
+      "en": "WAR mutation: drop a pin"
+    },
+    "assets": [],
+    "notas_animacion": "Mutación de m22.mut."
+  },
+  {
+    "id": "E20",
+    "inicio": "14:14",
+    "fin": "15:20",
+    "tipo": "terminal",
+    "visual": "Salidas reales con la mutación (copia de trabajo, 2026-10-26):\n$ npm run demo:01\n── set: pinned ──\n  pins   model planner-agent@2026.06 · temperature 1 · prompt test-plan@v3\n         ⚠ temperature is 1 (pinned runs use 0)\n  run 1 approved 86  ·  run 2 approved 84  ·  run 3 approved 87\n  verdict STABLE · 3/3 runs agree\n$ npm run test:01\n  1) tests/checks.spec.ts:69:1 › pins: a pinned run has no warnings, an unpinned run has three\n  2) tests/scorer.spec.ts:19:1 › pinned runs: the output changes, the verdict does not\n  2 failed\n  25 passed\nComparación: sin mutación '1 skipped · 27 passed'.",
+    "texto_pantalla": {
+      "es": "Estabilidad ✓ STABLE (no lo notó) · pruebas ✗ 2 fallan (sí)",
+      "en": "Stability ✓ STABLE (missed it) · tests ✗ 2 fail (caught it)"
+    },
+    "assets": [
+      "war-paradigm/experiments/01-ai-verdict/tests/checks.spec.ts",
+      "war-paradigm/experiments/01-ai-verdict/tests/scorer.spec.ts"
+    ],
+    "notas_animacion": "Mutación revertida después con git checkout."
+  },
+  {
+    "id": "E21",
+    "inicio": "15:20",
+    "fin": "16:39",
+    "tipo": "diagrama",
+    "visual": "Checklist del reto con 5 entregables (m22.hands) y 4 criterios (m22.crit). Tarjeta dorada 'nivel máximo': set etiquetado en español, umbral escrito antes, bloqueo apagado hasta medir.",
+    "texto_pantalla": {
+      "es": "Tabla de fallas · flip rate · 2 casos · redactor",
+      "en": "Failure table · flip rate · 2 cases · redactor"
+    },
+    "assets": [],
+    "notas_animacion": "Texto de m22.hands, m22.crit y m22.top."
+  },
+  {
+    "id": "E22",
+    "inicio": "16:39",
+    "fin": "17:20",
+    "tipo": "quiz",
+    "visual": "Tres tarjetas de pregunta con opciones completas del banco, cuenta regresiva de pausa y respuesta marcada ✓.",
+    "texto_pantalla": {
+      "es": "1) Aserción y el juez no responde: ¿política?\n2) 0.69 · 0.71 · 0.78 · 0.84 con umbral 0.75: ¿qué concluyes?\n3) Estado de 2000 caracteres en laya-server: ¿qué pasa?",
+      "en": "1) Assertion and the judge doesn't answer: policy?\n2) 0.69 · 0.71 · 0.78 · 0.84, threshold 0.75: conclusion?\n3) A 2000-character state in laya-server: what happens?"
+    },
+    "assets": [
+      "qa-automation-course/i18n/es/quiz-20-27.json (m22, preguntas 1, 4 y 7)"
+    ],
+    "notas_animacion": "Opciones tal cual del banco."
+  },
+  {
+    "id": "E23",
+    "inicio": "17:20",
+    "fin": "17:58",
+    "tipo": "resumen",
+    "visual": "Tres tarjetas: política de falla por uso · confianza = autorreporte · cascada en sombra. Tarjeta del siguiente módulo con ícono 📜 y firma.",
+    "texto_pantalla": {
+      "es": "1. Decide antes qué pasa si el juez cae\n2. Fija pins y mide el flip rate\n3. Sombra hasta medir\nSiguiente: QA asistida por IA II",
+      "en": "1. Decide up front what happens if the judge goes down\n2. Pin everything, measure the flip rate\n3. Shadow mode until measured\nNext: AI-assisted QA II"
+    },
+    "assets": [],
+    "notas_animacion": "Firma: Cristian Guerra · QA · Medellín."
+  }
+]

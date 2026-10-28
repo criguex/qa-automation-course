@@ -1,0 +1,320 @@
+[
+  {
+    "id": "E01",
+    "inicio": "00:00",
+    "fin": "00:33",
+    "tipo": "terminal",
+    "visual": "Arriba, el diff de una línea en package.json. Abajo, la terminal con el error de npm ci en coral.",
+    "texto_pantalla": {
+      "es": "package.json\n- \"@playwright/test\": \"1.63.0\",\n+ \"@playwright/test\": \"1.64.0\",\n\n$ npm ci\nnpm error code EUSAGE\nnpm error `npm ci` can only install packages when your package.json and package-lock.json or npm-shrinkwrap.json are in sync. Please update your lock file with `npm install` before continuing.\nnpm error Invalid: lock file's @playwright/test@1.63.0 does not satisfy @playwright/test@1.64.0",
+      "en": "package.json\n- \"@playwright/test\": \"1.63.0\",\n+ \"@playwright/test\": \"1.64.0\",\n\n$ npm ci\nnpm error code EUSAGE\nnpm error `npm ci` can only install packages when your package.json and package-lock.json or npm-shrinkwrap.json are in sync. Please update your lock file with `npm install` before continuing.\nnpm error Invalid: lock file's @playwright/test@1.63.0 does not satisfy @playwright/test@1.64.0"
+    },
+    "assets": [
+      "Salida observada con `npm ci --ignore-scripts` sobre una copia del package.json/package-lock.json de war-paradigm con la versión cambiada, 26-oct-2026 (npm 11.19.0)"
+    ],
+    "notas_animacion": "El error en coral con ✗, pero un rótulo mint '✓ el entorno se quejó' para dejar claro que el error es bueno."
+  },
+  {
+    "id": "E02",
+    "inicio": "00:33",
+    "fin": "00:42",
+    "tipo": "titulo",
+    "visual": "Título sobre navy con rejilla y barra mint. Icono 🛠️, nivel ★★☆☆☆.",
+    "texto_pantalla": {
+      "es": "Módulo 04 · Setup día 0 — el entorno\nCristian Guerra · QA · Medellín",
+      "en": "Module 04 · Day 0 setup — the environment\nCristian Guerra · QA · Medellín"
+    },
+    "assets": [
+      "course.json (m3, posición 4, icono 🛠️, nivel ★★☆☆☆)"
+    ],
+    "notas_animacion": "Entrada del título; firma en mint."
+  },
+  {
+    "id": "E03",
+    "inicio": "00:42",
+    "fin": "01:29",
+    "tipo": "analogia",
+    "visual": "Cocina: primero desordenada (arroz quemándose, salero vacío, ✗ coral), luego ordenada (ollas limpias, ingredientes en fila, ✓ mint). Una lista de compras con marcas exactas se transforma en un archivo 'package-lock.json'.",
+    "texto_pantalla": {
+      "es": "Cocina lista antes de cocinar\nLista exacta de ingredientes = lockfile",
+      "en": "Kitchen ready before you cook\nExact shopping list = lockfile"
+    },
+    "assets": [
+      "m3.kid"
+    ],
+    "notas_animacion": "La lista se copia a una segunda cocina y sale el mismo plato."
+  },
+  {
+    "id": "E04",
+    "inicio": "01:29",
+    "fin": "02:34",
+    "tipo": "diagrama",
+    "visual": "Dos carriles de versiones de Node: LTS (24, mint) y Current (26, gold). Una flecha 'brew install node' cae en Current; 'brew install node@24' cae en LTS. Debajo, una terminal pequeña con la versión real de la máquina de preparación.",
+    "texto_pantalla": {
+      "es": "LTS = Node 24 · Current = 26 (oct-2026)\nbrew install node → Current ⚠\n$ node --version\nv26.8.1\nPlaywright soporta: latest 22.x, 24.x o 26.x",
+      "en": "LTS = Node 24 · Current = 26 (Oct 2026)\nbrew install node → Current ⚠\n$ node --version\nv26.8.1\nPlaywright supports: latest 22.x, 24.x or 26.x"
+    },
+    "assets": [
+      "m3.theory[0]",
+      "Salida real de `node --version` en la máquina de preparación, 26-oct-2026",
+      "https://playwright.dev/docs/intro (requisitos de sistema)"
+    ],
+    "notas_animacion": "v26.8.1 con ⚠ gold y rótulo 'Current'."
+  },
+  {
+    "id": "E05",
+    "inicio": "02:34",
+    "fin": "03:55",
+    "tipo": "diagrama",
+    "visual": "Tabla de versiones vigentes del curso. Luego el package.json de war-paradigm con '1.63.0' (candado, exacto) y '^5.9.0' (sombrerito, rango) y el lockfile resolviendo 5.9.3.",
+    "texto_pantalla": {
+      "es": "Verificadas 26-oct-2026: Playwright 1.64 · TypeScript 7.0 · Node 24 LTS · Java 25 LTS · Karate 2.1 · k6 2.3\nwar-paradigm: \"@playwright/test\": \"1.63.0\" · \"typescript\": \"^5.9.0\" → lockfile: 5.9.3\nSúbelas a propósito, no por accidente",
+      "en": "Verified Oct 26, 2026: Playwright 1.64 · TypeScript 7.0 · Node 24 LTS · Java 25 LTS · Karate 2.1 · k6 2.3\nwar-paradigm: \"@playwright/test\": \"1.63.0\" · \"typescript\": \"^5.9.0\" → lockfile: 5.9.3\nUpgrade on purpose, not by accident"
+    },
+    "assets": [
+      "m3.theory[1]",
+      "war-paradigm/package.json (devDependencies)",
+      "`npx tsc --version` → Version 5.9.3 en la copia local"
+    ],
+    "notas_animacion": "El candado sobre 1.63.0 en mint; el sombrerito '^' en gold con la palabra 'rango'."
+  },
+  {
+    "id": "E06",
+    "inicio": "03:55",
+    "fin": "05:20",
+    "tipo": "diagrama",
+    "visual": "Tres laptops (tú, compañero, CI) leyendo el mismo package-lock.json y mostrando la misma versión. Al lado, una tabla npm install vs npm ci con los cinco puntos de la documentación.",
+    "texto_pantalla": {
+      "es": "npx → binario LOCAL del proyecto\nnpm ci: exige lockfile · error si no coincide · instala todo · borra node_modules · nunca escribe el lock",
+      "en": "npx → the project's LOCAL binary\nnpm ci: needs a lockfile · errors on mismatch · installs everything · removes node_modules · never writes the lock"
+    },
+    "assets": [
+      "quiz-01-10.json m3 pregunta 7",
+      "https://docs.npmjs.com/cli/v11/commands/npm-ci"
+    ],
+    "notas_animacion": "Cada punto de npm ci entra con ✓ mint."
+  },
+  {
+    "id": "E07",
+    "inicio": "05:20",
+    "fin": "06:53",
+    "tipo": "diagrama",
+    "visual": "Rama que sale de main, PR, revisión, merge. Al lado, el log real de war-paradigm con conventional commits. Luego dos PR: 200 líneas (revisión real ✓) vs 2.000 líneas (LGTM por cansancio ✗). Al final dos cajas que se combinan en un conflicto de merge.",
+    "texto_pantalla": {
+      "es": "git checkout -b feat/login-tests\n1b01c66 fix(03): el hook bloquea push a main con opciones globales de git (-c, --no-pager, --git-dir)\n5dc5e92 docs: el hook tiene 33 casos de prueba tras 1b01c66\n7d46435 style: paleta de marca azul marino y menta en el banner y la insignia\ntest: · chore/build: · PR pequeño · tu diff primero",
+      "en": "git checkout -b feat/login-tests\n1b01c66 fix(03): el hook bloquea push a main con opciones globales de git (-c, --no-pager, --git-dir)\n5dc5e92 docs: el hook tiene 33 casos de prueba tras 1b01c66\n7d46435 style: paleta de marca azul marino y menta en el banner y la insignia\ntest: · chore/build: · small PRs · your own diff first"
+    },
+    "assets": [
+      "`git log --format='%h %s'` en el clon de war-paradigm",
+      "quiz-01-10.json m3 preguntas 2, 4, 5, 8, 9, 10"
+    ],
+    "notas_animacion": "Los mensajes de commit se muestran en su idioma original (español) también en la versión EN; la voz EN los traduce. Subrayar el tipo de cada commit en mint."
+  },
+  {
+    "id": "E08",
+    "inicio": "06:53",
+    "fin": "08:22",
+    "tipo": "diagrama",
+    "visual": "Iconos de las extensiones Playwright y ESLint. Luego el árbol del repo war-paradigm y el workflow ci.yml como una tira de pasos: checkout → setup-node 22 (cache npm) → npm ci → typecheck → instalar Chromium → 01 → 02 → 03 → subir reporte (14 días).",
+    "texto_pantalla": {
+      "es": "README: instalar · correr cada suite · leer el reporte\nCI: checkout → Node 22 → npm ci → typecheck → Chromium → experimentos → reporte",
+      "en": "README: install · run each suite · read the report\nCI: checkout → Node 22 → npm ci → typecheck → Chromium → experiments → report"
+    },
+    "assets": [
+      "m3.theory[3..4]",
+      "war-paradigm/README.es.md (árbol del repo)",
+      "war-paradigm/.github/workflows/ci.yml",
+      "quiz-01-10.json m3 pregunta 3"
+    ],
+    "notas_animacion": "El paso 'npm ci' se ilumina en gold: 'aquí se frena un lockfile desalineado'."
+  },
+  {
+    "id": "E09",
+    "inicio": "08:22",
+    "fin": "08:56",
+    "tipo": "terminal",
+    "visual": "Terminal con las cuatro versiones reales.",
+    "texto_pantalla": {
+      "es": "$ node --version\nv26.8.1\n$ npm --version\n11.19.0\n$ git --version\ngit version 2.50.1 (Apple Git-155)\n$ gh --version\ngh version 2.90.0 (2026-04-16)",
+      "en": "$ node --version\nv26.8.1\n$ npm --version\n11.19.0\n$ git --version\ngit version 2.50.1 (Apple Git-155)\n$ gh --version\ngh version 2.90.0 (2026-04-16)"
+    },
+    "assets": [
+      "Salidas reales en la máquina de preparación, 26-oct-2026 (gh muestra solo la primera línea)"
+    ],
+    "notas_animacion": "v26.8.1 con ⚠ gold 'Current'."
+  },
+  {
+    "id": "E10",
+    "inicio": "08:56",
+    "fin": "10:07",
+    "tipo": "terminal",
+    "visual": "Comandos de instalación y de arranque del proyecto, con las cuatro preguntas del init como tarjetas (de la documentación, no una grabación).",
+    "texto_pantalla": {
+      "es": "$ brew install node@24 git gh     # o: nvm install --lts\n$ npm init playwright@latest\n  · TypeScript o JavaScript (TypeScript por defecto)\n  · carpeta de tests (tests por defecto)\n  · workflow de GitHub Actions (recomendado)\n  · instalar navegadores (sí por defecto)\n→ playwright.config.ts · package.json · package-lock.json · tests/example.spec.ts\n$ npx playwright test\n\nProyecto existente:\n$ npm ci && npx playwright install --with-deps chromium",
+      "en": "$ brew install node@24 git gh     # or: nvm install --lts\n$ npm init playwright@latest\n  · TypeScript or JavaScript (TypeScript by default)\n  · tests folder (tests by default)\n  · GitHub Actions workflow (recommended)\n  · install browsers (yes by default)\n→ playwright.config.ts · package.json · package-lock.json · tests/example.spec.ts\n$ npx playwright test\n\nExisting project:\n$ npm ci && npx playwright install --with-deps chromium"
+    },
+    "assets": [
+      "m3.hands[0]",
+      "https://playwright.dev/docs/intro (preguntas del init y archivos creados)",
+      "war-paradigm/README.es.md (npm ci && npx playwright install --with-deps chromium)"
+    ],
+    "notas_animacion": "No simular la salida interactiva del init: las preguntas van como tarjetas con el rótulo 'según playwright.dev'."
+  },
+  {
+    "id": "E11",
+    "inicio": "10:07",
+    "fin": "10:34",
+    "tipo": "terminal",
+    "visual": "Terminal dentro de la carpeta de war-paradigm.",
+    "texto_pantalla": {
+      "es": "~/war-paradigm $ npx playwright --version\nVersion 1.63.0\n$ which playwright\nplaywright not found",
+      "en": "~/war-paradigm $ npx playwright --version\nVersion 1.63.0\n$ which playwright\nplaywright not found"
+    },
+    "assets": [
+      "Salidas reales en la copia local de war-paradigm, 26-oct-2026 (zsh)"
+    ],
+    "notas_animacion": "'Version 1.63.0' en mint con ✓ y una flecha a la línea del package.json."
+  },
+  {
+    "id": "E12",
+    "inicio": "10:34",
+    "fin": "11:18",
+    "tipo": "codigo",
+    "visual": "El .gitignore real de war-paradigm y, al lado, un esqueleto de README con tres secciones.",
+    "texto_pantalla": {
+      "es": "war-paradigm/.gitignore\nnode_modules/\ntest-results/\nplaywright-report/\nblob-report/\n.DS_Store\n*.log\n.env\n.env.*\n\nREADME: Instalar · Correr cada suite · Leer el reporte",
+      "en": "war-paradigm/.gitignore\nnode_modules/\ntest-results/\nplaywright-report/\nblob-report/\n.DS_Store\n*.log\n.env\n.env.*\n\nREADME: Install · Run each suite · Read the report"
+    },
+    "assets": [
+      "war-paradigm/.gitignore",
+      "m3.crit[1]",
+      "quiz-01-10.json m3 preguntas 3 y 6"
+    ],
+    "notas_animacion": "Las tres primeras líneas en mint con ✓ (criterio del curso). '.env' con un candado."
+  },
+  {
+    "id": "E13",
+    "inicio": "11:18",
+    "fin": "12:14",
+    "tipo": "navegador",
+    "visual": "Terminal con los comandos de rama y push; luego GitHub en la página de 'Open a pull request' con la descripción de ejemplo y la pestaña 'Files changed'; al final el botón de merge.",
+    "texto_pantalla": {
+      "es": "$ git checkout -b feat/login-tests\n$ git commit -m \"test: agrega casos de credenciales inválidas al login\"\n$ git push -u origin feat/login-tests\n$ gh pr create\nDescripción: qué cambia · cómo probar · riesgo",
+      "en": "$ git checkout -b feat/login-tests\n$ git commit -m \"test: add invalid-credential cases to login\"\n$ git push -u origin feat/login-tests\n$ gh pr create\nDescription: what changes · how to test · risk"
+    },
+    "assets": [
+      "m3.hands[1]",
+      "quiz-01-10.json m3 preguntas 1, 2 y 4 (mensaje de commit y nombre de rama)"
+    ],
+    "notas_animacion": "Grabar con un repo de práctica; no mostrar salidas de git/gh inventadas: solo los comandos y la UI real grabada."
+  },
+  {
+    "id": "E14",
+    "inicio": "12:14",
+    "fin": "12:40",
+    "tipo": "codigo",
+    "visual": "Explorador de archivos de una copia de war-paradigm; package-lock.json se arrastra a la papelera. Nota de predicción al lado.",
+    "texto_pantalla": {
+      "es": "$ rm package-lock.json\nPredicción: npm ci se niega a instalar",
+      "en": "$ rm package-lock.json\nPrediction: npm ci refuses to install"
+    },
+    "assets": [
+      "m3.mut"
+    ],
+    "notas_animacion": "La predicción aparece primero."
+  },
+  {
+    "id": "E15",
+    "inicio": "12:40",
+    "fin": "13:39",
+    "tipo": "terminal",
+    "visual": "Terminal con el error de npm ci sin lockfile y, al lado, el paso Install de ci.yml resaltado.",
+    "texto_pantalla": {
+      "es": "$ npm ci\nnpm error code EUSAGE\nnpm error\nnpm error The `npm ci` command can only install with an existing package-lock.json or\nnpm error npm-shrinkwrap.json with lockfileVersion >= 1. Run an install with npm@5 or\nnpm error later to generate a package-lock.json file, then try again.\n(exit code 1)\n\n.github/workflows/ci.yml\n      - name: Install\n        run: npm ci",
+      "en": "$ npm ci\nnpm error code EUSAGE\nnpm error\nnpm error The `npm ci` command can only install with an existing package-lock.json or\nnpm error npm-shrinkwrap.json with lockfileVersion >= 1. Run an install with npm@5 or\nnpm error later to generate a package-lock.json file, then try again.\n(exit code 1)\n\n.github/workflows/ci.yml\n      - name: Install\n        run: npm ci"
+    },
+    "assets": [
+      "Salida observada en copia local sin lockfile (`npm ci --ignore-scripts`), 26-oct-2026",
+      "war-paradigm/.github/workflows/ci.yml"
+    ],
+    "notas_animacion": "Sello 'KILLED' en mint: el entorno notó la mutación. La mutación de la versión de Node se muestra como tarjeta gold 'pendiente: tu predicción'."
+  },
+  {
+    "id": "E16",
+    "inicio": "13:39",
+    "fin": "14:54",
+    "tipo": "diagrama",
+    "visual": "Checklist del reto y rúbrica genérica de 4 niveles con el nivel 4 (workflow con npm ci) en gold y un PR rojo como evidencia.",
+    "texto_pantalla": {
+      "es": "☐ node --version = LTS · npx playwright --version corre desde el proyecto\n☐ README + .gitignore (node_modules, test-results, playwright-report) + lockfile\n☐ ≥ 1 PR mergeado con descripción\nNivel 4: workflow con npm ci que falla si el lockfile no coincide\nApruebas: reto nivel 3 + quiz 6 de 8",
+      "en": "☐ node --version = LTS · npx playwright --version runs from the project\n☐ README + .gitignore (node_modules, test-results, playwright-report) + lockfile\n☐ ≥ 1 merged PR with a description\nLevel 4: workflow with npm ci that fails on a lockfile mismatch\nPass: challenge at level 3 + quiz 6 of 8"
+    },
+    "assets": [
+      "m3.crit, m3.deliver, m3.top",
+      "ui.json rubric.generic y module.evalNote",
+      "course.json qn = 8, qpass = 0.75"
+    ],
+    "notas_animacion": "Casillas con ✓ mint."
+  },
+  {
+    "id": "E17",
+    "inicio": "14:54",
+    "fin": "15:26",
+    "tipo": "quiz",
+    "visual": "Tarjeta de pregunta A–D con temporizador de 5 s.",
+    "texto_pantalla": {
+      "es": "¿Qué hace exactamente “git checkout -b feat/login-tests”?\nA · Cambia a una rama existente\nB · Crea una rama nueva desde donde estás Y te cambia a ella ✓\nC · Crea la rama en el remoto\nD · Hace commit de lo pendiente",
+      "en": "What exactly does “git checkout -b feat/login-tests” do?\nA · Switches to an existing branch\nB · Creates a new branch from where you are AND switches to it ✓\nC · Creates the branch on the remote\nD · Commits whatever's pending"
+    },
+    "assets": [
+      "quiz-01-10.json m3 pregunta 4 (a = 1)"
+    ],
+    "notas_animacion": "El ✓ aparece al terminar la pausa."
+  },
+  {
+    "id": "E18",
+    "inicio": "15:26",
+    "fin": "15:48",
+    "tipo": "quiz",
+    "visual": "Misma plantilla de quiz.",
+    "texto_pantalla": {
+      "es": "¿Qué debe estar en el .gitignore de un repo Playwright?\nA · Los page objects\nB · node_modules/, test-results/, playwright-report/ ✓\nC · Los archivos .feature\nD · El playwright.config.ts",
+      "en": "What belongs in a Playwright repo's .gitignore?\nA · The page objects\nB · node_modules/, test-results/, playwright-report/ ✓\nC · The .feature files\nD · playwright.config.ts"
+    },
+    "assets": [
+      "quiz-01-10.json m3 pregunta 6 (a = 1)"
+    ],
+    "notas_animacion": "Temporizador de 5 s."
+  },
+  {
+    "id": "E19",
+    "inicio": "15:48",
+    "fin": "16:17",
+    "tipo": "quiz",
+    "visual": "Misma plantilla de quiz.",
+    "texto_pantalla": {
+      "es": "¿Qué diferencia hay entre “npx playwright test” y tener playwright instalado global?\nA · Ninguna\nB · npx ejecuta el binario LOCAL del proyecto: todos corren la misma versión ✓\nC · npx es más lento y peor\nD · npx descarga siempre la última versión",
+      "en": "What's the difference between “npx playwright test” and a global playwright install?\nA · None\nB · npx runs the project's LOCAL binary: everyone runs the same version ✓\nC · npx is slower and worse\nD · npx always downloads the latest version"
+    },
+    "assets": [
+      "quiz-01-10.json m3 pregunta 7 (a = 1)"
+    ],
+    "notas_animacion": "Temporizador de 5 s."
+  },
+  {
+    "id": "E20",
+    "inicio": "16:17",
+    "fin": "16:51",
+    "tipo": "resumen",
+    "visual": "Tres tarjetas de ideas y la tarjeta del siguiente módulo (05 · Obsidian, icono 🧠).",
+    "texto_pantalla": {
+      "es": "1 · Node LTS y versiones fijadas; se suben a propósito\n2 · npx usa la versión del proyecto; npm ci instala el lockfile o se niega\n3 · Rama → PR → review → merge desde el día 0\nSiguiente → 05 · Obsidian, tu segundo cerebro\nCristian Guerra · QA · Medellín",
+      "en": "1 · Node LTS and pinned versions; upgrade on purpose\n2 · npx uses the project's version; npm ci installs the lockfile or refuses\n3 · Branch → PR → review → merge from day 0\nNext → 05 · Obsidian, your second brain\nCristian Guerra · QA · Medellín"
+    },
+    "assets": [
+      "course.json (posición 5 = m3b)",
+      "https://criguex.github.io/qa-automation-course/#/m3"
+    ],
+    "notas_animacion": "Las tarjetas entran con ✓ mint."
+  }
+]

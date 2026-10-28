@@ -1,0 +1,245 @@
+[
+  {
+    "id": "E01",
+    "inicio": "00:00",
+    "fin": "00:40",
+    "tipo": "titulo",
+    "visual": "Dos barras de ahorro lado a lado: \"insegura 77 %\" y \"reglas + Jev 69,9 %\". Bajo cada una, un contador de escapadas: 4/15 en coral con un carrito roto y un checkout roto; 0/15 en mint. Entra el título.",
+    "texto_pantalla": {
+      "es": "77 % saltado · ✗ 4/15 escapadas · 69,9 % saltado · ✓ 0/15 · Triaje de CI y selección por impacto",
+      "en": "77% skipped · ✗ 4/15 escaped · 69.9% skipped · ✓ 0/15 · CI triage and test impact selection"
+    },
+    "assets": [
+      "jev-test-impact/bench/RESULTS.md (tabla de políticas)"
+    ],
+    "notas_animacion": "Firma: Cristian Guerra · QA · Medellín. Tiempos EN: 00:00–00:39."
+  },
+  {
+    "id": "E02",
+    "inicio": "00:40",
+    "fin": "01:28",
+    "tipo": "analogia",
+    "visual": "Un cartero reparte cartas en cinco buzones (regression, flaky, environment, test-data, unknown); una carta sin dirección va a una persona. Luego un carro: cambio de espejo → solo se revisa el espejo; cambio desconocido → se revisa todo.",
+    "texto_pantalla": {
+      "es": "Cada carta a su buzón · sin dirección → a una persona · ¿no sabes qué tocó? revisa todo",
+      "en": "Every letter in its box · no address → to a person · not sure what changed? check everything"
+    },
+    "assets": [
+      "m18.kid"
+    ],
+    "notas_animacion": "Buzones con nombre + ícono, no solo color. Tiempos EN: 00:39–01:31."
+  },
+  {
+    "id": "E03",
+    "inicio": "01:28",
+    "fin": "02:24",
+    "tipo": "diagrama",
+    "visual": "Tabla de cinco clases con su significado y qué hacer. Encima, un candado mint: \"nunca re-ejecuta · nunca salta · nunca pone verde\".",
+    "texto_pantalla": {
+      "es": "regression · flaky · environment · test-data · unknown — el build no cambia de estado",
+      "en": "regression · flaky · environment · test-data · unknown — the build status never changes"
+    },
+    "assets": [
+      "jev-ci-triage/README.md (tabla de clases y «never re-runs a test, never skips one and never turns a red build green»)",
+      "m18.mentor"
+    ],
+    "notas_animacion": "Tabla con columnas: clase · qué significa · qué hacer. Tiempos EN: 01:31–02:27."
+  },
+  {
+    "id": "E04",
+    "inicio": "02:24",
+    "fin": "03:40",
+    "tipo": "diagrama",
+    "visual": "Embudo de cinco reglas en orden; cada fallo cae por el embudo hasta la primera regla que lo decide. En la regla 2 se resaltan las dos condiciones con un \"Y\" grande; un 500 se rebota con la etiqueta gold \"un 500 a secas no cuenta\".",
+    "texto_pantalla": {
+      "es": "1 reintento → flaky · 2 marcador Y sin código propio → environment · 3 historial con flips → flaky · 4 estable + diff propio → regression · 5 resto → Jev",
+      "en": "1 retry → flaky · 2 marker AND no owned code → environment · 3 history flips → flaky · 4 stable + owned diff → regression · 5 rest → Jev"
+    },
+    "assets": [
+      "jev-ci-triage/src/classifier.ts (classifyDeterministically)",
+      "jev-ci-triage/README.md §How it works · Rules, in order"
+    ],
+    "notas_animacion": "Mostrar el fragmento real de la regla 2: `if (signals.environmentMarkers.length > 0 && signals.changedAppPaths.length === 0) {`. Tiempos EN: 02:27–03:38."
+  },
+  {
+    "id": "E05",
+    "inicio": "03:40",
+    "fin": "04:44",
+    "tipo": "diagrama",
+    "visual": "Un fallo ambiguo pasa por un filtro \"redact\" (tokens, JWT, correos, tarjetas, rutas del home se tachan) y llega a Jev, que devuelve dos barras de probabilidad: choice (4 clases) y noul (¿pasaría al re-ejecutar?). Un medidor con la línea 0,75: por debajo → persona.",
+    "texto_pantalla": {
+      "es": "test-data = pregunta de significado → Jev · < 0,75 → unknown, a una persona · ⚠ el estado sale redactado, pero sale",
+      "en": "test-data = a question of meaning → Jev · < 0.75 → unknown, to a person · ⚠ state leaves redacted, but it leaves"
+    },
+    "assets": [
+      "jev-ci-triage/README.md (Jev, Redaction, Honest limits)",
+      "jev-ci-triage/src/redact.ts",
+      "jev-ci-triage/src/config.ts (confidenceThreshold: 0.75)"
+    ],
+    "notas_animacion": "La barra noul se rotula \"solo informativa\". Tiempos EN: 03:38–04:37."
+  },
+  {
+    "id": "E06",
+    "inicio": "04:44",
+    "fin": "06:23",
+    "tipo": "diagrama",
+    "visual": "Gráfico de puntos: cuatro llamadas con la misma entrada (0,69 · 0,71 · 0,78 · 0,84) alrededor de la línea 0,75; dos caen arriba con la etiqueta coral \"flaky ✗ incorrecto\". Luego un contador 17/126 con HTTP 429 y la salida \"unknown · unverified\". Al final, la Action: fail-on → ✗ puede fallar el paso, nunca ✓ hacerlo pasar.",
+    "texto_pantalla": {
+      "es": "Misma entrada: 0,69 · 0,71 · 0,78 · 0,84 (umbral 0,75) · 17 de 126 llamadas OK por 429 · fail-on solo puede fallar",
+      "en": "Same input: 0.69 · 0.71 · 0.78 · 0.84 (threshold 0.75) · 17 of 126 calls OK due to 429 · fail-on can only fail"
+    },
+    "assets": [
+      "jev-ci-triage/README.md §Measured in this repo (repetibilidad 2026-09-26, 17 of 126) y §Use it in your pipeline",
+      "jev-ci-triage/demo/measurements/jev-repeatability.json"
+    ],
+    "notas_animacion": "Datos tomados del README; no son de una corrida nueva. Tiempos EN: 04:37–06:17."
+  },
+  {
+    "id": "E07",
+    "inicio": "06:23",
+    "fin": "07:38",
+    "tipo": "diagrama",
+    "visual": "Diagrama de flujo del selector: git diff → ¿archivo de fullSuiteOn? → todo. Si no: unitarias por grafo de imports; e2e → Jev (umbral 0,2); @smoke siempre; cualquier falla de Jev → suite completa. Un reloj al lado: \"suite completa en main y cada noche\".",
+    "texto_pantalla": {
+      "es": "Grafo para unitarias · Jev para caja negra (umbral 0,2) · @smoke siempre · falla de Jev → todo",
+      "en": "Graph for unit tests · Jev for black-box (threshold 0.2) · @smoke always · Jev failure → everything"
+    },
+    "assets": [
+      "jev-test-impact/docs/assets/how-it-works.svg (referencia)",
+      "jev-test-impact/README.md §How it works · Safety policy",
+      "jev-test-impact/demo/impact.config.json (alwaysRun @smoke, fullSuiteOn, jev.threshold 0.2)"
+    ],
+    "notas_animacion": "Redibujar con la paleta; flechas mint, fail-safe en gold. Tiempos EN: 06:17–07:26."
+  },
+  {
+    "id": "E08",
+    "inicio": "07:38",
+    "fin": "08:48",
+    "tipo": "terminal",
+    "visual": "Terminal con los cuatro comandos del laboratorio A y sus salidas reales; al final, la tabla de demo:eval con la última línea resaltada.",
+    "texto_pantalla": {
+      "es": "npm test ✓ 44 · demo:triage 6 de 11 · demo:eval: correct 5 · sent to a human 1 · wrong 0",
+      "en": "npm test ✓ 44 · demo:triage 6 of 11 · demo:eval: correct 5 · sent to a human 1 · wrong 0"
+    },
+    "assets": [
+      "Comandos (m18.hands[0]; jev-ci-triage/README.md §Quick start):\n$ git clone https://github.com/criguex/jev-ci-triage && cd jev-ci-triage\n$ npm ci\n$ npm test\n$ npm run demo:triage\n$ npm run demo:eval",
+      "Salidas reales (2026-10-26, jev-ci-triage a41f0fb, Node 26.8.1):\n Test Files  7 passed (7)\n      Tests  44 passed (44)\n\njev-ci-triage: 6 failing of 11 · regression=1 flaky=1 environment=1 test-data=1 unknown=2 · Jev replay (recorded responses)\nreport: report/index.html\n\n| Test | Seeded as | Tool said | Decided by | Outcome |\n| --- | --- | --- | --- | --- |\n| Completed filter shows only completed todos | regression | regression | deterministic | correct |\n| renaming a todo keeps its position | unknown | unknown (Jev leaned flaky 0.69) | jev-low-confidence | correct |\n| marks everything complete through its accessible label | regression | unknown (Jev leaned regression 0.61) | jev-low-confidence | sent to a human |\n| seeded shopping list renders in order | test-data | test-data | jev | correct |\n| backup service answers its health check | environment | environment | deterministic | correct |\n| counter reflects a completed item right away | flaky | flaky | deterministic | correct |\n\ncorrect 5 · sent to a human 1 · wrong 0 · of 6 failures"
+    ],
+    "notas_animacion": "La captura del reporte HTML puede tomarse de https://criguex.github.io/jev-ci-triage/ o de docs/ del repo. Tiempos EN: 07:26–08:33."
+  },
+  {
+    "id": "E09",
+    "inicio": "08:48",
+    "fin": "10:02",
+    "tipo": "navegador",
+    "visual": "Navegador con report/index.html. Primero se oculta la columna Decided by con una tarjeta \"tu predicción\"; se descubre fila por fila. Al lado, la lista de causas sembradas de ground-truth.json.",
+    "texto_pantalla": {
+      "es": "Predice la regla (1–5) de cada fallo · commitea · compara con «Decided by»",
+      "en": "Predict the rule (1–5) for each failure · commit · compare with \"Decided by\""
+    },
+    "assets": [
+      "jev-ci-triage/report/index.html (generado por demo:triage)",
+      "jev-ci-triage/demo/scenario/ground-truth.json",
+      "jev-ci-triage/README.md §The demo (causas sembradas)"
+    ],
+    "notas_animacion": "No mostrar el número de regla en pantalla antes de la pausa. Tiempos EN: 08:33–09:41."
+  },
+  {
+    "id": "E10",
+    "inicio": "10:02",
+    "fin": "11:18",
+    "tipo": "terminal",
+    "visual": "Terminal del laboratorio B con npm test, bench y bench --check; luego la tabla de RESULTS.md con la fila insegura en coral y la del proyecto en mint.",
+    "texto_pantalla": {
+      "es": "Replay matches the committed results and missed no failing test ✓",
+      "en": "Replay matches the committed results and missed no failing test ✓"
+    },
+    "assets": [
+      "Comandos (m18.hands[2]; jev-test-impact/README.md §Quick start):\n$ git clone https://github.com/criguex/jev-test-impact && cd jev-test-impact\n$ npm ci\n$ npm test\n$ JTI_JEV_MODE=replay npm run bench\n$ JTI_JEV_MODE=replay npm run bench -- --check",
+      "Salidas reales (2026-10-26, Node 26.8.1): « Test Files  8 passed (8)» «      Tests  57 passed (57)»; bench --check (extracto):\n3d8a57a feat(layout): show the cart count as a badge: jev 7/65, failing 3, missed 0\n80063db feat(checkout): accept the shipping query parameter from the new link: jev 11/66, failing 1, missed 0\n618a410 chore(e2e): lower the per-test timeout to 15s: jev 66/66, failing 0, missed 0 (playwright.config.ts affects every test (fullSuiteOn))\nReplay matches the committed results and missed no failing test.",
+      "jev-test-impact/bench/RESULTS.md (tabla):\n| Full suite | 1311 | 0% | 206.1 s | 143.4 s | 0 of 15 | 6 of 6 |\n| Deterministic only, unmapped e2e skipped (unsafe) | 301 | 77.0% | 59.7 s | 70.5 s | 4 of 15 | 5 of 6 |\n| Deterministic only, unmapped e2e all run | 527 | 59.8% | 193.8 s | 95.5 s | 0 of 15 | 6 of 6 |\n| Deterministic + Jev (this project) | 395 | 69.9% | 122.5 s | 83.4 s | 0 of 15 | 6 of 6 |"
+    ],
+    "notas_animacion": "La fila 618a410 sirve para mostrar fullSuiteOn en acción. Tiempos EN: 09:41–10:47."
+  },
+  {
+    "id": "E11",
+    "inicio": "11:18",
+    "fin": "12:14",
+    "tipo": "diagrama",
+    "visual": "Cuatro tarjetas de prueba (los cuatro casos que solo Jev atrapó) con su commit y su probabilidad, sobre una regla horizontal con la línea 0,2. Al final, tarjeta gold con el aviso del repo.",
+    "texto_pantalla": {
+      "es": "0,93 · 0,95 · 0,92 · 0,71 > 0,2 · ⚠ una app pequeña: evidencia, no garantía",
+      "en": "0.93 · 0.95 · 0.92 · 0.71 > 0.2 · ⚠ a small app: evidence, not a guarantee"
+    },
+    "assets": [
+      "jev-test-impact/bench/RESULTS.md §Failures that only Jev caught",
+      "jev-test-impact/README.md (párrafo «These numbers come from one small demo app…»)"
+    ],
+    "notas_animacion": "Títulos de las pruebas en inglés, subtítulo traducido. Tiempos EN: 10:47–11:39."
+  },
+  {
+    "id": "E12",
+    "inicio": "12:14",
+    "fin": "13:47",
+    "tipo": "terminal",
+    "visual": "Pantalla partida. Izquierda (triaje): diff de una línea, npm test con 1 ✗, demo:eval sin cambios con la etiqueta gold \"la demo no grita\". Derecha (impacto): diff de una línea, npm test con 1 ✗ y bench --check con «missed 1» y exit 1.",
+    "texto_pantalla": {
+      "es": "Triaje: unit ✗ grita · demo ⚠ calla · Impacto: unit ✗ grita · bench ✗ grita (80063db missed 1)",
+      "en": "Triage: unit ✗ shouts · demo ⚠ silent · Impact: unit ✗ shouts · bench ✗ shouts (80063db missed 1)"
+    },
+    "assets": [
+      "Mutante 1 (copia local de jev-ci-triage, src/classifier.ts):\n-  if (signals.environmentMarkers.length > 0 && signals.changedAppPaths.length === 0) {\n+  if (signals.environmentMarkers.length > 0) {",
+      "Salida real (2026-10-26): «× classifyDeterministically > does not blame the environment when owned app code also changed» · «AssertionError: expected 'environment' to be 'ambiguous'» · «Tests  1 failed | 43 passed (44)» (exit 1). demo:eval con el mutante: «correct 5 · sent to a human 1 · wrong 0 · of 6 failures» (exit 0)",
+      "Mutante 2 (copia local de jev-test-impact, src/select.ts línea 108):\n-        if (probability >= config.jev.threshold) {\n+        if (probability >= 0.75) {",
+      "Salida real (2026-10-26): «FAIL  test/select.test.ts > selectTests > adds black-box tests that Jev rates at or above the threshold» · «AssertionError: expected [ 'pricing', 'home' ] to deeply equal [ 'pricing', 'cart', 'home' ]» · «Tests  1 failed | 56 passed (57)». bench --check: «80063db feat(checkout): accept the shipping query parameter from the new link: jev 5/66, failing 1, missed 1» · «Replay no longer matches bench/results.json» (exit 1)"
+    ],
+    "notas_animacion": "Rótulo: \"corrido por un asistente bajo mi dirección, en copias locales\". Tiempos EN: 11:39–13:07."
+  },
+  {
+    "id": "E13",
+    "inicio": "13:47",
+    "fin": "15:13",
+    "tipo": "resumen",
+    "visual": "Las dos partes del ejercicio, los cinco criterios y la rúbrica de m18 (4 filas × 4 niveles) que se ilumina fila por fila.",
+    "texto_pantalla": {
+      "es": "Rúbrica: Clasificación · Reglas · Impacto · Mutación (WAR) — aprobado = las 4 filas en nivel 3",
+      "en": "Rubric: Classification · Rules · Impact · Mutation (WAR) — pass = all 4 rows at level 3"
+    },
+    "assets": [
+      "m18.hands[3], m18.crit, m18.deliver, m18.rubm",
+      "ui.json → rubric.allRows",
+      "Comando del ejercicio: npx github:criguex/jev-test-impact select --base origin/main"
+    ],
+    "notas_animacion": "Texto de la rúbrica pequeño; la voz nombra solo el nivel 4. Tiempos EN: 13:07–14:32."
+  },
+  {
+    "id": "E14",
+    "inicio": "15:13",
+    "fin": "15:58",
+    "tipo": "quiz",
+    "visual": "Tres tarjetas de pregunta con pausa de 5 s y respuesta en mint.",
+    "texto_pantalla": {
+      "es": "1) HTTP 500 sin cambio de app: ¿environment? · 2) Jev responde 429: ¿qué reporta? · 3) ¿Por qué no la política del 77 %?",
+      "en": "1) HTTP 500, no app change: environment? · 2) Jev returns 429: what's reported? · 3) Why not the 77% policy?"
+    },
+    "assets": [
+      "quiz-20-27.json → m18 índices 1, 4 y 7"
+    ],
+    "notas_animacion": "Ícono ⏸ \"pausa el video\". Tiempos EN: 14:32–15:16."
+  },
+  {
+    "id": "E15",
+    "inicio": "15:58",
+    "fin": "16:46",
+    "tipo": "resumen",
+    "visual": "Tres ideas en tarjetas y la tarjeta del siguiente módulo.",
+    "texto_pantalla": {
+      "es": "1 · Reglas primero, modelo para lo ambiguo, persona para lo demás · 2 · Falla abierto, nunca verde · 3 · Cero escapadas · Siguiente: Evaluar IA con un LLM como juez",
+      "en": "1 · Rules first, model for the ambiguous, a person for the rest · 2 · Fail open, never green · 3 · Zero escapes · Next: Evaluating AI with an LLM judge"
+    },
+    "assets": [
+      "https://criguex.github.io/qa-automation-course/#/m16"
+    ],
+    "notas_animacion": "Firma: Cristian Guerra · QA · Medellín. Tiempos EN: 15:16–16:04."
+  }
+]

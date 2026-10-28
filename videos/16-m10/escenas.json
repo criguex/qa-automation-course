@@ -1,0 +1,286 @@
+[
+  {
+    "id": "E01",
+    "inicio": "00:00",
+    "fin": "00:45",
+    "tipo": "codigo",
+    "visual": "Cuatro pruebas de rendimiento en verde. Un globo de pensamiento dice 'IMDb carga rápido' y se tacha en coral. Zoom al comentario de cabecera del spec y a las dos constantes de presupuesto.",
+    "texto_pantalla": {
+      "es": "✓ verde contra un mock · mide regresiones, no la red real",
+      "en": "✓ green against a mock · catches regressions, not real network speed"
+    },
+    "assets": [
+      "civica-playwright-challenge/tests/performance/navigationTiming.performance.spec.ts líneas 5-13: comentario '...not about measuring real-world network performance.' · DOM_CONTENT_LOADED_BUDGET_MS = 4000 · LOAD_EVENT_BUDGET_MS = 5000",
+      "civica-playwright-challenge/README.es.md: corrida 38665514760, performance 4 pasaron"
+    ],
+    "notas_animacion": "El comentario se muestra en inglés original con subtítulo. Tiempos ES; los de EN están en guion.en.md."
+  },
+  {
+    "id": "E02",
+    "inicio": "00:45",
+    "fin": "01:02",
+    "tipo": "titulo",
+    "visual": "Tarjeta de título navy, icono de cohete, firma.",
+    "texto_pantalla": {
+      "es": "Módulo 16 · Performance y Cloud (k6 · JMeter · AWS)",
+      "en": "Module 16 · Performance and Cloud (k6 · JMeter · AWS)"
+    },
+    "assets": [
+      "course.json posición 16, id m10, ★★★★☆, semana 18",
+      "Firma: Cristian Guerra · QA · Medellín"
+    ],
+    "notas_animacion": "4 a 6 s."
+  },
+  {
+    "id": "E03",
+    "inicio": "01:02",
+    "fin": "01:51",
+    "tipo": "analogia",
+    "visual": "Ascensor ilustrado: primero con una persona (✓, puerta rápida), después con veinte (reloj que sube, cartel 'exceso de peso' en gold). Un cronómetro mide a cada persona; la última de la fila se resalta como 'p95'.",
+    "texto_pantalla": {
+      "es": "1 persona vs 20 · importa el que más esperó",
+      "en": "1 person vs 20 · the longest wait is what matters"
+    },
+    "assets": [
+      "Analogía base: i18n/es/modules-15-23.json → m10.kid"
+    ],
+    "notas_animacion": "Las personas en espera se ordenan por tiempo para introducir la idea de percentil."
+  },
+  {
+    "id": "E04",
+    "inicio": "01:51",
+    "fin": "02:40",
+    "tipo": "diagrama",
+    "visual": "Cuatro gráficas de carga contra tiempo: load (meseta), stress (rampa hasta el quiebre, punto marcado en coral), soak (meseta larga de 6 h), spike (salto vertical).",
+    "texto_pantalla": {
+      "es": "Load · Stress · Soak · Spike",
+      "en": "Load · Stress · Soak · Spike"
+    },
+    "assets": [
+      "i18n/es/modules-15-23.json → m10.theory[0]",
+      "i18n/es/quiz-11-19.json → m10[1] (soak) y m10[4] (ramp-up)"
+    ],
+    "notas_animacion": "En stress, la curva de latencia aparece encima de la rampa y se dobla en el punto de quiebre."
+  },
+  {
+    "id": "E05",
+    "inicio": "02:40",
+    "fin": "03:41",
+    "tipo": "diagrama",
+    "visual": "Histograma de latencias con la línea del promedio (90 ms) y la del p95 (180 ms); la cola a la derecha en gold. Debajo, SLI (métrica medida) → SLO (objetivo) → threshold (en el script).",
+    "texto_pantalla": {
+      "es": "El promedio esconde la cola · SLI = lo que mides · SLO = cuánto aceptas",
+      "en": "The average hides the tail · SLI = what you measure · SLO = what you accept"
+    },
+    "assets": [
+      "i18n/es/quiz-11-19.json → m10[0] (p95 180 ms vs promedio 90 ms) y m10[6] (SLI/SLO)"
+    ],
+    "notas_animacion": "Los valores 90 y 180 vienen de la pregunta del quiz; rotular 'ejemplo'."
+  },
+  {
+    "id": "E06",
+    "inicio": "03:41",
+    "fin": "05:03",
+    "tipo": "codigo",
+    "visual": "El spec completo; se resaltan el bucle de 20 muestras, el expect(201), el sort y el cálculo del índice. Una animación lateral ordena 20 barras y marca la número 19.",
+    "texto_pantalla": {
+      "es": "p95 sobre 20 muestras = la 19.ª ordenada · una sola muestra = anécdota",
+      "en": "p95 over 20 samples = 19th sorted value · one sample = an anecdote"
+    },
+    "assets": [
+      "restful-booker-quality-suite/tests/performance/api.performance.spec.ts líneas 4-15: for (let sample = 0; sample < 20; sample += 1) · expect(response.status()).toBe(201) · durations.sort((a, b) => a - b) · const p95 = durations[Math.ceil(durations.length * 0.95) - 1] · expect(p95).toBeLessThan(500)",
+      "Mismo archivo líneas 17-23: 'booking list responds below 1 second' · expect(duration).toBeLessThan(1_000)",
+      "restful-booker-quality-suite/docs/DEFECTS.md: '/ping returning 201 ... remain clarification points'"
+    ],
+    "notas_animacion": "Las 20 barras son ilustrativas: no mostrar milisegundos concretos porque no hay salida grabada con duraciones."
+  },
+  {
+    "id": "E07",
+    "inicio": "05:03",
+    "fin": "05:49",
+    "tipo": "terminal",
+    "visual": "Visor de texto con el archivo de evidencia; se resaltan las líneas de static gates y de Playwright. Al lado, la fila Performance del reporte de ejecución.",
+    "texto_pantalla": {
+      "es": "43 chequeos ✓ · 2,0 s · presupuesto ≠ prueba de carga",
+      "en": "43 checks ✓ · 2.0 s · budget ≠ load test"
+    },
+    "assets": [
+      "restful-booker-quality-suite/evidence/execution-2026-10-16.txt: Command: npm run quality · Prettier: PASS · ESLint: PASS · TypeScript: PASS · Total checks: 43 · Effective result: 43 passed, including 9 controlled expected-failure checks · Duration: 2.0 seconds · Projects: api, contract, performance",
+      "restful-booker-quality-suite/docs/EXECUTION_REPORT.md línea 45: | Performance | Health p95 below 500 ms and booking list below 1 second | Passed |"
+    ],
+    "notas_animacion": "Es un archivo de evidencia, no una terminal en vivo: rotular el nombre del archivo."
+  },
+  {
+    "id": "E08",
+    "inicio": "05:49",
+    "fin": "07:12",
+    "tipo": "codigo",
+    "visual": "Script de k6 del ejemplo oficial; se iluminan los dos thresholds. Abajo, una terminal esquemática con un ✗ rojo junto a un threshold y el texto 'exit code ≠ 0'.",
+    "texto_pantalla": {
+      "es": "Threshold = SLO ejecutable · si falla: exit ≠ 0 y el pipeline se pone rojo",
+      "en": "Threshold = executable SLO · if it fails: exit ≠ 0 and the pipeline turns red"
+    },
+    "assets": [
+      "Documentación oficial k6, Thresholds (https://grafana.com/docs/k6/latest/using-k6/thresholds/): import http from 'k6/http'; export const options = { thresholds: { http_req_failed: ['rate<0.01'], http_req_duration: ['p(95)<200'], }, }; export default function () { http.get('https://quickpizza.grafana.com'); }",
+      "Misma página: formato <aggregation_method> <operator> <value>; ejemplos 'avg < 200', 'count >= 500', 'p(90) < 300'; 'k6 would exit with a non-zero exit code'"
+    ],
+    "notas_animacion": "Rotular 'ejemplo de la documentación oficial de k6'. La salida de terminal es esquemática: no inventar números de una corrida."
+  },
+  {
+    "id": "E09",
+    "inicio": "07:12",
+    "fin": "08:04",
+    "tipo": "diagrama",
+    "visual": "Tarjeta 'tutorial viejo' con k6 pause/resume/scale/status y externally-controlled tachados en coral; flecha a 'k6 2.x' con ramping-vus, constant-arrival-rate y k6 cloud run en mint. Al lado, un icono de JMeter genérico con el texto 'criterio escrito'.",
+    "texto_pantalla": {
+      "es": "Traduce lo viejo: ramping-vus · constant-arrival-rate · k6 cloud run script.js",
+      "en": "Translate the old stuff: ramping-vus · constant-arrival-rate · k6 cloud run script.js"
+    },
+    "assets": [
+      "i18n/es/modules-15-23.json → m10.theory[3]",
+      "https://jmeter.apache.org/usermanual/index.html"
+    ],
+    "notas_animacion": "Sin logos de marca; solo texto."
+  },
+  {
+    "id": "E10",
+    "inicio": "08:04",
+    "fin": "09:18",
+    "tipo": "diagrama",
+    "visual": "Tres mini-gráficas: (1) VUs suben, throughput plano, latencia plana → 'cuello saturado' en gold; (2) errores suben, latencia de éxitos plana → 'límite duro rechaza' en gold; (3) staging a la mitad → 'solo regresiones relativas'. Al final, una serie de tiempo estilo Grafana con un pico en el minuto 12.",
+    "texto_pantalla": {
+      "es": "Throughput plano = cuello · errores sin latencia = rechazo en la puerta · staging chico = solo relativo",
+      "en": "Flat throughput = bottleneck · errors without latency = rejected at the door · small staging = relative only"
+    },
+    "assets": [
+      "i18n/es/quiz-11-19.json → m10[5], m10[7], m10[8], m10[9]"
+    ],
+    "notas_animacion": "Ejes sin números absolutos; son patrones, no mediciones."
+  },
+  {
+    "id": "E11",
+    "inicio": "09:18",
+    "fin": "10:34",
+    "tipo": "diagrama",
+    "visual": "Una petición entra a una Lambda fría (3 s, reloj gold) y las siguientes calientes (120 ms, mint). Luego una cadena de eventos: API → función A → cola → función B → resultado; una lupa recorre la traza en CloudWatch Logs Insights.",
+    "texto_pantalla": {
+      "es": "Cold start no es bug · 200 en la entrada ≠ resultado final",
+      "en": "A cold start isn't a bug · 200 at the door ≠ final result"
+    },
+    "assets": [
+      "i18n/es/quiz-11-19.json → m10[2] (cold start 3 s / 120 ms)",
+      "i18n/es/modules-15-23.json → m10.theory[2] (serverless, event-driven, CloudWatch Logs Insights)",
+      "https://docs.aws.amazon.com/lambda/"
+    ],
+    "notas_animacion": "La cadena de funciones es genérica; no nombrar servicios que no están en el módulo."
+  },
+  {
+    "id": "E12",
+    "inicio": "10:34",
+    "fin": "11:34",
+    "tipo": "codigo",
+    "visual": "accessibility.mock.spec.ts con BLOCKING_IMPACTS y withTags resaltados. Al lado, la tabla de la corrida 38665514760 con mock 19 ✓.",
+    "texto_pantalla": {
+      "es": "axe-core: bloquea serious y critical · estable porque corre contra el mock",
+      "en": "axe-core: blocks serious and critical · stable because it runs on the mock"
+    },
+    "assets": [
+      "civica-playwright-challenge/tests/mock/accessibility.mock.spec.ts líneas 5-31: const BLOCKING_IMPACTS = new Set(['serious', 'critical']); · new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa']).analyze()",
+      "civica-playwright-challenge/README.es.md: tabla Tipos de prueba (Accesibilidad 'Sí (parte de mock)') y corrida 38665514760: mock 19, performance 4, visual 4"
+    ],
+    "notas_animacion": "Breve."
+  },
+  {
+    "id": "E13",
+    "inicio": "11:34",
+    "fin": "12:22",
+    "tipo": "codigo",
+    "visual": "pages.visual.spec.ts con toHaveScreenshot y maxDiffPixelRatio resaltados; tres archivos de baseline (-linux ✓, -darwin ✗ ignorado). Después navigationTiming.performance.spec.ts con las dos constantes.",
+    "texto_pantalla": {
+      "es": "Baselines en el mismo SO que el CI · presupuesto holgado contra mock",
+      "en": "Baselines on the same OS as CI · generous budget against a mock"
+    },
+    "assets": [
+      "civica-playwright-challenge/tests/visual/pages.visual.spec.ts líneas 20-29: await expect(page).toHaveScreenshot(`${name}.png`, { fullPage: true, maxDiffPixelRatio: 0.02 });",
+      "civica-playwright-challenge/tests/performance/navigationTiming.performance.spec.ts líneas 12-13 y 44-47"
+    ],
+    "notas_animacion": "Cerrar con un guiño visual al gancho (E01)."
+  },
+  {
+    "id": "E14",
+    "inicio": "12:22",
+    "fin": "13:53",
+    "tipo": "diagrama",
+    "visual": "Checklist en tres pasos y, debajo, la plantilla del informe (entorno → tabla p95/p99/errores/throughput con threshold y resultado → conclusiones y límites) y del checklist serverless (cold start aparte, traza de punta a punta, resultado final).",
+    "texto_pantalla": {
+      "es": "k6 con thresholds · interpretar p95/p99 · Lambda de punta a punta en CloudWatch",
+      "en": "k6 with thresholds · read p95/p99 · Lambda end to end in CloudWatch"
+    },
+    "assets": [
+      "i18n/es/modules-15-23.json → m10.hands, m10.deliver",
+      "Comando base: k6 run <tu-script>.js"
+    ],
+    "notas_animacion": "La plantilla es una sugerencia del guion; no mostrar valores llenos."
+  },
+  {
+    "id": "E15",
+    "inicio": "13:53",
+    "fin": "14:52",
+    "tipo": "animacion",
+    "visual": "Un endpoint propio recibe una inyección: primero latencia (reloj), después un 503 (✗). Para cada una, la predicción escrita y el threshold que se pone rojo. Una tercera variante en coral: 503 inyectado y corrida verde → HALLAZGO 'threshold sin dientes'.",
+    "texto_pantalla": {
+      "es": "Latencia → http_req_duration ✗ · 503 → http_req_failed ✗ · verde = hallazgo",
+      "en": "Latency → http_req_duration ✗ · 503 → http_req_failed ✗ · green = finding"
+    },
+    "assets": [
+      "i18n/es/modules-15-23.json → m10.mut y m10.top"
+    ],
+    "notas_animacion": "Mostrar 'solo contra un servicio que controlas' en gold."
+  },
+  {
+    "id": "E16",
+    "inicio": "14:52",
+    "fin": "15:23",
+    "tipo": "diagrama",
+    "visual": "Tarjeta de reto con los tres criterios verificables y el nivel top en gold.",
+    "texto_pantalla": {
+      "es": "Thresholds que fallan · p95 justificado con datos · baselines en el SO del CI",
+      "en": "Thresholds that fail · p95 backed by data · baselines on CI's OS"
+    },
+    "assets": [
+      "i18n/es/modules-15-23.json → m10.crit, m10.top"
+    ],
+    "notas_animacion": "Cada criterio con su casilla."
+  },
+  {
+    "id": "E17",
+    "inicio": "15:23",
+    "fin": "15:59",
+    "tipo": "quiz",
+    "visual": "Tres preguntas con cuatro opciones, pausa de 5 s, respuesta en mint.",
+    "texto_pantalla": {
+      "es": "1 ¿p95 vs promedio? · 2 ¿Dónde vive el pasa/falla? · 3 ¿Lambda de 3 s?",
+      "en": "1 p95 vs average? · 2 Where does pass/fail live? · 3 A 3-second Lambda?"
+    },
+    "assets": [
+      "i18n/es/quiz-11-19.json → m10[0], m10[3], m10[2]",
+      "i18n/en/quiz-11-19.json → m10[0], m10[3], m10[2]"
+    ],
+    "notas_animacion": "Opciones incorrectas en muted."
+  },
+  {
+    "id": "E18",
+    "inicio": "15:59",
+    "fin": "16:29",
+    "tipo": "resumen",
+    "visual": "Tres tarjetas y flecha al módulo 17 (Determinismo). Firma.",
+    "texto_pantalla": {
+      "es": "Percentiles · thresholds · cada prueba dice qué mide → Módulo 17: Determinismo",
+      "en": "Percentiles · thresholds · every test says what it measures → Module 17: Determinism"
+    },
+    "assets": [
+      "Siguiente módulo: course.json posición 17, id m20"
+    ],
+    "notas_animacion": "Fundido a navy."
+  }
+]

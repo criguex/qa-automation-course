@@ -1,0 +1,362 @@
+[
+  {
+    "id": "E01",
+    "inicio": "00:00",
+    "fin": "00:42",
+    "tipo": "codigo",
+    "visual": "Pantalla dividida: a la izquierda Register.feature en limpio; a la derecha los dos step definitions que lanzan PendingException, resaltados en gold.",
+    "texto_pantalla": {
+      "es": "El feature promete un mensaje de éxito\nEl código: PendingException ⚠",
+      "en": "The feature promises a success message\nThe code: PendingException ⚠"
+    },
+    "assets": [
+      "brand/selenium-cucumber-pom/src/test/resources/features/Register.feature",
+      "brand/selenium-cucumber-pom/src/test/java/stepdefinitions/register/StepDefinitionRegister.java"
+    ],
+    "notas_animacion": "Código real: @Then(\"it shows a success message\") public void itShowsASuccessMessage() { throw new io.cucumber.java.PendingException(); }. No mostrar comentarios de código del archivo (las reglas del curso piden cero comentarios en pantalla de código propio; aquí basta con el throw)."
+  },
+  {
+    "id": "E02",
+    "inicio": "00:42",
+    "fin": "01:06",
+    "tipo": "titulo",
+    "visual": "Tarjeta de título navy con ícono 🥒.",
+    "texto_pantalla": {
+      "es": "Módulo 7 · BDD — Gherkin, Cucumber & Serenity\nCristian Guerra · QA · Medellín",
+      "en": "Module 7 · BDD — Gherkin, Cucumber & Serenity\nCristian Guerra · QA · Medellín"
+    },
+    "assets": [],
+    "notas_animacion": "Subtítulo: 'Un escenario es una promesa' / 'A scenario is a promise'."
+  },
+  {
+    "id": "E03",
+    "inicio": "01:06",
+    "fin": "01:49",
+    "tipo": "analogia",
+    "visual": "Libro de cuentos con tres frases (Dado / Cuando / Entonces). Detrás de cada frase, un ayudante robot que hace la acción. En la última, el ayudante mira el recibo con una lupa (✓). Variante: nadie mira y el libro tiene un sello ⚠ 'promesa sin revisar'.",
+    "texto_pantalla": {
+      "es": "Dado… Cuando… Entonces…\nEl cuento dice QUÉ · el ayudante sabe CÓMO",
+      "en": "Given… When… Then…\nThe story says WHAT · the helper knows HOW"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/modules-01-14.json (m7.kid)"
+    ],
+    "notas_animacion": "Ilustración simple; frases cortas."
+  },
+  {
+    "id": "E04",
+    "inicio": "01:49",
+    "fin": "03:30",
+    "tipo": "diagrama",
+    "visual": "Tres personajes (negocio, dev, QA) alrededor de una mesa antes de construir. Salen dos tarjetas de ejemplo: 49,99 → aprobado solo; 50 → pendiente. La tarjeta de 50 se convierte en escenario y choca con el producto: ✗ BUG-18.",
+    "texto_pantalla": {
+      "es": "3 amigos → ejemplos → escenarios\n50 USD → debía ir a revisión · BUG-18 ✗",
+      "en": "3 amigos → examples → scenarios\nUSD 50 → should go to review · BUG-18 ✗"
+    },
+    "assets": [
+      "brand/spendwise-qa-assessment/docs/03-casos-prueba.md (POL-THR)",
+      "brand/spendwise-qa-assessment/docs/04-resumen-ejecutivo.md"
+    ],
+    "notas_animacion": "Datos reales: POL-THR '49,99 con recibo queda AutoApproved; 50 queda PendingApproval' → 'Falla: BUG-18'. No mostrar la URL del entorno ni usuarios de spendwise."
+  },
+  {
+    "id": "E05",
+    "inicio": "03:30",
+    "fin": "04:08",
+    "tipo": "diagrama",
+    "visual": "Dos tarjetas de step: imperativa con selector y espera (✗ coral) y declarativa (✓ mint). Debajo, el Then con JSONPath se transforma en 'el pedido aparece activo' y el JSONPath baja a la capa de steps.",
+    "texto_pantalla": {
+      "es": "Imperativo ✗ mecánica · Declarativo ✓ intención",
+      "en": "Imperative ✗ mechanics · Declarative ✓ intent"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/quiz-01-10.json (m7, preguntas 1 y 7)"
+    ],
+    "notas_animacion": "Los textos de ejemplo salen del banco de preguntas."
+  },
+  {
+    "id": "E06",
+    "inicio": "04:08",
+    "fin": "04:56",
+    "tipo": "codigo",
+    "visual": "Dos features reales con la palabra 'click' resaltada en coral; junto al primero, el step que en realidad llena formularios.",
+    "texto_pantalla": {
+      "es": "Mis repos también tienen clics en el feature ⚠\nCriterio: 0 selectores · 0 clics",
+      "en": "My repos have clicks in features too ⚠\nCriterion: 0 selectors · 0 clicks"
+    },
+    "assets": [
+      "brand/selenium-cucumber-pom/src/test/resources/features/Register.feature",
+      "brand/selenium-cucumber-pom/src/test/java/stepdefinitions/register/StepDefinitionRegister.java",
+      "brand/serenity-screenplay-salesforce/src/test/resources/features/CreateAccount.feature"
+    ],
+    "notas_animacion": "Líneas reales: When User clicks on create button and select costumers → createCostumerPage.fillBasicData(); createCostumerPage.fillContact(); · When goes to account functionality and click on new."
+  },
+  {
+    "id": "E07",
+    "inicio": "04:56",
+    "fin": "05:59",
+    "tipo": "codigo",
+    "visual": "Reescritura declarativa propuesta del escenario de registro, con una sola línea por Given/When/Then. Al lado, el original con sus dos When marcados ⚠.",
+    "texto_pantalla": {
+      "es": "1 Given · 1 When · 1 Then observable",
+      "en": "1 Given · 1 When · 1 observable Then"
+    },
+    "assets": [],
+    "notas_animacion": "La reescritura es didáctica, NO existe en el repo: rotular 'propuesta'. Texto ES: Given estoy autenticado como vendedor / When registro un cliente nuevo con datos de contacto válidos / Then el cliente aparece en el directorio. Texto EN equivalente."
+  },
+  {
+    "id": "E08",
+    "inicio": "05:59",
+    "fin": "06:48",
+    "tipo": "diagrama",
+    "visual": "Pila de cuatro capas: feature → steps → (Page Objects | tareas Screenplay | cliente API) → sistema. Dos familias de steps duplicadas se funden en una forma canónica.",
+    "texto_pantalla": {
+      "es": "Un step canónico, muchos escenarios",
+      "en": "One canonical step, many scenarios"
+    },
+    "assets": [],
+    "notas_animacion": "Flechas mint; la duplicación en coral antes de fundirse."
+  },
+  {
+    "id": "E09",
+    "inicio": "06:48",
+    "fin": "07:20",
+    "tipo": "codigo",
+    "visual": "CreateAccountStepDefinitions.java con el actor, la tarea y la pregunta resaltados por color.",
+    "texto_pantalla": {
+      "es": "Actor · Tareas (hacer) · Preguntas (verificar)",
+      "en": "Actor · Tasks (do) · Questions (check)"
+    },
+    "assets": [
+      "brand/serenity-screenplay-salesforce/src/test/java/test/accountsalesforce/stepdefinitions/CreateAccountStepDefinitions.java"
+    ],
+    "notas_animacion": "Líneas reales: theActorCalled(ACTOR); · theActorInTheSpotlight().wasAbleTo(LoginActions.login()); · theActorInTheSpotlight().should(seeThat(ElementTextValidator.textValidator(SpecificAccountPage.TEXT_SUCCESSFUL_CREATE), containsString(DataAssertions.TEXT_OF_SUCCESFUL_CREATE)), …)"
+  },
+  {
+    "id": "E10",
+    "inicio": "07:20",
+    "fin": "08:18",
+    "tipo": "codigo",
+    "visual": "serenity.properties y, al lado, dos iconos de reporte: ✗ falla (producto) y ⚠ comprometida (no se pudo probar). Abajo, el constructor con Context de selenium-cucumber-pom.",
+    "texto_pantalla": {
+      "es": "Falla ≠ comprometida\nRojo de ambiente ≠ rojo de producto",
+      "en": "Failed ≠ compromised\nEnvironment red ≠ product red"
+    },
+    "assets": [
+      "brand/serenity-screenplay-salesforce/serenity.properties",
+      "brand/selenium-cucumber-pom/src/test/java/stepdefinitions/login/StepDefinitionsLogin.java"
+    ],
+    "notas_animacion": "Líneas reales: serenity.compromised.on = test.accountsalesforce.exceptions.Exceptions · public StepDefinitionsLogin(Context context) { this.context = context; … }"
+  },
+  {
+    "id": "E11",
+    "inicio": "08:18",
+    "fin": "09:03",
+    "tipo": "diagrama",
+    "visual": "Tres fichas: Scenario Outline con tabla de 5 filas; Background arriba del feature; tags que filtran escenarios como un tamiz (smoke en PR, regression nocturna).",
+    "texto_pantalla": {
+      "es": "Outline = 1 plantilla, N filas · Background = contexto común · Tags = qué corre",
+      "en": "Outline = 1 template, N rows · Background = shared context · Tags = what runs"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/quiz-01-10.json (m7, preguntas 4, 5 y 6)"
+    ],
+    "notas_animacion": "Animación del tamiz con tags."
+  },
+  {
+    "id": "E12",
+    "inicio": "09:03",
+    "fin": "10:15",
+    "tipo": "codigo",
+    "visual": "brand.feature con Background, Outline, Examples y tags resaltados. Al final, comparación con RunnerLogin.java (selección por runner).",
+    "texto_pantalla": {
+      "es": "5 features · 30 escenarios · --tags @positive\nTags > un runner por feature",
+      "en": "5 features · 30 scenarios · --tags @positive\nTags > one runner per feature"
+    },
+    "assets": [
+      "brand/karate-api-testing/src/test/java/features/brand.feature",
+      "brand/karate-api-testing/README.es.md",
+      "brand/selenium-cucumber-pom/src/test/java/runners/RunnerLogin.java"
+    ],
+    "notas_animacion": "Líneas reales: Background: * url baseUrl · * def responseJson200 = read(\"classpath:../schema_response/responseMarcaJson200.json\") · @positive · Scenario Outline: · Examples: | brand | maybelline | marcelle | iman |. Comando real: mvn test -Dkarate.options=\"--tags @positive\". Runner real: features= \"src/test/resources/features/Login.feature\"."
+  },
+  {
+    "id": "E13",
+    "inicio": "10:15",
+    "fin": "10:34",
+    "tipo": "diagrama",
+    "visual": "Pipeline: corrida → reporte con escenarios en lenguaje de negocio y su estado de hoy. Al lado, un wiki con fecha vieja y ⚠ 'puede mentir'.",
+    "texto_pantalla": {
+      "es": "Documentación viva = escenarios + estado real de hoy",
+      "en": "Living documentation = scenarios + today's real status"
+    },
+    "assets": [],
+    "notas_animacion": "Concepto del módulo (m7.theory)."
+  },
+  {
+    "id": "E14",
+    "inicio": "10:34",
+    "fin": "11:18",
+    "tipo": "navegador",
+    "visual": "Árbol de carpetas target/ con las rutas de reportes de los dos repos Java. Si se cuenta con acceso a los ambientes, captura real del reporte de Serenity; si no, solo el árbol de rutas.",
+    "texto_pantalla": {
+      "es": "Cucumber: target/cucumber-reports/report.html\nSerenity: target/site/serenity/index.html\n⚠ sin CI en estos dos repos",
+      "en": "Cucumber: target/cucumber-reports/report.html\nSerenity: target/site/serenity/index.html\n⚠ no CI in these two repos"
+    },
+    "assets": [
+      "brand/selenium-cucumber-pom/README.es.md (Reportes, CI)",
+      "brand/serenity-screenplay-salesforce/README.es.md (Reportes, CI)"
+    ],
+    "notas_animacion": "No hay ejecuciones publicadas de estos repos (lo dicen sus README): no fabricar capturas de reporte. Usar el árbol de rutas o una captura de la documentación oficial de Serenity con crédito."
+  },
+  {
+    "id": "E15",
+    "inicio": "11:18",
+    "fin": "11:52",
+    "tipo": "diagrama",
+    "visual": "Balanza: BDD con conversación de negocio (ayuda ✓) frente a BDD como envoltorio técnico (estorba ✗). Debajo, carpetas de features por capacidad: checkout.feature, devoluciones.feature.",
+    "texto_pantalla": {
+      "es": "Sin negocio, BDD = burocracia\nFeatures por capacidad, no por pantalla",
+      "en": "No business input, BDD = bureaucracy\nFeatures by capability, not by screen"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/quiz-01-10.json (m7, preguntas 2 y 10)"
+    ],
+    "notas_animacion": "Nombres de archivo de ejemplo del banco de preguntas."
+  },
+  {
+    "id": "E16",
+    "inicio": "11:52",
+    "fin": "12:34",
+    "tipo": "terminal",
+    "visual": "Terminal con las variables de entorno y los comandos de Maven del README de selenium-cucumber-pom.",
+    "texto_pantalla": {
+      "es": "⚠ App privada: úsala para leer y refactorizar",
+      "en": "⚠ Private app: use it to read and refactor"
+    },
+    "assets": [
+      "brand/selenium-cucumber-pom/README.es.md (Cómo correrlo, Límites)"
+    ],
+    "notas_animacion": "Comandos reales: export BASE_URL=\"https://your-app-under-test.example.com/#/login\" · export APP_USERNAME=… · export APP_PASSWORD=… · export HEADLESS=true · mvn clean test · mvn clean test -Dtest=RunnerLogin · mvn clean verify. No mostrar salida (no hay corrida registrada)."
+  },
+  {
+    "id": "E17",
+    "inicio": "12:34",
+    "fin": "12:57",
+    "tipo": "terminal",
+    "visual": "Terminal con los comandos de serenity-screenplay-salesforce.",
+    "texto_pantalla": {
+      "es": "mvn clean verify → target/site/serenity/\n⚠ datos aleatorios: dos corridas no son iguales",
+      "en": "mvn clean verify → target/site/serenity/\n⚠ random data: no two runs are identical"
+    },
+    "assets": [
+      "brand/serenity-screenplay-salesforce/README.es.md (Cómo correrlo, Límites)"
+    ],
+    "notas_animacion": "Comandos reales: export SF_USERNAME=… · export SF_PASSWORD=… · mvn clean verify · mvn clean verify -Dtest=RunCreateAccountFeature · mvn clean verify -Dtest=RunEditAccountFeature."
+  },
+  {
+    "id": "E18",
+    "inicio": "12:57",
+    "fin": "14:01",
+    "tipo": "terminal",
+    "visual": "Terminal con mvn clean test en karate-api-testing, el resumen real del CI y luego el reporte karate-summary.html en el navegador. Al final, el paso de upload-artifact del workflow.",
+    "texto_pantalla": {
+      "es": "Se corre hoy, sin credenciales ✓\nCI sube target/karate-reports/ como artefacto",
+      "en": "Runs today, no credentials ✓\nCI uploads target/karate-reports/ as an artifact"
+    },
+    "assets": [
+      "brand/karate-api-testing/README.es.md",
+      "brand/karate-api-testing/.github/workflows/ci.yml"
+    ],
+    "notas_animacion": "Resumen real del README (run 36095563876): scenarios: 30 | passed: 30 | failed: 0 · [INFO] BUILD SUCCESS. Workflow real: run: mvn -B test · uses: actions/upload-artifact@v4 · path: target/karate-reports/. Para la vista del navegador, grabar el reporte real al producir el video."
+  },
+  {
+    "id": "E19",
+    "inicio": "14:01",
+    "fin": "14:36",
+    "tipo": "codigo",
+    "visual": "El flujo golden de war-paradigm (editor → approver → editor) a la izquierda, y su versión Gherkin declarativa propuesta a la derecha, con el step 'estoy autenticado como <rol>' reutilizado tres veces.",
+    "texto_pantalla": {
+      "es": "Tu ejercicio: 2–3 flujos de M5/M6 → features\n1 step reutilizado en 3 escenarios",
+      "en": "Your exercise: 2–3 flows from M5/M6 → features\n1 step reused in 3 scenarios"
+    },
+    "assets": [
+      "brand/war-paradigm/experiments/02-mutants/tests/golden.spec.ts"
+    ],
+    "notas_animacion": "El Gherkin es una propuesta didáctica (no existe en el repo): rotularlo 'ejemplo'."
+  },
+  {
+    "id": "E20",
+    "inicio": "14:36",
+    "fin": "15:35",
+    "tipo": "animacion",
+    "visual": "El escenario Gherkin como una promesa firmada. Mutante 1 cambia el rol a solo lectura → la app responde 403 → el Then 'queda aprobado' se pone rojo (KILLED ✓). Mutante 2 publica antes de aprobar → 409 → rojo. Al final, Register.feature con PendingException: el mutante pasa sin que nadie lo vea (SURVIVED ✗).",
+    "texto_pantalla": {
+      "es": "Otro rol → 403 · Otro estado → 409\nSi la suite sigue verde, el step no verifica",
+      "en": "Different role → 403 · Different state → 409\nIf the suite stays green, the step isn't checking"
+    },
+    "assets": [
+      "brand/war-paradigm/experiments/02-mutants/tests/scenarios.ts",
+      "brand/war-paradigm/experiments/02-mutants/README.md"
+    ],
+    "notas_animacion": "Códigos reales de los mutantes role-swap (403) y reorder (409) en scenarios.ts. Los escenarios Gherkin mutados son ilustrativos."
+  },
+  {
+    "id": "E21",
+    "inicio": "15:35",
+    "fin": "16:08",
+    "tipo": "resumen",
+    "visual": "Checklist de la rúbrica con franja dorada del nivel top.",
+    "texto_pantalla": {
+      "es": "☐ 0 selectores ni clics en steps\n☐ 1 step reutilizado en 3 escenarios\n☐ documentación viva generada en el pipeline\n⚠ Top: escenario mutado que falla",
+      "en": "☐ 0 selectors or clicks in steps\n☐ 1 step reused in 3 scenarios\n☐ living docs generated in the pipeline\n⚠ Top: a mutated scenario that fails"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/modules-01-14.json (m7.crit, m7.top, m7.deliver)"
+    ],
+    "notas_animacion": "Mostrar el grep sugerido: grep -rn \"click\\|#\" src/test/resources/features/"
+  },
+  {
+    "id": "E22",
+    "inicio": "16:08",
+    "fin": "16:27",
+    "tipo": "quiz",
+    "visual": "Pregunta 1 con cuatro opciones y pausa.",
+    "texto_pantalla": {
+      "es": "¿Cuál step es Gherkin declarativo?\nA clic en #btn-submit y espero 2 s · B envío el formulario de registro con datos válidos · C window.submit() · D el QA corre el test",
+      "en": "Which step is declarative Gherkin?\nA click #btn-submit and wait 2 s · B submit the registration form with valid data · C window.submit() · D QA runs the test"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/quiz-01-10.json (m7, pregunta 1)"
+    ],
+    "notas_animacion": "⏸ con cuenta regresiva."
+  },
+  {
+    "id": "E23",
+    "inicio": "16:27",
+    "fin": "16:54",
+    "tipo": "quiz",
+    "visual": "Revelación de la 1 y preguntas 2 y 3 con respuesta.",
+    "texto_pantalla": {
+      "es": "1 → B ✓\n2 Scenario Outline + Examples\n3 Negocio/PO + dev + QA, ANTES de construir",
+      "en": "1 → B ✓\n2 Scenario Outline + Examples\n3 Business/PO + dev + QA, BEFORE building"
+    },
+    "assets": [
+      "brand/qa-automation-course/i18n/es/quiz-01-10.json (m7, preguntas 4 y 8)"
+    ],
+    "notas_animacion": "Correcta con ✓ y la palabra pasa."
+  },
+  {
+    "id": "E24",
+    "inicio": "16:54",
+    "fin": "17:24",
+    "tipo": "resumen",
+    "visual": "Tres tarjetas y la tarjeta del módulo 7b con ícono 🔁. Firma.",
+    "texto_pantalla": {
+      "es": "1 BDD nace de una conversación\n2 Feature = qué · step = cómo\n3 Un escenario es una promesa verificable\nSiguiente: Módulo 7b · Ejecución disciplinada\nCristian Guerra · QA · Medellín",
+      "en": "1 BDD starts with a conversation\n2 Feature = what · step = how\n3 A scenario is a checkable promise\nNext: Module 7b · Disciplined execution\nCristian Guerra · QA · Medellín"
+    },
+    "assets": [],
+    "notas_animacion": "Cierre con la URL del curso."
+  }
+]

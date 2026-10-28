@@ -1,0 +1,323 @@
+[
+  {
+    "id": "E01",
+    "inicio": "00:00",
+    "fin": "00:42",
+    "tipo": "terminal",
+    "visual": "Una máquina dibujada como caja deep se desvanece en partículas; caen 81 cuadritos (arrays) en coral y desaparecen. Quedan flotando, en mint, una huella y una lista de hashes. Luego la terminal muestra la línea real de results_scope.txt.",
+    "texto_pantalla": {
+      "es": "✗ 81 arrays perdidos con el ejecutor · ✓ huellas y hashes guardados afuera sobrevivieron",
+      "en": "✗ 81 arrays lost with the executor · ✓ fingerprints and hashes stored outside survived"
+    },
+    "assets": [
+      "Paquete predictor_comparacion_canonica_R1-R4_final_20261026.zip → results_scope.txt línea 3: 'Original previous-run 81 arrays disappeared with ephemeral executor. Prior durable hashes/statistics recovered from Library libfile_9f45c662673481919b3f7b4d1c4af74e v1.'",
+      "Notas del release: gh release view repro-ia-20261026 -R criguex/predictor-debugger"
+    ],
+    "notas_animacion": "Mostrar la línea en inglés original con subtítulo. Tiempos ES; los de EN están en guion.en.md."
+  },
+  {
+    "id": "E02",
+    "inicio": "00:42",
+    "fin": "00:58",
+    "tipo": "titulo",
+    "visual": "Tarjeta de título navy, icono de caja, firma.",
+    "texto_pantalla": {
+      "es": "Módulo 15 · Contenedores efímeros: que la evidencia sobreviva",
+      "en": "Module 15 · Ephemeral containers: evidence that outlives them"
+    },
+    "assets": [
+      "course.json posición 15, id m27, ★★★★☆, semana 17",
+      "Firma: Cristian Guerra · QA · Medellín"
+    ],
+    "notas_animacion": "4 a 6 s."
+  },
+  {
+    "id": "E03",
+    "inicio": "00:58",
+    "fin": "01:54",
+    "tipo": "analogia",
+    "visual": "Playa ilustrada: castillo de arena, sube la marea y se lo lleva. Antes, una mano toma una foto (artefacto) y escribe en una libreta (entradas fijadas). Al día siguiente se arma un castillo idéntico a partir de la libreta.",
+    "texto_pantalla": {
+      "es": "Foto = artefacto · Libreta = entradas fijadas · Foto por torre = checkpoint",
+      "en": "Photo = artifact · Notebook = pinned inputs · A photo per tower = checkpoint"
+    },
+    "assets": [
+      "Analogía base: i18n/es/modules-15-23.json → m27.kid"
+    ],
+    "notas_animacion": "La marea entra en tres pasos; la foto queda en mint con ✓. Al final, el castillo se arma torre por torre y cada torre terminada recibe su foto; la ola solo se lleva la torre en obra."
+  },
+  {
+    "id": "E04",
+    "inicio": "01:54",
+    "fin": "02:32",
+    "tipo": "diagrama",
+    "visual": "Cinco tarjetas en fila: runner hospedado, contenedor Docker, devcontainer, Testcontainers, preview por PR. Cada una con un reloj de arena; al vaciarse, su contenido interno se borra.",
+    "texto_pantalla": {
+      "es": "Lo que vive solo adentro se va con ellos",
+      "en": "Whatever lives only inside goes with them"
+    },
+    "assets": [
+      "i18n/es/modules-15-23.json → m27.theory[0]",
+      "https://containers.dev/ · https://testcontainers.com/"
+    ],
+    "notas_animacion": "Sin logos de terceros; solo iconos genéricos."
+  },
+  {
+    "id": "E05",
+    "inicio": "02:32",
+    "fin": "03:10",
+    "tipo": "codigo",
+    "visual": "tests.yml de restful-booker con las líneas del SUT resaltadas; al final del job, el contenedor y el runner se apagan juntos.",
+    "texto_pantalla": {
+      "es": "El SUT muere con el runner: los logs se imprimen antes",
+      "en": "The SUT dies with the runner: print the logs first"
+    },
+    "assets": [
+      "restful-booker-quality-suite/.github/workflows/tests.yml líneas 19-32: git -C sut checkout 0046115 · docker compose -f sut/docker-compose.yml up --build -d · for attempt in {1..30}; do curl --fail --silent http://127.0.0.1:3001/ping && exit 0; sleep 2; done",
+      "restful-booker-quality-suite/.github/workflows/tests.yml líneas 45-47: if: failure() · docker compose -f sut/docker-compose.yml logs"
+    ],
+    "notas_animacion": "Breve."
+  },
+  {
+    "id": "E06",
+    "inicio": "03:10",
+    "fin": "03:45",
+    "tipo": "diagrama",
+    "visual": "Dos columnas. Se pierde (✗ coral): estado en disco, archivos no subidos, caché, procesos, identidad del proceso (PID, sesión). Sobrevive (✓ mint): artefactos, assets de release, commits, lo recalculable desde entradas fijadas.",
+    "texto_pantalla": {
+      "es": "O lo sacas, o lo puedes volver a fabricar igual",
+      "en": "Either you got it out, or you can rebuild it the same"
+    },
+    "assets": [
+      "i18n/es/modules-15-23.json → m27.theory[2]"
+    ],
+    "notas_animacion": "La fila 'identidad del proceso' se marca con ⚠ ojo: se retoma en E13."
+  },
+  {
+    "id": "E07",
+    "inicio": "03:45",
+    "fin": "04:40",
+    "tipo": "diagrama",
+    "visual": "Un runner sube una caja con candado (artefacto) y su SHA256SUMS. Al lado, la anatomía de un recibo: comando, hashes de entrada, hashes de salida, exit code. Debajo, la carpeta receipts del paquete real con cuatro archivos.",
+    "texto_pantalla": {
+      "es": "Recibo = comando + hashes de entrada y salida + exit code",
+      "en": "Receipt = command + input and output hashes + exit code"
+    },
+    "assets": [
+      "i18n/es/modules-15-23.json → m27.theory[3]",
+      "Paquete repro-ia-20261026 → receipts/fresh-environment.json, receipts/source-integrity.json, receipts/downloads.jsonl, receipts/SHA256SUMS"
+    ],
+    "notas_animacion": "Los nombres de archivo se muestran tal cual."
+  },
+  {
+    "id": "E08",
+    "inicio": "04:40",
+    "fin": "05:17",
+    "tipo": "codigo",
+    "visual": "Cinco fragmentos en mosaico, uno por entrada fijada: lockfile, versión de herramienta, commit del SUT, imagen por digest, datos con SHA256SUMS.",
+    "texto_pantalla": {
+      "es": "Lockfile · versión · commit · digest · SHA256SUMS",
+      "en": "Lockfile · version · commit · digest · SHA256SUMS"
+    },
+    "assets": [
+      "predictor-debugger/.github/workflows/reproduce.yml líneas 18-22: uses: astral-sh/setup-uv@v6 / with: version: \"0.11.18\" / run: uv run --locked tools/fetch_data.py --rounds r1",
+      "restful-booker-quality-suite/.github/workflows/tests.yml línea 22: git -C sut checkout 0046115",
+      "predictor-debugger-docs/README.md §Reproducir (b): fetch_data.py comprueba cada tar contra SHA256SUMS y lo extraído contra MANIFEST.sha256",
+      "Digest: patrón imagen@sha256:… de i18n/es/modules-15-23.json → m27.theory[4]; https://docs.docker.com/reference/cli/docker/image/pull/"
+    ],
+    "notas_animacion": "Para el digest no inventar un hash: mostrar 'imagen@sha256:…' tal como está en el curso."
+  },
+  {
+    "id": "E09",
+    "inicio": "05:17",
+    "fin": "06:08",
+    "tipo": "diagrama",
+    "visual": "Línea de tareas t0…t5. Cada tarea escribe en .tmp y hace mv al nombre bueno con su .sha256. Un rayo mata el proceso en t3: t3.tmp queda a medias pero t3.json no existe. Al retomar, t0-t2 se saltan (✓ hash verifica) y t3 se recalcula. Un segundo proceso choca contra un candado (flock) y sale con ✗.",
+    "texto_pantalla": {
+      "es": "Escritura atómica · hash verifica = se salta · flock = uno a la vez",
+      "en": "Atomic write · hash checks out = skip · flock = one at a time"
+    },
+    "assets": [
+      "i18n/es/modules-15-23.json → m27.theory[5]",
+      "https://man7.org/linux/man-pages/man1/flock.1.html"
+    ],
+    "notas_animacion": "Al final, un aviso gold: 'los checkpoints en el disco del runner mueren con el runner'."
+  },
+  {
+    "id": "E10",
+    "inicio": "06:08",
+    "fin": "06:48",
+    "tipo": "codigo",
+    "visual": "reproduce.yml, job round1. El archivo aparece dentro de un repo (no de una máquina) y varios runners lo ejecutan uno tras otro con la misma huella.",
+    "texto_pantalla": {
+      "es": "Vive en el repo, no en una máquina · rondas 1 y 2",
+      "en": "Lives in the repo, not on a machine · rounds 1 and 2"
+    },
+    "assets": [
+      "predictor-debugger/.github/workflows/reproduce.yml líneas 13-29 (ubuntu-24.04, fetch_data.py, verify.py | tee out.txt, grep -q de veredictos y de fingerprint: EEC9-09E0-F77D)",
+      "predictor-debugger-docs/README.md §Reproducir (b): corrida 40267731741, ronda 1 en 6 min 33 s con la descarga"
+    ],
+    "notas_animacion": "Breve."
+  },
+  {
+    "id": "E11",
+    "inicio": "06:48",
+    "fin": "08:15",
+    "tipo": "terminal",
+    "visual": "Terminal con gh release view; las notas aparecen y se resaltan: 'No es una revisión independiente' (gold), la tabla de huellas (mint, 'sí'), y las limitaciones (gold).",
+    "texto_pantalla": {
+      "es": "4 huellas iguales · ⚠ no es revisión independiente · limitaciones declaradas",
+      "en": "4 matching fingerprints · ⚠ not an independent review · declared limitations"
+    },
+    "assets": [
+      "gh release view repro-ia-20261026 -R criguex/predictor-debugger (26-oct-2026): título 'Recálculo R1–R4 desde data-v1 (operado por IA)'; tabla R1 EEC9-09E0-F77D 5/5 sí · R2 D506-F58F-3838 9/9 sí · R3 6319-537B-7167 16/17 (H14 falla) sí · R4 681D-143B-64A3 18/18 sí",
+      "Mismas notas: 'Linux x86_64, Python 3.12.14, NumPy 1.26.4, CPU con un hilo. 96.870 registros, unas 7,5 h de cálculo.' · 'Contra Mac, WAR y GUERRA, las estadísticas difieren como máximo en 6e-14.'",
+      "Limitaciones: 'Los 81 archivos de la R1 se regeneraron: ninguno es idéntico bit a bit al publicado; difieren como máximo en 8,9e-16' · 'La R4 se interrumpió y se retomó desde puntos de control.' · 'Un chequeo suplementario falló al serializar su salida (numpy.bool_). Se arregló solo la salida y repitió 14/14.'"
+    ],
+    "notas_animacion": "La columna 'Igual al original' se llena con ✓ sí, una fila por vez."
+  },
+  {
+    "id": "E12",
+    "inicio": "08:15",
+    "fin": "08:47",
+    "tipo": "terminal",
+    "visual": "Terminal: mkdir, gh release download, shasum -c con su salida OK en mint, unzip y el conteo de archivos.",
+    "texto_pantalla": {
+      "es": "Verificar antes de abrir · 441 archivos",
+      "en": "Verify before opening · 441 files"
+    },
+    "assets": [
+      "Comando del módulo (i18n/es/modules-15-23.json → m27.hands[1]): mkdir repro && cd repro && gh release download repro-ia-20261026 -R criguex/predictor-debugger && shasum -a 256 -c predictor_comparacion_canonica_R1-R4_final_20261026.zip.sha256 && unzip -q predictor_comparacion_canonica_R1-R4_final_20261026.zip -d x",
+      "Salida real (26-oct-2026): predictor_comparacion_canonica_R1-R4_final_20261026.zip: OK",
+      "find x -type f | wc -l → 441",
+      "SHA-256 publicado en las notas: 8d7c45f48331bf71c72009176c6023c77248d116272391ee7437c68c5d3c93d0"
+    ],
+    "notas_animacion": "El OK aparece con ✓."
+  },
+  {
+    "id": "E13",
+    "inicio": "08:47",
+    "fin": "10:55",
+    "tipo": "codigo",
+    "visual": "Tres paneles JSON/TXT reales con líneas resaltadas. En interruption.json, el campo global_lock_observation en gold y la lista verified_completed_tasks en mint.",
+    "texto_pantalla": {
+      "es": "NEW RUN, no recuperación · lock libre ≠ proceso muerto",
+      "en": "NEW RUN, not recovery · free lock ≠ dead process"
+    },
+    "assets": [
+      "x/results_scope.txt: 'New generation explicitly identified as NEW RUN, not previous array recovery.' · 'No model training, new FNO inference, public changes, CI triggers, outreach, or blind R5.' · 'Strict bit identity and unchanged original hypothesis/verdict comparison. Numeric delta magnitudes descriptive only, no relaxed tolerance.'",
+      "x/receipts/lock-hardening.json: change = 'Global flock serializes scientific task/summary and per-task SHA/rows checked under lock for idempotent resume. ... Current R4 task0 imported old wrapper; subsequent tasks use lock. Do not infer process death from a different exec PID namespace.'",
+      "x/receipts/interruption.json: first_error 'exec-server transport disconnected; failed to resume exec-server session: recovery timed out after25s' · retry_error 'Unknown process id49353' · verified_completed_tasks [0,1,2,3,4,24] · verified_rows 600 · global_lock_observation 'free; not sufficient alone to prove old driver absent' · previous_boot_identity_unrecorded true · policy 'No top-driver or task restart while old execution identity uncertain. ...' · recovery_basis '... Original exit remains unknown.'"
+    ],
+    "notas_animacion": "Mostrar los textos en inglés original con subtítulos; no traducir dentro del JSON."
+  },
+  {
+    "id": "E14",
+    "inicio": "10:55",
+    "fin": "11:48",
+    "tipo": "diagrama",
+    "visual": "Cuatro tarjetas numeradas con las lecciones. La cuarta (huella igual) en mint y más grande. Pie en gold: 'no es revisión independiente → que otra persona corra reproduce.yml'.",
+    "texto_pantalla": {
+      "es": "Se perdió · regenerar ≠ recuperar · lock libre ≠ muerto · la huella sobrevive",
+      "en": "Lost · regenerate ≠ recover · free lock ≠ dead · the fingerprint survives"
+    },
+    "assets": [
+      "i18n/es/modules-15-23.json → m27.theory[9]",
+      "i18n/es/quiz-11-19.json → m27[7] (why)"
+    ],
+    "notas_animacion": "Una tarjeta cada ~10 s."
+  },
+  {
+    "id": "E15",
+    "inicio": "11:48",
+    "fin": "12:23",
+    "tipo": "terminal",
+    "visual": "Terminal con el comando del módulo y, debajo, el log guardado de Linux con las cinco hipótesis en PASS y la huella resaltada en mint.",
+    "texto_pantalla": {
+      "es": "Huella barata, sin datos: EEC9-09E0-F77D",
+      "en": "Cheap fingerprint, no data: EEC9-09E0-F77D"
+    },
+    "assets": [
+      "Comando del módulo (m27.hands[3]): git clone https://github.com/criguex/predictor-debugger.git && cd predictor-debugger && uv run --locked verify.py --saved mac",
+      "Salida mostrada = log guardado predictor-debugger/logs/linux/verify_saved.log: 'predictor-debugger verify · Linux x86_64 · Python 3.9.25 · numpy 1.26.4' / H1 P0 any 0/400 share <= 0.05 PASS / H1b P0f32 any 0/400 share <= 0.05 PASS / H2 P3a D1 400/400 share >= 0.95 PASS / H3 P3b D2 400/400 share >= 0.95 PASS / H4 P1 D3 400/400 share >= 0.95 PASS / verdicts equal to saved results/linux/verdicts.json: True / fingerprint: EEC9-09E0-F77D"
+    ],
+    "notas_animacion": "Rotular en pantalla 'log guardado (Linux)' para no presentarlo como la salida de --saved mac. Si en producción se corre --saved mac, reemplazar por esa salida con su fecha."
+  },
+  {
+    "id": "E16",
+    "inicio": "12:23",
+    "fin": "13:31",
+    "tipo": "codigo",
+    "visual": "Checklist de seis pasos; el paso 5 muestra los fragmentos de shell del módulo, y el paso 6 la lista de requisitos del workflow.",
+    "texto_pantalla": {
+      "es": "Leer · verificar · tabla · huella · checkpoints bajo flock · workflow con artefacto",
+      "en": "Read · verify · table · fingerprint · checkpoints under flock · workflow with artifact"
+    },
+    "assets": [
+      "Fragmentos del laboratorio (i18n/es/modules-15-23.json → m27.hands[4]): exec 9>.run.lock && flock -n 9 || exit 1 · sha256sum -c out/$t.sha256 2>/dev/null && continue · mv out/$t.tmp out/$t.json · sha256sum out/$t.json > out/$t.sha256 · sha256sum out/*.json > SHA256SUMS · sha256sum SHA256SUMS | cut -c1-12",
+      "Requisitos del workflow: m27.hands[5]"
+    ],
+    "notas_animacion": "Son fragmentos del laboratorio del módulo, no de un repo: rotular 'del laboratorio m27'."
+  },
+  {
+    "id": "E17",
+    "inicio": "13:31",
+    "fin": "14:13",
+    "tipo": "animacion",
+    "visual": "Un contenedor recibe un docker kill a mitad (rayo coral). Se relanza: t0-t2 se saltan con ✓, t3 se recalcula, huella final igual (mint). Segunda rama: gh cache delete --all y la misma huella. Tercera rama, en coral: huella distinta → HALLAZGO.",
+    "texto_pantalla": {
+      "es": "Matar y relanzar · borrar caché · misma huella o es hallazgo",
+      "en": "Kill and relaunch · delete cache · same fingerprint or it's a finding"
+    },
+    "assets": [
+      "i18n/es/modules-15-23.json → m27.mut: docker kill · gh run cancel · gh cache delete --all"
+    ],
+    "notas_animacion": "La predicción escrita aparece antes de la corrida."
+  },
+  {
+    "id": "E18",
+    "inicio": "14:13",
+    "fin": "15:05",
+    "tipo": "diagrama",
+    "visual": "Tarjeta de reto con las cuatro piezas del entregable, los cinco criterios y la rúbrica de cuatro filas (qué sobrevive, entradas fijadas, retomar sin repetir, misma huella).",
+    "texto_pantalla": {
+      "es": "Top: un tercero baja tu artefacto y verifica la huella sin ti",
+      "en": "Top: a third party downloads your artifact and checks the fingerprint without you"
+    },
+    "assets": [
+      "i18n/es/modules-15-23.json → m27.deliver, m27.crit, m27.rubm"
+    ],
+    "notas_animacion": "Zoom a la fila 'Qué sobrevive', nivel 4."
+  },
+  {
+    "id": "E19",
+    "inicio": "15:05",
+    "fin": "15:53",
+    "tipo": "quiz",
+    "visual": "Tres preguntas con cuatro opciones, pausa de 5 s, respuesta en mint.",
+    "texto_pantalla": {
+      "es": "1 ¿Qué queda del runner? · 2 ¿Lock libre = relanzar? · 3 ¿Qué son los 81 regenerados?",
+      "en": "1 What's left of the runner? · 2 Free lock = restart? · 3 What are the 81 regenerated files?"
+    },
+    "assets": [
+      "i18n/es/quiz-11-19.json → m27[0], m27[3], m27[4]",
+      "i18n/en/quiz-11-19.json → m27[0], m27[3], m27[4]"
+    ],
+    "notas_animacion": "Opciones incorrectas en muted."
+  },
+  {
+    "id": "E20",
+    "inicio": "15:53",
+    "fin": "16:18",
+    "tipo": "resumen",
+    "visual": "Tres tarjetas y flecha al módulo 16 (Performance & Cloud). Firma.",
+    "texto_pantalla": {
+      "es": "Sácalo antes · fíjalo · regenerar ≠ recuperar → Módulo 16: Performance",
+      "en": "Get it out first · pin it · regenerate ≠ recover → Module 16: Performance"
+    },
+    "assets": [
+      "Siguiente módulo: course.json posición 16, id m10"
+    ],
+    "notas_animacion": "Fundido a navy."
+  }
+]
