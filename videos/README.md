@@ -19,8 +19,8 @@ La narración usa una voz sintética (ElevenLabs). Los laboratorios citados son 
 |---|---|---|
 | `01-m1` | Mentalidad QA: por qué rechacé un 76 sobre 100 | [▶ YouTube](https://youtu.be/s9gIMUDvWE0) |
 | `02-m30` | WAR Paradigm: tu suite verde puede estar dormida | versión en un solo video (reemplazada por las dos partes) |
-| `02-m30-p1` | 2 · ¿Qué es un mutante? WAR Paradigm explicado fácil | producido, por publicar |
-| `02-m30-p2` | 2.1 · Manos a la obra: tu primer mutante con WAR | producido, por publicar |
+| `02-m30-p1` | 2 · ¿Qué es un mutante? WAR Paradigm explicado fácil | [▶ YouTube](https://youtu.be/cki3wr9xWo4) |
+| `02-m30-p2` | 2.1 · Manos a la obra: tu primer mutante con WAR | [▶ YouTube](https://youtu.be/7Z0lHcEQEtM) |
 | `03-m2` | Diseño de pruebas: el límite de 80 que nadie probó | guion listo |
 | `04-m3` | Setup día 0: Node LTS, lockfile, npx y tu primer PR | guion listo |
 | `05-m3b` | Obsidian para QA: el cuaderno que lee tu IA | guion listo |
