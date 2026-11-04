@@ -1,0 +1,33 @@
+[WebServer] (node:40480) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+✔ expected rejection kills only when the configured 4xx status matches (0.367958ms)
+✔ accepted mutation survives, but server errors are inconclusive (0.068042ms)
+✔ baseline failures are kept out of the mutation score (0.057166ms)
+✔ a skipped or interrupted scenario without attached evidence is infrastructure, not a survivor (0.0645ms)
+✔ known finding annotation is reserved for a real survivor and a killed known case is fixed (0.051125ms)
+
+Running 7 tests using 1 worker
+
+(node:40502) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/golden.spec.ts:8:1 › golden: create → approve → publish (846ms)
+  ✓  2 tests/mutants.spec.ts:11:3 › role-swap: expect 403 (13ms)
+  ✓  3 tests/mutants.spec.ts:11:3 › drop-input: expect 422 (5ms)
+  ✓  4 tests/mutants.spec.ts:11:3 › reorder: expect 409 (8ms)
+  ✓  5 tests/mutants.spec.ts:11:3 › stale-token: expect 401 (5ms)
+  ✓  6 tests/mutants.spec.ts:11:3 › boundary: expect 422 (8ms)
+  ✘  7 tests/mutants.spec.ts:11:3 › self-grant: expect 403 (7ms)
+
+  7 passed (1.6s)
+
+[1m  MUTANT SCENARIO EVIDENCE[0m
+[32m  KILLED            role-swap    Expected rejection HTTP 403 observed.[0m
+[32m  KILLED            drop-input   Expected rejection HTTP 422 observed.[0m
+[32m  KILLED            reorder      Expected rejection HTTP 409 observed.[0m
+[32m  KILLED            stale-token  Expected rejection HTTP 401 observed.[0m
+[32m  KILLED            boundary     Expected rejection HTTP 422 observed.[0m
+[31m  KNOWN SURVIVOR    self-grant   Mutation was accepted with HTTP 200.[0m
+
+  5/6 scored mutants killed · 1 survived · 0 excluded from score
+  JSON evidence: test-results/mutant-evidence.json
+

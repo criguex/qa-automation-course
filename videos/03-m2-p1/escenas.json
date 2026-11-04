@@ -1,0 +1,248 @@
+[
+  {
+    "id": "E01",
+    "inicio": "00:00",
+    "fin": "00:37",
+    "tipo": "terminal",
+    "visual": "Terminal deep sobre war-paradigm en la versión anterior 5dc5e92: el diff real de una línea (TITLE_MAX de 80 a 79) y la suite completa en verde: 7 passed, boundary KILLED con 422 y el marcador 5/6 de siempre.",
+    "texto_pantalla": {
+      "es": "$ git diff\n-const TITLE_MAX = 80;\n+const TITLE_MAX = 79;\n$ npx playwright test\n  ✓  1 tests/golden.spec.ts:8:1 › golden: create → approve → publish (846ms)\n  …\n  ✓  6 tests/mutants.spec.ts:11:3 › boundary: expect 422 (8ms)\n  …\n  7 passed (1.6s)\n  …\n  KILLED            boundary     Expected rejection HTTP 422 observed.\n  KNOWN SURVIVOR    self-grant   Mutation was accepted with HTTP 200.\n  5/6 scored mutants killed · 1 survived · 0 excluded from score",
+      "en": "$ git diff\n-const TITLE_MAX = 80;\n+const TITLE_MAX = 79;\n$ npx playwright test\n  ✓  1 tests/golden.spec.ts:8:1 › golden: create → approve → publish (846ms)\n  …\n  ✓  6 tests/mutants.spec.ts:11:3 › boundary: expect 422 (8ms)\n  …\n  7 passed (1.6s)\n  …\n  KILLED            boundary     Expected rejection HTTP 422 observed.\n  KNOWN SURVIVOR    self-grant   Mutation was accepted with HTTP 200.\n  5/6 scored mutants killed · 1 survived · 0 excluded from score"
+    },
+    "assets": [
+      "render/salidas/gancho79.diff y render/salidas/gancho79.txt (capturas.sh: worktree de criguex/war-paradigm @ 5dc5e92 con TITLE_MAX = 79, npx playwright test en experiments/02-mutants, 28-oct-2026, Node v26.8.1)"
+    ],
+    "notas_animacion": "Rótulo gold en la línea +79; mint en 7 passed; cierre en el 5/6."
+  },
+  {
+    "id": "E02",
+    "inicio": "00:37",
+    "fin": "00:48",
+    "tipo": "titulo",
+    "visual": "Título sobre navy con rejilla y barra mint. Icono lupa, nivel ★★☆☆☆.",
+    "texto_pantalla": {
+      "es": "Módulo 03, parte 1 · El límite de 80 que nadie probó — Diseño de pruebas explicado fácil\nCristian Guerra · QA · Medellín",
+      "en": "Module 03, part 1 · The 80 limit nobody tested — Test design made simple\nCristian Guerra · QA · Medellín"
+    },
+    "assets": [
+      "course.json (m2, posición 3, icono 🎯, nivel ★★☆☆☆)"
+    ],
+    "notas_animacion": "La plantilla no tiene icono de diana; se usa lupa."
+  },
+  {
+    "id": "E03",
+    "inicio": "00:48",
+    "fin": "01:53",
+    "tipo": "diagrama",
+    "visual": "Contexto: dos tarjetas de DocFlow (formulario título + dueño, cuatro roles) y las reglas 201 creado / 422 dato mal hecho. Luego cuatro tarjetas de los otros proyectos (app de pagos, Makeup API, juez pequeño de IA, API de reservas). Al final, seis tarjetas numeradas con las técnicas.",
+    "texto_pantalla": {
+      "es": "El laboratorio de este módulo\nOtros proyectos, otros límites\nLas 6 técnicas que vas a aprender",
+      "en": "This module's lab\nOther projects, other limits\nThe 6 techniques you'll learn"
+    },
+    "assets": [
+      "experiments/02-mutants/app/server.js (ROLES, TITLE_MAX = 80, ruta POST /api/docs)",
+      "ejemplos/ejemplos-por-modulo.md §03-m2 (SW-1, KA-4, LY-1, RB-3)",
+      "m2.theory[1]"
+    ],
+    "notas_animacion": "La app de pagos va sin nombre, host ni empresa."
+  },
+  {
+    "id": "E04",
+    "inicio": "01:53",
+    "fin": "02:32",
+    "tipo": "analogia",
+    "visual": "Cuatro tarjetas grandes con la edad en número: 7 ✗ no entra, 8 ✓ entra, 12 ✓ entra, 13 ✗ no entra; regla coral «mayor que 8» en vez de «mayor o igual a 8». Luego la regla mint: probar donde están los errores.",
+    "texto_pantalla": {
+      "es": "Un juego para niños de 8 a 12 años\nNo pruebas más: pruebas donde están los errores",
+      "en": "A game for kids aged 8 to 12\nDon't test more: test where the bugs are"
+    },
+    "assets": [
+      "m2.kid"
+    ],
+    "notas_animacion": "El juego es analogía, no dato."
+  },
+  {
+    "id": "E05",
+    "inicio": "02:32",
+    "fin": "03:35",
+    "tipo": "diagrama",
+    "visual": "Cuatro tarjetas unidas con flechas (unitario, integración, sistema, aceptación) con su pieza de la bicicleta. Luego cuatro tarjetas de tipos (funcional, regresión, smoke, sanity). Al final, la lista de las cuatro partes de un caso bien escrito con casillas y la regla coral «es una intención».",
+    "texto_pantalla": {
+      "es": "Niveles: de qué tamaño pruebas\nTipos: para qué pruebas\nUn caso de prueba bien escrito",
+      "en": "Levels: how big is what you test\nTypes: why you test\nA well-written test case"
+    },
+    "assets": [
+      "m2.theory[0]",
+      "quiz-01-10.json m2 pregunta 9 (caso bien escrito)"
+    ],
+    "notas_animacion": "La bicicleta es analogía."
+  },
+  {
+    "id": "E06",
+    "inicio": "03:35",
+    "fin": "04:46",
+    "tipo": "diagrama",
+    "visual": "Heladería: fresa y vainilla en tarjetas con la regla «misma clase, basta un representante». Luego la tabla de particiones del título (3–80 ✓, menos de 3 ✗, más de 80 ✗, no es texto ✗, «  ab  » ✗). Al final la tabla del dueño (existe ✓, vacío ✗ drop-input, de nadie ⚠ sin prueba).",
+    "texto_pantalla": {
+      "es": "Particiones: un representante por grupo\nLas particiones del título\nLas particiones del dueño",
+      "en": "Partitions: one representative per group\nThe title's partitions\nThe owner's partitions"
+    },
+    "assets": [
+      "experiments/02-mutants/app/server.js líneas 89–93 (trim, 3–TITLE_MAX, owner is required)",
+      "03-m2-p2/render/salidas/crea_espacios.txt («  ab  » → 422)",
+      "experiments/02-mutants/tests/scenarios.ts (drop-input)",
+      "quiz-01-10.json m2 pregunta 7"
+    ],
+    "notas_animacion": "La heladería es analogía. «No es texto → 422» sale de leer el código, no de una corrida."
+  },
+  {
+    "id": "E07",
+    "inicio": "04:46",
+    "fin": "05:23",
+    "tipo": "terminal",
+    "visual": "Terminal con dos peticiones reales a la Makeup API: maybelline devuelve 54 productos; una marca que no existe devuelve [] con status=200. Rótulo gold «vaso vacío».",
+    "texto_pantalla": {
+      "es": "$ U=https://makeup-api.herokuapp.com/api/v1/products.json\n$ curl -s \"$U?brand=maybelline\" | jq length\n54\n$ curl -s -w ' status=%{http_code}\\n' \"$U?brand=marcaquenoexiste\"\n[] status=200",
+      "en": "$ U=https://makeup-api.herokuapp.com/api/v1/products.json\n$ curl -s \"$U?brand=maybelline\" | jq length\n54\n$ curl -s -w ' status=%{http_code}\\n' \"$U?brand=marcaquenoexiste\"\n[] status=200"
+    },
+    "assets": [
+      "render/salidas/makeup_maybelline.txt y render/salidas/makeup_vacio.txt (capturas.sh, curl contra la Makeup API pública, 28-oct-2026)",
+      "karate-api-testing @ 5f02348 src/test/java/features/brand.feature (marcas válidas y ruta errada; ninguna marca inexistente)"
+    ],
+    "notas_animacion": "La asignación de U no tiene salida."
+  },
+  {
+    "id": "E08",
+    "inicio": "05:23",
+    "fin": "06:17",
+    "tipo": "diagrama",
+    "visual": "Montaña rusa: «justo la raya ✓ sube» y «le falta un pelo ✗ no sube», regla gold del borde y sus vecinos. Luego cuatro números grandes 2 ✗ 422, 3 ✓ 201, 80 ✓ 201, 81 ✗ 422 con B-1…B-4. Al final 81 ✓ cubierto frente a 80 ✗ sin caso, y la regla «un solo lado de la puerta».",
+    "texto_pantalla": {
+      "es": "Valores límite: el borde y sus vecinos\nLas fronteras de la historia US-42\nEl mutante boundary prueba un solo lado",
+      "en": "Boundary values: the edge and its neighbours\nThe boundaries in story US-42\nThe boundary mutant tests one side only"
+    },
+    "assets": [
+      "experiments/01-ai-verdict/fixtures/story-US-42.json (B-1…B-4)",
+      "03-m2-p2/render/salidas/crea_limites.txt (2 → 422, 3 → 201, 80 → 201, 81 → 422)",
+      "experiments/02-mutants/tests/scenarios.ts @ 5dc5e92 (boundary: 'x'.repeat(81))",
+      "render/salidas/gancho79.txt"
+    ],
+    "notas_animacion": "La montaña rusa es analogía."
+  },
+  {
+    "id": "E09",
+    "inicio": "06:17",
+    "fin": "07:18",
+    "tipo": "analogia",
+    "visual": "Tabla con tres montos (49,99 ✓, 50,01 ✓, 50 exacto ✗) y la nota de procedencia «evidencia guardada · solo leída». Luego dos tarjetas que se contradicen: nombre «under 50» y descripción «at or below 50», con la regla ⚠ del letrero de los menores de 10. Al final dos reglas: preguntar antes de automatizar y la prueba de 50 exacto.",
+    "texto_pantalla": {
+      "es": "Una app de pagos: menos de 50, aprobado solo\nEl requisito se contradice\nPregunta antes de automatizar",
+      "en": "A payments app: under 50, auto-approved\nThe requirement contradicts itself\nAsk before you automate"
+    },
+    "assets": [
+      "Evidencia guardada del 17-oct-2026 en un repo en revisión de confidencialidad (ejemplo SW-1 de ejemplos/ui-e2e-bdd.md): observed «49,99 → AutoApproved; 50 → AutoApproved; 50,01 → PendingApproval»; regla «Auto-approve under $50» con descripción «Expenses at or below $50 are auto-approved». Solo leída: el ambiente ya no existe."
+    ],
+    "notas_animacion": "Sin nombre de la app, host, URL ni empresa en pantalla. El letrero de los menores de 10 es analogía."
+  },
+  {
+    "id": "E10",
+    "inicio": "07:18",
+    "fin": "08:38",
+    "tipo": "diagrama",
+    "visual": "El almuerzo: ¿sopa? y ¿postre? unidas con flechas a «2 × 2 = 4». Luego tres preguntas numeradas de crear y la regla 2 × 2 × 2 = 8. Después la tabla de crear (rol no puede → 403 en 4 columnas, rol puede + todo válido → 201, rol puede + algo inválido → 422 en 3) con la regla de precedencia como nota. Al final la celda viewer crea → 201 ✗ y el séptimo mutante viewer-create.",
+    "texto_pantalla": {
+      "es": "Tablas de decisión: todas las combinaciones\nCrear un documento: 3 preguntas, 8 columnas\nLa tabla de crear\nLa celda que nadie escribió",
+      "en": "Decision tables: every combination\nCreating a document: 3 questions, 8 columns\nThe create table\nThe cell nobody wrote"
+    },
+    "assets": [
+      "experiments/03-second-brain/vault/03 Knowledge/Roles and permissions.md (matriz y precedencia 403 > 422 > 409)",
+      "quiz-01-10.json m2 pregunta 2 (2³ combinaciones)",
+      "03-m2-p2/render/salidas/crea_viewer.txt (viewer → 201)",
+      "war-paradigm git log: a5386c8 feat(02): mutante viewer-create y prueba del título de 80 caracteres"
+    ],
+    "notas_animacion": "El almuerzo es analogía."
+  },
+  {
+    "id": "E11",
+    "inicio": "08:38",
+    "fin": "09:22",
+    "tipo": "diagrama",
+    "visual": "Tres tarjetas unidas con flechas: borrador → aprobado → publicado, y la regla coral «de primero a quinto no se salta». Luego cuatro reglas de saltos prohibidos con 409 y el mutante reorder.",
+    "texto_pantalla": {
+      "es": "Transición de estados: un paso a la vez\nLos saltos que no deben existir",
+      "en": "State transitions: one step at a time\nThe jumps that must not exist"
+    },
+    "assets": [
+      "experiments/02-mutants/app/server.js líneas 103 y 113 (409)",
+      "experiments/02-mutants/tests/scenarios.ts (reorder)",
+      "quiz-01-10.json m2 pregunta 4"
+    ],
+    "notas_animacion": "Los grados del colegio son analogía. «Aprobar algo que no es borrador → 409» sale del código, no de una corrida."
+  },
+  {
+    "id": "E12",
+    "inicio": "09:22",
+    "fin": "10:24",
+    "tipo": "diagrama",
+    "visual": "Número grande 81 (4 × 3 valores) y cuatro tarjetas de ropa con «3 opciones». Luego dos parejas ✓ y dos reglas: errores de 2 parámetros y 81 → 9 a 12 casos. Al final las reglas del mínimo (producto de los dos más grandes), DocFlow 4 × 3 = 12 y PICT.",
+    "texto_pantalla": {
+      "es": "Pairwise: probar por parejas\nCada pareja, al menos una vez\nUn truco para no engañarte",
+      "en": "Pairwise: testing in pairs\nEvery pair, at least once\nA sanity check on the count"
+    },
+    "assets": [
+      "quiz-01-10.json m2 pregunta 5 (81 combinaciones, ~9–12 casos)",
+      "Aritmética: cada pareja rol–acción aparece al menos una vez (4 × 3 = 12)",
+      "https://github.com/microsoft/pict (recurso del módulo)"
+    ],
+    "notas_animacion": "La ropa es analogía. No se corrió PICT: no se muestra ninguna salida suya."
+  },
+  {
+    "id": "E13",
+    "inicio": "10:24",
+    "fin": "11:08",
+    "tipo": "diagrama",
+    "visual": "Dos tarjetas: el médico que vio cien gripas y «experiencia · bugs viejos · patrones». Luego DEF-001 en dos tarjetas («edito mi propio perfil» ✓ frente a «cambio mi propio rol» ✗) y dos reglas: el patrón «es mío» y SBTM.",
+    "texto_pantalla": {
+      "es": "Error guessing: adivinar con experiencia\nEl patrón «es mío»",
+      "en": "Error guessing: guessing with experience\nThe \"it's mine\" pattern"
+    },
+    "assets": [
+      "quiz-01-10.json m2 pregunta 8",
+      "experiments/03-second-brain/vault/03 Knowledge/DEF-001 self-grant role.md",
+      "m2.theory[2]"
+    ],
+    "notas_animacion": "El médico es analogía."
+  },
+  {
+    "id": "E14",
+    "inicio": "11:08",
+    "fin": "11:55",
+    "tipo": "diagrama",
+    "visual": "Lista con casillas de las cuatro partes de un reporte. Luego la tarjeta DEF-001 (esperado 403, real 200) y la regla coral «falla a veces». Al final dos tarjetas severidad / prioridad y la regla gold del typo «Bienvenidoss».",
+    "texto_pantalla": {
+      "es": "Un reporte de defecto que se defiende\nDEF-001: cualquiera lo repite\nSeveridad ≠ prioridad",
+      "en": "A defect report that holds up\nDEF-001: anyone can reproduce it\nSeverity ≠ priority"
+    },
+    "assets": [
+      "m2.theory[3]",
+      "quiz-01-10.json m2 preguntas 3 y 6",
+      "experiments/03-second-brain/vault/03 Knowledge/DEF-001 self-grant role.md"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E15",
+    "inicio": "11:55",
+    "fin": "12:44",
+    "tipo": "resumen",
+    "visual": "Tres tarjetas de ideas clave y la tarjeta de la parte 2. Luego «Antes de irte»: campana (suscríbete) y comentarios. Firma al pie.",
+    "texto_pantalla": {
+      "es": "1 · El borde y sus dos vecinos\n2 · Tablas y estados: lo que nadie escribió\n3 · Límite ambiguo: pregunta antes\nSiguiente → Parte 2 · Manos a la obra\nCristian Guerra · QA · Medellín",
+      "en": "1 · The edge and both neighbours\n2 · Tables and states: what nobody wrote\n3 · Ambiguous limit: ask first\nNext → Part 2 · Hands-on\nCristian Guerra · QA · Medellín"
+    },
+    "assets": [
+      "03-m2-p2 (parte 2 del módulo)"
+    ],
+    "notas_animacion": ""
+  }
+]

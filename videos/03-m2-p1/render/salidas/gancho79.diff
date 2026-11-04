@@ -1,0 +1,13 @@
+diff --git a/experiments/02-mutants/app/server.js b/experiments/02-mutants/app/server.js
+index 7369d1e..df1a1f0 100644
+--- a/experiments/02-mutants/app/server.js
++++ b/experiments/02-mutants/app/server.js
+@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url';
+ const PORT = Number(process.env.PORT || 4310);
+ const PUBLIC = path.join(path.dirname(fileURLToPath(import.meta.url)), 'public');
+ const ROLES = ['viewer', 'editor', 'approver', 'admin'];
+-const TITLE_MAX = 80;
++const TITLE_MAX = 79;
+ 
+ const seedMembers = () => [
+   { id: 'u1', name: 'Vera Lind', email: 'viewer@demo.io', role: 'viewer' },

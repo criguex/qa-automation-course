@@ -1,0 +1,4 @@
+12:const TITLE_MAX = 80;
+91:    const clean = typeof title === 'string' ? title.trim() : '';
+92:    if (clean.length < 3 || clean.length > TITLE_MAX) return [422, { error: `title must be 3-${TITLE_MAX} chars` }];
+93:    if (!owner || !state.members.some((m) => m.email === owner)) return [422, { error: 'owner is required' }];

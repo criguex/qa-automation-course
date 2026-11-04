@@ -1,0 +1,2 @@
+tests/golden.spec.ts:27:'x'.repeat(80)
+tests/scenarios.ts:10:'x'.repeat(81)

@@ -1,0 +1,4 @@
+estado de 1500 chars -> confident
+estado de 1501 chars -> long_state
+confianza exactamente 0.8 -> confident
+confianza 0.79 -> low_confidence

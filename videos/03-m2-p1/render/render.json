@@ -1,0 +1,1607 @@
+{
+ "etiqueta": "Módulo 03 · Parte 1 · Diseño de pruebas",
+ "firma": "Cristian Guerra · QA · Medellín",
+ "laboratorio": "criguex/war-paradigm @ 5dc5e92 (versión anterior, con TITLE_MAX = 79) y la Makeup API pública, 28-oct-2026, Node v26.8.1; capturado con render/salidas/capturas.sh.",
+ "escenas": {
+  "E01": {
+   "titulo_terminal": "bash — war-paradigm @ 5dc5e92 (versión anterior)",
+   "capturas": [
+    {
+     "cmd": "git diff",
+     "archivo": "salidas/gancho79.diff"
+    },
+    {
+     "cmd": "npx playwright test",
+     "archivo": "salidas/gancho79.txt"
+    }
+   ],
+   "anotaciones": [
+    {
+     "busca": "+const TITLE_MAX = 79",
+     "estado": "ojo",
+     "rotulo": "un solo número"
+    },
+    {
+     "busca": "7 passed",
+     "estado": "pasa",
+     "rotulo": "todo verde"
+    },
+    {
+     "busca": "KILLED",
+     "estado": "pasa",
+     "rotulo": "atrapado"
+    }
+   ],
+   "cierre": {
+    "busca": "5/6",
+    "antes": 5
+   }
+  },
+  "E02": {
+   "icono": "lupa",
+   "nivel": "★★☆☆☆"
+  },
+  "E03": {
+   "pasos": [
+    {
+     "peso": 1.3,
+     "titulo": 0,
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "ico": "lapiz",
+         "titulo": "DocFlow · crear",
+         "texto": "título de 3 a 80 letras · dueño = correo de un miembro",
+         "dice": [
+          "formulario"
+         ]
+        },
+        {
+         "ico": "grupos",
+         "titulo": "4 roles",
+         "texto": "viewer · editor · approver · admin",
+         "dice": [
+          "roles"
+         ]
+        }
+       ]
+      },
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "201 →",
+         "estado": "pasa",
+         "rotulo": "creado",
+         "dice": [
+          "201"
+         ]
+        },
+        {
+         "si": "422 →",
+         "estado": "falla",
+         "rotulo": "dato mal hecho",
+         "dice": [
+          "422"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 1,
+     "titulo": 1,
+     "dice": [
+      "pagos"
+     ],
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "filas": [
+        2,
+        2
+       ],
+       "items": [
+        {
+         "ico": "mano",
+         "titulo": "Una app de pagos",
+         "texto": "una regla de 50 dólares",
+         "dice": [
+          "dolares"
+         ]
+        },
+        {
+         "ico": "lupa",
+         "titulo": "Makeup API",
+         "texto": "API pública · repo karate-api-testing",
+         "dice": [
+          "maquillaje"
+         ]
+        },
+        {
+         "ico": "cerebro",
+         "titulo": "Un juez pequeño de IA",
+         "texto": "laya-server · parte 2",
+         "dice": [
+          "juez"
+         ]
+        },
+        {
+         "ico": "reloj",
+         "titulo": "Una API de reservas",
+         "texto": "restful-booker · parte 2",
+         "dice": [
+          "reservas"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 0.9,
+     "titulo": 2,
+     "dice": [
+      "final"
+     ],
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "filas": [
+        3,
+        3
+       ],
+       "items": [
+        {
+         "num": "1",
+         "titulo": "Particiones",
+         "dice": [
+          "particiones"
+         ]
+        },
+        {
+         "num": "2",
+         "titulo": "Valores límite",
+         "dice": [
+          "valores"
+         ]
+        },
+        {
+         "num": "3",
+         "titulo": "Tablas de decisión",
+         "dice": [
+          "tablas"
+         ]
+        },
+        {
+         "num": "4",
+         "titulo": "Estados",
+         "dice": [
+          "estados"
+         ]
+        },
+        {
+         "num": "5",
+         "titulo": "Pairwise",
+         "dice": [
+          "pairwise"
+         ]
+        },
+        {
+         "num": "6",
+         "titulo": "Adivinar errores",
+         "dice": [
+          "adivinar"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E04": {
+   "pasos": [
+    {
+     "peso": 2.4,
+     "titulo": 0,
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "num": "7",
+         "titulo": "años",
+         "estado": "falla",
+         "rotulo": "no entra",
+         "dice": [
+          "7"
+         ]
+        },
+        {
+         "num": "8",
+         "titulo": "años",
+         "estado": "pasa",
+         "rotulo": "entra",
+         "dice": [
+          "8"
+         ]
+        },
+        {
+         "num": "12",
+         "titulo": "años",
+         "estado": "pasa",
+         "rotulo": "entra",
+         "dice": [
+          "12"
+         ]
+        },
+        {
+         "num": "13",
+         "titulo": "años",
+         "estado": "falla",
+         "rotulo": "no entra",
+         "dice": [
+          "13"
+         ]
+        }
+       ]
+      },
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "los errores se esconden en la puerta →",
+         "estado": "ojo",
+         "rotulo": "7 · 8 · 12 · 13",
+         "dice": [
+          "puerta"
+         ]
+        },
+        {
+         "si": "«mayor que 8» en vez de «mayor o igual a 8» →",
+         "estado": "falla",
+         "rotulo": "el de 8 se queda afuera",
+         "dice": [
+          "llorando"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 0.6,
+     "titulo": 1,
+     "dice": [
+      "disenar"
+     ],
+     "bloques": [
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "diseñar pruebas = probar donde están los errores",
+         "estado": "pasa",
+         "rotulo": "no más casos: mejores casos",
+         "dice": [
+          "sino"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E05": {
+   "pasos": [
+    {
+     "peso": 1.3,
+     "titulo": 0,
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "flujo": true,
+       "items": [
+        {
+         "num": "1",
+         "titulo": "Unitario",
+         "texto": "una función · el tornillo",
+         "dice": [
+          "unitario"
+         ]
+        },
+        {
+         "num": "2",
+         "titulo": "Integración",
+         "texto": "piezas hablando · cadena y pedales",
+         "dice": [
+          "integracion"
+         ]
+        },
+        {
+         "num": "3",
+         "titulo": "Sistema",
+         "texto": "la app entera · la bici andando",
+         "dice": [
+          "sistema"
+         ]
+        },
+        {
+         "num": "4",
+         "titulo": "Aceptación",
+         "texto": "lo que pidió el negocio · el niño montándola",
+         "dice": [
+          "aceptacion"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 0.9,
+     "titulo": 1,
+     "dice": [
+      "tipos"
+     ],
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "titulo": "Funcional",
+         "texto": "¿hace lo que debe?",
+         "dice": [
+          "funcional"
+         ]
+        },
+        {
+         "titulo": "Regresión",
+         "texto": "¿lo que servía sigue sirviendo?",
+         "dice": [
+          "regresion"
+         ]
+        },
+        {
+         "titulo": "Smoke",
+         "texto": "pasada rápida: ¿vale la pena seguir?",
+         "dice": [
+          "smoke"
+         ]
+        },
+        {
+         "titulo": "Sanity",
+         "texto": "revisión corta tras un cambio",
+         "dice": [
+          "sanity"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 1.2,
+     "titulo": 2,
+     "dice": [
+      "regla"
+     ],
+     "bloques": [
+      {
+       "tipo": "lista",
+       "check": true,
+       "marca_tras": 1.2,
+       "items": [
+        {
+         "texto": "Precondición",
+         "dice": [
+          "precondicion"
+         ]
+        },
+        {
+         "texto": "Datos",
+         "dice": [
+          "datos"
+         ]
+        },
+        {
+         "texto": "Pasos numerados",
+         "dice": [
+          "numerados"
+         ]
+        },
+        {
+         "texto": "Resultado esperado que se pueda ver",
+         "dice": [
+          "esperado"
+         ]
+        }
+       ]
+      },
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "si otro no lo puede correr sin preguntarte →",
+         "estado": "falla",
+         "rotulo": "es una intención",
+         "dice": [
+          "intencion"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E06": {
+   "pasos": [
+    {
+     "peso": 0.9,
+     "titulo": 0,
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "titulo": "Fresa",
+         "texto": "te dan helado",
+         "estado": "pasa",
+         "rotulo": "sabor que existe",
+         "dice": [
+          "fresa"
+         ]
+        },
+        {
+         "titulo": "Vainilla",
+         "texto": "te dan helado",
+         "estado": "pasa",
+         "rotulo": "sabor que existe",
+         "dice": [
+          "vainilla"
+         ]
+        }
+       ]
+      },
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "misma clase →",
+         "estado": "pasa",
+         "rotulo": "basta un representante",
+         "dice": [
+          "representante"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 1.5,
+     "titulo": 1,
+     "dice": [
+      "docflow"
+     ],
+     "bloques": [
+      {
+       "tipo": "tabla",
+       "cols": "300px 1fr 230px",
+       "dice": [
+        [
+         "valida"
+        ],
+        [
+         "menos"
+        ],
+        [
+         "mas"
+        ],
+        [
+         "siquiera"
+        ],
+        [
+         "espacios"
+        ]
+       ],
+       "filas": [
+        [
+         "3 a 80 letras",
+         "partición válida",
+         "✓ 201",
+         "pasa"
+        ],
+        [
+         "menos de 3",
+         "inválida",
+         "✗ 422",
+         "falla"
+        ],
+        [
+         "más de 80",
+         "inválida",
+         "✗ 422",
+         "falla"
+        ],
+        [
+         "no es texto",
+         "el servidor lo vuelve un texto vacío",
+         "✗ 422",
+         "falla"
+        ],
+        [
+         "ab + espacios",
+         "quita los espacios: quedan 2 letras",
+         "✗ 422",
+         "falla"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 0.8,
+     "titulo": 2,
+     "dice": [
+      "dueno"
+     ],
+     "bloques": [
+      {
+       "tipo": "tabla",
+       "cols": "300px 1fr 380px",
+       "dice": [
+        [
+         "existe"
+        ],
+        [
+         "vacio"
+        ],
+        [
+         "nadie"
+        ]
+       ],
+       "filas": [
+        [
+         "existe",
+         "el correo de un miembro",
+         "✓ válido",
+         "pasa"
+        ],
+        [
+         "vacío",
+         "sin dueño",
+         "✗ 422 · drop-input",
+         "falla"
+        ],
+        [
+         "de nadie",
+         "un correo que no es de un miembro",
+         "⚠ ninguna prueba",
+         "ojo"
+        ]
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E07": {
+   "titulo_terminal": "bash — Makeup API (karate-api-testing)",
+   "capturas": [
+    {
+     "cmd": "curl -s \"$U?brand=maybelline\" | jq length",
+     "archivo": "salidas/makeup_maybelline.txt"
+    },
+    {
+     "cmd": "curl -s -w ' status=%{http_code}\\n' \"$U?brand=marcaquenoexiste\"",
+     "archivo": "salidas/makeup_vacio.txt"
+    }
+   ],
+   "anotaciones": [
+    {
+     "busca": "54",
+     "estado": "pasa",
+     "rotulo": "54 productos"
+    },
+    {
+     "busca": "[] status=200",
+     "estado": "ojo",
+     "rotulo": "vaso vacío"
+    }
+   ],
+   "callout": false
+  },
+  "E08": {
+   "pasos": [
+    {
+     "peso": 0.9,
+     "titulo": 0,
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "titulo": "Justo la raya",
+         "texto": "mide lo que pide el letrero",
+         "estado": "pasa",
+         "rotulo": "sube",
+         "dice": [
+          "justo"
+         ]
+        },
+        {
+         "titulo": "Le falta un pelo",
+         "texto": "un poquito menos",
+         "estado": "falla",
+         "rotulo": "no sube",
+         "dice": [
+          "pelo"
+         ]
+        }
+       ]
+      },
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "por cada borde →",
+         "estado": "ojo",
+         "rotulo": "el borde y su vecino de cada lado",
+         "dice": [
+          "vecino"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 0.9,
+     "titulo": 1,
+     "dice": [
+      "docflow"
+     ],
+     "nota": "Fuente: historia de usuario US-42, fronteras B-1 a B-4",
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "num": "2",
+         "titulo": "B-1",
+         "estado": "falla",
+         "rotulo": "422",
+         "dice": [
+          "2"
+         ]
+        },
+        {
+         "num": "3",
+         "titulo": "B-2",
+         "estado": "pasa",
+         "rotulo": "201",
+         "dice": [
+          "3"
+         ]
+        },
+        {
+         "num": "80",
+         "titulo": "B-3",
+         "estado": "pasa",
+         "rotulo": "201",
+         "dice": [
+          "80"
+         ]
+        },
+        {
+         "num": "81",
+         "titulo": "B-4",
+         "estado": "falla",
+         "rotulo": "422",
+         "dice": [
+          "81"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 1.2,
+     "titulo": 2,
+     "dice": [
+      "gancho"
+     ],
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "num": "81",
+         "titulo": "boundary lo prueba",
+         "estado": "pasa",
+         "rotulo": "cubierto",
+         "dice": [
+          "probaba"
+         ]
+        },
+        {
+         "num": "80",
+         "titulo": "nadie lo prueba",
+         "estado": "falla",
+         "rotulo": "sin caso",
+         "dice": [
+          "preguntaba"
+         ]
+        }
+       ]
+      },
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "un solo lado de la puerta →",
+         "estado": "ojo",
+         "rotulo": "el 79 pasó sin ruido",
+         "dice": [
+          "noto"
+         ]
+        },
+        {
+         "si": "versión anterior del repo →",
+         "estado": "pasa",
+         "rotulo": "cerrado en la parte 2",
+         "dice": [
+          "cerre"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E09": {
+   "pasos": [
+    {
+     "peso": 1.2,
+     "titulo": 0,
+     "nota": "Evidencia guardada de esa prueba · solo leída: el ambiente ya no existe",
+     "bloques": [
+      {
+       "tipo": "tabla",
+       "cols": "300px 1fr 470px",
+       "dice": [
+        [
+         "4999"
+        ],
+        [
+         "5001"
+        ],
+        [
+         "exacto"
+        ]
+       ],
+       "filas": [
+        [
+         "49,99",
+         "aprobado solo",
+         "✓ correcto",
+         "pasa"
+        ],
+        [
+         "50,01",
+         "pendiente de revisión",
+         "✓ correcto",
+         "pasa"
+        ],
+        [
+         "50 exacto",
+         "aprobado solo",
+         "✗ debía ir a revisión",
+         "falla"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 1.1,
+     "titulo": 1,
+     "dice": [
+      "bonito"
+     ],
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "etiqueta": "nombre de la regla",
+         "titulo": "«under 50»",
+         "texto": "menos de 50: el 50 no entra",
+         "dice": [
+          "under"
+         ]
+        },
+        {
+         "etiqueta": "descripción de la regla",
+         "titulo": "«at or below 50»",
+         "texto": "50 o menos: el 50 sí entra",
+         "dice": [
+          "below"
+         ]
+        }
+       ]
+      },
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "«menores de 10 gratis»: ¿el que cumple 10 hoy paga? →",
+         "estado": "ojo",
+         "rotulo": "ambiguo",
+         "dice": [
+          "menores"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 0.9,
+     "titulo": 2,
+     "dice": [
+      "evidencia"
+     ],
+     "bloques": [
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "un límite ambiguo →",
+         "estado": "ojo",
+         "rotulo": "preguntas antes de automatizar",
+         "dice": [
+          "ambiguo"
+         ]
+        },
+        {
+         "si": "la prueba de 50 exacto →",
+         "estado": "pasa",
+         "rotulo": "encuentra la pregunta",
+         "dice": [
+          "encuentra"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E10": {
+   "pasos": [
+    {
+     "peso": 0.8,
+     "titulo": 0,
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "flujo": true,
+       "items": [
+        {
+         "titulo": "¿Sopa?",
+         "texto": "sí o no",
+         "dice": [
+          "sopa"
+         ]
+        },
+        {
+         "titulo": "¿Postre?",
+         "texto": "sí o no",
+         "dice": [
+          "postre"
+         ]
+        },
+        {
+         "num": "2 × 2 = 4",
+         "titulo": "almuerzos distintos",
+         "estado": "pasa",
+         "rotulo": "todas vistas",
+         "dice": [
+          "almuerzos"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 0.9,
+     "titulo": 1,
+     "dice": [
+      "docflow"
+     ],
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "num": "1",
+         "titulo": "¿El rol puede crear?",
+         "dice": [
+          "rol"
+         ]
+        },
+        {
+         "num": "2",
+         "titulo": "¿El título es válido?",
+         "dice": [
+          "titulo"
+         ]
+        },
+        {
+         "num": "3",
+         "titulo": "¿El dueño es válido?",
+         "dice": [
+          "dueno"
+         ]
+        }
+       ]
+      },
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "2 × 2 × 2 →",
+         "estado": "ojo",
+         "rotulo": "8 combinaciones",
+         "dice": [
+          "combinaciones"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 1,
+     "titulo": 2,
+     "dice": [
+      "vault"
+     ],
+     "nota": "Regla del vault: un rol prohibido recibe 403 antes de revisar el título",
+     "bloques": [
+      {
+       "tipo": "tabla",
+       "cols": "300px 1fr 360px",
+       "dice": [
+        [
+         "cuatro"
+        ],
+        [
+         "201"
+        ],
+        [
+         "otras"
+        ]
+       ],
+       "filas": [
+        [
+         "rol no puede",
+         "cualquier título y cualquier dueño · 4 columnas",
+         "✗ 403",
+         "falla"
+        ],
+        [
+         "rol puede",
+         "título ✓ y dueño ✓ · 1 columna",
+         "✓ 201",
+         "pasa"
+        ],
+        [
+         "rol puede",
+         "título ✗ o dueño ✗ · 3 columnas",
+         "✗ 422",
+         "falla"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 1.3,
+     "titulo": 3,
+     "dice": [
+      "recorri"
+     ],
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "titulo": "viewer crea un documento",
+         "texto": "esperado 403 · real 201 · la ruta no pregunta el rol",
+         "estado": "falla",
+         "rotulo": "bug real",
+         "dice": [
+          "dio"
+         ]
+        },
+        {
+         "etiqueta": "nació de esta tabla",
+         "titulo": "viewer-create",
+         "texto": "el séptimo mutante · sobrevive",
+         "estado": "ojo",
+         "rotulo": "visible",
+         "dice": [
+          "septimo"
+         ]
+        }
+       ]
+      },
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "la tabla te muestra la combinación que nadie escribió",
+         "estado": "pasa",
+         "rotulo": "para eso sirve",
+         "dice": [
+          "escribio"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E11": {
+   "pasos": [
+    {
+     "peso": 0.9,
+     "titulo": 0,
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "flujo": true,
+       "items": [
+        {
+         "num": "1",
+         "titulo": "Borrador",
+         "dice": [
+          "borrador"
+         ]
+        },
+        {
+         "num": "2",
+         "titulo": "Aprobado",
+         "dice": [
+          "aprobado"
+         ]
+        },
+        {
+         "num": "3",
+         "titulo": "Publicado",
+         "dice": [
+          "publicado"
+         ]
+        }
+       ]
+      },
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "de primero pasas a segundo →",
+         "estado": "pasa",
+         "rotulo": "un paso a la vez",
+         "dice": [
+          "segundo"
+         ]
+        },
+        {
+         "si": "de primero a quinto →",
+         "estado": "falla",
+         "rotulo": "no se salta",
+         "dice": [
+          "quinto"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 1.2,
+     "titulo": 1,
+     "dice": [
+      "saltos"
+     ],
+     "bloques": [
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "publicar un borrador sin aprobar →",
+         "estado": "falla",
+         "rotulo": "409",
+         "dice": [
+          "publicar"
+         ]
+        },
+        {
+         "si": "aprobar algo que ya no es borrador →",
+         "estado": "falla",
+         "rotulo": "409 · según el código",
+         "dice": [
+          "algo"
+         ]
+        },
+        {
+         "si": "pagar dos veces · enviar dos veces · devolverse →",
+         "estado": "ojo",
+         "rotulo": "bugs de negocio",
+         "dice": [
+          "pagar"
+         ]
+        },
+        {
+         "si": "el mutante reorder →",
+         "estado": "pasa",
+         "rotulo": "publica antes de aprobar · 409",
+         "dice": [
+          "reorder"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E12": {
+   "pasos": [
+    {
+     "peso": 0.9,
+     "titulo": 0,
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "num": "81",
+         "titulo": "combinaciones",
+         "texto": "4 parámetros × 3 valores",
+         "estado": "falla",
+         "rotulo": "explotan",
+         "dice": [
+          "81"
+         ]
+        }
+       ]
+      },
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "titulo": "Camisa",
+         "texto": "3 opciones",
+         "dice": [
+          "camisa"
+         ]
+        },
+        {
+         "titulo": "Pantalón",
+         "texto": "3 opciones",
+         "dice": [
+          "pantalon"
+         ]
+        },
+        {
+         "titulo": "Zapatos",
+         "texto": "3 opciones",
+         "dice": [
+          "zapatos"
+         ]
+        },
+        {
+         "titulo": "Gorra",
+         "texto": "3 opciones",
+         "dice": [
+          "gorra"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 1.2,
+     "titulo": 1,
+     "dice": [
+      "atuendos"
+     ],
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "titulo": "camisa + zapatos",
+         "estado": "pasa",
+         "rotulo": "pareja",
+         "dice": [
+          "camisa"
+         ]
+        },
+        {
+         "titulo": "gorra + pantalón",
+         "estado": "pasa",
+         "rotulo": "pareja",
+         "dice": [
+          "gorra"
+         ]
+        }
+       ]
+      },
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "la mayoría de errores de interacción salen con 2 parámetros →",
+         "estado": "ojo",
+         "rotulo": "por eso parejas",
+         "dice": [
+          "interaccion"
+         ]
+        },
+        {
+         "si": "81 combinaciones →",
+         "estado": "pasa",
+         "rotulo": "unos 9 a 12 casos",
+         "dice": [
+          "casos"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 1,
+     "titulo": 2,
+     "dice": [
+      "truco"
+     ],
+     "bloques": [
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "casos ≥ producto de los 2 parámetros más grandes",
+         "estado": "ojo",
+         "rotulo": "mínimo",
+         "dice": [
+          "producto"
+         ]
+        },
+        {
+         "si": "DocFlow: 4 roles × 3 acciones →",
+         "estado": "pasa",
+         "rotulo": "12 parejas",
+         "dice": [
+          "doce"
+         ]
+        },
+        {
+         "si": "te salen menos de 12 →",
+         "estado": "falla",
+         "rotulo": "algo está mal",
+         "dice": [
+          "salen"
+         ]
+        },
+        {
+         "si": "la herramienta: PICT, de Microsoft",
+         "estado": "pasa",
+         "rotulo": "gratis",
+         "dice": [
+          "pict"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E13": {
+   "pasos": [
+    {
+     "peso": 0.8,
+     "titulo": 0,
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "ico": "lupa",
+         "titulo": "El médico que vio cien gripas",
+         "texto": "sabe dónde mirar",
+         "dice": [
+          "medico"
+         ]
+        },
+        {
+         "ico": "bicho",
+         "titulo": "Se alimenta de",
+         "texto": "experiencia · bugs viejos · patrones típicos",
+         "dice": [
+          "experiencia"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 1.2,
+     "titulo": 1,
+     "dice": [
+      "docflow"
+     ],
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "etiqueta": "DEF-001",
+         "titulo": "«edito mi propio perfil»",
+         "texto": "la regla pensada",
+         "estado": "pasa",
+         "rotulo": "bien",
+         "dice": [
+          "perfil"
+         ]
+        },
+        {
+         "etiqueta": "DEF-001",
+         "titulo": "«cambio mi propio rol»",
+         "texto": "lo que terminó cubriendo",
+         "estado": "falla",
+         "rotulo": "bug",
+         "dice": [
+          "cambio"
+         ]
+        }
+       ]
+      },
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "una regla de «es mío» que abre una puerta →",
+         "estado": "ojo",
+         "rotulo": "búscala en cada sistema",
+         "dice": [
+          "puerta"
+         ]
+        },
+        {
+         "si": "todo cabe en una sesión SBTM: misión · tiempo · notas",
+         "estado": "pasa",
+         "rotulo": "módulo 1",
+         "dice": [
+          "sbtm"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E14": {
+   "pasos": [
+    {
+     "peso": 0.8,
+     "titulo": 0,
+     "bloques": [
+      {
+       "tipo": "lista",
+       "check": true,
+       "marca_tras": 1,
+       "items": [
+        {
+         "texto": "Pasos",
+         "dice": [
+          "pasos"
+         ]
+        },
+        {
+         "texto": "Esperado contra real",
+         "dice": [
+          "esperado"
+         ]
+        },
+        {
+         "texto": "Ambiente",
+         "dice": [
+          "ambiente"
+         ]
+        },
+        {
+         "texto": "Evidencia",
+         "dice": [
+          "evidencia"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 0.9,
+     "titulo": 1,
+     "dice": [
+      "mira"
+     ],
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "etiqueta": "DEF-001 · vault",
+         "titulo": "esperado 403 · real 200",
+         "texto": "2 pasos exactos · causa en el código · evidencia",
+         "estado": "pasa",
+         "rotulo": "se repite sin preguntar",
+         "dice": [
+          "exactos"
+         ]
+        }
+       ]
+      },
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "«el formulario falla a veces» →",
+         "estado": "falla",
+         "rotulo": "no es un reporte",
+         "dice": [
+          "veces"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 1.2,
+     "titulo": 2,
+     "dice": [
+      "ojo"
+     ],
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "titulo": "Severidad",
+         "texto": "cuánto daño hace",
+         "dice": [
+          "dano"
+         ]
+        },
+        {
+         "titulo": "Prioridad",
+         "texto": "qué tan rápido hay que arreglarlo",
+         "dice": [
+          "rapido"
+         ]
+        }
+       ]
+      },
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "«Bienvenidoss» en la página principal →",
+         "estado": "ojo",
+         "rotulo": "severidad baja · prioridad alta",
+         "dice": [
+          "ortografia"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E15": {
+   "pasos": [
+    {
+     "reparto": 0.65,
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "num": "✓ 1",
+         "titulo": "El borde y sus dos vecinos",
+         "dice": [
+          "una"
+         ]
+        },
+        {
+         "num": "✓ 2",
+         "titulo": "Tablas y estados: lo que nadie escribió",
+         "dice": [
+          "dos"
+         ]
+        },
+        {
+         "num": "✓ 3",
+         "titulo": "Límite ambiguo: pregunta antes de automatizar",
+         "dice": [
+          "tres"
+         ]
+        }
+       ]
+      },
+      {
+       "tipo": "siguiente",
+       "ico": "lupa",
+       "texto": "Siguiente → Parte 2 · Manos a la obra",
+       "brilla_antes": 8,
+       "dice": [
+        "ensuciamos"
+       ]
+      }
+     ]
+    },
+    {
+     "reparto": 0.35,
+     "titulo": "Antes de irte",
+     "dice": [
+      "suscribete"
+     ],
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "ico": "campana",
+         "titulo": "Suscríbete y activa la campanita",
+         "texto": "para no perderte la parte 2",
+         "dice": [
+          "campanita"
+         ]
+        },
+        {
+         "ico": "lapiz",
+         "titulo": "¿Dudas? Déjalas en los comentarios",
+         "texto": "las leo todas y te respondo",
+         "dice": [
+          "comentarios"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

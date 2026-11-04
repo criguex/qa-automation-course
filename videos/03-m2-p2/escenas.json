@@ -1,0 +1,289 @@
+[
+  {
+    "id": "E01",
+    "inicio": "00:00",
+    "fin": "00:09",
+    "tipo": "titulo",
+    "visual": "Título sobre navy con rejilla y barra mint. Icono lupa, nivel ★★☆☆☆.",
+    "texto_pantalla": {
+      "es": "Módulo 03, parte 2 · Manos a la obra — Límites, tablas y mutantes en la terminal\nCristian Guerra · QA · Medellín",
+      "en": "Module 03, part 2 · Hands-on — Boundaries, tables and mutants in the terminal\nCristian Guerra · QA · Medellín"
+    },
+    "assets": [
+      "course.json (m2, posición 3, icono 🎯, nivel ★★☆☆☆)"
+    ],
+    "notas_animacion": "La plantilla no tiene icono de diana; se usa lupa."
+  },
+  {
+    "id": "E02",
+    "inicio": "00:09",
+    "fin": "00:45",
+    "tipo": "diagrama",
+    "visual": "Repaso de la parte 1: cinco tarjetas numeradas (particiones, valores límite, tablas de decisión, estados, adivinar errores), cada una con su analogía, y la regla mint «probar donde están los errores».",
+    "texto_pantalla": {
+      "es": "Repaso: probar donde están los errores",
+      "en": "Recap: test where the bugs are"
+    },
+    "assets": [
+      "03-m2-p1 (parte 1 del módulo)",
+      "m2.theory[1]"
+    ],
+    "notas_animacion": "Heladería, montaña rusa y almuerzos son las analogías de la parte 1."
+  },
+  {
+    "id": "E03",
+    "inicio": "00:45",
+    "fin": "01:24",
+    "tipo": "terminal",
+    "visual": "Terminal con la preparación y el grep real de app/server.js: TITLE_MAX = 80, trim, y los dos return 422.",
+    "texto_pantalla": {
+      "es": "$ git clone https://github.com/criguex/war-paradigm.git && cd war-paradigm\n$ npm ci\n$ cd experiments/02-mutants\n$ grep -n -E \"TITLE_MAX|trim|owner is required\" app/server.js\n12:const TITLE_MAX = 80;\n91:    const clean = typeof title === 'string' ? title.trim() : '';\n92:    if (clean.length < 3 || clean.length > TITLE_MAX) return [422, …\n93:    if (!owner || !state.members.some((m) => m.email === owner)) return [422, …",
+      "en": "$ git clone https://github.com/criguex/war-paradigm.git && cd war-paradigm\n$ npm ci\n$ cd experiments/02-mutants\n$ grep -n -E \"TITLE_MAX|trim|owner is required\" app/server.js\n12:const TITLE_MAX = 80;\n91:    const clean = typeof title === 'string' ? title.trim() : '';\n92:    if (clean.length < 3 || clean.length > TITLE_MAX) return [422, …\n93:    if (!owner || !state.members.some((m) => m.email === owner)) return [422, …"
+    },
+    "assets": [
+      "Comandos: m2.hands y experiments/02-mutants/README.md §Run it",
+      "render/salidas/server_grep.txt (capturas.sh sobre criguex/war-paradigm @ e6ce6d4, 28-oct-2026, Node v26.8.1)"
+    ],
+    "notas_animacion": "Las líneas 92 y 93 se truncan con «…» porque no caben; la salida completa está en server_grep.txt."
+  },
+  {
+    "id": "E04",
+    "inicio": "01:24",
+    "fin": "02:20",
+    "tipo": "terminal",
+    "visual": "Terminal con la función crea contra la app real: los cuatro límites del editor (422, 201, 201, 422) con rótulos B-1…B-4; el título con espacios → 422; el viewer → 201 y 422 en coral con «debía ser 403».",
+    "texto_pantalla": {
+      "es": "(crea = login con un rol + POST /api/docs con curl)\n$ for n in 2 3 80 81; do crea editor \"$(printf \"%${n}s\" | tr ' ' x)\"; done\neditor · título de 2 → 422\neditor · título de 3 → 201\neditor · título de 80 → 201\neditor · título de 81 → 422\n$ crea editor \"  ab  \"\neditor · título de 6 → 422\n$ crea viewer \"Q4 launch plan\"\nviewer · título de 14 → 201\n$ crea viewer \"ab\"\nviewer · título de 2 → 422",
+      "en": "(crea = log in as a role + POST /api/docs with curl)\n$ for n in 2 3 80 81; do crea editor \"$(printf \"%${n}s\" | tr ' ' x)\"; done\neditor · título de 2 → 422\neditor · título de 3 → 201\neditor · título de 80 → 201\neditor · título de 81 → 422\n$ crea editor \"  ab  \"\neditor · título de 6 → 422\n$ crea viewer \"Q4 launch plan\"\nviewer · título de 14 → 201\n$ crea viewer \"ab\"\nviewer · título de 2 → 422"
+    },
+    "assets": [
+      "render/salidas/crea_limites.txt, crea_espacios.txt, crea_viewer.txt y crea_viewer_ab.txt (capturas.sh: node app/server.js en :4310 y las funciones tok/crea con curl; criguex/war-paradigm @ e6ce6d4, 28-oct-2026)",
+      "experiments/01-ai-verdict/fixtures/story-US-42.json (B-1…B-4)",
+      "experiments/03-second-brain/vault/03 Knowledge/Roles and permissions.md (viewer crea → 403; 403 antes que 422)"
+    ],
+    "notas_animacion": "La función crea está definida en capturas.sh; en pantalla se aclara con una nota."
+  },
+  {
+    "id": "E05",
+    "inicio": "02:20",
+    "fin": "03:07",
+    "tipo": "terminal",
+    "visual": "Marcador real de npm run test:mutants (5 KILLED, 2 KNOWN SURVIVOR, 5/7) y el grep de 'x'.repeat: 81 en scenarios.ts (gold, un solo lado) y 80 en golden.spec.ts (mint, el borde B-3).",
+    "texto_pantalla": {
+      "es": "$ npm run test:mutants\n  KILLED            role-swap      Expected rejection HTTP 403 observed.\n  KILLED            drop-input     Expected rejection HTTP 422 observed.\n  KILLED            reorder        Expected rejection HTTP 409 observed.\n  KILLED            stale-token    Expected rejection HTTP 401 observed.\n  KILLED            boundary       Expected rejection HTTP 422 observed.\n  KNOWN SURVIVOR    self-grant     Mutation was accepted with HTTP 200.\n  KNOWN SURVIVOR    viewer-create  Mutation was accepted with HTTP 201.\n  5/7 scored mutants killed · 2 survived · 0 excluded from score\n$ grep -n -o \"'x'.repeat([0-9]*)\" tests/*.ts\ntests/golden.spec.ts:27:'x'.repeat(80)\ntests/scenarios.ts:10:'x'.repeat(81)",
+      "en": "$ npm run test:mutants\n  KILLED            role-swap      Expected rejection HTTP 403 observed.\n  KILLED            drop-input     Expected rejection HTTP 422 observed.\n  KILLED            reorder        Expected rejection HTTP 409 observed.\n  KILLED            stale-token    Expected rejection HTTP 401 observed.\n  KILLED            boundary       Expected rejection HTTP 422 observed.\n  KNOWN SURVIVOR    self-grant     Mutation was accepted with HTTP 200.\n  KNOWN SURVIVOR    viewer-create  Mutation was accepted with HTTP 201.\n  5/7 scored mutants killed · 2 survived · 0 excluded from score\n$ grep -n -o \"'x'.repeat([0-9]*)\" tests/*.ts\ntests/golden.spec.ts:27:'x'.repeat(80)\ntests/scenarios.ts:10:'x'.repeat(81)"
+    },
+    "assets": [
+      "render/salidas/test_mutants.txt y render/salidas/repeat_grep.txt (capturas.sh sobre criguex/war-paradigm @ e6ce6d4, 28-oct-2026)",
+      "war-paradigm git log: a5386c8 feat(02): mutante viewer-create y prueba del título de 80 caracteres"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E06",
+    "inicio": "03:07",
+    "fin": "04:11",
+    "tipo": "terminal",
+    "visual": "Dos repos más. laya-server: script propio sobre route() con 1500/1501 caracteres y confianza 0.8/0.79. restful-booker-quality-suite: pruebas de componentes con fechas imposibles rechazadas, 29 de febrero y precio 0 aceptados, precio negativo rechazado, 8 passed.",
+    "texto_pantalla": {
+      "es": "$ node bordes-laya.mjs laya-server\nestado de 1500 chars -> confident\nestado de 1501 chars -> long_state\nconfianza exactamente 0.8 -> confident\nconfianza 0.79 -> low_confidence\n$ cd restful-booker-quality-suite\n$ npm run test:component 2>&1 | grep -o -E \"› (accepts|rejects).*|[0-9]+ passed.*\"\n› rejects invalid ISO calendar date 2026-02-30\n› accepts valid leap-day booking and zero-value boundaries\n› rejects invalid ISO calendar date 2026-13-01\n› rejects negative price and empty required names\n8 passed (372ms)",
+      "en": "$ node bordes-laya.mjs laya-server\nestado de 1500 chars -> confident\nestado de 1501 chars -> long_state\nconfianza exactamente 0.8 -> confident\nconfianza 0.79 -> low_confidence\n$ cd restful-booker-quality-suite\n$ npm run test:component 2>&1 | grep -o -E \"› (accepts|rejects).*|[0-9]+ passed.*\"\n› rejects invalid ISO calendar date 2026-02-30\n› accepts valid leap-day booking and zero-value boundaries\n› rejects invalid ISO calendar date 2026-13-01\n› rejects negative price and empty required names\n8 passed (372ms)"
+    },
+    "assets": [
+      "render/salidas/bordes-laya.mjs (script mío, no está en el repo) y render/salidas/laya_bordes.txt (criguex/laya-server @ bf88c61, src/policy.mjs route(), umbral 0.8 y 1500 caracteres por defecto en src/server.mjs)",
+      "render/salidas/rb_component.txt (criguex/restful-booker-quality-suite @ 1dcf742, tests/component/bookingSchemas.component.spec.ts: checkin 2028-02-29, totalprice 0 y -1)",
+      "laya-server/test/policy.test.mjs (sus 7 pruebas no usan 1500/1501 ni 0.8 exacto)"
+    ],
+    "notas_animacion": "Procedencia: laya = corrido con un script mío; restful-booker = corrido, sin Docker."
+  },
+  {
+    "id": "E07",
+    "inicio": "04:11",
+    "fin": "04:54",
+    "tipo": "diagrama",
+    "visual": "Tabla de cómo arrancaría la suite: una fila por técnica con sus casos y el porqué en mint; regla gold «la línea del porqué la pide el revisor».",
+    "texto_pantalla": {
+      "es": "Tu suite: cada técnica, sus casos y su porqué",
+      "en": "Your suite: each technique, its cases and its why"
+    },
+    "assets": [
+      "m2.hands[0]",
+      "m2.crit"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E08",
+    "inicio": "04:54",
+    "fin": "05:25",
+    "tipo": "diagrama",
+    "visual": "Dos tarjetas: DEF-001 (ejemplo) y 99 Templates/Defect note (plantilla). Luego la lista con casillas de los campos de la plantilla. Al final la tarjeta coral del viewer que crea como primer reporte.",
+    "texto_pantalla": {
+      "es": "Reporta con plantilla\nLo que trae la plantilla\nTu primer reporte",
+      "en": "Report with a template\nWhat the template asks for\nYour first report"
+    },
+    "assets": [
+      "experiments/03-second-brain/vault/99 Templates/Defect note.md (Rule broken, Steps, Expected, Actual, Root cause, Evidence, Status)",
+      "experiments/03-second-brain/vault/03 Knowledge/DEF-001 self-grant role.md",
+      "render/salidas/crea_viewer.txt"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E09",
+    "inicio": "05:25",
+    "fin": "05:52",
+    "tipo": "codigo",
+    "visual": "Editor con el diff real de una línea en app/server.js (TITLE_MAX de 80 a 81) y la nota de predicción escrita antes de correr.",
+    "texto_pantalla": {
+      "es": "experiments/02-mutants/app/server.js\n- TITLE_MAX = 80\n+ TITLE_MAX = 81\nPredicción: boundary (81) → 201 · ese escenario falla · la suite se pone roja",
+      "en": "experiments/02-mutants/app/server.js\n- TITLE_MAX = 80\n+ TITLE_MAX = 81\nPrediction: boundary (81) → 201 · that scenario fails · the suite goes red"
+    },
+    "assets": [
+      "m2.mut",
+      "render/salidas/mut81.diff"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E10",
+    "inicio": "05:52",
+    "fin": "06:19",
+    "tipo": "terminal",
+    "visual": "Salida real con TITLE_MAX = 81: boundary falla, «1 failed», SURVIVED boundary con 201 y 4/7. Cierra con el rótulo del narrador «mi mutación del servidor: ✓ KILLED».",
+    "texto_pantalla": {
+      "es": "$ npm run test:mutants\n  ✘  5 tests/mutants.spec.ts:11:3 › boundary: expect 422 (14ms)\n    Error: mutation: Mutation was accepted with HTTP 201.\n  1 failed\n  SURVIVED          boundary       Mutation was accepted with HTTP 201.\n  4/7 scored mutants killed · 3 survived · 0 excluded from score\n(mi mutación del servidor: ✓ KILLED)",
+      "en": "$ npm run test:mutants\n  ✘  5 tests/mutants.spec.ts:11:3 › boundary: expect 422 (14ms)\n    Error: mutation: Mutation was accepted with HTTP 201.\n  1 failed\n  SURVIVED          boundary       Mutation was accepted with HTTP 201.\n  4/7 scored mutants killed · 3 survived · 0 excluded from score\n(my server mutation: ✓ KILLED)"
+    },
+    "assets": [
+      "render/salidas/mut81_mutants.txt (mutación aplicada y revertida por capturas.sh sobre criguex/war-paradigm @ e6ce6d4, 28-oct-2026)"
+    ],
+    "notas_animacion": "SURVIVED es del escenario; el veredicto de la mutación del servidor es KILLED."
+  },
+  {
+    "id": "E11",
+    "inicio": "06:19",
+    "fin": "06:38",
+    "tipo": "codigo",
+    "visual": "Editor con el diff real de una línea (TITLE_MAX de 80 a 79) y la predicción.",
+    "texto_pantalla": {
+      "es": "experiments/02-mutants/app/server.js\n- TITLE_MAX = 80\n+ TITLE_MAX = 79\nPredicción: la prueba de 80 recibe 422 en vez de 201 · falla",
+      "en": "experiments/02-mutants/app/server.js\n- TITLE_MAX = 80\n+ TITLE_MAX = 79\nPrediction: the 80-char test gets 422 instead of 201 · it fails"
+    },
+    "assets": [
+      "render/salidas/mut79.diff",
+      "experiments/02-mutants/tests/golden.spec.ts (boundary: a title of exactly 80 chars is accepted and listed)"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E12",
+    "inicio": "06:38",
+    "fin": "07:20",
+    "tipo": "terminal",
+    "visual": "Salida real con TITLE_MAX = 79 en el repo de hoy: golden pasa, la prueba de 80 falla (Expected 201, Received 422), 8 passed y los mutantes en 5/7. Cierra con el rótulo del narrador «mi mutación del servidor: ✓ KILLED».",
+    "texto_pantalla": {
+      "es": "$ npx playwright test\n  ✓  1 tests/golden.spec.ts:9:1 › golden: create → approve → publish (843ms)\n  ✘  2 tests/golden.spec.ts:26:1 › boundary: a title of exactly 80 chars is accepted …\n    Expected: 201\n    Received: 422\n  1 failed\n  8 passed (1.9s)\n  5/7 scored mutants killed · 2 survived · 0 excluded from score\n(mi mutación del servidor: ✓ KILLED)",
+      "en": "$ npx playwright test\n  ✓  1 tests/golden.spec.ts:9:1 › golden: create → approve → publish (843ms)\n  ✘  2 tests/golden.spec.ts:26:1 › boundary: a title of exactly 80 chars is accepted …\n    Expected: 201\n    Received: 422\n  1 failed\n  8 passed (1.9s)\n  5/7 scored mutants killed · 2 survived · 0 excluded from score\n(my server mutation: ✓ KILLED)"
+    },
+    "assets": [
+      "render/salidas/mut79_test.txt (capturas.sh sobre criguex/war-paradigm @ e6ce6d4, 28-oct-2026)",
+      "03-m2-p1/render/salidas/gancho79.txt (la misma mutación en 5dc5e92: 7 passed, 5/6)"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E13",
+    "inicio": "07:20",
+    "fin": "07:45",
+    "tipo": "diagrama",
+    "visual": "Dos tarjetas del entregable (suite de casos, 3 reportes). Luego la lista de los tres criterios verificables con casillas.",
+    "texto_pantalla": {
+      "es": "Tu entregable\nCriterios verificables",
+      "en": "Your deliverable\nVerifiable criteria"
+    },
+    "assets": [
+      "m2.deliver",
+      "m2.crit"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E14",
+    "inicio": "07:45",
+    "fin": "08:09",
+    "tipo": "diagrama",
+    "visual": "Rúbrica en tabla: los cuatro niveles con su estado y la regla de aprobación.",
+    "texto_pantalla": {
+      "es": "Rúbrica: el nivel 3 aprueba",
+      "en": "Rubric: level 3 passes"
+    },
+    "assets": [
+      "ui.json rubric.generic y module.evalNote",
+      "m2.top (nivel 4)",
+      "course.json qn = 8, qpass = 0.75"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E15",
+    "inicio": "08:09",
+    "fin": "08:49",
+    "tipo": "quiz",
+    "visual": "Tarjeta de pregunta A–D con temporizador de 5 s; la correcta se marca ✓ mint al revelar.",
+    "texto_pantalla": {
+      "es": "Un campo acepta enteros de 1 a 100. ¿Qué conjunto aplica mejor los valores límite?\nA · 1, 50 y 100\nB · 0, 1, 100 y 101 ✓\nC · 2 y 99\nD · −5 y 500",
+      "en": "A field accepts integers from 1 to 100. Which set applies boundary values best?\nA · 1, 50 and 100\nB · 0, 1, 100 and 101 ✓\nC · 2 and 99\nD · −5 and 500"
+    },
+    "assets": [
+      "quiz-01-10.json m2 pregunta 1 (a = 1)"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E16",
+    "inicio": "08:49",
+    "fin": "09:26",
+    "tipo": "quiz",
+    "visual": "Tarjeta de pregunta A–D con temporizador de 5 s; la correcta se marca ✓ mint al revelar.",
+    "texto_pantalla": {
+      "es": "Un pedido pasa por borrador → pagado → enviado. ¿Qué aporta la transición de estados?\nA · El camino feliz completo\nB · Las transiciones inválidas: de enviado a borrador o pagar dos veces ✓\nC · Los límites del monto\nD · El formato de la fecha",
+      "en": "An order goes draft → paid → shipped. What does state transition testing add?\nA · The full happy path\nB · The invalid transitions: shipped to draft or paying twice ✓\nC · The amount limits\nD · The date format"
+    },
+    "assets": [
+      "quiz-01-10.json m2 pregunta 4 (a = 1)"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E17",
+    "inicio": "09:26",
+    "fin": "10:00",
+    "tipo": "quiz",
+    "visual": "Tarjeta de pregunta A–D con temporizador de 5 s; la correcta se marca ✓ mint al revelar.",
+    "texto_pantalla": {
+      "es": "Un typo en el título de la página principal: «Bienvenidoss». ¿Severidad y prioridad?\nA · Severidad alta, prioridad alta\nB · Severidad baja, prioridad alta ✓\nC · Severidad alta, prioridad baja\nD · Severidad baja, prioridad baja",
+      "en": "A typo in the home page title: \"Welcomee\". Severity and priority?\nA · High severity, high priority\nB · Low severity, high priority ✓\nC · High severity, low priority\nD · Low severity, low priority"
+    },
+    "assets": [
+      "quiz-01-10.json m2 pregunta 6 (a = 1)"
+    ],
+    "notas_animacion": ""
+  },
+  {
+    "id": "E18",
+    "inicio": "10:00",
+    "fin": "10:52",
+    "tipo": "resumen",
+    "visual": "Tres tarjetas de ideas clave y la tarjeta del siguiente módulo. Luego «Antes de irte»: campana (suscríbete) y comentarios. Firma al pie.",
+    "texto_pantalla": {
+      "es": "1 · El borde y sus dos vecinos\n2 · La tabla muestra la celda que nadie escribió\n3 · Cada técnica es una fábrica de mutantes\nSiguiente → 04 · Setup día 0\nCristian Guerra · QA · Medellín",
+      "en": "1 · The edge and both neighbours\n2 · The table shows the cell nobody wrote\n3 · Every technique is a mutant factory\nNext → 04 · Day-0 setup\nCristian Guerra · QA · Medellín"
+    },
+    "assets": [
+      "course.json (posición 4 = m3, «Setup día 0 — el entorno»)",
+      "https://criguex.github.io/qa-automation-course/#/m2"
+    ],
+    "notas_animacion": ""
+  }
+]

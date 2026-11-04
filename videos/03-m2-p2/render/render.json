@@ -1,0 +1,769 @@
+{
+ "etiqueta": "Módulo 03 · Parte 2 · Diseño de pruebas",
+ "firma": "Cristian Guerra · QA · Medellín",
+ "laboratorio": "criguex/war-paradigm @ e6ce6d4 (HEAD de main el 28-oct-2026), criguex/laya-server @ bf88c61 y criguex/restful-booker-quality-suite @ 1dcf742; Node v26.8.1. Capturado con render/salidas/capturas.sh.",
+ "escenas": {
+  "E01": {
+   "icono": "lupa",
+   "nivel": "★★☆☆☆"
+  },
+  "E02": {
+   "pasos": [
+    {
+     "titulo": 0,
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "filas": [
+        3,
+        2
+       ],
+       "items": [
+        {
+         "num": "1",
+         "titulo": "Particiones",
+         "texto": "un sabor de cada clase",
+         "dice": [
+          "particiones"
+         ]
+        },
+        {
+         "num": "2",
+         "titulo": "Valores límite",
+         "texto": "la raya de la montaña rusa",
+         "dice": [
+          "valores"
+         ]
+        },
+        {
+         "num": "3",
+         "titulo": "Tablas de decisión",
+         "texto": "todos los almuerzos",
+         "dice": [
+          "tablas"
+         ]
+        },
+        {
+         "num": "4",
+         "titulo": "Estados",
+         "texto": "los saltos prohibidos",
+         "dice": [
+          "estados"
+         ]
+        },
+        {
+         "num": "5",
+         "titulo": "Adivinar errores",
+         "texto": "lo que ya viste fallar",
+         "dice": [
+          "adivinar"
+         ]
+        }
+       ]
+      },
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "hoy lo haces tú →",
+         "estado": "pasa",
+         "rotulo": "en la terminal",
+         "dice": [
+          "terminal"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E03": {
+   "titulo_terminal": "bash — ~",
+   "capturas": [
+    {
+     "cmd": "grep -n -E \"TITLE_MAX|trim|owner is required\" app/server.js",
+     "archivo": "salidas/server_grep.txt"
+    }
+   ],
+   "anotaciones": [
+    {
+     "busca": "TITLE_MAX = 80",
+     "estado": "ojo",
+     "rotulo": "el máximo"
+    },
+    {
+     "busca": "title.trim()",
+     "estado": "ojo",
+     "rotulo": "quita espacios"
+    },
+    {
+     "busca": "return [422",
+     "estado": "falla",
+     "rotulo": "422"
+    }
+   ]
+  },
+  "E04": {
+   "titulo_terminal": "bash — DocFlow en :4310",
+   "capturas": [
+    {
+     "cmd": "for n in 2 3 80 81; do crea editor \"$(printf \"%${n}s\" | tr ' ' x)\"; done",
+     "archivo": "salidas/crea_limites.txt"
+    },
+    {
+     "cmd": "crea editor \"  ab  \"",
+     "archivo": "salidas/crea_espacios.txt"
+    },
+    {
+     "cmd": "crea viewer \"Q4 launch plan\"",
+     "archivo": "salidas/crea_viewer.txt"
+    },
+    {
+     "cmd": "crea viewer \"ab\"",
+     "archivo": "salidas/crea_viewer_ab.txt"
+    }
+   ],
+   "anotaciones": [
+    {
+     "busca": "viewer · título de 14 → 201",
+     "estado": "falla",
+     "rotulo": "debía ser 403"
+    },
+    {
+     "busca": "viewer · título de 2 → 422",
+     "estado": "falla",
+     "rotulo": "403 va primero"
+    },
+    {
+     "busca": "editor · título de 6 → 422",
+     "estado": "ojo",
+     "rotulo": "quedan 2 letras"
+    },
+    {
+     "busca": "editor · título de 2 → 422",
+     "estado": "pasa",
+     "rotulo": "B-1"
+    },
+    {
+     "busca": "editor · título de 3 → 201",
+     "estado": "pasa",
+     "rotulo": "B-2"
+    },
+    {
+     "busca": "editor · título de 80 → 201",
+     "estado": "pasa",
+     "rotulo": "B-3"
+    },
+    {
+     "busca": "editor · título de 81 → 422",
+     "estado": "pasa",
+     "rotulo": "B-4"
+    }
+   ]
+  },
+  "E05": {
+   "titulo_terminal": "bash — war-paradigm/experiments/02-mutants",
+   "capturas": [
+    {
+     "cmd": "npm run test:mutants",
+     "archivo": "salidas/test_mutants.txt"
+    },
+    {
+     "cmd": "grep -n -o \"'x'.repeat([0-9]*)\" tests/*.ts",
+     "archivo": "salidas/repeat_grep.txt"
+    }
+   ],
+   "ritmo": 0.35,
+   "anotaciones": [
+    {
+     "busca": "KNOWN SURVIVOR",
+     "estado": "falla",
+     "rotulo": "conocido"
+    },
+    {
+     "busca": "KILLED",
+     "estado": "pasa",
+     "rotulo": "atrapado"
+    },
+    {
+     "busca": "repeat(81)",
+     "estado": "ojo",
+     "rotulo": "un solo lado"
+    },
+    {
+     "busca": "repeat(80)",
+     "estado": "pasa",
+     "rotulo": "el borde B-3"
+    }
+   ]
+  },
+  "E06": {
+   "titulo_terminal": "bash — laya-server · restful-booker-quality-suite",
+   "capturas": [
+    {
+     "cmd": "node bordes-laya.mjs laya-server",
+     "archivo": "salidas/laya_bordes.txt"
+    },
+    {
+     "cmd": "npm run test:component 2>&1 | grep -o -E \"› (accepts|rejects).*|[0-9]+ passed.*\"",
+     "archivo": "salidas/rb_component.txt"
+    }
+   ],
+   "anotaciones": [
+    {
+     "busca": "long_state",
+     "estado": "ojo",
+     "rotulo": "sube a la nube"
+    },
+    {
+     "busca": "low_confidence",
+     "estado": "ojo",
+     "rotulo": "sube a la nube"
+    },
+    {
+     "busca": "-> confident",
+     "estado": "pasa",
+     "rotulo": "se queda"
+    },
+    {
+     "busca": "› rejects",
+     "estado": "pasa",
+     "rotulo": "rechazado"
+    },
+    {
+     "busca": "› accepts",
+     "estado": "pasa",
+     "rotulo": "aceptado"
+    },
+    {
+     "busca": "8 passed",
+     "estado": "pasa",
+     "rotulo": "8 pasan"
+    }
+   ],
+   "recuadros": [
+    {
+     "busca": "2026-02-30",
+     "estado": "pasa",
+     "dice": [
+      "febrero"
+     ]
+    },
+    {
+     "busca": "leap-day",
+     "estado": "pasa",
+     "dice": [
+      "bisiesto"
+     ]
+    },
+    {
+     "busca": "2026-13-01",
+     "estado": "pasa",
+     "dice": [
+      "13"
+     ]
+    },
+    {
+     "busca": "negative price",
+     "estado": "pasa",
+     "dice": [
+      "menos"
+     ]
+    }
+   ]
+  },
+  "E07": {
+   "pasos": [
+    {
+     "titulo": 0,
+     "bloques": [
+      {
+       "tipo": "tabla",
+       "cols": "250px 1fr 330px",
+       "dice": [
+        [
+         "particiones"
+        ],
+        [
+         "limites"
+        ],
+        [
+         "columnas"
+        ],
+        [
+         "estados"
+        ],
+        [
+         "pairwise"
+        ],
+        [
+         "guessing"
+        ]
+       ],
+       "filas": [
+        [
+         "Particiones",
+         "clases del título y del dueño",
+         "un caso por clase",
+         "pasa"
+        ],
+        [
+         "Límites",
+         "2 · 3 · 80 · 81",
+         "borde y vecinos",
+         "pasa"
+        ],
+        [
+         "Decisión",
+         "la tabla de crear · 8 columnas",
+         "nada huérfano",
+         "pasa"
+        ],
+        [
+         "Estados",
+         "publicar borrador · aprobar 2 veces",
+         "saltos prohibidos",
+         "pasa"
+        ],
+        [
+         "Pairwise",
+         "rol × acción × sesión",
+         "todas las parejas",
+         "pasa"
+        ],
+        [
+         "Adivinar",
+         "rutas donde «es mío» abre puerta",
+         "patrón DEF-001",
+         "pasa"
+        ]
+       ]
+      },
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "al lado de cada grupo, una línea con el porqué →",
+         "estado": "ojo",
+         "rotulo": "la pide el revisor",
+         "dice": [
+          "revisor"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E08": {
+   "pasos": [
+    {
+     "peso": 0.8,
+     "titulo": 0,
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "ico": "bicho",
+         "etiqueta": "el ejemplo",
+         "titulo": "DEF-001 self-grant role",
+         "texto": "vault del experimento 03",
+         "dice": [
+          "def-001"
+         ]
+        },
+        {
+         "ico": "lapiz",
+         "etiqueta": "la plantilla",
+         "titulo": "99 Templates/Defect note",
+         "texto": "un reporte igual cada vez",
+         "dice": [
+          "defect"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 1,
+     "titulo": 1,
+     "dice": [
+      "trae"
+     ],
+     "bloques": [
+      {
+       "tipo": "lista",
+       "check": true,
+       "marca_tras": 0.8,
+       "items": [
+        {
+         "texto": "La regla que se rompe",
+         "dice": [
+          "rompe"
+         ]
+        },
+        {
+         "texto": "Los pasos",
+         "dice": [
+          "pasos"
+         ]
+        },
+        {
+         "texto": "Esperado y real",
+         "dice": [
+          "real"
+         ]
+        },
+        {
+         "texto": "La causa",
+         "dice": [
+          "causa"
+         ]
+        },
+        {
+         "texto": "La evidencia",
+         "dice": [
+          "evidencia"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 1.1,
+     "titulo": 2,
+     "dice": [
+      "viewer"
+     ],
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "titulo": "viewer crea un documento",
+         "texto": "esperado 403 · real 201 · ya tienes la salida real",
+         "estado": "falla",
+         "rotulo": "tu primer reporte",
+         "dice": [
+          "salida"
+         ]
+        }
+       ]
+      },
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "escríbelo para alguien que nunca ha visto la app →",
+         "estado": "pasa",
+         "rotulo": "se reproduce solo",
+         "dice": [
+          "nunca"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E09": {
+   "capturas": [
+    {
+     "cmd": "git diff",
+     "archivo": "salidas/mut81.diff"
+    }
+   ],
+   "dice_nuevo": [
+    "81"
+   ]
+  },
+  "E10": {
+   "titulo_terminal": "bash — war-paradigm (TITLE_MAX = 81)",
+   "capturas": [
+    {
+     "cmd": "npm run test:mutants",
+     "archivo": "salidas/mut81_mutants.txt"
+    }
+   ],
+   "anotaciones": [
+    {
+     "busca": "boundary: expect 422",
+     "estado": "falla",
+     "rotulo": "falla"
+    },
+    {
+     "busca": "1 failed",
+     "estado": "falla",
+     "rotulo": "la suite gritó"
+    },
+    {
+     "busca": "SURVIVED",
+     "estado": "ojo",
+     "rotulo": "el escenario"
+    }
+   ]
+  },
+  "E11": {
+   "capturas": [
+    {
+     "cmd": "git diff",
+     "archivo": "salidas/mut79.diff"
+    }
+   ],
+   "dice_nuevo": [
+    "79"
+   ]
+  },
+  "E12": {
+   "titulo_terminal": "bash — war-paradigm (TITLE_MAX = 79)",
+   "capturas": [
+    {
+     "cmd": "npx playwright test",
+     "archivo": "salidas/mut79_test.txt"
+    }
+   ],
+   "anotaciones": [
+    {
+     "busca": "golden: create",
+     "estado": "pasa",
+     "rotulo": "pasa"
+    },
+    {
+     "busca": "exactly 80 chars",
+     "estado": "falla",
+     "rotulo": "el borde gritó"
+    },
+    {
+     "busca": "Received: 422",
+     "estado": "falla",
+     "rotulo": "422"
+    },
+    {
+     "busca": "5/7",
+     "estado": "ojo",
+     "rotulo": "ningún mutante manda 80"
+    }
+   ]
+  },
+  "E13": {
+   "pasos": [
+    {
+     "peso": 0.9,
+     "titulo": 0,
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "ico": "lapiz",
+         "titulo": "Suite de casos",
+         "texto": "cada técnica aplicada y su porqué",
+         "dice": [
+          "suite"
+         ]
+        },
+        {
+         "ico": "bicho",
+         "titulo": "3 reportes de defecto",
+         "texto": "con evidencia",
+         "dice": [
+          "reportes"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "peso": 1.1,
+     "titulo": 1,
+     "dice": [
+      "criterios"
+     ],
+     "bloques": [
+      {
+       "tipo": "lista",
+       "check": true,
+       "marca_tras": 1,
+       "items": [
+        {
+         "texto": "Cada técnica aplicada, con sus casos y la razón",
+         "dice": [
+          "razon"
+         ]
+        },
+        {
+         "texto": "Límites: el borde y el vecino de cada lado",
+         "dice": [
+          "vecino"
+         ]
+        },
+        {
+         "texto": "Reportes que se reproducen solo con lo escrito",
+         "dice": [
+          "escrito"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E14": {
+   "pasos": [
+    {
+     "titulo": 0,
+     "bloques": [
+      {
+       "tipo": "tabla",
+       "cols": "230px 1fr 340px",
+       "dice": [
+        [
+         "uno"
+        ],
+        [
+         "dos"
+        ],
+        [
+         "aprobado"
+        ],
+        [
+         "pict"
+        ]
+       ],
+       "filas": [
+        [
+         "nivel 1",
+         "falta el entregable",
+         "✗ no cumple",
+         "falla"
+        ],
+        [
+         "nivel 2",
+         "está, pero falla un criterio",
+         "⚠ en camino",
+         "ojo"
+        ],
+        [
+         "nivel 3",
+         "cumple los tres criterios",
+         "✓ aprobado",
+         "pasa"
+        ],
+        [
+         "nivel 4",
+         "además: pairwise con PICT y casos ahorrados",
+         "✓ sobresaliente",
+         "pasa"
+        ]
+       ]
+      },
+      {
+       "tipo": "reglas",
+       "filas": [
+        {
+         "si": "reto en nivel ≥ 3 + quiz 6 de 8 →",
+         "estado": "pasa",
+         "rotulo": "apruebas",
+         "dice": [
+          "apruebas"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "E15": {
+   "pausa": 5
+  },
+  "E16": {
+   "pausa": 5
+  },
+  "E17": {
+   "pausa": 5
+  },
+  "E18": {
+   "pasos": [
+    {
+     "reparto": 0.65,
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "num": "✓ 1",
+         "titulo": "El borde y sus dos vecinos",
+         "dice": [
+          "una"
+         ]
+        },
+        {
+         "num": "✓ 2",
+         "titulo": "La tabla muestra la celda que nadie escribió",
+         "dice": [
+          "dos"
+         ]
+        },
+        {
+         "num": "✓ 3",
+         "titulo": "Cada técnica es una fábrica de mutantes",
+         "dice": [
+          "tres"
+         ]
+        }
+       ]
+      },
+      {
+       "tipo": "siguiente",
+       "ico": "play",
+       "texto": "Siguiente → 04 · Setup día 0: Node, git, Playwright y tu primer PR",
+       "brilla_antes": 8,
+       "dice": [
+        "siguiente"
+       ]
+      }
+     ]
+    },
+    {
+     "reparto": 0.35,
+     "titulo": "Antes de irte",
+     "dice": [
+      "suscribete"
+     ],
+     "bloques": [
+      {
+       "tipo": "tarjetas",
+       "items": [
+        {
+         "ico": "campana",
+         "titulo": "Suscríbete y activa la campanita",
+         "texto": "para no perderte el próximo módulo",
+         "dice": [
+          "campanita"
+         ]
+        },
+        {
+         "ico": "lapiz",
+         "titulo": "¿Dudas? Déjalas en los comentarios",
+         "texto": "las leo todas y te respondo",
+         "dice": [
+          "comentarios"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

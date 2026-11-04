@@ -21,7 +21,9 @@ La narración usa una voz sintética (ElevenLabs). Los laboratorios citados son 
 | `02-m30` | WAR Paradigm: tu suite verde puede estar dormida | versión en un solo video (reemplazada por las dos partes) |
 | `02-m30-p1` | 2 · ¿Qué es un mutante? WAR Paradigm explicado fácil | [▶ YouTube](https://youtu.be/cki3wr9xWo4) |
 | `02-m30-p2` | 2.1 · Manos a la obra: tu primer mutante con WAR | [▶ YouTube](https://youtu.be/7Z0lHcEQEtM) |
-| `03-m2` | Diseño de pruebas: el límite de 80 que nadie probó | guion listo |
+| `03-m2` | Diseño de pruebas: el límite de 80 que nadie probó | versión en un solo video (reemplazada por las dos partes) |
+| `03-m2-p1` | 3 · El límite de 80 que nadie probó | [▶ YouTube](https://youtu.be/_5Etfjl_1NM) |
+| `03-m2-p2` | 3.1 · Manos a la obra | [▶ YouTube](https://youtu.be/h9koygTTKQo) |
 | `04-m3` | Setup día 0: Node LTS, lockfile, npx y tu primer PR | guion listo |
 | `05-m3b` | Obsidian para QA: el cuaderno que lee tu IA | guion listo |
 | `06-m4` | TypeScript para QA: lo que el compilador no ve | guion listo |

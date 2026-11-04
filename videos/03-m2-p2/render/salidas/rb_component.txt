@@ -1,0 +1,9 @@
+› rejects invalid ISO calendar date 2026-02-30
+› accepts valid leap-day booking and zero-value boundaries
+› rejects invalid ISO calendar date 2026-13-01
+› rejects invalid ISO calendar date not-a-date
+› rejects invalid ISO calendar date 2026-1-1
+› rejects negative price and empty required names
+› rejects wrong primitive types
+› rejects invalid creation identifiers
+8 passed (372ms)

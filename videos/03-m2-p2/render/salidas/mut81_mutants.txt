@@ -1,0 +1,90 @@
+
+> @mutant-lab/02-mutants@1.0.0 test:mutants
+> npm run test:unit && playwright test tests/mutants.spec.ts
+
+
+> @mutant-lab/02-mutants@1.0.0 test:unit
+> node --import tsx --test tests/unit/scenario-evidence.test.ts
+
+✔ expected rejection kills only when the configured 4xx status matches (0.4535ms)
+✔ accepted mutation survives, but server errors are inconclusive (0.421875ms)
+✔ baseline failures are kept out of the mutation score (0.281584ms)
+✔ a skipped or interrupted scenario without attached evidence is infrastructure, not a survivor (0.225542ms)
+✔ known finding annotation is reserved for a real survivor and a killed known case is fixed (0.169125ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 96.620042
+[WebServer] (node:43864) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 7 tests using 1 worker
+
+(node:43883) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/mutants.spec.ts:11:3 › role-swap: expect 403 (40ms)
+  ✓  2 tests/mutants.spec.ts:11:3 › drop-input: expect 422 (6ms)
+  ✓  3 tests/mutants.spec.ts:11:3 › reorder: expect 409 (14ms)
+  ✓  4 tests/mutants.spec.ts:11:3 › stale-token: expect 401 (7ms)
+  ✘  5 tests/mutants.spec.ts:11:3 › boundary: expect 422 (14ms)
+(node:43903) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  6 tests/mutants.spec.ts:11:3 › self-grant: expect 403 (49ms)
+  ✘  7 tests/mutants.spec.ts:11:3 › viewer-create: expect 403 (8ms)
+
+
+  1) tests/mutants.spec.ts:11:3 › boundary: expect 422 ─────────────────────────────────────────────
+
+    Error: mutation: Mutation was accepted with HTTP 201.
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "KILLED"
+    Received: "SURVIVED"
+
+      21 |     }
+      22 |
+    > 23 |     expect(result.outcome, `${result.phase}: ${result.reason}`).toBe('KILLED');
+         |                                                                 ^
+      24 |   });
+      25 | }
+      26 |
+        at /private/tmp/claude-501/-Users-cris/32180061-b1f8-461c-ada7-03edd843dd86/scratchpad/m03/war-paradigm/experiments/02-mutants/tests/mutants.spec.ts:23:65
+
+    Error Context: test-results/mutants-boundary-expect-422/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/mutants-boundary-expect-422/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/mutants-boundary-expect-422/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/mutants.spec.ts:11:3 › boundary: expect 422 ──────────────────────────────────────────────
+  6 passed (875ms)
+
+[1m  MUTANT SCENARIO EVIDENCE[0m
+[32m  KILLED            role-swap      Expected rejection HTTP 403 observed.[0m
+[32m  KILLED            drop-input     Expected rejection HTTP 422 observed.[0m
+[32m  KILLED            reorder        Expected rejection HTTP 409 observed.[0m
+[32m  KILLED            stale-token    Expected rejection HTTP 401 observed.[0m
+[31m  SURVIVED          boundary       Mutation was accepted with HTTP 201.[0m
+[31m  KNOWN SURVIVOR    self-grant     Mutation was accepted with HTTP 200.[0m
+[31m  KNOWN SURVIVOR    viewer-create  Mutation was accepted with HTTP 201.[0m
+
+  4/7 scored mutants killed · 3 survived · 0 excluded from score
+  JSON evidence: test-results/mutant-evidence.json
+
+npm error Lifecycle script `test:mutants` failed with error:
+npm error code 1
+npm error path /private/tmp/claude-501/-Users-cris/***/scratchpad/m03/war-paradigm/experiments/02-mutants
+npm error workspace @mutant-lab/02-mutants@1.0.0
+npm error location /private/tmp/claude-501/-Users-cris/***/scratchpad/m03/war-paradigm/experiments/02-mutants
+npm error command failed
+npm error command sh -c npm run test:unit && playwright test tests/mutants.spec.ts
