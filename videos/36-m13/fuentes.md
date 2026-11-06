@@ -1,4 +1,4 @@
-# Fuentes · 35 · m13 · Tu carrera QA+IA: posicionamiento
+# Fuentes · 36 · m13 · Tu carrera QA+IA: posicionamiento
 
 Textos del curso: `qa-automation-course/i18n/es/modules-30-35.json` (`m13`), `quiz-28-35.json` (`m13`), `pages.json` (`eval`), `exam.json`. Repos leídos en sus clones locales: `restful-booker-quality-suite` @ `8d8f9c5`, `agent-eval-jev` @ `1a4e3b0`, `war-paradigm` @ `5dc5e92`, `predictor-debugger` @ `03223f7`.
 

@@ -1,4 +1,4 @@
-# Script · 35 · m13 · Your QA+AI career: positioning
+# Script · 36 · m13 · Your QA+AI career: positioning
 
 Voice-over: Cristian, first person · US English · ~150 words/min · 2465 narration words · estimated runtime 16:41 (quiz pauses included)
 

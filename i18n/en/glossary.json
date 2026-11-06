@@ -186,5 +186,13 @@
  {
   "term": "Fail-safe",
   "def": "When in doubt, or when a tool fails, do the conservative thing: run everything or mark unknown."
+ },
+ {
+  "term": "Three-part request",
+  "def": "What, with what, and it's right if. You write it before asking an AI for something, so you can check what it delivers."
+ },
+ {
+  "term": "AI agent",
+  "def": "An assistant that does the task on its own and with your permission: it codes in your folder (Claude Code, Codex) or works on the web (ChatGPT agent). Its changes are reviewed with git diff."
  }
 ]

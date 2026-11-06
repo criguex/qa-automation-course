@@ -55,4 +55,4 @@ La narración usa una voz sintética (ElevenLabs). Los laboratorios citados son 
 | `32-m26` | m26 · Verificar una prueba formal sin ser matemático | guion listo |
 | `33-m31` | m31 · Prueba a ciegas con compromiso por hash | guion listo |
 | `34-m12` | m12 · Capstone «Auditoría WAR» | guion listo |
-| `35-m13` | m13 · Tu carrera QA+IA: posicionamiento | guion listo |
+| `36-m13` | m13 · Tu carrera QA+IA: posicionamiento | guion listo |

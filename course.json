@@ -1357,6 +1357,57 @@
    ]
   },
   {
+   "id": "m33",
+   "track": "cap",
+   "icon": "🎤",
+   "level": "★★★☆☆",
+   "weeks": [
+    38
+   ],
+   "res": [
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/scientific-qa-evidence",
+     "free": true
+    },
+    {
+     "ic": "🧪",
+     "url": "https://github.com/criguex/war-paradigm",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://docs.pytest.org/en/stable/getting-started.html",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://git-scm.com/book/es/v2",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://docs.github.com/en/actions",
+     "free": true
+    },
+    {
+     "ic": "🛠️",
+     "url": "https://obsidian.md/",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://lean-lang.org/",
+     "free": true
+    },
+    {
+     "ic": "📖",
+     "url": "https://www.claymath.org/millennium/navier-stokes-equation/",
+     "free": true
+    }
+   ]
+  },
+  {
    "id": "m13",
    "track": "cap",
    "icon": "🧭",

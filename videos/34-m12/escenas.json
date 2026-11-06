@@ -396,13 +396,13 @@
     "inicio": "17:43",
     "fin": "18:30",
     "tipo": "resumen",
-    "visual": "Tres tarjetas: «Las reglas duras viven en el código» · «El sobreviviente es el hallazgo» · «Aprobado = otra persona, misma huella». Luego la tarjeta del último módulo y la firma.",
+    "visual": "Tres tarjetas: «Las reglas duras viven en el código» · «El sobreviviente es el hallazgo» · «Aprobado = otra persona, misma huella». Luego la tarjeta del módulo siguiente y la firma.",
     "texto_pantalla": {
-      "es": "1 · Reglas en código, y el código se ataca · 2 · El sobreviviente es el hallazgo · 3 · Otra persona, entorno limpio, misma huella · Siguiente: tu carrera QA+IA",
-      "en": "1 · Rules in code, and the code gets attacked · 2 · The survivor is the finding · 3 · Someone else, clean environment, same fingerprint · Next: your QA+AI career"
+      "es": "1 · Reglas en código, y el código se ataca · 2 · El sobreviviente es el hallazgo · 3 · Otra persona, entorno limpio, misma huella · Siguiente: la clase abierta con IA",
+      "en": "1 · Rules in code, and the code gets attacked · 2 · The survivor is the finding · 3 · Someone else, clean environment, same fingerprint · Next: the open class with AI"
     },
     "assets": [
-      "qa-automation-course/course.json (orden: m12 posición 34, m13 posición 35)"
+      "qa-automation-course/course.json (orden: m12 posición 34, m33 posición 35, m13 posición 36)"
     ],
     "notas_animacion": "Firma final: Cristian Guerra · QA · Medellín. Enlace al módulo en pantalla."
   }

@@ -6,7 +6,7 @@ Your QA+AI career: numbers with a command, not adjectives
 
 # Description
 
-Module 35, the closing module of my free QA Automation course. The role is moving up a level: from writing tests to designing strategy and supervising AI-generated tests. Your portfolio project is the proof of what sets you apart.
+Module 36, the closing module of my free QA Automation course. The role is moving up a level: from writing tests to designing strategy and supervising AI-generated tests. Your portfolio project is the proof of what sets you apart.
 
 You'll build two things: a 2-minute pitch that cites one of your projects with a link, and a contract-mismatch report for a stakeholder, with the cURL call, the response and the impact on the consumer. And one rule for everything you say about yourself: every number comes from a command anyone can run.
 

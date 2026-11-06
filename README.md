@@ -10,7 +10,7 @@ This is a course that teaches people how to check that computer programs work. I
 
 **A real example from this repo**
 
-- **Imagine** the course has 429 quiz questions, and each one says which answer is the right one.
+- **Imagine** the course has 439 quiz questions, and each one says which answer is the right one.
 - **What happens:** we broke one question on purpose. It has 4 answers, and we said the right one was number 9, which does not exist.
 - **What the project does:** a checking robot, `scripts/check-course.mjs`, reads every question. It found the broken one, said "1 problem" and stopped with exit code 1. The Pages workflow runs that robot before publishing, so a broken quiz does not go out.
 - **What we gain:** we know the robot is awake, because we watched it catch a mistake we planted.
@@ -30,7 +30,7 @@ This is a course that teaches people how to check that computer programs work. I
 
 <p>
   <img src="https://img.shields.io/badge/course-in_Spanish-55DFBD?style=flat-square&labelColor=071B2B" alt="Course in Spanish"/>
-  <img src="https://img.shields.io/badge/modules-35_·_4_levels-55DFBD?style=flat-square&labelColor=071B2B" alt="35 modules in 4 levels"/>
+  <img src="https://img.shields.io/badge/modules-36_·_4_levels-55DFBD?style=flat-square&labelColor=071B2B" alt="36 modules in 4 levels"/>
   <img src="https://img.shields.io/badge/HTML-static_site-E34F26?style=flat-square&logo=html5&logoColor=white" alt="Static HTML"/>
   <img src="https://img.shields.io/badge/Playwright-2EAD33?style=flat-square&logo=playwright&logoColor=white" alt="Playwright"/>
   <img src="https://img.shields.io/badge/code-MIT-55DFBD?style=flat-square&labelColor=071B2B" alt="Code: MIT"/>
@@ -39,7 +39,7 @@ This is a course that teaches people how to check that computer programs work. I
 
 ## What it is
 
-A free, interactive course that takes you from QA basics to the work I do today: QA assisted by AI with a person who signs off, mutant execution, evaluating LLMs and agents, pipelines and ephemeral containers, and scientific QA (preregistration, fingerprints, reproducibility). It is one static page with no build and no backend. It has 35 modules in four levels (basics, intermediate, advanced AI-QA and scientific QA) plus a final project. The thread through all of it is the WAR Paradigm: **test the tester, mutate reality**. Every module ends with a "mutation of the week", where you break your own check on purpose and show that it notices.
+A free, interactive course that takes you from QA basics to the work I do today: QA assisted by AI with a person who signs off, mutant execution, evaluating LLMs and agents, pipelines and ephemeral containers, and scientific QA (preregistration, fingerprints, reproducibility). It is one static page with no build and no backend. It has 36 modules in four levels (basics, intermediate, advanced AI-QA and scientific QA) plus a final project. The thread through all of it is the WAR Paradigm: **test the tester, mutate reality**. Every module ends with a "mutation of the week", where you break your own check on purpose and show that it notices.
 
 ## How it works
 
@@ -64,7 +64,7 @@ A real run of the site, recorded with Playwright: open a module, answer one ques
 
 ## The route
 
-![Full route: 35 modules in four levels (basics, intermediate, advanced AI-QA, scientific QA), then the capstone and career](docs/assets/route-map.svg)
+![Full route: 36 modules in four levels (basics, intermediate, advanced AI-QA, scientific QA), then the capstone, the open class and career](docs/assets/route-map.svg)
 
 Module titles are in Spanish, as in the course. Labs link to public repos.
 
@@ -104,9 +104,10 @@ Module titles are in Spanish, as in the course. Labs link to public repos.
 | 32 |  | Verificar una prueba formal sin ser matemático — recompilar, checkers independientes y enunciados mutados | [scientific-qa-evidence](https://github.com/criguex/scientific-qa-evidence) |
 | 33 |  | Prueba a ciegas con compromiso por hash — que quien prueba no conozca las trampas | [predictor-debugger](https://github.com/criguex/predictor-debugger), [scientific-qa-evidence](https://github.com/criguex/scientific-qa-evidence) |
 | 34 | Cierre · proyecto final | Capstone «Auditoría WAR» — una auditoría que otra persona reproduce en un entorno limpio | [war-paradigm](https://github.com/criguex/war-paradigm), [predictor-debugger](https://github.com/criguex/predictor-debugger), [scientific-qa-evidence](https://github.com/criguex/scientific-qa-evidence) |
-| 35 |  | Tu carrera QA+IA — posicionamiento | — |
+| 35 |  | Clase abierta — cómo trabajar con IA y comprobar lo que dice, explicado para cualquiera | [scientific-qa-evidence](https://github.com/criguex/scientific-qa-evidence), [war-paradigm](https://github.com/criguex/war-paradigm) |
+| 36 |  | Tu carrera QA+IA — posicionamiento | — |
 
-Three ways through it: the full route from zero (about 37 weeks at 10–12 h a week), a 20-week route if you already automate UI or API tests, and a 12-week route. The 20-week route, with the module number for each week:
+Three ways through it: the full route from zero (about 38 weeks at 10–12 h a week), a 20-week route if you already automate UI or API tests, and a 12-week route. The 20-week route, with the module number for each week:
 
 ![20-week route: four levels and the WAR audit capstone in weeks 21–22, each card with the course module to work on that week](docs/assets/ruta.svg)
 
@@ -124,7 +125,7 @@ python3 -m http.server 8080        # open http://localhost:8080 (the texts load 
 node scripts/check-course.mjs      # validates every module and quiz question
 ```
 
-`check-course.mjs` (Node 18+, no dependencies) checks that every module has goals, prerequisites, kid line, lab, criteria, rubric and mutation of the week, that every quiz bank has at least 8 questions, and that every answer index points to a real option. It also checks that `i18n/es` and `i18n/en` have the same keys and that every English quiz question keeps the same number of options and the same correct answer. Today it prints `35 modules · 4 levels + final project`, `429 quiz questions · 0 problems` and how much of the English text is filled in.
+`check-course.mjs` (Node 18+, no dependencies) checks that every module has goals, prerequisites, kid line, lab, criteria, rubric and mutation of the week, that every quiz bank has at least 8 questions, and that every answer index points to a real option. It also checks that `i18n/es` and `i18n/en` have the same keys and that every English quiz question keeps the same number of options and the same correct answer. Today it prints `36 modules · 4 levels + final project`, `439 quiz questions · 0 problems` and how much of the English text is filled in.
 
 ## Languages
 
