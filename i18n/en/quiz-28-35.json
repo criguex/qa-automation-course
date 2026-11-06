@@ -972,15 +972,15 @@
    "why": "Like the cake: “chocolate, for 10 people, on Saturday”. Without the “it's right if”, you can't tell whether what you get is right."
   },
   {
-   "q": "The counter's test is “3 stars worth 10 → 30”. Which trap escapes?",
+   "q": "The cart's test is “3 pencils at $1,000 → $3,000”. Which trap escapes?",
    "o": [
-    "Forgets the last star (shows 20)",
-    "Counts one star twice (shows 40)",
-    "Multiplies the number of stars by 10 (shows 30)",
-    "Subtracts the last star (shows 10)"
+    "Forgets the last item (charges $2,000)",
+    "Charges one item twice (charges $4,000)",
+    "Charges everything at the first item's price (charges $3,000)",
+    "Subtracts the last item instead of adding it (charges $1,000)"
    ],
    "a": 2,
-   "why": "With equal stars, adding and multiplying give the same result. A golden star worth 50 catches it: the right answer is 70 and the trap shows 30."
+   "why": "If every item costs the same, adding the prices and multiplying the first one by the count give the same result. A $5,000 notebook catches it: the right total is $7,000 and the trap charges $3,000."
   },
   {
    "q": "Which case catches the calculator that “forgets the remainder”?",

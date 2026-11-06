@@ -972,15 +972,15 @@
    "why": "Como la torta: «de chocolate, para 10, el sábado». Sin el «está bien si», no sabes si lo que te entregan está bien."
   },
   {
-   "q": "La prueba del contador es «3 estrellas de 10 → 30». ¿Qué trampa se escapa?",
+   "q": "La prueba del carrito es «3 lápices de $1.000 → $3.000». ¿Qué trampa se escapa?",
    "o": [
-    "Olvida la última estrella (marca 20)",
-    "Cuenta una estrella dos veces (marca 40)",
-    "Multiplica cuántas estrellas hay por 10 (marca 30)",
-    "Resta la última estrella (marca 10)"
+    "Olvida el último producto (cobra $2.000)",
+    "Cobra un producto dos veces (cobra $4.000)",
+    "Cobra todo al precio del primero (cobra $3.000)",
+    "Resta el último producto en vez de sumarlo (cobra $1.000)"
    ],
    "a": 2,
-   "why": "Con estrellas iguales, sumar y multiplicar dan lo mismo. Una estrella dorada de 50 la atrapa: lo correcto es 70 y la trampa marca 30."
+   "why": "Si todos los productos cuestan lo mismo, sumar los precios y multiplicar el primero por la cantidad da igual. Un cuaderno de $5.000 la atrapa: lo correcto es $7.000 y la trampa cobra $3.000."
   },
   {
    "q": "¿Qué caso atrapa a la calculadora que «olvida lo que sobra»?",
