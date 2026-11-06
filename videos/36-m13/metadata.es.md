@@ -6,7 +6,7 @@ Tu carrera QA+IA: números con comando, no adjetivos
 
 # Descripción
 
-Módulo 35, el cierre del curso gratis de QA Automation. El rol sube de altitud: de escribir tests a diseñar estrategia y supervisar pruebas generadas por IA. Tu proyecto de portafolio es la prueba de tu diferencial.
+Módulo 36, el cierre del curso gratis de QA Automation. El rol sube de altitud: de escribir tests a diseñar estrategia y supervisar pruebas generadas por IA. Tu proyecto de portafolio es la prueba de tu diferencial.
 
 Vas a armar dos cosas: un pitch de 2 minutos que cita un proyecto tuyo con enlace, y un reporte de un contract mismatch para un stakeholder, con cURL, response e impacto en el consumidor. Y una regla para todo lo que digas de ti: cada número sale de un comando que se puede correr.
 

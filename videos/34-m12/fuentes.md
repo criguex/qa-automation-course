@@ -35,7 +35,7 @@ Repos leídos en sus clones locales: `war-paradigm` @ `5dc5e92` (incluye `1b01c6
 | E21 | Criterios y entregable | `m12.crit`, `m12.deliver` |
 | E22 | Rúbrica integrada de cuatro filas | `m12.rubm`; `pages.json`, `eval.s06` |
 | E23–E25 | Preguntas 1, 3 y 6 del banco de m12 | `qa-automation-course/i18n/es/quiz-28-35.json`, `m12` |
-| E26 | Siguiente: m13 (posición 35) | `qa-automation-course/course.json` |
+| E26 | Siguiente: m33, clase abierta (posición 35) | `qa-automation-course/course.json` |
 
 ## Corridas propias (2026-10-26)
 

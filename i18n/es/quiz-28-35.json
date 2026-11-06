@@ -959,6 +959,118 @@
    "why": "Herramientas se aprenden en semanas; criterio es lo que contratan. El capstone es tu prueba tangible de criterio."
   }
  ],
+ "m33": [
+  {
+   "q": "¿Cuáles son las tres partes de un pedido a una IA que se puede comprobar?",
+   "o": [
+    "Qué, con qué y está bien si",
+    "Quién, cuándo y cuánto cuesta",
+    "Contexto, modelo y temperatura",
+    "Título, descripción y etiqueta"
+   ],
+   "a": 0,
+   "why": "Como la torta: «de chocolate, para 10, el sábado». Sin el «está bien si», no sabes si lo que te entregan está bien."
+  },
+  {
+   "q": "La prueba del contador es «3 estrellas de 10 → 30». ¿Qué trampa se escapa?",
+   "o": [
+    "Olvida la última estrella (marca 20)",
+    "Cuenta una estrella dos veces (marca 40)",
+    "Multiplica cuántas estrellas hay por 10 (marca 30)",
+    "Resta la última estrella (marca 10)"
+   ],
+   "a": 2,
+   "why": "Con estrellas iguales, sumar y multiplicar dan lo mismo. Una estrella dorada de 50 la atrapa: lo correcto es 70 y la trampa marca 30."
+  },
+  {
+   "q": "¿Qué caso atrapa a la calculadora que «olvida lo que sobra»?",
+   "o": [
+    "12 caramelos entre 3 niños",
+    "13 caramelos entre 3 niños",
+    "0 caramelos entre 3 niños",
+    "6 caramelos entre 3 niños"
+   ],
+   "a": 1,
+   "why": "Con 12, 0 y 6 no sobra nada, así que la trampa da lo mismo que el programa bueno. Con 13 sobra 1, y la trampa dice 0: 4 × 3 + 0 = 12, no 13."
+  },
+  {
+   "q": "Una trampa a propósito sale SURVIVED. ¿Qué haces?",
+   "o": [
+    "La quitas del reporte para que se vea limpio",
+    "Concluyes que el programa está bien",
+    "La reportas como escapada y buscas un caso más difícil que la atrape",
+    "Le preguntas a la IA si importa"
+   ],
+   "a": 2,
+   "why": "Las que se escapan son las que enseñan: muestran qué casos le faltan a tu prueba. Se reportan, no se borran."
+  },
+  {
+   "q": "Tu script de trampas imprime KILLED en todas, pero pytest ni siquiera está instalado. ¿Qué faltó?",
+   "o": [
+    "Más trampas",
+    "Una línea base: comprobar que las pruebas pasan sin trampas antes de contar KILLED",
+    "Correrlo dos veces",
+    "Un reporte en HTML"
+   ],
+   "a": 1,
+   "why": "Si las pruebas fallan por cualquier motivo, toda trampa parece atrapada. Sin línea base, un KILLED es un falso verde."
+  },
+  {
+   "q": "El agente dice «ya corrí las pruebas y pasan». ¿Qué pides?",
+   "o": [
+    "Nada: confías",
+    "Que otra IA lo confirme",
+    "El comando exacto y lo que salió, y lo corres tú",
+    "Que lo repita con más seguridad"
+   ],
+   "a": 2,
+   "why": "Es la trampa 2 de la IA: decir que corrió algo que no corrió, o que corrió otra cosa. El comando y su salida se pueden comprobar; la frase no."
+  },
+  {
+   "q": "Una prueba estaba en rojo y, después de pedirle a la IA que la arregle, está en verde. ¿Qué revisas primero?",
+   "o": [
+    "El color del reporte",
+    "Con git diff, si cambió el programa o aflojó la prueba",
+    "Cuánto tardó",
+    "Que el mensaje del commit sea claro"
+   ],
+   "a": 1,
+   "why": "La trampa 3: a veces la IA no arregla el programa, sino que cambia la prueba para que pase. La prueba la decides tú."
+  },
+  {
+   "q": "¿Por qué dos IA que están de acuerdo no son dos testigos?",
+   "o": [
+    "Porque pueden equivocarse igual; hace falta un control que no dependa de ellas",
+    "Porque siempre se contradicen",
+    "Porque las IA no saben matemáticas",
+    "Porque la segunda opinión cuesta más"
+   ],
+   "a": 0,
+   "why": "Pueden compartir el mismo error. Un control independiente es una cuenta a mano, un verificador como Lean o una persona."
+  },
+  {
+   "q": "El verificador rechaza un enunciado al que le cambiaste un símbolo. ¿Qué sabes?",
+   "o": [
+    "Que el enunciado nuevo es falso",
+    "Que el enunciado cambió; para saber si es falso hace falta otra demostración",
+    "Que el verificador está roto",
+    "Que la demostración original era falsa"
+   ],
+   "a": 1,
+   "why": "Como el portero que no te deja pasar con otro corte de pelo: rechazar dice «cambió», no «es falso». En el estudio, 8 de 8 cambios fueron rechazados, y 4 decían lo mismo."
+  },
+  {
+   "q": "En la ecuación de Navier–Stokes de la clase, ¿qué es f?",
+   "o": [
+    "La viscosidad",
+    "Un empujón de afuera, como el que se le da a un columpio",
+    "La presión",
+    "El tiempo"
+   ],
+   "a": 1,
+   "why": "Las reglas naturales son el resto de la ecuación. Con f la explosión está demostrada; sin f sigue abierta: es el problema del milenio."
+  }
+ ],
  "m13": [
   {
    "q": "¿Cuál pitch posiciona el perfil QA+IA?",

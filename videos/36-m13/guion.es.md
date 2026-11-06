@@ -1,4 +1,4 @@
-# Guion · 35 · m13 · Tu carrera QA+IA: posicionamiento
+# Guion · 36 · m13 · Tu carrera QA+IA: posicionamiento
 
 Voz en off: Cristian, primera persona · español de Colombia, tuteo · ~150 palabras/min · 2481 palabras de narración · duración estimada 16:47 (incluye pausas del quiz)
 
