@@ -959,6 +959,118 @@
    "why": "Tools are learned in weeks; judgment is what gets hired. The capstone is your tangible proof of judgment."
   }
  ],
+ "m33": [
+  {
+   "q": "What are the three parts of a request to an AI that you can check?",
+   "o": [
+    "What, with what, and it's right if",
+    "Who, when, and how much it costs",
+    "Context, model, and temperature",
+    "Title, description, and label"
+   ],
+   "a": 0,
+   "why": "Like the cake: “chocolate, for 10 people, on Saturday”. Without the “it's right if”, you can't tell whether what you get is right."
+  },
+  {
+   "q": "The cart's test is “3 pencils at $1,000 → $3,000”. Which trap escapes?",
+   "o": [
+    "Forgets the last item (charges $2,000)",
+    "Charges one item twice (charges $4,000)",
+    "Charges everything at the first item's price (charges $3,000)",
+    "Subtracts the last item instead of adding it (charges $1,000)"
+   ],
+   "a": 2,
+   "why": "If every item costs the same, adding the prices and multiplying the first one by the count give the same result. A $5,000 notebook catches it: the right total is $7,000 and the trap charges $3,000."
+  },
+  {
+   "q": "Which case catches the calculator that “forgets the remainder”?",
+   "o": [
+    "12 candies for 3 kids",
+    "13 candies for 3 kids",
+    "0 candies for 3 kids",
+    "6 candies for 3 kids"
+   ],
+   "a": 1,
+   "why": "With 12, 0 and 6 nothing is left over, so the trap gives the same answer as the good program. With 13, 1 is left over and the trap says 0: 4 × 3 + 0 = 12, not 13."
+  },
+  {
+   "q": "A trap you planted on purpose comes out SURVIVED. What do you do?",
+   "o": [
+    "Remove it from the report so it looks clean",
+    "Conclude that the program is fine",
+    "Report it as escaped and look for a harder case that catches it",
+    "Ask the AI whether it matters"
+   ],
+   "a": 2,
+   "why": "The ones that escape are the ones that teach: they show which cases your test is missing. They get reported, not deleted."
+  },
+  {
+   "q": "Your trap script prints KILLED for every trap, but pytest isn't even installed. What was missing?",
+   "o": [
+    "More traps",
+    "A baseline: checking that the tests pass without traps before counting KILLED",
+    "Running it twice",
+    "An HTML report"
+   ],
+   "a": 1,
+   "why": "If the tests fail for any reason, every trap looks caught. Without a baseline, a KILLED is a false green."
+  },
+  {
+   "q": "The agent says “I already ran the tests and they pass”. What do you ask for?",
+   "o": [
+    "Nothing: you trust it",
+    "Another AI's confirmation",
+    "The exact command and its output, and you run it yourself",
+    "That it says it again more confidently"
+   ],
+   "a": 2,
+   "why": "That is AI trap 2: saying it ran something it didn't, or that it ran something else. The command and its output can be checked; the sentence can't."
+  },
+  {
+   "q": "A test was red and, after you asked the AI to fix it, it is green. What do you check first?",
+   "o": [
+    "The report's color",
+    "With git diff, whether it changed the program or loosened the test",
+    "How long it took",
+    "That the commit message is clear"
+   ],
+   "a": 1,
+   "why": "Trap 3: sometimes the AI doesn't fix the program, it changes the test so it passes. You decide the test."
+  },
+  {
+   "q": "Why are two AIs that agree not two witnesses?",
+   "o": [
+    "Because they can be wrong in the same way; you need a check that doesn't depend on them",
+    "Because they always contradict each other",
+    "Because AIs don't know mathematics",
+    "Because the second opinion costs more"
+   ],
+   "a": 0,
+   "why": "They can share the same mistake. An independent check is a calculation by hand, a checker like Lean, or a person."
+  },
+  {
+   "q": "The checker rejects a statement in which you changed one symbol. What do you know?",
+   "o": [
+    "That the new statement is false",
+    "That the statement changed; knowing whether it is false needs another proof",
+    "That the checker is broken",
+    "That the original proof was false"
+   ],
+   "a": 1,
+   "why": "Like the doorman who won't let you in with a new haircut: rejection says “changed”, not “false”. In the study, 8 of 8 changes were rejected, and 4 said the same thing."
+  },
+  {
+   "q": "In the class's Navier–Stokes equation, what is f?",
+   "o": [
+    "The viscosity",
+    "A push from outside, like the one you give a swing",
+    "The pressure",
+    "Time"
+   ],
+   "a": 1,
+   "why": "The natural rules are the rest of the equation. With f the blow-up is proven; without f it is still open: that is the millennium problem."
+  }
+ ],
  "m13": [
   {
    "q": "Which pitch positions the QA+AI profile?",

@@ -186,5 +186,13 @@
  {
   "term": "Fail-safe",
   "def": "Ante la duda o la falla de una herramienta, hacer lo conservador: correr todo o marcar unknown."
+ },
+ {
+  "term": "Pedido en tres partes",
+  "def": "Qué, con qué y está bien si. Se escribe antes de pedirle algo a una IA para poder comprobar lo que entrega."
+ },
+ {
+  "term": "Agente de IA",
+  "def": "Asistente que hace la tarea por su cuenta y con tu permiso: programa en tu carpeta (Claude Code, Codex) o trabaja en la web (agente de ChatGPT). Sus cambios se revisan con git diff."
  }
 ]

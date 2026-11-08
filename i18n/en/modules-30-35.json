@@ -365,6 +365,88 @@
    }
   ]
  },
+ "m33": {
+  "title": "Open class — how to work with AI and check what it says, explained for anyone",
+  "hours": "~10 h",
+  "mentor": "This module is the class I prepared for a mathematics seminar at a university: a QA class on how to work with AI and check what it says, designed so an 8-year-old can follow it. I use it as the closing module because it is the best proof that you have mastered the method: if you can explain it with a shopping cart and some candies, you understood it. Here you build it with real code, put traps in your tests, learn to catch the traps AI sets for you, and teach it in a short class. At the end there is a real case: OpenAI's Navier–Stokes proof, reviewed the way software is reviewed.",
+  "kid": "To know whether the fire alarm works, you hold a match near it. With AI it's the same: you ask for something by saying what you want, with what, and when it's right, and then you put traps in your tests on purpose to see whether they catch them.",
+  "obj": [
+   "Write a request for an AI in three parts (what, with what, it's right if) before asking.",
+   "Test the test with traps on purpose, and pick a harder case when one escapes.",
+   "Walk through a piece of work with AI in 7 steps and say what each tool is for and how to use it.",
+   "Recognize the 4 traps AI sets and catch them with evidence.",
+   "Explain the method in a 20-minute class with one software example and one arithmetic example."
+  ],
+  "pre": "WAR Paradigm (mutants, KILLED and SURVIVED) and AI-augmented QA. Python 3 and Git. For the final case it helps, without being required, to have done the module on verifying a formal proof.",
+  "theory": [
+   "<b>QA in one sentence:</b> testing that things work before someone uses them. With AI the split is clear: the AI is fast, and you decide what is correct and check it.",
+   "<b>Ask for something you can check.</b> “Make me a cake” gets you anything; “chocolate, for 10 people, on Saturday” can be checked. Every request has three parts: <b>what</b>, <b>with what</b> and <b>it's right if</b>. In software: “check the shopping cart”: it charges the purchase correctly, with 3 pencils at $1,000, it's right if it charges $3,000. With arithmetic: “check this division”: it shares equally, with 12 candies and 3 kids, it's right if 4 × 3 = 12 and nothing is left over.",
+   "<b>Traps on purpose: the fire drill.</b> To know whether your test works, you put a mistake in the program on purpose. That program with a trap is called a <b>mutant</b>: KILLED if the test catches it (the alarm went off), SURVIVED if it escapes.",
+   "<b>The shopping cart.</b> The test is 1,000 + 1,000 + 1,000 = 3,000. “Forgets the last item” charges $2,000 and “charges one item twice” charges $4,000: both are caught. “Everything at the first item's price” charges 3 × 1,000 = 3,000 and escapes, because every item cost the same. With a $5,000 notebook, the right total is $7,000 and the trap charges $3,000: KILLED.",
+   "<b>The candy calculator.</b> 12 ÷ 3 = 4 is checked with the school division check: 4 × 3 = 12. “Multiplies” gives 36 and “subtracts” gives 9: both are caught. “Forgets the remainder” escapes with 12, because nothing is left over. With 13 candies (4 each and 1 left over), the trap says 0 is left over, and 4 × 3 + 0 = 12, not 13: KILLED. <b>A trap that escapes teaches you to pick a harder case.</b>",
+   "<b>A piece of work with AI in 7 steps:</b> 1 · I ask myself the question (Obsidian) → 2 · I request (Claude, ChatGPT) → 3 · An agent does it (Claude Code, Codex, ChatGPT agent, Grok) → 4 · I check (pytest, Lean 4, Playwright) → 5 · I save (Git and GitHub) → 6 · It repeats on its own (GitHub Actions) → 7 · I publish (Zenodo). AI speeds up step 3; steps 1, 4 and 5 are the ones that protect you.",
+   "<b>The AIs, what for and how.</b> Claude and ChatGPT converse: they think, write and review with you. You give them context and the three-part request, and you ask for sources; using one to review the other is a second opinion, not a witness. Claude Code and Codex are agents that code in your folder: you give them a concrete task, approve their steps and review their changes with Git. The ChatGPT agent does tasks on the web (search, browse, fill in forms) and asks for permission before important actions. Grok, from xAI, searches the internet in real time; its sources get checked the same way.",
+   "<b>Checking and saving, what for and how.</b> Obsidian is your notebook: one note per question, linked with <code>[[ ]]</code>. pytest runs <code>test_</code> functions with <code>assert</code>. Lean 4 with Mathlib checks proofs: if it accepts the proof without <code>sorry</code>, it is verified. Playwright opens the browser, clicks and checks what shows up. Git saves every version (<code>git commit</code>) and shows what changed (<code>git diff</code>); GitHub shares it (<code>git push</code>). GitHub Actions runs the tests on its own on every change, on Windows, Mac and Linux. Zenodo gives a DOI to every version you publish. Three are enough to start: Obsidian, Git and an assistant.",
+   "<b>The 4 traps AI sets for you.</b> 1 · It makes things up (a book that doesn't exist, a number that sounds right): ask for the source and open it yourself. 2 · It says “I already ran it” and didn't, or ran something else: ask for the command and its output, and run it yourself. 3 · It loosens the test so it passes instead of fixing the program: you decide the test, and <code>git diff</code> shows what changed. 4 · Another AI agrees with it: two AIs agreeing are not two witnesses; use a check that doesn't depend on them (a calculation, Lean or a person).",
+   "<b>How to start tomorrow:</b> 1 · before asking, write down the question and when it's right; 2 · ask in three parts; 3 · put a trap in your test, and if it doesn't catch it, the test is useless; 4 · keep notes in Obsidian and changes in Git; 5 · distrust what sounds perfect: ask for the command and its output.",
+   "<b>A real case: Navier–Stokes reviewed like software.</b> Navier–Stokes are the equations of how a fluid moves, and one of their questions is a Clay Institute millennium problem. OpenAI published a Lean proof that, with a certain external force, a solution can “blow up”: its velocity becomes infinite in finite time (Clay's alternatives C and D). Reviewed with this method: 609 of 609 pieces compile without errors, 2 independently written checkers accept it, 6 of 6 traps in the statement were caught, and 15 of the 16 parts of Clay's official statement were connected to the theorem (the missing one needs a mathematician's decision). The proof is OpenAI's; the audit method and the evidence are in scientific-qa-evidence.",
+   "<b>Rejected means “changed”, not “false”.</b> The challenge's checker (Comparator) is like a doorman comparing your face with your ID photo: if you got a haircut, you don't get in even though it's you. I made 8 changes to three theorems Mathlib already proves (4 that say the same thing, 1 that says less but is true, and 3 false ones), and Comparator rejected all 8. Telling which was which needed a separate Lean proof each time.",
+   "<b>The unknown, for discussion.</b> In ∂u/∂t + (u·∇)u = −∇p + νΔu + f, the natural rules are the equation and <b>f</b> is a push from outside, like the one you give a swing (in class I call it “the admin”). With f, the blow-up is proven. The trap of removing the push from the statement (f = 0) is rejected in C and in D: that proof needs f and says nothing about the case without it. With only the natural rules, nobody knows yet: that is the millennium problem. In software the question is the same: does the program crash on its own, or only when someone feeds it data from outside?"
+  ],
+  "res": [
+   {
+    "label": "Real case: scientific-qa-evidence (Navier–Stokes audit in Lean)",
+    "type": "Repo · free"
+   },
+   {
+    "label": "war-paradigm — mutants and testing the tester",
+    "type": "Repo · free"
+   },
+   {
+    "label": "pytest — getting started",
+    "type": "Docs · free"
+   },
+   {
+    "label": "Pro Git — the Git book (Spanish edition; the site has English too)",
+    "type": "Book · free"
+   },
+   {
+    "label": "GitHub Actions — documentation",
+    "type": "Docs · free"
+   },
+   {
+    "label": "Obsidian — your notebook",
+    "type": "Tool · free"
+   },
+   {
+    "label": "Lean — the language that checks proofs",
+    "type": "Docs · free"
+   },
+   {
+    "label": "Clay Institute — the Navier–Stokes problem",
+    "type": "Article · free"
+   }
+  ],
+  "hands": [
+   "<b>Step 1 · Write the request before the code.</b> Create <code>pedido.md</code> (or a note in Obsidian) with the three parts of the two functions you will ask for. The lab code and the file names stay in Spanish, as in the course labs: <code>cobrar</code> totals the cart, <code>repartir</code> shares candies, <code>trampas</code> are the traps.<pre><code>## Carrito de compras\nQué: que cobre bien la compra.\nCon qué: 3 lápices de $1.000.\nEstá bien si: cobra $3.000.\n\n## Repartir caramelos\nQué: que reparta en partes iguales y diga cuánto sobra.\nCon qué: 12 caramelos, 3 niños.\nEstá bien si: cada uno × 3 + lo que sobra = 12, y sobra menos de 3.</code></pre><pre><code>git init &amp;&amp; git add pedido.md &amp;&amp; git commit -m \"pedido: qué, con qué y está bien si\"</code></pre>That commit goes before you ask the AI for anything.",
+   "<b>Step 2 · Ask an agent</b> (Claude Code or Codex) by pasting the request. <code>cuentas.py</code> should end up with this or something equivalent:<pre><code>def cobrar(precios):\n    return sum(precios)\n\n\ndef repartir(caramelos, ninos):\n    return caramelos // ninos, caramelos % ninos</code></pre>You write or review the tests in <code>test_cuentas.py</code> yourself, line by line:<pre><code>from cuentas import cobrar, repartir\n\n\ndef test_tres_lapices():\n    assert cobrar([1000, 1000, 1000]) == 3000\n\n\ndef test_doce_caramelos():\n    cada, sobra = repartir(12, 3)\n    assert cada * 3 + sobra == 12 and 0 &lt;= sobra &lt; 3</code></pre><pre><code>python3 -m venv .venv &amp;&amp; . .venv/bin/activate &amp;&amp; pip install pytest\npython -m pytest -q</code></pre>It should say <code>2 passed</code>.",
+   "<b>Step 3 · Put traps in your test.</b> Save <code>trampas.py</code>: it copies <code>cuentas.py</code> to a temporary folder, puts in one trap at a time and runs your tests.<pre><code>import shutil\nimport subprocess\nimport sys\nimport tempfile\nfrom pathlib import Path\n\nSUMA = \"return sum(precios)\"\nDIVISION = \"return caramelos // ninos, caramelos % ninos\"\nTRAMPAS = {\n    \"olvida el último producto\": (SUMA, \"return sum(precios[:-1])\"),\n    \"cobra un producto dos veces\": (SUMA, \"return sum(precios) + precios[0]\"),\n    \"todo al precio del primero\": (SUMA, \"return len(precios) * precios[0]\"),\n    \"multiplica en vez de dividir\": (DIVISION, \"return caramelos * ninos, 0\"),\n    \"resta en vez de dividir\": (DIVISION, \"return caramelos - ninos, 0\"),\n    \"olvida lo que sobra\": (DIVISION, \"return caramelos // ninos, 0\"),\n}\n\n\ndef pasan(codigo):\n    with tempfile.TemporaryDirectory() as d:\n        Path(d, \"cuentas.py\").write_text(codigo)\n        shutil.copy(\"test_cuentas.py\", d)\n        r = subprocess.run([sys.executable, \"-m\", \"pytest\", \"-q\", \"-p\", \"no:cacheprovider\"], cwd=d, capture_output=True)\n    return r.returncode == 0\n\n\noriginal = Path(\"cuentas.py\").read_text()\nif not pasan(original):\n    sys.exit(\"las pruebas no pasan sin trampas: arregla eso primero\")\nescapadas = 0\nfor nombre, (bien, trampa) in TRAMPAS.items():\n    assert original.count(bien) == 1, f\"no encuentro: {bien}\"\n    resultado = \"SURVIVED\" if pasan(original.replace(bien, trampa)) else \"KILLED\"\n    escapadas += resultado == \"SURVIVED\"\n    print(resultado.ljust(9), nombre)\nprint(f\"{escapadas} trampas escapadas\")\nsys.exit(1 if escapadas else 0)</code></pre>Run <code>python trampas.py</code>. With the two tests from step 2 you get:<pre><code>KILLED    olvida el último producto\nKILLED    cobra un producto dos veces\nSURVIVED  todo al precio del primero\nKILLED    multiplica en vez de dividir\nKILLED    resta en vez de dividir\nSURVIVED  olvida lo que sobra\n2 trampas escapadas</code></pre>and it ends with exit 1. Look at the script's baseline: if the tests don't pass without traps (for example, because pytest isn't installed), it stops. Without that line, a pytest that doesn't run would make every trap come out KILLED: a false green. It happened to me while preparing this lab.",
+   "<b>Step 4 · Pick harder cases.</b> Add the $5,000 notebook and the 13 candies to <code>test_cuentas.py</code>:<pre><code>def test_cuaderno_de_cinco_mil():\n    assert cobrar([1000, 1000, 5000]) == 7000\n\n\ndef test_trece_caramelos():\n    cada, sobra = repartir(13, 3)\n    assert cada * 3 + sobra == 13 and 0 &lt;= sobra &lt; 3</code></pre>Run <code>python trampas.py</code> again: all 6 traps come out KILLED, it prints <code>0 trampas escapadas</code> and ends with exit 0. Commit both outputs, before and after.",
+   "<b>Step 5 · Make it repeat on its own.</b> Save <code>.github/workflows/pruebas.yml</code>:<pre><code>name: pruebas\non: [push, pull_request]\njobs:\n  pruebas:\n    strategy:\n      matrix:\n        os: [ubuntu-latest, macos-latest, windows-latest]\n    runs-on: ${{ matrix.os }}\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-python@v5\n        with:\n          python-version: \"3.12\"\n      - run: pip install pytest\n      - run: python -m pytest -q\n      - run: python trampas.py</code></pre>Push the repo to GitHub. Every push runs the tests and the traps on Ubuntu, macOS and Windows, and turns red if a trap escapes.",
+   "<b>Verifiable exercise · Teach the class.</b> Prepare 20 minutes for someone who isn't technical, with one software example and one arithmetic example: the three-part request, a trap that gets caught, one that escapes and the case that catches it, the 4 AI traps and the 5 steps to start tomorrow. At the end, ask them to explain in their own words what “testing the test” means, and write it down as they said it."
+  ],
+  "crit": [
+   "<code>git log</code> shows the <code>pedido.md</code> commit before the first commit of <code>cuentas.py</code>.",
+   "<code>python trampas.py</code> with the step 2 tests prints <code>2 trampas escapadas</code> and exits with 1; with the step 4 tests it prints <code>0 trampas escapadas</code> and exits with 0. Both outputs are in the repo.",
+   "Without pytest installed, <code>trampas.py</code> stops with “las pruebas no pasan sin trampas” instead of printing KILLED.",
+   "GitHub Actions runs on Ubuntu, macOS and Windows; you show one red run (a trap escaped) and one green run.",
+   "Every time the AI said “I already ran it”, the repo has the command and its output.",
+   "The class note has, in their own words, the explanation from the person who listened to you."
+  ],
+  "deliver": "Repo with pedido.md, cuentas.py, test_cuentas.py, trampas.py and the Actions workflow; the before and after outputs; and the script or slides for your 20-minute class, with the note of what the other person understood.",
+  "mut": "Set a trap for your assistant. In <code>cuentas.py</code>, replace the division with the “forgets the remainder” trap (the 13-candy test turns red) and ask the agent only this: “make the tests pass”. Check with <code>git diff</code>: if it touched <code>test_cuentas.py</code> instead of <code>cuentas.py</code>, it loosened the test, which is AI trap 3. Your rule: you decide the test, and a change to the tests without your approval is rejected.",
+  "top": "In your class you leave a trap that escapes in plain sight, and the audience finds the case that catches it before you say it (it's in the recording or the note)."
+ },
  "m13": {
   "title": "Your QA+AI career — positioning",
   "hours": "~4 h",
