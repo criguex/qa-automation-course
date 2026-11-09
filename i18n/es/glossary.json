@@ -188,8 +188,8 @@
   "def": "Ante la duda o la falla de una herramienta, hacer lo conservador: correr todo o marcar unknown."
  },
  {
-  "term": "Pedido en tres partes",
-  "def": "Qué, con qué y está bien si. Se escribe antes de pedirle algo a una IA para poder comprobar lo que entrega."
+  "term": "Escenario Gherkin",
+  "def": "Un pedido que se puede comprobar, en tres líneas: Dado (lo que tengo), Cuando (lo que hago) y Entonces (lo que tiene que pasar). Se escribe antes de pedirle algo a una IA, y con pytest-bdd se ejecuta como prueba."
  },
  {
   "term": "Agente de IA",

@@ -961,18 +961,18 @@
  ],
  "m33": [
   {
-   "q": "What are the three parts of a request to an AI that you can check?",
+   "q": "How do you write, in Gherkin, a request to an AI that you can check?",
    "o": [
-    "What, with what, and it's right if",
+    "Given, When, Then",
     "Who, when, and how much it costs",
     "Context, model, and temperature",
     "Title, description, and label"
    ],
    "a": 0,
-   "why": "Like the cake: “chocolate, for 10 people, on Saturday”. Without the “it's right if”, you can't tell whether what you get is right."
+   "why": "Like the cake: “chocolate, for 10 people, on Saturday”. Given is what you have, When is what you do and Then is what must happen; without the Then, you can't tell whether what you get is right."
   },
   {
-   "q": "The cart's test is “3 pencils at $1,000 → $3,000”. Which trap escapes?",
+   "q": "The cart's scenario is “Given 3 pencils at $1,000, When I check out, Then the total is $3,000”. Which trap escapes?",
    "o": [
     "Forgets the last item (charges $2,000)",
     "Charges one item twice (charges $4,000)",
@@ -980,10 +980,10 @@
     "Subtracts the last item instead of adding it (charges $1,000)"
    ],
    "a": 2,
-   "why": "If every item costs the same, adding the prices and multiplying the first one by the count give the same result. A $5,000 notebook catches it: the right total is $7,000 and the trap charges $3,000."
+   "why": "If every item costs the same, adding the prices and multiplying the first one by the count give the same result, and the Then holds. One more row in Examples, with a $5,000 notebook, catches it: the Then asks for $7,000 and the trap charges $3,000."
   },
   {
-   "q": "Which case catches the calculator that “forgets the remainder”?",
+   "q": "Which Examples row catches the calculator that “forgets the remainder”?",
    "o": [
     "12 candies for 3 kids",
     "13 candies for 3 kids",
@@ -991,29 +991,29 @@
     "6 candies for 3 kids"
    ],
    "a": 1,
-   "why": "With 12, 0 and 6 nothing is left over, so the trap gives the same answer as the good program. With 13, 1 is left over and the trap says 0: 4 × 3 + 0 = 12, not 13."
+   "why": "With 12, 0 and 6 nothing is left over, so the trap gives the same answer as the good program. With 13, 1 is left over and the trap says 0: the Then fails, and 4 × 3 + 0 = 12, not 13."
   },
   {
    "q": "A trap you planted on purpose comes out SURVIVED. What do you do?",
    "o": [
     "Remove it from the report so it looks clean",
     "Conclude that the program is fine",
-    "Report it as escaped and look for a harder case that catches it",
+    "Report it as escaped and add to Examples the row that catches it",
     "Ask the AI whether it matters"
    ],
    "a": 2,
-   "why": "The ones that escape are the ones that teach: they show which cases your test is missing. They get reported, not deleted."
+   "why": "The ones that escape are the ones that teach: they show which rows your Examples are missing. They get reported, not deleted."
   },
   {
-   "q": "Your trap script prints KILLED for every trap, but pytest isn't even installed. What was missing?",
+   "q": "Your trap script prints KILLED for every trap, but pytest-bdd isn't even installed. What was missing?",
    "o": [
     "More traps",
-    "A baseline: checking that the tests pass without traps before counting KILLED",
+    "A baseline: checking that the scenarios pass without traps before counting KILLED",
     "Running it twice",
     "An HTML report"
    ],
    "a": 1,
-   "why": "If the tests fail for any reason, every trap looks caught. Without a baseline, a KILLED is a false green."
+   "why": "If the scenarios fail for any reason, every trap looks caught. Without a baseline, a KILLED is a false green."
   },
   {
    "q": "The agent says “I already ran the tests and they pass”. What do you ask for?",
@@ -1027,15 +1027,15 @@
    "why": "That is AI trap 2: saying it ran something it didn't, or that it ran something else. The command and its output can be checked; the sentence can't."
   },
   {
-   "q": "A test was red and, after you asked the AI to fix it, it is green. What do you check first?",
+   "q": "A scenario was red and, after you asked the AI to fix it, it is green. What do you check first?",
    "o": [
     "The report's color",
-    "With git diff, whether it changed the program or loosened the test",
+    "With git diff, whether it changed the program or the Then and the Examples",
     "How long it took",
     "That the commit message is clear"
    ],
    "a": 1,
-   "why": "Trap 3: sometimes the AI doesn't fix the program, it changes the test so it passes. You decide the test."
+   "why": "Trap 3: sometimes the AI doesn't fix the program, it changes the Then or the Examples so it passes. You decide the scenario."
   },
   {
    "q": "Why are two AIs that agree not two witnesses?",

@@ -961,18 +961,18 @@
  ],
  "m33": [
   {
-   "q": "¿Cuáles son las tres partes de un pedido a una IA que se puede comprobar?",
+   "q": "¿Cómo se escribe en Gherkin un pedido a una IA que se puede comprobar?",
    "o": [
-    "Qué, con qué y está bien si",
+    "Dado, Cuando, Entonces",
     "Quién, cuándo y cuánto cuesta",
     "Contexto, modelo y temperatura",
     "Título, descripción y etiqueta"
    ],
    "a": 0,
-   "why": "Como la torta: «de chocolate, para 10, el sábado». Sin el «está bien si», no sabes si lo que te entregan está bien."
+   "why": "Como la torta: «de chocolate, para 10, el sábado». Dado es lo que tienes, Cuando lo que haces y Entonces lo que tiene que pasar; sin el Entonces, no sabes si lo que te entregan está bien."
   },
   {
-   "q": "La prueba del carrito es «3 lápices de $1.000 → $3.000». ¿Qué trampa se escapa?",
+   "q": "El escenario del carrito es «Dado 3 lápices de $1.000, Cuando cobro, Entonces el total es $3.000». ¿Qué trampa se escapa?",
    "o": [
     "Olvida el último producto (cobra $2.000)",
     "Cobra un producto dos veces (cobra $4.000)",
@@ -980,10 +980,10 @@
     "Resta el último producto en vez de sumarlo (cobra $1.000)"
    ],
    "a": 2,
-   "why": "Si todos los productos cuestan lo mismo, sumar los precios y multiplicar el primero por la cantidad da igual. Un cuaderno de $5.000 la atrapa: lo correcto es $7.000 y la trampa cobra $3.000."
+   "why": "Si todos los productos cuestan lo mismo, sumar los precios y multiplicar el primero por la cantidad da igual, y el Entonces se cumple. Una fila más en Ejemplos, con un cuaderno de $5.000, la atrapa: el Entonces pide $7.000 y la trampa cobra $3.000."
   },
   {
-   "q": "¿Qué caso atrapa a la calculadora que «olvida lo que sobra»?",
+   "q": "¿Qué fila de Ejemplos atrapa a la calculadora que «olvida lo que sobra»?",
    "o": [
     "12 caramelos entre 3 niños",
     "13 caramelos entre 3 niños",
@@ -991,29 +991,29 @@
     "6 caramelos entre 3 niños"
    ],
    "a": 1,
-   "why": "Con 12, 0 y 6 no sobra nada, así que la trampa da lo mismo que el programa bueno. Con 13 sobra 1, y la trampa dice 0: 4 × 3 + 0 = 12, no 13."
+   "why": "Con 12, 0 y 6 no sobra nada, así que la trampa da lo mismo que el programa bueno. Con 13 sobra 1, y la trampa dice 0: el Entonces falla, y 4 × 3 + 0 = 12, no 13."
   },
   {
    "q": "Una trampa a propósito sale SURVIVED. ¿Qué haces?",
    "o": [
     "La quitas del reporte para que se vea limpio",
     "Concluyes que el programa está bien",
-    "La reportas como escapada y buscas un caso más difícil que la atrape",
+    "La reportas como escapada y agregas a Ejemplos la fila que la atrapa",
     "Le preguntas a la IA si importa"
    ],
    "a": 2,
-   "why": "Las que se escapan son las que enseñan: muestran qué casos le faltan a tu prueba. Se reportan, no se borran."
+   "why": "Las que se escapan son las que enseñan: muestran qué filas le faltan a tus Ejemplos. Se reportan, no se borran."
   },
   {
-   "q": "Tu script de trampas imprime KILLED en todas, pero pytest ni siquiera está instalado. ¿Qué faltó?",
+   "q": "Tu script de trampas imprime KILLED en todas, pero pytest-bdd ni siquiera está instalado. ¿Qué faltó?",
    "o": [
     "Más trampas",
-    "Una línea base: comprobar que las pruebas pasan sin trampas antes de contar KILLED",
+    "Una línea base: comprobar que los escenarios pasan sin trampas antes de contar KILLED",
     "Correrlo dos veces",
     "Un reporte en HTML"
    ],
    "a": 1,
-   "why": "Si las pruebas fallan por cualquier motivo, toda trampa parece atrapada. Sin línea base, un KILLED es un falso verde."
+   "why": "Si los escenarios fallan por cualquier motivo, toda trampa parece atrapada. Sin línea base, un KILLED es un falso verde."
   },
   {
    "q": "El agente dice «ya corrí las pruebas y pasan». ¿Qué pides?",
@@ -1027,15 +1027,15 @@
    "why": "Es la trampa 2 de la IA: decir que corrió algo que no corrió, o que corrió otra cosa. El comando y su salida se pueden comprobar; la frase no."
   },
   {
-   "q": "Una prueba estaba en rojo y, después de pedirle a la IA que la arregle, está en verde. ¿Qué revisas primero?",
+   "q": "Un escenario estaba en rojo y, después de pedirle a la IA que lo arregle, está en verde. ¿Qué revisas primero?",
    "o": [
     "El color del reporte",
-    "Con git diff, si cambió el programa o aflojó la prueba",
+    "Con git diff, si cambió el programa o el Entonces y los Ejemplos",
     "Cuánto tardó",
     "Que el mensaje del commit sea claro"
    ],
    "a": 1,
-   "why": "La trampa 3: a veces la IA no arregla el programa, sino que cambia la prueba para que pase. La prueba la decides tú."
+   "why": "La trampa 3: a veces la IA no arregla el programa, sino que cambia el Entonces o los Ejemplos para que pase. El escenario lo decides tú."
   },
   {
    "q": "¿Por qué dos IA que están de acuerdo no son dos testigos?",

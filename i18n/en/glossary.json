@@ -188,8 +188,8 @@
   "def": "When in doubt, or when a tool fails, do the conservative thing: run everything or mark unknown."
  },
  {
-  "term": "Three-part request",
-  "def": "What, with what, and it's right if. You write it before asking an AI for something, so you can check what it delivers."
+  "term": "Gherkin scenario",
+  "def": "A request you can check, in three lines: Given (what I have), When (what I do) and Then (what must happen). You write it before asking an AI for something, and with pytest-bdd it runs as a test."
  },
  {
   "term": "AI agent",
